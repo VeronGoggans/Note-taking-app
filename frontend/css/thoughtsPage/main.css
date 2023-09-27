@@ -1,0 +1,33 @@
+body {background-color: aliceblue}
+
+.thoughtsMain {
+    display: grid;
+    grid-template-rows: 70px 1fr;
+    background-color: aliceblue;
+}
+
+.thoughtsMainBtnBar {
+    display: flex;
+    align-items: center;
+}
+
+.thoughts_container {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    grid-template-rows: repeat(auto-fill, 280px);
+    overflow-y: scroll;
+    transition: transform 0.3s ease-in-out;
+}
+
+.thoughts_container::-webkit-scrollbar {
+    background-color: transparent;
+    width: 7px;
+}
+
+.thoughts_container::-webkit-scrollbar-thumb {
+    background-color: rgb(209, 209, 209);
+    border-radius: 5px;
+}
+

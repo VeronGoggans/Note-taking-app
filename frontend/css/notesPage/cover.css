@@ -1,0 +1,25 @@
+.cover_delete_box {
+    position: absolute;
+    visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 100%;
+    width: 100dvw;
+    height: 100dvh;
+    background-color: rgba(213, 236, 255, .5);
+    z-index: 1;
+}
+
+.cover_paper_note {
+    position: absolute;
+    visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    top: 100%;
+    width: 100dvw;
+    height: 100dvh;
+    background-color: aliceblue;
+    z-index: 1;
+}

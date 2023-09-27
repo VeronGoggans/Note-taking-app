@@ -1,0 +1,19 @@
+{
+    "todo_lists": [
+        {
+            "listTitle": "My do do list",
+            "id": "1",
+            "dueDate": "02/09/2023",
+            "to_do": [
+                {
+                    "content": "get some milk",
+                    "priority": "yes",
+                    "completed": "no"
+                }
+            ],
+            "done": [
+                
+            ]
+        }
+    ]
+}

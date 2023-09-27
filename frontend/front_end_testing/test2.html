@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Styled Dropdown Selection Box</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../css/notesPage/main.css">
+    <link rel="stylesheet" href="../css/notesPage/noteCard.css">
+    <style>
+
+        *{
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+        body {
+            padding: 70px;
+        }
+
+        .confirm_password_container {
+            border-radius: 20px;
+            display: grid;
+            grid-template-rows: 50px 50px 100px;
+            width: 430px;
+            height: 200px;
+            background-color: #ffffff;
+            overflow: visible;
+            border-radius: 20px;
+            box-shadow: 10px 30px 15px rgb(213, 226, 241);
+        }
+
+        .confirm_password_container #lock_icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            bottom: 40px;
+            font-size: 90px;
+            color: rgb(154, 191, 255, 1);
+        }
+
+        .confirm_password_input_box {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .confirm_password_input_box i {
+            cursor: pointer;
+            position: absolute;
+            right: 40px;
+            top: 15px;
+        }
+
+        .confirm_password_input_box input {
+            position: relative;
+            outline: none;
+            border: none;
+            background-color: aliceblue;
+            padding: 0 50px 0 5px;
+            font-size: 14px;
+            width: 320px;
+            border-radius: 5px;
+            border-bottom: 3px solid rgb(154, 191, 255, 1);
+            height: 40px;
+        }
+
+        .unlock_note_btn {
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            outline: none;
+            border: none;
+            height: 40px;
+            margin: 30px 70px 5px 70px;
+            background-color: rgb(154, 191, 255, 1);
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 15px;
+            border-radius: 50px; 
+            transition: .4s;
+        }
+
+        .unlock_note_btn:hover {
+            background-color: rgb(130, 176, 255);
+        }
+
+
+        
+    </style>
+</head>
+<body>
+    <div class="confirm_password_container">
+        <i class="fa-solid fa-lock" id="lock_icon"></i>
+        <div class="confirm_password_input_box">
+            <input type="password" id="confirm_password_input" placeholder="Password">
+            <i class="fa-solid fa-eye" id="password_eye_icon"></i>
+        </div>
+        <button class="unlock_note_btn">Unlock</button>
+    </div>
+   
+</body>
+</html>

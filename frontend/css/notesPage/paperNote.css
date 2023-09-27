@@ -1,0 +1,100 @@
+.paper_note_container {
+    width: 80%;
+    max-width: 700px;
+    height: 90%;
+    border-radius: 15px 15px 0 0;
+    padding: 0 20px;
+    display: grid;
+    grid-template-rows: 50px 1fr;
+    box-shadow: .5rem .4rem 1rem rgb(213, 226, 241);
+    overflow: visible;
+    background-color: #fff;
+}
+
+.paper_note_title_box {
+    display: flex;
+    align-items: end;
+}
+
+.paper_note_title_input {
+    outline: none;
+    border: none;
+    height: 40px;
+    width: 100%;
+    color: rgb(36, 40, 109);
+    padding: 0 10px;
+    font-size: 17px;
+    background-color: transparent;
+}
+
+.paper_note_content_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.paper_note_content_textarea {
+    outline: none;
+    border: none;
+    resize: none;
+    padding: 0 10px;
+    width: 100%;
+    height: 90%;
+    color: rgb(36, 40, 109);
+    background-color: transparent;
+    overflow-y: scroll;
+}
+
+.paper_note_content_textarea::-webkit-scrollbar {
+    background-color: transparent;
+    width: 5px;
+}
+
+.paper_note_content_textarea::-webkit-scrollbar-thumb {
+    background-color: rgb(209, 209, 209);
+    border-radius: 5px;
+}
+
+.add_note_btn,
+.edit_note_btn {
+    position: absolute;
+    top: 17px;
+    left: 95%;
+    outline: none;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: rgb(154, 191, 255, 1);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: .4s;
+}
+.add_note_btn:hover {background-color: rgb(134, 178, 255)}
+
+.close_paper_note_btn {
+    position: absolute;
+    top: 17px;
+    right: 95%;
+    outline: none;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    color: rgb(36, 40, 109);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 20px;
+    transition: .4s;
+}
+
+@media(max-width: 900px) {.add_note_btn, .edit_note_btn {left: 94%}}
+@media(max-width: 750px) {.add_note_btn, .edit_note_btn {left: 93%}}
+@media(max-width: 600px) {.add_note_btn, .edit_note_btn {left: 92%}}
+

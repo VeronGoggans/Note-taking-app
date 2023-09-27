@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/sideBar.css">
+    <link rel="stylesheet" href="../../stylesTwo.css">
+    <link rel="stylesheet" href="../css/cover.css">
+    <link rel="stylesheet" href="../css/categoryPage/main.css">
+    <link rel="stylesheet" href="../css/categoryPage/categoryCard.css">
+    <link rel="stylesheet" href="../css/categoryPage/addCategoryContainer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Notes</title>
+</head>
+<body>
+    <div class="top_bar">
+        <ol class="options_menu">
+            <li><a href="#"><i class="fa-solid fa-code" title="Projects"></i></a></li>
+            <li><a href="./thoughtsPage.html"><i class="fa-solid fa-lightbulb" title="Idea's"></i></a></li>
+            <li><a href="./listOrBoard.html"><i class="fa-solid fa-list-ul" title="To do's"></i></a></li>
+            <li><a href="#"><i class="fa-solid fa-user" title="Profile"></i></a></li>
+        </ol>
+    </div>
+    <main class="categories_main">
+        <div class="categories_main_button_bar">
+            <button class="back_btn">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h3 class="tab_title" style="color: rgb(36, 40, 109); margin-left: 50px;">Categories</h3>
+        </div>
+        <div class="category_container">
+            <div class="stage_one_add_card">
+                <div>
+                    <button class="stage_one_add_btn">
+                        <i class="fa-solid fa-plus" id="stage_one_add_btn_icon"></i>
+                    </button>
+                </div>
+                <p>Add category</p>
+            </div>
+        </div>
+    </main>
+
+    <div class="cover">
+        <div class="add_category_container">
+            <div class="add_category_input_box">
+                <input type="text" class="category_name_input" placeholder="Category name" maxlength="25"/>
+            </div>
+            <p class="new_category_char_count">0/25</p>
+            <button class="add_category_btn"><i class="fa-solid fa-plus"></i></button>
+        </div>
+    </div>
+    <script src="../js/endpoints.js"></script>
+    <script src="../js/categoryPage.js"></script>
+</body>
+</html>

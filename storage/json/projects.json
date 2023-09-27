@@ -1,0 +1,65 @@
+[
+    {
+        "projectName": "project one",
+        "githubRepo": "",
+        "projectBoard": [
+            {
+                "boardCategory": "To do",
+                "inUse": "yes",
+                "projectTaks": [
+                    {
+                        "taskTitle": "My first task",
+                        "taskDescription": "",
+                        "estimatedTime": "5",
+                        "dueDate": "01/09/2023",
+                        "priority": "true",
+                        "taskCategory": "To do"
+                    }
+                ]
+            },
+            {
+                "boardCategory": "In progress",
+                "inUse": "yes",
+                "projectTaks": [
+                    {
+                        "taskTitle": "My second task",
+                        "taskDescription": "",
+                        "estimatedTime": "10"
+                    }
+                ]
+            },
+            {
+                "boardCategory": "Done",
+                "inUse": "yes",
+                "projectTaks": [
+                    {
+                        "taskTitle": "My third task",
+                        "taskDescription": "",
+                        "estimatedTime": "10"
+                    }
+                ]
+            },
+            {
+                "boardCategory": "Testing",
+                "inUse": "no",
+                "projectTaks": [
+
+                ]
+            },
+            {
+                "boardCategory": "Planning",
+                "inUse": "no",
+                "projectTaks": [
+
+                ]
+            },
+            {
+                "boardCategory": "Styling",
+                "inUse": "no",
+                "projectTaks": [
+                    
+                ]
+            }
+        ]
+    }
+]

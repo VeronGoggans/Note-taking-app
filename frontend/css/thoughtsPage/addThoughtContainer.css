@@ -1,0 +1,82 @@
+.add_thought_container {
+    width: 450px;
+    height: 300px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    display: grid;
+    grid-template-rows: 75px 225px;
+    box-shadow: 10px 30px 15px rgb(143, 143, 143);;
+    overflow: visible;
+}
+
+.add_thought_input_box,
+.thought_content_box {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.thoughtTitle {
+    outline: none;
+    border: none;
+    border: 2px solid rgb(123, 196, 255, .4);
+    border-radius: 10px;
+    height: 60px;
+    width: 90%;
+    box-sizing: border-box;
+    padding: 0 15px;
+    color: #747474;
+    font-size: 16px;
+    transition: .4s;
+    background-color: transparent;
+}
+
+.thoughtTitle::placeholder,
+.thought_content::placeholder {color: #1b1b1b}
+.thoughtTitle:hover,
+.thoughtTitle:focus {border: 2px solid rgb(123, 196, 255, 1)}
+
+.thought_content {
+    resize: none;
+    outline: none;
+    border: none;
+    height: 200px;
+    width: 90%;
+    padding: 0 15px;
+    box-sizing: border-box;
+    color: #1b1b1b;
+    overflow-y: scroll;
+    background-color: transparent;
+}
+
+.thought_content::-webkit-scrollbar {
+    background-color: transparent;
+    width: 5px;
+}
+
+.thought_content::-webkit-scrollbar-thumb {
+    background-color: rgba(78, 78, 78, .4);
+    border-radius: 5px;
+}
+
+.add_thought_btn {
+    position: relative;
+    bottom: 25px;
+    left: 420px;
+    outline: none;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: #272727;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: .4s;
+}
+
+.add_thought_btn:hover {background-color: rgb(123, 196, 255, 1)}

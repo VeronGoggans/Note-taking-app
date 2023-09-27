@@ -1,0 +1,35 @@
+.confirm_note_delete_container {
+    border-radius: 20px;
+    display: block;
+    text-align: center;
+    width: 430px;
+    height: 200px;
+    background-color: #ffffff;
+    overflow: visible;
+    color: rgb(90, 90, 90);
+    border-radius: 20px;
+    box-shadow: 10px 30px 15px rgb(213, 226, 241);
+}
+
+.confirm_note_delete_container .delete_info_message {padding-top: 50px}
+
+.confirm_note_delete_container p span {
+    color: rgb(154, 191, 255, 1);
+    font-weight: 600;
+}
+
+.confirm_delete_note_btn {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    padding: 20px 40px;
+    margin-top: 30px;
+    border-radius: 10px;
+    font-size: 16px;
+    color: rgb(255, 113, 113);
+    font-weight: 600;
+    transition: .4s;
+}
+
+.confirm_delete_note_btn:hover {background-color: rgb(255, 152, 152, .2)}
