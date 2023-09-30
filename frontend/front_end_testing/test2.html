@@ -10,23 +10,111 @@
         *{
             font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         }
-        body {
-            padding: 70px;
-        }
+        body {padding: 70px}
 
-        .confirm_password_container {
+        .move-note-container {
             border-radius: 20px;
             display: grid;
-            grid-template-rows: 50px 50px 100px;
+            grid-template-rows: 50px 100px 100px;
             width: 430px;
-            height: 200px;
+            height: 250px;
             background-color: #ffffff;
             overflow: visible;
             border-radius: 20px;
             box-shadow: 10px 30px 15px rgb(213, 226, 241);
+            overflow: visible;
         }
 
-        .confirm_password_container #lock_icon {
+        .dropdown {
+            position: relative;
+            margin: 2em;
+            width: 100%;
+            overflow: inherit;
+        }
+
+        .dropdown * {box-sizing: border-box}
+
+        .select {
+            border-radius: 10px;
+            border: 2px solid rgb(154, 191, 255, .2);
+            color: #515e70;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 5px 10px 15px rgb(213, 226, 241);
+            padding: 1em;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .select-clicked {
+            border-radius: 2px solid rgb(154, 191, 255, .2);
+            box-shadow: 0 0 .8em rgb(213, 226, 241);
+        }
+
+        .select:hover {border: 2px solid rgb(154, 191, 255, .5)}
+
+        .caret {
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 6px solid rgb(154, 191, 255);
+            transition: .3s;
+        }
+
+        /*
+            Rotate style for the caret
+        */
+
+        .caret-rotate {transform: rotate(180deg)}
+
+        .menu {
+            list-style: none;
+            padding: 0.2em 0.5em;
+            border: 2px solid rgb(154, 191, 255, .2);
+            border-radius: 8px;
+            color: #515e70;
+            background-color: #ffffff;
+            position: absolute;
+            top: 3em;
+            left: 50%;
+            width: 100%;
+            transform: translateX(-50%);
+            display: none;
+            transition: .2s;
+            z-index: 1;
+        }
+
+        .menu li {
+            padding: .7em .5em;
+            margin: .3em 0;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .menu li:hover {background-color: aliceblue}
+        .active {background-color: rgb(233, 245, 255)}
+
+        .menu-open {
+            list-style: none;
+            padding: 0.2em 0.5em;
+            border: 2px solid rgb(154, 191, 255, .2);
+            border-radius: 8px;
+            color: #515e70;
+            background-color: #ffffff;
+            position: absolute;
+            top: 3em;
+            left: 50%;
+            width: 100%;
+            transform: translateX(-50%);
+            transition: .2s;
+            z-index: 1;
+            display: block;
+            opacity: 1;
+        }
+
+        .move-note-container #location-dot {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -36,34 +124,15 @@
             color: rgb(154, 191, 255, 1);
         }
 
-        .confirm_password_input_box {
+        .move-note-container-combobox-box {
             position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
+            overflow: inherit;
         }
 
-        .confirm_password_input_box i {
-            cursor: pointer;
-            position: absolute;
-            right: 40px;
-            top: 15px;
-        }
-
-        .confirm_password_input_box input {
-            position: relative;
-            outline: none;
-            border: none;
-            background-color: aliceblue;
-            padding: 0 50px 0 5px;
-            font-size: 14px;
-            width: 320px;
-            border-radius: 5px;
-            border-bottom: 3px solid rgb(154, 191, 255, 1);
-            height: 40px;
-        }
-
-        .unlock_note_btn {
+        .unlock-note-btn {
             cursor: pointer;
             display: flex;
             justify-content: center;
@@ -80,23 +149,60 @@
             transition: .4s;
         }
 
-        .unlock_note_btn:hover {
-            background-color: rgb(130, 176, 255);
-        }
+        .unlock-note-btn:hover {background-color: rgb(130, 176, 255)}
 
 
         
     </style>
 </head>
 <body>
-    <div class="confirm_password_container">
-        <i class="fa-solid fa-lock" id="lock_icon"></i>
-        <div class="confirm_password_input_box">
-            <input type="password" id="confirm_password_input" placeholder="Password">
-            <i class="fa-solid fa-eye" id="password_eye_icon"></i>
+    <div class="move-note-container">
+        <i class="fa-solid fa-location-dot" id="location-dot"></i>
+        <div class="move-note-container-combobox-box">
+            <div class="dropdown">
+                <div class="select">
+                    <span class="selected">Select a category</span>
+                    <div class="caret"></div>
+                </div>
+                <ul class="menu">
+                    <li>Springboot</li>
+                    <li>Python</li>
+                    <li>Keeps Project</li>
+                </ul>
+            </div>
         </div>
-        <button class="unlock_note_btn">Unlock</button>
+        <button class="unlock-note-btn">Move</button>
     </div>
+    <script>
+        const dropdown = document.querySelector('.dropdown');
+        const select = dropdown.querySelector('.select');
+        const caret = dropdown.querySelector('.caret');
+        const menu = dropdown.querySelector('.menu');
+        const options = dropdown.querySelectorAll('.menu li');
+        const selected = dropdown.querySelector('.selected');
+
+        select.addEventListener('click', ()=> {
+            select.classList.toggle('select-clicked');
+            caret.classList.toggle('caret-rotate');
+            menu.classList.toggle('menu-open');
+        })
+
+        options.forEach(option => {
+            option.addEventListener('click', ()=> {
+                selected.innerText = option.innerText;
+                select.classList.remove('select-clicked');
+                caret.classList.remove('caret-rotate');
+                menu.classList.remove('menu-open');
+                options.forEach(option => {
+                    option.classList.remove('active');
+                });
+                option.classList.add('active');
+            })
+        })
+
+
+
+    </script>
    
 </body>
 </html>

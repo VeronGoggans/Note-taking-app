@@ -1,0 +1,139 @@
+.move-note-container {
+    border-radius: 20px;
+    display: grid;
+    grid-template-rows: 50px 100px 100px;
+    width: 430px;
+    height: 250px;
+    background-color: #ffffff;
+    overflow: visible;
+    border-radius: 20px;
+    box-shadow: 10px 30px 15px rgb(213, 226, 241);
+    overflow: visible;
+}
+
+.dropdown {
+    position: relative;
+    margin: 2em;
+    width: 100%;
+    overflow: inherit;
+}
+
+.dropdown * {box-sizing: border-box}
+
+.select {
+    border-radius: 10px;
+    border: 2px solid rgb(154, 191, 255, .2);
+    color: #515e70;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 5px 10px 15px rgb(213, 226, 241);
+    padding: 1em;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.select-clicked {
+    border-radius: 2px solid rgb(154, 191, 255, .2);
+    box-shadow: 0 0 .8em rgb(213, 226, 241);
+}
+
+.select:hover {border: 2px solid rgb(154, 191, 255, .5)}
+
+.caret {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid rgb(154, 191, 255);
+    transition: .3s;
+}
+
+/*
+    Rotate style for the caret
+*/
+
+.caret-rotate {transform: rotate(180deg)}
+
+.menu {
+    list-style: none;
+    padding: 0.2em 0.5em;
+    border: 2px solid rgb(154, 191, 255, .2);
+    border-radius: 8px;
+    color: #515e70;
+    background-color: #ffffff;
+    position: absolute;
+    top: 3em;
+    left: 50%;
+    width: 100%;
+    transform: translateX(-50%);
+    display: none;
+    transition: .2s;
+    z-index: 1;
+}
+
+.menu li {
+    padding: .7em .5em;
+    margin: .3em 0;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.menu li:hover {background-color: aliceblue}
+.active {background-color: rgb(233, 245, 255)}
+
+.menu-open {
+    list-style: none;
+    padding: 0.2em 0.5em;
+    border: 2px solid rgb(154, 191, 255, .2);
+    border-radius: 8px;
+    color: #515e70;
+    background-color: #ffffff;
+    position: absolute;
+    top: 4em;
+    left: 50%;
+    width: 100%;
+    transform: translateX(-50%);
+    transition: .2s;
+    z-index: 1;
+    display: block;
+    opacity: 1;
+}
+
+.move-note-container #location-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    bottom: 40px;
+    font-size: 90px;
+    color: rgb(154, 191, 255, 1);
+    overflow: visible;
+}
+
+.move-note-container-combobox-box {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: inherit;
+}
+
+.unlock-note-btn {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+    border: none;
+    height: 40px;
+    margin: 30px 70px 5px 70px;
+    background-color: rgb(154, 191, 255, 1);
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 15px;
+    border-radius: 50px; 
+    transition: .4s;
+}
+
+.unlock-note-btn:hover {background-color: rgb(130, 176, 255)}

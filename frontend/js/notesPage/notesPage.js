@@ -26,7 +26,8 @@ cover1.addEventListener("click", (event) => {
     !event.target.closest('.confirm_category_delete_container') && 
     !event.target.closest('.note_settings_container') &&
     !event.target.closest('.password_protection_container') && 
-    !event.target.closest('.confirm_password_container')
+    !event.target.closest('.confirm_password_container') && 
+    !event.target.closest('.move-note-container')
     ) {
         cover1.style.top = '100%';
         clearCover1();

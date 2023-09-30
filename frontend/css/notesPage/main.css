@@ -52,24 +52,13 @@ body {background-color: aliceblue}
 }
 
 
-.category_settings_container {
+.category_settings_container,
+.note_settings_container {
     border-radius: 20px;
     display: grid;
     grid-template-rows: 1fr 1fr 1fr;
     width: 430px;
     height: 300px;
-    background-color: #ffffff;
-    overflow: visible;
-    border-radius: 20px;
-    box-shadow: 10px 30px 15px rgb(213, 226, 241);
-}
-
-.note_settings_container {
-    border-radius: 20px;
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    width: 430px;
-    height: 200px;
     background-color: #ffffff;
     overflow: visible;
     border-radius: 20px;
@@ -89,7 +78,8 @@ body {background-color: aliceblue}
     color: rgb(36, 40, 109);
 }
 
-.update_category_name_btn {
+.update_category_name_btn,
+.move_note_btn {
     cursor: pointer;
     border: none;
     outline: none;
@@ -102,7 +92,8 @@ body {background-color: aliceblue}
 
 .add_subcategory_btn:hover,
 .password_protected_btn:hover,
-.update_category_name_btn:hover {
+.update_category_name_btn:hover,
+.move_note_btn:hover {
     background-color: rgb(154, 191, 255, .1);
 }
 

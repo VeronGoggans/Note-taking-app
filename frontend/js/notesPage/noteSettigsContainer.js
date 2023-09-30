@@ -10,7 +10,8 @@ function renderNoteSettingsContainer(secure) {
     // Creating the html elements
     const container = NodeCrafter.create('div', {'class': 'note_settings_container'});
     const button1 = NodeCrafter.create('button', {'class': 'password_protected_btn', 'textContent': button1TextContent});
-    const button2 = NodeCrafter.create('button', {'class': 'delete_note_btn', 'textContent': 'Delete'});
+    const button2 = NodeCrafter.create('button', {'class': 'move_note_btn', 'textContent': 'Move note'});
+    const button3 = NodeCrafter.create('button', {'class': 'delete_note_btn', 'textContent': 'Delete'});
 
     // Adding event listeners
     if (secure) {
@@ -27,12 +28,18 @@ function renderNoteSettingsContainer(secure) {
 
     button2.addEventListener('click', ()=> {
         clearCover1();
+        collectCategories();
+    })
+
+    button3.addEventListener('click', ()=> {
+        clearCover1();
         renderNoteDeleteContainer();
     })
 
     // Appending children
     container.appendChild(button1);
-    container.appendChild(button2); 
+    container.appendChild(button2);
+    container.appendChild(button3); 
     cover1.appendChild(container);
 }
 
