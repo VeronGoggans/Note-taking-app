@@ -103,7 +103,10 @@
 /*Button bar code below*/
 .bold-btn,
 .cursive-btn,
-.colorPicker {
+.color-picker {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
     border: none;
     outline: none;
@@ -112,16 +115,18 @@
     width: 25px;
     height: 25px;
     border-radius: 50%;
-    transition: .4s;
+    transition: .2s;
 }
 
-.colorPicker::-webkit-color-swatch {
+.color-picker::-webkit-color-swatch {
     border-radius: 50%;
+    height: 17px;
     border: none;
 }
 
 .bold-btn:hover,
-.cursive-btn:hover {background-color: rgb(239, 239, 239);}
+.cursive-btn:hover,
+.color-picker:hover {background-color: #f3f3f3;}
 
 .button-bar {
     position: absolute;
@@ -130,7 +135,7 @@
     justify-content: center;
     align-items: center;
     border-radius: 0 0 1em 1em;
-    height: 30px;
+    height: 35px;
     max-width: 650px;
     width: 75%;
     box-shadow: .5rem .4rem 1rem rgb(213, 226, 241);

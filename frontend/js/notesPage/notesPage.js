@@ -12,7 +12,10 @@ document.addEventListener("DOMContentLoaded", () => {collectSubcategories(rerend
 document.addEventListener("DOMContentLoaded", () => {collectNotes(rerender=false)});
 
 
-addBtn.addEventListener("click", ()=> renderPieceOfPaper('add-note'));
+addBtn.addEventListener("click", ()=> {
+    renderPieceOfPaper('add-note')
+    renderPaperNoteBtnBar();
+});
 backBtn.addEventListener("click", ()=> returnToCategoryPage());
 categorySettingsBtn.addEventListener('click', ()=> renderCategorySettingsContainer(cover1));
 
