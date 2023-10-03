@@ -1,6 +1,7 @@
 async function collectCategories() {
     const response = await getCategories(rerender=false);
     const categories = response.category_names;
+    console.log(categories)
     if (response.status_code === 200) {renderNoteMoveContainer(categories)}
 }
 
@@ -37,7 +38,20 @@ function renderNoteMoveContainer(categories) {
             menu.classList.remove('menu-open');
             options.forEach(option => option.classList.remove('active'));
             option.classList.add('active');
+            MySessionStorage.set('new-parent-category-id', option.id)
         })
+    })
+
+    moveBtn.addEventListener('click', async ()=> {
+        const noteId = MySessionStorage.get('note-id');
+        const categoryId = MySessionStorage.get('new-parent-category-id');
+        const parent = true;
+        const response = await updateNoteLocation(noteId, categoryId, parent);
+        if (response.status_code === 200) {
+            clearCover1()
+            cover1.style.top = "100%";
+            removeDeletedNoteFromPage(noteId);
+        }
     })
 
     // Appending children
@@ -52,31 +66,3 @@ function renderNoteMoveContainer(categories) {
     container.appendChild(moveBtn);
     cover1.appendChild(container);
 }
-
-
-
-// const dropdown = document.querySelector('.dropdown');
-// const select = dropdown.querySelector('.select');
-// const caret = dropdown.querySelector('.caret');
-// const menu = dropdown.querySelector('.menu');
-// const options = dropdown.querySelectorAll('.menu li');
-// const selected = dropdown.querySelector('.selected');
-
-// select.addEventListener('click', ()=> {
-//     select.classList.toggle('select-clicked');
-//     caret.classList.toggle('caret-rotate');
-//     menu.classList.toggle('menu-open');
-// })
-
-// options.forEach(option => {
-//     option.addEventListener('click', ()=> {
-//         selected.innerText = option.innerText;
-//         select.classList.remove('select-clicked');
-//         caret.classList.remove('caret-rotate');
-//         menu.classList.remove('menu-open');
-//         options.forEach(option => {
-//             option.classList.remove('active');
-//         });
-//         option.classList.add('active');
-//     })
-// })

@@ -8,7 +8,7 @@ function renderPieceOfPaper(action) {
     const paperNoteTitleBox = NodeCrafter.create("div", {'class': 'paper_note_title_box'});
     const paperNoteTitleInput = NodeCrafter.create("input", {'class': 'paper_note_title_input', 'placeholder': 'Title', 'spellcheck': 'false'});
     const papernoteContentBox = NodeCrafter.create("div", {'class': 'paper_note_content_box'});
-    const paperNoteContentTxtArea = NodeCrafter.create("textarea", {'class': 'paper_note_content_textarea', 'placeholder': 'Type something here', 'spellcheck': 'false'});
+    const paperNoteContentTxtArea = NodeCrafter.create("div", {'class': 'paper_note_content_textarea', 'placeholder': 'Type something here', 'spellcheck': 'false', 'contenteditable': true});
     const closePaperNoteButton = NodeCrafter.create('button', {'class': 'close_paper_note_btn'});
     const closePaperNoteButtonIcon = NodeCrafter.create('i', {'class': 'fa-solid fa-xmark'});
 
@@ -25,7 +25,7 @@ function renderPieceOfPaper(action) {
         i = NodeCrafter.create('i', {'class': 'fa-solid fa-pen'})
 
         paperNoteTitleInput.value = MySessionStorage.get('note-name');
-        paperNoteContentTxtArea.value = MySessionStorage.get('note-content');
+        paperNoteContentTxtArea.innerHTML = MySessionStorage.get('note-content');
     }
     closePaperNoteButton.addEventListener('click', ()=> {
         cover2.style.top = '100%';
@@ -47,13 +47,13 @@ function renderPieceOfPaper(action) {
 // ____________________________________ Behavior ________________________________________________
 // This function will create a new note and send it to the backend 
 async function requestAddNote() {
-    const categoryName = MySessionStorage.get('categoryName');
+    const categoryId = MySessionStorage.get('categoryId');
     const noteTitle = document.querySelector('.paper_note_title_input').value;
-    const noteContent = document.querySelector('.paper_note_content_textarea').value;
+    const noteContent = document.querySelector('.paper_note_content_textarea').innerHTML;
     const bookmark = false;
     const passwordProtected = false;
     const noteObject = {"title": noteTitle, "content": noteContent, "bookmark": bookmark, "password_protected": passwordProtected}
-    const response = await addNote(categoryName, true, noteObject);
+    const response = await addNote(categoryId, true, noteObject);
     if (response.status_code === 200) {
         cover2.style.top = "100%";
         cover2.removeChild(cover2.lastChild)

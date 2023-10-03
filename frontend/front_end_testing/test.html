@@ -3,34 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./test.css">
-    <link rel="stylesheet" href="../css/notesPage/noteCard.css">
-    <link rel="stylesheet" href="../css/todoListPage/todoListCard.css">
+    <link rel="stylesheet" href="../css/notesPage/paperNote.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Document</title>
 </head>
 <body>
-    <!-- <div class="todo_list_card">
-        <h2>Shoppinglist</h2>
-        <div class="todo_input_box">
-            <input type="text" id="todo_input" placeholder="Add a task">
-            <button class="addTodoBtn">Add</button>
-        </div>   
-        <ul id="list_container">
-            
-        </ul>     
-        
-    </div> -->
-    <div class="note_card" style="width: 240px;">
-        <div class="note_card_trash_box">
-            <h4>My title</h4>
-        </div>
-        <div class="note_card_content_box">
-            <p>This is my note content for my first note</p>
-            <i class="fa-regular fa-bookmark"></i>
-        </div>
+    <style>
+        body {
+            display: flex;
+            padding: 0;
+            margin: 0;
+            font-family: sans-serif;
+            width: 100dvw;
+            height: 100dvh;
+            background-color: aliceblue;
+            align-items: center;
+            justify-content: center;
+        }
 
+        .wrapper {
+            position: relative;
+            width: 100dvw;
+            height: 100dvh;
+            display: flex;
+            justify-content: center;
+            align-items: end;
+        }
+
+        .bold-btn,
+        .cursive-btn,
+        .colorPicker {
+            cursor: pointer;
+            border: none;
+            outline: none;
+            margin: 0 15px;
+            background-color: rgb(255, 255, 255);
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            transition: .4s;
+        }
+
+        .colorPicker::-webkit-color-swatch {
+            border-radius: 50%;
+            border: none;
+        }
+
+        .bold-btn:hover,
+        .cursive-btn:hover {background-color: rgb(239, 239, 239);}
+
+
+
+        .button-bar {
+            position: absolute;
+            top: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 0 0 1em 1em;
+            height: 30px;
+            max-width: 650px;
+            width: 75%;
+            box-shadow: .5rem .4rem 1rem rgb(213, 226, 241);
+            background-color: rgb(154, 191, 255, .5)
+        }
+    </style>
+    <div class="wrapper">
+        <div class="paper_note_container">
+            <div class="paper_note_title_box">
+                <input type="text" class="paper_note_title_input">
+            </div>
+            <div class="paper_note_content_box">
+                <div class="paper_note_content_textarea"></div>
+            </div>
+        </div>
+        <div class="button-bar">
+            <button class="bold-btn"><i class="fa-solid fa-bold"></i></button>
+            <button class="cursive-btn"><i class="fa-solid fa-italic"></i></button>
+            <input type="color" class="colorPicker">
+        </div>
     </div>
+
     <script src="./test.js"></script>
 </body>
 </html>

@@ -22,4 +22,9 @@ class NoteUtils {
         MySessionStorage.set('note-password-protect', notePasswordProtection);
         MySessionStorage.set('note-bookmark', noteBookmark);
     }    
+
+
+    static removeNoteCardFromScreen(noteId) {
+        
+    }
 }

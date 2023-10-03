@@ -37,8 +37,8 @@ async function addSubcategory(categoryName, subcategoryName) {
     return await response.json();
 }
 
-async function addNote(categoryName, parent, noteObject) {
-    const response = await fetch(`/note/${categoryName}/${parent}`, {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(noteObject)})
+async function addNote(categoryId, parent, noteObject) {
+    const response = await fetch(`/note/${categoryId}/${parent}`, {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(noteObject)})
     return await response.json();
 }
 
@@ -71,6 +71,11 @@ async function updateNote(noteId, parent, noteObject) {
     {method: "PUT", 
     headers: {"Content-Type": "application/json"}, 
     body: JSON.stringify(noteObject)})
+    return await response.json();
+}
+
+async function updateNoteLocation(noteId, categoryId, parent) {
+    const response = await fetch(`/noteLocation/${noteId}/${categoryId}/${parent}`, {method: "PUT", headers: {"Content-Type": "application/json"}})
     return await response.json();
 }
 

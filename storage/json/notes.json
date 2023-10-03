@@ -1,20 +1,6 @@
 {
     "categories": [
         {
-            "id": 48,
-            "name": "SpringBoot",
-            "subcategories": [],
-            "notes": [
-                {
-                    "id": 64,
-                    "title": "Annotations",
-                    "content": "@AutoWired \nWhen creating a class, SpringBoot will automatically provide an instance of any dependency that the class needs to run.\n\n@Service \nIt is used to indicate that a class is a service class, which holds the business logic of an application\n\n@Id\n@GeneratedValue\nMakes an unique generated value and sets it as a private long id. ",
-                    "bookmark": false,
-                    "password_protected": false
-                }
-            ]
-        },
-        {
             "id": 49,
             "name": "Keeps Project",
             "subcategories": [],
@@ -22,34 +8,78 @@
                 {
                     "id": 66,
                     "title": "Project features",
-                    "content": "1. Create a project \n2. Link a note category to the project\n3. Create up to 5 project board sections.\n4. Freely name these sections \n5. Drag and drop \n6. Task count\n7. Complete project button\n8. Estimated time count\n\n\nComplete project screen features\n1. Tell the user how long it took to complete the project \n2. Tell How many tasks where completed \n\n\nBoard tasks features\n1. Crud opereations \n2. Set a estimated time\n3. Set a short description\n\n\nProject Object \n1. id : int\n2. creationDate : Date\n3. name : str\n4. desription: str\n5. notes : Object\n6. board : Object",
+                    "content": "1. Create a project \n2. Link a note category to the project\n3. Create up to 5 project board sections.\n4. Freely name these sections \n5. Drag and drop \n6. Task count\n7. Complete project button\n8. Estimated time count\n\n\nComplete project screen features\n1. Tell the user how long it took to complete the project \n2. Tell How many tasks where completed \n\n\nBoard tasks features\n1. Crud opereations \n2. Set a estimated time\n3. Set a short description\n\nPlanboard \n1. Crud opereations \n2. Drag and drop \n\n\nProject Object \n1. id : int\n2. creationDate : Date\n3. name : str\n4. desription: str\n5. notes : Object\n6. board : Object",
                     "bookmark": false,
                     "password_protected": false
                 },
                 {
                     "id": 70,
                     "title": "Notes Todo ",
-                    "content": "1. bookmark \n2. visual polishing\n3. relocate note \n4. make a txt file from note",
+                    "content": "1. bookmark \n2. visual polishing\n3. make a txt file from note",
+                    "bookmark": false,
+                    "password_protected": false
+                },
+                {
+                    "id": 93,
+                    "title": "TEST",
+                    "content": "<b><font color=\"#ff0000\">SELECT </font></b>* <b><font color=\"#ff0000\">FROM </font></b>my_table   ",
                     "bookmark": false,
                     "password_protected": false
                 }
             ]
         },
         {
-            "id": 52,
-            "name": "Python",
-            "subcategories": [],
-            "notes": []
-        },
-        {
-            "id": 53,
-            "name": "Java",
-            "subcategories": [],
-            "notes": []
-        },
-        {
             "id": 54,
-            "name": "SQL",
+            "name": "SQL Statements",
+            "subcategories": [],
+            "notes": [
+                {
+                    "id": 83,
+                    "title": "EXTRACT",
+                    "content": "EXTRACT(YEAR FROM ?)\nHaalt het jaar uit een DATE data type\n\n2023-01-01 word 2023",
+                    "bookmark": false,
+                    "password_protected": false
+                },
+                {
+                    "id": 86,
+                    "title": "MIN",
+                    "content": "MIN(price)\nberekent de kleinste waarde uit de price column\n\nPrice\n5.99\n4.99\n7.99\n2.99\n\nwordt \n\nMIN\n2.99",
+                    "bookmark": false,
+                    "password_protected": false
+                },
+                {
+                    "id": 87,
+                    "title": "MAX",
+                    "content": "MAX(price)\nberekent de grootste waarde uit de price column\n\nPrice\n5.99\n4.99\n7.99\n2.99\n\nwordt \n\nMAX\n7.99",
+                    "bookmark": false,
+                    "password_protected": false
+                },
+                {
+                    "id": 90,
+                    "title": "COALESCE",
+                    "content": "COALESCE(comm, 0)\nKijkt naar alle null waarden in de comm column en vervangt het met 0. \n\nComm\nnull\nnull\n500.0\nnull\n255.0\n\nWordt \n\nComm\n0.0\n0.0\n500.0\n0.0\n255.0",
+                    "bookmark": false,
+                    "password_protected": false
+                }
+            ]
+        },
+        {
+            "id": 56,
+            "name": "SOLID",
+            "subcategories": [],
+            "notes": [
+                {
+                    "id": 91,
+                    "title": "SRP",
+                    "content": "Single Responsibility Principle \n\nStates that a class should have one responsibiliy \nIt should encapsulate and handle only one aspect of the software's functionality. This principle encourages you to break down complex systems into smaller, more focused classes, each responsible for a specific task or responsibility.",
+                    "bookmark": false,
+                    "password_protected": false
+                }
+            ]
+        },
+        {
+            "id": 57,
+            "name": "ICE",
             "subcategories": [],
             "notes": []
         }

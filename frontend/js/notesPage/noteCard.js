@@ -22,9 +22,11 @@ function renderNote(id, note_name, note_content, bookmark, passwordProtection) {
     })
 
     noteContent.addEventListener('click', ()=> {
-        NoteUtils.storeNoteDataToSessionStorage(id, noteName.textContent, StringUtil.replaceBreakToNewLine(noteContent.innerHTML), passwordProtection, bookmark)
+        NoteUtils.storeNoteDataToSessionStorage(id, noteName.textContent, noteContent.innerHTML, passwordProtection, bookmark)
         renderPieceOfPaper('edit-note'); // This function is in the papersheet.js file
     })
+
+    
 
     // Appending children
     noteTitleBox.appendChild(noteName);
@@ -61,7 +63,3 @@ function renderNoteUpdate(noteId, noteName, noteContent, secure) {
         noteTitleBar.querySelector('h4').textContent = noteName;
     }  
 }
-
-// function renderSecureNoteUpdate(noteId) {
-//     const note = document.getElementById(noteId)
-// }

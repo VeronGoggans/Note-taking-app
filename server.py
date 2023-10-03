@@ -76,8 +76,8 @@ def category(category_name: str):
     return {"status_code": RespMsg.INTERAL_SERVER_ERROR} 
 
 
-@app.post('/note/{category_name}/{parent}')
-def note(category_name: str, parent: bool, note_data: NoteRequest):
+@app.post('/note/{category_id}/{parent}')
+def note(category_id: int, parent: bool, note_data: NoteRequest):
     # generating an id for the new note 
     note_id = my_ID.id("Note")
 
@@ -85,7 +85,7 @@ def note(category_name: str, parent: bool, note_data: NoteRequest):
     new_note = Note(note_id, note_data.title, note_data.content, note_data.bookmark, note_data.password_protected)
     
     # adding the note to the json file
-    response = notes_dto.add_note(category_name, parent, new_note)
+    response = notes_dto.add_note(category_id, parent, new_note)
     if response != RespMsg.INTERAL_SERVER_ERROR:
         return {'status_code': response}
     return {"status_code": RespMsg.INTERAL_SERVER_ERROR} 
@@ -161,6 +161,14 @@ def note(note_id: int, parent: bool, note_data: NoteRequest):
     if response != RespMsg.INTERAL_SERVER_ERROR:
         return {'status_code': 200, 'updated_note': response}
     return {"status_code": RespMsg.INTERAL_SERVER_ERROR} 
+
+
+@app.put('/noteLocation/{note_id}/{category_id}/{parent}')
+def noteLocation(note_id: int, category_id: int, parent: bool):
+    response = notes_dto.update_note_category(note_id, category_id, parent)
+    if response != RespMsg.INTERAL_SERVER_ERROR:
+        return {'status_code': response}
+    return {'status_code': RespMsg.INTERAL_SERVER_ERROR}
 
 
 @app.put('/category/{category_id}/{category_name}')
