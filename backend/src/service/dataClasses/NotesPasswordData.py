@@ -3,7 +3,7 @@ from backend.src.service.fileOperations.JsonOperations import Json
 from backend.src.service.enums.passwordActions import PasswordActions
 import os
 
-class NotesPasswordsDTO:
+class NotesPasswordsData:
     def __init__(self):
         self.notes_relative_path = os.getcwd() + '/storage/json/notes.json'
         self.notesPasswords_relative_path = os.getcwd() + '/storage/json/notesPasswords.json'

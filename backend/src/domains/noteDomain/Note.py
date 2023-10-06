@@ -5,6 +5,3 @@ class Note:
         self.content = content
         self.bookmark = bookmark
         self.password_protected = password_protected
-
-    
-    

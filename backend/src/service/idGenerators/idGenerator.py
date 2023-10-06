@@ -6,12 +6,9 @@ class IdGenerator:
         self.path_to_id_file = os.getcwd() + "/storage/ID.txt"
 
 
-
     def id(self, component_name):
         """This function will generate a unique ID for the created component"""
         return self.__find_id(component_name)
-        
-
 
 
     def __find_id(self, component_name):
@@ -38,7 +35,7 @@ class IdGenerator:
                 break
 
         # The function will return it, if the corrisponding text is found.
-        # Otherwise the function will return a error message.
+        # Otherwise the function will return an error message.
         if target_line is not None:
             return self.__update_id(target_line, component_name)
         else:

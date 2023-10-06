@@ -3,7 +3,7 @@ from backend.src.service.enums.responseMessages import RespMsg
 from backend.src.service.fileOperations.JsonOperations import Json
 import os
 
-class SubcategoryDTO:
+class SubcategoryData:
     def __init__(self):
         self.notes_relative_path = os.getcwd() + '/storage/json/notes.json'
 

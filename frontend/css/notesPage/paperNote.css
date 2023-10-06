@@ -1,46 +1,33 @@
 .paper_note_container {
     width: 80%;
     max-width: 700px;
-    height: 90%;
+    height: 85%;
     border-radius: 15px 15px 0 0;
     padding: 0 20px;
-    display: grid;
-    grid-template-rows: 50px 1fr;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     box-shadow: .5rem .4rem 1rem rgb(213, 226, 241);
     overflow: visible;
     background-color: #fff;
-}
-
-.paper_note_title_box {
-    display: flex;
-    align-items: end;
-}
-
-.paper_note_title_input {
-    outline: none;
-    border: none;
-    height: 40px;
-    width: 100%;
-    color: rgb(36, 40, 109);
-    padding: 0 10px;
-    font-size: 18px;
-    background-color: transparent;
 }
 
 .paper_note_content_box {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    height: 100%;
 }
 
 .paper_note_content_textarea {
     outline: none;
     border: none;
     resize: none;
-    padding: 0 10px;
+    padding: 10px;
     font-size: 14px;
     width: 100%;
-    height: 90%;
+    height: 95%;
     color: rgb(36, 40, 109);
     background-color: transparent;
     overflow-y: scroll;
@@ -59,7 +46,7 @@
 .add_note_btn,
 .edit_note_btn {
     position: absolute;
-    top: 17px;
+    top: 92%;
     left: 95%;
     outline: none;
     border: none;
@@ -76,70 +63,86 @@
 }
 .add_note_btn:hover {background-color: rgb(134, 178, 255)}
 
-.close_paper_note_btn {
-    position: absolute;
-    top: 17px;
-    right: 95%;
-    outline: none;
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    background-color: transparent;
-    color: rgb(36, 40, 109);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 20px;
-    transition: .4s;
-}
-
-
 @media(max-width: 900px) {.add_note_btn, .edit_note_btn {left: 94%}}
 @media(max-width: 750px) {.add_note_btn, .edit_note_btn {left: 93%}}
-@media(max-width: 600px) {.add_note_btn, .edit_note_btn {left: 92%}}
+@media(max-width: 600px) {.add_note_btn, .edit_note_btn {left: 90%}}
 
 /*Button bar code below*/
 .bold-btn,
 .cursive-btn,
-.color-picker {
+.color-picker,
+.image-btn,
+.close_paper_note_btn {
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
     border: none;
     outline: none;
-    margin: 0 15px;
-    background-color: rgb(255, 255, 255);
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    transition: .2s;
+    font-size: 16px;
+    color: rgb(36, 40, 109);
+    background-color: transparent;
+    width: 65px;
+    height: 46px;
+    border-radius: 5px;
+    transition: .4s;
 }
 
 .color-picker::-webkit-color-swatch {
+    height: 50px;
     border-radius: 50%;
-    height: 17px;
     border: none;
 }
 
 .bold-btn:hover,
 .cursive-btn:hover,
-.color-picker:hover {background-color: #f3f3f3;}
+.color-picker:hover,
+.image-btn:hover,
+.close_paper_note_btn:hover {
+    background-color:aliceblue;
+}
 
 .button-bar {
+    width: 80%;
+    max-width: 440px;
     position: absolute;
-    top: 0;
+    top: 5%;
+    border-radius: 2em;
     display: flex;
-    justify-content: center;
     align-items: center;
-    border-radius: 0 0 1em 1em;
-    height: 35px;
-    max-width: 650px;
-    width: 75%;
-    box-shadow: .5rem .4rem 1rem rgb(213, 226, 241);
-    background-color: rgb(154, 191, 255, .5)
+    justify-content: center;
+    background-color: #e0e7ef;
+    height: 50px;
 }
 
 
+.note-title-input {
+    outline: none;
+    border: none;
+    color: rgb(36, 40, 109);
+    border-bottom: 2px solid aliceblue;
+    border-left: 2px solid aliceblue;
+    border-top: 2px solid aliceblue;
+    border-right: 2px solid aliceblue;
+    background-color: transparent;
+    width: 200px;
+    border-radius: 5px;
+    margin-top: 5px;
+    padding: 0 10px;
+    font-size: 18px;
+    transition: .2s;
+}
+
+.note-title-input:focus {
+    border-left: 2px solid rgb(154, 191, 255, 1);
+    border-top: 2px solid rgb(154, 191, 255, 1);
+    border-right: 2px solid rgb(154, 191, 255, 1);
+    border-bottom: 2px solid rgb(154, 191, 255, 1);
+}
+
+.note-title-input:hover {
+    border-left: 2px solid rgb(154, 191, 255, 1);
+    border-top: 2px solid rgb(154, 191, 255, 1);
+    border-right: 2px solid rgb(154, 191, 255, 1);
+    border-bottom: 2px solid rgb(154, 191, 255, 1);
+}

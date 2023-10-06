@@ -27,22 +27,26 @@
     </style>
 </head>
 <body>
-    <div id="textEditor" contenteditable="true">
-        Enter your text here...
-      </div>
-      <button id="boldButton">Bold</button>
-      <button id="italicButton">Italic</button>
-      <input type="color" id="colorPicker"> <!-- Added color picker input -->
-      <button id="fontSizeButton">Font Size</button>
-
-      <select id="fontSizeSelect">
-        <option value="12px">12px</option>
-        <option value="16px">16px</option>
-        <option value="20px">20px</option>
-        <!-- Add more options as needed -->
-      </select>
-      <button id="wrapFontSizeButton">Apply Font Size</button> <!-- Added this button -->
-
+  <div id="textEditor" contenteditable="true">
+    Enter your text here...
+  </div>
+  <button id="boldButton">Bold</button>
+  <button id="italicButton">Italic</button>
+  <input type="color" id="colorPicker">
+  <button id="fontSizeButton">Font Size</button>
+  <select id="fontSizeSelect">
+    <option value="12px">12px</option>
+    <option value="16px">16px</option>
+    <option value="20px">20px</option>
+    <!-- Add more options as needed -->
+  </select>
+  <button id="wrapFontSizeButton">Apply Font Size</button>
+  <input type="file" id="imageUpload" accept="image/*">
+  <button id="insertImageButton">Insert Image</button>
+  <button id="saveButton">Save</button>
+  <input type="file" id="loadFileInput" style="display: none;">
+  <button id="loadButton">Load</button>
+  
       
     
     <script>
@@ -50,37 +54,22 @@
 const boldButton = document.getElementById("boldButton");
 const italicButton = document.getElementById("italicButton");
 const colorPicker = document.getElementById("colorPicker");
+const fontSizeButton = document.getElementById("fontSizeButton");
+const fontSizeSelect = document.getElementById("fontSizeSelect");
+const wrapFontSizeButton = document.getElementById("wrapFontSizeButton");
+const imageUpload = document.getElementById("imageUpload");
+const insertImageButton = document.getElementById("insertImageButton");
+let resizingImage = null;
+let startX = 0;
+let startY = 0;
+
+boldButton.addEventListener("click", () => applyFormatting("bold"));
+italicButton.addEventListener("click", () => applyFormatting("italic"));
 
 colorPicker.addEventListener("input", () => {
   const selectedColor = colorPicker.value;
   applyFontColor(selectedColor);
 });
-
-function applyFontColor(color) {
-  document.execCommand("foreColor", false, color);
-}
-
-// Function to apply formatting to selected text
-function applyFormatting(command) {
-  document.execCommand(command, false, null);
-}
-
-boldButton.addEventListener("click", () => applyFormatting("bold"));
-italicButton.addEventListener("click", () => applyFormatting("italic"));
-
-// Function to change font size of selected text
-function changeFontSize(fontSize) {
-  document.execCommand("fontSize", false, fontSize);
-}
-
-
-// Function to change font size of selected text
-function changeFontSize(fontSize) {
-  document.execCommand("fontSize", false, fontSize);
-}
-
-const fontSizeButton = document.getElementById("fontSizeButton");
-const fontSizeSelect = document.getElementById("fontSizeSelect");
 
 fontSizeButton.addEventListener("click", () => {
   const selectedFontSize = fontSizeSelect.value;
@@ -89,7 +78,111 @@ fontSizeButton.addEventListener("click", () => {
   }
 });
 
-// Function to wrap selected text in a span with a specific font size
+wrapFontSizeButton.addEventListener("click", () => {
+  const selectedFontSize = fontSizeSelect.value;
+  if (selectedFontSize) {
+    wrapSelectedText(selectedFontSize);
+  }
+});
+
+imageUpload.addEventListener("change", () => {
+  const file = imageUpload.files[0];
+  if (file) {
+    insertImage(file);
+  }
+});
+
+insertImageButton.addEventListener("click", () => {
+  imageUpload.click();
+});
+
+textEditor.addEventListener("mousedown", (e) => {
+  if (e.target.tagName === "IMG") {
+    resizingImage = e.target;
+    const rect = resizingImage.getBoundingClientRect();
+    startX = e.clientX - rect.left;
+    startY = e.clientY - rect.top;
+  }
+});
+
+textEditor.addEventListener("mousemove", (e) => {
+  if (resizingImage) {
+    const offsetX = e.clientX - startX;
+    const offsetY = e.clientY - startY;
+    resizingImage.style.width = resizingImage.offsetWidth + offsetX + "px";
+    resizingImage.style.height = resizingImage.offsetHeight + offsetY + "px";
+    startX = e.clientX;
+    startY = e.clientY;
+  }
+});
+
+document.addEventListener("mouseup", () => {
+  resizingImage = null;
+  startX = 0;
+  startY = 0;
+});
+
+// Function to add resizable handles to images
+function addResizableHandles(img) {
+  const handles = ["top-left", "top-right", "bottom-left", "bottom-right"];
+  handles.forEach((handle) => {
+    const resizeHandle = document.createElement("div");
+    resizeHandle.classList.add("resize-handle", handle);
+    img.appendChild(resizeHandle);
+  });
+}
+
+// Add CSS for the resizable handles
+const style = document.createElement("style");
+style.innerHTML = `
+  .resize-handle {
+    width: 10px;
+    height: 10px;
+    background-color: #007bff;
+    position: absolute;
+  }
+  .resize-handle.top-left {
+    top: 0;
+    left: 0;
+    cursor: nwse-resize;
+  }
+  .resize-handle.top-right {
+    top: 0;
+    right: 0;
+    cursor: nesw-resize;
+  }
+  .resize-handle.bottom-left {
+    bottom: 0;
+    left: 0;
+    cursor: nesw-resize;
+  }
+  .resize-handle.bottom-right {
+    bottom: 0;
+    right: 0;
+    cursor: nwse-resize;
+  }
+`;
+
+document.head.appendChild(style);
+
+// Add resizable handles to existing images
+const existingImages = document.querySelectorAll("img");
+existingImages.forEach((img) => {
+  addResizableHandles(img);
+});
+
+function applyFormatting(command) {
+  document.execCommand(command, false, null);
+}
+
+function applyFontColor(color) {
+  document.execCommand("foreColor", false, color);
+}
+
+function changeFontSize(fontSize) {
+  document.execCommand("fontSize", false, fontSize);
+}
+
 function wrapSelectedText(fontSize) {
   const selection = window.getSelection();
   const selectedText = selection.toString();
@@ -105,17 +198,19 @@ function wrapSelectedText(fontSize) {
   }
 }
 
-const wrapFontSizeButton = document.getElementById("wrapFontSizeButton");
-
-wrapFontSizeButton.addEventListener("click", () => {
-  const selectedFontSize = fontSizeSelect.value;
-  if (selectedFontSize) {
-    wrapSelectedText(selectedFontSize);
-  }
-});
-
-
-
+function insertImage(file) {
+  const reader = new FileReader();
+  reader.onload = function (e) {
+    const img = document.createElement("img");
+    img.src = e.target.result;
+    textEditor.focus();
+    img.style.width = "150px"; // Set an initial size
+    img.style.height = "auto";
+    document.execCommand("insertImage", false, e.target.result);
+    addResizableHandles(img); // Add resizable handles to the inserted image
+  };
+  reader.readAsDataURL(file);
+}
 
         
     </script>

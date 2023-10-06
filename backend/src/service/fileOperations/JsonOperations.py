@@ -5,7 +5,7 @@ class Json:
          pass
 
     # file_name is the name of the file the user wants to load.
-    # After it loads the json data it return it.  
+    # After it loads the json data is returned.  
     @staticmethod
     def load_json_file(file_path):
         try:
@@ -16,7 +16,7 @@ class Json:
             print(e)
 
     # updated_data is the updated json data that needs to be writen/update to the corrisponding json file.
-    # file_name is the name of te json file the updated json data should be written to.
+    # file_name is the name of the json file the updated json data should be written to.
     @staticmethod
     def update_json_file(file_path, updated_data):
         with open(file_path, 'w') as file:

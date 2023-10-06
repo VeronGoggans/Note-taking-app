@@ -1,9 +1,9 @@
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
-from backend.src.service.dtos.NotesDTO import NoteDTO
-from backend.src.service.dtos.NotesPasswordDTO import NotesPasswordsDTO
-from backend.src.service.dtos.CategoryDTO import CategoryDTO
-from backend.src.service.dtos.SubcategoryDTO import SubcategoryDTO
+from backend.src.service.dataClasses.NotesData import NoteData
+from backend.src.service.dataClasses.NotesPasswordData import NotesPasswordsData
+from backend.src.service.dataClasses.CategoryData import CategoryData
+from backend.src.service.dataClasses.SubcategoryData import SubcategoryData
 from backend.src.service.idGenerators.idGenerator import IdGenerator
 from backend.src.service.security.hash import Hash
 
@@ -14,13 +14,13 @@ from backend.src.requestClasses.NoteRequest import NoteRequest
 from backend.src.service.enums.responseMessages import RespMsg
 from backend.src.domains.noteDomain.category import Category
 from backend.src.domains.noteDomain.subCategory import SubCategory
-from backend.src.domains.noteDomain.Note import Note
+from backend.src.domains.noteDomain.note import Note
 
 app = FastAPI()
-notes_dto = NoteDTO()
-notes_password_dto = NotesPasswordsDTO()
-category_dto = CategoryDTO()
-subcategory_dto = SubcategoryDTO()
+notes_dto = NoteData()
+notes_password_dto = NotesPasswordsData()
+category_dto = CategoryData()
+subcategory_dto = SubcategoryData()
 my_ID = IdGenerator()
 
 
@@ -38,9 +38,9 @@ def subcategories(category_name: str):
     return {"status_code": RespMsg.OK, "subcategory_names": response}
 
 
-@app.get("/notes/{category_name}/{parent}/{rerender}")
-def notes(category_name: str, parent: bool, rerender: bool):
-    response = notes_dto.get_notes(category_name, parent, rerender)
+@app.get("/notes/{category_name}/{parent}/{rerender}/{note_type}")
+def notes(category_name: str, parent: bool, rerender: bool, note_type: str):
+    response = notes_dto.get_notes(category_name, parent, rerender, note_type)
     return {"status_code": RespMsg.OK, "notes": response}
 
 

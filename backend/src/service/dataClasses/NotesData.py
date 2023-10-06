@@ -1,24 +1,30 @@
-from backend.src.domains.noteDomain.Note import Note
+from backend.src.domains.noteDomain.note import Note
 from backend.src.service.enums.responseMessages import RespMsg
+from backend.src.service.enums.noteTypes import NoteTypes
 from backend.src.service.fileOperations.JsonOperations import Json
 import os
 
-class NoteDTO:
+class NoteData:
     def __init__(self):
         self.notes_relative_path = os.getcwd() + '/storage/json/notes.json'
     
-    # This function sorts the given list of note objects by bookmark
-    # If the note object has a bookmrk it gets appended to the list first.
-    # It returns a sorted list of note objects.
-    def __sort_notes_list(self, notes: list):
-        sorted_list = []
-        for note in notes:
-            if note['bookmark'] == True:
-                sorted_list.append(note)
-        for note in notes:
-            if note['bookmark'] == False:
-                sorted_list.append(note)
-        return sorted_list
+    # This function filters the given list of note objects by the note type that has been given.
+    # This function returns a list of note objects which are of z type.
+    def __filter_notes_list(self, notes: list, note_type: enumerate):
+        filtered_list = []
+
+        if note_type == NoteTypes.STANDARD.value:
+            for note in notes:
+                if note[NoteTypes.BOOKMARKED.value] == False and note[NoteTypes.PROTECTED.value] == False:
+                    filtered_list.append(note)
+            return filtered_list
+        if note_type == NoteTypes.BOOKMARKED.value or note_type == NoteTypes.PROTECTED.value:
+            for note in notes:
+                if note[note_type] == True:
+                    filtered_list.append(note)
+            return filtered_list
+        if note_type == NoteTypes.ALL.value:
+            return notes
 
     # Parameter 1 - category_id is the id of the category that the user wants to add a note to
     # Parameter 2 - parent tells the function if it is looking for a category or a subcategory
@@ -57,13 +63,13 @@ class NoteDTO:
     # Parameter 3 - rerender is used to tell the function if it should only return the last note. 
     # Rerender is only True if the user created a note and want that note send to the front end to be displayed.
     # If rerender is False the function will return all the notes inside a category. 
-    def get_notes(self, category_name: str, parent: bool, rerender: bool):
+    def get_notes(self, category_name: str, parent: bool, rerender: bool, note_type: str):
         data = Json.load_json_file(self.notes_relative_path)
 
         if parent == True and rerender == False:
             for category in data["categories"]:
                 if category["name"] == category_name:
-                    return self.__sort_notes_list(category["notes"])
+                    return self.__filter_notes_list(category["notes"], note_type)
                 
         if parent and rerender:
             for category in data["categories"]:
@@ -80,8 +86,7 @@ class NoteDTO:
             for category in data["categories"]:
                 for subcategory in category["subcategories"]:
                     if subcategory["name"] == category_name:
-                        return self.__sort_notes_list(subcategory["notes"])
-                    
+                        return self.__filter_notes_list(subcategory["notes"], note_type)
         return RespMsg.CATEGORY_404
 
     # Parameter 1 - parent is used to tell the function if the note_id is inside a category or a subcategory.

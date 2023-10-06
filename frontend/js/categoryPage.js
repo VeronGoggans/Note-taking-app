@@ -56,8 +56,6 @@ function handleCategoryCardClick(categoryName, categoryId) {
 }
 
 
-
-
 // functions that collects all the category names from the server
 // and for each category name it creates a card
 async function collectCategories(rerender) {
@@ -79,24 +77,15 @@ async function collectCategories(rerender) {
             const categoryName = categoryObject[0].name;
             categoryCard(categoryId, categoryName)
         }
-
     }
-    
 }
-
 
 
 // function that creates a category card 
 function categoryCard(categoryId, categoryName) {
-    const categoryCard = document.createElement("div");
-    categoryCard.classList.add("category_card");
-    categoryCard.id = categoryId;
-
-    const categoryNameHeading = document.createElement("p");
-    categoryNameHeading.textContent = categoryName;
-
-    const folderIcon = document.createElement("i");
-    folderIcon.setAttribute("class", "fa-regular fa-folder");
+    const categoryCard = NodeCrafter.create('div', {'class': 'category_card', 'id': categoryId})
+    const categoryNameHeading = NodeCrafter.create('div', {'textContent': categoryName})
+    const folderIcon = NodeCrafter.create('i', {'class': 'fa-regular fa-folder'})
     folderIcon.style.marginLeft = "5px";
 
     // adding event listeners 
@@ -107,7 +96,6 @@ function categoryCard(categoryId, categoryName) {
     categoryCard.appendChild(folderIcon);
     categoryContainer.appendChild(categoryCard);
 }
-
 
 
 // function that takes the category name given by the user and 
@@ -123,5 +111,3 @@ addCategoryBtn.addEventListener("click", async() => {
         alert("Error 500")
     }
 })
-
-

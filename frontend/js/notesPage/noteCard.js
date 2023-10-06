@@ -24,7 +24,6 @@ function renderNote(id, note_name, note_content, bookmark, passwordProtection) {
     noteContent.addEventListener('click', ()=> {
         NoteUtils.storeNoteDataToSessionStorage(id, noteName.textContent, noteContent.innerHTML, passwordProtection, bookmark)
         renderPieceOfPaper('edit-note'); // This function is in the papersheet.js file
-        renderPaperNoteBtnBar();
     })
 
     

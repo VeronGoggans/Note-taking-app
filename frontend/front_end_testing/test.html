@@ -34,17 +34,20 @@
     </style>
     <div class="wrapper">
         <div class="paper_note_container">
-            <div class="paper_note_title_box">
-                <input type="text" class="paper_note_title_input">
-            </div>
             <div class="paper_note_content_box">
-                <div class="paper_note_content_textarea"></div>
+                <div class="paper_note_content_textarea" contenteditable="true"></div>
             </div>
         </div>
         <div class="button-bar">
-            <button class="bold-btn"><i class="fa-solid fa-bold"></i></button>
-            <button class="cursive-btn"><i class="fa-solid fa-italic"></i></button>
-            <input type="color" class="color-picker">
+            <div class="note-title-box">
+                <input type="text" placeholder="Note Title" class="note-title-input">
+            </div>
+            <div class="button-box">
+                <button class="bold-btn"><i class="fa-solid fa-bold"></i></button>
+                <button class="cursive-btn"><i class="fa-solid fa-italic"></i></button>
+                <input type="color" class="color-picker">
+                <button class="image-btn"><i class="fa-regular fa-image"></i></button>
+            </div>
         </div>
     </div>
 

@@ -4,13 +4,41 @@ function renderPieceOfPaper(action) {
     cover2.style.visibility = "visible";
     cover2.style.top = "0";
     // Creating the html elements
-    const paperNote = NodeCrafter.create("div", {'class': 'paper_note_container'});
-    const paperNoteTitleBox = NodeCrafter.create("div", {'class': 'paper_note_title_box'});
-    const paperNoteTitleInput = NodeCrafter.create("input", {'class': 'paper_note_title_input', 'placeholder': 'Title', 'spellcheck': 'false'});
-    const papernoteContentBox = NodeCrafter.create("div", {'class': 'paper_note_content_box'});
-    const paperNoteContentTxtArea = NodeCrafter.create("div", {'class': 'paper_note_content_textarea', 'placeholder': 'Type something here', 'spellcheck': 'false', 'contenteditable': true});
+
+    const buttonBar = NodeCrafter.create('div', {'class': 'button-bar'});
+    const noteTitleInput = NodeCrafter.create('input', {'class': 'note-title-input', 'type': 'text', 'placeholder': 'Note title'});
     const closePaperNoteButton = NodeCrafter.create('button', {'class': 'close_paper_note_btn'});
     const closePaperNoteButtonIcon = NodeCrafter.create('i', {'class': 'fa-solid fa-xmark'});
+    const boldBtn = NodeCrafter.create('button', {'class': 'bold-btn', 'title': 'Bold'});
+    const boldIcon = NodeCrafter.create('i', {'class': 'fa-solid fa-bold'});
+    const cursiveBtn = NodeCrafter.create('button', {'class': 'cursive-btn', 'title': 'Cursive'});
+    const cursiveIcon = NodeCrafter.create('i', {'class': 'fa-solid fa-italic'});
+    const colorPicker = NodeCrafter.create('input', {'class': 'color-picker', 'type': 'color'});
+    const imageBtn = NodeCrafter.create('button', {'class': 'image-btn'});
+    const imageIcon = NodeCrafter.create('i', {'class': 'fa-regular fa-image'});
+
+    closePaperNoteButton.addEventListener('click', ()=> {
+        cover2.style.top = '100%';
+        clearCover2();
+    })
+
+    // Appending children
+    boldBtn.appendChild(boldIcon);
+    cursiveBtn.appendChild(cursiveIcon);
+    imageBtn.appendChild(imageIcon);
+    closePaperNoteButton.appendChild(closePaperNoteButtonIcon);
+    buttonBar.appendChild(closePaperNoteButton);
+    buttonBar.appendChild(boldBtn);
+    buttonBar.appendChild(cursiveBtn);
+    buttonBar.appendChild(imageBtn);
+    buttonBar.appendChild(colorPicker);    
+    cover2.appendChild(buttonBar); 
+
+
+    // Creating the html elements
+    const paperNote = NodeCrafter.create("div", {'class': 'paper_note_container'});
+    const papernoteContentBox = NodeCrafter.create("div", {'class': 'paper_note_content_box'});
+    const paperNoteContentTxtArea = NodeCrafter.create("div", {'class': 'paper_note_content_textarea', 'spellcheck': 'false', 'contenteditable': true});
 
     let button = null;
     let i = null;
@@ -24,22 +52,14 @@ function renderPieceOfPaper(action) {
         button.addEventListener('click', requestUpdateNote)
         i = NodeCrafter.create('i', {'class': 'fa-solid fa-pen'})
 
-        paperNoteTitleInput.value = MySessionStorage.get('note-name');
+        noteTitleInput.value = MySessionStorage.get('note-name');
         paperNoteContentTxtArea.innerHTML = MySessionStorage.get('note-content');
     }
-    closePaperNoteButton.addEventListener('click', ()=> {
-        cover2.style.top = '100%';
-        clearCover2();
-    })
 
     // Appending children
-    paperNoteTitleBox.appendChild(paperNoteTitleInput);
     papernoteContentBox.appendChild(paperNoteContentTxtArea);
-    paperNote.appendChild(paperNoteTitleBox);
     paperNote.appendChild(papernoteContentBox);
-    closePaperNoteButton.appendChild(closePaperNoteButtonIcon)
     button.appendChild(i);
-    cover2.appendChild(closePaperNoteButton)
     cover2.appendChild(button);
     cover2.appendChild(paperNote);
 }
@@ -66,14 +86,13 @@ async function requestAddNote() {
 // This function will collect all the information of a note from the session storage and the note
 // From session storage.
 // noteId, bookmark, password protected
-//
 // From note 
 // noteName from the input and the note content from the textarea.
 // Ones it has collected all of the information, it sends a PUT request to the server updating the note.
 async function requestUpdateNote() {
     const noteId = MySessionStorage.get('note-id');
     const noteName = document.querySelector('.paper_note_title_input').value;
-    const noteContent = document.querySelector('.paper_note_content_textarea').value;
+    const noteContent = document.querySelector('.paper_note_content_textarea').innerHTML;
     const bookmark = MySessionStorage.get('note-bookmark');
     const passwordProtected = MySessionStorage.get('note-password-protect');
 
