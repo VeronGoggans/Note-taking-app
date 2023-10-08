@@ -4,8 +4,8 @@ class Json:
     def __init__(self) -> None:
          pass
 
-    # file_name is the name of the file the user wants to load.
-    # After it loads the json data is returned.  
+    # This method loads a json file from a given file path.
+    # This method returns the json data that is in the json file.
     @staticmethod
     def load_json_file(file_path):
         try:
@@ -15,8 +15,8 @@ class Json:
         except IOError as e:
             print(e)
 
-    # updated_data is the updated json data that needs to be writen/update to the corrisponding json file.
-    # file_name is the name of the json file the updated json data should be written to.
+    # This method updates a json file with new/updated data.
+    # This method has no return value.
     @staticmethod
     def update_json_file(file_path, updated_data):
         with open(file_path, 'w') as file:

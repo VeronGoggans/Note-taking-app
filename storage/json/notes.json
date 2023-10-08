@@ -82,6 +82,34 @@
             "name": "ICE",
             "subcategories": [],
             "notes": []
+        },
+        {
+            "id": 58,
+            "name": "TEST-DIR",
+            "subcategories": [],
+            "notes": [
+                {
+                    "id": 101,
+                    "title": "test-path-switch-2",
+                    "content": "C:\\Users\\jsvgo\\Web Dev\\keeps/storage/notes/note-101.html",
+                    "bookmark": false,
+                    "password_protected": true
+                },
+                {
+                    "id": 102,
+                    "title": "test-path-switch-3",
+                    "content": "C:\\Users\\jsvgo\\Web Dev\\keeps/storage/notes/note-102.html",
+                    "bookmark": true,
+                    "password_protected": false
+                },
+                {
+                    "id": 103,
+                    "title": "test-path-switch-4",
+                    "content": "C:\\Users\\jsvgo\\Web Dev\\keeps/storage/notes/note-103.html",
+                    "bookmark": false,
+                    "password_protected": false
+                }
+            ]
         }
     ]
 }

@@ -1,0 +1,16 @@
+{
+    "ids": [
+        {
+            "entityName": "category",
+            "id": 57
+        },
+        {
+            "entityName": "note",
+            "id": 104
+        },
+        {
+            "entityName": "subcategory",
+            "id": 2
+        }
+    ]
+}

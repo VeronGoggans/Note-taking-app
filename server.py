@@ -66,7 +66,7 @@ def note_password_check(id: int, password: str):
 @app.post('/category/{category_name}')
 def category(category_name: str):
     # generating an id for the new note 
-    catergory_id = my_ID.id("Category")
+    catergory_id = my_ID.ID("Category")
 
     # creating a new Note object 
     new_category = Category(catergory_id, category_name)
@@ -77,15 +77,9 @@ def category(category_name: str):
 
 
 @app.post('/note/{category_id}/{parent}')
-def note(category_id: int, parent: bool, note_data: NoteRequest):
-    # generating an id for the new note 
-    note_id = my_ID.id("Note")
+def note(category_id: int, parent: bool, note_data: NoteRequest):  
 
-    # creating a new Note object 
-    new_note = Note(note_id, note_data.title, note_data.content, note_data.bookmark, note_data.password_protected)
-    
-    # adding the note to the json file
-    response = notes_dto.add_note(category_id, parent, new_note)
+    response = notes_dto.add_note(category_id, parent, note_data)
     if response != RespMsg.INTERAL_SERVER_ERROR:
         return {'status_code': response}
     return {"status_code": RespMsg.INTERAL_SERVER_ERROR} 
@@ -103,7 +97,7 @@ def note_password(id: int, password: str, parent: bool):
 @app.post('/subcategory/{category_name}/{subcategory_name}')
 def subcategory(category_name: str, subcategory_name: str):
     # generating an id for the new subcategory 
-    subcategory_id = my_ID.id('Subcategory')
+    subcategory_id = my_ID.ID('Subcategory')
 
     # creating a new subcategory object
     new_subcategory = SubCategory(subcategory_id, subcategory_name)
@@ -157,10 +151,9 @@ def note(note_id: int, parent: bool, note_data: NoteRequest):
     updated_note = Note(note_id, note_data.title, note_data.content, note_data.bookmark, note_data.password_protected) 
 
     response = notes_dto.update_note(parent, updated_note)
-
     if response != RespMsg.INTERAL_SERVER_ERROR:
         return {'status_code': 200, 'updated_note': response}
-    return {"status_code": RespMsg.INTERAL_SERVER_ERROR} 
+    return {"status_code": str(response)} 
 
 
 @app.put('/noteLocation/{note_id}/{category_id}/{parent}')
