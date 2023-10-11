@@ -27,8 +27,19 @@ class HTMLOperations:
         return html_content
     
 
+    # This method is used to update the content of a note by using the path of the note and the updated html content.
+    # This method has no return value.
     @staticmethod
     def update(file_path: str, updated_html_content: str):
         with open(file_path, 'w') as file:
             file.write(updated_html_content)
-        
+
+
+    # This method delete's the html file of a note 
+    # THis method has no return value.
+    @staticmethod
+    def delete(file_path: str):
+        try:
+            os.remove(file_path)
+        except OSError as e:
+            return str(e)

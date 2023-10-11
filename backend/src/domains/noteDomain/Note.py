@@ -19,7 +19,10 @@ class Note:
     def set_content_text(self):
         self.content = HTMLOperations.load(self.content)
 
+    # This method will update the content of a note's html file 
+    def update_content(self, note_path: str, updated_html_content: str):
+        HTMLOperations.update(note_path, updated_html_content)
 
-
-    def update_content(self, updated_html_content: str):
-        HTMLOperations.update(self.content, updated_html_content)
+    # This method uses the note path do delete the file.
+    def delete_note_file(self, note_path: str):
+        HTMLOperations.delete(note_path)

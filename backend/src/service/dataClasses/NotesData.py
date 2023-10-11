@@ -118,7 +118,7 @@ class NoteData:
                     for note in category['notes']:
                         if note['id'] == updated_note.id:
                             note['title'] = updated_note.title
-                            updated_note.update_content(updated_note.content)
+                            updated_note.update_content(self.__get_note_path(parent, updated_note.id), updated_note.content)
                             note['bookmark'] = updated_note.bookmark
                             note['password_protected'] = updated_note.password_protected
                             Json.update_json_file(self.notes_relative_path, data)
@@ -130,7 +130,7 @@ class NoteData:
                         for note in subcategory['notes']:
                             if note["id"] == updated_note.id:
                                 note['title'] = updated_note.title
-                                updated_note.update_content(updated_note.content)
+                                updated_note.update_content(self.__get_note_path(parent, updated_note.id), updated_note.content)
                                 note['bookmark'] = updated_note.bookmark
                                 note['password_protected'] = updated_note.password_protected
                                 Json.update_json_file(self.notes_relative_path, data)
@@ -163,6 +163,7 @@ class NoteData:
                 for category in data['categories']:
                     for note in category['notes']:
                         if note['id'] == note_id:
+                            self.__delete_note_html_file(note)
                             category['notes'].remove(note)
                             Json.update_json_file(self.notes_relative_path, data)
                             return RespMsg.OK
@@ -172,6 +173,7 @@ class NoteData:
                     for subcategory in category['subcategories']:
                         for note in subcategory['notes']:
                             if note['id'] == note_id:
+                                self.__delete_note_html_file(note)
                                 subcategory['notes'].remove(note)
                                 Json.update_json_file(self.notes_relative_path, data)
                                 return RespMsg.OK
@@ -206,6 +208,25 @@ class NoteData:
             return note_objects
         
 
+    def __get_note_by_id(self, parent: bool, note_id: int):
+        data = Json.load_json_file(self.notes_relative_path)
+        
+        if parent == True and note_id > 0:
+            for category in data["categories"]:
+                for note in category['notes']:
+                    if note['id'] == note_id:
+                        return note
+            return RespMsg.NOTE_404
+                    
+        if parent == False and note_id > 0:
+            for category in data["categories"]:
+                for subcategory in category['subcategories']:
+                    for note in subcategory:
+                        if note['id'] == note_id:
+                            return note
+            return RespMsg.NOTE_404
+        
+
     # This method is used to create a list of Note objects 
     # Paramter 1 - notes is a list of note objects converted in json data. 
     # And this method takes that data, and creates a list of Note objects
@@ -229,3 +250,16 @@ class NoteData:
     def __construct_note_object(self, note_data: NoteRequest):
         note_id = IdGenerator.ID("note")
         return Note(note_id, note_data.title, note_data.content, note_data.bookmark, note_data.password_protected)
+
+    
+    # This method returns the path of a note. 
+    def __get_note_path(self, parent: bool, note_id: int):
+        return self.__get_note_by_id(parent, note_id)['content']
+    
+
+    # This method creates a Note object from the JSON note object 
+    # And then it uses the file path inside the content field of a note 
+    # to delete the html file associated with it. 
+    def __delete_note_html_file(self, note_data: Note):
+        note_object = self.__create_note_object(note_data)
+        note_object.delete_note_file(note_object.content)
