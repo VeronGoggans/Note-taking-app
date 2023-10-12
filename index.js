@@ -1,19 +1,31 @@
-const notesCard = document.querySelector("#notes_card");
-const projectsCard = document.querySelector("#project_card");
-const thoughtsCard = document.querySelector("#thoughts_card");
-const todosCard = document.querySelector("#todo_card");
+// Sidebar buttons
+const sidebarBarsButton = document.querySelector('.home-page-sidebar-bars-button');
+const sidebarNotesButton = document.querySelector('.home-page-sidebar-notes-button');
+const sidebarProjectsButton = document.querySelector('.home-page-sidebar-projects-button');
+const sidebarSettingsButton = document.querySelector('.home-page-sidebar-settings-button');
 
-const currentYear = new Date().getFullYear();
-document.querySelector(".copyright_date").textContent = `Copyright © ${currentYear}`;
+// Icons
 
 
-thoughtsCard.addEventListener("click", ()=> {
-    window.location.href = "./frontend/pages/thoughtsPage.html"
-})
-notesCard.addEventListener("click", ()=> {
-    window.location.href = "./frontend/pages/categoryPage.html"
-})
-todosCard.addEventListener("click", ()=> {
-    window.location.href = "./frontend/pages/listOrBoardPage.html"
-})
+// containers
+const wrapper = document.querySelector('.wrapper');
 
+
+// eventListeners
+sidebarBarsButton.addEventListener('click', collapseSidebar);
+sidebarNotesButton.addEventListener('click', ()=> {window.location.href='frontend/pages/categoryPage.html'})
+
+
+
+// functions
+// This function is used to collapse the sidebar
+let sidebarToggle = false;
+function collapseSidebar() {
+    if (sidebarToggle) {
+        wrapper.style.gridTemplateColumns = '300px 1fr';
+    }
+    else {
+        wrapper.style.gridTemplateColumns = '70px 1fr';
+    }
+    sidebarToggle = !sidebarToggle;
+}

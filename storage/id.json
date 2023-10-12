@@ -6,11 +6,15 @@
         },
         {
             "entityName": "note",
-            "id": 106
+            "id": 107
         },
         {
             "entityName": "subcategory",
             "id": 2
+        },
+        {
+            "entityName": "project",
+            "id": 0
         }
     ]
 }

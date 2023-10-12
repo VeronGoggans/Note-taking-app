@@ -115,6 +115,13 @@
                     "content": "C:\\Users\\jsvgo\\Web Dev\\keeps/storage/notes/note-105.html",
                     "bookmark": true,
                     "password_protected": false
+                },
+                {
+                    "id": 106,
+                    "title": "C# is better then Java",
+                    "content": "C:\\Users\\jsvgo\\Web Dev\\keeps/storage/notes/note-106.html",
+                    "bookmark": false,
+                    "password_protected": false
                 }
             ]
         }
