@@ -5,14 +5,6 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-body {
-    width: 100%;
-    height: 100dvh;
-    background-color: aliceblue;
-    display: grid;
-    grid-template-columns: 70px 1fr;
-}
-
 .back_btn {
     background-color: transparent;
     display: flex;
@@ -93,5 +85,3 @@ body {
 .stage_two_add_card p{
     color: #fff;
 }
-
-/* rgb(154, 191, 255, 1) */

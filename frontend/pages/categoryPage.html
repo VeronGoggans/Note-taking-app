@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/sideBar.css">
-    <link rel="stylesheet" href="../../stylesTwo.css">
+    <link rel="stylesheet" href="../css/sidebars/categorypageSidebar/sidebar.css">
     <link rel="stylesheet" href="../css/cover.css">
     <link rel="stylesheet" href="../css/categoryPage/main.css">
     <link rel="stylesheet" href="../css/categoryPage/categoryCard.css">
@@ -13,32 +12,20 @@
     <title>Notes</title>
 </head>
 <body>
-    <div class="top_bar">
-        <ol class="options_menu">
-            <li><a href="#"><i class="fa-solid fa-code" title="Projects"></i></a></li>
-            <li><a href="./thoughtsPage.html"><i class="fa-solid fa-lightbulb" title="Idea's"></i></a></li>
-            <li><a href="./listOrBoard.html"><i class="fa-solid fa-list-ul" title="To do's"></i></a></li>
-            <li><a href="#"><i class="fa-solid fa-user" title="Profile"></i></a></li>
-        </ol>
-    </div>
-    <main class="categories_main">
-        <div class="categories_main_button_bar">
-            <button class="back_btn">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-            <h3 class="tab_title" style="color: rgb(36, 40, 109); margin-left: 50px;">Categories</h3>
+    <div class="wrapper">
+        <div class="sidebar">
+            <button class="category-page-sidebar-bars-button"><i class="fa-solid fa-bars"></i></button>
+            <button class="category-page-sidebar-back-button"><i class="fa-solid fa-xmark fa-x"></i>Back</button>
+            <button class="category-page-sidebar-settings-button"><i class="fa-solid fa-gear"></i>Settings</button>
         </div>
-        <div class="category_container">
-            <div class="stage_one_add_card">
-                <div>
-                    <button class="stage_one_add_btn">
-                        <i class="fa-solid fa-plus" id="stage_one_add_btn_icon"></i>
-                    </button>
-                </div>
-                <p>Add category</p>
+        <main class="categories_main">
+            <div class="category_container">
             </div>
-        </div>
-    </main>
+        </main>
+        <button class="new-category-button">
+            <i class="fa-solid fa-plus" id="stage_one_add_btn_icon"></i>
+        </button>
+    </div>
 
     <div class="cover">
         <div class="add_category_container">
@@ -52,5 +39,6 @@
     <script src="../js/endpoints.js"></script>
     <script src="../js/utilClasses/NodeCrafter.js"></script>
     <script src="../js/categoryPage.js"></script>
+    <script src="../js/sidebar.js"></script>
 </body>
 </html>

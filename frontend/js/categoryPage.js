@@ -1,33 +1,28 @@
+const addCategoryBtn = document.querySelector(".add_category_btn");
+
+// Sidebar buttons
+const sidebarBackButton = document.querySelector(".category-page-sidebar-back-button");
+const sidebarSettingsButton = document.querySelector('.category-page-sidebar-settings-button');
+const addBtn = document.querySelector(".new-category-button");
+
+// Inputs 
+const addCategoryInput = document.querySelector(".category_name_input");
+
+// Containers
 const cover = document.querySelector(".cover");
 const categoryContainer = document.querySelector(".category_container");
-const addCategoryBtn = document.querySelector(".add_category_btn");
-const addCategoryInput = document.querySelector(".category_name_input");
-const addBtn = document.querySelector(".stage_one_add_btn");
-const backBtn = document.querySelector(".back_btn");
-const CATEGORY_CONTAINER = document.querySelector(".category_container");
+
+// EventListeners
+sidebarBackButton.addEventListener("click", ()=> window.location.href = "../../index.html");
 document.addEventListener("DOMContentLoaded", () => {collectCategories(rerender=false)});
 
-
-
-// function that returns to the main page
-backBtn.addEventListener("click", ()=> window.location.href = "../../index.html");
-
-
+// Functions
 // funtion that shows the cover
 addBtn.addEventListener("click", ()=> {
     cover.style.visibility = "visible";
     cover.style.top = "0";
     addCategoryInput.focus();
-})
-
-
-function hideCover() {
-    cover.style.visibility = 'hidden';
-    cover.style.top = '100%';
-    addCategoryInput.value = ""
-    document.querySelector(".new_category_char_count").textContent = "0/25"
-}
-
+});
 
 // function that hides cover when clicking on it
 cover.addEventListener("click", (event) => {
@@ -35,12 +30,19 @@ cover.addEventListener("click", (event) => {
         cover.style.visibility = 'hidden';
         cover.style.top = '100%';
     }
-})
+});
+
+function hideCover() {
+    cover.style.visibility = 'hidden';
+    cover.style.top = '100%';
+    addCategoryInput.value = ""
+    document.querySelector(".new_category_char_count").textContent = "0/25"
+};
 
 
-// function that tells the user how manny characters they have left 
+// This function shows the user how manny characters they have left 
 // for their category name. 
-document.querySelector(".category_name_input").addEventListener("input", (event) => {
+addCategoryInput.addEventListener("input", (event) => {
     const charCount = document.querySelector(".new_category_char_count");
     charCount.textContent = `${event.target.value.length}/25`;
 })
@@ -54,6 +56,8 @@ function handleCategoryCardClick(categoryName, categoryId) {
     window.sessionStorage.setItem("categoryId", categoryId);
     window.location.href = "./notesPage.html";
 }
+
+
 
 
 // functions that collects all the category names from the server
@@ -100,7 +104,7 @@ function categoryCard(categoryId, categoryName) {
 
 // function that takes the category name given by the user and 
 // sends it so the server which will add the category to the json file
-// and finally creates a new category card fr that new category
+// and finally creates a new category card for that new category
 addCategoryBtn.addEventListener("click", async() => {
     const categoryName = addCategoryInput.value;
     const response = await addCategory(categoryName);
