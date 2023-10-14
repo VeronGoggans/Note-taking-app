@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/sideBar.css">
+    <link rel="stylesheet" href="../css/sidebars/notePageSidebar/sidebar.css">
     <link rel="stylesheet" href="../css/notesPage/cover.css">
-    <link rel="stylesheet" href="../../stylesTwo.css">
     <link rel="stylesheet" href="../css/notesPage/noteCard.css">
     <link rel="stylesheet" href="../css/categoryPage/addCategoryContainer.css">
     <link rel="stylesheet" href="../css/notesPage/noteMoveContainer.css">
@@ -18,39 +17,18 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="top_bar">
-        <ol class="options_menu">
-            <li><a href="#"><i class="fa-solid fa-code" title="Projects"></i></a></li>
-            <li><a href="./thoughtsPage.html"><i class="fa-solid fa-lightbulb" title="Idea's"></i></a></li>
-            <li><a href="./listOrBoard.html"><i class="fa-solid fa-list-ul" title="To do's"></i></a></li>
-            <li><a href="#"><i class="fa-solid fa-user" title="Profile"></i></a></li>
-        </ol>
-    </div> 
-    <main class="notes_main">
-        <div class="notes_main_btn_bar">
-            <div style="display: flex; align-items: center;">
-                <button class="back_btn">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-                <h3 class="tab_title" style="color: rgb(36, 40, 109); margin-left: 50px;"></h3>
-            </div>
-            <div class="category_settings_btn_container">
-                <button class="category_settings_btn">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
-            </div>
-        </div>
-        <div class="notes_container">
-            <div class="stage_two_add_card">
-                <div>
-                    <button class="stage_one_add_btn">
-                        <i class="fa-solid fa-plus" id="stage_one_add_btn_icon"></i>
-                    </button>
-                </div>
-                <p>Add Note</p>
-            </div>
-        </div>
-    </main>
+    <div class="wrapper">
+        <div class="sidebar">
+            <button class="notes-page-sidebar-bars-button"><i class="fa-solid fa-bars"></i></button>
+            <button class="notes-page-sidebar-back-button"><i class="fa-solid fa-xmark fa-x"></i>Back</button>
+            <button class="notes-page-sidebar-settings-button"><i class="fa-solid fa-gear"></i>Settings</button>
+        </div> 
+        <main class="notes_main">
+            <div class="notes_container"></div>
+        </main>
+        <button class="category-settings-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+        <button class="new-note-button"><i class="fa-solid fa-plus" id="stage_one_add_btn_icon"></i></button>
+    </div>
     <div class="cover_delete_box"></div>
     <div class="cover_paper_note"></div>
     <script src="../js/notesPage/categorySettingsContainer.js"></script>
