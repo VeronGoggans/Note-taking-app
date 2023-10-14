@@ -4,7 +4,6 @@ function renderPieceOfPaper(action) {
     cover2.style.visibility = "visible";
     cover2.style.top = "0";
     // Creating the html elements
-
     const buttonBar = NodeCrafter.create('div', {'class': 'button-bar'});
     const noteTitleInput = NodeCrafter.create('input', {'class': 'note-title-input', 'type': 'text', 'placeholder': 'Note title'});
     const closePaperNoteButton = NodeCrafter.create('button', {'class': 'close_paper_note_btn'});

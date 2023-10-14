@@ -1,26 +1,22 @@
+// containers
 const cover1 = document.querySelector(".cover_delete_box");
 const cover2 = document.querySelector('.cover_paper_note');
 
-const topBarTitle = document.querySelector(".tab_title");
-const addBtn = document.querySelector(".stage_one_add_btn");
-const backBtn = document.querySelector(".back_btn");
-const categorySettingsBtn = document.querySelector('.category_settings_btn');
+// sidebar buttons
+const sidebarBackButton = document.querySelector(".notes-page-sidebar-back-button");
+const sidebarSettingsButton = document.querySelector('.notes-page-sidebar-settings-button');
 
+// other buttons
+const categorySettingsButton = document.querySelector('.category_settings_btn');
+const newNoteButton = document.querySelector(".new-note-button");
 const addNoteBtn = document.querySelector('.add_note_btn');
-topBarTitle.textContent = sessionStorage.getItem("categoryName");
+
+
+// EventListeners
 document.addEventListener("DOMContentLoaded", () => {collectSubcategories(rerender=false)});
 document.addEventListener("DOMContentLoaded", () => {collectNotes(rerender=false)});
-
-
-addBtn.addEventListener("click", ()=> {
-    renderPieceOfPaper('add-note')
-    renderPaperNoteBtnBar();
-});
-backBtn.addEventListener("click", ()=> returnToCategoryPage());
-categorySettingsBtn.addEventListener('click', ()=> renderCategorySettingsContainer(cover1));
-
-
-// function that hides cover1 when clicking on it
+sidebarBackButton.addEventListener("click", ()=> window.location.href = "./categoryPage.html");
+categorySettingsButton.addEventListener('click', ()=> renderCategorySettingsContainer(cover1));
 cover1.addEventListener("click", (event) => {
     if (
     !event.target.closest('.delete_note_box') && 
@@ -35,32 +31,19 @@ cover1.addEventListener("click", (event) => {
         cover1.style.top = '100%';
         clearCover1();
     }
-})
+});
 
+newNoteButton.addEventListener("click", ()=> {
+    renderPieceOfPaper('add-note');
+    renderPaperNoteBtnBar();
+});
 
-        // cover2.style.top = '100%';
-        // cover2.removeChild(cover2.lastChild)
-
-
+// Functions
 
 // This function will remove all child HTML elements from the cover1 element
-function clearCover1() {
-    while (cover1.firstChild) {
-        cover1.removeChild(cover1.firstChild);
-    }
-}     
+function clearCover1() {while (cover1.firstChild) cover1.removeChild(cover1.firstChild)}     
+function clearCover2() {while (cover2.firstChild) cover2.removeChild(cover2.firstChild)}   
 
-
-function clearCover2() {
-    while (cover2.firstChild) {
-        cover2.removeChild(cover2.firstChild);
-    }
-}   
-
-
-// This function return the user to the categories page 
-function returnToCategoryPage() {window.location.href = "./categoryPage.html"}
-  
 
 // This function gets triggert when the notes page loads, and recieves all the subcategories 
 // from the backend and displays them on the page.

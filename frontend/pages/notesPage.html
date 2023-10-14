@@ -21,11 +21,13 @@
         <div class="sidebar">
             <button class="notes-page-sidebar-bars-button"><i class="fa-solid fa-bars"></i></button>
             <button class="notes-page-sidebar-back-button"><i class="fa-solid fa-xmark fa-x"></i>Back</button>
+            <button class="all-notes-filter-button"><i class="fa-regular fa-note-sticky"></i>All</button>
+            <button class="standard-notes-filter-button"><i class="fa-solid fa-s"></i>Standard</button>
+            <button class="bookmarked-notes-filter-button"><i class="fa-solid fa-bookmark"></i>Bookmarked</button>
+            <button class="protected-notes-filter-button"><i class="fa-solid fa-key"></i>Secure</button>
             <button class="notes-page-sidebar-settings-button"><i class="fa-solid fa-gear"></i>Settings</button>
         </div> 
-        <main class="notes_main">
-            <div class="notes_container"></div>
-        </main>
+        <div class="notes_container"></div>
         <button class="category-settings-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
         <button class="new-note-button"><i class="fa-solid fa-plus" id="stage_one_add_btn_icon"></i></button>
     </div>
@@ -44,5 +46,6 @@
     <script src="../js/utilClasses/sessionStorage.js"></script>
     <script src="../js/endpoints.js"></script>
     <script src="../js/notesPage/notesPage.js"></script>
+    <script src="../js/sidebar.js"></script>
 </body>
 </html>

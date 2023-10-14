@@ -9,7 +9,11 @@
 
 .notes-page-sidebar-bars-button,
 .notes-page-sidebar-back-button,
-.notes-page-sidebar-settings-button {
+.notes-page-sidebar-settings-button,
+.all-notes-filter-button,
+.standard-notes-filter-button,
+.bookmarked-notes-filter-button,
+.protected-notes-filter-button {
     cursor: pointer;
     position: relative;
     outline: none;
@@ -29,13 +33,21 @@
 
 .notes-page-sidebar-bars-button i,
 .notes-page-sidebar-back-button i,
-.notes-page-sidebar-settings-button i {
+.notes-page-sidebar-settings-button i,
+.all-notes-filter-button i,
+.standard-notes-filter-button i,
+.bookmarked-notes-filter-button i,
+.protected-notes-filter-button i {
     position: absolute;
     left: 5px;
 }
 
 .notes-page-sidebar-back-button:hover,
-.notes-page-sidebar-settings-button:hover {
+.notes-page-sidebar-settings-button:hover,
+.all-notes-filter-button:hover,
+.standard-notes-filter-button:hover,
+.bookmarked-notes-filter-button:hover,
+.protected-notes-filter-button:hover {
     background-color: aliceblue;
     color: rgb(52, 52, 52);
 }
