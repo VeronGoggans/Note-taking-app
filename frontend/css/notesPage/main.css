@@ -30,7 +30,6 @@ body {
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     grid-template-rows: repeat(auto-fill, 380px);
     overflow-y: scroll;
-    transition: .15s;
 }
 
 .notes_container::-webkit-scrollbar {
@@ -58,8 +57,8 @@ body {
     background-color: transparent;
     border: none;
     background-color: aliceblue;
-    color: rgb(123, 196, 255);
-    border: 2px solid rgb(123, 196, 255);
+    color: #669DFF;
+    border: 2px solid #669DFF;
     box-shadow: 0 0 10px 0 rgb(214, 226, 248);
     transition: .4s;
 }
@@ -67,7 +66,7 @@ body {
 .new-note-button:hover {
     background-color: rgb(255, 255, 255);
     border: 2px solid #ffffff;
-    color: rgb(123, 196, 255);
+    color: #669DFF;
 }
 
 .category-settings-button {

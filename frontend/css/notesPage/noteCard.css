@@ -37,7 +37,6 @@
     color: rgb(56, 56, 56);
 }
 
-
 .note_card_content_box,
 .psw_note_card_content_box {
     display: grid;
@@ -64,7 +63,7 @@
     align-items: center;
     width: 35px;
     height: 35px;
-    color: rgb(154, 191, 255);
+    color: #669DFF;
     transition: .4s;
 }
 
@@ -76,5 +75,5 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: rgb(154, 191, 255);
+    color: #669DFF;
 }

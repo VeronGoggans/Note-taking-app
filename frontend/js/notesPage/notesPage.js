@@ -1,10 +1,15 @@
 // containers
 const cover1 = document.querySelector(".cover_delete_box");
 const cover2 = document.querySelector('.cover_paper_note');
+const noteContainers = document.querySelector('.note_container');
 
 // sidebar buttons
 const sidebarBackButton = document.querySelector(".notes-page-sidebar-back-button");
 const sidebarSettingsButton = document.querySelector('.notes-page-sidebar-settings-button');
+const sidebarAllButton = document.querySelector('.all-notes-filter-button');
+const sidebarStandardButton = document.querySelector('.standard-notes-filter-button');
+const sidebarBookmarkButton = document.querySelector('.bookmarked-notes-filter-button');
+const sidebarSecureButton = document.querySelector('.protected-notes-filter-button');
 
 // other buttons
 const categorySettingsButton = document.querySelector('.category-settings-button');
@@ -14,9 +19,30 @@ const addNoteBtn = document.querySelector('.add_note_btn');
 
 // EventListeners
 document.addEventListener("DOMContentLoaded", () => {collectSubcategories(rerender=false)});
-document.addEventListener("DOMContentLoaded", () => {collectNotes(rerender=false)});
-sidebarBackButton.addEventListener("click", ()=> window.location.href = "./categoryPage.html");
+document.addEventListener("DOMContentLoaded", () => {collectNotes(rerender=false, 'all')});
+sidebarBackButton.addEventListener("click", () => window.location.href = "./categoryPage.html");
+
+
+sidebarAllButton.addEventListener('click', async () => {
+    clearNotesContainer();
+    collectNotes(rerender=false, noteType='all')
+});
+sidebarStandardButton.addEventListener('click', async () => {
+    clearNotesContainer();
+    collectNotes(rerender=false, noteType='standard')
+});
+sidebarBookmarkButton.addEventListener('click', async () => {
+    clearNotesContainer();
+    collectNotes(rerender=false, noteType='bookmark')
+});
+sidebarSecureButton.addEventListener('click', async () => {
+    clearNotesContainer();
+    collectNotes(rerender=false, noteType='password_protected')
+});
+
+
 categorySettingsButton.addEventListener('click', ()=> renderCategorySettingsContainer);
+
 cover1.addEventListener("click", (event) => {
     if (
     !event.target.closest('.delete_note_box') && 
@@ -39,65 +65,11 @@ newNoteButton.addEventListener("click", ()=> {
 });
 
 // Functions
-
-// This function will remove all child HTML elements from the cover1 element
+// Theses functions will remove all child HTML elements from them
 function clearCover1() {while (cover1.firstChild) cover1.removeChild(cover1.firstChild)}     
-function clearCover2() {while (cover2.firstChild) cover2.removeChild(cover2.firstChild)}   
-
-
-// This function gets triggert when the notes page loads, and recieves all the subcategories 
-// from the backend and displays them on the page.
-async function collectSubcategories(rerender) {
-    if (!rerender) {
-        const response = await getSubcategories();
-        const subcategories = response.subcategory_names;
-        if (response.status_code === 200) {
-            console.log("Subcategories Successful")
-        } else {
-            const response = await getSubcategories(rerender);
-            console.log(response.subcategory_names);
-        }
+function clearCover2() {while (cover2.firstChild) cover2.removeChild(cover2.firstChild)} 
+function clearNotesContainer() {
+    while (noteContainers.firstChild) {
+        noteContainers.removeChild(noteContainers.firstChild)
     }
-}
-
-
-// This function can get triggert in multiple use cases.
-// Usecase 1 - loading the notes page (rerender=false)
-// Usecase 2 - adding a note (rerender=true)
-// Function parameters 
-// Parameter 1 - rerender 
-// This parameter tells the function what usecase it is supposed to complete
-// If rerender is true the function will return the last note that is stored in the backend
-// Rerender will only be true if a note is created.
-// If rerender is false the function will return all notes. 
-async function collectNotes(rerender) {
-    const categoryName = window.sessionStorage.getItem('categoryName');
-    if (!rerender) {
-        const response = await getNotes(categoryName, true, false, 'all');
-        const statusCode = response.status_code;
-        const noteListLength = response.notes.length;
-
-        if (statusCode === 200 && noteListLength > 0) {
-            const notes = response.notes;
-            for (let i = 0; i < notes.length; i++) {
-                renderSpecificNoteType(notes[i].id, notes[i].title, notes[i].content, notes[i].bookmark, notes[i].password_protected);
-            }
-        }
-    } 
-    if (rerender) {
-        const response = await getNotes(categoryName, true, true, 'all');
-        const noteObject = response.notes;
-        renderSpecificNoteType(noteObject.id, noteObject.title, noteObject.content, noteObject.bookmark, noteObject.password_protected);
-    }
-}
-
-// This function gets called for every index in the notes list that is recieved from the backend. 
-// It looks at the password_protected field and determins if it is supposed to render a normal note or a secure note.
-function renderSpecificNoteType(id, note_name, note_content, bookmark, passwordProtection) {
-    if (passwordProtection) {
-        renderSecureNote(id, note_name, note_content, bookmark, passwordProtection);
-    } 
-    if (!passwordProtection) {
-        renderNote(id, note_name, note_content, bookmark, passwordProtection);
-    }
-}
+}  

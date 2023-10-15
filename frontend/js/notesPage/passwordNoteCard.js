@@ -6,10 +6,10 @@ function renderSecureNote(id, note_name, note_content, bookmark, passwordProtect
     // Creating the html elements
     const secureNoteCard = NodeCrafter.create('div', {'class': 'psw_note_card', 'id': id});
     const secureNoteTitleBox = NodeCrafter.create('div', {'class': 'psw_note_card_title_bar'});
-    const noteName = NodeCrafter.create('h4', {'textContent': note_name});
+    const noteName = NodeCrafter.create('h5', {'textContent': note_name});
     const settingsIcon = NodeCrafter.create('i', {'class': 'fa-solid fa-ellipsis'});
     const secureNoteContentBox = NodeCrafter.create('div', {'class': 'psw_note_card_content_box'});
-    const lockIcon = NodeCrafter.create('i', {'class': 'fa-solid fa-lock', 'title': 'Unlock', 'id': 'lock_icon'});
+    const lockIcon = NodeCrafter.create('i', {'class': 'fa-solid fa-key', 'title': 'Unlock', 'id': 'lock_icon'});
     const bottomDiv = NodeCrafter.create('div', {});
     const bookmarkIcon = NoteUtils.createBookmarkIcon(bookmark);
 
@@ -24,7 +24,6 @@ function renderSecureNote(id, note_name, note_content, bookmark, passwordProtect
         renderNotePasswordContainer('unlock-note');
     })
 
-
     // Appending children
     secureNoteTitleBox.appendChild(noteName);
     secureNoteTitleBox.appendChild(settingsIcon);
@@ -34,6 +33,4 @@ function renderSecureNote(id, note_name, note_content, bookmark, passwordProtect
     secureNoteCard.appendChild(secureNoteTitleBox);
     secureNoteCard.appendChild(secureNoteContentBox);
     noteContainer.appendChild(secureNoteCard);
-
 }
-// ____________________________________ Behavior ________________________________________________

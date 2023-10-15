@@ -115,7 +115,7 @@ function renderNotePasswordContainer(action) {
     }
     const inputBox = NodeCrafter.create('div', {'class': 'password_protection_input_box'});
     const p = NodeCrafter.create('p', {'textContent': 'Protect your notes with a password'});
-    const lockIcon = NodeCrafter.create('i', {'class': 'fa-solid fa-lock', 'id': 'lock_icon'});
+    const lockIcon = NodeCrafter.create('i', {'class': 'fa-solid fa-key', 'id': 'lock_icon'});
     const eyeIcon = NodeCrafter.create('i', {'class': 'fa-solid fa-eye-slash', 'id': 'password_eye_icon'});
     const input = NodeCrafter.create('input', {'id': 'note_password_input', 'type': 'password', 'placeholder': 'Password'});
 

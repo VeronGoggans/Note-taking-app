@@ -11,15 +11,15 @@ window.addEventListener('resize', screenWidth);
 
 
 // This function is used to collapse the sidebar
-let sidebarToggle = true;
+let sidebarToggle = setSidebarToggle();
 function sidebarSlideIn() {
     if (sidebarToggle) {
         wrapper.style.gridTemplateColumns = '250px 1fr';
-        window.sessionStorage.setItem('sidebar-status', 'large')
+        window.sessionStorage.setItem('sidebar-status', 'large');
     }
     else {
         wrapper.style.gridTemplateColumns = '70px 1fr';
-        window.sessionStorage.setItem('sidebar-status', 'small')
+        window.sessionStorage.setItem('sidebar-status', 'small');
     }
     sidebarToggle = !sidebarToggle;
 }
@@ -30,7 +30,13 @@ function screenWidth() {
     if (minScreenWidth < 595) {
         wrapper.style.gridTemplateColumns = '70px 1fr';
         sidebarToggle = true;
+        window.sessionStorage.setItem('sidebar-status', 'small');
     }
+}
+
+function setSidebarToggle() {
+    if (window.sessionStorage.getItem('sidebar-status') === 'small') return true;
+    else return false;
 }
 
 function setSidbarSize() {

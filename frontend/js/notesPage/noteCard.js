@@ -1,5 +1,4 @@
 // ____________________________________ RenderNoteCard ____________________________________
-
 function renderNote(id, note_name, note_content, bookmark, passwordProtection) {
     // creating parent container 
     const noteContainer = document.querySelector(".notes_container");
@@ -24,9 +23,7 @@ function renderNote(id, note_name, note_content, bookmark, passwordProtection) {
     noteContent.addEventListener('click', ()=> {
         NoteUtils.storeNoteDataToSessionStorage(id, noteName.textContent, noteContent.innerHTML, passwordProtection, bookmark)
         renderPieceOfPaper('edit-note'); // This function is in the papersheet.js file
-    })
-
-    
+    })    
 
     // Appending children
     noteTitleBox.appendChild(noteName);
@@ -49,7 +46,6 @@ function renderNoteUpdate(noteId, noteName, noteContent, secure) {
     const note = document.getElementById(noteId)
 
     if (secure == 'false') {
-
         const noteTitleBar = note.querySelector('.note_card_title_bar');
         noteTitleBar.querySelector('h4').textContent = noteName;
 

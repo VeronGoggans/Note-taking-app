@@ -107,7 +107,7 @@
     position: relative;
     bottom: 40px;
     font-size: 90px;
-    color: rgb(154, 191, 255, 1);
+    color: #669DFF;
     overflow: visible;
 }
 
@@ -128,7 +128,7 @@
     border: none;
     height: 40px;
     margin: 30px 70px 5px 70px;
-    background-color: rgb(154, 191, 255, 1);
+    background-color: #669DFF;
     color: #ffffff;
     font-weight: 600;
     font-size: 15px;
@@ -136,4 +136,4 @@
     transition: .4s;
 }
 
-.unlock-note-btn:hover {background-color: rgb(130, 176, 255)}
+.unlock-note-btn:hover {background-color: #4589ff}

@@ -25,9 +25,6 @@ function renderCategorySettingsContainer() {
     container.appendChild(button3);
     cover1.appendChild(container);
 }
-// ____________________________________ Behavior ________________________________________________
-
-
 
 
 // This function gets triggert when the Add subgategory button gets clicked.
@@ -70,7 +67,6 @@ function renderSubcategoryContainer(action) {
         })
     }
 
-
     // Appending children
     inputBox.appendChild(input);
     button.appendChild(i);
@@ -78,17 +74,6 @@ function renderSubcategoryContainer(action) {
     container.appendChild(p);
     container.appendChild(button);
     cover1.appendChild(container);
-}
-// ____________________________________ Behavior ________________________________________________
-async function requestUpdateCategory(categoryName) {
-    const categoryId = MySessionStorage.get('categoryId');
-    const response = await updateCategory(categoryId, categoryName);
-    if (response.status_code === 200) {
-        document.querySelector('.tab_title').textContent = categoryName;
-        MySessionStorage.set('categoryName', categoryName)
-        cover1.style.top = '100%';
-        clearCover1()
-    }
 }
 
 
@@ -118,15 +103,4 @@ function renderCategoryDeleteContainer() {
     container.appendChild(p1);
     container.appendChild(button);
     cover1.appendChild(container);
-}
-
-// ____________________________________ Behavior ________________________________________________
-// This function will delete a category from the backend.
-// And then return to the categories page. 
-async function requestDeleteCategory() {
-    const categoryId = window.sessionStorage.getItem('categoryId');
-    const response = await deletecategory(categoryId)
-    if (response.status_code === 200) {
-        returnToCategoryPage();
-    }
 }
