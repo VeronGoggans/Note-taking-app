@@ -15,7 +15,8 @@ body {
     height: 100dvh;
     display: grid;
     grid-template-columns: 250px 1fr;
-    background-color:aliceblue ;
+    background-color:aliceblue;
+    transition: .15s;
 }
 
 .categories_main {
@@ -31,7 +32,7 @@ body {
     grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
     grid-template-rows: repeat(auto-fill, 280px);
     overflow-y: scroll;
-    transition: transform 0.3s ease-in-out;
+    transition: .15s;
 }
 
 .category_container::-webkit-scrollbar {

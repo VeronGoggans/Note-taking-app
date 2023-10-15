@@ -7,7 +7,7 @@ function renderNote(id, note_name, note_content, bookmark, passwordProtection) {
     // Creating the html elements
     const noteCard = NodeCrafter.create('div', {'class': 'note_card', 'id': id});
     const noteTitleBox = NodeCrafter.create('div', {'class': 'note_card_title_bar'});
-    const noteName = NodeCrafter.create('h4', {'textContent': note_name});
+    const noteName = NodeCrafter.create('h5', {'textContent': note_name});
     const settingsIcon = NodeCrafter.create('i', {'class': 'fa-solid fa-ellipsis'});
     const noteContentBox = NodeCrafter.create('div', {'class': 'note_card_content_box'});
     const noteContent = NodeCrafter.create('p', {});

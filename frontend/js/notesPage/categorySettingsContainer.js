@@ -15,12 +15,8 @@ function renderCategorySettingsContainer() {
     const button3 = NodeCrafter.create('button', {'class': 'delete_subcategory_btn', 'textContent': 'Delete category'});
 
     // Adding event listeners
-    button1.addEventListener('click', ()=> {
-        renderSubcategoryContainer('add-subcategory')
-    });
-    button2.addEventListener('click', ()=> {
-        renderSubcategoryContainer('change-category-name')
-    });
+    button1.addEventListener('click', ()=> {renderSubcategoryContainer('add-subcategory')});
+    button2.addEventListener('click', ()=> {renderSubcategoryContainer('change-category-name')});
     button3.addEventListener('click', renderCategoryDeleteContainer);
 
     // Appending children

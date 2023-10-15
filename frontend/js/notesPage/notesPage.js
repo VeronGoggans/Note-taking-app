@@ -7,7 +7,7 @@ const sidebarBackButton = document.querySelector(".notes-page-sidebar-back-butto
 const sidebarSettingsButton = document.querySelector('.notes-page-sidebar-settings-button');
 
 // other buttons
-const categorySettingsButton = document.querySelector('.category_settings_btn');
+const categorySettingsButton = document.querySelector('.category-settings-button');
 const newNoteButton = document.querySelector(".new-note-button");
 const addNoteBtn = document.querySelector('.add_note_btn');
 
@@ -16,7 +16,7 @@ const addNoteBtn = document.querySelector('.add_note_btn');
 document.addEventListener("DOMContentLoaded", () => {collectSubcategories(rerender=false)});
 document.addEventListener("DOMContentLoaded", () => {collectNotes(rerender=false)});
 sidebarBackButton.addEventListener("click", ()=> window.location.href = "./categoryPage.html");
-categorySettingsButton.addEventListener('click', ()=> renderCategorySettingsContainer(cover1));
+categorySettingsButton.addEventListener('click', ()=> renderCategorySettingsContainer);
 cover1.addEventListener("click", (event) => {
     if (
     !event.target.closest('.delete_note_box') && 
@@ -71,9 +71,9 @@ async function collectSubcategories(rerender) {
 // Rerender will only be true if a note is created.
 // If rerender is false the function will return all notes. 
 async function collectNotes(rerender) {
+    const categoryName = window.sessionStorage.getItem('categoryName');
     if (!rerender) {
-        const response = await getNotes(categoryName=topBarTitle.textContent, parent=true, rerender=false);
-
+        const response = await getNotes(categoryName, true, false, 'all');
         const statusCode = response.status_code;
         const noteListLength = response.notes.length;
 
@@ -85,7 +85,7 @@ async function collectNotes(rerender) {
         }
     } 
     if (rerender) {
-        const response = await getNotes(categoryName=topBarTitle.textContent, parent=true, rerender=true);
+        const response = await getNotes(categoryName, true, true, 'all');
         const noteObject = response.notes;
         renderSpecificNoteType(noteObject.id, noteObject.title, noteObject.content, noteObject.bookmark, noteObject.password_protected);
     }

@@ -1,7 +1,7 @@
 // Bars button 
 const sidebar = document.querySelector('.sidebar');
 const sidebarBarsButton = sidebar.firstElementChild;
-sidebarBarsButton.addEventListener('click', collapseSidebar);
+sidebarBarsButton.addEventListener('click', sidebarSlideIn);
 
 // containers
 const wrapper = document.querySelector('.wrapper');
@@ -11,10 +11,16 @@ window.addEventListener('resize', screenWidth);
 
 
 // This function is used to collapse the sidebar
-let sidebarToggle = false;
-function collapseSidebar() {
-    if (sidebarToggle) {wrapper.style.gridTemplateColumns = '250px 1fr';}
-    else {wrapper.style.gridTemplateColumns = '70px 1fr';}
+let sidebarToggle = true;
+function sidebarSlideIn() {
+    if (sidebarToggle) {
+        wrapper.style.gridTemplateColumns = '250px 1fr';
+        window.sessionStorage.setItem('sidebar-status', 'large')
+    }
+    else {
+        wrapper.style.gridTemplateColumns = '70px 1fr';
+        window.sessionStorage.setItem('sidebar-status', 'small')
+    }
     sidebarToggle = !sidebarToggle;
 }
 
@@ -27,8 +33,9 @@ function screenWidth() {
     }
 }
 
-// This function will send the sidebar status to the sessionStorage
-// so that if collapsed in one page it stays collapsed in the other page. 
-function saveSidebarStatus() {
-
+function setSidbarSize() {
+    const sidebarStatus = window.sessionStorage.getItem('sidebar-status')
+    if (sidebarStatus === 'large') {wrapper.style.gridTemplateColumns = '250px 1fr'}
+    if (sidebarStatus === 'small') {wrapper.style.gridTemplateColumns = '70px 1fr'}
 }
+setSidbarSize()

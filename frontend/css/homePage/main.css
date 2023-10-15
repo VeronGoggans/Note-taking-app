@@ -15,7 +15,8 @@ body {
     height: 100dvh;
     display: grid;
     grid-template-columns: 250px 1fr;
-    background-color:aliceblue ;
+    background-color:aliceblue;
+    transition: .15s;
 }
 
 

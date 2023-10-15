@@ -10,8 +10,8 @@ async function getSubcategories(categoryName) {
     return await response.json();
 }
 
-async function getNotes(categoryName, parent, rerender) {
-    const response = await fetch(`/notes/${categoryName}/${parent}/${rerender}`);
+async function getNotes(categoryName, parent, rerender, noteType) {
+    const response = await fetch(`/notes/${categoryName}/${parent}/${rerender}/${noteType}`);
     return await response.json();
 }
 
@@ -83,4 +83,3 @@ async function updateCategory(categoryId, categoryName) {
     const response = await fetch(`/category/${categoryId}/${categoryName}`, {method: "PUT", headers: {"Content-Type": "application/json"}})
     return await response.json();
 }
-

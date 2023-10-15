@@ -93,26 +93,12 @@
                     "title": "test-path-switch-2",
                     "content": "C:\\Users\\jsvgo\\Web Dev\\keeps/storage/notes/note-101.html",
                     "bookmark": false,
-                    "password_protected": true
+                    "password_protected": false
                 },
                 {
                     "id": 102,
                     "title": "test-path-switch-3",
                     "content": "C:\\Users\\jsvgo\\Web Dev\\keeps/storage/notes/note-102.html",
-                    "bookmark": true,
-                    "password_protected": false
-                },
-                {
-                    "id": 104,
-                    "title": "test-path-4",
-                    "content": "C:\\Users\\jsvgo\\Web Dev\\keeps/storage/notes/note-104.html",
-                    "bookmark": true,
-                    "password_protected": false
-                },
-                {
-                    "id": 105,
-                    "title": "Let's get rusty",
-                    "content": "C:\\Users\\jsvgo\\Web Dev\\keeps/storage/notes/note-105.html",
                     "bookmark": true,
                     "password_protected": false
                 },
