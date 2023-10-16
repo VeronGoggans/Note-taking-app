@@ -1,7 +1,7 @@
 // containers
 const cover1 = document.querySelector(".cover_delete_box");
 const cover2 = document.querySelector('.cover_paper_note');
-const noteContainers = document.querySelector('.note_container');
+const noteContainer = document.querySelector('.notes_container');
 
 // sidebar buttons
 const sidebarBackButton = document.querySelector(".notes-page-sidebar-back-button");
@@ -59,17 +59,14 @@ cover1.addEventListener("click", (event) => {
     }
 });
 
-newNoteButton.addEventListener("click", ()=> {
-    renderPieceOfPaper('add-note');
-    renderPaperNoteBtnBar();
-});
+newNoteButton.addEventListener("click", ()=> {renderPieceOfPaper('add-note')});
 
 // Functions
 // Theses functions will remove all child HTML elements from them
 function clearCover1() {while (cover1.firstChild) cover1.removeChild(cover1.firstChild)}     
 function clearCover2() {while (cover2.firstChild) cover2.removeChild(cover2.firstChild)} 
 function clearNotesContainer() {
-    while (noteContainers.firstChild) {
-        noteContainers.removeChild(noteContainers.firstChild)
+    while (noteContainer.firstChild) {
+        noteContainer.removeChild(noteContainer.firstChild)
     }
 }  

@@ -110,6 +110,12 @@
                     "password_protected": false
                 }
             ]
+        },
+        {
+            "id": "Entity does not exist yet",
+            "name": "new directory",
+            "subcategories": [],
+            "notes": []
         }
     ]
 }
