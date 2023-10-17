@@ -22,7 +22,7 @@ function renderNote(id, note_name, note_content, bookmark, passwordProtection) {
 
     noteContent.addEventListener('click', ()=> {
         NoteUtils.storeNoteDataToSessionStorage(id, noteName.textContent, noteContent.innerHTML, passwordProtection, bookmark)
-        renderPieceOfPaper('edit-note'); // This function is in the papersheet.js file
+        showPaperNote('edit-note'); // This function is in the papersheet.js file
     })    
 
     // Appending children
@@ -47,7 +47,7 @@ function renderNoteUpdate(noteId, noteName, noteContent, secure) {
 
     if (secure == 'false') {
         const noteTitleBar = note.querySelector('.note_card_title_bar');
-        noteTitleBar.querySelector('h4').textContent = noteName;
+        noteTitleBar.querySelector('h5').textContent = noteName;
 
         const noteContentBox = note.querySelector('.note_card_content_box');
         noteContentBox.querySelector('p').innerHTML = StringUtil.fromatString(noteContent);
@@ -56,6 +56,6 @@ function renderNoteUpdate(noteId, noteName, noteContent, secure) {
     }  
     if (secure == 'true') {
         const noteTitleBar = note.querySelector('.psw_note_card_title_bar');
-        noteTitleBar.querySelector('h4').textContent = noteName;
+        noteTitleBar.querySelector('h5').textContent = noteName;
     }  
 }

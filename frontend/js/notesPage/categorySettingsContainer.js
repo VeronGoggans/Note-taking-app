@@ -26,7 +26,6 @@ function renderCategorySettingsContainer() {
     cover1.appendChild(container);
 }
 
-
 // This function gets triggert when the Add subgategory button gets clicked.
 // And creates a new subcategory inside the parent category. 
 function renderSubcategoryContainer(action) {

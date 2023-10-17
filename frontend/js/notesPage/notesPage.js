@@ -21,7 +21,8 @@ const addNoteBtn = document.querySelector('.add_note_btn');
 document.addEventListener("DOMContentLoaded", () => {collectSubcategories(rerender=false)});
 document.addEventListener("DOMContentLoaded", () => {collectNotes(rerender=false, 'all')});
 sidebarBackButton.addEventListener("click", () => window.location.href = "./categoryPage.html");
-
+categorySettingsButton.addEventListener('click', ()=> renderCategorySettingsContainer);
+newNoteButton.addEventListener("click", ()=> {showPaperNote('add-note')});
 
 sidebarAllButton.addEventListener('click', async () => {
     clearNotesContainer();
@@ -40,9 +41,6 @@ sidebarSecureButton.addEventListener('click', async () => {
     collectNotes(rerender=false, noteType='password_protected')
 });
 
-
-categorySettingsButton.addEventListener('click', ()=> renderCategorySettingsContainer);
-
 cover1.addEventListener("click", (event) => {
     if (
     !event.target.closest('.delete_note_box') && 
@@ -53,20 +51,15 @@ cover1.addEventListener("click", (event) => {
     !event.target.closest('.password_protection_container') && 
     !event.target.closest('.confirm_password_container') && 
     !event.target.closest('.move-note-container')
-    ) {
-        cover1.style.top = '100%';
-        clearCover1();
-    }
+    ) {cover1.style.top = '100%';}
 });
-
-newNoteButton.addEventListener("click", ()=> {renderPieceOfPaper('add-note')});
 
 // Functions
 // Theses functions will remove all child HTML elements from them
 function clearCover1() {while (cover1.firstChild) cover1.removeChild(cover1.firstChild)}     
 function clearCover2() {while (cover2.firstChild) cover2.removeChild(cover2.firstChild)} 
-function clearNotesContainer() {
-    while (noteContainer.firstChild) {
-        noteContainer.removeChild(noteContainer.firstChild)
-    }
-}  
+function clearNotesContainer() {while (noteContainer.firstChild) {noteContainer.removeChild(noteContainer.firstChild)}}  
+
+function filterButtonActiveStyles() {
+    
+}

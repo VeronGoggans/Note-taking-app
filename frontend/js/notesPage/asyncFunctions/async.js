@@ -60,16 +60,15 @@ async function requestUpdateCategory(categoryName) {
 // This function will create a new note and send it to the backend 
 async function requestAddNote() {
     const categoryId = MySessionStorage.get('categoryId');
-    const noteTitle = document.querySelector('.paper_note_title_input').value;
-    const noteContent = document.querySelector('.paper_note_content_textarea').innerHTML;
+    const noteTitle = document.querySelector('.note-name-input').value;
+    const noteContent = document.querySelector('.paper-note').innerHTML;
     const bookmark = false;
     const passwordProtected = false;
     const noteObject = {"title": noteTitle, "content": noteContent, "bookmark": bookmark, "password_protected": passwordProtected}
     const response = await addNote(categoryId, true, noteObject);
     if (response.status_code === 200) {
         cover2.style.top = "100%";
-        cover2.removeChild(cover2.lastChild)
-        collectNotes(rerender=true, );
+        collectNotes(rerender=true);
     } else alert("Error")
 } 
 
@@ -79,8 +78,8 @@ async function requestAddNote() {
 // Ones it has collected all of the information, it sends a PUT request to the server updating the note.
 async function requestUpdateNote() {
     const noteId = MySessionStorage.get('note-id');
-    const noteName = document.querySelector('.paper_note_title_input').value;
-    const noteContent = document.querySelector('.paper_note_content_textarea').innerHTML;
+    const noteName = document.querySelector('.note-name-input').value;
+    const noteContent = document.querySelector('.paper-note').innerHTML;
     const bookmark = MySessionStorage.get('note-bookmark');
     const passwordProtected = MySessionStorage.get('note-password-protect');
 
@@ -88,9 +87,7 @@ async function requestUpdateNote() {
     const response = await updateNote(noteId, true, noteObject);
 
     if (response.status_code === 200) {
-        const note = response.updated_note;
         cover2.style.top = "100%";
-        clearCover2();
-        renderNoteUpdate(noteId, note.title, note.content, passwordProtected);
+        renderNoteUpdate(noteId, noteName, noteContent, passwordProtected);
     }
 }

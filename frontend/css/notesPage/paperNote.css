@@ -1,44 +1,136 @@
-.paper_note_container {
-    width: 80%;
-    max-width: 700px;
-    height: 85%;
-    border-radius: 15px 15px 0 0;
-    padding: 0 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: .5rem .4rem 1rem rgb(213, 226, 241);
-    overflow: visible;
-    background-color: #fff;
-}
-
-.paper_note_content_box {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.container {
     width: 100%;
-    height: 100%;
+    height: 100dvh;
+    background-color: aliceblue;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    overflow-y: hidden;
 }
 
-.paper_note_content_textarea {
+.paper-note-container {
+    max-width: 800px;
+    width: 80%;
+    height: 93%;
+    border-radius: 15px 15px 0 0;
+    box-shadow: .5rem .4rem 1rem rgb(213, 226, 241);
+    background-color: #fff;
+    display: grid;
+    grid-template-rows: 105px 1fr;
+}
+
+.button-bar {
+    padding: 16px;
+    background-color: #669DFF;
+    border-radius: 15px 15px 0 0; 
+    overflow-y: scroll;
+}
+
+.button-bar::-webkit-scrollbar {
+    background-color: transparent;
+    width: 3px;
+}
+
+.button-bar::-webkit-scrollbar-thumb {
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.button-bar .head {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.button-bar .head > input {
     outline: none;
     border: none;
-    resize: none;
-    padding: 10px;
+    max-width: 100px;
+    padding: 6px 10px;
+    border-radius: 6px;
+}
+
+.button-bar .head select {
+    background-color: #fff;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.button-bar .head .color {
+    background-color: #fff;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.button-bar .head .color input {
+    border: none;
+    width: 20px;
+    margin-left: 10px;
+}
+
+.button-bar .head .color input::-webkit-color-swatch {
+    background-color: transparent;
+    border: none;
+    border-radius: 50%;
+
+}
+
+.button-bar .button-button-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+.button-bar .button-button-bar button {
+    cursor: pointer;
+    background-color: #fff;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    transition: .4s;
+}
+
+.button-bar .button-button-bar button:hover {
+    background-color: #ececec;
+}
+
+.paper-note {
+    outline: none;
+    border: none;
+    padding: 20px;
     font-size: 14px;
-    width: 100%;
     height: 95%;
     color: rgb(36, 40, 109);
     background-color: transparent;
     overflow-y: scroll;
+    overflow-x: visible;
 }
 
-.paper_note_content_textarea::-webkit-scrollbar {
+.paper-note li {
+    margin-left: 10px;
+}
+
+.paper-note a {
+    cursor: pointer;
+}
+
+.paper-note::-webkit-scrollbar {
     background-color: transparent;
     width: 5px;
 }
 
-.paper_note_content_textarea::-webkit-scrollbar-thumb {
+.paper-note::-webkit-scrollbar-thumb {
     background-color: rgb(209, 209, 209);
     border-radius: 5px;
 }
@@ -46,103 +138,28 @@
 .add_note_btn,
 .edit_note_btn {
     position: absolute;
-    top: 92%;
-    left: 95%;
-    outline: none;
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    background-color: rgb(154, 191, 255, 1);
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    bottom: 20px;
+    right: 20px;
     cursor: pointer;
-    transition: .4s;
-}
-.add_note_btn:hover {background-color: rgb(134, 178, 255)}
-
-@media(max-width: 900px) {.add_note_btn, .edit_note_btn {left: 94%}}
-@media(max-width: 750px) {.add_note_btn, .edit_note_btn {left: 93%}}
-@media(max-width: 600px) {.add_note_btn, .edit_note_btn {left: 90%}}
-
-/*Button bar code below*/
-.bold-btn,
-.cursive-btn,
-.color-picker,
-.image-btn,
-.close_paper_note_btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    border: none;
-    outline: none;
-    font-size: 16px;
-    color: rgb(36, 40, 109);
-    background-color: transparent;
-    width: 65px;
-    height: 46px;
-    border-radius: 5px;
-    transition: .4s;
-}
-
-.color-picker::-webkit-color-swatch {
+    width: 50px;
     height: 50px;
     border-radius: 50%;
-    border: none;
-}
-
-.bold-btn:hover,
-.cursive-btn:hover,
-.color-picker:hover,
-.image-btn:hover,
-.close_paper_note_btn:hover {
-    background-color:aliceblue;
-}
-
-.button-bar {
-    width: 80%;
-    max-width: 440px;
-    position: absolute;
-    top: 5%;
-    border-radius: 2em;
     display: flex;
-    align-items: center;
     justify-content: center;
-    background-color: #e0e7ef;
-    height: 50px;
-}
-
-
-.note-title-input {
-    outline: none;
-    border: none;
-    color: rgb(36, 40, 109);
-    border-bottom: 2px solid aliceblue;
-    border-left: 2px solid aliceblue;
-    border-top: 2px solid aliceblue;
-    border-right: 2px solid aliceblue;
+    align-items: center;
+    font-size: 20px;
     background-color: transparent;
-    width: 200px;
-    border-radius: 5px;
-    margin-top: 5px;
-    padding: 0 10px;
-    font-size: 18px;
-    transition: .2s;
+    border: none;
+    background-color: aliceblue;
+    color: #669DFF;
+    border: 2px solid #669DFF;
+    box-shadow: 0 0 10px 0 rgb(214, 226, 248);
+    transition: .4s;
+}
+.add_note_btn:hover {
+    background-color: rgb(255, 255, 255);
+    border: 2px solid #ffffff;
+    color: #669DFF;
 }
 
-.note-title-input:focus {
-    border-left: 2px solid rgb(154, 191, 255, 1);
-    border-top: 2px solid rgb(154, 191, 255, 1);
-    border-right: 2px solid rgb(154, 191, 255, 1);
-    border-bottom: 2px solid rgb(154, 191, 255, 1);
-}
-
-.note-title-input:hover {
-    border-left: 2px solid rgb(154, 191, 255, 1);
-    border-top: 2px solid rgb(154, 191, 255, 1);
-    border-right: 2px solid rgb(154, 191, 255, 1);
-    border-bottom: 2px solid rgb(154, 191, 255, 1);
-}
+@media(max-width: 900px) {.add_note_btn, .edit_note_btn {right: 22px}}

@@ -59,7 +59,9 @@ class NoteData:
         if parent and rerender:
             for category in data["categories"]:
                 if category["name"] == category_name:
-                    return category["notes"][-1]
+                    note = self.__create_note_object(category['notes'][-1])
+                    note.set_content_text()
+                    return note
                 
         if parent == False and rerender == True:
             for category in data["categories"]:

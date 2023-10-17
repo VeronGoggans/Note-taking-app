@@ -151,7 +151,7 @@ function renderNotePasswordContainer(action) {
                     MySessionStorage.set('note-password-protect', note.password_protected);
                     cover1.style.top = '100%';
                     clearCover1();
-                    renderPieceOfPaper('edit-note')
+                    showPaperNote('edit-note');
                 }
             }
         })

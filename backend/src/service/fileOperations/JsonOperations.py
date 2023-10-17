@@ -20,5 +20,5 @@ class Json:
     @staticmethod
     def update_json_file(file_path, updated_data):
         with open(file_path, 'w') as file:
-                json.dump(updated_data, file, indent=4)
-                file.close()
+            json.dump(updated_data, file, indent=4)
+            file.close()

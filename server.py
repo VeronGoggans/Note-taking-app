@@ -66,7 +66,7 @@ def note_password_check(id: int, password: str):
 @app.post('/category/{category_name}')
 def category(category_name: str):
     # generating an id for the new note 
-    catergory_id = my_ID.ID("Category")
+    catergory_id = my_ID.ID("category")
 
     # creating a new Note object 
     new_category = Category(catergory_id, category_name)
