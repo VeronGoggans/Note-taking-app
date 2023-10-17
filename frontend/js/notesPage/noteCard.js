@@ -10,20 +10,19 @@ function renderNote(id, note_name, note_content, bookmark, passwordProtection) {
     const settingsIcon = NodeCrafter.create('i', {'class': 'fa-solid fa-ellipsis'});
     const noteContentBox = NodeCrafter.create('div', {'class': 'note_card_content_box'});
     const noteContent = NodeCrafter.create('p', {});
-    noteContent.innerHTML = StringUtil.fromatString(note_content);
+    noteContent.innerHTML = note_content;
     const bottomDiv = NodeCrafter.create('div', {});
     const bookmarkIcon = NoteUtils.createBookmarkIcon(bookmark);
 
     // Adding event listeners
     settingsIcon.addEventListener('click', ()=> {
         NoteUtils.storeNoteDataToSessionStorage(id, note_name);
-        renderNoteSettingsContainer(); // This function is in the noteSettingsContainer.js file 
+        renderNoteSettingsContainer(); 
     })
 
-    noteContent.addEventListener('click', ()=> {
-        NoteUtils.storeNoteDataToSessionStorage(id, noteName.textContent, noteContent.innerHTML, passwordProtection, bookmark)
-        showPaperNote('edit-note'); // This function is in the papersheet.js file
-    })    
+    noteCard.addEventListener('mouseenter', ()=> {NoteUtils.storeNoteDataToSessionStorage(id, noteName.textContent, noteContent.innerHTML, passwordProtection, bookmark)})    
+    noteContent.addEventListener('click', ()=> {showPaperNote('edit-note'); })
+    bookmarkIcon.addEventListener('click', ()=> {updateBookmark()})
 
     // Appending children
     noteTitleBox.appendChild(noteName);

@@ -11,18 +11,21 @@
 .paper-note-container {
     max-width: 800px;
     width: 80%;
-    height: 93%;
+    height: 80%;
     border-radius: 15px 15px 0 0;
     box-shadow: .5rem .4rem 1rem rgb(213, 226, 241);
     background-color: #fff;
-    display: grid;
-    grid-template-rows: 105px 1fr;
+    
 }
 
 .button-bar {
+    position: absolute;
+    max-height: 105px;
+    width: 100%;
+    top: 0px;
     padding: 16px;
     background-color: #669DFF;
-    border-radius: 15px 15px 0 0; 
+    border-radius: 15px; 
     overflow-y: scroll;
 }
 
@@ -46,7 +49,8 @@
 .button-bar .head > input {
     outline: none;
     border: none;
-    max-width: 100px;
+    max-width: 200px;
+    margin-left: 10px;
     padding: 6px 10px;
     border-radius: 6px;
 }
@@ -83,32 +87,36 @@
 .button-bar .button-button-bar {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
     gap: 10px;
 }
 
 .button-bar .button-button-bar button {
     cursor: pointer;
-    background-color: #fff;
+    background-color: #669DFF;
+    color: #fff;
     border-radius: 6px;
+    font-size: 16px;
     border: none;
     outline: none;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     transition: .4s;
 }
 
 .button-bar .button-button-bar button:hover {
-    background-color: #ececec;
+    background-color: aliceblue;
+    color: rgb(29, 29, 36);
 }
 
 .paper-note {
     outline: none;
     border: none;
-    padding: 20px;
+    padding: 30px 70px 5px 70px;
     font-size: 14px;
     height: 95%;
     color: rgb(36, 40, 109);
@@ -127,11 +135,11 @@
 
 .paper-note::-webkit-scrollbar {
     background-color: transparent;
-    width: 5px;
+    width: 3px;
 }
 
 .paper-note::-webkit-scrollbar-thumb {
-    background-color: rgb(209, 209, 209);
+    background-color: rgb(235, 235, 235);
     border-radius: 5px;
 }
 

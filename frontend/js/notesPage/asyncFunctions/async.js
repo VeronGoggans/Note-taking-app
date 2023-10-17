@@ -43,7 +43,7 @@ function renderSpecificNoteType(id, note_name, note_content, bookmark, passwordP
 async function requestDeleteCategory() {
     const categoryId = window.sessionStorage.getItem('categoryId');
     const response = await deletecategory(categoryId)
-    if (response.status_code === 200) returnToCategoryPage();
+    if (response.status_code === 200) window.location.href='/frontend/pages/categoryPage.html';
 }
 
 // This function will update the category name.
@@ -84,6 +84,24 @@ async function requestUpdateNote() {
     const passwordProtected = MySessionStorage.get('note-password-protect');
 
     const noteObject = {"title": noteName, "content": noteContent, "bookmark": bookmark, "password_protected": passwordProtected}
+    const response = await updateNote(noteId, true, noteObject);
+
+    if (response.status_code === 200) {
+        cover2.style.top = "100%";
+        renderNoteUpdate(noteId, noteName, noteContent, passwordProtected);
+    }
+}
+
+async function updateBookmark() {
+    const noteId = MySessionStorage.get('note-id');
+    const noteName = document.querySelector('.note-name-input').value;
+    const noteContent = document.querySelector('.paper-note').innerHTML;
+    const currentBookmark = Boolean(MySessionStorage.get('note-bookmark'));
+    const updatedBookmark = !currentBookmark;
+    console.log(currentBookmark, updatedBookmark)
+    const passwordProtected = MySessionStorage.get('note-password-protect');
+
+    const noteObject = {"title": noteName, "content": noteContent, "bookmark": updatedBookmark, "password_protected": passwordProtected}
     const response = await updateNote(noteId, true, noteObject);
 
     if (response.status_code === 200) {

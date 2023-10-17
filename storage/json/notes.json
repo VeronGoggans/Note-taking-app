@@ -1,56 +1,35 @@
 {
     "categories": [
         {
-            "id": 58,
-            "name": "TEST-DIR",
+            "id": 61,
+            "name": "School",
             "subcategories": [],
             "notes": [
                 {
-                    "id": 101,
-                    "title": "Python",
-                    "content": "C:\\Users\\jsvgo\\Web Dev\\keeps/storage/notes/note-101.html",
-                    "bookmark": false,
-                    "password_protected": false
-                },
-                {
-                    "id": 102,
-                    "title": "no tittle",
-                    "content": "C:\\Users\\jsvgo\\Web Dev\\keeps/storage/notes/note-102.html",
-                    "bookmark": true,
-                    "password_protected": false
-                },
-                {
-                    "id": 106,
-                    "title": "C# is better then Java",
-                    "content": "C:\\Users\\jsvgo\\Web Dev\\keeps/storage/notes/note-106.html",
-                    "bookmark": false,
-                    "password_protected": false
-                },
-                {
-                    "id": 108,
-                    "title": "new note",
-                    "content": "C:\\Users\\jsvgo\\Web Dev\\keeps/storage/notes/note-108.html",
-                    "bookmark": false,
-                    "password_protected": false
-                },
-                {
-                    "id": 110,
-                    "title": "My test note 34",
-                    "content": "C:\\Users\\jsvgo\\Web Dev\\keeps/storage/notes/note-110.html",
+                    "id": 111,
+                    "title": "Blackjack Assesment",
+                    "content": "C:\\Users\\jsvgo\\Web Dev\\keeps/storage/notes/note-111.html",
                     "bookmark": false,
                     "password_protected": false
                 }
             ]
         },
         {
-            "id": 59,
-            "name": "new-dir",
+            "id": 62,
+            "name": "Routines",
             "subcategories": [],
             "notes": [
                 {
-                    "id": 109,
-                    "title": "no title",
-                    "content": "C:\\Users\\jsvgo\\Web Dev\\keeps/storage/notes/note-109.html",
+                    "id": 112,
+                    "title": "Day Routine (Home)",
+                    "content": "C:\\Users\\jsvgo\\Web Dev\\keeps/storage/notes/note-112.html",
+                    "bookmark": false,
+                    "password_protected": false
+                },
+                {
+                    "id": 115,
+                    "title": "Test Move Note",
+                    "content": "C:\\Users\\jsvgo\\Web Dev\\keeps/storage/notes/note-115.html",
                     "bookmark": false,
                     "password_protected": false
                 }

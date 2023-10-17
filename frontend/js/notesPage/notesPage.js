@@ -21,7 +21,7 @@ const addNoteBtn = document.querySelector('.add_note_btn');
 document.addEventListener("DOMContentLoaded", () => {collectSubcategories(rerender=false)});
 document.addEventListener("DOMContentLoaded", () => {collectNotes(rerender=false, 'all')});
 sidebarBackButton.addEventListener("click", () => window.location.href = "./categoryPage.html");
-categorySettingsButton.addEventListener('click', ()=> renderCategorySettingsContainer);
+categorySettingsButton.addEventListener('click', ()=> {renderCategorySettingsContainer()});
 newNoteButton.addEventListener("click", ()=> {showPaperNote('add-note')});
 
 sidebarAllButton.addEventListener('click', async () => {
@@ -51,7 +51,10 @@ cover1.addEventListener("click", (event) => {
     !event.target.closest('.password_protection_container') && 
     !event.target.closest('.confirm_password_container') && 
     !event.target.closest('.move-note-container')
-    ) {cover1.style.top = '100%';}
+    ) {
+        cover1.style.top = '100%';
+        clearCover1();
+    }
 });
 
 // Functions
