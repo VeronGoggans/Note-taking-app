@@ -4,13 +4,15 @@ from backend.src.service.dataClasses.NotesData import NoteData
 from backend.src.service.dataClasses.NotesPasswordData import NotesPasswordsData
 from backend.src.service.dataClasses.CategoryData import CategoryData
 from backend.src.service.dataClasses.SubcategoryData import SubcategoryData
+from backend.src.service.dataClasses.ProjectData import ProjectData
 from backend.src.service.idGenerators.idGenerator import IdGenerator
 from backend.src.service.security.hash import Hash
 
-# ===================================Request classes imports below=================================== 
+# ___________________________________ Request classes imports below ___________________________________ 
 from backend.src.requestClasses.NoteRequest import NoteRequest
+from backend.src.requestClasses.ProjectRequest import ProjectRequest
 
-# ===================================Domain classes imports below===================================
+# ___________________________________ Domain classes imports below ___________________________________
 from backend.src.service.enums.responseMessages import RespMsg
 from backend.src.domains.noteDomain.category import Category
 from backend.src.domains.noteDomain.subCategory import SubCategory
@@ -21,10 +23,11 @@ notes_dto = NoteData()
 notes_password_dto = NotesPasswordsData()
 category_dto = CategoryData()
 subcategory_dto = SubcategoryData()
+project_data_class = ProjectData()
 my_ID = IdGenerator()
 
 
-#____________________________________[NOTES] GET METHODS____________________________________
+#____________________________________ [NOTES] GET ENDPOINTS ____________________________________
 
 @app.get('/categories/{rerender}')
 def categories(rerender: bool):
@@ -60,8 +63,7 @@ def note_password_check(id: int, password: str):
     return {'status_code': RespMsg.INVALID_PASSWORD}
 
 
-
-#____________________________________[NOTES] POST METHODS____________________________________
+#____________________________________ [NOTES] POST ENDPOINTS ____________________________________
 
 @app.post('/category/{category_name}')
 def category(category_name: str):
@@ -108,7 +110,7 @@ def subcategory(category_name: str, subcategory_name: str):
     return {"status_code": RespMsg.INTERAL_SERVER_ERROR} 
 
 
-#____________________________________[NOTES] DELETE METHODS____________________________________
+#____________________________________ [NOTES] DELETE ENDPOINTS ____________________________________
 
 @app.delete('/note/{note_id}/{child_of_parent}')
 def note(note_id: int, child_of_parent: bool):
@@ -144,7 +146,7 @@ def subcategory(subcategoy_id: int):
         return {'status_code': response}
     return {"status_code": RespMsg.INTERAL_SERVER_ERROR} 
 
-#____________________________________[NOTES] UPDATE METHODS____________________________________
+#____________________________________ [NOTES] UPDATE ENDPOINTS ____________________________________
 
 @app.put('/note/{note_id}/{parent}')
 def note(note_id: int, parent: bool, note_data: NoteRequest):
@@ -180,6 +182,18 @@ def subcategory(subcategory_id: int, subcategory_name: str):
     if response != RespMsg.INTERAL_SERVER_ERROR:
         return {'status_code': response}
     return {"status_code": RespMsg.INTERAL_SERVER_ERROR} 
+
+
+# ___________________________________ [Project] GET ENDPOINTS ___________________________________
+# ___________________________________ [Project] POST ENDPOINTS ___________________________________
+@app.post('/project')
+def project(project_data: ProjectRequest):
+    response = project_data_class.add_project(project_data.name)
+    if response != RespMsg.INTERAL_SERVER_ERROR:
+        return {'Status_code': response}
+    return {'Status_code': RespMsg.INTERAL_SERVER_ERROR}
+# ___________________________________ [Project] DELETE ENDPOINTS ___________________________________
+# ___________________________________ [Project] UPDATE ENDPOINTS ___________________________________
 
 
 # Setting up a FRONT-END page for the API

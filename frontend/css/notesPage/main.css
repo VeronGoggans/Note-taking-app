@@ -19,11 +19,11 @@ body {
     transition: .15s;
 }
 
-.notes_main {
+/* .notes_main {
     display: grid;
     grid-template-rows: 70px 1fr;
     background-color: aliceblue;
-}
+} */
 
 .notes_container {
     display: grid;

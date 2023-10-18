@@ -10,6 +10,21 @@ const wrapper = document.querySelector('.wrapper');
 window.addEventListener('resize', screenWidth);
 
 
+// Get all filter buttons
+const filterButtons = document.querySelectorAll('.filter-button');
+
+// Add click event listeners to each button
+filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        // Remove the active class from all buttons
+        filterButtons.forEach(btn => {
+            btn.classList.remove('active-filter-button');
+        });
+        // Add the active class to the clicked button
+        button.classList.add('active-filter-button');
+    });
+});
+
 // This function is used to collapse the sidebar
 let sidebarToggle = setSidebarToggle();
 function sidebarSlideIn() {
@@ -39,9 +54,9 @@ function setSidebarToggle() {
     else return false;
 }
 
-function setSidbarSize() {
+function setSidebarSize() {
     const sidebarStatus = window.sessionStorage.getItem('sidebar-status')
     if (sidebarStatus === 'large') {wrapper.style.gridTemplateColumns = '250px 1fr'}
     if (sidebarStatus === 'small') {wrapper.style.gridTemplateColumns = '70px 1fr'}
 }
-setSidbarSize()
+setSidebarSize()
