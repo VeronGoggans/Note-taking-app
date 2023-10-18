@@ -11,12 +11,9 @@ class CategoryData:
 
     def add_category(self, category: Category):
         data = Json.load_json_file(self.notes_relative_path)
-        try:
-            data["categories"].append(category.__dict__)
-            Json.update_json_file(self.notes_relative_path, data)
-            return RespMsg.OK
-        except IOError as e:
-            return e
+        data["categories"].append(category.__dict__)
+        Json.update_json_file(self.notes_relative_path, data)
+        return RespMsg.OK
         
 
 
@@ -61,13 +58,9 @@ class CategoryData:
     def delete_category(self, category_id: int):
         data = Json.load_json_file(self.notes_relative_path)
 
-        try: 
-            for category in data['categories']:
-                if category['id'] == category_id:
-                    data['categories'].remove(category)
-                    Json.update_json_file(self.notes_relative_path, data)
-                    return RespMsg.OK
-                
-            return RespMsg.CATEGORY_404
-        except Exception as e:
-            return RespMsg.INTERAL_SERVER_ERROR
+        for category in data['categories']:
+            if category['id'] == category_id:
+                data['categories'].remove(category)
+                Json.update_json_file(self.notes_relative_path, data)
+                return RespMsg.OK        
+        return RespMsg.CATEGORY_404

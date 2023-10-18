@@ -185,6 +185,17 @@ def subcategory(subcategory_id: int, subcategory_name: str):
 
 
 # ___________________________________ [Project] GET ENDPOINTS ___________________________________
+@app.get('/projects')
+def project():
+    response = project_data_class.get_projects()
+    return {'Status_code': RespMsg.OK, 'projects': response}
+
+
+@app.get('/projectById/{project_id}')
+def project_by_id(project_id: int):
+    response = project_data_class.get_project_by_id(project_id)
+    return {'Status_code': RespMsg.OK, 'project': response}
+
 # ___________________________________ [Project] POST ENDPOINTS ___________________________________
 @app.post('/project')
 def project(project_data: ProjectRequest):
@@ -193,6 +204,12 @@ def project(project_data: ProjectRequest):
         return {'Status_code': response}
     return {'Status_code': RespMsg.INTERAL_SERVER_ERROR}
 # ___________________________________ [Project] DELETE ENDPOINTS ___________________________________
+@app.delete('/project/{project_id}')
+def project(project_id: int):
+    response = project_data_class.delete_project(project_id)
+    if response != RespMsg.OK:
+        return {'Status_code': RespMsg.NOT_FOUND}
+    return {'Status_code': response}
 # ___________________________________ [Project] UPDATE ENDPOINTS ___________________________________
 
 

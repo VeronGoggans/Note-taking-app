@@ -1,28 +1,6 @@
 {
     "projects": [
         {
-            "project_id": 1,
-            "project_name": "TEST PROJECT",
-            "projectBoard": {
-                "todo_board": {
-                    "board_category": "To Do",
-                    "board_tasks": []
-                },
-                "doing_board": {
-                    "board_category": "Doing",
-                    "board_tasks": []
-                },
-                "testing_board": {
-                    "board_category": "Testing",
-                    "board_tasks": []
-                },
-                "done_board": {
-                    "board_category": "Done",
-                    "board_tasks": []
-                }
-            }
-        },
-        {
             "project_id": 2,
             "project_name": "PROJECT ONE",
             "projectBoard": {

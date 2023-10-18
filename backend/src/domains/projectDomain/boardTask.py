@@ -6,8 +6,3 @@ class BoardTask():
         self.due_date = due_date
         self.priority = priority
         self.board_section = board_section
-
-    
-
-    
-    
