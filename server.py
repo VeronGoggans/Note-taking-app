@@ -222,12 +222,25 @@ def project(project_id: int, project_data: ProjectRequest):
 
 
 # ___________________________________ [BoardTask] GET ENDPOINTS ___________________________________
+@app.get('/boardTask/{project_id}')
+def board_task(project_id: int):
+    response = project_task_data_class.get_tasks(project_id)
+    if response == RespMsg.NOT_FOUND:
+        return {'Status_code': response}
+    return {'Status_code': RespMsg.OK, "tasks": response}
+
+
 # ___________________________________ [BoardTask] POST ENDPOINTS ___________________________________
 @app.post('/boardTask/{project_id}')
 def board_task(project_id: int, task_data: BoardTaskRequest):
     response = project_task_data_class.add_task(project_id, task_data)
     return {'Status_code': response}
+
+
 # ___________________________________ [BoardTask] UPDATE ENDPOINTS ___________________________________
+
+
+
 # ___________________________________ [BoardTask] DELETE ENDPOINTS ___________________________________
 @app.delete('/boardTask/{project_id}/{task_id}/{board_section}')
 def board_task(project_id: int, task_id: int, board_section: str):
