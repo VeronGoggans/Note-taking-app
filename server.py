@@ -238,7 +238,10 @@ def board_task(project_id: int, task_data: BoardTaskRequest):
 
 
 # ___________________________________ [BoardTask] UPDATE ENDPOINTS ___________________________________
-
+@app.put('/boardTask/{project_id}/{task_id}')
+def board_task(project_id: int, task_id: int, task_data: BoardTaskRequest):
+    response = project_task_data_class.update_task(project_id, task_id, task_data)
+    return {'Status_code': response}
 
 
 # ___________________________________ [BoardTask] DELETE ENDPOINTS ___________________________________

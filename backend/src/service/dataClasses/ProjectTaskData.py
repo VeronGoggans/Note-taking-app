@@ -25,7 +25,7 @@ class ProjectTaskData():
         task: BoardTask = self.__create_task_object(task_data)
         for project in data['projects']:
             if project['id'] == project_id:
-                project[task.get_board_section()].append(task.__dict__)
+                project[task.board_section].append(task.__dict__)
                 Json.update_json_file(self.projects_path, data)
                 return RespMsg.OK
         return RespMsg.NOT_FOUND
@@ -63,11 +63,70 @@ class ProjectTaskData():
                 tasks['Done'] = project['Done']
                 return tasks
         return RespMsg.NOT_FOUND
+    
+
+    def __get_task_by_id(self, project_id: int, task_id: int) -> [dict, RespMsg]:
+        """
+        Retrieve a task within a project by its unique identifier.
+
+        Args:
+            project_id (int): The identifier of the project in which to search for the task.
+            task_id (int): The unique identifier of the task to retrieve.
+
+        Returns:
+            Union[dict, RespMsg]: A dictionary representing the task if found, or a RespMsg indicating the outcome.
+            Possible values for RespMsg include RespMsg.NOT_FOUND if the project or task is not found.
+        """
+        data = Json.load_json_file(self.projects_path)
+        for project in data['projects']:
+            if project['id'] == project_id:
+                for board_section in ['To Do', 'Doing', 'Testing', 'Done']:
+                    for task in project[board_section]:
+                        if task['id'] == task_id:
+                            return task
+                return RespMsg.NOT_FOUND
+        return RespMsg.NOT_FOUND
 
 
-    def update_task(self):
-        pass
 
+
+    def update_task(self, project_id: int, task_id: int, task_data: BoardTaskRequest) -> RespMsg:
+        """
+        Update a task within a project.
+
+        Args:
+            project_id (int): The identifier of the project to which the task belongs.
+            task_id (int): The identifier of the task to update.
+            task_data (BoardTaskRequest): Updated task data.
+
+        Returns:
+            RespMsg: A response message indicating the outcome of the task update. Possible values include RespMsg.OK
+            if the task is successfully updated, or RespMsg.NOT_FOUND if the project or task is not found. 
+            Additionally, it may return the result of the self.__move_task() method if the task is moved to a different section.
+        """
+        data = Json.load_json_file(self.projects_path)
+        current_task: dict = self.__get_task_by_id(project_id, task_id)
+        updated_task: BoardTask = self.__construct_task_object(task_id, task_data)
+
+        if current_task['board_section'] != updated_task.board_section:
+            return self.__move_task(project_id, current_task, updated_task)
+
+        for project in data['projects']:
+            if project['id'] == project_id:
+                for task in project[current_task['board_section']]:
+                    if task['id'] == task_id:
+                        task['name'] = updated_task.name
+                        task['description'] = updated_task.description
+                        task['estimated_time'] = updated_task.estimated_time
+                        task['due_date'] = updated_task.due_date
+                        task['priority'] = updated_task.priority
+                        Json.update_json_file(self.projects_path, data)
+                        return RespMsg.OK
+                return RespMsg.NOT_FOUND
+        return RespMsg.NOT_FOUND
+                    
+
+        
 
     def delete_task(self, project_id: int, task_id: int, board_section: str) -> RespMsg:
         """
@@ -92,6 +151,18 @@ class ProjectTaskData():
                         return RespMsg.OK
                 return RespMsg.NOT_FOUND
         return RespMsg.NOT_FOUND   
+    
+
+    def __move_task(self, project_id: int, current_task: dict, updated_task: BoardTask) -> RespMsg:
+        self.delete_task(project_id, current_task['id'], current_task['board_section'])
+        data = Json.load_json_file(self.projects_path)
+        for project in data['projects']:
+            if project['id'] == project_id:
+                project[updated_task.board_section].append(updated_task.__dict__)
+                Json.update_json_file(self.projects_path, data)
+                return RespMsg.OK
+        return RespMsg.NOT_FOUND
+
             
 
     def __create_task_object(self, task_data: BoardTaskRequest) -> BoardTask:
@@ -106,10 +177,22 @@ class ProjectTaskData():
         """
         id = IdGenerator.ID('boardTask')
         return BoardTask(
-            id, task_data.name, 
+            id, 
+            task_data.name, 
             task_data.description,
             task_data.estimated_time,
             task_data.due_date,
             task_data.priority,
             task_data.board_section
             )
+    
+    def __construct_task_object(self, task_id: int, task_data: BoardTaskRequest) -> BoardTask:
+        return BoardTask(
+            task_id,
+            task_data.name, 
+            task_data.description,
+            task_data.estimated_time,
+            task_data.due_date,
+            task_data.priority,
+            task_data.board_section
+        )

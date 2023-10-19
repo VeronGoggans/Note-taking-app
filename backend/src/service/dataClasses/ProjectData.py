@@ -58,7 +58,7 @@ class ProjectData():
         return RespMsg.NOT_FOUND
     
 
-    def update_project(self, id: int, updated_data: ProjectRequest) -> RespMsg:
+    def update_project(self, project_id: int, updated_data: ProjectRequest) -> RespMsg:
         """
         Update the details of an existing project.
 
@@ -72,7 +72,7 @@ class ProjectData():
         """
         data = Json.load_json_file(self.projects_path)
         for project in data['projects']:
-            if project['id'] == id:
+            if project['id'] == project_id:
                 project['name'] = updated_data.name
                 project['description'] = updated_data.description
                 Json.update_json_file(self.projects_path, data)

@@ -6,12 +6,22 @@
             "completion_date": "null",
             "name": "PROJECT ONE",
             "description": "This is project one",
-            "To Do": [],
+            "To Do": [
+                {
+                    "id": 9,
+                    "name": "Second task",
+                    "description": "This works, but needs fixing in the future!",
+                    "estimated_time": "10m",
+                    "due_date": "",
+                    "priority": true,
+                    "board_section": "To Do"
+                }
+            ],
             "Doing": [],
             "Testing": [],
             "Done": [
                 {
-                    "id": 9,
+                    "id": 11,
                     "name": "First Task",
                     "description": "This work",
                     "estimated_time": "60 min",
