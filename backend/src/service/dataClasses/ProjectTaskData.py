@@ -26,8 +26,19 @@ class ProjectTaskData():
     def update_task(self):
         pass
 
-    def delete_task(self):
-        pass
+    def delete_task(self, project_id: int, task_id: int, board_section: str):
+        data = Json.load_json_file(self.projects_path)
+        for project in data['projects']:
+            if project['id'] == project_id:
+                for task in project[board_section]:
+                    if task['id'] == task_id:
+                        project[board_section].remove(task)
+                        Json.update_json_file(self.projects_path, data)
+                        return RespMsg.OK
+                return RespMsg.NOT_FOUND
+        return RespMsg.NOT_FOUND   
+                
+
 
 
     def __create_task_object(self, task_data: BoardTaskRequest):

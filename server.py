@@ -229,6 +229,10 @@ def board_task(project_id: int, task_data: BoardTaskRequest):
     return {'Status_code': response}
 # ___________________________________ [BoardTask] UPDATE ENDPOINTS ___________________________________
 # ___________________________________ [BoardTask] DELETE ENDPOINTS ___________________________________
+@app.delete('/boardTask/{project_id}/{task_id}/{board_section}')
+def board_task(project_id: int, task_id: int, board_section: str):
+    response = project_task_data_class.delete_task(project_id, task_id, board_section)
+    return {'Status_code': response}
 
 
 # Setting up a FRONT-END page for the API
