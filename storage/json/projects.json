@@ -1,9 +1,12 @@
 {
     "projects": [
         {
-            "project_id": 2,
-            "project_name": "PROJECT ONE",
-            "projectBoard": {
+            "id": 6,
+            "creation_date": "19-10-2023",
+            "completion_date": "null",
+            "name": "My updated name",
+            "description": "...I have nothing to say.",
+            "board": {
                 "todo_board": {
                     "board_category": "To Do",
                     "board_tasks": []

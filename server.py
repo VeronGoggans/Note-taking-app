@@ -196,13 +196,16 @@ def project_by_id(project_id: int):
     response = project_data_class.get_project_by_id(project_id)
     return {'Status_code': RespMsg.OK, 'project': response}
 
+
 # ___________________________________ [Project] POST ENDPOINTS ___________________________________
 @app.post('/project')
 def project(project_data: ProjectRequest):
-    response = project_data_class.add_project(project_data.name)
+    response = project_data_class.add_project(project_data.name, project_data.description)
     if response != RespMsg.INTERAL_SERVER_ERROR:
         return {'Status_code': response}
     return {'Status_code': RespMsg.INTERAL_SERVER_ERROR}
+
+
 # ___________________________________ [Project] DELETE ENDPOINTS ___________________________________
 @app.delete('/project/{project_id}')
 def project(project_id: int):
@@ -210,8 +213,13 @@ def project(project_id: int):
     if response != RespMsg.OK:
         return {'Status_code': RespMsg.NOT_FOUND}
     return {'Status_code': response}
-# ___________________________________ [Project] UPDATE ENDPOINTS ___________________________________
 
+
+# ___________________________________ [Project] UPDATE ENDPOINTS ___________________________________
+@app.put('/project/{project_id}')
+def project(project_id: int, project_data: ProjectRequest):
+    response = project_data_class.update_project(project_id, project_data)
+    return {'Status_code': response}
 
 # Setting up a FRONT-END page for the API
 app.mount("/", StaticFiles(directory=".", html=True), name="static")
