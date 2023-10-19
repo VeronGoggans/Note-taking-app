@@ -29,9 +29,9 @@ class ProjectData():
     def get_project_by_id(self, project_id: int):
         data = Json.load_json_file(self.projects_path)
         for project in data['projects']:
-            if project['project_id'] == project_id:
+            if project['id'] == project_id:
                 return project
-        return RespMsg.PROJECT_404
+        return RespMsg.NOT_FOUND
     
 
     def update_project(self, id: int, updated_data: ProjectRequest):
@@ -42,17 +42,17 @@ class ProjectData():
                 project['description'] = updated_data.description
                 Json.update_json_file(self.projects_path, data)
                 return RespMsg.OK
-        return RespMsg.PROJECT_404
+        return RespMsg.NOT_FOUND
     
 
     def delete_project(self, project_id: int):
         data = Json.load_json_file(self.projects_path)
         for project in data['projects']:
-            if project['project_id'] == project_id:
+            if project['id'] == project_id:
                 data['projects'].remove(project)
                 Json.update_json_file(self.projects_path, data)
                 return RespMsg.OK
-        return RespMsg.PROJECT_404
+        return RespMsg.NOT_FOUND
         
 
     def __construct_project_object(self, name: str, description: str):
