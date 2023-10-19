@@ -1,4 +1,3 @@
-from backend.src.domains.projectDomain.projectBoard.projectBoard import ProjectBoard
 from datetime import datetime
 
 
@@ -9,7 +8,10 @@ class Project():
         self.completion_date = 'null'
         self.name = name
         self.description = description
-        self.projectBoard = ProjectBoard()
+        self.to_do = []
+        self.doing = []
+        self.testing = []
+        self.done = []
 
 
     def to_dict(self):
@@ -19,7 +21,10 @@ class Project():
             'completion_date': self.completion_date,
             'name': self.name,
             'description': self.description,
-            'board': self.projectBoard.to_dict()
+            'todo': self.to_do,
+            'doing': self.doing,
+            'testing': self.testing,
+            'done': self.done
         }
     
     

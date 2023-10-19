@@ -1,3 +1,55 @@
 {
-    "projects": []
+    "projects": [
+        {
+            "id": 9,
+            "creation_date": "19-10-2023",
+            "completion_date": "null",
+            "name": "PROJECT ONE",
+            "description": "This is project one",
+            "To Do": [
+                {
+                    "id": 5,
+                    "name": "First Task",
+                    "description": "This work",
+                    "estimated_time": "60 min",
+                    "due_date": "",
+                    "priority": true,
+                    "board_section": "To Do"
+                }
+            ],
+            "Doing": [
+                {
+                    "id": 6,
+                    "name": "First Task",
+                    "description": "This work",
+                    "estimated_time": "60 min",
+                    "due_date": "",
+                    "priority": true,
+                    "board_section": "Doing"
+                }
+            ],
+            "Testing": [
+                {
+                    "id": 7,
+                    "name": "First Task",
+                    "description": "This work",
+                    "estimated_time": "60 min",
+                    "due_date": "",
+                    "priority": true,
+                    "board_section": "Testing"
+                }
+            ],
+            "Done": [
+                {
+                    "id": 8,
+                    "name": "First Task",
+                    "description": "This work",
+                    "estimated_time": "60 min",
+                    "due_date": "",
+                    "priority": true,
+                    "board_section": "Done"
+                }
+            ]
+        }
+    ]
 }

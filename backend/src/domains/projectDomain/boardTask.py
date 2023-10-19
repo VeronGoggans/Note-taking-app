@@ -1,5 +1,6 @@
 class BoardTask():
-    def __init__(self, name: str, description: str, estimated_time: str, due_date: str, priority: bool, board_section: str):
+    def __init__(self, id:int, name: str, description: str, estimated_time: str, due_date: str, priority: bool, board_section: str):
+        self.id = id
         self.name = name
         self.description = description
         self.estimated_time = estimated_time
@@ -15,4 +16,7 @@ class BoardTask():
     
     # This method toggles the priority of a task. 
     def set_priority(self):
-        self.priority = not self.priority    
+        self.priority = not self.priority  
+
+    def get_board_section(self):
+        return self.board_section  

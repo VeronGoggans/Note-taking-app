@@ -5,12 +5,14 @@ from backend.src.service.dataClasses.NotesPasswordData import NotesPasswordsData
 from backend.src.service.dataClasses.CategoryData import CategoryData
 from backend.src.service.dataClasses.SubcategoryData import SubcategoryData
 from backend.src.service.dataClasses.ProjectData import ProjectData
+from backend.src.service.dataClasses.ProjectTaskData import ProjectTaskData
 from backend.src.service.idGenerators.idGenerator import IdGenerator
 from backend.src.service.security.hash import Hash
 
 # ___________________________________ Request classes imports below ___________________________________ 
 from backend.src.requestClasses.NoteRequest import NoteRequest
 from backend.src.requestClasses.ProjectRequest import ProjectRequest
+from backend.src.requestClasses.BoardTaskRequest import BoardTaskRequest
 
 # ___________________________________ Domain classes imports below ___________________________________
 from backend.src.service.enums.responseMessages import RespMsg
@@ -24,6 +26,7 @@ notes_password_dto = NotesPasswordsData()
 category_dto = CategoryData()
 subcategory_dto = SubcategoryData()
 project_data_class = ProjectData()
+project_task_data_class = ProjectTaskData()
 my_ID = IdGenerator()
 
 
@@ -216,6 +219,16 @@ def project(project_id: int):
 def project(project_id: int, project_data: ProjectRequest):
     response = project_data_class.update_project(project_id, project_data)
     return {'Status_code': response}
+
+
+# ___________________________________ [BoardTask] GET ENDPOINTS ___________________________________
+# ___________________________________ [BoardTask] POST ENDPOINTS ___________________________________
+@app.post('/boardTask/{project_id}')
+def board_task(project_id: int, task_data: BoardTaskRequest):
+    response = project_task_data_class.add_task(project_id, task_data)
+    return {'Status_code': response}
+# ___________________________________ [BoardTask] UPDATE ENDPOINTS ___________________________________
+# ___________________________________ [BoardTask] DELETE ENDPOINTS ___________________________________
 
 
 # Setting up a FRONT-END page for the API

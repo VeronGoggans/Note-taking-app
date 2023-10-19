@@ -14,7 +14,11 @@
         },
         {
             "entityName": "project",
-            "id": 7
+            "id": 10
+        },
+        {
+            "entityName": "boardTask",
+            "id": 9
         }
     ]
 }

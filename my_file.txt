@@ -1,1 +1,25 @@
-Version 1
+{
+            "id": 7,
+            "creation_date": "19-10-2023",
+            "completion_date": "null",
+            "name": "PROJECT ONE",
+            "description": "This is project one",
+            "board": {
+                "todo_board": {
+                    "board_category": "To Do",
+                    "board_tasks": []
+                },
+                "doing_board": {
+                    "board_category": "Doing",
+                    "board_tasks": []
+                },
+                "testing_board": {
+                    "board_category": "Testing",
+                    "board_tasks": []
+                },
+                "done_board": {
+                    "board_category": "Done",
+                    "board_tasks": []
+                }
+            }
+        },
