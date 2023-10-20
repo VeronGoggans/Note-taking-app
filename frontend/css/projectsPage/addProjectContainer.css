@@ -1,0 +1,75 @@
+.new-project-container {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 10px 30px 15px rgb(189, 209, 231);
+    background-color: #fff;
+    color: rgb(36, 40, 109);
+    max-width: 550px;
+    height: 300px;
+    overflow: visible;
+  }
+  
+  .image-container {
+    flex: 0 0 150px; /* Adjust the width as needed */
+  }
+  
+  .image-container img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .new-project-info-container {
+    flex: 1;
+    padding: 0 20px; /* Add spacing between the image and form */
+  }
+  
+  h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+  
+  label {font-weight: bold;}
+  
+  input, textarea {
+    outline: none;
+    width: 95%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 2px solid rgb(123, 196, 255, .4);
+    border-radius: 5px;
+    transition: .4s;
+  }
+
+  textarea {
+    resize:none;
+    height: 90px;
+  }
+  
+  /* Optional: Style the input when focused */
+  input:focus, textarea:focus {border-color: #669DFF}
+
+  input:hover,
+  textarea:hover {border-color: #669DFF}
+
+  .add-project-button {
+    position: absolute;
+    bottom: -17px;
+    left: 560px;
+    outline: none;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 16px;
+    background-color: #669DFF;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: .4s;
+  }

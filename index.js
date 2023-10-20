@@ -7,5 +7,6 @@ const sidebarSettingsButton = document.querySelector('.home-page-sidebar-setting
 
 // eventListeners
 sidebarNotesButton.addEventListener('click', ()=> {window.location.href='frontend/pages/categoryPage.html'})
+sidebarProjectsButton.addEventListener('click', ()=> {window.location.href='frontend/pages/projectCollectionPage.html'})
 
 // functions

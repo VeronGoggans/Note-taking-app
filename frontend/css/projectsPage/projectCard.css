@@ -1,4 +1,4 @@
-.category_card {
+.project-card {
     height: 240px;
     border-radius: 15px;
     background-color: rgb(255, 255, 255);
@@ -12,4 +12,4 @@
     cursor: pointer;
 }
 
-.category_card i {margin-left: 5px;}
+.project-card i {margin-left: 5px;}

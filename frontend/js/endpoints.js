@@ -1,4 +1,4 @@
-// __________________________________________ GET ____________________________________________
+// __________________________________________ [NOTES] GET ____________________________________________
 
 async function getCategories(rerender) {
     const response = await fetch(`/categories/${rerender}`);
@@ -25,7 +25,7 @@ async function getNotePasswordCheck(id, password) {
     return await response.json();
 }
 
-// __________________________________________ POST ____________________________________________
+// __________________________________________ [NOTES] POST ____________________________________________
 
 async function addCategory(categoryName) {
     const response = await fetch(`/category/${categoryName}`, {method: "POST", headers: {"Content-Type": "application/json"}})
@@ -47,7 +47,7 @@ async function addNotePassword(noteId, password, parent) {
     return await response.json();
 }
 
-// __________________________________________ DELETE ____________________________________________
+// __________________________________________ [NOTES] DELETE ____________________________________________
 
 async function deletecategory(categoryId) {
     const response = await fetch(`/category/${categoryId}`, {method: "DELETE", headers: {"Content-Type": "application/json"}})
@@ -64,7 +64,7 @@ async function deleteNotePassword(noteId, parent) {
     return await response.json();
 }
 
-// __________________________________________ UPDATE ____________________________________________
+// __________________________________________ [NOTES] UPDATE ____________________________________________
 
 async function updateNote(noteId, parent, noteObject) {
     const response = await fetch(`/note/${noteId}/${parent}`, 
@@ -82,4 +82,21 @@ async function updateNoteLocation(noteId, categoryId, parent) {
 async function updateCategory(categoryId, categoryName) {
     const response = await fetch(`/category/${categoryId}/${categoryName}`, {method: "PUT", headers: {"Content-Type": "application/json"}})
     return await response.json();
+}
+
+// __________________________________________ [PROJECTS] GET ____________________________________________
+
+async function getProjects() {
+    const response = await fetch('/projects')
+    return await response.json();
+}
+
+async function addProject(name, description) {
+    const projectRequestObject = {"name": name,"description": description}
+    const response = await fetch(
+        '/project', 
+        {method: "POST", 
+        body: JSON.stringify(projectRequestObject),
+        headers: {"Content-Type": "application/json"}})
+    return await response.json();   
 }

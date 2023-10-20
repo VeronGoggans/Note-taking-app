@@ -4,7 +4,7 @@
             "id": 9,
             "creation_date": "19-10-2023",
             "completion_date": "null",
-            "name": "PROJECT ONE",
+            "name": "Keeps",
             "description": "This is project one",
             "To Do": [
                 {
@@ -30,6 +30,17 @@
                     "board_section": "Done"
                 }
             ]
+        },
+        {
+            "id": 14,
+            "creation_date": "20-10-2023",
+            "completion_date": "null",
+            "name": "VCS",
+            "description": "",
+            "todo": [],
+            "doing": [],
+            "testing": [],
+            "done": []
         }
     ]
 }

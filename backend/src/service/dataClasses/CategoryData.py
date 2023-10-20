@@ -27,9 +27,7 @@ class CategoryData:
         category_id_name_list = []
         if not rerender:
             for categorie in data['categories']:
-                id = categorie['id']
-                name = categorie['name']
-                id_name_object = {'id': id, 'name': name}
+                id_name_object = {'id': categorie['id'], 'name': categorie['name']}
                 category_id_name_list.append(id_name_object)
             return category_id_name_list
         else: 

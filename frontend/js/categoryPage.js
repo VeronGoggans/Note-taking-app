@@ -88,9 +88,8 @@ async function collectCategories(rerender) {
 // function that creates a category card 
 function categoryCard(categoryId, categoryName) {
     const categoryCard = NodeCrafter.create('div', {'class': 'category_card', 'id': categoryId})
-    const categoryNameHeading = NodeCrafter.create('div', {'textContent': categoryName})
+    const categoryNameHeading = NodeCrafter.create('p', {'textContent': categoryName})
     const folderIcon = NodeCrafter.create('i', {'class': 'fa-regular fa-folder'})
-    folderIcon.style.marginLeft = "5px";
 
     // adding event listeners 
     categoryCard.addEventListener("click", ()=> handleCategoryCardClick(categoryName, categoryId))

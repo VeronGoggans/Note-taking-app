@@ -10,7 +10,7 @@ class ProjectData():
         self.projects_path = os.getcwd() + '/storage/json/projects.json'
 
 
-    def add_project(self, project_name: str, project_description: str) -> RespMsg:
+    def add_project(self, project_name: str, project_description: str) -> {str: RespMsg, str: dict}:
         """
         Add a new project to the collection of projects.
 
@@ -26,18 +26,24 @@ class ProjectData():
 
         data['projects'].append(project.to_dict())
         Json.update_json_file(self.projects_path, data)
-        return RespMsg.OK
+
+        id_name_object = {'id': project.id, 'name': project.name}
+        return {"Status_code": RespMsg.OK, "Object": id_name_object}
 
 
     def get_projects(self) -> list[Project]:
         """
-        Retrieve a list of all projects.
+        Retrieve a list of all project names.
 
         Returns:
             List[Project]: A list of Project objects representing all available projects.
         """
         data = Json.load_json_file(self.projects_path)
-        return data['projects']
+        project_id_name_list = []
+        for project in data['projects']:
+            id_name_object = {'id': project['id'], 'name': project['name']}
+            project_id_name_list.append(id_name_object)
+        return project_id_name_list
     
 
     def get_project_by_id(self, project_id: int) -> [Project, RespMsg]:

@@ -204,7 +204,7 @@ def project_by_id(project_id: int):
 @app.post('/project')
 def project(project_data: ProjectRequest):
     response = project_data_class.add_project(project_data.name, project_data.description)
-    return {'Status_code': response}
+    return {'Status_code': response['Status_code'], "Return_object": response['Object']}
 
 
 # ___________________________________ [Project] DELETE ENDPOINTS ___________________________________

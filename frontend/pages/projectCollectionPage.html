@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/projectsPage/main.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
+    <link rel="stylesheet" href="../css/projectsPage/projectCard.css">
+    <link rel="stylesheet" href="../css/cover.css">
+    <link rel="stylesheet" href="../css/projectsPage/addProjectContainer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Your projects</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="sidebar">
+            <button class="projects-page-sidebar-bars-button"><i class="fa-solid fa-bars"></i></button>
+            <button class="projects-page-sidebar-back-button"><i class="fa-solid fa-xmark fa-x"></i>Back</button>
+            <button class="projects-page-sidebar-settings-button"><i class="fa-solid fa-gear"></i>Settings</button>
+        </div> 
+        <div class="projects-container"></div>
+        <button class="new-project-button"><i class="fa-solid fa-plus"></i></button>
+    </div>
+    <div class="cover">
+        <div class="new-project-container">
+            <div class="image-container">
+                <img src="../../img/Coding-pana.png" alt="">
+            </div>
+            <form class="new-project-info-container">
+                <h2>New Project</h2>
+                <label for="project-name-input">Name</label>
+                <input class="project-name-input" type="text" name="projectName" placeholder="Project name" spellcheck="false" required>
+                <label for="project-description-textarea">Description</label>
+                <textarea class="project-description-textarea" name="projectDescription" placeholder="Description" spellcheck="false"></textarea>
+                <button class="add-project-button" type="submit"><i class="fa-solid fa-plus"></i></button>
+            </form>
+        </div>
+    </div>
+    <script src="../js/sidebar.js"></script>
+    <script src="../js/projectPage.js"></script>
+    <script src="../js/endpoints.js"></script>
+    <script src="../js/utilClasses/NodeCrafter.js"></script>
+</body>
+</html>
