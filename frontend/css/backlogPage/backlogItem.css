@@ -1,0 +1,48 @@
+.product-backlog-item {
+    position: relative;
+    margin: 7px;
+    border-radius: 7px;
+    background-color: #282a36;
+    color: aliceblue;
+    padding: 10px;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+  }
+  
+  .product-backlog-item-upper {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+  }
+  
+  .product-backlog-item-upper h3 {max-width: 50%;}
+  .product-backlog-item-upper i {cursor: pointer;}
+  .product-backlog-item-lower p {
+    font-size: 12px;
+    margin-top: 10px;
+  }
+  
+  .priority-level {
+    position: relative;
+    left: 5px;
+    width: 20px;
+    height: 20px;
+    background-color: #669DFF;
+    border-radius: 50%;
+  }
+  
+  .add-backlog-item-button  {
+      margin: 0 7px;
+      cursor: pointer;
+      outline: none;
+      border: none;
+      color: #282a36;
+      border-top: 1px solid #ddd;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      background-color: transparent;
+  }
+  
+  .add-backlog-item-button i {margin: 0 10px}

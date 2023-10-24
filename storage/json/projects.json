@@ -41,6 +41,18 @@
             "doing": [],
             "testing": [],
             "done": []
+        },
+        {
+            "id": 17,
+            "creation_date": "22-10-2023",
+            "completion_date": "null",
+            "name": "Blog",
+            "description": "",
+            "todo": [],
+            "doing": [],
+            "testing": [],
+            "done": [],
+            "product_backlog": []
         }
     ]
 }
