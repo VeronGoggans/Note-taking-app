@@ -1,48 +1,6 @@
 {
     "projects": [
         {
-            "id": 9,
-            "creation_date": "19-10-2023",
-            "completion_date": "null",
-            "name": "Keeps",
-            "description": "This is project one",
-            "To Do": [
-                {
-                    "id": 9,
-                    "name": "Second task",
-                    "description": "This works, but needs fixing in the future!",
-                    "estimated_time": "10m",
-                    "due_date": "",
-                    "priority": true,
-                    "board_section": "To Do"
-                }
-            ],
-            "Doing": [],
-            "Testing": [],
-            "Done": [
-                {
-                    "id": 11,
-                    "name": "First Task",
-                    "description": "This work",
-                    "estimated_time": "60 min",
-                    "due_date": "",
-                    "priority": true,
-                    "board_section": "Done"
-                }
-            ]
-        },
-        {
-            "id": 14,
-            "creation_date": "20-10-2023",
-            "completion_date": "null",
-            "name": "VCS",
-            "description": "",
-            "todo": [],
-            "doing": [],
-            "testing": [],
-            "done": []
-        },
-        {
             "id": 17,
             "creation_date": "22-10-2023",
             "completion_date": "null",
@@ -60,7 +18,17 @@
                     "priority_level": "High"
                 }
             ],
-            "user_stories": []
+            "user_stories": [
+                {
+                    "id": 0,
+                    "name": "finish Userstory DAO",
+                    "priority": "High",
+                    "estimate_time": "2 hours",
+                    "as_a_description": "As a product owner",
+                    "i_want_description": "I want this to work",
+                    "so_that_description": "So that I can sleep tonight"
+                }
+            ]
         }
     ]
 }

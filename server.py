@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from routes import ProductBacklogRoute
+from routes import UserStoryRoute
 from fastapi.staticfiles import StaticFiles
 from backend.src.service.dataClasses.NotesData import NoteData
 from backend.src.service.dataClasses.NotesPasswordData import NotesPasswordsData
@@ -23,6 +24,7 @@ from backend.src.domains.noteDomain.note import Note
 
 app = FastAPI()
 app.include_router(ProductBacklogRoute.route)
+app.include_router(UserStoryRoute.route)
 notes_dto = NoteData()
 notes_password_dto = NotesPasswordsData()
 category_dto = CategoryData()
