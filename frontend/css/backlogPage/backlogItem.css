@@ -2,7 +2,7 @@
     position: relative;
     margin: 7px;
     border-radius: 7px;
-    background-color: #282a36;
+    background-color: #383a4d;
     color: aliceblue;
     padding: 10px;
     display: grid;
@@ -31,12 +31,12 @@
     border-radius: 50%;
   }
   
-  .add-backlog-item-button  {
+  .new-backlog-item-button  {
       margin: 0 7px;
       cursor: pointer;
       outline: none;
       border: none;
-      color: #282a36;
+      color: #383a4d;
       border-top: 1px solid #ddd;
       font-size: 14px;
       display: flex;
@@ -45,4 +45,4 @@
       background-color: transparent;
   }
   
-  .add-backlog-item-button i {margin: 0 10px}
+  .new-backlog-item-button i {margin: 0 10px}

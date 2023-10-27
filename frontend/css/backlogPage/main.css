@@ -21,10 +21,10 @@ body {
 
 .product-backlog-container {
     display: grid;
-    grid-template-columns: 1fr 1fr ;
+    grid-template-columns: 1fr;
     column-gap: 10px;
     margin: 20px;
-    overflow: visible;
+    overflow-y: scroll;
 }
 
 .product-backlog {
@@ -33,6 +33,7 @@ body {
     box-shadow: .5rem .4rem 1rem rgb(213, 226, 241);
     display: grid;
     grid-template-rows: 50px 1fr 50px;
+    height: 100%;
   }
   
 .name-container {
@@ -46,6 +47,7 @@ body {
   
 .product-backlog-item-container {
     overflow-y: scroll;
+    height: 100%;
 }
   
 .product-backlog-item-container::-webkit-scrollbar {
@@ -57,19 +59,3 @@ body {
     background-color: #669DFF;
     border-radius: 3px;
 }
-
-img {
-    width: 100%;
-    margin: auto 0;
-}
-
-@media  (max-width: 750px){
-    .product-backlog-container {
-      grid-template-columns: 1fr;
-    }
-  
-    img {
-      scale: 0;
-      visibility: hidden;
-    }
-  }

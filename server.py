@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from routes import ProductBacklogRoute
 from fastapi.staticfiles import StaticFiles
 from backend.src.service.dataClasses.NotesData import NoteData
 from backend.src.service.dataClasses.NotesPasswordData import NotesPasswordsData
@@ -21,6 +22,7 @@ from backend.src.domains.noteDomain.subCategory import SubCategory
 from backend.src.domains.noteDomain.note import Note
 
 app = FastAPI()
+app.include_router(ProductBacklogRoute.route)
 notes_dto = NoteData()
 notes_password_dto = NotesPasswordsData()
 category_dto = CategoryData()
@@ -197,7 +199,9 @@ def project():
 @app.get('/projectById/{project_id}')
 def project_by_id(project_id: int):
     response = project_data_class.get_project_by_id(project_id)
-    return {'Status_code': RespMsg.OK, 'project': response}
+    if response != RespMsg.NOT_FOUND:
+        return {'Status_code': RespMsg.OK, 'project': response}
+    return {"Status_code": RespMsg.NOT_FOUND}
 
 
 # ___________________________________ [Project] POST ENDPOINTS ___________________________________

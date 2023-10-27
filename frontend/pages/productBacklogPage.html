@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="../css/sidebar.css">
   <link rel="stylesheet" href="../css/backlogPage/main.css">
   <link rel="stylesheet" href="../css/backlogPage/backlogItem.css">
+  <link rel="stylesheet" href="../css/backlogPage/addBacklogItemContainer.css">
 </head>
 <body>
   <div class="wrapper">
@@ -31,13 +32,76 @@
               <p>THis is the backlog description</p>
             </div>
           </div>
+          <div class="product-backlog-item">
+            <div class="product-backlog-item-upper">
+              <h3>Save previous versions</h3>
+              <div class="priority-level"></div>
+              <i class="fa-solid fa-trash"></i>
+            </div>
+            <div class="product-backlog-item-lower">
+              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur earum numquam vitae. Obcaecati quaerat a animi dolores, adipisci porro, necessitatibus inventore illum reiciendis totam accusantium repellat aut eos. Dolores, consectetur?</p>
+            </div>
+          </div>
+          <div class="product-backlog-item">
+            <div class="product-backlog-item-upper">
+              <h3>Github API</h3>
+              <div class="priority-level"></div>
+              <i class="fa-solid fa-trash"></i>
+            </div>
+            <div class="product-backlog-item-lower">
+              <p>THis is the backlog description</p>
+            </div>
+          </div>
+          <div class="product-backlog-item">
+            <div class="product-backlog-item-upper">
+              <h3>Merge</h3>
+              <div class="priority-level"></div>
+              <i class="fa-solid fa-trash"></i>
+            </div>
+            <div class="product-backlog-item-lower">
+              <p></p>
+            </div>
+          </div>
+          <div class="product-backlog-item">
+            <div class="product-backlog-item-upper">
+              <h3>Pull</h3>
+              <div class="priority-level"></div>
+              <i class="fa-solid fa-trash"></i>
+            </div>
+            <div class="product-backlog-item-lower">
+              <p>THis is the backlog description</p>
+            </div>
+          </div>
         </div>
-        <button class="add-backlog-item-button"><i class="fa-solid fa-plus"></i>Add item</button>          
+        <button class="new-backlog-item-button"><i class="fa-solid fa-plus"></i>Add item</button>          
       </div>
-      <img src="../../img/team checklist-pana.png" alt="">
     </div>
   </div>
-  <div class="cover"></div>
+  <div class="cover">
+    <form class="new-backlog-item-container">
+      <h2>New backlog item</h2>
+      <label for="backlog-item-name-input">Name</label>
+      <input class="backlog-item-name-input" type="text" placeholder="Enter a name" required>
+      <label for="backlog-item-description-textarea">Description</label>
+      <textarea class="backlog-item-description-textarea" placeholder="Enter a description"></textarea>
+      <label for="priority-selection-container">Priority</label>
+      <div class="priority-selection-container"> 
+        <div class="priority-dropdown">
+          <div class="select">
+            <span class="selected">Low</span>
+            <div class="caret"></div>
+          </div>
+          <ul class="menu">
+            <li>Low</li>
+            <li>Medium</li>
+            <li class="active">high</li>
+          </ul>
+        </div>
+      </div>
+      <button class="add-backlog-item-button" type="submit"><i class="fa-solid fa-plus"></i></button>
+    </form>
+  </div>
   <script src="../js/sidebar.js"></script>
+  <script src="../js/backlogPage/backlogPage.js"></script>
 </body>
 </html>

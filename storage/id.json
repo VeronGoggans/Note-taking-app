@@ -19,6 +19,14 @@
         {
             "entityName": "boardTask",
             "id": 13
+        },
+        {
+            "entityName": "productBacklogItem",
+            "id": 7
+        },
+        {
+            "entityName": "userStory",
+            "id": 0
         }
     ]
 }
