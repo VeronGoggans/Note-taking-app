@@ -18,17 +18,7 @@
                     "priority_level": "High"
                 }
             ],
-            "user_stories": [
-                {
-                    "id": 0,
-                    "name": "finish Userstory DAO",
-                    "priority": "High",
-                    "estimate_time": "2 hours",
-                    "as_a_description": "As a product owner",
-                    "i_want_description": "I want this to work",
-                    "so_that_description": "So that I can sleep tonight"
-                }
-            ]
+            "user_stories": []
         }
     ]
 }

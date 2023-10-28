@@ -7,13 +7,19 @@ route = APIRouter()
 user_story_data = UserStoryData()
 
 @route.get('/userStories/{project_id}')
-def user_story(project_id: int, ):
-    response = user_story_data.get(project_id, )
+def user_story(project_id: int):
+    response = user_story_data.get(project_id)
+    if response != RespMsg.NOT_FOUND:
+        return {'Status_code': RespMsg.OK, "Objects": response}
+    return {'Status_code': RespMsg.NOT_FOUND}
 
 
-@route.get('/userStoryById')
-def user_story():
-    pass
+@route.get('/userStoryById/{project_id}/{user_story_id}')
+def user_story(project_id: int, user_story_id: int):
+    response = user_story_data.get_by_id(project_id, user_story_id)
+    if response != RespMsg.NOT_FOUND:
+        return {'Status_code': RespMsg.OK, "Object": response}
+    return {'Status_code': RespMsg.NOT_FOUND}
 
 
 @route.post('/userStory/{project_id}')
@@ -24,11 +30,17 @@ def user_story(project_id: int, data: UserStoryRequest):
     return {'Status_code': RespMsg.NOT_FOUND}
 
 
-@route.put('/userStory')
-def user_story():
-    pass
+@route.put('/userStory/{project_id}/{user_story_id}')
+def user_story(project_id: int, user_story_id: int, data: UserStoryRequest):
+    response = user_story_data.update(project_id, user_story_id, data)
+    if response != RespMsg.NOT_FOUND:
+        return {'Status_code': RespMsg.OK, "Object": response}
+    return {'Status_code': RespMsg.NOT_FOUND}
 
 
-@route.delete('/userStory')
-def user_story():
-    pass
+@route.delete('/userStory/{project_id}/{user_story_id}')
+def user_story(project_id: int, user_story_id: int):
+    response = user_story_data.delete(project_id, user_story_id)
+    if response != RespMsg.NOT_FOUND:
+        return {'Status_code': response}
+    return {'Status_code': RespMsg.NOT_FOUND}
