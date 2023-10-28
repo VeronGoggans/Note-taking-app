@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from routes import ProductBacklogRoute
 from routes import UserStoryRoute
+from routes import ProjectTaskRoute
+from routes import ProjectRoute
 from fastapi.staticfiles import StaticFiles
 from backend.src.service.dataClasses.NotesData import NoteData
 from backend.src.service.dataClasses.NotesPasswordData import NotesPasswordsData
@@ -25,12 +27,12 @@ from backend.src.domains.noteDomain.note import Note
 app = FastAPI()
 app.include_router(ProductBacklogRoute.route)
 app.include_router(UserStoryRoute.route)
+app.include_router(ProjectRoute.route)
+app.include_router(ProjectTaskRoute.route)
 notes_dto = NoteData()
 notes_password_dto = NotesPasswordsData()
 category_dto = CategoryData()
 subcategory_dto = SubcategoryData()
-project_data_class = ProjectData()
-project_task_data_class = ProjectTaskData()
 my_ID = IdGenerator()
 
 
@@ -189,72 +191,6 @@ def subcategory(subcategory_id: int, subcategory_name: str):
     if response != RespMsg.INTERAL_SERVER_ERROR:
         return {'status_code': response}
     return {"status_code": RespMsg.INTERAL_SERVER_ERROR} 
-
-
-# ___________________________________ [Project] GET ENDPOINTS ___________________________________
-@app.get('/projects')
-def project():
-    response = project_data_class.get_projects()
-    return {'Status_code': RespMsg.OK, 'projects': response}
-
-
-@app.get('/projectById/{project_id}')
-def project_by_id(project_id: int):
-    response = project_data_class.get_project_by_id(project_id)
-    if response != RespMsg.NOT_FOUND:
-        return {'Status_code': RespMsg.OK, 'project': response}
-    return {"Status_code": RespMsg.NOT_FOUND}
-
-
-# ___________________________________ [Project] POST ENDPOINTS ___________________________________
-@app.post('/project')
-def project(project_data: ProjectRequest):
-    response = project_data_class.add_project(project_data.name, project_data.description)
-    return {'Status_code': response['Status_code'], "Return_object": response['Object']}
-
-
-# ___________________________________ [Project] DELETE ENDPOINTS ___________________________________
-@app.delete('/project/{project_id}')
-def project(project_id: int):
-    response = project_data_class.delete_project(project_id)
-    return {'Status_code': response}
-
-
-# ___________________________________ [Project] UPDATE ENDPOINTS ___________________________________
-@app.put('/project/{project_id}')
-def project(project_id: int, project_data: ProjectRequest):
-    response = project_data_class.update_project(project_id, project_data)
-    return {'Status_code': response}
-
-
-# ___________________________________ [BoardTask] GET ENDPOINTS ___________________________________
-@app.get('/boardTask/{project_id}')
-def board_task(project_id: int):
-    response = project_task_data_class.get_tasks(project_id)
-    if response == RespMsg.NOT_FOUND:
-        return {'Status_code': response}
-    return {'Status_code': RespMsg.OK, "tasks": response}
-
-
-# ___________________________________ [BoardTask] POST ENDPOINTS ___________________________________
-@app.post('/boardTask/{project_id}')
-def board_task(project_id: int, task_data: BoardTaskRequest):
-    response = project_task_data_class.add_task(project_id, task_data)
-    return {'Status_code': response}
-
-
-# ___________________________________ [BoardTask] UPDATE ENDPOINTS ___________________________________
-@app.put('/boardTask/{project_id}/{task_id}')
-def board_task(project_id: int, task_id: int, task_data: BoardTaskRequest):
-    response = project_task_data_class.update_task(project_id, task_id, task_data)
-    return {'Status_code': response}
-
-
-# ___________________________________ [BoardTask] DELETE ENDPOINTS ___________________________________
-@app.delete('/boardTask/{project_id}/{task_id}/{board_section}')
-def board_task(project_id: int, task_id: int, board_section: str):
-    response = project_task_data_class.delete_task(project_id, task_id, board_section)
-    return {'Status_code': response}
 
 
 # Setting up a FRONT-END page for the API

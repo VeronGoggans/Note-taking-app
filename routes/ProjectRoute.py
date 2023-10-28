@@ -1,44 +1,40 @@
 from fastapi import APIRouter
-from backend.src.requestClasses.BoardTaskRequest import BoardTaskRequest
-from backend.src.service.dataClasses.ProjectTaskData import ProjectTaskData
+from backend.src.requestClasses.ProjectRequest import ProjectRequest
+from backend.src.service.dataClasses.ProjectData import ProjectData
 from backend.src.service.enums.responseMessages import RespMsg
 
 route = APIRouter()
-project_task_data_class = ProjectTaskData()
+project_data_class = ProjectData()
 
-@route.get('/boardTask/{project_id}')
-def board_task(project_id: int):
-    response = project_task_data_class.get(project_id)
+@route.get('/projects')
+def project():
+    response = project_data_class.get()
     if response != RespMsg.NOT_FOUND:
         return {'Status_code': RespMsg.OK, 'Objects': response}
     return {'Status_code': RespMsg.NOT_FOUND}
 
 
-@route.get('/boardTaskById/{project_id}/{task_id}')
-def board_task(project_id: int, task_id: int):
-    response = project_task_data_class.get_by_id(project_id, task_id)
+@route.get('/projectById/{project_id}')
+def project_by_id(project_id: int):
+    response = project_data_class.get_by_id(project_id)
     if response != RespMsg.NOT_FOUND:
         return {'Status_code': RespMsg.OK, 'Object': response}
     return {'Status_code': RespMsg.NOT_FOUND}
 
 
-@route.post('/boardTask/{project_id}')
-def board_task(project_id: int, task_data: BoardTaskRequest):
-    response = project_task_data_class.add(project_id, task_data)
-    if response != RespMsg.NOT_FOUND:
-        return {'Status_code': RespMsg.OK, 'Object': response}
-    return {'Status_code': RespMsg.NOT_FOUND}
+@route.post('/project')
+def project(project_data: ProjectRequest):
+    response = project_data_class.add(project_data.name, project_data.description)
+    return {'Status_code': response['Status_code'], "Return_object": response['Object']}
 
 
-@route.put('/boardTask/{project_id}/{task_id}')
-def board_task(project_id: int, task_id: int, task_data: BoardTaskRequest):
-    response = project_task_data_class.update(project_id, task_id, task_data)
-    if response != RespMsg.NOT_FOUND:
-        return {'Status_code': RespMsg.OK, 'Object': response}
-    return {'Status_code': RespMsg.NOT_FOUND}
+@route.put('/project/{project_id}')
+def project(project_id: int, project_data: ProjectRequest):
+    response = project_data_class.update(project_id, project_data)
+    return {'Status_code': response}
 
 
-@route.delete('/boardTask/{project_id}/{task_id}/{board_section}')
-def board_task(project_id: int, task_id: int, board_section: str):
-    response = project_task_data_class.delete(project_id, task_id, board_section)
+@route.delete('/project/{project_id}')
+def project(project_id: int):
+    response = project_data_class.delete(project_id)
     return {'Status_code': response}

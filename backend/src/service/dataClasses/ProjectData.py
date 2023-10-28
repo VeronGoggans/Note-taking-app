@@ -10,7 +10,7 @@ class ProjectData():
         self.projects_path = os.getcwd() + '/storage/json/projects.json'
 
 
-    def add_project(self, project_name: str, project_description: str) -> {str: RespMsg, str: dict}:
+    def add(self, project_name: str, project_description: str) -> {str: RespMsg, str: dict}:
         """
         Add a new project to the collection of projects.
 
@@ -31,7 +31,7 @@ class ProjectData():
         return {"Status_code": RespMsg.OK, "Object": id_name_object}
 
 
-    def get_projects(self) -> list[Project]:
+    def get(self) -> list[Project]:
         """
         Retrieve a list of all project names.
 
@@ -46,7 +46,7 @@ class ProjectData():
         return project_id_name_list
     
 
-    def get_project_by_id(self, project_id: int) -> [Project, RespMsg]:
+    def get_by_id(self, project_id: int) -> [Project, RespMsg]:
         """
         Retrieve a project by its unique identifier.
 
@@ -64,7 +64,7 @@ class ProjectData():
         return RespMsg.NOT_FOUND
     
 
-    def update_project(self, project_id: int, updated_data: ProjectRequest) -> RespMsg:
+    def update(self, project_id: int, updated_data: ProjectRequest) -> RespMsg:
         """
         Update the details of an existing project.
 
@@ -86,7 +86,7 @@ class ProjectData():
         return RespMsg.NOT_FOUND
     
 
-    def delete_project(self, project_id: int) -> RespMsg:
+    def delete(self, project_id: int) -> RespMsg:
         """
         Delete a project by its unique identifier.
 
