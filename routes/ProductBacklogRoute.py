@@ -42,7 +42,4 @@ def product_backlog_item(project_id: int, item_id: int, item_data: ProductBacklo
 @route.delete('/productBacklogItem/{project_id}/{item_id}')
 def product_backlog_item(project_id: int, item_id: int):
     response = product_backlog_data.delete(project_id, item_id)
-    if response != RespMsg.NOT_FOUND:
-        return {'Status_code': response}
-    return {'Status_code': RespMsg.NOT_FOUND}
-
+    return {'Status_code': response}
