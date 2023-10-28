@@ -27,7 +27,7 @@ def product_backlog_item(project_id: int, item_id: int):
 def product_backlog_item(project_id: int, item_data: ProductBacklogItemRequest):
     response = product_backlog_data.add(project_id, item_data)
     if response != RespMsg.NOT_FOUND:
-        return {"Status_code": RespMsg.OK, "Object": response['Object']}
+        return {"Status_code": RespMsg.OK, "Object": response}
     return {"Status_code": RespMsg.NOT_FOUND}
 
 

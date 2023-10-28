@@ -13,6 +13,7 @@ class Project():
         self.testing = []
         self.done = []
         self.product_backlog = []
+        self.user_stories = []
 
 
     def to_dict(self):
@@ -26,7 +27,8 @@ class Project():
             'doing': self.doing,
             'testing': self.testing,
             'done': self.done,
-            'product_backlog': self.product_backlog
+            'product_backlog': self.product_backlog,
+            "user_stories": self.user_stories
         }
     
     

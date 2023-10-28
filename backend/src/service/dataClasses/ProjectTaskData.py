@@ -57,10 +57,10 @@ class ProjectTaskData():
         data = Json.load_json_file(self.projects_path)
         for project in data['projects']:
             if project['id'] == project_id:
-                tasks['To Do'] = project['To Do']
-                tasks['Doing'] = project['Doing']
-                tasks['Testing'] = project['Testing']
-                tasks['Done'] = project['Done']
+                tasks['To Do'] = project['todo']
+                tasks['Doing'] = project['doing']
+                tasks['Testing'] = project['testing']
+                tasks['Done'] = project['done']
                 return tasks
         return RespMsg.NOT_FOUND
     
@@ -80,7 +80,7 @@ class ProjectTaskData():
         data = Json.load_json_file(self.projects_path)
         for project in data['projects']:
             if project['id'] == project_id:
-                for board_section in ['To Do', 'Doing', 'Testing', 'Done']:
+                for board_section in ['todo', 'doing', 'testing', 'done']:
                     for task in project[board_section]:
                         if task['id'] == task_id:
                             return task
@@ -107,7 +107,8 @@ class ProjectTaskData():
         updated_task: BoardTask = self.__construct_task_object(task_id, task_data)
 
         if current_task['board_section'] != updated_task.board_section:
-            return self.__move_task(project_id, current_task, updated_task)
+            self.__move_task(project_id, current_task, updated_task)
+            return updated_task
 
         for project in data['projects']:
             if project['id'] == project_id:

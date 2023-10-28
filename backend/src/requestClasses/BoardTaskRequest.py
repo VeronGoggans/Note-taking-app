@@ -5,5 +5,5 @@ class BoardTaskRequest(BaseModel):
     description: str
     estimated_time: str
     due_date: str
-    priority: bool
+    priority: str
     board_section: str

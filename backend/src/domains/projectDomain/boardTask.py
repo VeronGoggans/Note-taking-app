@@ -1,5 +1,5 @@
 class BoardTask():
-    def __init__(self, id:int, name: str, description: str, estimated_time: str, due_date: str, priority: bool, board_section: str):
+    def __init__(self, id:int, name: str, description: str, estimated_time: str, due_date: str, priority: str, board_section: str):
         self.id = id
         self.name = name
         self.description = description

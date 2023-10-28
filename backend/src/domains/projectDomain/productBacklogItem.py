@@ -1,9 +1,9 @@
 class ProductBacklogItem():
-    def __init__(self, id, name, description, priority_level):
+    def __init__(self, id, name, description, priority):
         self.id = id
         self.name = name
         self.description = description
-        self.priority_level = priority_level
+        self.priority = priority
 
 
     def to_dict(self):
@@ -11,6 +11,6 @@ class ProductBacklogItem():
             "id": self.id,
             "name": self.name,
             "description": self.description,
-            "priority_level": self.priority_level
+            "priority": self.priority
         }
     

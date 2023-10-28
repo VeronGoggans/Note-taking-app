@@ -147,7 +147,6 @@ class ProductBacklogData():
         id = IdGenerator.ID("productBacklogItem")
         return ProductBacklogItem(id, item_data.name, item_data.description, item_data.priority)
     
-    
 
     def __update_item(self, current_item: dict, new_item: ProductBacklogItemRequest):
         current_item['name'] = new_item.name

@@ -8,15 +8,11 @@ from backend.src.service.dataClasses.NotesData import NoteData
 from backend.src.service.dataClasses.NotesPasswordData import NotesPasswordsData
 from backend.src.service.dataClasses.CategoryData import CategoryData
 from backend.src.service.dataClasses.SubcategoryData import SubcategoryData
-from backend.src.service.dataClasses.ProjectData import ProjectData
-from backend.src.service.dataClasses.ProjectTaskData import ProjectTaskData
 from backend.src.service.idGenerators.idGenerator import IdGenerator
 from backend.src.service.security.hash import Hash
 
 # ___________________________________ Request classes imports below ___________________________________ 
 from backend.src.requestClasses.NoteRequest import NoteRequest
-from backend.src.requestClasses.ProjectRequest import ProjectRequest
-from backend.src.requestClasses.BoardTaskRequest import BoardTaskRequest
 
 # ___________________________________ Domain classes imports below ___________________________________
 from backend.src.service.enums.responseMessages import RespMsg
