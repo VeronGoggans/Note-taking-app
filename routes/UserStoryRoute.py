@@ -41,6 +41,4 @@ def user_story(project_id: int, user_story_id: int, data: UserStoryRequest):
 @route.delete('/userStory/{project_id}/{user_story_id}')
 def user_story(project_id: int, user_story_id: int):
     response = user_story_data.delete(project_id, user_story_id)
-    if response != RespMsg.NOT_FOUND:
-        return {'Status_code': response}
-    return {'Status_code': RespMsg.NOT_FOUND}
+    return {'Status_code': response}

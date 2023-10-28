@@ -10,7 +10,7 @@ class ProjectTaskData():
         self.projects_path = os.getcwd() + '/storage/json/projects.json'
 
 
-    def add_task(self, project_id: int, task_data: BoardTaskRequest) -> [BoardTask, RespMsg]:
+    def add(self, project_id: int, task_data: BoardTaskRequest) -> [BoardTask, RespMsg]:
         """
         Add a task to the given board section in a project.
 
@@ -27,11 +27,11 @@ class ProjectTaskData():
             if project['id'] == project_id:
                 project[task.board_section].append(task.__dict__)
                 Json.update_json_file(self.projects_path, data)
-                return RespMsg.OK
+                return task
         return RespMsg.NOT_FOUND
 
 
-    def get_tasks(self, project_id: int) -> [dict[str, list[BoardTask]], RespMsg]:
+    def get(self, project_id: int) -> [dict[str, list[BoardTask]], RespMsg]:
         """
         Retrieve all tasks from a project.
 
@@ -65,7 +65,7 @@ class ProjectTaskData():
         return RespMsg.NOT_FOUND
     
 
-    def __get_task_by_id(self, project_id: int, task_id: int) -> [dict, RespMsg]:
+    def get_by_id(self, project_id: int, task_id: int) -> [dict, RespMsg]:
         """
         Retrieve a task within a project by its unique identifier.
 
@@ -88,9 +88,7 @@ class ProjectTaskData():
         return RespMsg.NOT_FOUND
 
 
-
-
-    def update_task(self, project_id: int, task_id: int, task_data: BoardTaskRequest) -> RespMsg:
+    def update(self, project_id: int, task_id: int, task_data: BoardTaskRequest) -> RespMsg:
         """
         Update a task within a project.
 
@@ -105,7 +103,7 @@ class ProjectTaskData():
             Additionally, it may return the result of the self.__move_task() method if the task is moved to a different section.
         """
         data = Json.load_json_file(self.projects_path)
-        current_task: dict = self.__get_task_by_id(project_id, task_id)
+        current_task: dict = self.get_by_id(project_id, task_id)
         updated_task: BoardTask = self.__construct_task_object(task_id, task_data)
 
         if current_task['board_section'] != updated_task.board_section:
@@ -115,20 +113,14 @@ class ProjectTaskData():
             if project['id'] == project_id:
                 for task in project[current_task['board_section']]:
                     if task['id'] == task_id:
-                        task['name'] = updated_task.name
-                        task['description'] = updated_task.description
-                        task['estimated_time'] = updated_task.estimated_time
-                        task['due_date'] = updated_task.due_date
-                        task['priority'] = updated_task.priority
+                        updated_task = self.__update_task(task, task_data)
                         Json.update_json_file(self.projects_path, data)
-                        return RespMsg.OK
+                        return updated_task
                 return RespMsg.NOT_FOUND
         return RespMsg.NOT_FOUND
-                    
-
         
 
-    def delete_task(self, project_id: int, task_id: int, board_section: str) -> RespMsg:
+    def delete(self, project_id: int, task_id: int, board_section: str) -> RespMsg:
         """
         Delete a task from a project.
 
@@ -154,7 +146,7 @@ class ProjectTaskData():
     
 
     def __move_task(self, project_id: int, current_task: dict, updated_task: BoardTask) -> RespMsg:
-        self.delete_task(project_id, current_task['id'], current_task['board_section'])
+        self.delete(project_id, current_task['id'], current_task['board_section'])
         data = Json.load_json_file(self.projects_path)
         for project in data['projects']:
             if project['id'] == project_id:
@@ -163,7 +155,15 @@ class ProjectTaskData():
                 return RespMsg.OK
         return RespMsg.NOT_FOUND
 
-            
+
+    def __update_task(self, current_task: dict, new_task: BoardTaskRequest):
+        current_task['name'] = new_task.name
+        current_task['description'] = new_task.description
+        current_task['estimated_time'] = new_task.estimated_time
+        current_task['due_date'] = new_task.due_date
+        current_task['priority'] = new_task.priority
+        return current_task
+
 
     def __create_task_object(self, task_data: BoardTaskRequest) -> BoardTask:
         """
