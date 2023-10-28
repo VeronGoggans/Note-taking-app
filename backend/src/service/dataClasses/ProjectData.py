@@ -46,7 +46,7 @@ class ProjectData():
         return project_id_name_list
     
 
-    def get_by_id(self, project_id: int) -> [Project, RespMsg]:
+    def get_by_id(self, project_id: int) -> [dict, RespMsg]:
         """
         Retrieve a project by its unique identifier.
 
@@ -54,7 +54,7 @@ class ProjectData():
             project_id (int): The unique identifier of the project to retrieve.
 
         Returns:
-            Union[Project, RespMsg]: The requested Project object if found, or a RespMsg indicating the outcome.
+            Union[dict, RespMsg]: If found the requested Project object represented in a dictionary, or a RespMsg indicating the outcome.
             Possible values for RespMsg include RespMsg.NOT_FOUND if the project is not found.
         """
         data = Json.load_json_file(self.projects_path)
