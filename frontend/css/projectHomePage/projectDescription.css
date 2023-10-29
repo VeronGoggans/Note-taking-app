@@ -1,0 +1,40 @@
+.project-description-container {
+    padding: 20px 10px;
+    margin: 20px 0;
+    border: 2px solid #494c66;
+    border-radius: 7px;
+    min-height: 100px;
+    height: fit-content;
+    background-color: #383a4d;
+    color: aliceblue;
+    box-shadow: 10px 10px 20px #8e9daa;
+  }
+
+  .project-description-container header {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .project-description-container span {
+    font-size: 18px;
+    font-weight: 600;
+  }
+  
+  .edit-project-description-button {
+    outline: none;
+    border: none;
+    font-size: 16px;
+    background-color: transparent;
+    font-weight: 600;
+    color: #669DFF;
+    cursor: pointer;
+  }
+  
+  .project-description-container p {
+    margin-top: 5px;
+    outline: none;
+    border: 1px solid transparent;
+    padding: 5px 0;
+    min-height: 80px;
+    border-radius: 5px;
+  }

@@ -16,39 +16,11 @@
     grid-template-columns: 250px 1fr;
     background-color:aliceblue;
     transition: .15s;
-
-}
-
-.project-name {
-  color: rgb(16, 33, 70);
-  font-size: 40px;
 }
 
 .project-info-container {
   padding: 15px 20px;
   overflow-y: scroll;
-}
-
-.project-description-container {
-  padding: 20px 10px;
-  margin: 20px 0;
-  border: 2px solid #494c66;
-  border-radius: 7px;
-  min-height: 100px;
-  height: fit-content;
-  background-color: #383a4d;
-  color: aliceblue;
-  box-shadow: 10px 10px 20px #8e9daa;
-
-}
-
-.project-description-container span {
-  font-size: 18px;
-  font-weight: 600;
-}
-
-.project-description-container p {
-  margin-top: 5px;
 }
 
 .add-note-directory-to-project-button {

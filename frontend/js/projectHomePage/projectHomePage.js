@@ -11,6 +11,8 @@ const sidebarSettingsButton = document.querySelector('.project-home-page-sidebar
 // Other
 const projectName = document.querySelector('.project-name');
 const projectDescription = document.querySelector('.project-description');
+const editNameButton = document.querySelector('.edit-project-name-button');
+const editDescriptionButton = document.querySelector('.edit-project-description-button');
 
 
 // Containers 
@@ -20,14 +22,37 @@ const projectDescription = document.querySelector('.project-description');
 
 
 // EventListeners
-sidebarBackButton.addEventListener('click', exitProject);
 document.addEventListener("DOMContentLoaded", collectProjectInfo);
+sidebarBackButton.addEventListener('click', exitProject);
+projectName.addEventListener('focus', projectNameFocus);
+projectName.addEventListener('blur', projectNameBlur);
+editDescriptionButton.addEventListener('click', toggleDescriptionEditable)
 
 
 // Functions 
 function exitProject() {
     window.sessionStorage.setItem('project-id', '');
     window.location.href = './projectCollectionPage.html';
+}
+
+function toggleDescriptionEditable() {
+    const editAble = projectDescription.contentEditable === "true";
+    // Toggle the contentEditable attribute
+    projectDescription.contentEditable = editAble ? "false" : "true";
+    editDescriptionButton.textContent = editAble ? "Edit" : "Save";
+    projectDescription.style.borderColor = editAble ? "transparent" : "#669DFF";
+}
+
+function projectNameFocus() {
+    editNameButton.style.visibility = 'visible';
+    editNameButton.style.opacity = '100%';
+    projectName.style.cursor = 'auto';
+}
+
+function projectNameBlur() {
+    editNameButton.style.visibility = 'hidden';
+    editNameButton.style.opacity = '0%';
+    projectName.style.cursor = 'pointer';
 }
 
 async function collectProjectInfo() {

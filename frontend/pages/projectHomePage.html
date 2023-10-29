@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../css/sidebar.css">
   <link rel="stylesheet" href="../css/projectHomePage/main.css">
+  <link rel="stylesheet" href="../css/projectHomePage/projectName.css">
+  <link rel="stylesheet" href="../css/projectHomePage/projectDescription.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <title>Document</title>
 </head>
@@ -19,10 +21,16 @@
       <button class="project-home-page-sidebar-settings-button"><i class="fa-solid fa-gear"></i>Settings</button>
   </div> 
   <div class="project-info-container">
-    <h1 class="project-name"></h1>
+    <div class="project-name-container">
+      <h1 class="project-name" contenteditable="true" spellcheck="false"></h1>
+      <button class="edit-project-name-button"><i class="fa-regular fa-pen-to-square"></i></button>
+    </div>
     <div class="project-description-container">
-      <span>Description</span>
-      <p class="project-description"></p>
+      <header>
+        <span>Description</span>
+        <button class="edit-project-description-button">Edit</button>
+      </header>
+      <p class="project-description" contenteditable="false" spellcheck="false"></p>
     </div>
     <button class="add-note-directory-to-project-button"></button>
     <div class="project-notes-container">
