@@ -8,12 +8,10 @@ class Json:
     # This method returns the json data that is in the json file.
     @staticmethod
     def load_json_file(file_path):
-        try:
-            with open(file_path, 'r') as file:
-                data = json.load(file)
-                return data
-        except IOError as e:
-            print(e)
+        with open(file_path, 'r') as file:
+            data = json.load(file)
+            return data
+    
 
     # This method updates a json file with new/updated data.
     # This method has no return value.
