@@ -41,7 +41,7 @@ cover.addEventListener("click", (event) => {if (!event.target.closest('.new-proj
 // Functions
 async function collectProjects() {
     const response = await getProjects();
-    const projects = response.projects
+    const projects = response.Objects
     if (response.Status_code === OK) {
         for (let i = 0; i < projects.length; i++) {
             renderProjectCard(projects[i].id, projects[i].name)
@@ -49,12 +49,19 @@ async function collectProjects() {
     }
 }
 
+function handleProjectCardClick(projectId) {
+    window.sessionStorage.setItem('project-id', projectId);
+    window.location.href = './projectHomePage.html';
+}
 
 function renderProjectCard(id, name) {
     // Creating HTML elements
     const projectCard = NodeCrafter.create('div', {'class': 'project-card', 'id': id});
     const projectName = NodeCrafter.create('p', {'textContent': name});
     const projectIcon = NodeCrafter.create('i', {'class': 'fa-solid fa-code-commit'});
+
+    // adding event listeners 
+    projectCard.addEventListener('click', ()=> handleProjectCardClick(id))
 
     // Appending children
     projectCard.appendChild(projectName);

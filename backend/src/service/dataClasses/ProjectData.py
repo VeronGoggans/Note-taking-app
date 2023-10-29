@@ -46,7 +46,7 @@ class ProjectData():
         return project_id_name_list
     
 
-    def get_by_id(self, project_id: int) -> [dict, RespMsg]:
+    def get_by_id(self, project_id: int, relevant_data: list) -> [dict, RespMsg]:
         """
         Retrieve a project by its unique identifier.
 
@@ -60,7 +60,7 @@ class ProjectData():
         data = Json.load_json_file(self.projects_path)
         for project in data['projects']:
             if project['id'] == project_id:
-                return project
+                return self.__filter_relevant_project_info(project, relevant_data)
         return RespMsg.NOT_FOUND
     
 
@@ -119,3 +119,15 @@ class ProjectData():
         """
         id = IdGenerator.ID("project")
         return Project(id, name, description)
+    
+
+    def __filter_relevant_project_info(self, project: dict, relevant_data: list):
+        if len(relevant_data) == 0: # If empty
+            return project # Return the whole project
+
+        relevant_project_data = {}
+        for n in range(0, len(relevant_data)):
+            key = relevant_data[n]
+            value = project[key]
+            relevant_project_data.setdefault(key, value)
+        return relevant_project_data

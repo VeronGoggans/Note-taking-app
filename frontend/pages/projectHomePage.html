@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/sidebar.css">
+  <link rel="stylesheet" href="../css/projectHomePage/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>Document</title>
+</head>
+<body>  
+  <div class="wrapper">
+    <div class="sidebar">
+      <button class="project-home-page-sidebar-bars-button"><i class="fa-solid fa-bars"></i></button>
+      <button class="project-home-page-sidebar-back-button"><i class="fa-solid fa-xmark fa-x"></i>Back</button>
+      <button class="project-home-page-sidebar-project-board-button"><i class="fa-solid fa-diagram-project"></i>Board</button>
+      <button class="project-home-page-sidebar-product-backlog-button"><i class="fa-solid fa-list-ul"></i>Backlog</button>
+      <button class="project-home-page-sidebar-user-stories-button"><i class="fa-solid fa-users"></i>User stories</button>
+      <button class="project-home-page-sidebar-settings-button"><i class="fa-solid fa-gear"></i>Settings</button>
+  </div> 
+  <div class="project-info-container">
+    <h1 class="project-name"></h1>
+    <div class="project-description-container">
+      <span>Description</span>
+      <p class="project-description"></p>
+    </div>
+    <button class="add-note-directory-to-project-button"></button>
+    <div class="project-notes-container">
+      <div class="add-project-note-directory-card">
+        <button><i class="fa-solid fa-plus"></i></button>
+      </div>
+      <div class="project-note-directory-card">
+        <p class="project-note-directory-name">Keeps Notes</p>
+      </div>
+    </div>
+    <div class="scrum-image-container">
+      <img src="../../img/agile method-pana.png" alt="">
+    </div>
+  </div>
+  </div>
+  <script src="../js/sidebar.js"></script>
+  <script src="../js/projectHomePage/projectHomePage.js"></script>
+  <script src="../js/projectHomePage/endpoints.js"></script>
+  <script src="../js/utilClasses/stringUtils.js"></script>
+</body>
+</html>

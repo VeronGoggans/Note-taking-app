@@ -4,8 +4,8 @@
             "id": 17,
             "creation_date": "22-10-2023",
             "completion_date": "null",
-            "name": "Blog",
-            "description": "",
+            "name": "Keeps",
+            "description": "Keeps is going to be a project management desktop app for programmers\nIn this app you will be able to create a project which has a project task board, product backlog, user stories \nand in the future I am planning to create the ability to create mindmaps.",
             "todo": [
                 {
                     "id": 13,
@@ -52,6 +52,19 @@
             "completion_date": "null",
             "name": "PROJECT ONE",
             "description": "This is project one",
+            "todo": [],
+            "doing": [],
+            "testing": [],
+            "done": [],
+            "product_backlog": [],
+            "user_stories": []
+        },
+        {
+            "id": 20,
+            "creation_date": "29-10-2023",
+            "completion_date": "null",
+            "name": "VCS",
+            "description": "The HTTP GET method is traditionally used for retrieving data from the server, and it's the standard and expected way to make such requests. If you have the flexibility to design the API, using the GET method and including the relevant data as query parameters in the URL is a more conventional and widely accepted approach.\n\nUsing POST for retrieval is not inherently wrong, but it could be confusing for developers who expect GET requests to be used for data retrieval. Additionally, it might not be immediately clear to others working with your API that the request is meant for retrieval rather than creating or modifying data, which is the more common use case for POST.",
             "todo": [],
             "doing": [],
             "testing": [],

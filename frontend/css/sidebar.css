@@ -7,18 +7,7 @@
     background-color: #669DFF;
 }
 
-.notes-page-sidebar-bars-button,
-.notes-page-sidebar-back-button,
-.notes-page-sidebar-settings-button,
-.projects-page-sidebar-bars-button,
-.projects-page-sidebar-back-button,
-.projects-page-sidebar-settings-button,
-.projectboard-page-sidebar-bars-button,
-.projectboard-page-sidebar-back-button,
-.projectboard-page-sidebar-settings-button,
-.projectbacklog-page-sidebar-bars-button,
-.projectbacklog-page-sidebar-back-button,
-.projectbacklog-page-sidebar-settings-button {
+.sidebar button {
     cursor: pointer;
     position: relative;
     outline: none;
@@ -36,30 +25,12 @@
     transition: .4s;
 }
 
-.notes-page-sidebar-bars-button i,
-.notes-page-sidebar-back-button i,
-.notes-page-sidebar-settings-button i,
-.projects-page-sidebar-bars-button i,
-.projects-page-sidebar-back-button i,
-.projects-page-sidebar-settings-button i,
-.projectboard-page-sidebar-bars-button i,
-.projectboard-page-sidebar-back-button i,
-.projectboard-page-sidebar-settings-button i,
-.projectbacklog-page-sidebar-bars-button i,
-.projectbacklog-page-sidebar-back-button i,
-.projectbacklog-page-sidebar-settings-button i {
+.sidebar button i {
     position: absolute;
     left: 5px;
 }
 
-.notes-page-sidebar-back-button:hover,
-.notes-page-sidebar-settings-button:hover,
-.projects-page-sidebar-back-button:hover,
-.projects-page-sidebar-settings-button:hover,
-.projectboard-page-sidebar-back-button:hover,
-.projectboard-page-sidebar-settings-button:hover,
-.projectbacklog-page-sidebar-back-button:hover,
-.projectbacklog-page-sidebar-settings-button:hover {
+.sidebar button:hover {
     background-color: aliceblue;
     color: rgb(52, 52, 52);
 }

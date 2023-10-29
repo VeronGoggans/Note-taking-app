@@ -83,20 +83,3 @@ async function updateCategory(categoryId, categoryName) {
     const response = await fetch(`/category/${categoryId}/${categoryName}`, {method: "PUT", headers: {"Content-Type": "application/json"}})
     return await response.json();
 }
-
-// __________________________________________ [PROJECTS] GET ____________________________________________
-
-async function getProjects() {
-    const response = await fetch('/projects')
-    return await response.json();
-}
-
-async function addProject(name, description) {
-    const projectRequestObject = {"name": name,"description": description}
-    const response = await fetch(
-        '/project', 
-        {method: "POST", 
-        body: JSON.stringify(projectRequestObject),
-        headers: {"Content-Type": "application/json"}})
-    return await response.json();   
-}

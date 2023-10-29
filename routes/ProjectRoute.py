@@ -1,5 +1,6 @@
 from fastapi import APIRouter
 from backend.src.requestClasses.ProjectRequest import ProjectRequest
+from backend.src.requestClasses.get.ProjectByIdRequest import ProjectByIdRequest
 from backend.src.service.dataClasses.ProjectData import ProjectData
 from backend.src.service.enums.responseMessages import RespMsg
 
@@ -13,10 +14,12 @@ def project():
         return {'Status_code': RespMsg.OK, 'Objects': response}
     return {'Status_code': RespMsg.NOT_FOUND}
 
-
-@route.get('/projectById/{project_id}')
-def project_by_id(project_id: int):
-    response = project_data_class.get_by_id(project_id)
+# NOTE 
+# POST is only used so that I could give a list inside of a request body 
+# which contains the relevant data of a project whished to be retrieved.
+@route.post('/projectById/{project_id}')
+def project_by_id(project_id: int, data: ProjectByIdRequest):
+    response = project_data_class.get_by_id(project_id, data.relevant_data)
     if response != RespMsg.NOT_FOUND:
         return {'Status_code': RespMsg.OK, 'Object': response}
     return {'Status_code': RespMsg.NOT_FOUND}
