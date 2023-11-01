@@ -1,20 +1,6 @@
 {
     "categories": [
         {
-            "id": 61,
-            "name": "School",
-            "subcategories": [],
-            "notes": [
-                {
-                    "id": 111,
-                    "title": "Blackjack Assesment",
-                    "content": "C:\\Users\\jsvgo\\Web Dev\\keeps/storage/notes/note-111.html",
-                    "bookmark": false,
-                    "password_protected": false
-                }
-            ]
-        },
-        {
             "id": 62,
             "name": "Routines",
             "subcategories": [],

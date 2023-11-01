@@ -19,8 +19,19 @@
 }
 
 .project-info-container {
-  padding: 15px 20px;
+  padding: 20px 20px;
   overflow-y: scroll;
+  position: relative;
+}
+
+.project-info-container::-webkit-scrollbar {
+  width: 7px;
+  background-color: transparent;
+}
+
+.project-info-container::-webkit-scrollbar-thumb {
+  background-color: #ddd;
+  border-radius: 5px;
 }
 
 .add-note-directory-to-project-button {
@@ -32,7 +43,8 @@
   justify-content: center;
   align-items: center;
   font-size: 16px;
-  padding: 5px;
+  width: 40px;
+  height: 40px;
   margin-top: 50px;
 }
 

@@ -5,7 +5,7 @@
     border-radius: 7px;
     min-height: 100px;
     height: fit-content;
-    background-color: #383a4d;
+    background-color: rgb(17, 25, 40);
     color: aliceblue;
     box-shadow: 10px 10px 20px #8e9daa;
   }
@@ -18,6 +18,7 @@
   .project-description-container span {
     font-size: 18px;
     font-weight: 600;
+    padding-left: 5px;
   }
   
   .edit-project-description-button {
@@ -28,6 +29,7 @@
     font-weight: 600;
     color: #669DFF;
     cursor: pointer;
+    padding-right: 5px;
   }
   
   .project-description-container p {
@@ -37,4 +39,5 @@
     padding: 5px 0;
     min-height: 80px;
     border-radius: 5px;
+    padding: 5px;
   }

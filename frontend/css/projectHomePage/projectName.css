@@ -9,8 +9,8 @@
   position: relative;
   color: rgb(16, 33, 70);
   font-size: 40px;
-  padding: 5px 30px 5px 5px;
-  border-radius: 7px 0 0 7px;
+  padding: 5px 30px 5px 10px;
+  border-radius: 10px 0 0 10px;
   outline: none;
   border: 1px solid transparent;
   width: fit-content;
@@ -18,7 +18,7 @@
 }
   
 .project-name-container button {
-  width: 50px;
+  width: 70px;
   outline: none;
   border: none;
   background-color: #669DFF;
@@ -27,7 +27,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 0 7px 7px 0;
+  border-radius: 0 10px 10px 0;
   cursor: pointer;
   opacity: 0;
   visibility: hidden;
