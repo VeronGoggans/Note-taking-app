@@ -15,6 +15,8 @@ const projectDescription = document.querySelector('.project-description');
 const editNameButton = document.querySelector('.edit-project-name-button');
 const editDescriptionButton = document.querySelector('.edit-project-description-button');
 const projectNotesIcon = document.querySelector('#project-notes-icon');
+const addNewProjectNoteDirButton = document.querySelector('.add-project-note-directory-button');
+
 
 // Containers 
 const projectNotesContainer = document.querySelector('.project-notes-container');
@@ -35,7 +37,15 @@ editDescriptionButton.addEventListener('click', toggleDescriptionEditable);
 sidebarNoteButton.addEventListener('mouseover', projectNoteButtonOnEnter);
 sidebarNoteButton.addEventListener('mouseleave', projectNoteButtonOnLeave);
 sidebarNoteButton.addEventListener('click', projectNoteButtonClick);
+addNewProjectNoteDirButton.addEventListener('click', newNoteDirButtonClick);
 
+
+
+newNoteDirectoryNameInput.addEventListener('keypress', function(event) {
+    if (event.key === 'Enter' || event.key === 13) {
+        newNoteDirInputOnEnter();
+    }
+})
 
 wpr.addEventListener('click', (event) => {
     if (
@@ -46,6 +56,9 @@ wpr.addEventListener('click', (event) => {
 
 
 // Functions 
+checkForNoteDirs();
+
+
 function exitProject() {
     window.sessionStorage.setItem('project-id', '');
     window.location.href = './projectCollectionPage.html';
@@ -87,6 +100,42 @@ function projectNoteButtonClick() {
 function projectNotesContainerOffFocus() {
     projectNotesContainer.style.visibility = 'hidden';
     projectNotesContainer.style.opacity = '0%';
+}
+
+function newNoteDirButtonClick() {
+    projectNotesContainer.style.gridTemplateRows = '50px 30px 1fr';
+    newNoteDirectoryNameInput.style.visibility = 'visible';
+}
+
+function newNoteDirInputOnEnter() {
+    projectNotesContainer.style.gridTemplateRows = '50px 1px 1fr';
+    newNoteDirectoryNameInput.style.visibility = 'hidden';
+    newNoteDirectoryNameInput.value = '';
+}
+
+function checkForNoteDirs() {
+    if (projectNotesScrollContainer.children.length === 0) show404Image();
+    else collectProjectNoteDirs();
+}
+
+function show404Image() {
+    const image404 = NodeCrafter.create('img', {'src': '../../img/Error 404.png', 'alt': '404 image'});
+    projectNotesScrollContainer.appendChild(image404);
+}
+
+function renderNoteDirCard(dirID, dirName) {
+    // Createing Elements
+    const container = NodeCrafter.create('div', {'class': 'project-note-directory-container', 'id': dirID});
+    const name = NodeCrafter.create('h4', {'textContent': `- ${dirName}`});
+
+    // Eventlisteners
+
+    // Appending children
+    container.appendChild(name);
+}
+
+async function collectProjectNoteDirs() {
+    id = window.sessionStorage.getItem('project-id');
 }
 
 async function collectProjectInfo() {
