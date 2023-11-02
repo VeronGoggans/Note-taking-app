@@ -1,16 +1,3 @@
-.move-note-container {
-    border-radius: 20px;
-    display: grid;
-    grid-template-rows: 50px 100px 100px;
-    width: 430px;
-    height: 250px;
-    background-color: #ffffff;
-    overflow: visible;
-    border-radius: 20px;
-    box-shadow: 10px 30px 15px rgb(77 89 103);
-    overflow: visible;
-}
-
 .dropdown {
     position: relative;
     margin: 2em;
@@ -99,41 +86,3 @@
     display: block;
     opacity: 1;
 }
-
-.move-note-container #location-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    bottom: 40px;
-    font-size: 90px;
-    color: #669DFF;
-    overflow: visible;
-}
-
-.move-note-container-combobox-box {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: inherit;
-}
-
-.unlock-note-btn {
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    outline: none;
-    border: none;
-    height: 40px;
-    margin: 30px 70px 5px 70px;
-    background-color: #669DFF;
-    color: #ffffff;
-    font-weight: 600;
-    font-size: 15px;
-    border-radius: 50px; 
-    transition: .4s;
-}
-
-.unlock-note-btn:hover {background-color: #4589ff}

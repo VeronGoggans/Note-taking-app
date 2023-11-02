@@ -34,6 +34,20 @@
                     "password_protected": false
                 }
             ]
+        },
+        {
+            "id": 66,
+            "name": "new",
+            "subcategories": [],
+            "notes": [
+                {
+                    "id": 122,
+                    "title": "hello",
+                    "content": "C:\\Users\\jsvgo\\Web Dev\\keeps/storage/notes/note-122.html",
+                    "bookmark": false,
+                    "password_protected": false
+                }
+            ]
         }
     ]
 }

@@ -31,6 +31,7 @@ const newNoteDirectoryNameInput = document.querySelector('.new-project-notes-dir
 // EventListeners
 document.addEventListener("DOMContentLoaded", collectProjectInfo);
 sidebarBackButton.addEventListener('click', exitProject);
+sidebarBacklogButton.addEventListener('click', toBacklog);
 projectName.addEventListener('focus', projectNameFocus);
 projectName.addEventListener('blur', projectNameBlur);
 editDescriptionButton.addEventListener('click', toggleDescriptionEditable);
@@ -62,6 +63,10 @@ checkForNoteDirs();
 function exitProject() {
     window.sessionStorage.setItem('project-id', '');
     window.location.href = './projectCollectionPage.html';
+}
+
+function toBacklog() {
+    window.location.href = './projectBacklogPage.html';
 }
 
 function toggleDescriptionEditable() {

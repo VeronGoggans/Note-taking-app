@@ -2,33 +2,39 @@
     position: relative;
     margin: 7px;
     border-radius: 7px;
-    background-color: #383a4d;
+    background-color: rgb(17, 25, 40);
     color: aliceblue;
+    display: grid;
+    grid-template-columns: 1fr 60px;
+  }
+  
+  .product-backlog-item-info {
     padding: 10px;
     display: grid;
     grid-template-rows: 1fr 1fr;
   }
   
-  .product-backlog-item-upper {
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
+  .product-backlog-item-info h3 { 
+    cursor: pointer;
+    width: fit-content;
   }
-  
-  .product-backlog-item-upper h3 {max-width: 50%;}
-  .product-backlog-item-upper i {cursor: pointer;}
-  .product-backlog-item-lower p {
+
+  .product-backlog-item-info h3:hover {
+    color: #669DFF;
+    text-decoration: underline;
+  }
+
+  .priority-level i {cursor: pointer;}
+  .product-backlog-item-info p {
     font-size: 12px;
     margin-top: 10px;
   }
   
   .priority-level {
-    position: relative;
-    left: 5px;
-    width: 20px;
-    height: 20px;
     background-color: #669DFF;
-    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
   .new-backlog-item-button  {

@@ -24,7 +24,6 @@ body {
     grid-template-columns: 1fr;
     column-gap: 10px;
     margin: 20px;
-    overflow-y: scroll;
 }
 
 .product-backlog {

@@ -1,5 +1,5 @@
 // containers
-const cover1 = document.querySelector(".cover_delete_box");
+const cover1 = document.querySelector(".cover");
 const cover2 = document.querySelector('.cover_paper_note');
 const noteContainer = document.querySelector('.notes_container');
 

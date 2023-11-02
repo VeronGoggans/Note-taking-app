@@ -8,7 +8,7 @@
     overflow: visible;
     color: rgb(90, 90, 90);
     border-radius: 20px;
-    box-shadow: 10px 30px 15px rgb(213, 226, 241);
+    box-shadow: 10px 30px 15px rgb(77 89 103);
 }
 
 .confirm_note_delete_container .delete_info_message {padding-top: 50px}

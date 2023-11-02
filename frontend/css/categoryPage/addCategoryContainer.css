@@ -6,7 +6,7 @@
     background-color: #ffffff;
     overflow: visible;
     border-radius: 20px;
-    box-shadow: 10px 30px 15px rgb(189, 209, 231);
+    box-shadow: 10px 30px 15px rgb(77 89 103);
 }
 
 .add_category_input_box {
@@ -40,7 +40,7 @@
     border-radius: 50%;
     width: 40px;
     height: 40px;
-    background-color: rgb(123, 196, 255, 1);
+    background-color: #669DFF;
     color: #fff;
     display: flex;
     align-items: center;
@@ -49,8 +49,8 @@
     transition: .4s;
 }
 
-.add_category_btn:hover {background-color: rgb(94, 182, 255)}
+.add_category_btn:hover {background-color: #5291ff}
 .category_name_input::placeholder {color: #1b1b1b}
 .category_name_input:hover,
-.category_name_input:focus {border: 2px solid rgb(123, 196, 255, 1)}
+.category_name_input:focus {border: 2px solid #669DFF}
 .new_category_char_count {color: #1b1b1b; margin-left: 22.5px;}

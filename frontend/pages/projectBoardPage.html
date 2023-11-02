@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/projectBoardPage/main.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <title>Document</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="sidebar">
+            <button class="projectboard-page-sidebar-bars-button"><i class="fa-solid fa-bars"></i></button>
+            <button class="projectboard-page-sidebar-back-button"><i class="fa-solid fa-xmark fa-x"></i>Back</button>
+            <button class="projectboard-page-sidebar-settings-button"><i class="fa-solid fa-gear"></i>Settings</button>
+        </div> 
+        <div class="projectboard-container">
+            <div class="to-do-borad-section">
+                <div class="section-name-container">
+                    <span class="task-count">1</span>
+                    <h4>To Do</h4>
+                </div>
+                <div class="board-task-container">
+                    <div class="task" draggable="true">
+                        <h5 class="task-name">My first task</h5>
+                        <p class="task-description">This is the description for my first task</p>
+                    </div>
+                    <div class="task" draggable="true">
+                        <h5 class="task-name">My second task</h5>
+                        <p class="task-description">This is the description for my first task</p>
+                    </div>
+                    <div class="task" draggable="true">
+                        <h5 class="task-name">My third task</h5>
+                        <p class="task-description">This is the description for my first task</p>
+                    </div>
+                </div>
+                <button class="add-task-card-button"><i class="fa-solid fa-plus"></i>Add card</button>
+            </div>
+
+            <div class="doing-board-section">
+                <div class="section-name-container">
+                    <span class="task-count">0</span>
+                    <h4>Doing</h4>
+                </div>
+                <div class="board-task-container"></div>
+                <button class="add-task-card-button"><i class="fa-solid fa-plus"></i>Add card</button>
+            </div>
+
+            <div class="testing-board-section">
+                <div class="section-name-container">
+                    <span class="task-count">0</span>
+                    <h4>Testing</h4>
+                </div>
+                <div class="board-task-container"></div>
+                <button class="add-task-card-button"><i class="fa-solid fa-plus"></i>Add card</button>
+            </div>
+
+            <div class="done-board-section">
+                <div class="section-name-container">
+                    <span class="task-count">0</span>
+                    <h4>Done</h4>
+                </div>
+                <div class="board-task-container"></div>
+                <button class="add-task-card-button"><i class="fa-solid fa-plus"></i>Add card</button>
+            </div>
+        </div>
+    </div>
+    <script src="../js/sidebar.js"></script>
+    <script src="../js/projectBoardPage/projectBoardPage.js"></script>
+</body>
+</html>

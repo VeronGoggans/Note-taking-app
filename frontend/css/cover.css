@@ -1,12 +1,12 @@
 .cover {
     position: absolute;
-    visibility: hidden;
+    visibility: visible;
     display: flex;
     justify-content: center;
     align-items: center;
-    top: 100%;
+    top: 0%;
     width: 100dvw;
     height: 100dvh;
-    background-color: rgba(213, 236, 255, .5);
+    background-color: rgb(0 3 24 / 50%);
     z-index: 1;
 }
