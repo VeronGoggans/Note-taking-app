@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" type="text/css" href="styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="../css/backlogPage/customCombobox.css">
-  <link rel="stylesheet" href="../css/cover.css">
+  <link rel="stylesheet" href="../css/projectCover.css">
   <link rel="stylesheet" href="../css/sidebar.css">
   <link rel="stylesheet" href="../css/backlogPage/main.css">
   <link rel="stylesheet" href="../css/backlogPage/backlogItem.css">
@@ -35,7 +34,7 @@
           <div class="product-backlog-item">
             <div class="product-backlog-item-info">
               <h3>CRUD Methods (Backlog)</h3>
-              <p>THis is the backlog description</p>
+              <p>THis is the backlog description &amp;#x1F604;</p>
             </div>
             <div class="priority-level">
               <i class="fa-solid fa-trash"></i>
@@ -55,22 +54,26 @@
       </div>
     </div>
   </div>
-  <div class="cover">
+  <div class="projectCover">
     <form class="new-backlog-item-container">
-      <input class="backlog-item-name-input" type="text" placeholder="Enter a name" required>
-      <textarea class="backlog-item-description-textarea" placeholder="Enter a description"></textarea>
-      <label for="priority-selection-container">Priority</label>
-      <div class="priority-selection-container"> 
-        <div class="priority-dropdown">
-          <div class="select">
-            <span class="selected">Low</span>
-            <div class="caret"></div>
+      <div class="new-backlog-item-container-upper">
+        <div class="backlog-item-name-input" contenteditable="false"></div>
+        <button class="edit-item-name-button">Edit name</button>
+      </div>
+      <div class="new-backlog-item-container-lower">
+        <textarea class="backlog-item-description-textarea" placeholder="Enter a description"></textarea>
+        <div class="priority-selection-container"> 
+          <div class="priority-dropdown">
+            <div class="select">
+              <span class="selected">Low</span>
+              <div class="caret"></div>
+            </div>
+            <ul class="menu">
+              <li>Low</li>
+              <li>Medium</li>
+              <li class="active">high</li>
+            </ul>
           </div>
-          <ul class="menu">
-            <li>Low</li>
-            <li>Medium</li>
-            <li class="active">high</li>
-          </ul>
         </div>
       </div>
       <button class="add-backlog-item-button" type="submit"><i class="fa-solid fa-plus"></i></button>

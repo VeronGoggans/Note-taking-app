@@ -9,14 +9,13 @@
 
 .select {
     border-radius: 10px;
-    border: 2px solid rgb(154, 191, 255, .2);
+    border: 2px solid rgb(123, 196, 255, .4);
     color: #515e70;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 5px 10px 15px rgb(213, 226, 241);
-    padding: 1em;
     cursor: pointer;
+    padding: 10px;
     transition: .3s;
 }
 
@@ -25,7 +24,7 @@
     box-shadow: 0 0 .8em rgb(213, 226, 241);
 }
 
-.select:hover {border: 2px solid rgb(154, 191, 255, .5)}
+.select:hover {border: 2px solid #669DFF}
 
 .caret {
     width: 0;

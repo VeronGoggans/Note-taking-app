@@ -7,7 +7,7 @@ const newItemButton = document.querySelector('.new-backlog-item-button');
 
 
 // Containers 
-const cover = document.querySelector('.cover');
+const projectCover = document.querySelector('.projectCover');
 
 
 // Inputs
@@ -17,7 +17,7 @@ const cover = document.querySelector('.cover');
 sidebarBackButton.addEventListener('click', toProjectHomePage);
 newItemButton.addEventListener('click', showOverlay);
 
-cover.addEventListener('click', (event) => {
+projectCover.addEventListener('click', (event) => {
     if (
         !event.target.closest('.new-backlog-item-container')
         ) hideOverlay();
@@ -30,11 +30,11 @@ function toProjectHomePage() {
 }
 
 function showOverlay() {
-    cover.style.visibility = 'visible';
-    cover.style.top = '0%';
+    projectCover.style.visibility = 'visible';
+    projectCover.style.top = '0%';
 }
 
 function hideOverlay() {
-    cover.style.visibility = 'hidden';
-    cover.style.top = '100%';
+    projectCover.style.visibility = 'hidden';
+    projectCover.style.top = '100%';
 }

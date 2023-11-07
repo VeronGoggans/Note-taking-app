@@ -1,0 +1,12 @@
+.projectCover {
+    position: absolute;
+    visibility: visible;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    top: 0%;
+    width: 100dvw;
+    height: 100dvh;
+    background-color: rgb(0 3 24 / 50%);
+    z-index: 1;
+}

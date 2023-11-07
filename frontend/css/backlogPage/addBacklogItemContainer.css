@@ -1,38 +1,59 @@
 .new-backlog-item-container {
     position: relative;
-    flex: 1;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 20px;
-    padding: 15px 0;
+    display: grid;
+    grid-template-rows: 100px 1fr;
+    width: 70vw;
+    height: 100dvh;
     background-color: #fff;
-    color: #383a4d;
-    max-width: 485px;
-    height: 440px;
+    color: rgb(36, 40, 109);
+    border-radius: 20px 0 0 20px;
+    padding: 0 15px;
     overflow: visible;
+}
+
+.new-backlog-item-container-upper {
+    display: flex;
+    border-bottom: 2px solid #ddd;
+}
+
+.new-backlog-item-container-lower {
+    display: grid;
+    grid-template-columns: 1fr 150px;
+    column-gap: 10px;
 }
 
 label {font-weight: bold;}
 
-.backlog-item-name-input, textarea {
-    outline: none;
-    width: calc(100% - 20px);
-    padding: 10px;
+.backlog-item-name-input {
     border: none;
-    border-radius: 0px;
-    transition: .4s;
-  }
+    width: 70%;
+    height: 50px;
+    border: 2px solid transparent;
+    border-radius: 10px;
+}
+
+.backlog-item-description-textarea {
+    outline: none;
+    max-height: calc(100% - 40px);
+    border-radius: 10px;
+    border: 2px solid #669DFF;
+    padding: 5px;
+}
+
+.edit-item-name-button {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-size: 14px;
+    font-weight: 600;
+    color: #669DFF;
+    cursor: pointer;
+    margin-left: 5px;
+}
 
 textarea {
     resize: none;
     height: 190px;
-    border-bottom: 2px solid rgb(123, 196, 255, .4);
-}
-
-.backlog-item-name-input {
-    height: 30px;
-    border-bottom: 2px solid rgb(123, 196, 255, .4);
-
 }
 
 .backlog-item-name-input:focus, textarea:focus {border-color: #669DFF}
@@ -40,14 +61,10 @@ textarea {
 .backlog-item-name-input:hover,
 textarea:hover {border-color: #669DFF}
 
-.priority-selection-container {
-    padding: 0 70px 0px 0px;
-}
-
 .add-backlog-item-button {
     position: absolute;
-    bottom: -17px;
-    left: 460px;
+    bottom: -25px;
+    left: 415px;
     outline: none;
     border: none;
     border-radius: 50%;
