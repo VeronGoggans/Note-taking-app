@@ -32,7 +32,7 @@
 .new-backlog-item-container-lower-right {
     padding-left: 10px;
     display: grid;
-    grid-template-rows: 30px 30px 1fr 60px;
+    grid-template-rows: 30px 30px 1fr 40px 60px;
     border-left: 1px solid #d3d3d3;
 }
 
@@ -103,7 +103,7 @@
     outline: none;
     border: 1px solid transparent;
     border-radius: 10px;
-    margin: 15px 0;
+    margin: 7px 0;
     background-color: transparent;
     color: rgb(255, 93, 93);
     font-size: 16px;
@@ -114,6 +114,17 @@
 .delete-item-button:hover {
     background-color: rgb(255, 115, 115, .4);
     border-color: rgb(255, 93, 93);
+}
+
+.apply-changes-to-item-button {
+    cursor: pointer;
+    outline: none;
+    border: none;
+    margin: 0 auto;
+    width: fit-content;
+    background-color: transparent;
+    color: #5c5c5c;
+    font-size: 16px;
 }
 
 .item-priority-input {

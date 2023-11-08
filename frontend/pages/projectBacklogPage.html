@@ -28,12 +28,12 @@
     </div>
   </div>
   <div class="projectCover">
-    <form class="new-backlog-item-container">
+    <div class="new-backlog-item-container">
       <div class="new-backlog-item-container-upper">
         <input type="text" class="backlog-item-name-input" spellcheck="false" placeholder="Item name" readonly></input>
         <button class="edit-item-name-button">Edit</button>
       </div>
-      <div class="new-backlog-item-container-lower">
+      <form class="new-backlog-item-container-lower">
         <div class="new-backlog-item-container-lower-left">
           <button class="edit-item-description-button">Edit</button>
           <textarea class="backlog-item-description-textarea" spellcheck="false" placeholder="Enter a description" readonly></textarea>
@@ -49,14 +49,16 @@
             <div class="priority-crucial"><p>Crucial</p></div>
           </div>
 
+          <button class="apply-changes-to-item-button" type="submit">Apply</button>
           <button class="delete-item-button">Delete</button>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
   <script src="../js/sidebar.js"></script>
   <script src="../js/backlogPage/endpoints.js"></script>
   <script src="../js/utilClasses/NodeCrafter.js"></script>
+  <script src="../js/backlogPage/style.js"></script>
   <script src="../js/backlogPage/backlogPage.js"></script>
 </body>
 </html>
