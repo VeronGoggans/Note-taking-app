@@ -21,35 +21,8 @@
         <div class="name-container">
           <h4>Product Backlog</h4>
         </div>
-        <div class="product-backlog-item-container">
-          <div class="product-backlog-item">
-            <div class="product-backlog-item-info">
-              <h3>CRUD Methods (Backlog)</h3>
-              <p>THis is the backlog description</p>
-            </div>
-            <div class="priority-level">
-              <i class="fa-solid fa-trash"></i>
-            </div>
-          </div>
-          <div class="product-backlog-item">
-            <div class="product-backlog-item-info">
-              <h3>CRUD Methods (Backlog)</h3>
-              <p>THis is the backlog description &amp;#x1F604;</p>
-            </div>
-            <div class="priority-level">
-              <i class="fa-solid fa-trash"></i>
-            </div>
-          </div>
-          <div class="product-backlog-item">
-            <div class="product-backlog-item-info">
-              <h3>CRUD Methods (Backlog)</h3>
-              <p>THis is the backlog description</p>
-            </div>
-            <div class="priority-level">
-              <i class="fa-solid fa-trash"></i>
-            </div>
-          </div>
-        </div>
+        <div class="product-backlog-item-container"></div>
+        <input type="text" class="new-backlog-item-input" placeholder="Item name">
         <button class="new-backlog-item-button"><i class="fa-solid fa-plus"></i>Add item</button>          
       </div>
     </div>
@@ -57,29 +30,33 @@
   <div class="projectCover">
     <form class="new-backlog-item-container">
       <div class="new-backlog-item-container-upper">
-        <div class="backlog-item-name-input" contenteditable="false"></div>
-        <button class="edit-item-name-button">Edit name</button>
+        <input type="text" class="backlog-item-name-input" spellcheck="false" placeholder="Item name" readonly></input>
+        <button class="edit-item-name-button">Edit</button>
       </div>
       <div class="new-backlog-item-container-lower">
-        <textarea class="backlog-item-description-textarea" placeholder="Enter a description"></textarea>
-        <div class="priority-selection-container"> 
-          <div class="priority-dropdown">
-            <div class="select">
-              <span class="selected">Low</span>
-              <div class="caret"></div>
-            </div>
-            <ul class="menu">
-              <li>Low</li>
-              <li>Medium</li>
-              <li class="active">high</li>
-            </ul>
+        <div class="new-backlog-item-container-lower-left">
+          <button class="edit-item-description-button">Edit</button>
+          <textarea class="backlog-item-description-textarea" spellcheck="false" placeholder="Enter a description" readonly></textarea>
+        </div>
+        <div class="new-backlog-item-container-lower-right">
+          <label for="item-priority-input">Priority</label>
+          <input class="item-priority-input" type="text" readonly>
+
+          <div class="priority-choice-container">
+            <div class="priority-low"><p>Low</p></div>
+            <div class="priority-medium"><p>Medium</p></div>
+            <div class="priority-high"><p>High</p></div>
+            <div class="priority-crucial"><p>Crucial</p></div>
           </div>
+
+          <button class="delete-item-button">Delete</button>
         </div>
       </div>
-      <button class="add-backlog-item-button" type="submit"><i class="fa-solid fa-plus"></i></button>
     </form>
   </div>
   <script src="../js/sidebar.js"></script>
+  <script src="../js/backlogPage/endpoints.js"></script>
+  <script src="../js/utilClasses/NodeCrafter.js"></script>
   <script src="../js/backlogPage/backlogPage.js"></script>
 </body>
 </html>

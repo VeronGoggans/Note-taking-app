@@ -1,54 +1,25 @@
 .product-backlog-item {
     position: relative;
-    margin: 7px;
-    border-radius: 7px;
-    background-color: rgb(17, 25, 40);
-    color: aliceblue;
-    display: grid;
-    grid-template-columns: 1fr 60px;
-  }
-  
-  .product-backlog-item-info {
+    margin: 20px 7px;
     padding: 10px;
     display: grid;
     grid-template-rows: 1fr 1fr;
+    border-radius: 7px;
+    background-color: #f3f3f3;
+    color: #383a4d;
   }
   
-  .product-backlog-item-info h3 { 
+  .product-backlog-item h3 { 
     cursor: pointer;
     width: fit-content;
   }
 
-  .product-backlog-item-info h3:hover {
+  .product-backlog-item h3:hover {
     color: #669DFF;
     text-decoration: underline;
   }
 
-  .priority-level i {cursor: pointer;}
-  .product-backlog-item-info p {
+  .product-backlog-item p {
     font-size: 12px;
     margin-top: 10px;
   }
-  
-  .priority-level {
-    background-color: #669DFF;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .new-backlog-item-button  {
-      margin: 0 7px;
-      cursor: pointer;
-      outline: none;
-      border: none;
-      color: #383a4d;
-      border-top: 1px solid #ddd;
-      font-size: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: start;
-      background-color: transparent;
-  }
-  
-  .new-backlog-item-button i {margin: 0 10px}

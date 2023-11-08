@@ -1,13 +1,12 @@
 .project-description-container {
     padding: 20px 10px;
     margin: 20px 0;
-    border: 2px solid #494c66;
     border-radius: 7px;
     min-height: 100px;
     height: fit-content;
-    background-color: rgb(17, 25, 40);
-    color: aliceblue;
-    box-shadow: 10px 10px 20px #8e9daa;
+    background-color: white;
+    color: #2f2f2f;
+    box-shadow: .5rem .4rem 1rem rgb(213, 226, 241);
   }
 
   .project-description-container header {
@@ -35,7 +34,7 @@
   .project-description-container p {
     margin-top: 5px;
     outline: none;
-    border: 1px solid transparent;
+    border: 2px solid transparent;
     padding: 5px 0;
     min-height: 80px;
     border-radius: 5px;

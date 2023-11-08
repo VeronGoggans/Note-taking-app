@@ -31,7 +31,7 @@ body {
     border-radius: 10px;
     box-shadow: .5rem .4rem 1rem rgb(213, 226, 241);
     display: grid;
-    grid-template-rows: 50px 1fr 50px;
+    grid-template-rows: 50px 1fr 0px 50px;
     height: 100%;
   }
   
@@ -58,3 +58,29 @@ body {
     background-color: #669DFF;
     border-radius: 3px;
 }
+
+.new-backlog-item-input {
+    outline: none;
+    border: 2px solid #669DFF;
+    border-radius: 5px;
+    padding: 0 10px;
+    font-size: 16px;
+    color: #2f2f2f;
+    visibility: hidden;
+  }
+  
+  .new-backlog-item-button  {
+      margin: 0 7px;
+      cursor: pointer;
+      outline: none;
+      border: none;
+      color: #383a4d;
+      border-top: 1px solid #ddd;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      background-color: transparent;
+  }
+  
+  .new-backlog-item-button i {margin: 0 10px}
