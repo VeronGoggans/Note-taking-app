@@ -19,24 +19,21 @@ class NoteData:
         note = self.__construct_note_object(note_data)
         note.set_content_path()
     
-        try: 
-            if parent:
-                for category in data["categories"]:
-                    if category["id"] == category_id:
-                        category["notes"].append(note.__dict__)
+        if parent:
+            for category in data["categories"]:
+                if category["id"] == category_id:
+                    category["notes"].append(note.__dict__)
+                    Json.update_json_file(self.notes_relative_path, data)
+                    return RespMsg.OK
+            return RespMsg.NOT_FOUND
+        else:
+            for category in data['categories']:
+                for subcategory in category['subcategories']:
+                    if subcategory["id"] == category_id:
+                        subcategory['notes'].append(note.__dict__)
                         Json.update_json_file(self.notes_relative_path, data)
                         return RespMsg.OK
-            else:
-                for category in data['categories']:
-                    for subcategory in category['subcategories']:
-                        if subcategory["id"] == category_id:
-                            subcategory['notes'].append(note.__dict__)
-                            Json.update_json_file(self.notes_relative_path, data)
-                            return RespMsg.OK
-            return RespMsg.SOMETHING_WENT_WRONG
-        except IOError as e:
-            return e
-
+            return RespMsg.NOT_FOUND
 
 
     # NOTE change category_name to category_id
@@ -74,7 +71,7 @@ class NoteData:
                 for subcategory in category["subcategories"]:
                     if subcategory["name"] == category_name:
                         return self.__filter_notes_list(subcategory["notes"], note_type)
-        return RespMsg.CATEGORY_404
+        return RespMsg.NOT_FOUND
 
     # Parameter 1 - parent is used to tell the function if the note_id is inside a category or a subcategory.
     # If parent is True the function will only look threw the categories to find the matching note_id 
@@ -86,16 +83,16 @@ class NoteData:
     def get_note_by_id(self, parent: bool, note_id: int):
         data = Json.load_json_file(self.notes_relative_path)
         
-        if parent == True and note_id > 0:
+        if parent:
             for category in data["categories"]:
                 for note in category['notes']:
                     if note['id'] == note_id:
                         note_object = self.__create_note_object(note)
                         note_object.set_content_text()
                         return note_object
-            return RespMsg.NOTE_404
+            return RespMsg.NOT_FOUND
                     
-        if parent == False and note_id > 0:
+        if not parent:
             for category in data["categories"]:
                 for subcategory in category['subcategories']:
                     for note in subcategory:
@@ -103,7 +100,7 @@ class NoteData:
                             note_object = self.__create_note_object(note)
                             note_object.set_content_text()
                             return note_object
-            return RespMsg.NOTE_404
+            return RespMsg.NOT_FOUND
 
     # Parameter 1 - parent is used to tell the function if the updated note is inside a category or a subcategory.
     # If parent is True the function will only look threw the categories to find the matching note id 
@@ -114,43 +111,37 @@ class NoteData:
 
     def update_note(self, parent: bool, updated_note: Note):
         data = Json.load_json_file(self.notes_relative_path)
-        try: 
-            if parent:
-                for category in data["categories"]:
-                    for note in category['notes']:
-                        if note['id'] == updated_note.id:
+        if parent:
+            for category in data["categories"]:
+                for note in category['notes']:
+                    if note['id'] == updated_note.id:
+                        note['title'] = updated_note.title
+                        updated_note.update_content(self.__get_note_path(parent, updated_note.id), updated_note.content)
+                        note['bookmark'] = updated_note.bookmark
+                        note['password_protected'] = updated_note.password_protected
+                        Json.update_json_file(self.notes_relative_path, data)
+                        return note
+            return RespMsg.NOT_FOUND
+        if not parent:
+            for category in data['categories']:
+                for subcategory in category['subcategories']:
+                    for note in subcategory['notes']:
+                        if note["id"] == updated_note.id:
                             note['title'] = updated_note.title
                             updated_note.update_content(self.__get_note_path(parent, updated_note.id), updated_note.content)
                             note['bookmark'] = updated_note.bookmark
                             note['password_protected'] = updated_note.password_protected
                             Json.update_json_file(self.notes_relative_path, data)
                             return note
-                return RespMsg.NOTE_404
-            else:
-                for category in data['categories']:
-                    for subcategory in category['subcategories']:
-                        for note in subcategory['notes']:
-                            if note["id"] == updated_note.id:
-                                note['title'] = updated_note.title
-                                updated_note.update_content(self.__get_note_path(parent, updated_note.id), updated_note.content)
-                                note['bookmark'] = updated_note.bookmark
-                                note['password_protected'] = updated_note.password_protected
-                                Json.update_json_file(self.notes_relative_path, data)
-                                return note
-                return RespMsg.NOTE_404
-        except IOError as e:
-            return RespMsg.INTERAL_SERVER_ERROR
-        
+            return RespMsg.NOT_FOUND
+    
 
     def update_note_category(self, note_id: int, category_id: int, parent: bool):
-        try:
-            note_dict = self.get_note_by_id(parent, note_id)
-            note = Note(note_dict['id'], note_dict['title'], note_dict['content'], note_dict['bookmark'], note_dict['password_protected'])
-            self.delete_note(note_id, parent)
-            self.add_note(category_id, parent, note) 
-            return RespMsg.OK
-        except Exception as e:
-            return RespMsg.INTERAL_SERVER_ERROR   
+        note_dict = self.get_note_by_id(parent, note_id)
+        note = Note(note_dict['id'], note_dict['title'], note_dict['content'], note_dict['bookmark'], note_dict['password_protected'])
+        self.delete_note(note_id, parent)
+        self.add_note(category_id, parent, note) 
+        return RespMsg.OK   
         
         
     # note_id is used to find the note that is requested to be deleted
@@ -160,29 +151,26 @@ class NoteData:
     def delete_note(self, note_id: int, child_of_parent: bool):
         data = Json.load_json_file(self.notes_relative_path)
 
-        try:
-            if child_of_parent: # Searching threw all the categories
-                for category in data['categories']:
-                    for note in category['notes']:
+        if child_of_parent: # Searching threw all the categories
+            for category in data['categories']:
+                for note in category['notes']:
+                    if note['id'] == note_id:
+                        self.__delete_note_html_file(note)
+                        category['notes'].remove(note)
+                        Json.update_json_file(self.notes_relative_path, data)
+                        return RespMsg.OK
+            return RespMsg.NOT_FOUND
+
+        if not child_of_parent: # Searching threw all the subcategories
+            for category in data['categories']:
+                for subcategory in category['subcategories']:
+                    for note in subcategory['notes']:
                         if note['id'] == note_id:
                             self.__delete_note_html_file(note)
-                            category['notes'].remove(note)
+                            subcategory['notes'].remove(note)
                             Json.update_json_file(self.notes_relative_path, data)
                             return RespMsg.OK
-
-            else: # Searching threw all the subcategories
-                for category in data['categories']:
-                    for subcategory in category['subcategories']:
-                        for note in subcategory['notes']:
-                            if note['id'] == note_id:
-                                self.__delete_note_html_file(note)
-                                subcategory['notes'].remove(note)
-                                Json.update_json_file(self.notes_relative_path, data)
-                                return RespMsg.OK
-                            
-            return RespMsg.NOTE_404
-        except Exception as e:
-            return RespMsg.INTERAL_SERVER_ERROR
+            return RespMsg.NOT_FOUND       
         
 
     # This function filters the given list of note objects by the note type that has been given.
@@ -218,7 +206,7 @@ class NoteData:
                 for note in category['notes']:
                     if note['id'] == note_id:
                         return note
-            return RespMsg.NOTE_404
+            return RespMsg.NOT_FOUND
                     
         if parent == False and note_id > 0:
             for category in data["categories"]:
@@ -226,7 +214,7 @@ class NoteData:
                     for note in subcategory:
                         if note['id'] == note_id:
                             return note
-            return RespMsg.NOTE_404
+            return RespMsg.NOT_FOUND
         
 
     # This method is used to create a list of Note objects 

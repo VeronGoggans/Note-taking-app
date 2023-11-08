@@ -5,8 +5,8 @@
     display: grid;
     grid-template-rows: 1fr 1fr;
     border-radius: 7px;
-    background-color: #f3f3f3;
-    color: #383a4d;
+    background-color: #212635;
+    color: aliceblue;
   }
   
   .product-backlog-item h3 { 

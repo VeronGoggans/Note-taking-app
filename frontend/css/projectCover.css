@@ -1,10 +1,10 @@
 .projectCover {
     position: absolute;
-    visibility: visible;
+    visibility: hidden;
     display: flex;
     justify-content: end;
     align-items: end;
-    top: 0%;
+    top: 100%;
     width: 100dvw;
     height: 100dvh;
     background-color: rgb(0 3 24 / 50%);

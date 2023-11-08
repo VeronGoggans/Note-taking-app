@@ -24,8 +24,8 @@
                 {
                     "id": 5,
                     "name": "Commit",
-                    "description": "...",
-                    "priority": "High"
+                    "description": "Users should be able to commit their code to a repository.",
+                    "priority": "None"
                 },
                 {
                     "id": 7,
@@ -48,6 +48,18 @@
                 {
                     "id": 11,
                     "name": "New Item",
+                    "description": "",
+                    "priority": "None"
+                },
+                {
+                    "id": 12,
+                    "name": "new item",
+                    "description": "Lorem ipsum is een opvultekst die drukkers, zetters, grafisch ontwerpers en dergelijken gebruiken om te kijken hoe een opmaak er grafisch uitziet. De eerste woorden van de tekst luiden doorgaans Lorem ipsum",
+                    "priority": "None"
+                },
+                {
+                    "id": 14,
+                    "name": "Merge",
                     "description": "",
                     "priority": "None"
                 }
