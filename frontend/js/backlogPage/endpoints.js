@@ -34,3 +34,9 @@ async function getBacklogItems(projectId) {
     const response = await fetch(`/productBacklogItems/${projectId}`);
     return await response.json();
 }
+
+
+async function deleteBacklogItem(projectId, itemId) {
+    const response = await fetch(`/productBacklogItem/${projectId}/${itemId}`, {method: "DELETE", headers: {"Content-Type": "application/json"}});
+    return await response.json();
+}

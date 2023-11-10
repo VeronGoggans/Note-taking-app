@@ -22,24 +22,27 @@ function showOverlay(itemId, name, description) {
     // Data functionality
     window.sessionStorage.setItem('backlog-item', itemId);
     itemNameInput.value = name;
-    itemDescriptionTextarea.value = description;
+    itemDescriptionTextarea.value = StringUtil.replaceBreakToNewLine(description);
 }
 
 function hideOverlay() {
     projectCover.style.visibility = 'hidden';
     projectCover.style.top = '100%';
+    itemNameInput.value = '';
+    itemDescriptionTextarea.value = '';
+    itemPriorityInput.value = '';
 }
 
 function toggleItemNameReadOnly(event) {
     event.preventDefault();
     itemNameInput.readOnly = !itemNameInput.readOnly;
-    editItemNameButton.textContent = itemNameInput.readOnly ? "Edit" : "Save";
+    editItemNameButton.textContent = itemNameInput.readOnly ? "Edit" : "Done";
     itemNameInput.style.borderColor = itemNameInput.readOnly ? "transparent" : "#669DFF";
 }
 
 function toggleItemDescriptionReadOnly(event) {
     event.preventDefault();
     itemDescriptionTextarea.readOnly = !itemDescriptionTextarea.readOnly;
-    editItemDescriptionButton.textContent = itemDescriptionTextarea.readOnly ? "Edit" : "Save";
+    editItemDescriptionButton.textContent = itemDescriptionTextarea.readOnly ? "Edit" : "Done";
     itemDescriptionTextarea.style.borderColor = itemDescriptionTextarea.readOnly ? "transparent" : "#669DFF";
 }

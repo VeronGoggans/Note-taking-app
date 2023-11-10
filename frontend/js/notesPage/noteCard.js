@@ -21,7 +21,7 @@ function renderNote(id, note_name, note_content, bookmark, passwordProtection) {
     })
 
     noteCard.addEventListener('mouseenter', ()=> {NoteUtils.storeNoteDataToSessionStorage(id, noteName.textContent, noteContent.innerHTML, passwordProtection, bookmark)})    
-    noteContent.addEventListener('click', ()=> {showPaperNote('edit-note'); })
+    noteContent.addEventListener('click', ()=> {showPaperNote('edit-note')})
     bookmarkIcon.addEventListener('click', ()=> {updateBookmark()})
 
     // Appending children

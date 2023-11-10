@@ -3,7 +3,7 @@
     margin: 20px 7px;
     padding: 10px;
     display: grid;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 25px 1fr;
     border-radius: 7px;
     background-color: #212635;
     color: aliceblue;

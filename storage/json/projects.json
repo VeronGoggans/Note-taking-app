@@ -28,39 +28,15 @@
                     "priority": "None"
                 },
                 {
-                    "id": 7,
-                    "name": "Pull",
-                    "description": "...",
-                    "priority": "High"
-                },
-                {
-                    "id": 9,
-                    "name": "Branching",
-                    "description": "hello",
-                    "priority": "None"
-                },
-                {
                     "id": 10,
-                    "name": "Hello",
-                    "description": "bla bla bla ",
+                    "name": "Pull request ",
+                    "description": "If your intention is to use getElementById, you should not include the # symbol in the argument. \nThe # symbol is used in CSS selectors to denote an ID, but when using getElementById, you only need to pass the actual ID without the #.\n\nHere's how you can modify your code:",
                     "priority": "None"
                 },
                 {
-                    "id": 11,
-                    "name": "New Item",
-                    "description": "",
-                    "priority": "None"
-                },
-                {
-                    "id": 12,
-                    "name": "new item",
-                    "description": "Lorem ipsum is een opvultekst die drukkers, zetters, grafisch ontwerpers en dergelijken gebruiken om te kijken hoe een opmaak er grafisch uitziet. De eerste woorden van de tekst luiden doorgaans Lorem ipsum",
-                    "priority": "None"
-                },
-                {
-                    "id": 14,
-                    "name": "Merge",
-                    "description": "",
+                    "id": 17,
+                    "name": "Hello World",
+                    "description": "If your intention is to use getElementById, you should not include the # symbol in the argument. The # symbol is used in CSS selectors to denote an ID, but when using getElementById, you only need to pass the actual ID without the #.\n\nHere's how you can modify your code:\n\n\nIf your intention is to use getElementById, you should not include the # symbol in the argument. The # symbol is used in CSS selectors to denote an ID, but when using getElementById, you only need to pass the actual ID without the #.\n\nHere's how you can modify your code:",
                     "priority": "None"
                 }
             ],

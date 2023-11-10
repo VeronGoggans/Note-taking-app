@@ -17,24 +17,4 @@ class StringUtil {
     static replaceBreakToNewLine(inputString) {
         return inputString.replace(/<br>/g, '\n');
     }
-
-    // static lineBreakCap(inputString) {
-    //     let segments = inputString.split('<br>');
-    //     let counter = 0;
-    //     let resultSegments = [];
-
-    //     for (let segment of segments) {
-    //         counter++;
-    //         if (counter === 16) {
-    //             resultSegments.push(segment);
-    //             resultSegments.push("...") 
-    //             break;
-    //         }
-    //     resultSegments.push(segment);
-    //     }
-    //     // Join the result segments back into a string
-    //     let resultString = resultSegments.join('<br>');
-
-    //     return resultString;
-    // }
 }
