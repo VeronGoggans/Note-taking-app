@@ -1,22 +1,15 @@
-.container {
-    width: 200px;
-    height: 200px;
-    border: 2px solid #ccc;
-    margin: 10px;
-    display: inline-block;
-    float: left;
-    padding: 10px;
-    overflow-y: scroll;
-  }
-  
-  .draggable {
-    width: 80px;
-    height: 80px;
-    background-color: #007bff;
-    color: white;
-    text-align: center;
-    line-height: 80px;
-    margin: 5px;
-    cursor: pointer;
-  }
-  
+.priority {
+  width: 75px;
+  height: 25px;
+  border-radius: 5px;
+  border: 2px solid rgb(97, 114, 19);
+  background-color: rgb(59, 221, 59, .4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  color: #2f2f2f;
+}
+
+border: 2px solid rgb(150, 255, 150);
+background-color: rgb(59, 221, 59, .4);

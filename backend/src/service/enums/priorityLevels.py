@@ -5,4 +5,4 @@ class PriorityLevels(Enum):
     LOW = "Low"
     MEDIUM = "Medium"
     HIGH = "High"
-    URGENT = "Urgent"
+    Crucial = "Crucial"

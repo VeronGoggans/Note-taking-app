@@ -31,11 +31,11 @@
                     "id": 10,
                     "name": "Pull request ",
                     "description": "If your intention is to use getElementById, you should not include the # symbol in the argument. \nThe # symbol is used in CSS selectors to denote an ID, but when using getElementById, you only need to pass the actual ID without the #.\n\nHere's how you can modify your code:",
-                    "priority": "None"
+                    "priority": "Crucial"
                 },
                 {
                     "id": 17,
-                    "name": "Hello World",
+                    "name": "Hello World!",
                     "description": "If your intention is to use getElementById, you should not include the # symbol in the argument. The # symbol is used in CSS selectors to denote an ID, but when using getElementById, you only need to pass the actual ID without the #.\n\nHere's how you can modify your code:\n\n\nIf your intention is to use getElementById, you should not include the # symbol in the argument. The # symbol is used in CSS selectors to denote an ID, but when using getElementById, you only need to pass the actual ID without the #.\n\nHere's how you can modify your code:",
                     "priority": "None"
                 }

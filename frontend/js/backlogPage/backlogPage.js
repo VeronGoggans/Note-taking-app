@@ -58,11 +58,13 @@ function renderUpdateBacklogItemCard(id, name, description, priority) {
 }
 
 
-function renderBacklogItemCard(id, name, description) {
+function renderBacklogItemCard(id, name, description, priority) {
     // Creating HTML elements.
     const item = NodeCrafter.create('div', {'class': 'product-backlog-item', 'id': id});
     const itemName = NodeCrafter.create('h3', {'textContent': name});
     const itemDescription = NodeCrafter.create('p', {});
+    const itemPriority = NodeCrafter.create('p', {'class': 'priority', 'textContent': priority});
+    PriorityStyles.style(priority, itemPriority);
     itemDescription.innerHTML = StringUtil.replaceNewlineWithBreak(description);
 
     // Eventlisteners
@@ -74,6 +76,7 @@ function renderBacklogItemCard(id, name, description) {
 
     // Appending children
     item.appendChild(itemName);
+    item.appendChild(itemPriority);
     item.appendChild(itemDescription);
     backlogItemContainer.appendChild(item);
 }
@@ -95,8 +98,9 @@ async function requestAddBacklogItem() {
         const item = response.Object;
         const itemId = item.id;
         const name = item.name;
+        const priority = item.priority
         hideNewItemNameInput();
-        renderBacklogItemCard(itemId, name, description);
+        renderBacklogItemCard(itemId, name, description, priority);
     }
 }
 
@@ -127,7 +131,7 @@ async function collectBacklogItems() {
             const name = items[i].name;
             const description = items[i].description;
             const priority = items[i].priority;
-            renderBacklogItemCard(itemId, name, description);
+            renderBacklogItemCard(itemId, name, description, priority);
         }
     }
 }
