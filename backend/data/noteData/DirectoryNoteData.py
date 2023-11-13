@@ -11,10 +11,19 @@ class DirectoryNoteData:
         self.notes_relative_path = os.getcwd() + '/storage/json/notes.json'
     
 
-    # Parameter 1 - category_id is the id of the category that the user wants to add a note to
-    # Parameter 2 - parent tells the function if it is looking for a category or a subcategory
-    # Parameter 3 - note is the actual note object that is going to be added to the json file and thus the category.
     def add_note(self, dir_id: int, parent: bool, note_data: NoteRequest):
+        """
+        Add a note to a specified sub directory in the notes structure.
+
+        Args:
+            dir_id (int): The identifier of the sub directory to which the note will be added.
+            note_data (NoteRequest): Data containing information to create the note.
+
+        Returns:
+            RespMsg: A response message indicating the outcome of the note addition.
+            - If successful, it returns RespMsg.OK.
+            - If the sub directory is not found, it returns RespMsg.NOT_FOUND.
+        """
         data = Json.load_json_file(self.notes_relative_path)
         note = self.__construct_note_object(note_data)
         note.set_content_path()
@@ -27,51 +36,40 @@ class DirectoryNoteData:
         return RespMsg.NOT_FOUND
 
 
-    # NOTE change category_name to category_id
-    # Parameter 1 - category_id is used to find the category to get the notes from
-    # Parameter 2 - parent is used to tell the function if the category_id is a category or a subcategory.
-    # If parent is True the function will only look threw the categories to find the matching id 
-    # If parent is False the function will only look threw the subcategories of each parent category for the matching id
+    
+    def get_notes(self, dir_id: int, note_type: str):
+        """
+        Retrieve a filtered list of notes from a specified sub directory in the notes structure.
 
-    # Parameter 3 - rerender is used to tell the function if it should only return the last note. 
-    # Rerender is only True if the user created a note and want that note send to the front end to be displayed.
-    # If rerender is False the function will return all the notes inside a category. 
-    def get_notes(self, category_name: str, parent: bool, rerender: bool, note_type: str):
+        Args:
+            sub_dir_id (str): The identifier of the sub directory from which to retrieve notes.
+            note_type (str): The type of notes to filter.
+
+        Returns:
+            Union[List[dict], RespMsg]: A filtered list of notes as dictionaries if successful, or a RespMsg indicating the outcome.
+            - If successful, it returns a list of notes as dictionaries.
+            - If the sub directory is not found, it returns RespMsg.NOT_FOUND.
+        """
         data = Json.load_json_file(self.notes_relative_path)
 
-        if parent == True and rerender == False:
-            for category in data["categories"]:
-                if category["name"] == category_name:
-                    return self.__filter_notes_list(category["notes"], note_type)
-                
-        if parent and rerender:
-            for category in data["categories"]:
-                if category["name"] == category_name:
-                    note = self.__create_note_object(category['notes'][-1])
-                    note.set_content_text()
-                    return note
-                
-        if parent == False and rerender == True:
-            for category in data["categories"]:
-                for subcategory in category["subcategories"]:
-                    if subcategory["name"] == category_name:
-                        return subcategory["notes"][-1]
-                    
-        if parent == False and rerender == False:
-            for category in data["categories"]:
-                for subcategory in category["subcategories"]:
-                    if subcategory["name"] == category_name:
-                        return self.__filter_notes_list(subcategory["notes"], note_type)
+        for dir in data["categories"]:
+            if dir["id"] == dir_id:
+                return self.__filter_notes_list(dir["notes"], note_type)
         return RespMsg.NOT_FOUND
 
-    # Parameter 1 - parent is used to tell the function if the note_id is inside a category or a subcategory.
-    # If parent is True the function will only look threw the categories to find the matching note_id 
-    # If parent is False the function will only look threw the subcategories of each parent category for the matching note_id
+ 
+    def get_note_by_id(self, note_id: int):
+        """
+        Retrieve a specific note from the notes structure by its unique identifier.
 
-    # Parameter 2 - note_id is used to look for the specific note
-    # The function will return a single note that matches the same id, if note_id has a value above 0
-    # The function will ignore the note_id if it has a value of 0 and will return a 404 message.
-    def get_note_by_id(self, parent: bool, note_id: int):
+        Args:
+            note_id (int): The unique identifier of the note to retrieve.
+
+        Returns:
+            Union[Note, RespMsg]: The requested Note object if successful, or a RespMsg indicating the outcome.
+            - If successful, it returns the specific Note object.
+            - If the note is not found, it returns RespMsg.NOT_FOUND.
+        """
         data = Json.load_json_file(self.notes_relative_path)
         
         for dir in data["categories"]:
@@ -90,14 +88,14 @@ class DirectoryNoteData:
     # Parameter 2 - updated_note contains a note object with the updated content 
     # The updated note object will be used to update the current version of that note.
 
-    def update_note(self, parent: bool, updated_note: Note):
+    def update_note(self, updated_note: Note):
         data = Json.load_json_file(self.notes_relative_path)
 
-        for category in data["categories"]:
-            for note in category['notes']:
+        for dir in data["categories"]:
+            for note in dir['notes']:
                 if note['id'] == updated_note.id:
                     note['title'] = updated_note.title
-                    updated_note.update_content(self.__get_note_path(parent, updated_note.id), updated_note.content)
+                    updated_note.update_content(self.__get_note_path(True, updated_note.id), updated_note.content)
                     note['bookmark'] = updated_note.bookmark
                     note['password_protected'] = updated_note.password_protected
                     Json.update_json_file(self.notes_relative_path, data)

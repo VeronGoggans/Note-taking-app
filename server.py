@@ -3,11 +3,13 @@ from fastapi.staticfiles import StaticFiles
 from backend.routes import NoteRoute
 from backend.routes import DirectoryRoute
 from backend.routes import SubDirectoryRoute
+from backend.routes import DirectoryNoteRoute
 
 app = FastAPI()
 app.include_router(NoteRoute.route)
 app.include_router(DirectoryRoute.route)
 app.include_router(SubDirectoryRoute.route)
+app.include_router(DirectoryNoteRoute.route)
 
 # Setting up a FRONT-END page for the API
 app.mount("/", StaticFiles(directory=".", html=True), name="static")
