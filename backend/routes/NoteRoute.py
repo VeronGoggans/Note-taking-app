@@ -1,9 +1,11 @@
 from fastapi import APIRouter
+from backend.data.noteData.DirectoryNoteData import DirectoryNoteData
 from backend.data.noteData.SubDirectoryNoteData import SubDirectoryNoteData
 from backend.requestClasses.NoteRequest import NoteRequest
 from backend.domain.enums.responseMessages import RespMsg
 
 route = APIRouter()
+note_data = SubDirectoryNoteData()
 
 
 
