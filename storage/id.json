@@ -1,32 +1,16 @@
 {
     "ids": [
         {
-            "entityName": "category",
+            "entityName": "Directory",
             "id": 68
         },
         {
-            "entityName": "note",
+            "entityName": "Note",
             "id": 129
         },
         {
-            "entityName": "subcategory",
+            "entityName": "SubDirectory",
             "id": 2
-        },
-        {
-            "entityName": "project",
-            "id": 21
-        },
-        {
-            "entityName": "boardTask",
-            "id": 15
-        },
-        {
-            "entityName": "productBacklogItem",
-            "id": 23
-        },
-        {
-            "entityName": "userStory",
-            "id": 8
         }
     ]
 }
