@@ -24,7 +24,7 @@
     width: 100%;
     top: 0px;
     padding: 16px;
-    background-color: #669DFF;
+    background-color: aliceblue;
     border-radius: 15px; 
     overflow-y: scroll;
 }
@@ -94,8 +94,8 @@
 
 .button-bar .button-button-bar button {
     cursor: pointer;
-    background-color: #669DFF;
-    color: #fff;
+    background-color: aliceblue;
+    color: #2f2f2f;
     border-radius: 6px;
     font-size: 16px;
     border: none;
