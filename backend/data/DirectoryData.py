@@ -10,8 +10,17 @@ class DirectoryData:
         self.notes_relative_path = os.getcwd() + '/storage/json/notes.json'
 
 
+    def add(self, dir_data: DirectoryRequest) -> RespMsg:
+        """
+        Add a new directory to the notes structure.
 
-    def add(self, dir_data: DirectoryRequest):
+        Args:
+            dir_data (DirectoryRequest): Data containing information to create the new directory.
+
+        Returns:
+            RespMsg: A response message indicating the outcome of the directory addition.
+            - If successful, it returns RespMsg.OK.
+        """
         data = Json.load_json_file(self.notes_relative_path)
         directory: Directory = self.__construct_dir_object(dir_data.name)
         
@@ -20,43 +29,63 @@ class DirectoryData:
         return RespMsg.OK
         
 
+    def get(self) -> list:
+        """
+        Retrieve a list of directories from the notes structure.
 
-    # This function returns all the catgories that are stored in the json file
-    # and takes in one parameter
-    # rerender will be set to true if the user just added another category 
-    # and tells the program that it only needs to return the new category
-    # This function will return all category if rerender is set to false 
-    def get(self):
+        Returns:
+            List[Dict[str, Union[int, str]]]: A list of dictionaries containing directory information.
+            - Each dictionary includes 'id' and 'name' keys representing the directory's unique identifier and name.
+        """
         data = Json.load_json_file(self.notes_relative_path)
 
-        directory_id_name_list = []
-        for directory in data['categories']:
-            id_name_object = {'id': directory['id'], 'name': directory['name']}
-            directory_id_name_list.append(id_name_object)
-        return directory_id_name_list
-            
+        dir_list = []
+        for dir in data['categories']:
+            dir_object = {'id': dir['id'], 'name': dir['name']}
+            dir_list.append(dir_object)
+        return dir_list
 
     
-    def update(self, category_id, new_category_name):
+    def update(self, dir_id, dir_name) -> RespMsg:
+        """
+        Update the name of a directory in the notes structure.
+
+        Args:
+            dir_id (int): The unique identifier of the directory to update.
+            dir_name (str): The new name for the directory.
+
+        Returns:
+            RespMsg: A response message indicating the outcome of the directory update.
+            - If successful, it returns RespMsg.OK.
+            - If the directory is not found, it returns RespMsg.NOT_FOUND.
+        """
         data = Json.load_json_file(self.notes_relative_path)
 
-        for category in data['categories']:
-            if category['id'] == category_id:
-                category['name'] = new_category_name
+        for dir in data['categories']:
+            if dir['id'] == dir_id:
+                dir['name'] = dir_name
                 Json.update_json_file(self.notes_relative_path, data)
                 return RespMsg.OK
         return RespMsg.NOT_FOUND
         
     
+    def delete(self, dir_id: int) -> RespMsg:
+        """
+        Delete a directory from the notes structure.
 
-    # category_id is used to locate the category that is requested to be deleted.
-    # The function wll return a suitted error message, if the category_id contains a invalid ID.
-    def delete(self, category_id: int):
+        Args:
+            dir_id (int): The unique identifier of the directory to delete.
+
+        Returns:
+            RespMsg: A response message indicating the outcome of the directory deletion.
+            - If successful, it returns RespMsg.OK.
+            - If the directory is not found, it returns RespMsg.NOT_FOUND.
+        """
         data = Json.load_json_file(self.notes_relative_path)
 
-        for category in data['categories']:
-            if category['id'] == category_id:
-                data['categories'].remove(category)
+        for dir in data['categories']:
+            if dir['id'] == dir_id:
+                data['categories'].remove(dir)
                 Json.update_json_file(self.notes_relative_path, data)
                 return RespMsg.OK        
         return RespMsg.NOT_FOUND
@@ -64,7 +93,7 @@ class DirectoryData:
 
     def __construct_dir_object(self, dir_name: str):
         id = IdGenerator.ID()
-        return Directory()
+        return Directory(id, dir_name)
     
 
     def __update_dir_object(self, dir_name: str):

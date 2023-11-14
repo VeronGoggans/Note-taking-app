@@ -105,12 +105,19 @@ class SubDirectoryNoteData:
         self.add_note(category_id, parent, note) 
         return RespMsg.OK   
         
-        
-    # note_id is used to find the note that is requested to be deleted
-    # child_of_parent tells the function if the note is inside of a category or subcategory
-    # if child_of_parent is true the function will only search threw the categories
-    # if child_of_parent is false the function will search threw all subcategories  
+         
     def delete_note(self, note_id: int):
+        """
+        Delete a specific note from the notes structure by its unique identifier.
+
+        Args:
+            note_id (int): The unique identifier of the note to delete.
+
+        Returns:
+            RespMsg: A response message indicating the outcome of the note deletion.
+            - If successful, it returns RespMsg.OK.
+            - If the note is not found, it returns RespMsg.NOT_FOUND.
+        """
         data = Json.load_json_file(self.notes_relative_path)
 
         for dir in data['categories']:
@@ -123,10 +130,9 @@ class SubDirectoryNoteData:
                         return RespMsg.OK
         return RespMsg.NOT_FOUND       
         
-
-    # This function filters the given list of note objects by the note type that has been given.
-    # This function returns a list of note objects which are of z type.
+ 
     def __filter_notes_list(self, notes: list, note_type: enumerate):
+        """Returns a filtered list of note objects by the note type that has been given."""
         filtered_list = []
         note_objects = self.__create_note_object_list(notes)
 
@@ -152,10 +158,6 @@ class SubDirectoryNoteData:
             return note_objects
         
 
-    # This method is used to create a list of Note objects 
-    # Paramter 1 - notes is a list of note objects converted in json data. 
-    # And this method takes that data, and creates a list of Note objects
-    # So that the methods from the Note class can be applied to them.
     def __create_note_object_list(self, notes: list):
         note_objects = []
         for note_data in notes:
@@ -164,9 +166,7 @@ class SubDirectoryNoteData:
             note_objects.append(note_object)
         return note_objects
         
-    # This method is used to make a Note object.
-    # Parameter 1 - note_data is a Note object represented in a json object.
-    # note_data will be converted from a json object into a Note object.
+
     def __create_note_object(self, note_data: Note):
         return Note(
             note_data['id'], 
@@ -177,7 +177,6 @@ class SubDirectoryNoteData:
             )
         
 
-    # This method is only used in the creation of a new note requested by the clientside code.
     def __construct_note_object(self, note_data: NoteRequest):
         note_id = IdGenerator.ID("note")
         return Note(

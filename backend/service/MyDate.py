@@ -8,6 +8,19 @@ class MyDate():
 
     @staticmethod
     def date(region='EU'):
+        """
+        Get the current date formatted based on the specified region.
+
+        Args:
+            region (str, optional): The region for date formatting. Defaults to 'EU'.
+                - 'EU': European date format (dd/mm/yyyy).
+                - 'US': American date format (mm/dd/yyyy).
+
+        Returns:
+            Union[str, RespMsg]: 
+            - If successful, it returns the current date formatted based on the specified region.
+            - If an invalid region is provided, it returns a message indicating to use 'EU' or 'US'.
+        """
         current_date = date.today()
 
         if region.upper() == 'EU':
@@ -20,6 +33,19 @@ class MyDate():
     
     @staticmethod
     def datetime(region='EU'):
+        """
+        Get the current date and time formatted based on the specified region.
+
+        Args:
+            region (str, optional): The region for date and time formatting. Defaults to 'EU'.
+                - 'EU': European date and time format (dd/mm/yyyy HH:MM:SS).
+                - 'US': American date and time format (mm/dd/yyyy HH:MM:SS).
+
+        Returns:
+            Union[str, RespMsg]: 
+            - If successful, it returns the current date and time formatted based on the specified region.
+            - If an invalid region is provided, it returns a message indicating to use 'EU' or 'US'.
+        """
         current_datetime = datetime.now()
 
         if region.upper() == 'EU':
@@ -32,6 +58,22 @@ class MyDate():
 
     @staticmethod
     def date_diff(date1: str, date2: str, region='EU'):
+        """
+        Calculate the difference in days between two dates based on the specified region.
+
+        Args:
+            date1 (str): The first date in string format.
+            date2 (str): The second date in string format.
+            region (str, optional): The region for date formatting. Defaults to 'EU'.
+                - 'EU': European date format (dd/mm/yyyy).
+                - 'US': American date format (mm/dd/yyyy).
+
+        Returns:
+            Union[timedelta, str]: 
+            - If successful, it returns the timedelta representing the difference in days between the two dates.
+            - If an invalid region is provided, it returns a message indicating to use 'EU' or 'US'.
+            - If a ValueError occurs, it returns a message indicating that the time component was found, suggesting the use of `time_diff`.
+        """
         eu_date_format = '%d/%m/%Y'
         us_date_format = '%m/%d/%Y'
         try:
@@ -48,6 +90,22 @@ class MyDate():
 
     @staticmethod
     def time_diff(date1: str, date2: str, region='EU'):
+        """
+        Calculate the difference in time between two datetime values based on the specified region.
+
+        Args:
+            date1 (str): The first datetime value in string format.
+            date2 (str): The second datetime value in string format.
+            region (str, optional): The region for date and time formatting. Defaults to 'EU'.
+                - 'EU': European date and time format (dd/mm/yyyy HH:MM:SS).
+                - 'US': American date and time format (mm/dd/yyyy HH:MM:SS).
+
+        Returns:
+            Union[timedelta, str]: 
+            - If successful, it returns the timedelta representing the difference in time between the two datetime values.
+            - If an invalid region is provided, it returns a message indicating to use 'EU' or 'US'.
+            - If a ValueError occurs, it returns a message indicating that the date component was missing.
+        """
         eu_date_format = '%d/%m/%Y %H:%M:%S'
         us_date_format = '%m/%d/%Y %H:%M:%S'
 
