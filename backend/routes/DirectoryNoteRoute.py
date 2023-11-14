@@ -23,19 +23,19 @@ def note_by_id(note_id: int):
     return {'Status_code': RespMsg.NOT_FOUND}
 
 
-@route.post('/note/{category_id}/{parent}')
-def note(category_id: int, parent: bool, note_data: NoteRequest):  
-    response = note_data.add_note(category_id, parent, note_data)
+@route.post('/directory/note/{dir_id}')
+def note(dir_id: int, note: NoteRequest):  
+    response = note_data.add_note(dir_id, note)
     if response != RespMsg.NOT_FOUND:
         return {'Status_code': RespMsg.OK, "Object": response}
     return {'Status_code': RespMsg.NOT_FOUND}
 
 
-@route.delete('/note/{note_id}/{child_of_parent}')
-def note(note_id: int, child_of_parent: bool):
-    response = note_data.delete_note(note_id, child_of_parent)
+@route.delete('/directory/note/{note_id}')
+def note(note_id: int):
+    response = note_data.delete_note(note_id)
     if response != RespMsg.NOT_FOUND:
-        return {'Status_code': RespMsg.OK, "Object": response}
+        return {'Status_code': response}
     return {'Status_code': RespMsg.NOT_FOUND}
 
 
