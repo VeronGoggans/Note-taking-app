@@ -1,5 +1,5 @@
 from backend.domain.SubDirectory import SubDirectory
-from backend.requestClasses.SubDirectoryRequest import SubDirectoryRequest
+from backend.presentation.requestBodies.SubDirectoryRequest import SubDirectoryRequest
 from backend.domain.enums.responseMessages import RespMsg
 from backend.service.fileOperations.JsonOperations import Json
 from backend.service.generators.IdGenerator import IdGenerator

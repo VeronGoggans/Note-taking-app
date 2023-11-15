@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from backend.data.noteData.DirectoryNoteData import DirectoryNoteData
-from backend.requestClasses.NoteRequest import NoteRequest
+from backend.presentation.requestBodies.NoteRequest import NoteRequest
 from backend.domain.enums.responseMessages import RespMsg
 
 route = APIRouter()

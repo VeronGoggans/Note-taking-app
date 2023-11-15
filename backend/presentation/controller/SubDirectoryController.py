@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from backend.data.SubDirectoryData import SubDirectoryData
-from backend.requestClasses.SubDirectoryRequest import SubDirectoryRequest
+from backend.presentation.requestBodies.SubDirectoryRequest import SubDirectoryRequest
 from backend.domain.enums.responseMessages import RespMsg
 
 route = APIRouter()

@@ -1,5 +1,5 @@
 from backend.domain.Directory import Directory
-from backend.requestClasses.DirectoryRequest import DirectoryRequest
+from backend.presentation.requestBodies.DirectoryRequest import DirectoryRequest
 from backend.domain.enums.responseMessages import RespMsg
 from backend.service.fileOperations.JsonOperations import Json
 from backend.service.generators.IdGenerator import IdGenerator

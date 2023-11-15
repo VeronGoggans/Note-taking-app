@@ -1,15 +1,15 @@
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
-from backend.routes import NoteRoute
-from backend.routes import DirectoryRoute
-from backend.routes import SubDirectoryRoute
-from backend.routes import DirectoryNoteRoute
+from backend.presentation.controller import SubDirectoryNoteController
+from backend.presentation.controller import DirectoryController
+from backend.presentation.controller import SubDirectoryController
+from backend.presentation.controller import DirectoryNoteController
 
 app = FastAPI()
-app.include_router(NoteRoute.route)
-app.include_router(DirectoryRoute.route)
-app.include_router(SubDirectoryRoute.route)
-app.include_router(DirectoryNoteRoute.route)
+app.include_router(DirectoryController.route)
+app.include_router(SubDirectoryController.route)
+app.include_router(DirectoryNoteController.route)
+app.include_router(SubDirectoryNoteController.route)
 
 # Setting up a FRONT-END page for the API
 app.mount("/", StaticFiles(directory=".", html=True), name="static")
