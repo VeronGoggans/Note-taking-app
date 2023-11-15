@@ -4,7 +4,7 @@ from backend.domain.enums.noteTypes import NoteTypes
 from backend.service.fileOperations.JsonOperations import Json
 from backend.presentation.requestBodies.NoteRequest import NoteRequest
 from backend.service.generators.IdGenerator import IdGenerator
-from backend.service.MyDate import MyDate
+from backend.service.dateOperations.MyDate import MyDate
 import os
 
 class SubDirectoryNoteData:

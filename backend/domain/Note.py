@@ -1,5 +1,5 @@
 from backend.service.fileOperations.HTMLOperations import HTMLOperations
-from backend.service.MyDate import MyDate
+from backend.service.dateOperations.MyDate import MyDate
 
 class Note:
     def __init__(self, id: int, title: str, content: str, bookmark: bool, 
