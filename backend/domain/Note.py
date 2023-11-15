@@ -1,4 +1,5 @@
 from backend.service.fileOperations.HTMLOperations import HTMLOperations
+from backend.service.MyDate import MyDate
 
 class Note:
     def __init__(self, id: int, title: str, content: str, bookmark: bool, password_protected: bool):
@@ -7,6 +8,8 @@ class Note:
         self.content = content
         self.bookmark = bookmark
         self.password_protected = password_protected
+        self.last_edit = MyDate.datetime()
+        self.creation = MyDate.date()
 
     
     def set_content_path(self):
@@ -34,3 +37,8 @@ class Note:
     def delete_note_file(self, note_path: str):
         """This method uses the note path do delete the file."""
         HTMLOperations.delete(note_path)
+
+
+    def update_last_edit(self):
+        """This method updates the last edit attribute of a note."""
+        self.last_edit = MyDate.datetime()
