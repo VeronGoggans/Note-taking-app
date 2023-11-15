@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from backend.data.DirectoryData import DirectoryData
+from backend.data.directory.DirectoryData import DirectoryData
 from backend.presentation.requestBodies.DirectoryRequest import DirectoryRequest
 from backend.domain.enums.responseMessages import RespMsg
 

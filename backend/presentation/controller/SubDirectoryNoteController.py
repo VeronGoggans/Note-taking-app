@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from backend.data.noteData.SubDirectoryNoteData import SubDirectoryNoteData
+from backend.data.note.SubDirectoryNoteData import SubDirectoryNoteData
 from backend.presentation.requestBodies.NoteRequest import NoteRequest
 from backend.domain.enums.responseMessages import RespMsg
 
