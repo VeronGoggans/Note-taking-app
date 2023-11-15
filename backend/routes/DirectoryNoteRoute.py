@@ -40,7 +40,7 @@ def note(note_id: int):
 
 
 @route.put('/directory/note/{note_id}')
-def note(note_id: str, note: NoteRequest):
+def note(note_id: int, note: NoteRequest):
     response = note_data.update_note(note_id, note)
     if response != RespMsg.NOT_FOUND:
         return {'Status_code': RespMsg.OK, "Object": response}

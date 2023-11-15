@@ -82,15 +82,15 @@ class DirectoryNoteData:
         return RespMsg.NOT_FOUND
                     
 
-    def update_note(self, note_id: int, updated_note: NoteRequest):
+    def update_note(self, note_id: int, note_data: NoteRequest):
         data = Json.load_json_file(self.notes_relative_path)
 
         for dir in data["categories"]:
             for note in dir['notes']:
                 if note['id'] == note_id:
-                    self.__update_note(note, updated_note)
+                    updated_note = self.__update_note(note, note_data)
                     Json.update_json_file(self.notes_relative_path, data)
-                    return note
+                    return updated_note
         return RespMsg.NOT_FOUND
     
 
@@ -204,8 +204,10 @@ class DirectoryNoteData:
 
     
     def __update_note(self, current_note: dict, updated_note: NoteRequest):
-        current_note['title'] = updated_note.name
-        updated_note.update_content(self.__get_note_path(current_note['id']), updated_note.content)
+        note: Note = self.__create_note_object(current_note)
+        note.update_content(self.__get_note_path(current_note['id']), updated_note.content)
+
+        current_note['title'] = updated_note.title
         current_note['bookmark'] = updated_note.bookmark
         current_note['password_protected'] = updated_note.password_protected
         current_note['last_edit'] = MyDate.datetime()

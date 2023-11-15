@@ -16,8 +16,8 @@ def directories():
 
 
 @route.post('/directory')
-def directory(request_data: DirectoryRequest):
-    response = dir_data.add(dir_data)
+def directory(dir: DirectoryRequest):
+    response = dir_data.add(dir)
 
     if response != RespMsg.NOT_FOUND:
         return {'Status_code': RespMsg.OK, "Object": response}
@@ -25,9 +25,9 @@ def directory(request_data: DirectoryRequest):
 
 
 
-@route.put('/directory/{dir_id}/{dir_name}')
-def directory(dir_id: int, dir_name: str):
-    response = dir_data.update(dir_id, dir_name)
+@route.put('/directory/{dir_id}')
+def directory(dir_id: int, dir: DirectoryRequest):
+    response = dir_data.update(dir_id, dir.name)
 
     if response != RespMsg.NOT_FOUND:
         return {'Status_code': RespMsg.OK, "Object": response}
