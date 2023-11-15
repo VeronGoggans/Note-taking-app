@@ -12,7 +12,7 @@
                     "bookmark": false,
                     "password_protected": false,
                     "last_edit": "15/11/2023 13:53:59",
-                    "created": "15/11/2023"
+                    "creation": "15/11/2023"
                 },
                 {
                     "id": 116,
@@ -21,7 +21,16 @@
                     "bookmark": false,
                     "password_protected": false,
                     "last_edit": "15/11/2023 13:53:59",
-                    "created": "15/11/2023"
+                    "creation": "15/11/2023"
+                },
+                {
+                    "id": 131,
+                    "title": "Testing new note attributes",
+                    "content": "C:\\Users\\jsvgo\\Web Dev\\Note Taking App/storage/notes/note-131.html",
+                    "bookmark": false,
+                    "password_protected": false,
+                    "last_edit": "15/11/2023 14:44:55",
+                    "creation": "15/11/2023"
                 }
             ]
         }

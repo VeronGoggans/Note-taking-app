@@ -4,6 +4,7 @@ from backend.domain.enums.noteTypes import NoteTypes
 from backend.service.fileOperations.JsonOperations import Json
 from backend.requestClasses.NoteRequest import NoteRequest
 from backend.service.generators.IdGenerator import IdGenerator
+from backend.service.MyDate import MyDate
 import os
 
 class DirectoryNoteData:
@@ -81,16 +82,13 @@ class DirectoryNoteData:
         return RespMsg.NOT_FOUND
                     
 
-    def update_note(self, updated_note: Note):
+    def update_note(self, note_id: int, updated_note: NoteRequest):
         data = Json.load_json_file(self.notes_relative_path)
 
         for dir in data["categories"]:
             for note in dir['notes']:
-                if note['id'] == updated_note.id:
-                    note['title'] = updated_note.title
-                    updated_note.update_content(self.__get_note_path(True, updated_note.id), updated_note.content)
-                    note['bookmark'] = updated_note.bookmark
-                    note['password_protected'] = updated_note.password_protected
+                if note['id'] == note_id:
+                    self.__update_note(note, updated_note)
                     Json.update_json_file(self.notes_relative_path, data)
                     return note
         return RespMsg.NOT_FOUND
@@ -153,7 +151,7 @@ class DirectoryNoteData:
             return note_objects
         
 
-    def __get_note_by_id(self, parent: bool, note_id: int):
+    def __get_note_by_id(self, note_id: int):
         data = Json.load_json_file(self.notes_relative_path)
         
         for dir in data["categories"]:
@@ -178,12 +176,14 @@ class DirectoryNoteData:
             note_data['title'], 
             note_data['content'], 
             note_data['bookmark'], 
-            note_data['password_protected']
+            note_data['password_protected'],
+            note_data['last_edit'],
+            note_data['creation']
             )
         
 
     def __construct_note_object(self, note_data: NoteRequest):
-        note_id = IdGenerator.ID("Note")
+        note_id = IdGenerator.ID("note")
         return Note(
             note_id, 
             note_data.title, 
@@ -193,11 +193,20 @@ class DirectoryNoteData:
             )
 
     
-    def __get_note_path(self, parent: bool, note_id: int):
+    def __get_note_path(self, note_id: int):
         """Returns the path of a note."""
-        return self.__get_note_by_id(parent, note_id)['content']
+        return self.__get_note_by_id(note_id)['content']
     
 
     def __delete_note_html_file(self, note_data: Note):
         note_object = self.__create_note_object(note_data)
         note_object.delete_note_file(note_object.content)
+
+    
+    def __update_note(self, current_note: dict, updated_note: NoteRequest):
+        current_note['title'] = updated_note.name
+        updated_note.update_content(self.__get_note_path(current_note['id']), updated_note.content)
+        current_note['bookmark'] = updated_note.bookmark
+        current_note['password_protected'] = updated_note.password_protected
+        current_note['last_edit'] = MyDate.datetime()
+        return current_note

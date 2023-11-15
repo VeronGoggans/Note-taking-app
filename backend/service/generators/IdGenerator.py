@@ -28,7 +28,7 @@ class IdGenerator:
         unique_id = None
 
         for entity in data['ids']:
-            if entity['entityName'] == entity_name.upper():
+            if entity['entityName'] == entity_name:
                 unique_id = entity['id']
                 entity['id'] = unique_id + 1
                 Json.update_json_file(path_to_id_file, data)

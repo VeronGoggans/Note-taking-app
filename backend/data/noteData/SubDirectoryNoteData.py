@@ -4,6 +4,7 @@ from backend.domain.enums.noteTypes import NoteTypes
 from backend.service.fileOperations.JsonOperations import Json
 from backend.requestClasses.NoteRequest import NoteRequest
 from backend.service.generators.IdGenerator import IdGenerator
+from backend.service.MyDate import MyDate
 import os
 
 class SubDirectoryNoteData:
@@ -204,4 +205,5 @@ class SubDirectoryNoteData:
         updated_note.update_content(self.__get_note_path(False, updated_note.id), updated_note.content)
         current_note['bookmark'] = updated_note.bookmark
         current_note['password_protected'] = updated_note.password_protected
+        current_note['last_edit'] = MyDate.datetime()
         return current_note
