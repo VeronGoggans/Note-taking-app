@@ -1,18 +1,19 @@
 from backend.domain.Note import Note
 from backend.domain.enums.responseMessages import RespMsg
-from backend.domain.enums.noteTypes import NoteTypes
 from backend.service.fileOperations.JsonOperations import Json
 from backend.presentation.requestBodies.NoteRequest import NoteRequest
 from backend.service.generators.IdGenerator import IdGenerator
 from backend.service.dateOperations.MyDate import MyDate
+from backend.service.filters.NoteFilter import NoteFilter
 import os
 
 class DirectoryNoteData:
     def __init__(self):
         self.notes_relative_path = os.getcwd() + '/storage/json/notes.json'
+        self.filter = NoteFilter()
     
 
-    def add_note(self, dir_id: int, note_data: NoteRequest):
+    def add_note(self, dir_id: int, note: Note):
         """
         Add a note to a specified sub directory in the notes structure.
 
@@ -26,8 +27,6 @@ class DirectoryNoteData:
             - If the sub directory is not found, it returns RespMsg.NOT_FOUND.
         """
         data = Json.load_json_file(self.notes_relative_path)
-        note = self.__construct_note_object(note_data)
-        note.set_content_path()
     
         for dir in data["categories"]:
             if dir["id"] == dir_id:
@@ -55,7 +54,7 @@ class DirectoryNoteData:
 
         for dir in data["categories"]:
             if dir["id"] == dir_id:
-                return self.__filter_notes_list(dir["notes"], note_type)
+                return self.filter.filter_by_type(dir["notes"], note_type)
         return RespMsg.NOT_FOUND
 
  
@@ -125,30 +124,6 @@ class DirectoryNoteData:
                     Json.update_json_file(self.notes_relative_path, data)
                     return RespMsg.OK
         return RespMsg.NOT_FOUND
-
-
-    def __filter_notes_list(self, notes: list, note_type: enumerate):
-        """Returns a filtered list of note objects by the note type that has been given."""
-        filtered_list = []
-        note_objects = self.__create_note_object_list(notes)
-
-        if note_type == NoteTypes.STANDARD.value:
-            for note in note_objects:
-                if note.bookmark == False and note.password_protected == False:
-                    filtered_list.append(note)
-            return filtered_list
-        if note_type == NoteTypes.BOOKMARKED.value:
-            for note in note_objects:
-                if note.bookmark == True:
-                    filtered_list.append(note)
-            return filtered_list
-        if note_type == NoteTypes.PROTECTED.value:
-            for note in note_objects:
-                if note.password_protected == True:
-                    filtered_list.append(note)
-            return filtered_list
-        if note_type == NoteTypes.ALL.value:
-            return note_objects
         
 
     def __get_note_by_id(self, note_id: int):
@@ -159,15 +134,6 @@ class DirectoryNoteData:
                 if note['id'] == note_id:
                     return note
         return RespMsg.NOT_FOUND
-        
-
-    def __create_note_object_list(self, notes: list):
-        note_objects = []
-        for note_data in notes:
-            note_object = self.__create_note_object(note_data)
-            note_object.set_content_text()
-            note_objects.append(note_object)
-        return note_objects
         
     
     def __create_note_object(self, note_data: Note):
@@ -181,17 +147,6 @@ class DirectoryNoteData:
             note_data['creation']
             )
         
-
-    def __construct_note_object(self, note_data: NoteRequest):
-        note_id = IdGenerator.ID("note")
-        return Note(
-            note_id, 
-            note_data.title, 
-            note_data.content, 
-            note_data.bookmark, 
-            note_data.password_protected
-            )
-
     
     def __get_note_path(self, note_id: int):
         """Returns the path of a note."""

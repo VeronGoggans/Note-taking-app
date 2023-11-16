@@ -79,12 +79,12 @@ class SubDirectoryData:
         return RespMsg.NOT_FOUND    
         
 
-    def delete(self, subcategory_id: int):
+    def delete(self, sub_dir_id: int):
         """
         Delete a subdirectory from the notes structure.
 
         Args:
-            subcategory_id (int): The unique identifier of the subdirectory to delete.
+            sub_dir_id (int): The unique identifier of the subdirectory to delete.
 
         Returns:
             RespMsg: A response message indicating the outcome of the subdirectory deletion.
@@ -95,7 +95,7 @@ class SubDirectoryData:
 
         for dir in data["categories"]:
             for sub_dir in dir["subcategories"]:
-                if sub_dir["id"] == subcategory_id:
+                if sub_dir["id"] == sub_dir_id:
                     dir["subcategories"].remove(sub_dir)
                     Json.update_json_file(self.notes_relative_path, data)
                     return RespMsg.OK

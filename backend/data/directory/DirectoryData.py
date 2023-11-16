@@ -10,6 +10,23 @@ class DirectoryData:
         self.notes_relative_path = os.getcwd() + '/storage/json/notes.json'
 
 
+    def get(self) -> list:
+        """
+        Retrieve a list of directories from the notes structure.
+
+        Returns:
+            List[Dict[str, Union[int, str]]]: A list of dictionaries containing directory information.
+            - Each dictionary includes 'id' and 'name' keys representing the directory's unique identifier and name.
+        """
+        data = Json.load_json_file(self.notes_relative_path)
+
+        dir_list = []
+        for dir in data['categories']:
+            dir_object = {'id': dir['id'], 'name': dir['name']}
+            dir_list.append(dir_object)
+        return dir_list
+
+
     def add(self, dir_data: DirectoryRequest) -> RespMsg:
         """
         Add a new directory to the notes structure.
@@ -27,26 +44,9 @@ class DirectoryData:
         data["categories"].append(directory.__dict__)
         Json.update_json_file(self.notes_relative_path, data)
         return RespMsg.OK
-        
-
-    def get(self) -> list:
-        """
-        Retrieve a list of directories from the notes structure.
-
-        Returns:
-            List[Dict[str, Union[int, str]]]: A list of dictionaries containing directory information.
-            - Each dictionary includes 'id' and 'name' keys representing the directory's unique identifier and name.
-        """
-        data = Json.load_json_file(self.notes_relative_path)
-
-        dir_list = []
-        for dir in data['categories']:
-            dir_object = {'id': dir['id'], 'name': dir['name']}
-            dir_list.append(dir_object)
-        return dir_list
 
     
-    def update(self, dir_id, dir_name) -> RespMsg:
+    def update(self, dir_id: int, dir_name: str) -> RespMsg:
         """
         Update the name of a directory in the notes structure.
 
