@@ -1,8 +1,6 @@
 from backend.domain.Directory import Directory
-from backend.presentation.requestBodies.DirectoryRequest import DirectoryRequest
 from backend.domain.enums.responseMessages import RespMsg
-from backend.service.fileOperations.JsonOperations import Json
-from backend.service.generators.IdGenerator import IdGenerator
+from backend.data.fileOperations.JsonOperations import Json
 import os
 
 class DirectoryData:
@@ -22,12 +20,11 @@ class DirectoryData:
 
         dir_list = []
         for dir in data['categories']:
-            dir_object = {'id': dir['id'], 'name': dir['name']}
-            dir_list.append(dir_object)
+            dir_list.append({'id': dir['id'], 'name': dir['name']})
         return dir_list
 
 
-    def add(self, dir_data: DirectoryRequest) -> RespMsg:
+    def add(self, dir: Directory) -> RespMsg:
         """
         Add a new directory to the notes structure.
 
@@ -39,11 +36,10 @@ class DirectoryData:
             - If successful, it returns RespMsg.OK.
         """
         data = Json.load_json_file(self.notes_relative_path)
-        directory: Directory = self.__construct_dir_object(dir_data.name)
         
-        data["categories"].append(directory.__dict__)
+        data["categories"].append(dir.__dict__)
         Json.update_json_file(self.notes_relative_path, data)
-        return RespMsg.OK
+        return dir
 
     
     def update(self, dir_id: int, dir_name: str) -> RespMsg:
@@ -65,7 +61,7 @@ class DirectoryData:
             if dir['id'] == dir_id:
                 dir['name'] = dir_name
                 Json.update_json_file(self.notes_relative_path, data)
-                return RespMsg.OK
+                return dir
         return RespMsg.NOT_FOUND
         
     
@@ -89,11 +85,6 @@ class DirectoryData:
                 Json.update_json_file(self.notes_relative_path, data)
                 return RespMsg.OK        
         return RespMsg.NOT_FOUND
-    
-
-    def __construct_dir_object(self, dir_name: str):
-        id = IdGenerator.ID()
-        return Directory(id, dir_name)
     
 
     def __update_dir_object(self, dir_name: str):

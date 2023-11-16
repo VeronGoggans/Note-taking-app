@@ -1,6 +1,6 @@
 from backend.domain.Note import Note
 from backend.domain.enums.responseMessages import RespMsg
-from backend.service.fileOperations.JsonOperations import Json
+from backend.data.fileOperations.JsonOperations import Json
 from backend.presentation.requestBodies.NoteRequest import NoteRequest
 from backend.service.generators.IdGenerator import IdGenerator
 from backend.service.dateOperations.MyDate import MyDate

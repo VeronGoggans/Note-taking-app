@@ -33,6 +33,12 @@
                     "creation": "15/11/2023"
                 }
             ]
+        },
+        {
+            "id": 71,
+            "name": "Test-Map",
+            "subcategories": [],
+            "notes": []
         }
     ]
 }

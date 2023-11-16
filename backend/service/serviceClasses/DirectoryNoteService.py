@@ -19,7 +19,6 @@ class DirectoryNoteService:
     def add_note(self, dir_id: int, note: NoteRequest):
         note_object : Note = self.__construct_note_object(note)
         note_object.set_content_path()
-
         return self.note_data.add_note(dir_id, note_object)
     
     

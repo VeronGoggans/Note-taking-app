@@ -1,4 +1,4 @@
-from backend.service.fileOperations.HTMLOperations import HTMLOperations
+from backend.data.fileOperations.HTMLOperations import HTMLOperations
 from backend.service.dateOperations.MyDate import MyDate
 
 class Note:

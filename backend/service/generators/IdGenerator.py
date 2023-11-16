@@ -1,4 +1,4 @@
-from backend.service.fileOperations.JsonOperations import Json
+from backend.data.fileOperations.JsonOperations import Json
 import os
 
 

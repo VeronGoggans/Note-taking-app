@@ -8,14 +8,14 @@ route = APIRouter()
 sub_dir_service = SubDirectoryService( sub_dir_data = SubDirectoryData() )
 
 
-@route.get('/subDirectories/{dir_name}')
+@route.get('/subdirectories/{dir_id}')
 def subcategories(dir_id: int):
     response = sub_dir_service.get_subdirectories(dir_id)
     return {"Status_code": RespMsg.OK, "SubDirectoryNames": response}
 
 
 
-@route.post('/subDirectory/{dir_id}')
+@route.post('/subdirectory/{dir_id}')
 def subcategory(dir_id: int, request_data: SubDirectoryRequest):
     response = sub_dir_service.add_subdirectory(dir_id, request_data)
 
@@ -35,7 +35,7 @@ def subcategory(sub_dir_id: int, request_data: SubDirectoryRequest):
 
 
 
-@route.delete('/subDirectory/{sub_dir_id}')
+@route.delete('/subdirectory/{sub_dir_id}')
 def subcategory(sub_dir_id: int):
     response = sub_dir_service.delete_subdirectory(sub_dir_id)
 

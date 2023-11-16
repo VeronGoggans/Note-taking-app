@@ -6,19 +6,19 @@ from backend.service.serviceClasses.DirectoryService import DirectoryService
 
 
 route = APIRouter()
-dir_servive = DirectoryService( dir_data = DirectoryData() )
+directory_servive = DirectoryService( dir_data = DirectoryData() )
 
 
 @route.get('/directories')
 def directories():
-    response = dir_servive.get_directories()
+    response = directory_servive.get_directories()
     return {"Status_code": RespMsg.OK, "category_names": response}
 
 
 
 @route.post('/directory')
 def directory(dir: DirectoryRequest):
-    response = dir_servive.add_directory(dir)
+    response = directory_servive.add_directory(dir)
 
     if response != RespMsg.NOT_FOUND:
         return {'Status_code': RespMsg.OK, "Object": response}
@@ -28,7 +28,7 @@ def directory(dir: DirectoryRequest):
 
 @route.put('/directory/{dir_id}')
 def directory(dir_id: int, dir: DirectoryRequest):
-    response = dir_servive.update_directory(dir_id, dir)
+    response = directory_servive.update_directory(dir_id, dir)
 
     if response != RespMsg.NOT_FOUND:
         return {'Status_code': RespMsg.OK, "Object": response}
@@ -39,7 +39,7 @@ def directory(dir_id: int, dir: DirectoryRequest):
 @route.delete('/directory/{dir_id}')
 def directory(dir_id: int):
     
-    response = dir_servive.delete_directory(dir_id)
+    response = directory_servive.delete_directory(dir_id)
     if response != RespMsg.NOT_FOUND:
-        return {'Status_code': RespMsg.OK, "Object": response}
+        return {'Status_code': response}
     return {'Status_code': RespMsg.NOT_FOUND}
