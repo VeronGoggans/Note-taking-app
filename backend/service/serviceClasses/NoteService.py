@@ -10,11 +10,13 @@ class NoteService:
         self.note_data_2 = note_data_2
 
 
-    def get_notes(self, dir_id: int, note_type: str, directory = True):
+
+    def get_notes(self, dir_id: int, note_type: str, directory=True):
         if directory:
             return self.note_data_1.get_notes(dir_id, note_type)
         return self.note_data_2.get_notes(dir_id, note_type)
     
+
 
     def get_note_by_id(self, note_id: int, directory = True):
         if directory:
@@ -22,25 +24,29 @@ class NoteService:
         return self.note_data_2.get_note_by_id(note_id)
     
 
-    def add_note(self, dir_id: int, note: NoteRequest, directory = True):
-        note_object : Note = self.__construct_note_object(note)
-        note_object.set_content_path()
+
+    def add_note(self, dir_id: int, request_data: NoteRequest, directory = True):
+        note : Note = self.__construct_note_object(request_data)
+        note.set_content_path()
         if directory:
-            return self.note_data_1.add_note(dir_id, note_object)
-        return self.note_data_2.add_note(dir_id, note_object)
+            return self.note_data_1.add_note(dir_id, note)
+        return self.note_data_2.add_note(dir_id, note)
 
     
-    def update_note(self, note_id: int, updated_note: Note, directory = True):
+
+    def update_note(self, note_id: int, updated_note: NoteRequest, directory = True):
         if directory:
-            return self.note_data_1.update_note()
-        return self.note_data_2.update_note()
+            return self.note_data_1.update_note(note_id, updated_note)
+        return self.note_data_2.update_note(note_id, updated_note)
     
+
 
     def delete_note(self, note_id: int, directory = True):
         if directory:
             return self.note_data_1.delete_note(note_id)
         return self.note_data_2.delete_note(note_id)
     
+
 
     def __construct_note_object(self, note_data: NoteRequest):
         note_id = IdGenerator.ID("note")

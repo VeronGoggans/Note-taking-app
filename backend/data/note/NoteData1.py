@@ -34,7 +34,6 @@ class NoteData1:
                 return note
         return RespMsg.NOT_FOUND
 
-
     
     def get_notes(self, dir_id: int, note_type: str):
         """
@@ -81,6 +80,18 @@ class NoteData1:
                     
 
     def update_note(self, note_id: int, note_data: NoteRequest):
+        """
+        Update a note with the provided note data.
+
+        Args:
+            note_id (int): The unique identifier of the note to be updated.
+            note_data (NoteRequest): The data to update the note.
+
+        Returns:
+            Union[dict, RespMsg]: 
+            - If successful, it returns the updated note as a dictionary.
+            - If the note with the specified ID is not found, it returns a message indicating 'NOT_FOUND'.
+        """
         data = Json.load_json_file(self.notes_relative_path)
 
         for dir in data["categories"]:
@@ -97,8 +108,7 @@ class NoteData1:
         note = Note(note_dict['id'], note_dict['title'], note_dict['content'], note_dict['bookmark'], note_dict['password_protected'])
         self.delete_note(note_id)
         self.add_note(dir_id, note) 
-        return RespMsg.OK   
-        
+        return RespMsg.OK    
         
     
     def delete_note(self, note_id: int):
@@ -124,16 +134,6 @@ class NoteData1:
                     return RespMsg.OK
         return RespMsg.NOT_FOUND
         
-
-    def __get_note_by_id(self, note_id: int):
-        data = Json.load_json_file(self.notes_relative_path)
-        
-        for dir in data["categories"]:
-            for note in dir['notes']:
-                if note['id'] == note_id:
-                    return note
-        return RespMsg.NOT_FOUND
-        
     
     def __create_note_object(self, note_data: Note):
         return Note(
@@ -145,11 +145,6 @@ class NoteData1:
             note_data['last_edit'],
             note_data['creation']
             )
-        
-    
-    def __get_note_path(self, note_id: int):
-        """Returns the path of a note."""
-        return self.__get_note_by_id(note_id)['content']
     
 
     def __delete_note_html_file(self, note_data: Note):
@@ -159,7 +154,7 @@ class NoteData1:
     
     def __update_note(self, current_note: dict, updated_note: NoteRequest):
         note: Note = self.__create_note_object(current_note)
-        note.update_content(self.__get_note_path(current_note['id']), updated_note.content)
+        note.update_content(note.content, updated_note.content)
 
         current_note['title'] = updated_note.title
         current_note['bookmark'] = updated_note.bookmark

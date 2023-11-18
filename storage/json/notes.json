@@ -37,7 +37,13 @@
         {
             "id": 71,
             "name": "Test-Map",
-            "subcategories": [],
+            "subcategories": [
+                {
+                    "id": 5,
+                    "name": "Subdirectory",
+                    "notes": []
+                }
+            ],
             "notes": []
         }
     ]

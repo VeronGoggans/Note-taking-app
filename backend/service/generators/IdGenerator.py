@@ -22,7 +22,7 @@ class IdGenerator:
             - If successful, it returns the generated unique identifier.
             - If the specified entity does not exist yet, it returns a message indicating that the entity does not exist.
         """
-        path_to_id_file = os.getcwd() + "/storage/id.json"
+        path_to_id_file = os.getcwd() + "/storage/json/id.json"
 
         data = Json.load_json_file(path_to_id_file)
         unique_id = None

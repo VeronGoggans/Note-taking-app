@@ -3,14 +3,15 @@ from backend.domain.enums.responseMessages import RespMsg
 from backend.domain.enums.noteTypes import NoteTypes
 from backend.data.fileOperations.JsonOperations import Json
 from backend.presentation.requestBodies.NoteRequest import NoteRequest
-from backend.service.generators.IdGenerator import IdGenerator
+from backend.service.filters.NoteFilter import NoteFilter
 from backend.service.dateOperations.MyDate import MyDate
 import os
 
 class NoteData2:
     def __init__(self):
         self.notes_relative_path = os.getcwd() + '/storage/json/notes.json'
-    
+        self.filter = NoteFilter()
+
 
     def add_note(self, sub_dir_id: int, note: Note):
         """
@@ -32,7 +33,7 @@ class NoteData2:
                 if sub_dir["id"] == sub_dir_id:
                     sub_dir['notes'].append(note.__dict__)
                     Json.update_json_file(self.notes_relative_path, data)
-                    return RespMsg.OK
+                    return note
         return RespMsg.NOT_FOUND
 
 
@@ -55,7 +56,7 @@ class NoteData2:
         for dir in data["categories"]:
             for sub_dir in dir["subcategories"]:
                 if sub_dir["id"] == sub_dir_id:
-                    return self.__filter_notes_list(sub_dir["notes"], note_type)
+                    return self.filter.filter_by_type(sub_dir["notes"], note_type)
         return RespMsg.NOT_FOUND
 
     
@@ -75,7 +76,7 @@ class NoteData2:
                     
         for dir in data["categories"]:
             for sub_dir in dir['subcategories']:
-                for note in sub_dir:
+                for note in sub_dir['notes']:
                     if note['id'] == note_id:
                         note_object = self.__create_note_object(note)
                         note_object.set_content_text()
@@ -83,15 +84,26 @@ class NoteData2:
         return RespMsg.NOT_FOUND
 
     
-    def update_note(self, note_id: int, updated_data: NoteRequest):
+    def update_note(self, note_id: int, note_data: NoteRequest):
+        """
+        Update a note with the provided note data.
+
+        Args:
+            note_id (int): The unique identifier of the note to be updated.
+            note_data (NoteRequest): The data to update the note.
+
+        Returns:
+            Union[dict, RespMsg]: 
+            - If successful, it returns the updated note as a dictionary.
+            - If the note with the specified ID is not found, it returns a message indicating 'NOT_FOUND'.
+        """
         data = Json.load_json_file(self.notes_relative_path)
-        note: Note = Note(note_id, )
         
         for dir in data['categories']:
             for sub_dir in dir['subcategories']:
                 for note in sub_dir['notes']:
                     if note["id"] == note_id:
-                        updated_note = self.__update_note(note, self.__create_note_object())
+                        updated_note = self.__update_note(note, note_data)
                         Json.update_json_file(self.notes_relative_path, data)
                         return updated_note
         return RespMsg.NOT_FOUND
@@ -123,47 +135,11 @@ class NoteData2:
             for sub_dir in dir['subcategories']:
                 for note in sub_dir['notes']:
                     if note['id'] == note_id:
-                        self.__create_note_object(note).delete_note_file()
+                        self.__delete_note_html_file(note)
                         sub_dir['notes'].remove(note)
                         Json.update_json_file(self.notes_relative_path, data)
                         return RespMsg.OK
         return RespMsg.NOT_FOUND       
-        
- 
-    def __filter_notes_list(self, notes: list, note_type: enumerate):
-        """Returns a filtered list of note objects by the note type that has been given."""
-        filtered_list = []
-        note_objects = self.__create_note_object_list(notes)
-
-        if note_type == NoteTypes.STANDARD.value:
-            for note in note_objects:
-                if note.bookmark == False and note.password_protected == False:
-                    filtered_list.append(note)
-            return filtered_list
-        
-        if note_type == NoteTypes.BOOKMARKED.value:
-            for note in note_objects:
-                if note.bookmark == True:
-                    filtered_list.append(note)
-            return filtered_list
-        
-        if note_type == NoteTypes.PROTECTED.value:
-            for note in note_objects:
-                if note.password_protected == True:
-                    filtered_list.append(note)
-            return filtered_list
-        
-        if note_type == NoteTypes.ALL.value:
-            return note_objects
-        
-
-    def __create_note_object_list(self, notes: list):
-        note_objects = []
-        for note_data in notes:
-            note_object = self.__create_note_object(note_data)
-            note_object.set_content_text()
-            note_objects.append(note_object)
-        return note_objects
         
 
     def __create_note_object(self, note_data: Note):
@@ -172,24 +148,22 @@ class NoteData2:
             note_data['title'], 
             note_data['content'], 
             note_data['bookmark'], 
-            note_data['password_protected']
+            note_data['password_protected'],
+            note_data['last_edit'],
+            note_data['creation']
             )
-
     
-    def __get_note_path(self, note_id: int):
-        data = Json.load_json_file(self.notes_relative_path)
-                    
-        for dir in data["categories"]:
-            for sub_dir in dir['subcategories']:
-                for note in sub_dir:
-                    if note['id'] == note_id:
-                        return note['content']
-        return RespMsg.NOT_FOUND
+
+    def __delete_note_html_file(self, note_data: Note):
+        note_object = self.__create_note_object(note_data)
+        note_object.delete_note_file(note_object.content)
 
     
     def __update_note(self, current_note: dict, updated_note: Note):
-        current_note['title'] = updated_note.name
-        updated_note.update_content(self.__get_note_path(False, updated_note.id), updated_note.content)
+        note: Note = self.__create_note_object(current_note)
+        note.update_content(note.content, updated_note.content)
+
+        current_note['title'] = updated_note.title
         current_note['bookmark'] = updated_note.bookmark
         current_note['password_protected'] = updated_note.password_protected
         current_note['last_edit'] = MyDate.datetime()

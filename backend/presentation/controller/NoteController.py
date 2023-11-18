@@ -6,7 +6,7 @@ from backend.presentation.requestBodies.NoteRequest import NoteRequest
 from backend.domain.enums.responseMessages import RespMsg
 
 route = APIRouter()
-note_service = NoteService(NoteData1, NoteData2)
+note_service = NoteService(NoteData1(), NoteData2())
 
 
 @route.get("/directory/notes/{dir_id}/{note_type}")
@@ -77,7 +77,7 @@ def note(dir_id: int, note: NoteRequest):
 def note(note_id: int):
     response = note_service.delete_note(note_id, False)
     if response != RespMsg.NOT_FOUND:
-        return {'Status_code': RespMsg.OK, "Object": response}
+        return {'Status_code': response}
     return {'Status_code': RespMsg.NOT_FOUND}
 
 
