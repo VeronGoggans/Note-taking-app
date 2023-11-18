@@ -7,12 +7,12 @@ from backend.service.generators.IdGenerator import IdGenerator
 from backend.service.dateOperations.MyDate import MyDate
 import os
 
-class SubDirectoryNoteData:
+class NoteData2:
     def __init__(self):
         self.notes_relative_path = os.getcwd() + '/storage/json/notes.json'
     
 
-    def add_note(self, dir_id: int, note_data: NoteRequest):
+    def add_note(self, sub_dir_id: int, note: Note):
         """
         Add a note to a specified sub directory in the notes structure.
 
@@ -26,12 +26,10 @@ class SubDirectoryNoteData:
             - If the sub directory is not found, it returns RespMsg.NOT_FOUND.
         """
         data = Json.load_json_file(self.notes_relative_path)
-        note = self.__construct_note_object(note_data)
-        note.set_content_path()
     
         for dir in data['categories']:
             for sub_dir in dir['subcategories']:
-                if sub_dir["id"] == dir_id:
+                if sub_dir["id"] == sub_dir_id:
                     sub_dir['notes'].append(note.__dict__)
                     Json.update_json_file(self.notes_relative_path, data)
                     return RespMsg.OK
@@ -175,17 +173,6 @@ class SubDirectoryNoteData:
             note_data['content'], 
             note_data['bookmark'], 
             note_data['password_protected']
-            )
-        
-
-    def __construct_note_object(self, note_data: NoteRequest):
-        note_id = IdGenerator.ID("note")
-        return Note(
-            note_id, 
-            note_data.title, 
-            note_data.content, 
-            note_data.bookmark, 
-            note_data.password_protected
             )
 
     

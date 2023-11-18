@@ -15,15 +15,13 @@ body {
     height: 100dvh;
     display: grid;
     grid-template-columns: 250px 1fr;
-    background-color:aliceblue;
+    background-color: #ffffff;
     transition: .15s;
 }
-
 
 .home-page {
     border-radius: 10px;
     margin: 10px;
-    background-color: aliceblue;
     display: grid;
     grid-template-rows: 1fr 300px;
 }

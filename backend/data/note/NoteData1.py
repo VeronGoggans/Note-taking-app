@@ -2,12 +2,11 @@ from backend.domain.Note import Note
 from backend.domain.enums.responseMessages import RespMsg
 from backend.data.fileOperations.JsonOperations import Json
 from backend.presentation.requestBodies.NoteRequest import NoteRequest
-from backend.service.generators.IdGenerator import IdGenerator
 from backend.service.dateOperations.MyDate import MyDate
 from backend.service.filters.NoteFilter import NoteFilter
 import os
 
-class DirectoryNoteData:
+class NoteData1:
     def __init__(self):
         self.notes_relative_path = os.getcwd() + '/storage/json/notes.json'
         self.filter = NoteFilter()
