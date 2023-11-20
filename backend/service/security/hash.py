@@ -3,7 +3,7 @@ import hashlib
 class Hash:
 
     @staticmethod
-    def hash(password: str):
+    def hashify(password: str):
         h = hashlib.new("SHA256")
         h.update(password.encode())
         password_hash = h.hexdigest()

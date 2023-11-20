@@ -1,6 +1,5 @@
 from backend.domain.Note import Note
 from backend.domain.enums.responseMessages import RespMsg
-from backend.domain.enums.noteTypes import NoteTypes
 from backend.data.fileOperations.JsonOperations import Json
 from backend.presentation.requestBodies.NoteRequest import NoteRequest
 from backend.service.filters.NoteFilter import NoteFilter

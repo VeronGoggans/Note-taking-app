@@ -3,7 +3,7 @@ from backend.service.dateOperations.MyDate import MyDate
 
 class Note:
     def __init__(self, id: int, title: str, content: str, bookmark: bool, 
-                 password_protected: bool, last_edit = MyDate.datetime(), creation = MyDate.date()):
+                 password_protected: bool, last_edit = MyDate.datetime(), creation = MyDate.date(), password = ''):
         self.id = id
         self.title = title
         self.content = content
@@ -11,6 +11,7 @@ class Note:
         self.password_protected = password_protected
         self.last_edit = last_edit
         self.creation = creation
+        self.password = password
 
     
     def set_content_path(self):

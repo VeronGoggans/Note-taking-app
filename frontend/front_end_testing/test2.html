@@ -8,43 +8,8 @@
 
   <title>Document</title>
 </head>
-<style>
-  .container {
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* Two equal columns */
-  grid-template-rows: auto; /* Automatically sized rows for column 1 */
-  gap: 10px; /* Add some gap between the columns and rows */
-}
-
-.column-1 {
-  grid-row: span 2; /* This column spans two rows */
-}
-
-.column-2 {
-  /* No content in the second column, so it will be empty */
-  background-color: aqua;
-  width: 30px;
-  height: 100%;
-}
-
-.row {
-  padding: 10px;
-  border: 1px solid #ccc;
-}
-
-</style>
 <body>  
-  <div class="container">
-    <div class="column-1">
-      <div class="row">Row 1, Column 1</div>
-      <div class="row">Row 2, Column 1</div>
-    </div>
-    <div class="column-2">
-      <!-- No rows in the second column -->
-      
-    </div>
-  </div>
-  
-  
+   <side-bar>Sidebar</side-bar>
+  <script src="../js/customElements/SideBar.js"></script>
 </body>
 </html>
