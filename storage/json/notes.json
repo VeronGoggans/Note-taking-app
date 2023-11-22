@@ -1,50 +1,62 @@
 {
     "categories": [
         {
-            "id": 62,
-            "name": "Routines",
-            "subcategories": [],
+            "id": 76,
+            "name": "Test-folder",
+            "password_protected": true,
+            "password": "7509e5bda0c762d2bac7f90d758b5b2263fa01ccbc542ab5e3df163be08e6ca9",
             "notes": [
                 {
-                    "id": 112,
-                    "title": "Day Routine (Home)",
-                    "content": "C:\\Users\\jsvgo\\Web Dev\\Note Taking App/storage/notes/note-112.html",
+                    "id": 141,
+                    "title": "Testing notes",
+                    "content": "C:\\Users\\jsvgo\\Web Dev\\Note Taking App/storage/notes/note-141.html",
                     "bookmark": false,
-                    "password_protected": false,
-                    "last_edit": "15/11/2023 13:53:59",
-                    "creation": "15/11/2023"
+                    "password_protected": true,
+                    "last_edit": "22/11/2023 14:43:53",
+                    "creation": "22/11/2023",
+                    "password": "3a70bd27789226bda74f6e05680dde8e0971aeec40a9d3e03e587b963468f3a4"
                 },
                 {
-                    "id": 116,
-                    "title": "Day Routine (school)",
-                    "content": "C:\\Users\\jsvgo\\Web Dev\\Note Taking App/storage/notes/note-116.html",
+                    "id": 145,
+                    "title": "Testing notes",
+                    "content": "C:\\Users\\jsvgo\\Web Dev\\Note Taking App/storage/notes/note-145.html",
                     "bookmark": false,
                     "password_protected": false,
-                    "last_edit": "15/11/2023 13:53:59",
-                    "creation": "15/11/2023"
-                },
-                {
-                    "id": 131,
-                    "title": "PUT req works!",
-                    "content": "C:\\Users\\jsvgo\\Web Dev\\Note Taking App/storage/notes/note-131.html",
-                    "bookmark": false,
-                    "password_protected": false,
-                    "last_edit": "15/11/2023 19:48:47",
-                    "creation": "15/11/2023"
-                }
-            ]
-        },
-        {
-            "id": 71,
-            "name": "Test-Map",
-            "subcategories": [
-                {
-                    "id": 5,
-                    "name": "Subdirectory",
-                    "notes": []
+                    "last_edit": "22/11/2023 15:00:00",
+                    "creation": "22/11/2023",
+                    "password": ""
                 }
             ],
-            "notes": []
+            "subcategories": [
+                {
+                    "id": 8,
+                    "name": "Test-subfolder",
+                    "password_protected": true,
+                    "password": "59f7348c803829ef6c64f27a52ae616dd24c8114ebaeb7efae0ed82ac18e8cba",
+                    "notes": [
+                        {
+                            "id": 143,
+                            "title": "Testing notes",
+                            "content": "C:\\Users\\jsvgo\\Web Dev\\Note Taking App/storage/notes/note-143.html",
+                            "bookmark": false,
+                            "password_protected": false,
+                            "last_edit": "22/11/2023 14:49:50",
+                            "creation": "22/11/2023",
+                            "password": ""
+                        },
+                        {
+                            "id": 144,
+                            "title": "Testing notes",
+                            "content": "C:\\Users\\jsvgo\\Web Dev\\Note Taking App/storage/notes/note-144.html",
+                            "bookmark": false,
+                            "password_protected": false,
+                            "last_edit": "22/11/2023 15:00:00",
+                            "creation": "22/11/2023",
+                            "password": ""
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }

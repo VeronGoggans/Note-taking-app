@@ -1,28 +1,28 @@
-from backend.data.directory.DirectoryData import DirectoryData
+from backend.data.folder.folder_manager import FolderManager
 from backend.presentation.requestBodies.DirectoryRequest import DirectoryRequest
-from backend.domain.Directory import Directory
+from backend.domain.folder import Folder
 from backend.service.generators.IdGenerator import IdGenerator
 
 class DirectoryService:
-    def __init__(self, dir_data: DirectoryData):
-        self.directory_data = dir_data
+    def __init__(self, folder_manager: FolderManager):
+        self.folder_manager = folder_manager
 
 
     def get_directories(self):
-        return self.directory_data.get()
+        return self.folder_manager.get()
     
     
-    def add_directory(self, dir: DirectoryRequest):
+    def add_directory(self, folder: DirectoryRequest):
         id = IdGenerator.ID('directory')
-        directory: Directory = Directory(id, dir.name)
-        return self.directory_data.add(directory)
+        folder: Folder = Folder(id, folder.name)
+        return self.folder_manager.add(folder)
     
 
     def update_directory(self, dir_id: int, dir: DirectoryRequest):
-        return self.directory_data.update(dir_id, dir.name)
+        return self.folder_manager.update(dir_id, dir.name)
     
     
     def delete_directory(self, dir_id: int):
-        return self.directory_data.delete(dir_id)
+        return self.folder_manager.delete(dir_id)
 
     

@@ -1,6 +1,6 @@
 from enum import Enum
 
-class AppEntities(Enum):
+class Entities(Enum):
     NOTE = 'NOTE'
     FOLDER = 'FOLDER'
     SUBFOLDER = 'SUBFOLDER'

@@ -1,24 +1,24 @@
 from fastapi import APIRouter
-from backend.data.directory.DirectoryData import DirectoryData
+from backend.data.folder.folder_manager import FolderManager
 from backend.presentation.requestBodies.DirectoryRequest import DirectoryRequest
 from backend.domain.enums.responseMessages import RespMsg
 from backend.service.serviceClasses.DirectoryService import DirectoryService
 
 
 route = APIRouter()
-directory_servive = DirectoryService( dir_data = DirectoryData() )
+folder_service = DirectoryService( folder_manager = FolderManager() )
 
 
-@route.get('/directories')
+@route.get('/folders')
 def directories():
-    response = directory_servive.get_directories()
+    response = folder_service.get_directories()
     return {"Status_code": RespMsg.OK, "category_names": response}
 
 
 
-@route.post('/directory')
-def directory(dir: DirectoryRequest):
-    response = directory_servive.add_directory(dir)
+@route.post('/folder')
+def directory(folder: DirectoryRequest):
+    response = folder_service.add_directory(folder)
 
     if response != RespMsg.NOT_FOUND:
         return {'Status_code': RespMsg.OK, "Object": response}
@@ -26,9 +26,9 @@ def directory(dir: DirectoryRequest):
 
 
 
-@route.put('/directory/{dir_id}')
-def directory(dir_id: int, dir: DirectoryRequest):
-    response = directory_servive.update_directory(dir_id, dir)
+@route.put('/folder/{folder_id}')
+def directory(folder_id: int, folder: DirectoryRequest):
+    response = folder_service.update_directory(folder_id, folder)
 
     if response != RespMsg.NOT_FOUND:
         return {'Status_code': RespMsg.OK, "Object": response}
@@ -36,10 +36,10 @@ def directory(dir_id: int, dir: DirectoryRequest):
 
 
 
-@route.delete('/directory/{dir_id}')
-def directory(dir_id: int):
+@route.delete('/folder/{folder_id}')
+def directory(folder_id: int):
     
-    response = directory_servive.delete_directory(dir_id)
+    response = folder_service.delete_directory(folder_id)
     if response != RespMsg.NOT_FOUND:
         return {'Status_code': response}
     return {'Status_code': RespMsg.NOT_FOUND}

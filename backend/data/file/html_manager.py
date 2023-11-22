@@ -1,6 +1,6 @@
 import os
 
-class HTMLOperations:
+class HTMLManager:
     def __init__(self) -> None:
         pass
 
@@ -27,7 +27,7 @@ class HTMLOperations:
     
     
     @staticmethod
-    def load(file_path: str):
+    def get(file_path: str):
         """
         Load the content of a file at the specified path.
 

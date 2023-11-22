@@ -1,50 +1,50 @@
-from backend.data.note.NoteData1 import NoteData1
-from backend.data.note.NoteData2 import NoteData2
+from backend.data.note.folder_note_manager import FolderNoteManager
+from backend.data.note.subfolder_note_manager import SubFolderNoteManager
 from backend.presentation.requestBodies.NoteRequest import NoteRequest
 from backend.service.generators.IdGenerator import IdGenerator
-from backend.domain.Note import Note
+from backend.domain.note import Note
 
 class NoteService:
-    def __init__(self, note_data_1: NoteData1, note_data_2: NoteData2):
-        self.note_data_1 = note_data_1
-        self.note_data_2 = note_data_2
+    def __init__(self, folder_note_manager: FolderNoteManager, subfolder_note_manager: SubFolderNoteManager):
+        self.folder_note_manager = folder_note_manager
+        self.subfolder_note_manager = subfolder_note_manager
 
 
 
     def get_notes(self, dir_id: int, note_type: str, directory=True):
         if directory:
-            return self.note_data_1.get_notes(dir_id, note_type)
-        return self.note_data_2.get_notes(dir_id, note_type)
+            return self.folder_note_manager.get_notes(dir_id, note_type)
+        return self.subfolder_note_manager.get_notes(dir_id, note_type)
     
 
 
     def get_note_by_id(self, note_id: int, directory = True):
         if directory:
-            return self.note_data_1.get_note_by_id(note_id)
-        return self.note_data_2.get_note_by_id(note_id)
+            return self.folder_note_manager.get_note_by_id(note_id)
+        return self.subfolder_note_manager.get_note_by_id(note_id)
     
 
 
-    def add_note(self, dir_id: int, request_data: NoteRequest, directory = True):
-        note : Note = self.__construct_note_object(request_data)
+    def add_note(self, folder_id: int, note_data: NoteRequest, folder = True):
+        note : Note = self.__construct_note_object(note_data)
         note.set_content_path()
-        if directory:
-            return self.note_data_1.add_note(dir_id, note)
-        return self.note_data_2.add_note(dir_id, note)
+        if folder:
+            return self.folder_note_manager.add_note(folder_id, note)
+        return self.subfolder_note_manager.add_note(folder_id, note)
 
     
 
     def update_note(self, note_id: int, updated_note: NoteRequest, directory = True):
         if directory:
-            return self.note_data_1.update_note(note_id, updated_note)
-        return self.note_data_2.update_note(note_id, updated_note)
+            return self.folder_note_manager.update_note(note_id, updated_note)
+        return self.subfolder_note_manager.update_note(note_id, updated_note)
     
 
 
     def delete_note(self, note_id: int, directory = True):
         if directory:
-            return self.note_data_1.delete_note(note_id)
-        return self.note_data_2.delete_note(note_id)
+            return self.folder_note_manager.delete_note(note_id)
+        return self.subfolder_note_manager.delete_note(note_id)
     
 
 

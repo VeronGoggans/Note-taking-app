@@ -1,23 +1,23 @@
 from fastapi import APIRouter
 from backend.service.serviceClasses.SubDirectoryService import SubDirectoryService
-from backend.data.subDirectory.SubDirectoryData import SubDirectoryData
+from backend.data.subfolder.subfolder_manager import SubfolderManager
 from backend.presentation.requestBodies.SubDirectoryRequest import SubDirectoryRequest
 from backend.domain.enums.responseMessages import RespMsg
 
 route = APIRouter()
-sub_dir_service = SubDirectoryService( sub_dir_data = SubDirectoryData() )
+subfolder_service = SubDirectoryService( subfolder_manager = SubfolderManager() )
 
 
-@route.get('/subdirectories/{dir_id}')
-def subcategories(dir_id: int):
-    response = sub_dir_service.get_subdirectories(dir_id)
+@route.get('/subfolders/{folder_id}')
+def subcategories(folder_id: int):
+    response = subfolder_service.get_subdirectories(folder_id)
     return {"Status_code": RespMsg.OK, "SubDirectoryNames": response}
 
 
 
-@route.post('/subdirectory/{dir_id}')
-def subcategory(dir_id: int, request_data: SubDirectoryRequest):
-    response = sub_dir_service.add_subdirectory(dir_id, request_data)
+@route.post('/subfolder/{folder_id}')
+def subcategory(folder_id: int, subfolder: SubDirectoryRequest):
+    response = subfolder_service.add_subdirectory(folder_id, subfolder)
 
     if response != RespMsg.NOT_FOUND:
         return {'Status_code': RespMsg.OK, "Object": response}
@@ -25,9 +25,9 @@ def subcategory(dir_id: int, request_data: SubDirectoryRequest):
 
 
 
-@route.put('/subDirectory/{sub_dir_id}/{sub_dir_name}')
-def subcategory(sub_dir_id: int, request_data: SubDirectoryRequest):
-    response = sub_dir_service.update_subdirectory(sub_dir_id, request_data)
+@route.put('/subfolder/{subfolder_id}')
+def subcategory(subfolder_id: int, subfolder: SubDirectoryRequest):
+    response = subfolder_service.update_subdirectory(subfolder_id, subfolder)
 
     if response != RespMsg.NOT_FOUND:
         return {'Status_code': RespMsg.OK, "Object": response}
@@ -35,9 +35,9 @@ def subcategory(sub_dir_id: int, request_data: SubDirectoryRequest):
 
 
 
-@route.delete('/subdirectory/{sub_dir_id}')
-def subcategory(sub_dir_id: int):
-    response = sub_dir_service.delete_subdirectory(sub_dir_id)
+@route.delete('/subfolder/{subfolder_id}')
+def subcategory(subfolder_id: int):
+    response = subfolder_service.delete_subdirectory(subfolder_id)
 
     if response != RespMsg.NOT_FOUND:
         return {'Status_code': RespMsg.OK, "Object": response}

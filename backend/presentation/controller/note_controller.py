@@ -1,23 +1,23 @@
 from fastapi import APIRouter
 from backend.service.serviceClasses.NoteService import NoteService
-from backend.data.note.NoteData1 import NoteData1
-from backend.data.note.NoteData2 import NoteData2
+from backend.data.note.folder_note_manager import FolderNoteManager
+from backend.data.note.subfolder_note_manager import SubFolderNoteManager
 from backend.presentation.requestBodies.NoteRequest import NoteRequest
 from backend.domain.enums.responseMessages import RespMsg
 
 route = APIRouter()
-note_service = NoteService(NoteData1(), NoteData2())
+note_service = NoteService(FolderNoteManager(), SubFolderNoteManager())
 
 
-@route.get("/directory/notes/{dir_id}/{note_type}")
-def notes(dir_id: int, note_type: str):
-    response = note_service.get_notes(dir_id, note_type)
+@route.get("/folder/notes/{folder_id}/{note_type}")
+def notes(folder_id: int, note_type: str):
+    response = note_service.get_notes(folder_id, note_type)
     if response != RespMsg.NOT_FOUND:
         return {'Status_code': RespMsg.OK, "Object": response}
     return {'Status_code': RespMsg.NOT_FOUND}
 
 
-@route.get('/directory/noteById/{note_id}')
+@route.get('/folder/noteById/{note_id}')
 def note_by_id(note_id: int):
     response = note_service.get_note_by_id(note_id)
     if response != RespMsg.NOT_FOUND:
@@ -25,15 +25,15 @@ def note_by_id(note_id: int):
     return {'Status_code': RespMsg.NOT_FOUND}
 
 
-@route.post('/directory/note/{dir_id}')
-def note(dir_id: int, note: NoteRequest):  
-    response = note_service.add_note(dir_id, note)
+@route.post('/folder/note/{folder_id}')
+def note(folder_id: int, note: NoteRequest):  
+    response = note_service.add_note(folder_id, note)
     if response != RespMsg.NOT_FOUND:
         return {'Status_code': RespMsg.OK, "Object": response}
     return {'Status_code': RespMsg.NOT_FOUND}
 
 
-@route.delete('/directory/note/{note_id}')
+@route.delete('/folder/note/{note_id}')
 def note(note_id: int):
     response = note_service.delete_note(note_id)
     if response != RespMsg.NOT_FOUND:
@@ -41,7 +41,7 @@ def note(note_id: int):
     return {'Status_code': RespMsg.NOT_FOUND}
 
 
-@route.put('/directory/note/{note_id}')
+@route.put('/folder/note/{note_id}')
 def note(note_id: int, note: NoteRequest):
     response = note_service.update_note(note_id, note)
     if response != RespMsg.NOT_FOUND:
@@ -49,15 +49,15 @@ def note(note_id: int, note: NoteRequest):
     return {'Status_code': RespMsg.NOT_FOUND}
 
 
-@route.get("/subdirectory/notes/{dir_id}/{note_type}")
-def notes(dir_id: int, note_type: str):
-    response = note_service.get_notes(dir_id, note_type, False)
+@route.get("/subfolder/notes/{folder_id}/{note_type}")
+def notes(folder_id: int, note_type: str):
+    response = note_service.get_notes(folder_id, note_type, False)
     if response != RespMsg.NOT_FOUND:
         return {'Status_code': RespMsg.OK, "Object": response}
     return {'Status_code': RespMsg.NOT_FOUND}
 
 
-@route.get('/subdirectory/noteById/{note_id}')
+@route.get('/subfolder/noteById/{note_id}')
 def note_by_id(note_id: int):
     response = note_service.get_note_by_id(note_id, False)
     if response != RespMsg.NOT_FOUND:
@@ -65,15 +65,15 @@ def note_by_id(note_id: int):
     return {'Status_code': RespMsg.NOT_FOUND}
 
 
-@route.post('/subdirectory/note/{dir_id}')
-def note(dir_id: int, note: NoteRequest):  
-    response = note_service.add_note(dir_id, note, False)
+@route.post('/subfolder/note/{folder_id}')
+def note(folder_id: int, note: NoteRequest):  
+    response = note_service.add_note(folder_id, note, False)
     if response != RespMsg.NOT_FOUND:
         return {'Status_code': RespMsg.OK, "Object": response}
     return {'Status_code': RespMsg.NOT_FOUND}
 
 
-@route.delete('/subdirectory/note/{note_id}')
+@route.delete('/subfolder/note/{note_id}')
 def note(note_id: int):
     response = note_service.delete_note(note_id, False)
     if response != RespMsg.NOT_FOUND:
@@ -81,7 +81,7 @@ def note(note_id: int):
     return {'Status_code': RespMsg.NOT_FOUND}
 
 
-@route.put('/subdirectory/note/{note_id}')
+@route.put('/subfolder/note/{note_id}')
 def note(note_id: int, note: NoteRequest):
     response = note_service.update_note(note_id, note, False)
     if response != RespMsg.NOT_FOUND:

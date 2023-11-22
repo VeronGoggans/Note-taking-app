@@ -1,4 +1,4 @@
-from backend.domain.Note import Note
+from backend.domain.note import Note
 from backend.domain.enums.noteTypes import NoteTypes
 from datetime import datetime
 
