@@ -8,7 +8,7 @@ class IDGenerator:
     def ID(entity_name: str):
         """
         Generate a unique identifier for a specified entity type.
-        Entity types [Note, Directory, SubDirectory]. 
+        Entity types [note, folder, subfolder]. 
         Both uppercase/lowercase work.
 
         Args:
@@ -25,7 +25,7 @@ class IDGenerator:
         unique_id = None
 
         for entity in data['ids']:
-            if entity['entityName'] == entity_name:
+            if entity['entityName'] == entity_name.lower():
                 unique_id = entity['id']
                 entity['id'] = unique_id + 1
                 Json.update_json_file(path_to_id_file, data)

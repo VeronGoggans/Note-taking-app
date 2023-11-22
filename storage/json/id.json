@@ -1,16 +1,16 @@
 {
     "ids": [
         {
-            "entityName": "directory",
+            "entityName": "folder",
             "id": 77
+        },
+        {
+            "entityName": "subfolder",
+            "id": 9
         },
         {
             "entityName": "note",
             "id": 146
-        },
-        {
-            "entityName": "subdirectory",
-            "id": 9
         }
     ]
 }
