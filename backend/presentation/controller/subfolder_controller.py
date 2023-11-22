@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from backend.service.serviceClasses.SubDirectoryService import SubDirectoryService
 from backend.data.subfolder.subfolder_manager import SubfolderManager
-from backend.presentation.requestBodies.SubDirectoryRequest import SubDirectoryRequest
+from backend.presentation.request_bodies.subfolder_request import SubfolderRequest
 from backend.domain.enums.responseMessages import RespMsg
 
 route = APIRouter()
@@ -16,7 +16,7 @@ def subcategories(folder_id: int):
 
 
 @route.post('/subfolder/{folder_id}')
-def subcategory(folder_id: int, subfolder: SubDirectoryRequest):
+def subcategory(folder_id: int, subfolder: SubfolderRequest):
     response = subfolder_service.add_subdirectory(folder_id, subfolder)
 
     if response != RespMsg.NOT_FOUND:
@@ -26,7 +26,7 @@ def subcategory(folder_id: int, subfolder: SubDirectoryRequest):
 
 
 @route.put('/subfolder/{subfolder_id}')
-def subcategory(subfolder_id: int, subfolder: SubDirectoryRequest):
+def subcategory(subfolder_id: int, subfolder: SubfolderRequest):
     response = subfolder_service.update_subdirectory(subfolder_id, subfolder)
 
     if response != RespMsg.NOT_FOUND:

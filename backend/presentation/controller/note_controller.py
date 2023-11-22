@@ -2,7 +2,7 @@ from fastapi import APIRouter
 from backend.service.serviceClasses.NoteService import NoteService
 from backend.data.note.folder_note_manager import FolderNoteManager
 from backend.data.note.subfolder_note_manager import SubFolderNoteManager
-from backend.presentation.requestBodies.NoteRequest import NoteRequest
+from backend.presentation.request_bodies.note_request import NoteRequest
 from backend.domain.enums.responseMessages import RespMsg
 
 route = APIRouter()

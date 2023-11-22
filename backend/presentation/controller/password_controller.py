@@ -3,7 +3,7 @@ from backend.service.serviceClasses.PasswordService import PasswordService
 from backend.data.password.folder_password_manager import FolderPasswordManager
 from backend.data.password.subfolder_password_manager import SubfolderPasswordManager
 from backend.data.password.note_password_manager import NotePasswordManager
-from backend.presentation.requestBodies.password_request import PasswordRequest
+from backend.presentation.request_bodies.password_request import PasswordRequest
 from backend.domain.enums.entities import Entities
 from backend.domain.enums.responseMessages import RespMsg
 

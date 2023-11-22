@@ -1,4 +1,4 @@
 from pydantic import BaseModel
 
-class SubDirectoryRequest(BaseModel):
+class SubfolderRequest(BaseModel):
     name: str
