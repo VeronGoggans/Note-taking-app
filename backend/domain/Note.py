@@ -1,9 +1,9 @@
 from backend.data.file.html_manager import HTMLManager
-from backend.service.dateOperations.MyDate import MyDate
+from backend.application.service.util.date_service import DateService
 
 class Note:
     def __init__(self, id: int, title: str, content: str, bookmark: bool, 
-                 password_protected: bool, last_edit = MyDate.datetime(), creation = MyDate.date(), password = ''):
+                 password_protected: bool, last_edit = DateService.datetime(), creation = DateService.date(), password = ''):
         self.id = id
         self.title = title
         self.content = content

@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from backend.service.serviceClasses.NoteService import NoteService
+from backend.application.service.domain.note_service import NoteService
 from backend.data.note.folder_note_manager import FolderNoteManager
 from backend.data.note.subfolder_note_manager import SubFolderNoteManager
 from backend.presentation.request_bodies.note_request import NoteRequest

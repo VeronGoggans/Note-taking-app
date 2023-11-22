@@ -1,9 +1,9 @@
 from backend.domain.note import Note
 from backend.domain.enums.responseMessages import RespMsg
 from backend.data.file.json_manager import Json
-from backend.presentation.requestBodies.NoteRequest import NoteRequest
-from backend.service.dateOperations.MyDate import MyDate
-from backend.service.filters.NoteFilter import NoteFilter
+from backend.presentation.request_bodies.note_request import NoteRequest
+from backend.application.service.util.date_service import DateService
+from backend.application.filters.NoteFilter import NoteFilter
 import os
 
 class FolderNoteManager:
@@ -160,5 +160,5 @@ class FolderNoteManager:
         current_note['title'] = updated_note.title
         current_note['bookmark'] = updated_note.bookmark
         current_note['password_protected'] = updated_note.password_protected
-        current_note['last_edit'] = MyDate.datetime()
+        current_note['last_edit'] = DateService.datetime()
         return current_note

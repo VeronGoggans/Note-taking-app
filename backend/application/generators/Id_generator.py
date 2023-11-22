@@ -1,11 +1,8 @@
-from backend.data.fileOperations.JsonOperations import Json
+from backend.data.file.json_manager import Json
 import os
 
 
-class IdGenerator:
-    def __init__(self) -> None:
-        pass
-
+class IDGenerator:
     
     @staticmethod
     def ID(entity_name: str):
@@ -33,4 +30,4 @@ class IdGenerator:
                 entity['id'] = unique_id + 1
                 Json.update_json_file(path_to_id_file, data)
                 return unique_id
-        return "Entity does not exist yet"
+        raise ValueError(f'f{entity_name} is not a valid entity name.')

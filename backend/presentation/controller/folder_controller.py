@@ -2,7 +2,7 @@ from fastapi import APIRouter
 from backend.data.folder.folder_manager import FolderManager
 from backend.presentation.request_bodies.folder_request import FolderRequest
 from backend.domain.enums.responseMessages import RespMsg
-from backend.service.serviceClasses.DirectoryService import DirectoryService
+from backend.application.service.domain.folder_service import DirectoryService
 
 
 route = APIRouter()

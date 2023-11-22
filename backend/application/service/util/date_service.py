@@ -1,7 +1,7 @@
 from datetime import date, datetime
 
 
-class MyDate():
+class DateService():
     def __init__(self) -> None:
         pass
 

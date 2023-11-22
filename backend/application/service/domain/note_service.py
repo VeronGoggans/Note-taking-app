@@ -1,7 +1,7 @@
 from backend.data.note.folder_note_manager import FolderNoteManager
 from backend.data.note.subfolder_note_manager import SubFolderNoteManager
-from backend.presentation.requestBodies.NoteRequest import NoteRequest
-from backend.service.generators.IdGenerator import IdGenerator
+from backend.presentation.request_bodies.note_request import NoteRequest
+from backend.application.generators.Id_generator import IDGenerator
 from backend.domain.note import Note
 
 class NoteService:
@@ -49,7 +49,7 @@ class NoteService:
 
 
     def __construct_note_object(self, note_data: NoteRequest):
-        note_id = IdGenerator.ID("note")
+        note_id = IDGenerator.ID("note")
         return Note(
             note_id, 
             note_data.title, 

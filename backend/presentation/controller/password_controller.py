@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from backend.service.serviceClasses.PasswordService import PasswordService
+from backend.application.service.util.password_service import PasswordService
 from backend.data.password.folder_password_manager import FolderPasswordManager
 from backend.data.password.subfolder_password_manager import SubfolderPasswordManager
 from backend.data.password.note_password_manager import NotePasswordManager

@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from backend.service.serviceClasses.SubDirectoryService import SubDirectoryService
+from backend.application.service.domain.subfolder_service import SubDirectoryService
 from backend.data.subfolder.subfolder_manager import SubfolderManager
 from backend.presentation.request_bodies.subfolder_request import SubfolderRequest
 from backend.domain.enums.responseMessages import RespMsg
