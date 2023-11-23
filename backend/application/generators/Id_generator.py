@@ -15,9 +15,9 @@ class IDGenerator:
             entity_name (str): The name of the entity for which to generate the unique identifier.
 
         Returns:
-            Union[int, str]: 
+            Union[int, ValueError]: 
             - If successful, it returns the generated unique identifier.
-            - If the specified entity does not exist yet, it returns a message indicating that the entity does not exist.
+            - If the specified entity does not exist yet, it raises a Error indicating that the entity does not exist.
         """
         path_to_id_file = os.getcwd() + "/storage/json/id.json"
 

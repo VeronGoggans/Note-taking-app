@@ -8,6 +8,8 @@ from backend.domain.enums.responseMessages import RespMsg
 route = APIRouter()
 note_service = NoteService(FolderNoteManager(), SubFolderNoteManager())
 
+# NOTE Maybe add a path variable that indicates folder or subfolder.
+# NOTE Then I only need 5 endpoints instead of 10.
 
 @route.get("/folder/notes/{folder_id}/{note_type}")
 def notes(folder_id: int, note_type: str):
