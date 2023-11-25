@@ -4,6 +4,6 @@ from enum import Enum
 # It uses this enum class to know what to filter by.
 class NoteTypes(Enum):
     STANDARD = 'standard'
-    PROTECTED = 'password_protected'
+    PROTECTED = 'protected'
     BOOKMARKED = 'bookmark'
     ALL = 'all'

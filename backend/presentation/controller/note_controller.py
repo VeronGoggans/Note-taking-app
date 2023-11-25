@@ -1,12 +1,11 @@
 from fastapi import APIRouter
 from backend.application.service.domain.note_service import NoteService
-from backend.data.note.folder_note_manager import FolderNoteManager
-from backend.data.note.subfolder_note_manager import SubFolderNoteManager
+from backend.data.note.note_manager import NoteManager
 from backend.presentation.request_bodies.note_request import NoteRequest
 from backend.domain.enums.responseMessages import RespMsg
 
 route = APIRouter()
-note_service = NoteService(FolderNoteManager(), SubFolderNoteManager())
+note_service = NoteService(NoteManager())
 
 # NOTE Maybe add a path variable that indicates folder or subfolder.
 # NOTE Then I only need 5 endpoints instead of 10.

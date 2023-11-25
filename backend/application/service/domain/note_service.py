@@ -1,5 +1,4 @@
-from backend.data.note.folder_note_manager import FolderNoteManager
-from backend.data.note.subfolder_note_manager import SubFolderNoteManager
+from backend.data.note.note_manager import NoteManager
 from backend.presentation.request_bodies.note_request import NoteRequest
 from backend.application.generators.Id_generator import IDGenerator
 from backend.domain.note import Note
@@ -8,9 +7,8 @@ from backend.domain.enums.responseMessages import RespMsg
 import os 
 
 class NoteService:
-    def __init__(self, folder_note_manager: FolderNoteManager, subfolder_note_manager: SubFolderNoteManager):
-        self.folder_note_manager = folder_note_manager
-        self.subfolder_note_manager = subfolder_note_manager
+    def __init__(self, note_manager: NoteManager):
+        self.note_manager = note_manager
         self.folders_path = os.getcwd() + '/storage/json/notes.json'
 
 
@@ -18,18 +16,17 @@ class NoteService:
     def get_notes(self, folder_id: int, note_type: str):
         folder_structure = Json.load_json_file(self.folders_path)
         folders = folder_structure['categories']
-        notes = self.folder_note_manager.get_notes(folders, folder_id, note_type)
+        notes = self.note_manager.get_notes(folders, folder_id, note_type)
 
-        if notes:
+        if len(notes) >= 0:
             return notes
         return RespMsg.NOT_FOUND
 
-    
 
 
     def get_note_by_id(self, note_id: int):
         folders = Json.load_json_file(self.folders_path)['categories']
-        note = self.folder_note_manager.get_note_by_id(folders, note_id)
+        note = self.note_manager.get_note_by_id(folders, note_id)
         if note:
             return note
         return RespMsg.NOT_FOUND
@@ -41,7 +38,7 @@ class NoteService:
         note.set_content_path()
         folder_structure = Json.load_json_file(self.folders_path)
         folders = folder_structure['categories']
-        new_note = self.folder_note_manager.add_note(folders, folder_id, note)
+        new_note = self.note_manager.add_note(folders, folder_id, note)
 
         if new_note:
             Json.update_json_file(self.folders_path, folder_structure)
@@ -53,7 +50,7 @@ class NoteService:
     def update_note(self, note_id: int, note_data: NoteRequest):
         folder_structure = Json.load_json_file(self.folders_path)
         folders = folder_structure['categories']
-        note = self.folder_note_manager.update_note(folders, note_id, note_data)
+        note = self.note_manager.update_note(folders, note_id, note_data)
 
         if note:
             Json.update_json_file(self.folders_path, folder_structure)
@@ -65,7 +62,7 @@ class NoteService:
     def delete_note(self, note_id: int):
         folder_structure = Json.load_json_file(self.folders_path)
         folders = folder_structure['categories']
-        deleted_note = self.folder_note_manager.delete_note(folders, note_id)
+        deleted_note = self.note_manager.delete_note(folders, note_id)
 
         if deleted_note:
             Json.update_json_file(self.folders_path, folder_structure)
