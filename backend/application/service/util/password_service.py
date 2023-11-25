@@ -29,9 +29,14 @@ class PasswordService():
             return self.subfolder_password_manager.add_password(primary_id, secondary_id, password_hash)
         
 
-    def get_password(self, folder_id: int, entity: str):
-        return self.password_data.get_password_by_id(folder_id, entity)
-
+    def get_password(self, primary_id: int, entity: str, secondary_id = -1):
+        if entity == self.note:
+            return self.note_password_manager.get_password_by_id(primary_id, secondary_id)
+        elif entity == self.folder:
+            return self.folder_password_manager.get_password_by_id(primary_id)
+        elif entity == self.subfolder:
+            return self.subfolder_password_manager.get_password_by_id(primary_id, secondary_id)
+        
     
     def update_password(self, folder_id: int):
         pass

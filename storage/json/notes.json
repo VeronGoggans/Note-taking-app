@@ -8,11 +8,11 @@
             "notes": [
                 {
                     "id": 141,
-                    "title": "Testing notes",
+                    "title": "PUT works!",
                     "content": "C:\\Users\\jsvgo\\Web Dev\\Note Taking App/storage/notes/note-141.html",
                     "bookmark": false,
-                    "password_protected": true,
-                    "last_edit": "22/11/2023 14:43:53",
+                    "password_protected": false,
+                    "last_edit": "25/11/2023 14:41:44",
                     "creation": "22/11/2023",
                     "password": "3a70bd27789226bda74f6e05680dde8e0971aeec40a9d3e03e587b963468f3a4"
                 },
@@ -54,7 +54,8 @@
                             "creation": "22/11/2023",
                             "password": ""
                         }
-                    ]
+                    ],
+                    "subcategories": []
                 }
             ]
         }

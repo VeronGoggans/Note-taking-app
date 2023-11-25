@@ -19,3 +19,13 @@ class SubfolderPasswordManager:
                         Json.update_json_file(self.notes_relative_path, data)
                         return RespMsg.OK
         return RespMsg.NOT_FOUND
+    
+    
+    def get_password_by_id(self, folder_id: int, subfolder_id: int):
+        pass
+
+    def update_password(self, folder_id: int, subfolder_id: int, new_psw_hash: str):
+        pass
+
+    def delete_password(self, folder_id: int, subfolder_id: int):
+        pass

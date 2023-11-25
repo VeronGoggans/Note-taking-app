@@ -12,7 +12,7 @@ class FolderNoteManager:
         self.filter = NoteFilter()
     
 
-    def add_note(self, folder_id: int, note: Note):
+    def add_note(self, folders, folder_id: int, note: Note):
         """
         Add a note to a specified folder in the notes structure.
 
@@ -25,17 +25,16 @@ class FolderNoteManager:
             - If successful, it returns RespMsg.OK.
             - If the sub directory is not found, it returns RespMsg.NOT_FOUND.
         """
-        data = Json.load_json_file(self.notes_relative_path)
 
-        for folder in data["categories"]:
-            if folder["id"] == folder_id:
+        for folder in folders:
+            if folder.get('id') == folder_id:
                 folder["notes"].append(note.__dict__)
-                Json.update_json_file(self.notes_relative_path, data)
                 return note
-        return RespMsg.NOT_FOUND
+            return self.add_note(folder.get('subcategories'), folder_id, note)
+        return None
 
     
-    def get_notes(self, folder_id: int, note_type: str):
+    def get_notes(self, folders, folder_id: int, note_type: str):
         """
         Retrieve a filtered list of notes from a specified sub directory in the notes structure.
 
@@ -48,16 +47,14 @@ class FolderNoteManager:
             - If successful, it returns a list of notes as dictionaries.
             - If the sub directory is not found, it returns RespMsg.NOT_FOUND.
         """
-        data = Json.load_json_file(self.notes_relative_path)
-
-        for dir in data["categories"]:
-            if dir["id"] == folder_id:
-                return self.filter.filter_by_type(dir["notes"], note_type)
+        for folder in folders:
+            if folder.get('id') == folder_id:
+                return self.filter.filter_by_type(folder["notes"], note_type)
+            return self.get_notes(folder.get('subcategories'), folder_id, note_type)
         return RespMsg.NOT_FOUND
 
 
-    # NOTE add folder_id: int to improve performance.
-    def get_note_by_id(self, note_id: int):
+    def get_note_by_id(self, folders, note_id: int):
         """
         Retrieve a specific note from the notes structure by its unique identifier.
 
@@ -69,18 +66,20 @@ class FolderNoteManager:
             - If successful, it returns the specific Note object.
             - If the note is not found, it returns RespMsg.NOT_FOUND.
         """
-        data = Json.load_json_file(self.notes_relative_path)
-        
-        for dir in data["categories"]:
-            for note in dir['notes']:
-                if note['id'] == note_id:
+        for folder in folders:
+            for note in folder["notes"]:
+                if note.get("id") == note_id:
                     note_object = self.__create_note_object(note)
                     note_object.set_content_text()
                     return note_object
-        return RespMsg.NOT_FOUND
-                    
+        
+                note_in_subfolder = self.get_note_by_id(folder["subcategories"], note_id)
+                if note_in_subfolder:
+                    return note_in_subfolder
+        return None
+                        
 
-    def update_note(self, note_id: int, note_data: NoteRequest):
+    def update_note(self, folders, note_id: int, note_data: NoteRequest):
         """
         Update a note with the provided note data.
 
@@ -93,26 +92,16 @@ class FolderNoteManager:
             - If successful, it returns the updated note as a dictionary.
             - If the note with the specified ID is not found, it returns a message indicating 'NOT_FOUND'.
         """
-        data = Json.load_json_file(self.notes_relative_path)
 
-        for dir in data["categories"]:
-            for note in dir['notes']:
-                if note['id'] == note_id:
-                    updated_note = self.__update_note(note, note_data)
-                    Json.update_json_file(self.notes_relative_path, data)
-                    return updated_note
+        current_note = self.__find_note(folders, note_id)
+        if current_note:
+            updated_note = self.__update_note(current_note, note_data)
+            return updated_note
         return RespMsg.NOT_FOUND
     
-
-    def update_note_category(self, note_id: int, dir_id: int):
-        note_dict = self.get_note_by_id(note_id)
-        note = Note(note_dict['id'], note_dict['title'], note_dict['content'], note_dict['bookmark'], note_dict['password_protected'])
-        self.delete_note(note_id)
-        self.add_note(dir_id, note) 
-        return RespMsg.OK    
-        
     
-    def delete_note(self, note_id: int):
+    
+    def delete_note(self, folders, note_id: int):
         """
         Delete a specific note from the notes structure by its unique identifier.
 
@@ -124,16 +113,27 @@ class FolderNoteManager:
             - If successful, it returns RespMsg.OK.
             - If the note is not found, it returns RespMsg.NOT_FOUND.
         """
-        data = Json.load_json_file(self.notes_relative_path)
-
-        for dir in data['categories']:
-            for note in dir['notes']:
-                if note['id'] == note_id:
+        for folder in folders:
+            for note in folder.get('notes'):         
+                if note.get('id') == note_id:
+                    folder['notes'].remove(note)
                     self.__delete_note_html_file(note)
-                    dir['notes'].remove(note)
-                    Json.update_json_file(self.notes_relative_path, data)
-                    return RespMsg.OK
-        return RespMsg.NOT_FOUND
+                    return note
+            return self.delete_note(folder.get('subcategories'), note_id)
+        return None
+    
+
+
+    def __find_note(self, folders, note_id: int):
+        for folder in folders:
+            for note in folder["notes"]:
+                if note.get("id") == note_id:
+                    return note
+        
+                note_in_subfolder = self.get_note_by_id(folder["subcategories"], note_id)
+                if note_in_subfolder:
+                    return note_in_subfolder
+        return None
         
     
     def __create_note_object(self, note_data: Note):

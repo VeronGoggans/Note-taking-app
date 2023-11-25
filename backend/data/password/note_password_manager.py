@@ -21,7 +21,7 @@ class NotePasswordManager:
         return RespMsg.NOT_FOUND
 
 
-    def get_password_by_id(self, entity_id: int, entity: str):
+    def get_password_by_id(self, folder_id: int, note_id: int):
         pass
 
     def update_password(self, entity_id: int, entity: str, new_psw_hash):

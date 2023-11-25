@@ -39,3 +39,8 @@ def password(folder_id: int, subfolder_id: int, password_str: PasswordRequest):
     if response != RespMsg.NOT_FOUND:
         return {'Status_code': response}
     return {'Status_code': RespMsg.NOT_FOUND}
+
+
+@route.get('/password/note/{folder_id}/{note_id}')
+def password(folder_id: int, note_id: int):
+    response = password_service.get_password(folder_id, )

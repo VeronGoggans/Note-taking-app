@@ -16,7 +16,7 @@ def notes(folder_id: int, note_type: str):
     response = note_service.get_notes(folder_id, note_type)
     if response != RespMsg.NOT_FOUND:
         return {'Status_code': RespMsg.OK, "Object": response}
-    return {'Status_code': RespMsg.NOT_FOUND}
+    return {'Status_code': response}
 
 
 @route.get('/folder/noteById/{note_id}')
@@ -32,7 +32,7 @@ def note(folder_id: int, note: NoteRequest):
     response = note_service.add_note(folder_id, note)
     if response != RespMsg.NOT_FOUND:
         return {'Status_code': RespMsg.OK, "Object": response}
-    return {'Status_code': RespMsg.NOT_FOUND}
+    return {'Status_code': response}
 
 
 @route.delete('/folder/note/{note_id}')
