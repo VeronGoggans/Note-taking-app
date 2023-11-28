@@ -4,4 +4,6 @@ class Subfolder:
         self.name = name
         self.password_protected = False
         self.password = password
-        self.notes = []    
+        self.notes = []  
+        self.subfolders = []
+          

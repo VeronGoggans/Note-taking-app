@@ -8,23 +8,45 @@ class FolderManager:
         self.notes_relative_path = os.getcwd() + '/storage/json/notes.json'
 
 
-    def get(self) -> list:
+    def get_folders(self, folders) -> list:
         """
-        Retrieve a list of folders from the notes structure.
+        Retrieve a list of information (id, name) of folders/subfolders from the notes structure.
 
+        Args:
+            folders (Any) The json dictionary representing the notes structure.
+        
         Returns:
             List[Dict[str, Union[int, str]]]: A list of dictionaries containing directory information.
             - Each dictionary includes 'id' and 'name' keys representing the directory's unique identifier and name.
         """
-        data = Json.load_json_file(self.notes_relative_path)
-
         folder_list = []
-        for folder in data['categories']:
+        for folder in folders:
             folder_list.append({'id': folder['id'], 'name': folder['name']})
         return folder_list
+    
+
+    def get_subfolders(self, folders, folder_id: int):
+        """
+        Retrieve a list of subfolder names belonging to a specific folder.
+
+        Args:
+            folder_id (int): The unique identifier of the parent folder.
+
+        Returns:
+            Union[List[str], RespMsg]: 
+            - If successful, it returns a list of subfolders names.
+            - If the parent folder is not found, it returns RespMsg.NOT_FOUND.
+        """
+        target_folder = self.find_by_id(folders, folder_id)
+    
+        if target_folder:
+            subfolders = target_folder.get("subfolders", [])
+            subfolder_info = [{"id": subfolder["id"], "name": subfolder["name"]} for subfolder in subfolders]
+            return subfolder_info
+        return None
 
 
-    def add(self, folder: Folder) -> RespMsg:
+    def add_folder(self, folders, folder: Folder) -> RespMsg:
         """
         Add a new folder to the notes structure.
 
@@ -35,10 +57,7 @@ class FolderManager:
             RespMsg: A response message indicating the outcome of the directory addition.
             - If successful, it returns RespMsg.OK.
         """
-        data = Json.load_json_file(self.notes_relative_path)
-        
-        data["categories"].append(folder.__dict__)
-        Json.update_json_file(self.notes_relative_path, data)
+        folders.append(folder.__dict__)
         return folder
 
     
@@ -87,5 +106,12 @@ class FolderManager:
         return RespMsg.NOT_FOUND
     
 
-    def __update_dir_object(self, dir_name: str):
-        pass
+    def find_by_id(self, folders, target_id):
+        for folder in folders:
+            if folder.get("id") == target_id:
+                return folder
+            
+            subfolder = self.find_by_id(folder["subfolders"], target_id)
+            if subfolder:
+                return subfolder
+        return None

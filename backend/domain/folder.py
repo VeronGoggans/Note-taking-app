@@ -5,4 +5,4 @@ class Folder:
         self.password_protected = False
         self.password = password
         self.notes = []
-        self.subcategories = []
+        self.subfolders = []

@@ -11,7 +11,7 @@ folder_service = DirectoryService( folder_manager = FolderManager() )
 
 @route.get('/folders')
 def directories():
-    response = folder_service.get_directories()
+    response = folder_service.get_folders()
     return {"Status_code": RespMsg.OK, "category_names": response}
 
 
@@ -23,11 +23,11 @@ def folder_content(folder_id: int, note_type: str):
 
 @route.post('/folder')
 def directory(folder: FolderRequest):
-    response = folder_service.add_directory(folder)
+    response = folder_service.add_folder(folder)
 
-    if response != RespMsg.NOT_FOUND:
+    if response != RespMsg.INTERAL_SERVER_ERROR:
         return {'Status_code': RespMsg.OK, "Object": response}
-    return {'Status_code': RespMsg.NOT_FOUND}
+    return {'Status_code': RespMsg.INTERAL_SERVER_ERROR}
 
 
 

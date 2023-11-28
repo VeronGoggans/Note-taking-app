@@ -8,7 +8,7 @@ class SubfolderManager:
         self.notes_relative_path = os.getcwd() + '/storage/json/notes.json'
 
 
-    def get(self, dir_id: int):
+    def get_subfolders(self, folders, folder_id: int):
         """
         Retrieve a list of subfolder names belonging to a specific folder.
 
@@ -20,18 +20,16 @@ class SubfolderManager:
             - If successful, it returns a list of subfolders names.
             - If the parent folder is not found, it returns RespMsg.NOT_FOUND.
         """
-        data = Json.load_json_file(self.notes_relative_path)
-
-        subfolder_list = []
-        for folder in data["categories"]:
-            if folder["id"] == dir_id:
-                for subfolder in folder['subcategories']:
-                    subfolder.append({'id': subfolder['id'], 'name': subfolder['name']})
-                return subfolder_list
-        return RespMsg.NOT_FOUND  
+        target_folder = self.__find_by_id(folders, folder_id)
+    
+        if target_folder:
+            subfolders = target_folder.get("subfolders", [])
+            subfolder_info = [{"id": subfolder["id"], "name": subfolder["name"]} for subfolder in subfolders]
+            return subfolder_info
+        return None
 
 
-    def add(self, folder_id: int, subfolder: Subfolder):
+    def add_subfolder(self, folders, folder_id: int, subfolder: Subfolder):
         """
         Add a new subfolder to an existing folder in the notes structure.
 
@@ -44,14 +42,11 @@ class SubfolderManager:
             - If successful, it returns RespMsg.OK.
             - If the parent folder is not found, it returns RespMsg.NOT_FOUND.
         """
-        data = Json.load_json_file(self.notes_relative_path)
-
-        for folder in data["categories"]:
-            if folder["id"] == folder_id:
-                folder["subcategories"].append(subfolder.__dict__)
-                Json.update_json_file(self.notes_relative_path, data)
-                return subfolder
-        return RespMsg.NOT_FOUND
+        parent_folder = self.__find_by_id(folders, folder_id)
+        if parent_folder:
+            parent_folder['subfolders'].append(subfolder.__dict__)
+            return subfolder
+        return None
 
 
     def update(self, subfolder_id: int, new_name: str):
@@ -78,7 +73,7 @@ class SubfolderManager:
         return RespMsg.NOT_FOUND    
         
 
-    def delete(self, subfolder_id: int):
+    def delete_subfolder(self, folders, folder_id: int, subfolder_id: int):
         """
         Delete a subfolder from the notes structure.
 
@@ -90,12 +85,20 @@ class SubfolderManager:
             - If successful, it returns RespMsg.OK.
             - If the subfolder is not found, it returns RespMsg.NOT_FOUND.
         """
-        data = Json.load_json_file(self.notes_relative_path)
+        parent_folder = self.__find_by_id(folders, folder_id)
+        subfolder_to_delete = self.__find_by_id(folders, subfolder_id)
+        if subfolder_to_delete:
 
-        for folder in data["categories"]:
-            for subfolder in folder["subcategories"]:
-                if subfolder["id"] == subfolder_id:
-                    folder["subcategories"].remove(subfolder)
-                    Json.update_json_file(self.notes_relative_path, data)
-                    return RespMsg.OK
+            return subfolder_to_delete
         return RespMsg.NOT_FOUND
+    
+
+    def __find_by_id(self, folders, target_id):
+        for folder in folders:
+            if folder.get("id") == target_id:
+                return folder
+            
+            subfolder = self.__find_by_id(folder["subfolders"], target_id)
+            if subfolder:
+                return subfolder
+        return None

@@ -10,14 +10,17 @@ subfolder_service = SubDirectoryService( subfolder_manager = SubfolderManager() 
 
 @route.get('/subfolders/{folder_id}')
 def subcategories(folder_id: int):
-    response = subfolder_service.get_subdirectories(folder_id)
-    return {"Status_code": RespMsg.OK, "SubDirectoryNames": response}
+    response = subfolder_service.get_subfolders(folder_id)
+
+    if response != RespMsg.NOT_FOUND:
+        return {'Status_code': RespMsg.OK, "Object": response}
+    return {'Status_code': RespMsg.NOT_FOUND}
 
 
 
 @route.post('/subfolder/{folder_id}')
 def subcategory(folder_id: int, subfolder: SubfolderRequest):
-    response = subfolder_service.add_subdirectory(folder_id, subfolder)
+    response = subfolder_service.add_subfolder(folder_id, subfolder)
 
     if response != RespMsg.NOT_FOUND:
         return {'Status_code': RespMsg.OK, "Object": response}
@@ -27,7 +30,7 @@ def subcategory(folder_id: int, subfolder: SubfolderRequest):
 
 @route.put('/subfolder/{subfolder_id}')
 def subcategory(subfolder_id: int, subfolder: SubfolderRequest):
-    response = subfolder_service.update_subdirectory(subfolder_id, subfolder)
+    response = subfolder_service.update_subfolder(subfolder_id, subfolder)
 
     if response != RespMsg.NOT_FOUND:
         return {'Status_code': RespMsg.OK, "Object": response}
@@ -37,7 +40,7 @@ def subcategory(subfolder_id: int, subfolder: SubfolderRequest):
 
 @route.delete('/subfolder/{subfolder_id}')
 def subcategory(subfolder_id: int):
-    response = subfolder_service.delete_subdirectory(subfolder_id)
+    response = subfolder_service.delete_subfolder(subfolder_id)
 
     if response != RespMsg.NOT_FOUND:
         return {'Status_code': RespMsg.OK, "Object": response}

@@ -1,5 +1,5 @@
 {
-    "categories": [
+    "folders": [
         {
             "id": 76,
             "name": "Test-folder",
@@ -27,7 +27,7 @@
                     "password": ""
                 }
             ],
-            "subcategories": [
+            "subfolders": [
                 {
                     "id": 8,
                     "name": "Test-subfolder",
@@ -53,9 +53,94 @@
                             "last_edit": "22/11/2023 15:00:00",
                             "creation": "22/11/2023",
                             "password": ""
+                        },
+                        {
+                            "id": 153,
+                            "title": "Hello Stormy",
+                            "content": "C:\\Users\\jsvgo\\Web Dev\\Note Taking App/storage/notes/note-153.html",
+                            "bookmark": false,
+                            "password_protected": false,
+                            "last_edit": "28/11/2023 18:02:14",
+                            "creation": "28/11/2023",
+                            "password": ""
                         }
                     ],
-                    "subcategories": []
+                    "subfolders": []
+                }
+            ]
+        },
+        {
+            "id": 81,
+            "name": "New Folder Hello World",
+            "password_protected": false,
+            "password": "",
+            "notes": [],
+            "subfolders": [
+                {
+                    "id": 12,
+                    "name": "Test nested subfolders",
+                    "password_protected": false,
+                    "password": "",
+                    "notes": [],
+                    "subfolders": [
+                        {
+                            "id": 13,
+                            "name": "Test nested subfolders",
+                            "password_protected": false,
+                            "password": "",
+                            "notes": [],
+                            "subfolders": [
+                                {
+                                    "id": 14,
+                                    "name": "Test nested subfolders",
+                                    "password_protected": false,
+                                    "password": "",
+                                    "notes": [
+                                        {
+                                            "id": 156,
+                                            "title": "Hello Stormy",
+                                            "content": "C:\\Users\\jsvgo\\Web Dev\\Note Taking App/storage/notes/note-156.html",
+                                            "bookmark": false,
+                                            "password_protected": false,
+                                            "last_edit": "28/11/2023 18:16:35",
+                                            "creation": "28/11/2023",
+                                            "password": ""
+                                        }
+                                    ],
+                                    "subfolders": [
+                                        {
+                                            "id": 15,
+                                            "name": "Test nested subfolders",
+                                            "password_protected": false,
+                                            "password": "",
+                                            "notes": [],
+                                            "subfolders": [
+                                                {
+                                                    "id": 16,
+                                                    "name": "Test nested subfolders",
+                                                    "password_protected": false,
+                                                    "password": "",
+                                                    "notes": [
+                                                        {
+                                                            "id": 157,
+                                                            "title": "Hello Stormy",
+                                                            "content": "C:\\Users\\jsvgo\\Web Dev\\Note Taking App/storage/notes/note-157.html",
+                                                            "bookmark": false,
+                                                            "password_protected": false,
+                                                            "last_edit": "28/11/2023 18:51:12",
+                                                            "creation": "28/11/2023",
+                                                            "password": ""
+                                                        }
+                                                    ],
+                                                    "subfolders": []
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
                 }
             ]
         }

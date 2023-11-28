@@ -24,13 +24,13 @@ class NoteManager:
             - If successful, it returns RespMsg.OK.
             - If the sub directory is not found, it returns RespMsg.NOT_FOUND.
         """
-
-        for folder in folders:
-            if folder.get('id') == folder_id:
-                folder["notes"].append(note.__dict__)
-                return note
-            return self.add_note(folder.get('subcategories'), folder_id, note)
+        parent_folder = self.__find_folder_by_id(folders, folder_id)
+        if parent_folder:
+            parent_folder['notes'].append(note.__dict__)
+            return note
         return None
+
+        
 
     
     def get_notes(self, folders, folder_id: int, note_type: str):
@@ -46,11 +46,10 @@ class NoteManager:
             - If successful, it returns a list of notes as dictionaries.
             - If the sub directory is not found, it returns RespMsg.NOT_FOUND.
         """
-        for folder in folders:
-            if folder.get('id') == folder_id:
-                return self.filter.filter_by_type(folder["notes"], note_type)
-            return self.get_notes(folder.get('subcategories'), folder_id, note_type)
-        return RespMsg.NOT_FOUND
+        parent_folder = self.__find_folder_by_id(folders, folder_id)
+        if parent_folder:
+            return self.filter.filter_by_type(parent_folder['notes'], note_type)
+        return None
 
 
     def get_note_by_id(self, folders, note_id: int):
@@ -72,7 +71,7 @@ class NoteManager:
                     note_object.set_content_text()
                     return note_object
         
-                note_in_subfolder = self.get_note_by_id(folder["subcategories"], note_id)
+                note_in_subfolder = self.get_note_by_id(folder["subfolders"], note_id)
                 if note_in_subfolder:
                     return note_in_subfolder
         return None
@@ -118,7 +117,7 @@ class NoteManager:
                     folder['notes'].remove(note)
                     self.__delete_note_html_file(note)
                     return note
-            return self.delete_note(folder.get('subcategories'), note_id)
+            return self.delete_note(folder.get('subfolders'), note_id)
         return None
     
 
@@ -129,9 +128,20 @@ class NoteManager:
                 if note.get("id") == note_id:
                     return note
         
-                note_in_subfolder = self.get_note_by_id(folder["subcategories"], note_id)
+                note_in_subfolder = self.get_note_by_id(folder["subfolders"], note_id)
                 if note_in_subfolder:
                     return note_in_subfolder
+        return None
+    
+
+    def __find_folder_by_id(self, folders, target_id):
+        for folder in folders:
+            if folder.get("id") == target_id:
+                return folder
+            
+            subfolder = self.__find_folder_by_id(folder["subfolders"], target_id)
+            if subfolder:
+                return subfolder
         return None
         
     
