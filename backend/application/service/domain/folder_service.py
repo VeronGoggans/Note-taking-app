@@ -23,7 +23,6 @@ class DirectoryService:
         folder_structure = Json.load_json_file(self.folders_path)
         folders = folder_structure['folders']
         folder_info = self.folder_manager.get_folders(folders)
-
         return folder_info
     
     
@@ -35,7 +34,7 @@ class DirectoryService:
 
         new_folder = self.folder_manager.add_folder(folders, folder)
         if new_folder:
-            Json.update_json_file(self.folders_path, folder_structure)
+            Json.update(self.folders_path, folder_structure)
             return new_folder
         return RespMsg.INTERAL_SERVER_ERROR
     
@@ -50,7 +49,7 @@ class DirectoryService:
         deleted_folder = self.folder_manager.delete_folder(folders, folder_id)
 
         if deleted_folder is not None:
-            Json.update_json_file(self.folders_path, folder_structure)
+            Json.update(self.folders_path, folder_structure)
             return RespMsg.OK
         return RespMsg.NOT_FOUND
 

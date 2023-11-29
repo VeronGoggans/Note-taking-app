@@ -42,7 +42,7 @@ class SubDirectoryService:
         new_subfolder = self.subfolder_manager.add_subfolder(folders, folder_id, subfolder)
 
         if new_subfolder:
-            Json.update_json_file(self.folders_path, folder_structure)
+            Json.update(self.folders_path, folder_structure)
             return new_subfolder
         return RespMsg.NOT_FOUND
     

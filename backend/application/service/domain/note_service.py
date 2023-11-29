@@ -41,7 +41,7 @@ class NoteService:
         new_note = self.note_manager.add_note(folders, folder_id, note)
 
         if new_note:
-            Json.update_json_file(self.folders_path, folder_structure)
+            Json.update(self.folders_path, folder_structure)
             return new_note
         return RespMsg.NOT_FOUND
     
@@ -53,7 +53,7 @@ class NoteService:
         note = self.note_manager.update_note(folders, note_id, note_data)
 
         if note:
-            Json.update_json_file(self.folders_path, folder_structure)
+            Json.update(self.folders_path, folder_structure)
             return note 
         return RespMsg.NOT_FOUND
     
@@ -65,7 +65,7 @@ class NoteService:
         deleted_note = self.note_manager.delete_note(folders, note_id)
 
         if deleted_note:
-            Json.update_json_file(self.folders_path, folder_structure)
+            Json.update(self.folders_path, folder_structure)
             return RespMsg.OK
         return RespMsg.NOT_FOUND
 

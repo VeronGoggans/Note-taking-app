@@ -6,7 +6,7 @@ class Json:
 
     
     @staticmethod
-    def load_json_file(file_path) -> dict:
+    def load(file_path) -> dict:
         """
         Load JSON data from a file.
 
@@ -22,7 +22,7 @@ class Json:
     
 
     @staticmethod
-    def update_json_file(file_path, updated_data) -> None:
+    def update(file_path, updated_data) -> None:
         """
         Update a JSON file with new data.
 
