@@ -13,6 +13,7 @@ class SubfolderManager:
         Retrieve a list of subfolder names belonging to a specific folder.
 
         Args:
+            folders: (Any): The json dictionary containing the folders structure.
             folder_id (int): The unique identifier of the parent folder.
 
         Returns:
@@ -34,6 +35,7 @@ class SubfolderManager:
         Add a new subfolder to an existing folder in the notes structure.
 
         Args:
+            folders: (Any): The json dictionary containing the folders structure.
             folder_id (int): The unique identifier of the parent folder.
             subfolder (Subfolder): Data containing information to create the new subdirectory.
 
@@ -49,11 +51,12 @@ class SubfolderManager:
         return None
 
 
-    def update(self, folders, subfolder_id: int, new_name: str):
+    def update_subfolder(self, folders, subfolder_id: int, new_subfolder_name: str):
         """
         Update the name of a subfolder in the notes structure.
 
         Args:
+            folders: (Any): The json dictionary containing the folders structure.
             subfolder_id (int): The unique identifier of the subfolder to update.
             new_name (str): The new name for the subfolder.
 
@@ -62,21 +65,20 @@ class SubfolderManager:
             - If successful, it returns RespMsg.OK.
             - If the subfolder is not found, it returns RespMsg.NOT_FOUND.
         """
-        updated_subfolder = self.__find_folder_by_id(folders, subfolder_id)
+        subfolder = self.__find_folder_by_id(folders, subfolder_id)
+        if subfolder:
+            subfolder['name'] = new_subfolder_name
+            return subfolder
+        return None
 
-        for folder in folders:
-            for subfolder in folder['subfolders']:
-                if subfolder['id'] == subfolder_id:
-                    subfolder['name'] = new_name
-                    return RespMsg.OK
-        return RespMsg.NOT_FOUND    
-        
 
     def delete_subfolder(self, folders, parent_id: int, folder_id: int) -> RespMsg:
         """
         Delete a folder from the notes structure.
 
         Args:
+            folders: (Any): The json dictionary containing the folders structure.
+            parent_id (int): The unique identifier of subfolders parent folder. 
             folder_id (int): The unique identifier of the folder to delete.
 
         Returns:

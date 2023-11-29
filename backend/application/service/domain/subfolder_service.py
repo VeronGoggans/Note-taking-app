@@ -47,8 +47,15 @@ class SubDirectoryService:
         return RespMsg.NOT_FOUND
     
 
-    def update_subfolder(self, sub_dir_id: int, sub_dir: SubfolderRequest):
-        return self.subfolder_manager.update(sub_dir_id, sub_dir.name)
+    def update_subfolder(self, subfolder_id: int, subfolder: SubfolderRequest):
+        folder_structure = Json.load(self.folders_path)
+        folders = folder_structure['folders']
+        updated_subfolder = self.subfolder_manager.update_subfolder(folders, subfolder_id, subfolder.name)
+
+        if updated_subfolder is not None:
+            Json.update(self.folders_path, folder_structure)
+            return updated_subfolder
+        return RespMsg.NOT_FOUND
     
     
     def delete_subfolder(self, parent_id: int, subfolder_id: int):
