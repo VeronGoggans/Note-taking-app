@@ -15,12 +15,6 @@ def folders():
     return {"Status_code": RespMsg.OK, "category_names": response}
 
 
-@route.get('/folder/content')
-def folder_content(folder_id: int, note_type: str):
-    pass
-
-
-
 @route.post('/folder')
 def folder(folder: FolderRequest):
     response = folder_service.add_folder(folder)
