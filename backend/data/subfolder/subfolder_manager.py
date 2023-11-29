@@ -6,6 +6,7 @@ import os
 class SubfolderManager:
     def __init__(self):
         self.notes_relative_path = os.getcwd() + '/storage/json/notes.json'
+        self.DELETED = 'DELETED'
 
 
     def get_subfolders(self, folders, folder_id: int):
@@ -68,7 +69,7 @@ class SubfolderManager:
         subfolder = self.__find_folder_by_id(folders, subfolder_id)
         if subfolder:
             subfolder['name'] = new_subfolder_name
-            return subfolder
+            return {"name": new_subfolder_name}
         return None
 
 
@@ -91,7 +92,7 @@ class SubfolderManager:
             for subfolder in parent_folder['subfolders']:
                 if subfolder.get('id') == folder_id:
                     parent_folder['subfolders'].remove(subfolder)
-                    return subfolder
+                    return self.DELETED
             return None
         return None 
     
