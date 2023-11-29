@@ -21,13 +21,13 @@ class IDGenerator:
         """
         path_to_id_file = os.getcwd() + "/storage/json/id.json"
 
-        data = Json.load_json_file(path_to_id_file)
+        data = Json.load(path_to_id_file)
         unique_id = None
 
         for entity in data['ids']:
             if entity['entityName'] == entity_name.lower():
                 unique_id = entity['id']
                 entity['id'] = unique_id + 1
-                Json.update_json_file(path_to_id_file, data)
+                Json.update(path_to_id_file, data)
                 return unique_id
         raise ValueError(f'f{entity_name} is not a valid entity name.')

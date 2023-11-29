@@ -28,6 +28,14 @@
                 }
             ],
             "subfolders": []
+        },
+        {
+            "id": 83,
+            "name": "Hello Folder",
+            "password_protected": false,
+            "password": "",
+            "notes": [],
+            "subfolders": []
         }
     ]
 }

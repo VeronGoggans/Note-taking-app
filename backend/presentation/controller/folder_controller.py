@@ -2,11 +2,11 @@ from fastapi import APIRouter
 from backend.data.folder.folder_manager import FolderManager
 from backend.presentation.request_bodies.folder_request import FolderRequest
 from backend.domain.enums.responseMessages import RespMsg
-from backend.application.service.domain.folder_service import DirectoryService
+from backend.application.service.domain.folder_service import FolderService
 
 
 route = APIRouter()
-folder_service = DirectoryService( folder_manager = FolderManager() )
+folder_service = FolderService( folder_manager = FolderManager() )
 
 
 @route.get('/folders')
@@ -33,7 +33,7 @@ def folder(folder: FolderRequest):
 
 @route.put('/folder/{folder_id}')
 def folder(folder_id: int, folder: FolderRequest):
-    response = folder_service.update_directory(folder_id, folder)
+    response = folder_service.update_folder(folder_id, folder)
 
     if response != RespMsg.NOT_FOUND:
         return {'Status_code': RespMsg.OK, "Object": response}

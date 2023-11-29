@@ -14,7 +14,7 @@ class NoteService:
 
 
     def get_notes(self, folder_id: int, note_type: str):
-        folder_structure = Json.load_json_file(self.folders_path)
+        folder_structure = Json.load(self.folders_path)
         folders = folder_structure['folders']
         notes = self.note_manager.get_notes(folders, folder_id, note_type)
 
@@ -25,7 +25,7 @@ class NoteService:
 
 
     def get_note_by_id(self, note_id: int):
-        folders = Json.load_json_file(self.folders_path)['folders']
+        folders = Json.load(self.folders_path)['folders']
         note = self.note_manager.get_note_by_id(folders, note_id)
         if note:
             return note
@@ -36,7 +36,7 @@ class NoteService:
     def add_note(self, folder_id: int, note_data: NoteRequest):
         note : Note = self.__construct_note_object(note_data)
         note.set_content_path()
-        folder_structure = Json.load_json_file(self.folders_path)
+        folder_structure = Json.load(self.folders_path)
         folders = folder_structure['folders']
         new_note = self.note_manager.add_note(folders, folder_id, note)
 
@@ -48,7 +48,7 @@ class NoteService:
     
 
     def update_note(self, note_id: int, note_data: NoteRequest):
-        folder_structure = Json.load_json_file(self.folders_path)
+        folder_structure = Json.load(self.folders_path)
         folders = folder_structure['folders']
         note = self.note_manager.update_note(folders, note_id, note_data)
 
@@ -60,7 +60,7 @@ class NoteService:
 
 
     def delete_note(self, note_id: int):
-        folder_structure = Json.load_json_file(self.folders_path)
+        folder_structure = Json.load(self.folders_path)
         folders = folder_structure['folders']
         deleted_note = self.note_manager.delete_note(folders, note_id)
 

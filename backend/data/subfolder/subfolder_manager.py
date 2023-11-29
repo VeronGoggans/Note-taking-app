@@ -49,7 +49,7 @@ class SubfolderManager:
         return None
 
 
-    def update(self, subfolder_id: int, new_name: str):
+    def update(self, folders, subfolder_id: int, new_name: str):
         """
         Update the name of a subfolder in the notes structure.
 
@@ -62,13 +62,12 @@ class SubfolderManager:
             - If successful, it returns RespMsg.OK.
             - If the subfolder is not found, it returns RespMsg.NOT_FOUND.
         """
-        data = Json.load_json_file(self.notes_relative_path)
+        updated_subfolder = self.__find_folder_by_id(folders, subfolder_id)
 
-        for folder in data['categories']:
-            for subfolder in folder['subcategories']:
+        for folder in folders:
+            for subfolder in folder['subfolders']:
                 if subfolder['id'] == subfolder_id:
                     subfolder['name'] = new_name
-                    Json.update_json_file(self.notes_relative_path, data)
                     return RespMsg.OK
         return RespMsg.NOT_FOUND    
         
