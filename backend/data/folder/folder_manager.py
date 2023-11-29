@@ -37,7 +37,7 @@ class FolderManager:
             - If successful, it returns a list of subfolders names.
             - If the parent folder is not found, it returns RespMsg.NOT_FOUND.
         """
-        target_folder = self.find_by_id(folders, folder_id)
+        target_folder = self.find_folder_by_id(folders, folder_id)
     
         if target_folder:
             subfolders = target_folder.get("subfolders", [])
@@ -84,7 +84,7 @@ class FolderManager:
         return RespMsg.NOT_FOUND
         
     
-    def delete(self, folder_id: int) -> RespMsg:
+    def delete_folder(self, folders, folder_id: int) -> RespMsg:
         """
         Delete a folder from the notes structure.
 
@@ -96,22 +96,19 @@ class FolderManager:
             - If successful, it returns RespMsg.OK.
             - If the folder is not found, it returns RespMsg.NOT_FOUND.
         """
-        data = Json.load_json_file(self.notes_relative_path)
-
-        for folder in data['categories']:
-            if folder['id'] == folder_id:
-                data['categories'].remove(folder)
-                Json.update_json_file(self.notes_relative_path, data)
-                return RespMsg.OK        
-        return RespMsg.NOT_FOUND
+        folder = self.find_folder_by_id(folders, folder_id)
+        if folder:
+            folders.remove(folder)
+            return folder 
+        return None
     
 
-    def find_by_id(self, folders, target_id):
+    def find_folder_by_id(self, folders, target_id):
         for folder in folders:
             if folder.get("id") == target_id:
                 return folder
             
-            subfolder = self.find_by_id(folder["subfolders"], target_id)
+            subfolder = self.find_folder_by_id(folder["subfolders"], target_id)
             if subfolder:
                 return subfolder
         return None

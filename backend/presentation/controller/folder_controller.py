@@ -10,7 +10,7 @@ folder_service = DirectoryService( folder_manager = FolderManager() )
 
 
 @route.get('/folders')
-def directories():
+def folders():
     response = folder_service.get_folders()
     return {"Status_code": RespMsg.OK, "category_names": response}
 
@@ -22,7 +22,7 @@ def folder_content(folder_id: int, note_type: str):
 
 
 @route.post('/folder')
-def directory(folder: FolderRequest):
+def folder(folder: FolderRequest):
     response = folder_service.add_folder(folder)
 
     if response != RespMsg.INTERAL_SERVER_ERROR:
@@ -32,7 +32,7 @@ def directory(folder: FolderRequest):
 
 
 @route.put('/folder/{folder_id}')
-def directory(folder_id: int, folder: FolderRequest):
+def folder(folder_id: int, folder: FolderRequest):
     response = folder_service.update_directory(folder_id, folder)
 
     if response != RespMsg.NOT_FOUND:
@@ -42,9 +42,9 @@ def directory(folder_id: int, folder: FolderRequest):
 
 
 @route.delete('/folder/{folder_id}')
-def directory(folder_id: int):
+def folder(folder_id: int):
     
-    response = folder_service.delete_directory(folder_id)
+    response = folder_service.delete_folder(folder_id)
     if response != RespMsg.NOT_FOUND:
         return {'Status_code': response}
     return {'Status_code': RespMsg.NOT_FOUND}

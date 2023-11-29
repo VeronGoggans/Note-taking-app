@@ -73,24 +73,26 @@ class SubfolderManager:
         return RespMsg.NOT_FOUND    
         
 
-    def delete_subfolder(self, folders, folder_id: int, subfolder_id: int):
+    def delete_folder(self, folders, parent_id: int, folder_id: int) -> RespMsg:
         """
-        Delete a subfolder from the notes structure.
+        Delete a folder from the notes structure.
 
         Args:
-            subfolder_id (int): The unique identifier of the subfolder to delete.
+            folder_id (int): The unique identifier of the folder to delete.
 
         Returns:
-            RespMsg: A response message indicating the outcome of the subfolder deletion.
+            RespMsg: A response message indicating the outcome of the folder deletion.
             - If successful, it returns RespMsg.OK.
-            - If the subfolder is not found, it returns RespMsg.NOT_FOUND.
+            - If the folder is not found, it returns RespMsg.NOT_FOUND.
         """
-        parent_folder = self.__find_by_id(folders, folder_id)
-        subfolder_to_delete = self.__find_by_id(folders, subfolder_id)
-        if subfolder_to_delete:
-
-            return subfolder_to_delete
-        return RespMsg.NOT_FOUND
+        parent_folder = self.find_folder_by_id(folders, parent_id)
+        if parent_folder:
+            for subfolder in parent_folder['subfolders']:
+                if subfolder.get('id') == folder_id:
+                    parent_folder.remove(subfolder)
+                    return subfolder
+            return None
+        return None 
     
 
     def __find_by_id(self, folders, target_id):

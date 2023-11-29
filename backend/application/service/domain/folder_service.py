@@ -44,7 +44,14 @@ class DirectoryService:
         return self.folder_manager.update(dir_id, dir.name)
     
     
-    def delete_directory(self, dir_id: int):
-        return self.folder_manager.delete(dir_id)
+    def delete_folder(self, folder_id: int):
+        folder_structure = Json.load_json_file(self.folders_path)
+        folders = folder_structure['folders']
+        deleted_folder = self.folder_manager.delete_folder(folders, folder_id)
+
+        if deleted_folder is not None:
+            Json.update_json_file(self.folders_path, folder_structure)
+            return RespMsg.OK
+        return RespMsg.NOT_FOUND
 
     
