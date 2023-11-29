@@ -27,47 +27,7 @@
                     "password": ""
                 }
             ],
-            "subfolders": [
-                {
-                    "id": 8,
-                    "name": "Test-subfolder",
-                    "password_protected": true,
-                    "password": "59f7348c803829ef6c64f27a52ae616dd24c8114ebaeb7efae0ed82ac18e8cba",
-                    "notes": [
-                        {
-                            "id": 143,
-                            "title": "Testing notes",
-                            "content": "C:\\Users\\jsvgo\\Web Dev\\Note Taking App/storage/notes/note-143.html",
-                            "bookmark": false,
-                            "password_protected": false,
-                            "last_edit": "22/11/2023 14:49:50",
-                            "creation": "22/11/2023",
-                            "password": ""
-                        },
-                        {
-                            "id": 144,
-                            "title": "Testing notes",
-                            "content": "C:\\Users\\jsvgo\\Web Dev\\Note Taking App/storage/notes/note-144.html",
-                            "bookmark": false,
-                            "password_protected": false,
-                            "last_edit": "22/11/2023 15:00:00",
-                            "creation": "22/11/2023",
-                            "password": ""
-                        },
-                        {
-                            "id": 153,
-                            "title": "Hello Stormy",
-                            "content": "C:\\Users\\jsvgo\\Web Dev\\Note Taking App/storage/notes/note-153.html",
-                            "bookmark": false,
-                            "password_protected": false,
-                            "last_edit": "28/11/2023 18:02:14",
-                            "creation": "28/11/2023",
-                            "password": ""
-                        }
-                    ],
-                    "subfolders": []
-                }
-            ]
+            "subfolders": []
         }
     ]
 }

@@ -20,7 +20,7 @@ class SubfolderManager:
             - If successful, it returns a list of subfolders names.
             - If the parent folder is not found, it returns RespMsg.NOT_FOUND.
         """
-        target_folder = self.__find_by_id(folders, folder_id)
+        target_folder = self.__find_folder_by_id(folders, folder_id)
     
         if target_folder:
             subfolders = target_folder.get("subfolders", [])
@@ -42,7 +42,7 @@ class SubfolderManager:
             - If successful, it returns RespMsg.OK.
             - If the parent folder is not found, it returns RespMsg.NOT_FOUND.
         """
-        parent_folder = self.__find_by_id(folders, folder_id)
+        parent_folder = self.__find_folder_by_id(folders, folder_id)
         if parent_folder:
             parent_folder['subfolders'].append(subfolder.__dict__)
             return subfolder
@@ -73,7 +73,7 @@ class SubfolderManager:
         return RespMsg.NOT_FOUND    
         
 
-    def delete_folder(self, folders, parent_id: int, folder_id: int) -> RespMsg:
+    def delete_subfolder(self, folders, parent_id: int, folder_id: int) -> RespMsg:
         """
         Delete a folder from the notes structure.
 
@@ -85,22 +85,22 @@ class SubfolderManager:
             - If successful, it returns RespMsg.OK.
             - If the folder is not found, it returns RespMsg.NOT_FOUND.
         """
-        parent_folder = self.find_folder_by_id(folders, parent_id)
+        parent_folder = self.__find_folder_by_id(folders, parent_id)
         if parent_folder:
             for subfolder in parent_folder['subfolders']:
                 if subfolder.get('id') == folder_id:
-                    parent_folder.remove(subfolder)
+                    parent_folder['subfolders'].remove(subfolder)
                     return subfolder
             return None
         return None 
     
 
-    def __find_by_id(self, folders, target_id):
+    def __find_folder_by_id(self, folders, target_id):
         for folder in folders:
             if folder.get("id") == target_id:
                 return folder
             
-            subfolder = self.__find_by_id(folder["subfolders"], target_id)
+            subfolder = self.__find_folder_by_id(folder["subfolders"], target_id)
             if subfolder:
                 return subfolder
         return None

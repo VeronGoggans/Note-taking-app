@@ -24,7 +24,7 @@ class SubDirectoryService:
             - If subfolders are found, it returns a list containing information about the subfolders.
             - If no subfolders are found or the specified folder does not exist, it returns a message indicating 'NOT_FOUND'.
         """
-        folder_structure = Json.load_json_file(self.folders_path)
+        folder_structure = Json.load(self.folders_path)
         folders = folder_structure['folders']
         subfolder_info = self.subfolder_manager.get_subfolders(folders, folder_id)
 
@@ -34,7 +34,7 @@ class SubDirectoryService:
     
     
     def add_subfolder(self, folder_id: int, subfolder: SubfolderRequest):
-        folder_structure = Json.load_json_file(self.folders_path)
+        folder_structure = Json.load(self.folders_path)
         folders = folder_structure['folders']
         id = IDGenerator.ID('subfolder')
         subfolder: Subfolder = Subfolder(id, subfolder.name)
@@ -51,7 +51,26 @@ class SubDirectoryService:
         return self.subfolder_manager.update(sub_dir_id, sub_dir.name)
     
     
-    def delete_subfolder(self, subfolder_id: int):
-        return self.subfolder_manager.delete(subfolder_id)
+    def delete_subfolder(self, parent_id: int, subfolder_id: int):
+        """
+        Delete a subfolder with the specified ID from a parent folder.
+
+        Args:
+            parent_id (int): The ID of the parent folder containing the subfolder to be deleted.
+            subfolder_id (int): The ID of the subfolder to be deleted.
+
+        Returns:
+            RespMsg: 
+            - If the subfolder is successfully deleted, it returns 'OK'.
+            - If the specified subfolder or parent folder is not found, it returns 'NOT_FOUND'.
+        """
+        folder_structure = Json.load(self.folders_path)
+        folders = folder_structure['folders']
+        deleted_subfolder = self.subfolder_manager.delete_subfolder(folders, parent_id, subfolder_id)
+
+        if deleted_subfolder:
+            Json.update(self.folders_path, folder_structure)
+            return RespMsg.OK
+        return RespMsg.NOT_FOUND
 
     

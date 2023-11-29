@@ -38,10 +38,10 @@ def subcategory(subfolder_id: int, subfolder: SubfolderRequest):
 
 
 
-@route.delete('/subfolder/{subfolder_id}')
-def subcategory(subfolder_id: int):
-    response = subfolder_service.delete_subfolder(subfolder_id)
+@route.delete('/subfolder/{parent_id}/{subfolder_id}')
+def subcategory(parent_id: int, subfolder_id: int):
+    response = subfolder_service.delete_subfolder(parent_id, subfolder_id)
 
     if response != RespMsg.NOT_FOUND:
-        return {'Status_code': RespMsg.OK, "Object": response}
+        return {'Status_code': response}
     return {'Status_code': RespMsg.NOT_FOUND}
