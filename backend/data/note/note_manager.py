@@ -1,6 +1,6 @@
 from backend.domain.note import Note
-from backend.domain.enums.responseMessages import RespMsg
-from backend.presentation.request_bodies.note_request import NoteRequest
+from backend.presentation.request_bodies.note.post_note_request import PostNoteRequest
+from backend.presentation.request_bodies.note.put_note_request import PutNoteRequest
 from backend.application.service.util.date_service import DateService
 from backend.application.filters.NoteFilter import NoteFilter
 import os
@@ -11,7 +11,7 @@ class NoteManager:
         self.filter = NoteFilter()
     
 
-    def add_note(self, folders, folder_id: int, note: Note):
+    def add_note(self, folders, folder_id: str, note: Note):
         """
         Add a note to a specified folder in the notes structure.
 
@@ -33,7 +33,7 @@ class NoteManager:
         
 
     
-    def get_notes(self, folders, folder_id: int, note_type: str):
+    def get_notes(self, folders, folder_id: str, note_type: str):
         """
         Retrieve a filtered list of notes from a specified sub directory in the notes structure.
 
@@ -52,7 +52,7 @@ class NoteManager:
         return None
 
 
-    def get_note_by_id(self, folders, note_id: int):
+    def get_note_by_id(self, folders, note_id: str):
         """
         Retrieve a specific note from the notes structure by its unique identifier.
 
@@ -77,7 +77,7 @@ class NoteManager:
         return None
                         
 
-    def update_note(self, folders, note_id: int, note_data: NoteRequest):
+    def update_note(self, folders, note_id: str, put_request: PutNoteRequest):
         """
         Update a note with the provided note data.
 
@@ -93,13 +93,13 @@ class NoteManager:
 
         current_note = self.__find_note(folders, note_id)
         if current_note:
-            updated_note = self.__update_note(current_note, note_data)
+            updated_note = self.__update_note(current_note, put_request)
             return updated_note
-        return RespMsg.NOT_FOUND
+        return None
     
     
     
-    def delete_note(self, folders, note_id: int):
+    def delete_note(self, folders, folder_id: str, note_id: str):
         """
         Delete a specific note from the notes structure by its unique identifier.
 
@@ -111,24 +111,26 @@ class NoteManager:
             - If successful, it returns RespMsg.OK.
             - If the note is not found, it returns RespMsg.NOT_FOUND.
         """
-        for folder in folders:
-            for note in folder.get('notes'):         
+        folder = self.__find_folder_by_id(folders, folder_id)
+        if folder:
+            for note in folder['notes']:
                 if note.get('id') == note_id:
                     folder['notes'].remove(note)
                     self.__delete_note_html_file(note)
                     return note
-            return self.delete_note(folder.get('subfolders'), note_id)
+            return None
         return None
+                
     
 
 
-    def __find_note(self, folders, note_id: int):
+    def __find_note(self, folders, note_id: str):
         for folder in folders:
             for note in folder["notes"]:
                 if note.get("id") == note_id:
                     return note
         
-                note_in_subfolder = self.get_note_by_id(folder["subfolders"], note_id)
+                note_in_subfolder = self.__find_note(folder["subfolders"], note_id)
                 if note_in_subfolder:
                     return note_in_subfolder
         return None
@@ -162,7 +164,7 @@ class NoteManager:
         note_object.delete_note_file(note_object.content)
 
     
-    def __update_note(self, current_note: dict, updated_note: NoteRequest):
+    def __update_note(self, current_note: dict, updated_note: PutNoteRequest):
         note: Note = self.__create_note_object(current_note)
         note.update_content(note.content, updated_note.content)
 

@@ -1,5 +1,7 @@
 from backend.data.folder.folder_manager import FolderManager
-from backend.presentation.request_bodies.folder_request import FolderRequest
+from backend.presentation.request_bodies.folder.post_folder_request import PostFolderRequest
+from backend.presentation.request_bodies.folder.put_folder_request import PutFolderRequest
+from backend.presentation.request_bodies.folder.del_folder_request import DeleteFolderRequest
 from backend.domain.folder import Folder
 from backend.data.file.json_manager import Json
 from backend.domain.enums.responseMessages import RespMsg
@@ -26,7 +28,7 @@ class FolderService:
         return folder_info
     
     
-    def add_folder(self, folder: FolderRequest):
+    def add_folder(self, post_request: PostFolderRequest):
         """
         Add a new folder with the specified name.
 
@@ -41,7 +43,7 @@ class FolderService:
         folder_structure = Json.load(self.folders_path)
         folders = folder_structure['folders']
         id = IDGenerator.ID('folder')
-        folder: Folder = Folder(id, folder.name)
+        folder: Folder = Folder(id, post_request.name)
 
         new_folder = self.folder_manager.add_folder(folders, folder)
         if new_folder:
@@ -50,7 +52,7 @@ class FolderService:
         return RespMsg.INTERAL_SERVER_ERROR
     
 
-    def update_folder(self, folder_id: int, folder: FolderRequest):
+    def update_folder(self, put_request: PutFolderRequest):
         """
         Update the name of an existing folder with the specified ID.
 
@@ -65,7 +67,7 @@ class FolderService:
         """
         folder_structure = Json.load(self.folders_path)
         folders = folder_structure['folders']
-        updated_folder = self.folder_manager.update_folder(folders, folder_id, folder.name)
+        updated_folder = self.folder_manager.update_folder(folders, put_request.folder_id, put_request.new_name)
         
         if updated_folder is not None:
             Json.update(self.folders_path, folder_structure)
@@ -73,7 +75,7 @@ class FolderService:
         return RespMsg.NOT_FOUND
     
     
-    def delete_folder(self, folder_id: int):
+    def delete_folder(self, delete_request: DeleteFolderRequest):
         """
         Delete an existing folder with the specified ID.
 
@@ -87,7 +89,7 @@ class FolderService:
         """
         folder_structure = Json.load(self.folders_path)
         folders = folder_structure['folders']
-        deleted_folder = self.folder_manager.delete_folder(folders, folder_id)
+        deleted_folder = self.folder_manager.delete_folder(folders, delete_request.folder_id)
 
         if deleted_folder is not None:
             Json.update(self.folders_path, folder_structure)

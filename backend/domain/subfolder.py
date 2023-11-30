@@ -1,9 +1,7 @@
 class Subfolder:
-    def __init__(self, id: int, name: str, password = ''):
+    def __init__(self, id: str, name: str):
         self.id = id
         self.name = name
-        self.password_protected = False
-        self.password = password
         self.notes = []  
         self.subfolders = []
           

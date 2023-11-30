@@ -1,5 +1,7 @@
 from backend.data.note.note_manager import NoteManager
-from backend.presentation.request_bodies.note_request import NoteRequest
+from backend.presentation.request_bodies.note.post_note_request import PostNoteRequest
+from backend.presentation.request_bodies.note.put_note_request import PutNoteRequest
+from backend.presentation.request_bodies.note.del_note_request import DeleteNoteRequest
 from backend.application.generators.Id_generator import IDGenerator
 from backend.domain.note import Note
 from backend.data.file.json_manager import Json
@@ -33,12 +35,12 @@ class NoteService:
     
 
 
-    def add_note(self, folder_id: int, note_data: NoteRequest):
-        note : Note = self.__construct_note_object(note_data)
+    def add_note(self, post_request: PostNoteRequest):
+        note : Note = self.__construct_note_object(post_request)
         note.set_content_path()
         folder_structure = Json.load(self.folders_path)
         folders = folder_structure['folders']
-        new_note = self.note_manager.add_note(folders, folder_id, note)
+        new_note = self.note_manager.add_note(folders, post_request.folder_id, note)
 
         if new_note:
             Json.update(self.folders_path, folder_structure)
@@ -47,10 +49,10 @@ class NoteService:
     
     
 
-    def update_note(self, note_id: int, note_data: NoteRequest):
+    def update_note(self, put_request: PutNoteRequest):
         folder_structure = Json.load(self.folders_path)
         folders = folder_structure['folders']
-        note = self.note_manager.update_note(folders, note_id, note_data)
+        note = self.note_manager.update_note(folders, put_request.note_id, put_request)
 
         if note:
             Json.update(self.folders_path, folder_structure)
@@ -59,10 +61,10 @@ class NoteService:
     
 
 
-    def delete_note(self, note_id: int):
+    def delete_note(self, delete_request: DeleteNoteRequest):
         folder_structure = Json.load(self.folders_path)
         folders = folder_structure['folders']
-        deleted_note = self.note_manager.delete_note(folders, note_id)
+        deleted_note = self.note_manager.delete_note(folders,delete_request.folder_id, delete_request.note_id)
 
         if deleted_note:
             Json.update(self.folders_path, folder_structure)
@@ -71,12 +73,12 @@ class NoteService:
 
 
 
-    def __construct_note_object(self, note_data: NoteRequest):
+    def __construct_note_object(self, post_request: PostNoteRequest):
         note_id = IDGenerator.ID("note")
         return Note(
             note_id, 
-            note_data.title, 
-            note_data.content, 
-            note_data.bookmark, 
-            note_data.password_protected
+            post_request.title, 
+            post_request.content, 
+            post_request.bookmark, 
+            post_request.password_protected
             )

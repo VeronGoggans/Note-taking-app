@@ -1,12 +1,14 @@
 from backend.data.subfolder.subfolder_manager import SubfolderManager
-from backend.presentation.request_bodies.subfolder_request import SubfolderRequest
+from backend.presentation.request_bodies.subfolder.post_subfolder_request import PostSubfolderRequest
+from backend.presentation.request_bodies.subfolder.put_subfolder_request import PutSubfolderRequest
+from backend.presentation.request_bodies.subfolder.del_subfolder_request import DeleteSubfolderRequest
 from backend.domain.subfolder import Subfolder
 from backend.data.file.json_manager import Json
 from backend.domain.enums.responseMessages import RespMsg
 from backend.application.generators.Id_generator import IDGenerator
 import os 
 
-class SubDirectoryService:
+class SubfolderService:
     def __init__(self, subfolder_manager: SubfolderManager):
         self.subfolder_manager = subfolder_manager
         self.folders_path = os.getcwd() + '/storage/json/notes.json'
@@ -33,32 +35,32 @@ class SubDirectoryService:
         return RespMsg.NOT_FOUND
     
     
-    def add_subfolder(self, folder_id: int, subfolder: SubfolderRequest):
+    def add_subfolder(self, post_request: PostSubfolderRequest):
         folder_structure = Json.load(self.folders_path)
         folders = folder_structure['folders']
         id = IDGenerator.ID('subfolder')
-        subfolder: Subfolder = Subfolder(id, subfolder.name)
+        subfolder: Subfolder = Subfolder(id, post_request.name)
 
-        new_subfolder = self.subfolder_manager.add_subfolder(folders, folder_id, subfolder)
+        manager_response = self.subfolder_manager.add_subfolder(folders, post_request.folder_id, subfolder)
 
-        if new_subfolder:
+        if manager_response:
             Json.update(self.folders_path, folder_structure)
-            return new_subfolder
+            return manager_response
         return RespMsg.NOT_FOUND
     
 
-    def update_subfolder(self, subfolder_id: int, subfolder: SubfolderRequest):
+    def update_subfolder(self, update_request: PutSubfolderRequest):
         folder_structure = Json.load(self.folders_path)
         folders = folder_structure['folders']
-        updated_subfolder = self.subfolder_manager.update_subfolder(folders, subfolder_id, subfolder.name)
+        manager_response = self.subfolder_manager.update_subfolder(folders, update_request.subfolder_id, update_request.name)
 
-        if updated_subfolder is not None:
+        if manager_response is not None:
             Json.update(self.folders_path, folder_structure)
-            return updated_subfolder
+            return manager_response
         return RespMsg.NOT_FOUND
     
     
-    def delete_subfolder(self, parent_id: int, subfolder_id: int):
+    def delete_subfolder(self, delete_request: DeleteSubfolderRequest):
         """
         Delete a subfolder with the specified ID from a parent folder.
 
@@ -73,9 +75,9 @@ class SubDirectoryService:
         """
         folder_structure = Json.load(self.folders_path)
         folders = folder_structure['folders']
-        deleted_subfolder = self.subfolder_manager.delete_subfolder(folders, parent_id, subfolder_id)
+        manager_response = self.subfolder_manager.delete_subfolder(folders, delete_request.folder_id, delete_request.subfolder_id)
 
-        if deleted_subfolder:
+        if manager_response is not None:
             Json.update(self.folders_path, folder_structure)
             return RespMsg.OK
         return RespMsg.NOT_FOUND

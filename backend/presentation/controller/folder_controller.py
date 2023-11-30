@@ -1,6 +1,8 @@
 from fastapi import APIRouter
 from backend.data.folder.folder_manager import FolderManager
-from backend.presentation.request_bodies.folder_request import FolderRequest
+from backend.presentation.request_bodies.folder.post_folder_request import PostFolderRequest
+from backend.presentation.request_bodies.folder.del_folder_request import DeleteFolderRequest
+from backend.presentation.request_bodies.folder.put_folder_request import PutFolderRequest
 from backend.domain.enums.responseMessages import RespMsg
 from backend.application.service.domain.folder_service import FolderService
 
@@ -12,11 +14,11 @@ folder_service = FolderService( folder_manager = FolderManager() )
 @route.get('/folders')
 def folders():
     response = folder_service.get_folders()
-    return {"Status_code": RespMsg.OK, "category_names": response}
+    return {"Status_code": RespMsg.OK, "folders": response}
 
 
 @route.post('/folder')
-def folder(folder: FolderRequest):
+def folder(folder: PostFolderRequest):
     response = folder_service.add_folder(folder)
 
     if response != RespMsg.INTERAL_SERVER_ERROR:
@@ -25,9 +27,9 @@ def folder(folder: FolderRequest):
 
 
 
-@route.put('/folder/{folder_id}')
-def folder(folder_id: int, folder: FolderRequest):
-    response = folder_service.update_folder(folder_id, folder)
+@route.put('/folder')
+def folder(folder: PutFolderRequest):
+    response = folder_service.update_folder(folder)
 
     if response != RespMsg.NOT_FOUND:
         return {'Status_code': RespMsg.OK, "Object": response}
@@ -35,10 +37,10 @@ def folder(folder_id: int, folder: FolderRequest):
 
 
 
-@route.delete('/folder/{folder_id}')
-def folder(folder_id: int):
+@route.delete('/folder')
+def folder(folder: DeleteFolderRequest):
     
-    response = folder_service.delete_folder(folder_id)
+    response = folder_service.delete_folder(folder)
     if response != RespMsg.NOT_FOUND:
         return {'Status_code': response}
     return {'Status_code': RespMsg.NOT_FOUND}

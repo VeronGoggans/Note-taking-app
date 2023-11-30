@@ -3,9 +3,8 @@ import os
 
 
 class IDGenerator:
-    
     @staticmethod
-    def ID(entity_name: str):
+    def ID(entity_name: str) -> str:
         """
         Generate a unique identifier for a specified entity type.
         Entity types [note, folder, subfolder]. 
@@ -25,9 +24,13 @@ class IDGenerator:
         unique_id = None
 
         for entity in data['ids']:
-            if entity['entityName'] == entity_name.lower():
+            if entity.get('entity') == entity_name.lower():
                 unique_id = entity['id']
-                entity['id'] = unique_id + 1
+                id_parts: list = entity['id'].split('-')
+                string_part = id_parts[0]
+                number_part = id_parts[-1]
+                increment_ID = int(number_part) + 1
+                entity['id'] = f'{string_part}-{str(increment_ID)}'
                 Json.update(path_to_id_file, data)
                 return unique_id
-        raise ValueError(f'f{entity_name} is not a valid entity name.')
+        raise ValueError(f'{entity_name} is not a valid entity name.')
