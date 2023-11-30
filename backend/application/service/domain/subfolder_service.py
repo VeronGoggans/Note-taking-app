@@ -28,10 +28,10 @@ class SubfolderService:
         """
         folder_structure = Json.load(self.folders_path)
         folders = folder_structure['folders']
-        subfolder_info = self.subfolder_manager.get_subfolders(folders, folder_id)
+        manager_response = self.subfolder_manager.get_subfolders(folders, folder_id)
 
-        if subfolder_info is not None:
-            return subfolder_info
+        if manager_response is not None:
+            return manager_response
         return RespMsg.NOT_FOUND
     
     
