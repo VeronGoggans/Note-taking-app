@@ -19,7 +19,7 @@ class FolderService:
         Get information about folders in the folder structure.
 
         Returns:
-            Union[list, RespMsg]: 
+            list or RespMsg: 
             - A list containing information (name, id) about the folders.
         """
         folder_structure = Json.load(self.folders_path)
@@ -33,7 +33,7 @@ class FolderService:
         Add a new folder with the specified name.
 
         Args:
-            folder (FolderRequest): Object containing the name for the new folder.
+            post_request (PostFolderRequest): Object containing a name for the new folder.
 
         Returns:
             Union[Folder, RespMsg]: 
@@ -57,12 +57,11 @@ class FolderService:
         Update the name of an existing folder with the specified ID.
 
         Args:
-            folder_id (int): The ID of the folder to be updated.
-            folder (FolderRequest): Object containing the new name for the folder.
+            folder (PutFolderRequest): Object containing the id of the folder and the new name for the folder.
 
         Returns:
-            Union[Folder, RespMsg]: 
-            - If the folder is successfully updated, it returns the updated folder object.
+            dict or RespMsg: 
+            - If the folder is successfully updated, it returns the updated folder.
             - If the specified folder is not found, it returns 'NOT_FOUND'.
         """
         folder_structure = Json.load(self.folders_path)
@@ -80,7 +79,7 @@ class FolderService:
         Delete an existing folder with the specified ID.
 
         Args:
-            folder_id (int): The ID of the folder to be deleted.
+            delete_request (DeleteFolderRequest): A object containing the ID of the folder to be deleted.
 
         Returns:
             RespMsg: 

@@ -40,9 +40,9 @@ class SubfolderService:
         Adds a new subfolder to the specified parent folder within the folder structure.
 
         Args:
-            post_request (PostSubfolderRequest): An object containing the details for adding a new subfolder.
-            folder_id (str): The ID of the parent folder where the new subfolder will be added.
-            name (str): The name of the new subfolder.
+            post_request (PostSubfolderRequest): Object containing the folder_id and the name for the new subfolder.
+                                                The folder_id is the ID of the folder to which the subfolder will be added to. 
+                                                The name is the name for the new subfolder.
 
         Returns:
             dict or RespMsg.NOT_FOUND: 
@@ -68,9 +68,10 @@ class SubfolderService:
         Updates a subfolder's name within the folder structure.
 
         Args:
-            update_request (PutSubfolderRequest): An object containing the details for updating the subfolder.
-            subfolder_id (str): The ID of the subfolder to be updated.
-            name (str): The new name for the subfolder.
+            update_request (PutSubfolderRequest): Object containing the subfolder_id and name.
+                                                  The subfolder_id is the ID of the subfolder that will be updated.
+                                                  The name is the new name for the subfolder.
+            
 
         Returns:
             dict or RespMsg.NOT_FOUND: 
@@ -93,8 +94,9 @@ class SubfolderService:
         Delete a subfolder with the specified ID from a parent folder.
 
         Args:
-            parent_id (int): The ID of the parent folder containing the subfolder to be deleted.
-            subfolder_id (int): The ID of the subfolder to be deleted.
+            delete_request (DeleteSubfolderRequest): Object containing the folder_id and subfolder_id.
+                                                     The folder_id is the ID of the parent folder.
+                                                     The subfolder_is is the ID of the folder whished to be deleted.
 
         Returns:
             RespMsg: 
