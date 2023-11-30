@@ -1,6 +1,4 @@
 from backend.domain.subfolder import Subfolder
-from backend.domain.enums.responseMessages import RespMsg
-from backend.data.file.json_manager import Json
 import os
 
 class SubfolderManager:
@@ -9,18 +7,18 @@ class SubfolderManager:
         self.DELETED = 'DELETED'
 
 
-    def get_subfolders(self, folders, folder_id: int):
+    def get_subfolders(self, folders, folder_id: str):
         """
         Retrieve a list of subfolder names belonging to a specific folder.
 
         Args:
-            folders: (Any): The json dictionary containing the folders structure.
-            folder_id (int): The unique identifier of the parent folder.
+            folders (List[dict]): The list of folders to search within.
+            folder_id (str): The unique identifier of the parent folder.
 
         Returns:
-            Union[List[str], RespMsg]: 
+            dict or None:
             - If successful, it returns a list of subfolders names.
-            - If the parent folder is not found, it returns RespMsg.NOT_FOUND.
+            - If the parent folder is not found, it returns None.
         """
         target_folder = self.__find_folder_by_id(folders, folder_id)
     
@@ -31,19 +29,19 @@ class SubfolderManager:
         return None
 
 
-    def add_subfolder(self, folders, folder_id: int, subfolder: Subfolder):
+    def add_subfolder(self, folders, folder_id: str, subfolder: Subfolder):
         """
         Add a new subfolder to an existing folder in the notes structure.
 
         Args:
-            folders: (Any): The json dictionary containing the folders structure.
-            folder_id (int): The unique identifier of the parent folder.
+            folders (List[dict]): The list of folders to search within.
+            folder_id (str): The unique identifier of the parent folder.
             subfolder (Subfolder): Data containing information to create the new subdirectory.
 
         Returns:
-            RespMsg: A response message indicating the outcome of the subfolder addition.
-            - If successful, it returns RespMsg.OK.
-            - If the parent folder is not found, it returns RespMsg.NOT_FOUND.
+            dict or None:
+            - If successful, it returns the subfolder.
+            - If the parent folder is not found, it returns None.
         """
         parent_folder = self.__find_folder_by_id(folders, folder_id)
         if parent_folder:
@@ -52,19 +50,19 @@ class SubfolderManager:
         return None
 
 
-    def update_subfolder(self, folders, subfolder_id: int, new_subfolder_name: str):
+    def update_subfolder(self, folders, subfolder_id: str, new_subfolder_name: str):
         """
         Update the name of a subfolder in the notes structure.
 
         Args:
-            folders: (Any): The json dictionary containing the folders structure.
-            subfolder_id (int): The unique identifier of the subfolder to update.
+            folders (List[dict]): The list of folders to search within.
+            subfolder_id (str): The unique identifier of the subfolder to update.
             new_name (str): The new name for the subfolder.
 
         Returns:
-            RespMsg: A response message indicating the outcome of the subfolder update.
-            - If successful, it returns RespMsg.OK.
-            - If the subfolder is not found, it returns RespMsg.NOT_FOUND.
+            dict or None:
+            - If successful, it returns this object {'name': 'some_name'} .
+            - If the subfolder is not found, it returns None.
         """
         subfolder = self.__find_folder_by_id(folders, subfolder_id)
         if subfolder:
@@ -73,19 +71,19 @@ class SubfolderManager:
         return None
 
 
-    def delete_subfolder(self, folders, parent_id: int, folder_id: int) -> RespMsg:
+    def delete_subfolder(self, folders, parent_id: str, folder_id: str):
         """
         Delete a folder from the notes structure.
 
         Args:
-            folders: (Any): The json dictionary containing the folders structure.
-            parent_id (int): The unique identifier of subfolders parent folder. 
-            folder_id (int): The unique identifier of the folder to delete.
+            folders (List[dict]): The list of folders to search within.
+            parent_id (str): The unique identifier of subfolders parent folder. 
+            folder_id (str): The unique identifier of the folder to delete.
 
         Returns:
-            RespMsg: A response message indicating the outcome of the folder deletion.
-            - If successful, it returns RespMsg.OK.
-            - If the folder is not found, it returns RespMsg.NOT_FOUND.
+            str or None:
+            - If successful, it returns the string 'DELETED'.
+            - If the folder is not found, it returns None.
         """
         parent_folder = self.__find_folder_by_id(folders, parent_id)
         if parent_folder:
@@ -97,7 +95,19 @@ class SubfolderManager:
         return None 
     
 
-    def __find_folder_by_id(self, folders, target_id):
+    def __find_folder_by_id(self, folders, target_id: str):
+        """
+        Recursively searches for a folder within the nested folder structure by its ID.
+
+        Args:
+            folders (List[dict]): The list of folders to search within.
+            target_id (str): The ID of the folder to find.
+
+        Returns:
+            dict or None: 
+            - If a folder with the specified ID is found, returns the corresponding dictionary.
+            - If not found, returns None.
+        """
         for folder in folders:
             if folder.get("id") == target_id:
                 return folder

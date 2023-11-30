@@ -16,13 +16,14 @@ class NoteManager:
         Add a note to a specified folder in the notes structure.
 
         Args:
+            folders (List[dict]): The list of folders to search within.
             folder_id (int): The identifier of the folder to which the note will be added.
-            note_data (NoteRequest): Data containing information to create the note.
+            note (Note): the note object to be added in a folder.
 
         Returns:
-            RespMsg: A response message indicating the outcome of the note addition.
-            - If successful, it returns RespMsg.OK.
-            - If the sub directory is not found, it returns RespMsg.NOT_FOUND.
+            dict or None: 
+            - If successful, it returns the note.
+            - If the folder is not found, it returns None.
         """
         parent_folder = self.__find_folder_by_id(folders, folder_id)
         if parent_folder:
@@ -35,16 +36,17 @@ class NoteManager:
     
     def get_notes(self, folders, folder_id: str, note_type: str):
         """
-        Retrieve a filtered list of notes from a specified sub directory in the notes structure.
+        Retrieve a filtered list of notes from a specified folder in the notes structure.
 
         Args:
-            sub_dir_id (str): The identifier of the sub directory from which to retrieve notes.
+            folders (List[dict]): The list of folders to search within.
+            folder_id (str): The identifier of the folder from which to retrieve notes from.
             note_type (str): The type of notes to filter.
 
         Returns:
-            Union[List[dict], RespMsg]: A filtered list of notes as dictionaries if successful, or a RespMsg indicating the outcome.
+            dict or None: 
             - If successful, it returns a list of notes as dictionaries.
-            - If the sub directory is not found, it returns RespMsg.NOT_FOUND.
+            - If the folder is not found, it returns None.
         """
         parent_folder = self.__find_folder_by_id(folders, folder_id)
         if parent_folder:
@@ -57,12 +59,13 @@ class NoteManager:
         Retrieve a specific note from the notes structure by its unique identifier.
 
         Args:
+            folders (List[dict]): The list of folders to search within.
             note_id (int): The unique identifier of the note to retrieve.
 
         Returns:
-            Union[Note, RespMsg]: The requested Note object if successful, or a RespMsg indicating the outcome.
+            dict or None: 
             - If successful, it returns the specific Note object.
-            - If the note is not found, it returns RespMsg.NOT_FOUND.
+            - If the note is not found, it returns None.
         """
         for folder in folders:
             for note in folder["notes"]:
@@ -82,13 +85,14 @@ class NoteManager:
         Update a note with the provided note data.
 
         Args:
-            note_id (int): The unique identifier of the note to be updated.
-            note_data (NoteRequest): The data to update the note.
+            folders (List[dict]): The list of folders to search within.
+            note_id (str): The unique identifier of the note to be updated.
+            put_request (PutNoteRequest): The data to update the note.
 
         Returns:
-            Union[dict, RespMsg]: 
+            dict or None: 
             - If successful, it returns the updated note as a dictionary.
-            - If the note with the specified ID is not found, it returns a message indicating 'NOT_FOUND'.
+            - If the note with the specified ID is not found, it returns None.
         """
 
         current_note = self.__find_note(folders, note_id)
@@ -104,12 +108,13 @@ class NoteManager:
         Delete a specific note from the notes structure by its unique identifier.
 
         Args:
+            folders (List[dict]): The list of folders to search within.
             note_id (int): The unique identifier of the note to delete.
 
         Returns:
-            RespMsg: A response message indicating the outcome of the note deletion.
-            - If successful, it returns RespMsg.OK.
-            - If the note is not found, it returns RespMsg.NOT_FOUND.
+            dict or None: 
+            - If successful, it returns the deleted note.
+            - If the note is not found, it returns None.
         """
         folder = self.__find_folder_by_id(folders, folder_id)
         if folder:
@@ -125,6 +130,18 @@ class NoteManager:
 
 
     def __find_note(self, folders, note_id: str):
+        """
+        Recursively search for a note with the specified ID within the folder structure.
+
+        Args:
+            folders (List[dict]): The list of folders to search within.
+            note_id (str): The ID of the note to be found.
+
+        Returns:
+            dict or None: 
+            - If the note is found, it returns the note's dictionary.
+            - If the specified note is not found, it returns None.
+        """
         for folder in folders:
             for note in folder["notes"]:
                 if note.get("id") == note_id:
@@ -136,7 +153,19 @@ class NoteManager:
         return None
     
 
-    def __find_folder_by_id(self, folders, target_id):
+    def __find_folder_by_id(self, folders, target_id: str):
+        """
+        Recursively search for a folder with the specified ID within the folder structure.
+
+        Args:
+            folders (List[dict]): The list of folders to search within.
+            target_id (str): The ID of the folder to be found.
+
+        Returns:
+            dict or None: 
+            - If the folder is found, it returns the folder's dictionary.
+            - If the specified folder is not found, it returns None.
+        """
         for folder in folders:
             if folder.get("id") == target_id:
                 return folder
@@ -160,6 +189,7 @@ class NoteManager:
     
 
     def __delete_note_html_file(self, note_data: Note):
+        """This method will delete the htm file linked to the note object."""
         note_object = self.__create_note_object(note_data)
         note_object.delete_note_file(note_object.content)
 

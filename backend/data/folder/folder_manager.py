@@ -13,10 +13,10 @@ class FolderManager:
         Retrieve a list of information (id, name) of folders/subfolders from the notes structure.
 
         Args:
-            folders (Any) The json dictionary representing the notes structure.
+            folders (List[dict]): The list of folders to search within.
         
         Returns:
-            List[Dict[str, Union[int, str]]]: A list of dictionaries containing directory information.
+            list[dict]:
             - Each dictionary includes 'id' and 'name' keys representing the directory's unique identifier and name.
         """
         folder_list = []
@@ -30,28 +30,30 @@ class FolderManager:
         Add a new folder to the notes structure.
 
         Args:
+            folders (List[dict]): The list of folders to search within.
             folder (Folder): a folder object that will be added to the notes structure.
 
         Returns:
-            RespMsg: A response message indicating the outcome of the directory addition.
-            - If successful, it returns RespMsg.OK.
+           dict:
+            - If successful, it returns the folder.
         """
         folders.append(folder.__dict__)
         return folder
 
     
-    def update_folder(self, folders, folder_id: int, folder_name: str) -> RespMsg:
+    def update_folder(self, folders, folder_id: str, folder_name: str) -> RespMsg:
         """
         Update the name of a folder in the notes structure.
 
         Args:
-            folder_id (int): The unique identifier of the folder to update.
+            folders (List[dict]): The list of folders to search within.
+            folder_id (str): The unique identifier of the folder to update.
             folder_name (str): The new name for the folder.
 
         Returns:
-            RespMsg: A response message indicating the outcome of the folder update.
-            - If successful, it returns RespMsg.OK.
-            - If the folder is not found, it returns RespMsg.NOT_FOUND.
+            dict or None:
+            - If successful, it returns the folder.
+            - If the folder is not found, it returns None.
         """        
         for folder in folders:
             if folder.get('id') == folder_id:
@@ -60,17 +62,18 @@ class FolderManager:
         return None
         
     
-    def delete_folder(self, folders, folder_id: int) -> RespMsg:
+    def delete_folder(self, folders, folder_id: str) -> RespMsg:
         """
         Delete a folder from the notes structure.
 
         Args:
-            folder_id (int): The unique identifier of the folder to delete.
+            folders (List[dict]): The list of folders to search within.
+            folder_id (str): The unique identifier of the folder to delete.
 
         Returns:
-            RespMsg: A response message indicating the outcome of the folder deletion.
-            - If successful, it returns RespMsg.OK.
-            - If the folder is not found, it returns RespMsg.NOT_FOUND.
+            dict or None:
+            - If successful, it returns the folder.
+            - If the folder is not found, it returns None.
         """
         for folder in folders:
             if folder.get('id') == folder_id:

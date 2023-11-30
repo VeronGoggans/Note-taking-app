@@ -36,6 +36,20 @@ class SubfolderService:
     
     
     def add_subfolder(self, post_request: PostSubfolderRequest):
+        """
+        Adds a new subfolder to the specified parent folder within the folder structure.
+
+        Args:
+            post_request (PostSubfolderRequest): An object containing the details for adding a new subfolder.
+            folder_id (str): The ID of the parent folder where the new subfolder will be added.
+            name (str): The name of the new subfolder.
+
+        Returns:
+            dict or RespMsg.NOT_FOUND: 
+            - If the parent folder with the specified ID is found and the subfolder is
+              successfully added, returns a dictionary representing the new subfolder.
+            - If the parent folder is not found, returns RespMsg.NOT_FOUND.
+        """
         folder_structure = Json.load(self.folders_path)
         folders = folder_structure['folders']
         id = IDGenerator.ID('subfolder')
@@ -50,6 +64,20 @@ class SubfolderService:
     
 
     def update_subfolder(self, update_request: PutSubfolderRequest):
+        """
+        Updates a subfolder's name within the folder structure.
+
+        Args:
+            update_request (PutSubfolderRequest): An object containing the details for updating the subfolder.
+            subfolder_id (str): The ID of the subfolder to be updated.
+            name (str): The new name for the subfolder.
+
+        Returns:
+            dict or RespMsg.NOT_FOUND: 
+            - If the subfolder with the specified ID is found and updated successfully,
+              returns a dictionary representing the updated subfolder.
+            - If the subfolder is not found, returns RespMsg.NOT_FOUND.
+        """
         folder_structure = Json.load(self.folders_path)
         folders = folder_structure['folders']
         manager_response = self.subfolder_manager.update_subfolder(folders, update_request.subfolder_id, update_request.name)
