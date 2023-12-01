@@ -17,7 +17,7 @@ class NoteManager:
 
         Args:
             folders (List[dict]): The list of folders to search within.
-            folder_id (int): The identifier of the folder to which the note will be added.
+            folder_id (str): The identifier of the folder to which the note will be added.
             note (Note): the note object to be added in a folder.
 
         Returns:
@@ -60,7 +60,7 @@ class NoteManager:
 
         Args:
             folders (List[dict]): The list of folders to search within.
-            note_id (int): The unique identifier of the note to retrieve.
+            note_id (str): The unique identifier of the note to retrieve.
 
         Returns:
             dict or None: 
@@ -109,7 +109,7 @@ class NoteManager:
 
         Args:
             folders (List[dict]): The list of folders to search within.
-            note_id (int): The unique identifier of the note to delete.
+            note_id (str): The unique identifier of the note to delete.
 
         Returns:
             dict or None: 

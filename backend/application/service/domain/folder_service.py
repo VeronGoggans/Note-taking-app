@@ -33,7 +33,9 @@ class FolderService:
         Add a new folder with the specified name.
 
         Args:
-            post_request (PostFolderRequest): Object containing a name for the new folder.
+            post_request (PostFolderRequest): 
+            Object containing a name for the new folder.
+            - name (str): The name for the new folder.
 
         Returns:
             Union[Folder, RespMsg]: 
@@ -57,7 +59,10 @@ class FolderService:
         Update the name of an existing folder with the specified ID.
 
         Args:
-            folder (PutFolderRequest): Object containing the id of the folder and the new name for the folder.
+            folder (PutFolderRequest): 
+            Object containing the folder_id and the new name for the folder.
+            - folder_id (str): The ID of the folder wished to be updated.
+            - new_name (str): The new name of the folder.
 
         Returns:
             dict or RespMsg: 
@@ -79,7 +84,9 @@ class FolderService:
         Delete an existing folder with the specified ID.
 
         Args:
-            delete_request (DeleteFolderRequest): A object containing the ID of the folder to be deleted.
+            delete_request (DeleteFolderRequest): 
+            Object containing the folder_id.
+            - folder_id (str): The ID of the folder whished to be deleted. 
 
         Returns:
             RespMsg: 

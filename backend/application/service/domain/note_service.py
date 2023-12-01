@@ -66,7 +66,14 @@ class NoteService:
         Adds a new note to the specified folder.
 
         Args:
-            post_request (PostNoteRequest): An object containing the details for adding a new note.
+            post_request (PostNoteRequest): 
+            Object containing the folder_id, title, content, bookmark and password_protected fields for a new note.
+            - folder_id (str): The ID of the folder to which the note will be added to.
+            - title (str): The title of the note.
+            - content (str): The content of the note.
+            - bookmrk (bool): A boolean indicating if the note is boomarked or not.
+            - password_protected (bool): A boolean indicating if the note is secure or not.
+
 
         Returns:
             dict or RespMsg.NOT_FOUND: 
@@ -92,7 +99,13 @@ class NoteService:
         Updates an existing note with the specified details.
 
         Args:
-            put_request (PutNoteRequest): An object containing the details for updating an existing note.
+            put_request (PutNoteRequest): 
+            Object containing the note_id, title, content, bookmark and password_protected fields for a new note.
+            - note_id (str): The ID of the note that will be updated.
+            - title (str): The title of the note.
+            - content (str): The content of the note.
+            - bookmrk (bool): A boolean indicating if the note is boomarked or not.
+            - password_protected (bool): A boolean indicating if the note is secure or not.
 
         Returns:
             dict or RespMsg.NOT_FOUND: 
@@ -116,7 +129,10 @@ class NoteService:
         Delete an existing note within a specified folder.
 
         Args:
-            delete_request (DeleteNoteRequest): The data specifying the folder the note is in and the note ID to be deleted.
+            delete_request (DeleteNoteRequest): 
+            Object containing the folder_id and note_id.
+            - folder_id (str): The ID of the folder the note is in.
+            - note_id (str): The ID of the note whished to be deleted.
 
         Returns:
             RespMsg: 
