@@ -1,5 +1,4 @@
 from backend.domain.note import Note
-from backend.presentation.request_bodies.note.post_note_request import PostNoteRequest
 from backend.presentation.request_bodies.note.put_note_request import PutNoteRequest
 from backend.application.service.util.date_service import DateService
 from backend.application.filters.NoteFilter import NoteFilter
