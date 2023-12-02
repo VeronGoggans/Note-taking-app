@@ -5,24 +5,95 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="frontend/css/sidebars/homepageSidebar/sidebar.css">
     <link rel="stylesheet" href="frontend/css/homePage/main.css">
+    <link rel="stylesheet" href="frontend/css/homePage/note.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title></title>
 </head>
 <body>
     <div class="wrapper">
         <div class="sidebar">
-            <button class="home-page-sidebar-bars-button"><i class="fa-solid fa-bars"></i></button>
-            <button class="home-page-sidebar-notes-button"><i class="fa-solid fa-file"></i>Notes</button>
-        </div>
-        <div class="home-page">
-            <div class="home-page-picture-container">
-                <img src="img/Notes-bro.png" alt="coding image">
+            <div class="sidebar-logo">
+                <div class="logo-container">
+                    <div class="logo">
+                        <span>N</span>
+                    </div>
+                    <div class="logo-text">ote</div>
+                </div>
             </div>
-            <div class="home-page-text-container">
-                <h1>Welcome Back</h1>
-                <p>To the place where you can store all your notes <br>And plan all of your projects.</p>
+            <div class="sidebar-content">
+                <button class="create-note-btn"><i class="fa-solid fa-plus"></i>Note</button>
             </div>
         </div>
+
+        <main class="main">
+            <div class="main-top">
+                <button class="add-folder-btn"><i class="fa-solid fa-plus"></i> Folder</button>
+            </div>
+            <div class="main-bottom">
+                <div class="content-list-view">
+                    <span class="content-list-view-title">Folders</span>
+                    <div class="content">
+                        <div class="list-view-folder">
+                            <span class="folder-name">School</span>
+                        </div>
+                        <div class="list-view-folder">
+                            <span class="folder-name">Figma</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-view">
+                    <div class="note">
+                        <div class="note-title-box">
+                            <h4>Figma</h4>
+                            <i class="fa-solid fa-ellipsis"></i>
+                        </div>
+                        <div class="note-content-box">
+                            <p></p>
+                            <div>
+                                <i class="fa-regular fa-bookmark"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="note">
+                        <div class="note-title-box">
+                            <h4>Figma grid</h4>
+                            <i class="fa-solid fa-ellipsis"></i>
+                        </div>
+                        <div class="note-content-box">
+                            <p></p>
+                            <div>
+                                <i class="fa-regular fa-bookmark"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="note">
+                        <div class="note-title-box">
+                            <h4>Figma dev mode</h4>
+                            <i class="fa-solid fa-ellipsis"></i>
+                        </div>
+                        <div class="note-content-box">
+                            <p></p>
+                            <div>
+                                <i class="fa-regular fa-bookmark"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="note">
+                        <div class="note-title-box">
+                            <h4>Untitled</h4>
+                            <i class="fa-solid fa-ellipsis"></i>
+                        </div>
+                        <div class="note-content-box">
+                            <p></p>
+                            <div>
+                                <i class="fa-regular fa-bookmark"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
     </div>    
     <script src="index.js"></script>
     <script src="frontend/js/sidebar.js"></script>

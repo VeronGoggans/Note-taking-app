@@ -1,11 +1,30 @@
 .sidebar {
     position: relative;
-    display: block;
+    display: grid;
+    grid-template-rows: 40px 1fr;
     padding: 10px;
     margin: 20px 10px;
     border-radius: 20px;
     background-color: #669DFF;
     /* 9abfff */
+}
+
+.sidebar-logo .logo-container{
+    display: block;
+    background-color: #5c7dff;
+}
+
+.logo-container {
+    background-color: #5c7dff;
+}
+
+.logo {
+    background-color: #5c7dff;
+
+}
+
+.sidebar-content {
+    display: block;
 }
 
 .notes-page-sidebar-bars-button,

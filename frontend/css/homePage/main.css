@@ -14,41 +14,75 @@ body {
     width: 100dvw;
     height: 100dvh;
     display: grid;
-    grid-template-columns: 250px 1fr;
-    background-color: #ffffff;
-    transition: .15s;
+    grid-template-columns: 220px 1fr;
+    background-color: white;
 }
 
-.home-page {
-    border-radius: 10px;
-    margin: 10px;
+.main {
     display: grid;
-    grid-template-rows: 1fr 300px;
+    grid-template-rows: 50px 1fr;
 }
 
-.home-page-picture-container {
+.main-top {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    justify-content: right;
+    border-bottom: 1px solid rgb(212, 212, 212);
 }
 
-.home-page-picture-container img {
-    width: 100%;
-    height: 100%;
-    max-width: 450px;
+.add-folder-btn {
+    cursor: pointer;
+    outline: none;
+    border: none;
+    margin: 7px 10px 7px 0px;
+    padding: 0 15px;
+    background-color: #5c7dff;
+    color: #fff;
+    border-radius: 5px;
 }
 
-.home-page-text-container {
-    text-align: center;
+.main-bottom {
+    display: grid;
+    grid-template-columns: 200px 1fr;
 }
 
-.home-page-text-container h1 {
-    color: rgb(56, 64, 86);
-    margin-top: 30px;
+.main-bottom .content-list-view {
+    background-color: rgb(221 240 255);
+    display: grid;
+    grid-template-rows: 30px 1fr;
 }
-.home-page-text-container p {
-    color: rgb(56, 64, 86);
-    margin-top: 5px;
+
+.main-bottom .content-list-view .content-list-view-title {
+    padding: 5px;
+    color: #444863;
+    font-size: 18px;
+}
+
+.content-list-view .content {
+    display: block;
+}
+
+.content .list-view-folder {
+    cursor: pointer;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    padding: 10px 0;
+    display: inline-block;
+    width: calc(100% - 20px);
+    background-color: #fff;
+    color: #444863;
+    box-shadow: 5px 5px 5px rgb(217 238 255);
+    border-radius: 5px;
+}
+
+.list-view-folder .folder-name {margin-left: 5px;}
+
+
+
+.content-view {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    grid-template-rows: repeat(auto-fill, 380px);
+    overflow-y: scroll;
 }
 
 @media (max-width: 700px) {

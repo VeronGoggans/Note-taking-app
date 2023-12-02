@@ -1,0 +1,80 @@
+.note,
+.secure-note {
+    height: 340px;
+    border-radius: 15px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(36, 40, 109);
+    display: grid;
+    grid-template-rows: 30px 1fr;
+    margin: 20px;
+    box-shadow: .5rem .4rem 1rem rgb(213, 226, 241);
+    transition: .5s;
+}
+
+.note-title-box,
+.secure-note-title-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.note-title-box i,
+.secure-note-title-box i  {
+    cursor: pointer;
+    margin-right: 15px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25px;
+    height: 25px;
+    transition: .4s;
+}
+
+.note-title-box h4,
+.secure-note-title-box h4 {
+    margin-left: 10px;
+    color: #444863;
+    font-weight: 500;
+}
+
+.note-content-box,
+.secure-note-content-box {
+    display: grid;
+    grid-template-rows: 1fr 30px;
+    padding: 10px;
+    color: rgb(56, 56, 56);
+}
+
+.note-content-box div,
+.secure-note-content-box div {
+    box-shadow: 0px -5px 5px rgb(255, 255, 255);
+}
+
+.note-content-box p {
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.note-content-box i,
+.secure-note-content-box div i {
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    color: #444863;
+    transition: .4s;
+}
+
+.secure-note-content-box #lock_icon {
+    cursor: pointer;
+    font-size: 120px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #669DFF;
+}

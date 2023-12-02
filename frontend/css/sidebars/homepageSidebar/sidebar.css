@@ -1,14 +1,45 @@
 .sidebar {
     position: relative;
-    display: block;
-    padding: 10px;
-    background-color: #f3f6fc;
+    display: grid;
+    grid-template-rows: 50px 1fr;
+    background-color: #ffffff;
+    border-right: 1px solid rgb(212, 212, 212);
 }
 
-.home-page-sidebar-notes-button,
-.home-page-sidebar-projects-button,
-.home-page-sidebar-bars-button,
-.home-page-sidebar-settings-button {
+.sidebar-logo {
+    display: block;
+    border-bottom: 1px solid rgb(212, 212, 212);
+    padding: 5px;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    height: 40px;
+}
+
+.logo {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 7px;
+    color: aliceblue;
+    background-color: #5c7dff;
+}
+
+.logo-text {
+    color: #5c7dff;
+    margin-left: 2px;
+}
+
+.sidebar-content {
+    display: block;
+    padding: 10px;
+}
+
+.create-note-btn {
     cursor: pointer;
     position: relative;
     outline: none;
@@ -22,21 +53,16 @@
     height: 40px;
     font-size: 16px;
     background-color: transparent;
-    color: #1f1f1f;
+    color: #6d6d6d;
     transition: .4s;
 }
 
-.home-page-sidebar-notes-button i,
-.home-page-sidebar-projects-button i,
-.home-page-sidebar-bars-button i,
-.home-page-sidebar-settings-button i {
+.create-note-btn i {
     position: absolute;
     left: 5px;
 }
 
-.home-page-sidebar-notes-button:hover,
-.home-page-sidebar-projects-button:hover,
-.home-page-sidebar-settings-button:hover {
-    background-color: rgb(200, 230, 255);
-    color: rgb(52, 52, 52);
+.create-note-btn:hover {
+    background-color: rgb(217 238 255);
+    color: #5c7dff;
 }
