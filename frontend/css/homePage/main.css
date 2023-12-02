@@ -57,11 +57,11 @@ body {
     font-size: 18px;
 }
 
-.content-list-view .content {
+.content-list-view .list-content {
     display: block;
 }
 
-.content .list-view-folder {
+.list-content .list-view-folder {
     cursor: pointer;
     margin-left: 10px;
     margin-bottom: 10px;

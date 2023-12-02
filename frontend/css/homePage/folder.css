@@ -1,0 +1,31 @@
+.folder {
+    cursor: pointer;
+    height: 340px;
+    border-radius: 15px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(36, 40, 109);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    box-shadow: .5rem .4rem 1rem rgb(213, 226, 241);
+    transition: .5s;
+}
+
+.folder .circle {
+    padding: 50px;
+    display: flex;
+    background-color: rgb(221 240 255);
+    border-radius: 50%;
+}
+
+.folder .circle i {
+    color: #5c7dff;
+}
+
+.folder p {
+    margin-top: 5px;
+    width: 100%;
+    text-align: center;
+    color: #444863;
+}
