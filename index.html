@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="frontend/css/homePage/main.css">
     <link rel="stylesheet" href="frontend/css/homePage/note.css">
     <link rel="stylesheet" href="frontend/css/homePage/folder.css">
+    <link rel="stylesheet" href="frontend/css/dialog.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title></title>
 </head>
@@ -28,27 +29,15 @@
 
         <main class="main">
             <div class="main-top">
-                <button class="add-folder-btn"><i class="fa-solid fa-plus"></i> Folder</button>
+                <button class="create-folder-btn"><i class="fa-solid fa-plus"></i> Folder</button>
             </div>
             <div class="main-bottom">
                 <div class="content-list-view">
                     <span class="content-list-view-title">Folders</span>
-                    <div class="list-content">
-                        <div class="list-view-folder">
-                            <span class="folder-name">Figma</span>
-                        </div>
-                    </div>
+                    <div class="list-content"></div>
                 </div>
                 <div class="content-view">
-                    <div class="folder">
-                        <div class="folder-logo-box">
-                            <div class="circle">
-                                <i class="fa-solid fa-folder"></i>
-                            </div>
-                            <p>Figma</p>
-                        </div>
-                    </div>
-                    <div class="note">
+                    <!-- <div class="note">
                         <div class="note-title-box">
                             <h4>Figma grid</h4>
                             <i class="fa-solid fa-ellipsis"></i>
@@ -59,36 +48,14 @@
                                 <i class="fa-regular fa-bookmark"></i>
                             </div>
                         </div>
-                    </div>
-                    <div class="note">
-                        <div class="note-title-box">
-                            <h4>Figma dev mode</h4>
-                            <i class="fa-solid fa-ellipsis"></i>
-                        </div>
-                        <div class="note-content-box">
-                            <p></p>
-                            <div>
-                                <i class="fa-regular fa-bookmark"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="note">
-                        <div class="note-title-box">
-                            <h4>Untitled</h4>
-                            <i class="fa-solid fa-ellipsis"></i>
-                        </div>
-                        <div class="note-content-box">
-                            <p>hello world !</p>
-                            <div>
-                                <i class="fa-regular fa-bookmark"></i>
-                            </div>
-                        </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </main>
-
+        
     </div>    
+    <div class="dialog"></div>
+    <script defer type="module" src="/frontend/js/view/dialog/dialogView.js"></script>
     <script type="module" src="/frontend/js/service/folderService.js"></script>
     <script type="module" src="index.js"></script>
     <script src="frontend/js/sidebar.js"></script>

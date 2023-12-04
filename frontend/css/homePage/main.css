@@ -29,7 +29,7 @@ body {
     border-bottom: 1px solid rgb(212, 212, 212);
 }
 
-.add-folder-btn {
+.create-folder-btn {
     cursor: pointer;
     outline: none;
     border: none;

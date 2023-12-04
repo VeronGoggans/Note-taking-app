@@ -4,28 +4,61 @@
     border-radius: 15px;
     background-color: rgb(255, 255, 255);
     color: rgb(36, 40, 109);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    grid-template-rows: 30px 1fr 50px;
     margin: 20px;
     box-shadow: .5rem .4rem 1rem rgb(213, 226, 241);
     transition: .5s;
 }
 
-.folder .circle {
-    padding: 50px;
+.folder-logo {
+    height: 170px;
+    width: 170px;
+    margin: auto;
     display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: rgb(221 240 255);
     border-radius: 50%;
 }
 
-.folder .circle i {
+.folder-logo i {
     color: #5c7dff;
 }
 
-.folder p {
-    margin-top: 5px;
-    width: 100%;
-    text-align: center;
+.folder-util-bar {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    padding-right: 10px;
+    gap: 10px;
+    opacity: 0;
+    transition: .2s;
+}
+
+.folder-util-bar:hover {
+    opacity: 1;
+}
+
+.folder-util-bar button {
+    cursor: pointer;
+    outline: none;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 7px;
+    background-color: transparent;
     color: #444863;
+    transition: .3s;
+}
+
+.folder-util-bar button:hover {
+    background-color: aliceblue;
+}
+
+.folder h4 {
+    outline: none;
+    margin-left: 10px;
+    color: #444863;
+    font-weight: 500;
 }

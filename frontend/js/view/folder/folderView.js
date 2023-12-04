@@ -1,5 +1,7 @@
-import { FolderService } from "../service/folderService.js";
-import { CNode } from '../util/CNode.js';
+import { FolderService } from "../../service/folderService.js";
+import { Folder } from './folder.js';
+import { ListFolder } from './listFolder.js';
+import { CNode } from '../../util/CNode.js';
 
 export class FolderView {
     constructor(folderService = new FolderService()) {
@@ -17,8 +19,8 @@ export class FolderView {
             // code appending a Lit element to this._list
             const ID = FOLDERS[i].id;
             const NAME = FOLDERS[i].name;
-            const FOLDER = this.listFolder(ID, NAME)
-            this.list.appendChild(FOLDER);
+            const FOLDER = ListFolder.render(ID, NAME);
+            this._list.appendChild(FOLDER);
         }
     }
 
@@ -28,18 +30,12 @@ export class FolderView {
 
         for (let i = 0; i < FOLDERS.length; i++) {
             // code appending a Lit element to this._content
+            const ID = FOLDERS[i].id;
+            const NAME = FOLDERS[i].name;
+            const FOLDER = Folder.render(ID, NAME);
+            this._content.appendChild(FOLDER);
         }
     }
-
-    listFolder(id, name) {
-        const HOST = CNode.create('div', {'class': 'list-view-folder', 'id': id});
-        const SPAN = CNode.create('span', {'class': 'folder-name', 'textContent': name});
-        
-        // Assemble elements.
-        HOST.appendChild(SPAN);
-        return HOST;
-    }
-
     
     renderNewFolderDialog() {
 
