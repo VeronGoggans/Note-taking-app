@@ -1,17 +1,17 @@
 {
-  "name": "first-lit-element",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "name": "note-taking-app",
+  "version": "1.0.0",
+  "description": "Note taking app",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "lit": "^3.0.2"
-  },
-  "devDependencies": {
-    "vite": "^5.0.0"
+    "lit": "^3.1.0"
   }
 }

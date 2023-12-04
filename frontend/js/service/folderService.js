@@ -1,13 +1,10 @@
-class FolderService {
-    constructor(baseURL) {
-        this.baseURL = baseURL;
-    }
+export class FolderService {
 
     async getFolders(endpoint) {
         try {
-            const response = await fetch(`${this.baseURL}/${endpoint}`);
+            const response = await fetch(`/${endpoint}`);
             if (!response.ok) throw new Error(`HTTP error Status: ${response.status}`)
-            return data = await response.json();
+            return await response.json();
         } catch(error) {
             console.error('Error fetching data: ', error.message);
             throw error;
@@ -23,7 +20,7 @@ class FolderService {
             body: JSON.stringify(postFoldersObject)
         }
         try {
-            const response = await fetch(`${this.baseURL}/${endpoint}`, OPTIONS);
+            const response = await fetch(`/${endpoint}`, OPTIONS);
             if (!response.ok) throw new Error(`HTTP error Status: ${response.status}`)
             return await response.json();
         } catch (error) {
@@ -44,7 +41,7 @@ class FolderService {
             body: JSON.stringify(putFolderObject)
         }
         try {
-            const response = await fetch(`${this.baseURL}/${endpoint}`, OPTIONS);
+            const response = await fetch(`/${endpoint}`, OPTIONS);
             if (!response.ok) throw new Error(`HTTP error Status: ${response.status}`);
             return await response.json();
         } catch (error) {
@@ -60,7 +57,7 @@ class FolderService {
             headers: {"Content-Type": "application/json"},
         }
         try {
-            const response = await fetch(`${this.baseURL}/${endpoint}/${folderId}`, OPTIONS);
+            const response = await fetch(`/${endpoint}/${folderId}`, OPTIONS);
             if (!response.ok) throw new Error(`HTTP error Status: ${response.status}`)
         } catch (error) {
             console.error('Error fetching data: ', error.message);
@@ -68,5 +65,3 @@ class FolderService {
         }
     }
 }
-
-export default FolderService;

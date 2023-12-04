@@ -1,12 +1,6 @@
-// Sidebar buttons
-const sidebarNotesButton = document.querySelector('.home-page-sidebar-notes-button');
-const sidebarProjectsButton = document.querySelector('.home-page-sidebar-projects-button');
-const sidebarSettingsButton = document.querySelector('.home-page-sidebar-settings-button');
+import { FolderService } from '/frontend/js/service/folderService.js';
+import { FolderView } from '/frontend/js/view/FolderView.js';
+const folderService = new FolderService();
+const folderView = new FolderView();
 
-// Icons
-
-// eventListeners
-sidebarNotesButton.addEventListener('click', ()=> {window.location.href='frontend/pages/categoryPage.html'})
-sidebarProjectsButton.addEventListener('click', ()=> {window.location.href='frontend/pages/projectCollectionPage.html'})
-
-// functions
+folderView.renderListViewFolders('folders');
