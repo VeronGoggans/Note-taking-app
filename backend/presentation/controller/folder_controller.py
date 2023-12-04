@@ -37,10 +37,10 @@ def folder(folder: PutFolderRequest):
 
 
 
-@route.delete('/folder')
-def folder(folder: DeleteFolderRequest):
+@route.delete('/folder/{folder_id}')
+def folder(folder_id: str):
     
-    response = folder_service.delete_folder(folder)
+    response = folder_service.delete_folder(folder_id)
     if response != RespMsg.NOT_FOUND:
         return {'Status_code': response}
     return {'Status_code': RespMsg.NOT_FOUND}

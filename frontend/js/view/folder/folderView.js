@@ -4,8 +4,9 @@ import { ListFolder } from './listFolder.js';
 import { CNode } from '../../util/CNode.js';
 
 export class FolderView {
-    constructor(folderService = new FolderService()) {
-        this.folderService = folderService;
+    constructor() {
+        this.folderService = new FolderService();
+        this.dialogView = new DialogView();
         this._content = document.querySelector('.content-view');
         this._list = document.querySelector('.list-content');
         this._cover = document.querySelector('.cover');
@@ -19,8 +20,8 @@ export class FolderView {
             // code appending a Lit element to this._list
             const ID = FOLDERS[i].id;
             const NAME = FOLDERS[i].name;
-            const FOLDER = ListFolder.render(ID, NAME);
-            this._list.appendChild(FOLDER);
+            const FOLDER_CARD = ListFolder.render(ID, NAME);
+            this._list.appendChild(FOLDER_CARD);
         }
     }
 
@@ -32,9 +33,17 @@ export class FolderView {
             // code appending a Lit element to this._content
             const ID = FOLDERS[i].id;
             const NAME = FOLDERS[i].name;
-            const FOLDER = Folder.render(ID, NAME);
-            this._content.appendChild(FOLDER);
+            const FOLDER_CARD = Folder.render(ID, NAME);
+            this._content.appendChild(FOLDER_CARD);
         }
+    }
+
+    async removefolder(id) {
+        await this.folderService.deleteFolder('folder', id);
+        const FOLDER_CARDS_ONE = this._list.childNodes;
+        const FOLDER_CARDS_TWO = this._content.childNodes;
+        const FOLDER_CARD_ONE = FOLDER_CARDS_ONE.querySelector
+        const FOLDER_CARD_TWO =  
     }
     
     renderNewFolderDialog() {

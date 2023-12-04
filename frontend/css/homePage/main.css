@@ -46,7 +46,7 @@ body {
 }
 
 .main-bottom .content-list-view {
-    background-color: rgb(221 240 255);
+    background-color: rgb(221 240 255); /*rgb(221 240 255)*/
     display: grid;
     grid-template-rows: 30px 1fr;
 }
@@ -70,7 +70,7 @@ body {
     width: calc(100% - 20px);
     background-color: #fff;
     color: #444863;
-    box-shadow: 5px 5px 5px rgb(217 238 255);
+    box-shadow: 5px 5px 5px rgb(212 236 255);
     border-radius: 5px;
 }
 

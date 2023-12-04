@@ -1,10 +1,11 @@
 import { CNode } from '../../util/CNode.js';
+import { DialogView } from '../dialog/dialogView.js';
 
 export class Folder {
     constructor() {
     }
 
-    static render(id, name) {
+    static render(id, name, instanceDialogView) {
         const HOST = CNode.create('div', {'class': 'folder', 'id': id});
         const NAME_BOX = CNode.create('div', {'class': 'folder-name-box'});
         const H4 = CNode.create('h4', {'contentEditable': 'false', 'textContent': name});
@@ -26,6 +27,10 @@ export class Folder {
         EDIT.appendChild(EDIT_ICON);
         UTIL_BAR.appendChild(DELETE);
         DELETE.appendChild(DELETE_ICON);
+
+
+        // Functionality
+        DELETE.addEventListener('click', instanceDialogView.renderDeleteFolderDialog(name));
 
         return HOST
     }

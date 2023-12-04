@@ -79,7 +79,7 @@ class FolderService:
         return RespMsg.NOT_FOUND
     
     
-    def delete_folder(self, delete_request: DeleteFolderRequest):
+    def delete_folder(self, folder_id: str):
         """
         Delete an existing folder with the specified ID.
 
@@ -95,7 +95,7 @@ class FolderService:
         """
         folder_structure = Json.load(self.folders_path)
         folders = folder_structure['folders']
-        deleted_folder = self.folder_manager.delete_folder(folders, delete_request.folder_id)
+        deleted_folder = self.folder_manager.delete_folder(folders, folder_id)
 
         if deleted_folder is not None:
             Json.update(self.folders_path, folder_structure)

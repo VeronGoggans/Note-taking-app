@@ -1,15 +1,44 @@
-.priority {
-  width: 75px;
-  height: 25px;
-  border-radius: 5px;
-  border: 2px solid rgb(97, 114, 19);
-  background-color: rgb(59, 221, 59, .4);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: 600;
-  color: #2f2f2f;
+body {
+  background-color: black;
+  font-family: sans-serif;
 }
 
-border: 2px solid rgb(150, 255, 150);
-background-color: rgb(59, 221, 59, .4);
+.delete-folder-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  width: 300px;
+  height: 200px;
+  border-radius: 20px;
+}
+
+.delete-warning {
+  display: inline-flex;
+  color: #444863;
+  font-size: 16px;
+}
+
+.delete-folder-name {
+  display: inline-flex;
+  color: #444863;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.confirm-delete-folder-btn {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background-color: aliceblue;
+  padding: 10px 30px;
+  border-radius: 10px;
+  font-size: 16px;
+  color: #444863;
+  transition: .2s;
+}
+
+.confirm-delete-folder-btn:hover {
+  color: #5c7dff;
+}

@@ -1,13 +1,45 @@
 .sidebar {
     position: relative;
-    display: block;
-    padding: 10px;
-    margin: 20px 10px;
-    border-radius: 20px;
-    background-color: #669DFF;
+    display: grid;
+    grid-template-rows: 50px 1fr;
+    background-color: #ffffff;
+    border-right: 1px solid rgb(212, 212, 212);
 }
 
-.sidebar button {
+.sidebar-logo {
+    display: block;
+    border-bottom: 1px solid rgb(212, 212, 212);
+    padding: 5px;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    height: 40px;
+}
+
+.logo {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 7px;
+    color: aliceblue;
+    background-color: #5c7dff;
+}
+
+.logo-text {
+    color: #5c7dff;
+    margin-left: 2px;
+}
+
+.sidebar-content {
+    display: block;
+    padding: 10px;
+}
+
+.create-note-btn {
     cursor: pointer;
     position: relative;
     outline: none;
@@ -16,21 +48,20 @@
     align-items: center;
     margin: 10px 0;
     padding-left: 35px;
-    border-radius: 7px;
+    border-radius: 15px;
     width: 100%;
     height: 40px;
     font-size: 16px;
     background-color: transparent;
-    color: aliceblue;
-    transition: .2s;
+    color: #6d6d6d;
+    transition: .4s;
 }
 
-.sidebar button i {
+.create-note-btn i {
     position: absolute;
     left: 5px;
 }
 
-.sidebar button:hover {
-    background-color: aliceblue;
-    color: rgb(52, 52, 52);
+.create-note-btn:hover {
+    background-color: rgb(217 238 255);
 }

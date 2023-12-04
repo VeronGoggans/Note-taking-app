@@ -1,9 +1,10 @@
-import { FolderService } from '/frontend/js/service/folderService.js';
 import { FolderView } from '/frontend/js/view/folder/FolderView.js';
 import { DialogView } from '/frontend/js/view/dialog/DialogView.js';
-const folderService = new FolderService();
+import { SidebarView } from './frontend/js/view/sidebar/sideBarView.js';
+
 const folderView = new FolderView();
-const dialogView = new DialogView();
+const dialogView = new DialogView(folderView);
+const sidebarView = new SidebarView();
 
 folderView.renderListViewFolders();
 folderView.renderFolders();

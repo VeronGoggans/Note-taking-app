@@ -59,6 +59,7 @@ export class FolderService {
         try {
             const response = await fetch(`/${endpoint}/${folderId}`, OPTIONS);
             if (!response.ok) throw new Error(`HTTP error Status: ${response.status}`)
+            return await response.json();
         } catch (error) {
             console.error('Error fetching data: ', error.message);
             throw error;
