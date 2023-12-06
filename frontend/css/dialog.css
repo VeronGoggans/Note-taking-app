@@ -10,3 +10,45 @@
     background-color: rgb(0 3 24 / 30%);
     z-index: 1;
 }
+
+.delete-folder-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    width: 300px;
+    height: 200px;
+    border-radius: 20px;
+  }
+  
+  .delete-warning {
+    display: inline-flex;
+    color: #444863;
+    font-size: 16px;
+  }
+  
+  .delete-folder-name {
+    display: inline-flex;
+    color: #444863;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  
+  .confirm-delete-folder-btn {
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background-color: aliceblue;
+    padding: 10px 30px;
+    border-radius: 10px;
+    font-size: 16px;
+    color: #444863;
+    transition: .2s;
+  }
+  
+  .confirm-delete-folder-btn:hover {
+    color: #5c7dff;
+  }
+  
