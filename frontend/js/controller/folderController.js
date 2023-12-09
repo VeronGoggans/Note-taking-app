@@ -1,11 +1,9 @@
-import { FolderView } from '../view/folder/folderView.js';
+import { FolderView } from '../view/folderView.js';
 import { FolderModel } from '../model/folderModel.js';
-import { NoteController } from './noteController.js';
-import { ComminucationController } from './communicationController.js';
 
 export class FolderController {
-    constructor(CommController) {
-        this.comminucationController = CommController;
+    constructor(applicationController) {
+        this.applicationController = applicationController;
         this.folderView = new FolderView(this);
         this.folderModel = new FolderModel();
     }
@@ -37,7 +35,11 @@ export class FolderController {
         this.folderView.removefolder(FOLDER);
     }
 
-    async noteControllerComs(folderId) {
-        this.CommController.folderToNoteCom(folderId);
+    async navigateOutOfFolder() {
+        this.applicationController.navigateOutOfFolder();
+    }
+
+    async navigateIntoFolder(folderId) {
+        this.applicationController.navigateIntoFolder(folderId);
     }
 }

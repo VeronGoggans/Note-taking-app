@@ -39,7 +39,7 @@
     padding: 10px;
 }
 
-.create-note-btn {
+.sidebar-content button {
     cursor: pointer;
     position: relative;
     outline: none;
@@ -57,11 +57,11 @@
     transition: .4s;
 }
 
-.create-note-btn i {
+.sidebar-content button i {
     position: absolute;
     left: 5px;
 }
 
-.create-note-btn:hover {
+.sidebar-content button:hover {
     background-color: rgb(217 238 255);
 }

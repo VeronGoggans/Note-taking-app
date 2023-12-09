@@ -1,8 +1,6 @@
 export class FolderModel {
-    constructor() {
-
-    }
-
+    
+    
     async getFolders(endpoint) {
         try {
             const response = await fetch(`/${endpoint}`);

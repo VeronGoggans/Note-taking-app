@@ -1,12 +1,13 @@
 import { ListFolder } from './listFolder.js';
-import { DialogView } from "../dialog/dialogView.js";
-import { CNode } from '../../util/CNode.js';
-import { FolderController } from '../../controller/folderController.js';
+import { DialogView } from "./dialogView.js";
+import { CNode } from '../util/CNode.js';
 
 export class FolderView {
     constructor(folderController) {
         this.folderController = folderController;
         this.dialogView = new DialogView();
+        this.backoutButton = document.querySelector('.create-note-btn');
+        this.backoutButton.addEventListener('click', this.handleBackoutFolderButtonClick);
         this._content = document.querySelector('.content-view');
         this._list = document.querySelector('.list-content');
         this._cover = document.querySelector('.cover');
@@ -17,7 +18,7 @@ export class FolderView {
             // code appending a Lit element to this._list
             const ID = folders[i].id;
             const NAME = folders[i].name;
-            const FOLDER_CARD = ListFolder.render(ID, NAME);
+            const FOLDER_CARD = this.listFolder(ID, NAME);
             this._list.appendChild(FOLDER_CARD);
         }
     }
@@ -53,6 +54,20 @@ export class FolderView {
         }
     }
 
+    handleBackoutFolderButtonClick() {
+        this.folderController.navigateOutOfFolder();
+    }
+
+    listFolder(id, name) {
+        const HOST = CNode.create('div', {'class': 'list-view-folder', 'id': id});
+        const SPAN = CNode.create('span', {'class': 'folder-name', 'textContent': name});
+        
+        // Assemble elements.
+        HOST.appendChild(SPAN);
+
+        return HOST;
+    }
+
     folder(id, name) {
         const HOST = CNode.create('div', {'class': 'folder', 'id': id});
         const NAME_BOX = CNode.create('div', {'class': 'folder-name-box'});
@@ -78,7 +93,7 @@ export class FolderView {
 
         // Functionality
         DELETE.addEventListener('click', () => this.dialogView.renderDeleteFolderDialog(name, this.removefolder));
-        HOST.addEventListener('click', )
+        HOST.addEventListener('click', () => this.folderController.navigateIntoFolder(id));
 
         return HOST
     }
