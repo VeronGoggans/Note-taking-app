@@ -8,9 +8,11 @@
     <link rel="stylesheet" href="frontend/css/homePage/note.css">
     <link rel="stylesheet" href="frontend/css/homePage/folder.css">
     <link rel="stylesheet" href="frontend/css/dialog.css">
+    <link rel="stylesheet" href="frontend/css/textEditor.css">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title></title>
-    <script type="module" src="/frontend/js/customElements/folder/folder.js"></script>
+    <title>Note</title>
 
 </head>
 <body>
@@ -58,9 +60,40 @@
         
     </div>    
     <div class="dialog"></div>
+    <div class="editor-container">
+        <div id="editor"></div>
+    </div>
     <script defer type="module" src="/frontend/js/view/dialog/dialogView.js"></script>
     <script type="module" src="/frontend/js/service/folderService.js"></script>
     <script type="module" src="/frontend/js/view/sidebar/sideBarView.js"></script>
     <script type="module" src="index.js"></script>
+    <script>
+        const toolbarOptions = [
+      ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+      ['blockquote', 'code-block'],
+
+      [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+      [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+      [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+      [{ 'direction': 'rtl' }],                         // text direction
+
+      [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+      [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+      [{ 'font': [] }],
+      [{ 'align': [] }],
+
+      ['clean']                                         // remove formatting button
+    ];
+
+    const quill = new Quill('#editor', {
+      modules: {
+        toolbar: toolbarOptions
+      },
+      theme: 'snow'
+    });
+    </script>
 </body>
 </html>

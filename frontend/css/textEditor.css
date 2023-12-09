@@ -1,0 +1,8 @@
+#editor {
+    position: absolute;
+    background-color: #fff;
+    width: 100dvw;
+    height: 100dvh;
+    visibility: visible;
+    top: 0;
+}

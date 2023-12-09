@@ -9,3 +9,7 @@ const sidebarView = new SidebarView();
 folderView.renderListViewFolders();
 folderView.renderFolders();
 
+const quill = new Quill('#editor-container', {
+    theme: 'snow' // or 'bubble' for a bubble theme
+  });
+
