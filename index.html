@@ -60,15 +60,13 @@
         
     </div>    
     <div class="dialog"></div>
-    <div class="editor-container">
-        <div id="editor"></div>
-    </div>
+    <div id="editor"></div>
     <script defer type="module" src="/frontend/js/view/dialog/dialogView.js"></script>
     <script type="module" src="/frontend/js/service/folderService.js"></script>
     <script type="module" src="/frontend/js/view/sidebar/sideBarView.js"></script>
     <script type="module" src="index.js"></script>
     <script>
-        const toolbarOptions = [
+        var toolbarOptions = [
       ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
       ['blockquote', 'code-block'],
 
@@ -88,7 +86,7 @@
       ['clean']                                         // remove formatting button
     ];
 
-    const quill = new Quill('#editor', {
+    var quill = new Quill('#editor', {
       modules: {
         toolbar: toolbarOptions
       },

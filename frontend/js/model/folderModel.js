@@ -1,4 +1,7 @@
-export class FolderService {
+export class FolderModel {
+    constructor() {
+
+    }
 
     async getFolders(endpoint) {
         try {

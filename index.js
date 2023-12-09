@@ -1,15 +1,15 @@
 import { FolderView } from '/frontend/js/view/folder/FolderView.js';
+import { FolderController } from './frontend/js/controller/folderController.js';
+import { NoteController } from './frontend/js/controller/noteController.js';
+import { ComminucationController } from './frontend/js/controller/communicationController.js';
 import { DialogView } from '/frontend/js/view/dialog/DialogView.js';
 import { SidebarView } from './frontend/js/view/sidebar/sideBarView.js';
 
-const folderView = new FolderView();
-const dialogView = new DialogView(folderView);
-const sidebarView = new SidebarView();
+const NOTE_CONTROLLER = new NoteController();
+const FOLDER_CONTROLLER = new FolderController();
+const COMM_CONTROLLER = new ComminucationController(FOLDER_CONTROLLER, NOTE_CONTROLLER);
 
-folderView.renderListViewFolders();
-folderView.renderFolders();
 
-const quill = new Quill('#editor-container', {
-    theme: 'snow' // or 'bubble' for a bubble theme
-  });
+FOLDER_CONTROLLER.getFolders();
+
 

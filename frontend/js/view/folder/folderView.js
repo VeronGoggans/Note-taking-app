@@ -1,50 +1,56 @@
-import { FolderService } from "../../service/folderService.js";
-import { Folder } from './folder.js';
 import { ListFolder } from './listFolder.js';
 import { DialogView } from "../dialog/dialogView.js";
 import { CNode } from '../../util/CNode.js';
+import { FolderController } from '../../controller/folderController.js';
 
 export class FolderView {
-    constructor() {
-        this.folderService = new FolderService();
+    constructor(folderController) {
+        this.folderController = folderController;
         this.dialogView = new DialogView();
         this._content = document.querySelector('.content-view');
         this._list = document.querySelector('.list-content');
         this._cover = document.querySelector('.cover');
     }
 
-    async renderListViewFolders() {
-        const RESPONSE = await this.folderService.getFolders('folders');
-        const FOLDERS = RESPONSE.folders;
-
-        for (let i = 0; i < FOLDERS.length; i++) {
+    renderListViewFolders(folders) {
+        for (let i = 0; i < folders.length; i++) {
             // code appending a Lit element to this._list
-            const ID = FOLDERS[i].id;
-            const NAME = FOLDERS[i].name;
+            const ID = folders[i].id;
+            const NAME = folders[i].name;
             const FOLDER_CARD = ListFolder.render(ID, NAME);
             this._list.appendChild(FOLDER_CARD);
         }
     }
 
-    async renderFolders() {
-        const RESPONSE = await this.folderService.getFolders('folders');
-        const FOLDERS = RESPONSE.folders;
-
-        for (let i = 0; i < FOLDERS.length; i++) {
+    renderFolders(folders) {
+        for (let i = 0; i < folders.length; i++) {
             // code appending a Lit element to this._content
-            const ID = FOLDERS[i].id;
-            const NAME = FOLDERS[i].name;
+            const ID = folders[i].id;
+            const NAME = folders[i].name;
             const FOLDER_CARD = this.folder(ID, NAME);
             this._content.appendChild(FOLDER_CARD);
         }
     }
 
-    async removefolder(id) {
-        await this.folderService.deleteFolder('folder', id);
-        const FOLDER_CARDS_ONE = this._list.childNodes;
-        const FOLDER_CARDS_TWO = this._content.childNodes;
-        const FOLDER_CARD_ONE = 0
-        const FOLDER_CARD_TWO =  0
+    renderFolder(folder) {
+        const ID = folder.id;
+        const NAME = folder.name;
+        const FOLDER_CARD = this.folder(ID, NAME);
+        this._content.appendChild(FOLDER_CARD);
+    }
+
+    updateFolder(folder) {
+        const ID = folder.id;
+        const NEW_NAME = folder.name;
+    }
+
+
+    removefolder(folder) {
+        const ALL_FOLDERS = this._content.children;
+        const ID = folder.id;
+        for (let i = 0; i < ALL_FOLDERS.length; i++) {
+            if (ALL_FOLDERS[i].id === ID) this._content.removeChild(ALL_FOLDERS[i]);
+        }
     }
 
     folder(id, name) {
@@ -70,9 +76,9 @@ export class FolderView {
         UTIL_BAR.appendChild(DELETE);
         DELETE.appendChild(DELETE_ICON);
 
-
         // Functionality
         DELETE.addEventListener('click', () => this.dialogView.renderDeleteFolderDialog(name, this.removefolder));
+        HOST.addEventListener('click', )
 
         return HOST
     }
