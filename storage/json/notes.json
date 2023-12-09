@@ -9,7 +9,18 @@
         {
             "id": "f-8",
             "name": "Python",
-            "notes": [],
+            "notes": [
+                {
+                    "id": "n-10",
+                    "title": "Hello Stormy",
+                    "content": "C:\\Users\\jsvgo\\Web Dev\\Note Taking App/storage/notes/note-n-10.html",
+                    "bookmark": false,
+                    "password_protected": false,
+                    "last_edit": "09/12/2023 21:36:01",
+                    "creation": "09/12/2023",
+                    "password": ""
+                }
+            ],
             "subfolders": []
         }
     ]

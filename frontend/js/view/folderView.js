@@ -1,4 +1,3 @@
-import { ListFolder } from './listFolder.js';
 import { DialogView } from "./dialogView.js";
 import { CNode } from '../util/CNode.js';
 

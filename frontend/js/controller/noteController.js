@@ -8,9 +8,10 @@ export class NoteController {
         this.noteModel = new NoteModel();
     }
 
-    async getNotes(folderId, noteType) {
+    async getNotes(folderId, noteType='all') {
         const RESPONSE = await this.noteModel.getNotes('/notes', folderId, noteType);
         const NOTES = RESPONSE.Object;
+        this.noteView.renderNoteCards(NOTES);
     }
 
     async addNote() {

@@ -3,7 +3,7 @@ export class FolderModel {
     
     async getFolders(endpoint) {
         try {
-            const response = await fetch(`/${endpoint}`);
+            const response = await fetch(endpoint);
             if (!response.ok) throw new Error(`HTTP error Status: ${response.status}`)
             return await response.json();
         } catch(error) {
