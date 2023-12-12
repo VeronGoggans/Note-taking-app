@@ -12,6 +12,7 @@ export class FolderController {
         const RESPONSE = await this.folderModel.getFolders('/folders');
         const FOLDERS = RESPONSE.folders;
         this.folderView.renderFolders(FOLDERS);
+        this.folderView.renderListViewFolders(FOLDERS);
     }
 
 

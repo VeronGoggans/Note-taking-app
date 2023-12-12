@@ -9,7 +9,6 @@ export class NoteView {
     }
 
     renderNoteCards(notes) {
-        console.log(notes);
         for (let i = 0; i < notes.length; i++) {
             const ID = notes[i].id;
             const NAME = notes[i].title;

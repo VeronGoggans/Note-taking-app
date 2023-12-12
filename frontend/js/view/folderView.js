@@ -10,6 +10,7 @@ export class FolderView {
         this._content = document.querySelector('.content-view');
         this._list = document.querySelector('.list-content');
         this._cover = document.querySelector('.cover');
+        this._folders = [];
     }
 
     renderListViewFolders(folders) {
@@ -92,12 +93,47 @@ export class FolderView {
 
         // Functionality
         DELETE.addEventListener('click', () => this.dialogView.renderDeleteFolderDialog(name, this.removefolder));
-        HOST.addEventListener('click', () => this.folderController.navigateIntoFolder(id));
+        HOST.addEventListener('click', () => { this.handleFolderCardClick(id)});
 
-        return HOST
+        this._folders.push(id);
+        return HOST;
     }
     
-    renderNewFolderDialog() {
+    /**
+     * Takes the user into a folder and displays the notes inside it.
+     * 
+     * This method is triggered when a folder card is clicked. It removes all existing folders from the screen
+     * using {@link removeFolders}, and then it navigates into the specified folder, displaying its notes and subfolders
+     * using {@link navigateIntoFolder}.
+     * 
+     * @param {string} id - The ID of the folder to navigate into.
+     */
+    handleFolderCardClick(id) {
+        this.removeFolders();
+        this.folderController.navigateIntoFolder(id);
+    }
 
+    /**
+     * Removes folders from the UI and empties the internal folders array.
+     *
+     * This method iterates through the `_folders` array, and removes the corresponding
+     * elements from both the `_list` and `_content` elements based on their IDs, and
+     * finally, empties the `_folders` array.
+     *
+     * @memberof FolderView
+     * @name removeFolders
+     * @returns {void}
+     */
+    removeFolders() {
+        for (let i = 0; i < this._folders.length; i++) {
+            const ID = this._folders[i];
+            const LIST_FOLDER = this._list.querySelector(`#${ID}`);
+            const CONTENT_FOLDER = this._content.querySelector(`#${ID}`);
+        
+            LIST_FOLDER.remove();
+            CONTENT_FOLDER.remove();
+        }
+        // Make the array empty.
+        this._folders.splice(0, this._folders.length);
     }
 }
