@@ -28,7 +28,7 @@ export class FolderModel {
             body: JSON.stringify(postFoldersObject)
         }
         try {
-            const response = await fetch(`/${endpoint}`, OPTIONS);
+            const response = await fetch(`${endpoint}`, OPTIONS);
             if (!response.ok) throw new Error(`HTTP error Status: ${response.status}`)
             return await response.json();
         } catch (error) {

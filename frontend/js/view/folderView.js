@@ -1,6 +1,7 @@
 import { DeleteFolderContainer } from '../components/deleteFolderContainer.js';
 import { Folder } from '../components/folder.js';
 import { ListFolder } from '../components/listFolder.js';
+import { NewFolderContainer } from '../components/newFolderContainer.js';
 
 export class FolderView {
     constructor(folderController) {
@@ -17,12 +18,18 @@ export class FolderView {
 
         this.backoutButton.addEventListener('click', () => {this.homeScreen()});
         this.homeButton.addEventListener('click', () => {this.homeScreen()});
-        this.dialog.addEventListener('click', () => {})
+        this.createFolderButton.addEventListener('click', () => {this.renderNewFolderContainer()});
+        this.dialog.addEventListener('click', () => {});
         // this.createFolderButton.addEventListener('click', );
     }
 
     renderDeleteFolderContainer(id, name) {
         this.dialog.appendChild(new DeleteFolderContainer(id, name, this));
+        this.renderDialog();
+    }
+
+    renderNewFolderContainer() {
+        this.dialog.appendChild(new NewFolderContainer(this));
         this.renderDialog();
     }
 
@@ -49,6 +56,7 @@ export class FolderView {
         const NAME = folder.name;
         const FOLDER_CARD = this.folder(ID, NAME);
         this._content.appendChild(FOLDER_CARD);
+        this.removeDialog();
     }
 
     listFolder(id, name) {
@@ -66,6 +74,10 @@ export class FolderView {
 
     async deleteFolder(id) {
         this.folderController.deleteFolder(id);
+    }
+
+    async addFolder(name) {
+        this.folderController.addFolder(name);
     }
 
     /**

@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="stylesheet" href="../css/dialog.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="../css/homePage/folder.css">
   <style>
@@ -12,10 +13,19 @@
       padding: 0;
       font-family: sans-serif;
     }
+
+    body {
+      background-color: #000;
+    }
   </style>
 </head>
 <body>
-  <div class="folder" style="margin-top: 50px;">
+  <div class="new-folder-container">
+    <h2>New folder</h2>
+    <input type="text" spellcheck="false" placeholder="Folder name">
+    <button>Add</button>
+  </div>
+  <!-- <div class="folder" style="margin-top: 50px;">
     <div class="folder-name-box">
       <h4>Python</h4>
       <div class="update-folder-btns-container">
@@ -38,6 +48,6 @@
         <i class="fa-solid fa-trash"></i>
       </button>
     </div>
-  </div>
+  </div> -->
 </body>
 </html>
