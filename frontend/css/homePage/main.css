@@ -77,12 +77,21 @@ body {
 .list-view-folder .folder-name {margin-left: 5px;}
 
 
-
 .content-view {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     grid-template-rows: repeat(auto-fill, 380px);
     overflow-y: scroll;
+}
+
+.content-view::-webkit-scrollbar {
+    background-color: transparent;
+    width: 5px;
+}
+
+.content-view::-webkit-scrollbar-thumb {
+    background-color: rgb(221 240 255);
+    border-radius: 10px;
 }
 
 @media (max-width: 700px) {

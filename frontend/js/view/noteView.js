@@ -6,6 +6,7 @@ export class NoteView {
         this._content = document.querySelector('.content-view');
         this._list = document.querySelector('.list-content');
         this._cover = document.querySelector('.cover');
+        this._notes = [];
     }
 
     renderNoteCards(notes) {
@@ -49,10 +50,8 @@ export class NoteView {
         UTIL_BAR.appendChild(BOOKMARK_ICON);
 
         // Functionality
-
+        this._notes.push(id);
         return HOST;
     }
-
-
 }
 

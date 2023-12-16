@@ -19,4 +19,8 @@ export class ApplicationController {
         this.noteController.getNotes(folderId, noteType);
     }
 
+
+
+
+
 }

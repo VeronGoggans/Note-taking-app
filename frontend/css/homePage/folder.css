@@ -5,15 +5,46 @@
     background-color: rgb(255, 255, 255);
     color: rgb(36, 40, 109);
     display: grid;
-    grid-template-rows: 30px 1fr 50px;
+    grid-template-rows: 40px 1fr 50px;
     margin: 20px;
     box-shadow: .5rem .4rem 1rem rgb(213, 226, 241);
     transition: .5s;
 }
 
+.folder-name-box {
+    cursor: auto;
+    display: flex;
+    align-items: center;
+}
+
+.folder-name-box button {
+    cursor: pointer;
+    outline: none;
+    border: none;
+    display: flex;
+    visibility: hidden;
+    padding: 3px 5px;
+    border-radius: 3px;
+    background-color: transparent;
+    transition: .3s;
+}
+
+.confirm-folder-update-btn {
+    margin-left: auto;
+    margin-right: 3px;
+}
+
+.cancel-folder-update-btn {
+    margin-right: 3px;
+}
+
+.folder-name-box button:hover {
+    background-color: aliceblue;
+}
+
 .folder-logo {
-    height: 170px;
-    width: 170px;
+    height: 100%;
+    width: 100%;
     margin: auto;
     display: flex;
     justify-content: center;
@@ -34,6 +65,7 @@
     gap: 10px;
     opacity: 0;
     transition: .2s;
+    cursor: auto;
 }
 
 .folder-util-bar:hover {
@@ -57,7 +89,9 @@
 }
 
 .folder h4 {
+    width: fit-content;
     outline: none;
+    padding: 5px;
     margin-left: 10px;
     color: #444863;
     font-weight: 500;

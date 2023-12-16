@@ -1,7 +1,8 @@
 import { CNode } from "../util/CNode.js";
 
 export class DialogView {
-    constructor() {
+    constructor(dialogController) {
+        this.dialogController = dialogController;
         this._dialog = document.querySelector('.dialog');
         this._createFolderBtn = document.querySelector('.create-folder-btn');
         this._dialog.addEventListener('click', () => this.removeDialog());
@@ -20,7 +21,7 @@ export class DialogView {
         this._dialog.style.top = '100%';
     }
 
-    renderDeleteFolderDialog(name, instance) {
+    renderDeleteFolderDialog(name) {
         const HOST = CNode.create('div', {'class': 'delete-folder-container'});
         const MESSAGE = CNode.create('p', {'class': 'delete-warning', 'textContent': this._deleteFolderMsg});
         const FOLDER_NAME = CNode.create('p', {'class': 'delete-folder-name', 'textContent': name});
@@ -32,7 +33,7 @@ export class DialogView {
         HOST.appendChild(DELETE);
 
         // Functionality.
-        DELETE.addEventListener('click', instance.removeFolder)
+        DELETE.addEventListener('click', () => {})
 
         this._dialog.appendChild(HOST);
         this.renderDialog();

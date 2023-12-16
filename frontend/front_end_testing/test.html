@@ -1,15 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <link rel="stylesheet" type="text/css" href="test.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="../css/homePage/folder.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+    }
+  </style>
 </head>
 <body>
-  <div class="delete-folder-container">
-    <p class="delete-warning">Press Confirm to delete</p>
-    <p class="deleting-folder">'Figma'</p>
-    <button class="confirm-folder-deletion-btn">Confirm</button>
+  <div class="folder">
+    <div class="folder-name-box">
+      <h4>Python</h4>
+      <button class="confirm-folder-update-btn">
+        <i class="fa-solid fa-check"></i>
+      </button>
+      <button class="cancel-folder-update-btn">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <div class="folder-logo">
+      <i class="fa-solid fa-folder"></i>
+    </div>
+    <div class="folder-util-bar">
+      <button class="edit-folder-btn">
+        <i class="fa-solid fa-pen"></i>
+      </button>
+      <button class="delete-folder-btn">
+        <i class="fa-solid fa-trash"></i>
+      </button>
+    </div>
   </div>
-  
-  <script src="test.js"></script>
 </body>
 </html>
