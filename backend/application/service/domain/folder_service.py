@@ -99,5 +99,5 @@ class FolderService:
 
         if deleted_folder is not None:
             Json.update(self.folders_path, folder_structure)
-            return RespMsg.OK
+            return deleted_folder
         return RespMsg.NOT_FOUND

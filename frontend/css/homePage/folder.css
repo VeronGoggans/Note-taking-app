@@ -9,24 +9,40 @@
     margin: 20px;
     box-shadow: .5rem .4rem 1rem rgb(213, 226, 241);
     transition: .5s;
+    overflow: visible;
 }
 
 .folder-name-box {
     cursor: auto;
     display: flex;
     align-items: center;
+    position: relative;
+    overflow: visible;
 }
 
-.folder-name-box button {
+.update-folder-btns-container {
+    position: absolute;
+    margin-left: auto;
+    background-color: white;
+    box-shadow: 0px 7px 10px rgb(213, 226, 241);
+    width: 50px;
+    display: flex;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid rgb(213, 226, 241);
+    right: -19px;
+    top: -18px;
+    visibility: hidden;
+}
+
+.update-folder-btns-container button {
     cursor: pointer;
     outline: none;
     border: none;
     display: flex;
-    visibility: hidden;
     padding: 3px 5px;
     border-radius: 3px;
     background-color: transparent;
-    transition: .3s;
 }
 
 .confirm-folder-update-btn {
@@ -38,9 +54,10 @@
     margin-right: 3px;
 }
 
-.folder-name-box button:hover {
+.update-folder-btns-container button:hover {
     background-color: aliceblue;
 }
+
 
 .folder-logo {
     height: 100%;
@@ -89,7 +106,7 @@
 }
 
 .folder h4 {
-    width: fit-content;
+    max-width: 75%;
     outline: none;
     padding: 5px;
     margin-left: 10px;

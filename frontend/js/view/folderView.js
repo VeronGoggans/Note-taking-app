@@ -1,4 +1,4 @@
-import { CNode } from '../util/CNode.js';
+import { DeleteFolderContainer } from '../components/deleteFolderContainer.js';
 import { Folder } from '../components/folder.js';
 import { ListFolder } from '../components/listFolder.js';
 
@@ -7,6 +7,8 @@ export class FolderView {
         this.folderController = folderController;
         this.backoutButton = document.querySelector('.exit-folder-btn');
         this.createNoteButton = document.querySelector('.create-note-btn');
+        this.createFolderButton = document.querySelector('.create-folder-btn');
+        this.dialog = document.querySelector('.dialog');
         this.homeButton = document.querySelector('.home-screen-btn');
         this._content = document.querySelector('.content-view');
         this._list = document.querySelector('.list-content');
@@ -15,11 +17,17 @@ export class FolderView {
 
         this.backoutButton.addEventListener('click', () => {this.homeScreen()});
         this.homeButton.addEventListener('click', () => {this.homeScreen()});
+        this.dialog.addEventListener('click', () => {})
+        // this.createFolderButton.addEventListener('click', );
+    }
+
+    renderDeleteFolderContainer(id, name) {
+        this.dialog.appendChild(new DeleteFolderContainer(id, name, this));
+        this.renderDialog();
     }
 
     renderListViewFolders(folders) {
         for (let i = 0; i < folders.length; i++) {
-            // code appending a Lit element to this._list
             const ID = folders[i].id;
             const NAME = folders[i].name;
             const FOLDER_CARD = this.listFolder(ID, NAME);
@@ -29,7 +37,6 @@ export class FolderView {
 
     renderFolders(folders) {
         for (let i = 0; i < folders.length; i++) {
-            // code appending a Lit element to this._content
             const ID = folders[i].id;
             const NAME = folders[i].name;
             const FOLDER_CARD = this.folder(ID, NAME);
@@ -55,6 +62,10 @@ export class FolderView {
 
     async updateFolder(id, name) {
         this.folderController.updateFolder(id, name);
+    }
+
+    async deleteFolder(id) {
+        this.folderController.deleteFolder(id);
     }
 
     /**
@@ -98,15 +109,20 @@ export class FolderView {
      * Removes a specific folder from the UI.
      *
      * This method removes the folder from the UI that it has been given.
-     * @param {object} folder the folder to be removed from the UI.
+     * @param {number} id the ID of the folder to be removed from the UI.
      * @returns {void}
      */
     removefolder(folder) {
+        console.log(folder);
         const ALL_FOLDERS = this._content.children;
-        const ID = folder.id;
+        const ID = folder.id
         for (let i = 0; i < ALL_FOLDERS.length; i++) {
-            if (ALL_FOLDERS[i].id === ID) this._content.removeChild(ALL_FOLDERS[i]);
+            if (ALL_FOLDERS[i].id === ID) {
+                this._content.removeChild(ALL_FOLDERS[i]);
+                this._list.querySelector(`#${ID}`);
+            }
         }
+        this.removeDialog();
     }
 
 
@@ -122,5 +138,17 @@ export class FolderView {
     homeScreen() {
         this.clearContent();
         this.folderController.navigateOutOfFolder();
+    }
+
+    renderDialog() {
+        this.dialog.style.visibility = 'visible';
+        this.dialog.style.top = '0%';
+    }
+
+    removeDialog() {
+        this.dialog.style.visibility = 'hidden';
+        this.dialog.style.top = '100%';
+        const CHILD = this.dialog.firstChild;
+        this.dialog.removeChild(CHILD);
     }
 }

@@ -10,6 +10,7 @@ export class Folder {
         this.HOST = CNode.create('div', {'class': 'folder', 'id': id});
         this.NAME_BOX = CNode.create('div', {'class': 'folder-name-box'});
         this.H4 = CNode.create('h4', {'contentEditable': 'false', 'textContent': name, 'spellCheck': 'false'});
+        this.BTN_CONTAINER = CNode.create('div', {'class': 'update-folder-btns-container'});
         this.CONFIRM = CNode.create('button', {'class': 'confirm-folder-update-btn'});
         this.CONFIRM_ICON = CNode.create('i', {'class': 'fa-solid fa-check'});
         this.CANCEL = CNode.create('button', {'class': 'cancel-folder-update-btn'});
@@ -30,9 +31,10 @@ export class Folder {
         this.HOST.appendChild(this.NAME_BOX);
         this.NAME_BOX.appendChild(this.H4);
         this.CONFIRM.appendChild(this.CONFIRM_ICON);
-        this.NAME_BOX.appendChild(this.CONFIRM);
+        this.BTN_CONTAINER.appendChild(this.CONFIRM);
         this.CANCEL.appendChild(this.CANCEL_ICON);
-        this.NAME_BOX.appendChild(this.CANCEL);
+        this.BTN_CONTAINER.appendChild(this.CANCEL);
+        this.NAME_BOX.appendChild(this.BTN_CONTAINER);
         this.HOST.appendChild(this.LOGO);
         this.LOGO.appendChild(this.ICON);
         this.HOST.appendChild(this.UTIL_BAR);
@@ -48,7 +50,7 @@ export class Folder {
         this.EDIT.addEventListener('click', () => {this.toggleEditableFolderName()});
         this.CONFIRM.addEventListener('click', () => {this.updateFolder()});
         this.CANCEL.addEventListener('click', () => {this.toggleEditableFolderName()});
-        this.DELETE.addEventListener('click', () => this.view.dialogView.renderDeleteFolderDialog(this.name, this.view.removefolder));
+        this.DELETE.addEventListener('click', () => {this.view.renderDeleteFolderContainer(this.id, this.name)});
         this.LOGO.addEventListener('click', () => { this.view.handleFolderCardClick(this.id)});
     }
 
@@ -57,8 +59,7 @@ export class Folder {
         this.H4.contentEditable = this.H4.contentEditable === 'true' ? 'false' : 'true';
 
         // Toggle visibility
-        this.CONFIRM.style.visibility = this.CONFIRM.style.visibility === 'visible' ? 'hidden' : 'visible';
-        this.CANCEL.style.visibility = this.CANCEL.style.visibility === 'visible' ? 'hidden' : 'visible';
+        this.BTN_CONTAINER.style.visibility = this.BTN_CONTAINER.style.visibility === 'visible' ? 'hidden' : 'visible';
     }
 
     async updateFolder() {

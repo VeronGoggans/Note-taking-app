@@ -1,14 +1,8 @@
 {
     "folders": [
         {
-            "id": "f-7",
-            "name": "Figma",
-            "notes": [],
-            "subfolders": []
-        },
-        {
             "id": "f-8",
-            "name": "Python",
+            "name": "Java",
             "notes": [
                 {
                     "id": "n-10",
@@ -21,12 +15,6 @@
                     "password": ""
                 }
             ],
-            "subfolders": []
-        },
-        {
-            "id": "f-9",
-            "name": "Lit Elements",
-            "notes": [],
             "subfolders": []
         }
     ]

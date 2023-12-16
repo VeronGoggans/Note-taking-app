@@ -65,7 +65,7 @@ export class FolderModel {
             headers: {"Content-Type": "application/json"},
         }
         try {
-            const response = await fetch(`/${endpoint}/${folderId}`, OPTIONS);
+            const response = await fetch(`${endpoint}/${folderId}`, OPTIONS);
             if (!response.ok) throw new Error(`HTTP error Status: ${response.status}`)
             return await response.json();
         } catch (error) {
