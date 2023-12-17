@@ -57,6 +57,7 @@ export class Folder {
     toggleEditableFolderName() {
         // Toggle contentEditable
         this.H4.contentEditable = this.H4.contentEditable === 'true' ? 'false' : 'true';
+        this.H4.style.borderColor = this.H4.style.borderColor === 'rgb(92, 125, 255)' ? 'transparent' : '#5c7dff';
 
         // Toggle visibility
         this.BTN_CONTAINER.style.visibility = this.BTN_CONTAINER.style.visibility === 'visible' ? 'hidden' : 'visible';

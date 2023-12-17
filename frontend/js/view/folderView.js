@@ -19,8 +19,7 @@ export class FolderView {
         this.backoutButton.addEventListener('click', () => {this.homeScreen()});
         this.homeButton.addEventListener('click', () => {this.homeScreen()});
         this.createFolderButton.addEventListener('click', () => {this.renderNewFolderContainer()});
-        this.dialog.addEventListener('click', () => {});
-        // this.createFolderButton.addEventListener('click', );
+        this.dialog.addEventListener('click', (event) => {if (!event.target.closest('.new-folder-container') && !event.target.closest('.delete-folder-container')) this.removeDialog()})
     }
 
     renderDeleteFolderContainer(id, name) {
@@ -90,7 +89,8 @@ export class FolderView {
      * @param {string} id - The ID of the folder to navigate into.
      */
     handleFolderCardClick(id) {
-        this.removeFolders();
+        const CONTENT_VIEW_LIST = this._content.children;
+        this.removeFolders(CONTENT_VIEW_LIST);
         this.folderController.navigateIntoFolder(id);
     }
 
@@ -103,8 +103,9 @@ export class FolderView {
      *
      * @returns {void}
      */
-    removeFolders() {
-        for (let i = 0; i < this._folders.length; i++) {
+    removeFolders(items) {
+        console.log(items);
+        for (let i = 0; i < items.length; i++) {
             const ID = this._folders[i];
             const LIST_FOLDER = this._list.querySelector(`#${ID}`);
             const CONTENT_FOLDER = this._content.querySelector(`#${ID}`);
@@ -112,8 +113,6 @@ export class FolderView {
             LIST_FOLDER.remove();
             CONTENT_FOLDER.remove();
         }
-        // Make the array empty.
-        this._folders.splice(0, this._folders.length);
     }
 
 
@@ -125,7 +124,6 @@ export class FolderView {
      * @returns {void}
      */
     removefolder(folder) {
-        console.log(folder);
         const ALL_FOLDERS = this._content.children;
         const ID = folder.id
         for (let i = 0; i < ALL_FOLDERS.length; i++) {
@@ -135,14 +133,15 @@ export class FolderView {
             }
         }
         this.removeDialog();
+        this._folders.remove()
     }
 
 
     clearContent() {
-        const NOTES = this._content.children;
-        for (let i = 0; i < NOTES.length; i++) {
-            const NOTE = NOTES[i]
-            NOTE.remove();
+        const ITEMS = this._content.children;
+        for (let i = 0; i < ITEMS.length; i++) {
+            const ITEM = ITEMS[i]
+            ITEM.remove();
         }
     }
 

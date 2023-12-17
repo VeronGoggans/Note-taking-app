@@ -2,7 +2,7 @@
     "folders": [
         {
             "id": "f-8",
-            "name": "Java",
+            "name": "Note",
             "notes": [
                 {
                     "id": "n-10",
@@ -19,13 +19,19 @@
         },
         {
             "id": "f-21",
-            "name": "Python 101",
+            "name": "Python",
             "notes": [],
             "subfolders": []
         },
         {
-            "id": "f-23",
-            "name": "Postman",
+            "id": "f-25",
+            "name": "School",
+            "notes": [],
+            "subfolders": []
+        },
+        {
+            "id": "f-28",
+            "name": "GTAVI",
             "notes": [],
             "subfolders": []
         }

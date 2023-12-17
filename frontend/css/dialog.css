@@ -87,4 +87,12 @@
   box-sizing: border-box;
   border-bottom: 2px solid #444863;
   padding: 10px;
+  transition: .2s;
 }
+
+.new-folder-container input:hover,
+.new-folder-container input:focus {
+  border-color: #5c7dff;
+}
+
+

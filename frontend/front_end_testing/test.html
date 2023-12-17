@@ -15,16 +15,32 @@
     }
 
     body {
-      background-color: #000;
     }
   </style>
 </head>
 <body>
-  <div class="new-folder-container">
-    <h2>New folder</h2>
-    <input type="text" spellcheck="false" placeholder="Folder name">
-    <button>Add</button>
-  </div>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Focus Example</title>
+</head>
+<body>
+
+  <h4 contenteditable="true" id="editableElement">Editable Content</h4>
+  <button onclick="focusEditableElement()">Focus</button>
+
+  <script>
+    function focusEditableElement() {
+      var editableElement = document.getElementById('editableElement');
+      editableElement.focus();
+    }
+  </script>
+
+</body>
+</html>
+
   <!-- <div class="folder" style="margin-top: 50px;">
     <div class="folder-name-box">
       <h4>Python</h4>
