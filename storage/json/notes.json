@@ -15,7 +15,14 @@
                     "password": ""
                 }
             ],
-            "subfolders": []
+            "subfolders": [
+                {
+                    "id": "s-15",
+                    "name": "Issues",
+                    "notes": [],
+                    "subfolders": []
+                }
+            ]
         },
         {
             "id": "f-21",
@@ -30,8 +37,8 @@
             "subfolders": []
         },
         {
-            "id": "f-28",
-            "name": "GTAVI",
+            "id": "f-29",
+            "name": "New Folder",
             "notes": [],
             "subfolders": []
         }

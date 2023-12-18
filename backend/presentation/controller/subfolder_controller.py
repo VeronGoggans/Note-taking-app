@@ -15,7 +15,7 @@ def subfolders(folder_id: str):
     response = subfolder_service.get_subfolders(folder_id)
 
     if response != RespMsg.NOT_FOUND:
-        return {'Status_code': RespMsg.OK, "Object": response}
+        return {'Status_code': RespMsg.OK, "Subfolders": response}
     return {'Status_code': RespMsg.NOT_FOUND}
 
 

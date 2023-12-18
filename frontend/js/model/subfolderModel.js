@@ -1,0 +1,71 @@
+export class SubfolderModel {
+    constructor() {
+        
+    }
+
+    async getsubfolders(endpoint, parentID) {
+        try {
+            const response = await fetch(`${endpoint}/${parentID}`);
+            if (!response.ok) throw new Error(`HTTP error Status: ${response.status}`)
+            return await response.json();
+        } catch(error) {
+            console.error('Error fetching data: ', error.message);
+            throw error;
+        }
+    }
+
+
+    async addSubfolder(endpoint, name, parentID) {
+        const POST_SUBFOLDER_OBJECT = {'folder_id': parentID, 'name': name}
+        const OPTIONS = {
+            method: 'POST',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(POST_SUBFOLDER_OBJECT)
+        }
+        try {
+            const response = await fetch(`${endpoint}`, OPTIONS);
+            if (!response.ok) throw new Error(`HTTP error Status: ${response.status}`)
+            return await response.json();
+        } catch (error) {
+            console.error('Error fetching data: ', error.message);
+            throw error;
+        }
+    }
+
+
+    async updateSubfolder(endpoint, subfolderID, newName) {
+        const PUT_SUBFOLDER_OBJECT = {
+            'subfolder_id': subfolderID,
+            'name': newName
+        }
+        const OPTIONS = {
+            method: 'PUT',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(PUT_SUBFOLDER_OBJECT)
+        }
+        try {
+            const response = await fetch(`${endpoint}`, OPTIONS);
+            if (!response.ok) throw new Error(`HTTP error Status: ${response.status}`);
+            return await response.json();
+        } catch (error) {
+            console.error('Error fetching data: ', error.message);
+            throw error;
+        }
+    }
+
+
+    async deleteSubfolder(endpoint, folderId) {
+        const OPTIONS = {
+            method: 'DELETE',
+            headers: {"Content-Type": "application/json"},
+        }
+        try {
+            const response = await fetch(`${endpoint}/${folderId}`, OPTIONS);
+            if (!response.ok) throw new Error(`HTTP error Status: ${response.status}`)
+            return await response.json();
+        } catch (error) {
+            console.error('Error fetching data: ', error.message);
+            throw error;
+        }
+    }
+}

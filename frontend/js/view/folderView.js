@@ -14,7 +14,6 @@ export class FolderView {
         this._content = document.querySelector('.content-view');
         this._list = document.querySelector('.list-content');
         this._cover = document.querySelector('.cover');
-        this._folders = [];
 
         this.backoutButton.addEventListener('click', () => {this.homeScreen()});
         this.homeButton.addEventListener('click', () => {this.homeScreen()});
@@ -63,7 +62,6 @@ export class FolderView {
     }
 
     folder(id, name) {
-        this._folders.push(id);
         return new Folder(id, name, this);
     }
 
@@ -89,30 +87,22 @@ export class FolderView {
      * @param {string} id - The ID of the folder to navigate into.
      */
     handleFolderCardClick(id) {
-        const CONTENT_VIEW_LIST = this._content.children;
-        this.removeFolders(CONTENT_VIEW_LIST);
+        this.removeFolders();
         this.folderController.navigateIntoFolder(id);
     }
 
     /**
-     * Removes folders from the UI and empties the internal folders array.
+     * Removes folders from the UI.
      *
-     * This method iterates through the `_folders` array, and removes the corresponding
-     * elements from both the `_list` and `_content` elements based on their IDs, and
-     * finally, empties the `_folders` array.
+     * This method removes all the child elements from the content html div and list-view html div
      *
      * @returns {void}
      */
-    removeFolders(items) {
-        console.log(items);
-        for (let i = 0; i < items.length; i++) {
-            const ID = this._folders[i];
-            const LIST_FOLDER = this._list.querySelector(`#${ID}`);
-            const CONTENT_FOLDER = this._content.querySelector(`#${ID}`);
-        
-            LIST_FOLDER.remove();
-            CONTENT_FOLDER.remove();
-        }
+    removeFolders() {
+        const CONTENT = this._content;
+        const LIST = this._list;
+        while (CONTENT.firstChild) CONTENT.removeChild(CONTENT.firstChild);
+        while (LIST.firstChild) LIST.removeChild(LIST.firstChild);
     }
 
 
@@ -133,21 +123,11 @@ export class FolderView {
             }
         }
         this.removeDialog();
-        this._folders.remove()
-    }
-
-
-    clearContent() {
-        const ITEMS = this._content.children;
-        for (let i = 0; i < ITEMS.length; i++) {
-            const ITEM = ITEMS[i]
-            ITEM.remove();
-        }
     }
 
 
     homeScreen() {
-        this.clearContent();
+        this.removeFolders();
         this.folderController.navigateOutOfFolder();
     }
 
