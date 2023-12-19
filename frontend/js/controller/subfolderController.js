@@ -13,9 +13,6 @@ export class SubfolderController {
         const SUBFOLDERS = RESPONSE.Subfolders;
         this.subfolderView.renderListViewSubfolders(SUBFOLDERS);
         this.subfolderView.renderSubfolders(SUBFOLDERS);
-        console.log(SUBFOLDERS);
-        // this.folderView.renderFolders(FOLDERS);
-        // this.folderView.renderListViewFolders(FOLDERS);
     }
 
 
@@ -26,15 +23,24 @@ export class SubfolderController {
     // }
 
 
-    // async updateFolder(folderId, newName) {
-    //     const RESPONSE = await this.folderModel.updateFolder('/folder', folderId, newName);
-    //     const FOLDER = RESPONSE.Object;
-    // }
+    async updateSubfolder(subfolderId, newName) {
+        const RESPONSE = await this.subfolderModel.updateSubfolder('/subfolder', subfolderId, newName);
+        const FOLDER = RESPONSE.Object;
+    }
 
 
-    // async deleteFolder(folderId) {
-    //     const RESPONSE = await this.folderModel.deleteFolder('/folder', folderId);
-    //     const FOLDER = RESPONSE.Object;
-    //     this.folderView.removefolder(FOLDER);
-    // }
+    async deleteSubfolder(subfolderId) {
+        const PARENT_ID = this.applicationController.getCurrentFolderID();
+        const RESPONSE = await this.subfolderModel.deleteSubfolder('/subfolder', PARENT_ID, subfolderId);
+        const FOLDER = RESPONSE.Subfolder;
+        this.subfolderView.removefolder(FOLDER);
+    }
+
+    async navigateToHomescreen() {
+        this.applicationController.navigateToHomescreen();
+    }
+
+    async navigateIntoFolder(folderId) {
+        this.applicationController.navigateIntoFolder(folderId);
+    }
 }

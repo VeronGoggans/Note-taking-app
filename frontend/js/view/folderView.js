@@ -10,12 +10,13 @@ export class FolderView {
         this.createNoteButton = document.querySelector('.create-note-btn');
         this.createFolderButton = document.querySelector('.create-folder-btn');
         this.dialog = document.querySelector('.dialog');
+        this.backButton = document.querySelector('.exit-folder-btn');
         this.homeButton = document.querySelector('.home-screen-btn');
         this._content = document.querySelector('.content-view');
         this._list = document.querySelector('.list-content');
         this._cover = document.querySelector('.cover');
 
-        this.backoutButton.addEventListener('click', () => {this.homeScreen()});
+        this.backoutButton.addEventListener('click', () => {this.back()});
         this.homeButton.addEventListener('click', () => {this.homeScreen()});
         this.createFolderButton.addEventListener('click', () => {this.renderNewFolderContainer()});
         this.dialog.addEventListener('click', (event) => {if (!event.target.closest('.new-folder-container') && !event.target.closest('.delete-folder-container')) this.removeDialog()})
@@ -81,13 +82,13 @@ export class FolderView {
      * Takes the user into a folder and displays the notes inside it.
      * 
      * This method is triggered when a folder card is clicked. It removes all existing folders from the screen
-     * using {@link removeFolders}, and then it navigates into the specified folder, displaying its notes and subfolders
+     * using {@link removeContent}, and then it navigates into the specified folder, displaying its notes and subfolders
      * using {@link navigateIntoFolder}.
      * 
      * @param {string} id - The ID of the folder to navigate into.
      */
     handleFolderCardClick(id) {
-        this.removeFolders();
+        this.removeContent();
         this.folderController.navigateIntoFolder(id);
     }
 
@@ -98,7 +99,7 @@ export class FolderView {
      *
      * @returns {void}
      */
-    removeFolders() {
+    removeContent() {
         const CONTENT = this._content;
         const LIST = this._list;
         while (CONTENT.firstChild) CONTENT.removeChild(CONTENT.firstChild);
@@ -125,10 +126,14 @@ export class FolderView {
         this.removeDialog();
     }
 
+    back() {
+        this.removeContent();
+        this.folderController.navigateOutofFolder();
+    }
 
     homeScreen() {
-        this.removeFolders();
-        this.folderController.navigateOutOfFolder();
+        this.removeContent();
+        this.folderController.navigateToHomescreen();
     }
 
     renderDialog() {

@@ -54,13 +54,18 @@ export class SubfolderModel {
     }
 
 
-    async deleteSubfolder(endpoint, folderId) {
+    async deleteSubfolder(endpoint, folderId, subfolderId) {
+        const DELETE_SUBFOLDER_OBJECT = {
+            'folder_id': folderId,
+            'subfolder_id': subfolderId
+        }
         const OPTIONS = {
             method: 'DELETE',
             headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(DELETE_SUBFOLDER_OBJECT)
         }
         try {
-            const response = await fetch(`${endpoint}/${folderId}`, OPTIONS);
+            const response = await fetch(`${endpoint}`, OPTIONS);
             if (!response.ok) throw new Error(`HTTP error Status: ${response.status}`)
             return await response.json();
         } catch (error) {

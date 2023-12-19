@@ -112,7 +112,7 @@ class SubfolderService:
 
         if manager_response is not None:
             Json.update(self.folders_path, folder_structure)
-            return RespMsg.OK
+            return manager_response
         return RespMsg.NOT_FOUND
 
     

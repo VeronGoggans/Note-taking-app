@@ -35,8 +35,12 @@ export class FolderController {
         this.folderView.removefolder(FOLDER);
     }
 
-    async navigateOutOfFolder() {
-        this.applicationController.navigateOutOfFolder();
+    async navigateToHomescreen() {
+        this.applicationController.navigateToHomescreen();
+    }
+
+    async navigateOutofFolder() {
+        this.applicationController.navigateOutofFolder();
     }
 
     async navigateIntoFolder(folderId) {

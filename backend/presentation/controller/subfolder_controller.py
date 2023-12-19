@@ -45,5 +45,5 @@ def subfolder(delete_request: DeleteSubfolderRequest):
     response = subfolder_service.delete_subfolder(delete_request)
 
     if response != RespMsg.NOT_FOUND:
-        return {'Status_code': response}
+        return {'Status_code': RespMsg.OK, 'Subfolder': response}
     return {'Status_code': RespMsg.NOT_FOUND}

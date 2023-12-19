@@ -90,7 +90,7 @@ class SubfolderManager:
             for subfolder in parent_folder['subfolders']:
                 if subfolder.get('id') == folder_id:
                     parent_folder['subfolders'].remove(subfolder)
-                    return self.DELETED
+                    return subfolder
             return None
         return None 
     
