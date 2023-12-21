@@ -18,7 +18,6 @@ export class SubfolderView {
      * If the array is empty this method does nothing.
      * 
      * @param {Array} subfolders is an array of subfolders.
-     * @returns {void}
      */
     renderListViewSubfolders(subfolders) {
         for (let i = 0; i < subfolders.length; i++) {
@@ -36,7 +35,6 @@ export class SubfolderView {
      * If the array is empty this method does nothing.
      * 
      * @param {Array} subfolders is an array of subfolders.
-     * @returns {void}
      */
     renderSubfolders(subfolders) {
         for (let i = 0; i < subfolders.length; i++) {
@@ -52,9 +50,7 @@ export class SubfolderView {
      * 
      * This method adds the subfolder to the content div and list div.
      * 
-     * @param {dict} subfolder The subfolder that needs to be added to the UI.
-     * @returns {void}
-     * 
+     * @param {dict} subfolder The subfolder that needs to be added to the UI. 
      */
     renderSubfolder(subfolder) {
         const ID = subfolder.id;
@@ -71,7 +67,6 @@ export class SubfolderView {
      * 
      * @param {String} id The ID of the folder wished to be deleted.
      * @param {String} name The name of the folder wished to be deleted.
-     * @returns {void}
      */
     renderDeleteFolderContainer(id, name) {
         this.dialog.appendChild(new DeleteFolderContainer(id, name, this));
@@ -81,7 +76,6 @@ export class SubfolderView {
 
     /**
      * This method renders the dialog.
-     * @returns {void}
      */
     renderDialog() {
         this.dialog.style.visibility = 'visible';
@@ -90,7 +84,6 @@ export class SubfolderView {
 
     /**
      * This method removes the child of the dialog and the dialog itself from the UI.
-     * @returns {void}
      */
     removeDialog() {
         this.dialog.style.visibility = 'hidden';
@@ -99,18 +92,50 @@ export class SubfolderView {
         this.dialog.removeChild(CHILD);
     }
 
+
+    /**
+     * This method creates a ListFolder component and returns it.
+     * 
+     * @param {String} id The ID of the subfolder.
+     * @param {String} name The name of the subfolder.
+     * @returns {ListFolder} The list subfolder card 
+     */
     listSubfolder(id, name) {
         return new ListFolder(id, name, this);
     }
 
+    /**
+     * This method creates a Folder component and returns it.
+     * 
+     * @param {String} id The ID of the subfolder.
+     * @param {String} name The name of the subfolder.
+     * @returns {Folder} The subfolder card 
+     */
     subfolder(id, name) {
         return new Folder(id, name, this);
     }
 
+    /**
+     * This method updates a subfolder
+     * 
+     * This method will communicate to the subfolder controller 
+     * to update a subfolder.
+     * 
+     * @param {String} id The ID of the subfolder wished to be updated.
+     * @param {String} name The new name for the subfolder.
+     */
     async updateFolder(id, name) {
         this.subfolderController.updateSubfolder(id, name);
     }
 
+    /**
+     * This method deletes a subfolder.
+     * 
+     * This method communicates with the subfolder controller
+     * to delete the specified subfolder.
+     * 
+     * @param {String} id The ID of the subfolder wished to be updated
+     */
     async handleConfirmButtonClick(id) {
         this.subfolderController.deleteSubfolder(id);
     }
@@ -134,7 +159,6 @@ export class SubfolderView {
      * Remove all the content from the sreen.
      * 
      * This method removes all the notes and folders from both the content div and list div.
-     * @returns {void}
      */
     removeFolders() {
         const CONTENT = this._content;
@@ -143,14 +167,12 @@ export class SubfolderView {
         while (LIST.firstChild) LIST.removeChild(LIST.firstChild);
     }
 
-
     /**
      * Removes a specific folder from the UI.
      *
      * This method removes the folder from the UI that it has been given.
      * @param {dict} folder the folder to be removed from the UI.
      * This method recieves the folder from the backend through the subfolder model.
-     * @returns {void}
      */
     removefolder(folder) {
         console.log(folder);
