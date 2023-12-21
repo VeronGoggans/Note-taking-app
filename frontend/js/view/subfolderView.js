@@ -14,24 +14,7 @@ export class SubfolderView {
     /**
      * This method renders a array of subfolders.
      * 
-     * This method renders a array of subfolders to the list div.
-     * If the array is empty this method does nothing.
-     * 
-     * @param {Array} subfolders is an array of subfolders.
-     */
-    renderListViewSubfolders(subfolders) {
-        for (let i = 0; i < subfolders.length; i++) {
-            const ID = subfolders[i].id;
-            const NAME = subfolders[i].name;
-            const SUBFOLDER_CARD = this.listSubfolder(ID, NAME);
-            this._list.appendChild(SUBFOLDER_CARD);
-        }
-    }
-
-    /**
-     * This method renders a array of subfolders.
-     * 
-     * This method renders a array of subfolders to the content div.
+     * This method renders a array of subfolders and adds them to the UI.
      * If the array is empty this method does nothing.
      * 
      * @param {Array} subfolders is an array of subfolders.
@@ -40,8 +23,10 @@ export class SubfolderView {
         for (let i = 0; i < subfolders.length; i++) {
             const ID = subfolders[i].id;
             const NAME = subfolders[i].name;
+            const SUBFOLDER_LIST_CARD = this.listSubfolder(ID, NAME);
             const SUBFOLDER_CARD = this.subfolder(ID, NAME);
             this._content.appendChild(SUBFOLDER_CARD);
+            this._list.appendChild(SUBFOLDER_LIST_CARD);
         }
     }
 

@@ -11,7 +11,6 @@ export class SubfolderController {
     async getSubFolders(folderId) {
         const RESPONSE = await this.subfolderModel.getsubfolders('/subfolders', folderId);
         const SUBFOLDERS = RESPONSE.Subfolders;
-        this.subfolderView.renderListViewSubfolders(SUBFOLDERS);
         this.subfolderView.renderSubfolders(SUBFOLDERS);
     }
 
