@@ -35,7 +35,7 @@ def subfolder(update_request: PutSubfolderRequest):
     response = subfolder_service.update_subfolder(update_request)
 
     if response != RespMsg.NOT_FOUND:
-        return {'Status_code': RespMsg.OK, "Object": response}
+        return {'Status_code': RespMsg.OK, "Subfolder": response}
     return {'Status_code': RespMsg.NOT_FOUND}
 
 

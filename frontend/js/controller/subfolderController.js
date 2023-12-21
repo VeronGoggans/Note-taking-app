@@ -24,7 +24,8 @@ export class SubfolderController {
 
     async updateSubfolder(subfolderId, newName) {
         const RESPONSE = await this.subfolderModel.updateSubfolder('/subfolder', subfolderId, newName);
-        const FOLDER = RESPONSE.Object;
+        const FOLDER = RESPONSE.Subfolder;
+        this.subfolderView.renderSubfolderUpdate(FOLDER);
     }
 
 

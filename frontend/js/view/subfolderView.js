@@ -48,6 +48,23 @@ export class SubfolderView {
     }
 
     /**
+     * This method updates the subfolder card inside the list div.
+     * 
+     * @param {dict} folder the updated folder.
+     */
+    renderSubfolderUpdate(folder) {
+        const ID = folder.id;
+        const NAME = folder.name;
+        const SUBFOLDER_LIST_CARDS = this._list.children;
+        for (let i = 0; i < SUBFOLDER_LIST_CARDS.length; i++) {
+            if (SUBFOLDER_LIST_CARDS[i].id === ID) {
+                const SPAN = SUBFOLDER_LIST_CARDS[i].querySelector('span');
+                SPAN.textContent = NAME;
+            }
+        }
+    }
+
+    /**
      * This method renders a confirmation container telling the user if they want to delete the folder.
      * 
      * @param {String} id The ID of the folder wished to be deleted.

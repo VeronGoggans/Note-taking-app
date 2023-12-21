@@ -67,7 +67,7 @@ class SubfolderManager:
         subfolder = self.__find_folder_by_id(folders, subfolder_id)
         if subfolder:
             subfolder['name'] = new_subfolder_name
-            return {"name": new_subfolder_name}
+            return {'name': new_subfolder_name, 'id': subfolder['id']}
         return None
 
 
