@@ -160,13 +160,13 @@ export class SubfolderView {
      * This method recieves the folder from the backend through the subfolder model.
      */
     removefolder(folder) {
-        console.log(folder);
-        const ALL_FOLDERS = this._content.children;
+        const ALL_SUBFOLDERS = this._content.children;
+        const ALL_LIST_SUBFOLDERS = this._list.children;
         const ID = folder.id
-        for (let i = 0; i < ALL_FOLDERS.length; i++) {
-            if (ALL_FOLDERS[i].id === ID) {
-                this._content.removeChild(ALL_FOLDERS[i]);
-                this._list.querySelector(`#${ID}`);
+        for (let i = 0; i < ALL_SUBFOLDERS.length; i++) {
+            if (ALL_SUBFOLDERS[i].id === ID) {
+                this._content.removeChild(ALL_SUBFOLDERS[i]);
+                this._list.removeChild(ALL_LIST_SUBFOLDERS[i]);
             }
         }
         this.removeDialog();
