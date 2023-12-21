@@ -58,7 +58,7 @@ class FolderManager:
         for folder in folders:
             if folder.get('id') == folder_id:
                 folder['name'] = folder_name
-                return folder
+                return {'name': folder_name, 'id': folder_id}
         return None
         
     

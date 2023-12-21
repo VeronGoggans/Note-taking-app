@@ -40,21 +40,21 @@ export class SubfolderView {
     renderSubfolder(subfolder) {
         const ID = subfolder.id;
         const NAME = subfolder.name;
-        const FOLDER_CARD = this.subfolder(ID, NAME);
-        const FOLDER_LIST_CARD = this.listSubfolder(ID, NAME);
-        this._content.appendChild(FOLDER_CARD);
-        this._list.appendChild(FOLDER_LIST_CARD);
+        const SUBFOLDER_CARD = this.subfolder(ID, NAME);
+        const SUBFOLDER_LIST_CARD = this.listSubfolder(ID, NAME);
+        this._content.appendChild(SUBFOLDER_CARD);
+        this._list.appendChild(SUBFOLDER_LIST_CARD);
         this.removeDialog();
     }
 
     /**
      * This method updates the subfolder card inside the list div.
      * 
-     * @param {dict} folder the updated folder.
+     * @param {dict} subfolder the updated subfolder.
      */
-    renderSubfolderUpdate(folder) {
-        const ID = folder.id;
-        const NAME = folder.name;
+    renderSubfolderUpdate(subfolder) {
+        const ID = subfolder.id;
+        const NAME = subfolder.name;
         const SUBFOLDER_LIST_CARDS = this._list.children;
         for (let i = 0; i < SUBFOLDER_LIST_CARDS.length; i++) {
             if (SUBFOLDER_LIST_CARDS[i].id === ID) {
@@ -65,10 +65,10 @@ export class SubfolderView {
     }
 
     /**
-     * This method renders a confirmation container telling the user if they want to delete the folder.
+     * This method renders a confirmation container telling the user if they want to delete the subfolder.
      * 
-     * @param {String} id The ID of the folder wished to be deleted.
-     * @param {String} name The name of the folder wished to be deleted.
+     * @param {String} id The ID of the subfolder wished to be deleted.
+     * @param {String} name The name of the subfolder wished to be deleted.
      */
     renderDeleteFolderContainer(id, name) {
         this.dialog.appendChild(new DeleteFolderContainer(id, name, this));
@@ -147,13 +147,13 @@ export class SubfolderView {
      * Takes the user into a folder and displays the notes inside it.
      * 
      * This method is triggered when a folder card is clicked. It removes all existing folders from the screen
-     * using {@link removeFolders}, and then it navigates into the specified folder, displaying its notes and subfolders
+     * using {@link removeContent}, and then it navigates into the specified folder, displaying its notes and subfolders
      * using {@link navigateIntoFolder}.
      * 
      * @param {string} id - The ID of the folder to navigate into.
      */
     handleFolderCardClick(id) {
-        this.removeFolders();
+        this.removeContent();
         this.subfolderController.navigateIntoFolder(id);
     }
 
@@ -162,7 +162,7 @@ export class SubfolderView {
      * 
      * This method removes all the notes and folders from both the content div and list div.
      */
-    removeFolders() {
+    removeContent() {
         const CONTENT = this._content;
         const LIST = this._list;
         while (CONTENT.firstChild) CONTENT.removeChild(CONTENT.firstChild);
@@ -170,16 +170,16 @@ export class SubfolderView {
     }
 
     /**
-     * Removes a specific folder from the UI.
+     * Removes a specific subfolder from the UI.
      *
-     * This method removes the folder from the UI that it has been given.
-     * @param {dict} folder the folder to be removed from the UI.
-     * This method recieves the folder from the backend through the subfolder model.
+     * This method removes the subfolder from the UI that it has been given.
+     * @param {dict} subfolder the subfolder to be removed from the UI.
+     * This method recieves the subfolder from the backend through the subfolder model.
      */
-    removefolder(folder) {
+    removefolder(subfolder) {
         const ALL_SUBFOLDERS = this._content.children;
         const ALL_LIST_SUBFOLDERS = this._list.children;
-        const ID = folder.id
+        const ID = subfolder.id
         for (let i = 0; i < ALL_SUBFOLDERS.length; i++) {
             if (ALL_SUBFOLDERS[i].id === ID) {
                 this._content.removeChild(ALL_SUBFOLDERS[i]);

@@ -32,7 +32,7 @@ def folder(folder: PutFolderRequest):
     response = folder_service.update_folder(folder)
 
     if response != RespMsg.NOT_FOUND:
-        return {'Status_code': RespMsg.OK, "Object": response}
+        return {'Status_code': RespMsg.OK, "Folder": response}
     return {'Status_code': RespMsg.NOT_FOUND}
 
 

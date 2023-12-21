@@ -12,7 +12,6 @@ export class FolderController {
         const RESPONSE = await this.folderModel.getFolders('/folders');
         const FOLDERS = RESPONSE.folders;
         this.folderView.renderFolders(FOLDERS);
-        this.folderView.renderListViewFolders(FOLDERS);
     }
 
 
@@ -25,7 +24,9 @@ export class FolderController {
 
     async updateFolder(folderId, newName) {
         const RESPONSE = await this.folderModel.updateFolder('/folder', folderId, newName);
-        const FOLDER = RESPONSE.Object;
+        const FOLDER = RESPONSE.Folder;
+        console.log(FOLDER);
+        this.folderView.renderFolderUpdate(FOLDER);
     }
 
 
