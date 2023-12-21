@@ -14,7 +14,7 @@ export class DeleteFolderContainer {
     }
 
     attachEventListeners() {
-        this.DELETE.addEventListener('click', () => {this.view.deleteFolder(this.id)})
+        this.DELETE.addEventListener('click', () => {this.view.handleConfirmButtonClick(this.id)})
     }
 
     render() {

@@ -25,7 +25,7 @@ def subfolder(subfolder: PostSubfolderRequest):
     response = subfolder_service.add_subfolder(subfolder)
 
     if response != RespMsg.NOT_FOUND:
-        return {'Status_code': RespMsg.OK, "Object": response}
+        return {'Status_code': RespMsg.OK, "Subfolder": response}
     return {'Status_code': RespMsg.NOT_FOUND}
 
 

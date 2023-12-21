@@ -1,35 +1,16 @@
-import { DeleteFolderContainer } from '../components/deleteFolderContainer.js';
 import { Folder } from '../components/folder.js';
 import { ListFolder } from '../components/listFolder.js';
-import { NewFolderContainer } from '../components/newFolderContainer.js';
+import { DeleteFolderContainer } from '../components/deleteFolderContainer.js';
+
 
 export class FolderView {
     constructor(folderController) {
         this.folderController = folderController;
-        this.backoutButton = document.querySelector('.exit-folder-btn');
-        this.createNoteButton = document.querySelector('.create-note-btn');
-        this.createFolderButton = document.querySelector('.create-folder-btn');
-        this.dialog = document.querySelector('.dialog');
-        this.backButton = document.querySelector('.exit-folder-btn');
-        this.homeButton = document.querySelector('.home-screen-btn');
         this._content = document.querySelector('.content-view');
         this._list = document.querySelector('.list-content');
         this._cover = document.querySelector('.cover');
+        this.dialog = document.querySelector('.dialog');
 
-        this.backoutButton.addEventListener('click', () => {this.back()});
-        this.homeButton.addEventListener('click', () => {this.homeScreen()});
-        this.createFolderButton.addEventListener('click', () => {this.renderNewFolderContainer()});
-        this.dialog.addEventListener('click', (event) => {if (!event.target.closest('.new-folder-container') && !event.target.closest('.delete-folder-container')) this.removeDialog()})
-    }
-
-    renderDeleteFolderContainer(id, name) {
-        this.dialog.appendChild(new DeleteFolderContainer(id, name, this));
-        this.renderDialog();
-    }
-
-    renderNewFolderContainer() {
-        this.dialog.appendChild(new NewFolderContainer(this));
-        this.renderDialog();
     }
 
     renderListViewFolders(folders) {
@@ -67,16 +48,13 @@ export class FolderView {
     }
 
     async updateFolder(id, name) {
-        this.folderController.updateFolder(id, name);
+        await this.folderController.updateFolder(id, name);
     }
 
-    async deleteFolder(id) {
-        this.folderController.deleteFolder(id);
+    async handleConfirmButtonClick(id) {
+        await this.folderController.deleteFolder(id);
     }
 
-    async addFolder(name) {
-        this.folderController.addFolder(name);
-    }
 
     /**
      * Takes the user into a folder and displays the notes inside it.
@@ -91,21 +69,6 @@ export class FolderView {
         this.removeContent();
         this.folderController.navigateIntoFolder(id);
     }
-
-    /**
-     * Removes folders from the UI.
-     *
-     * This method removes all the child elements from the content html div and list-view html div
-     *
-     * @returns {void}
-     */
-    removeContent() {
-        const CONTENT = this._content;
-        const LIST = this._list;
-        while (CONTENT.firstChild) CONTENT.removeChild(CONTENT.firstChild);
-        while (LIST.firstChild) LIST.removeChild(LIST.firstChild);
-    }
-
 
     /**
      * Removes a specific folder from the UI.
@@ -126,14 +89,28 @@ export class FolderView {
         this.removeDialog();
     }
 
+    /**
+     * Removes folders from the UI.
+     *
+     * This method removes all the child elements from the content html div and list-view html div
+     *
+     * @returns {void}
+     */
+    removeContent() {
+        const CONTENT = this._content;
+        const LIST = this._list;
+        while (CONTENT.firstChild) CONTENT.removeChild(CONTENT.firstChild);
+        while (LIST.firstChild) LIST.removeChild(LIST.firstChild);
+    }
+
     back() {
         this.removeContent();
         this.folderController.navigateOutofFolder();
     }
 
-    homeScreen() {
-        this.removeContent();
-        this.folderController.navigateToHomescreen();
+    renderDeleteFolderContainer(id, name) {
+        this.dialog.appendChild(new DeleteFolderContainer(id, name, this));
+        this.renderDialog();
     }
 
     renderDialog() {

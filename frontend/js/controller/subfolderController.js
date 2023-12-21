@@ -16,11 +16,11 @@ export class SubfolderController {
     }
 
 
-    // async addFolder(name) {
-    //     const RESPONSE = await this.folderModel.addFolder('/folder', name);
-    //     const FOLDER = RESPONSE.Object;
-    //     this.folderView.renderFolder(FOLDER);
-    // }
+    async addSubfolder(name, folderId) {
+        const RESPONSE = await this.subfolderModel.addSubfolder('/subfolder', name, folderId);
+        const SUBFOLDER = RESPONSE.Subfolder;
+        this.subfolderView.renderSubfolder(SUBFOLDER);
+    }
 
 
     async updateSubfolder(subfolderId, newName) {

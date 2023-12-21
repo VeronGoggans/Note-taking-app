@@ -1,7 +1,7 @@
 import { Folder } from "../components/folder.js";
 import { ListFolder } from "../components/listFolder.js";
 import { DeleteFolderContainer } from '../components/deleteFolderContainer.js';
-import { NewFolderContainer } from '../components/newFolderContainer.js';
+
 
 
 export class SubfolderView {
@@ -11,17 +11,15 @@ export class SubfolderView {
         this._content = document.querySelector('.content-view');
         this._list = document.querySelector('.list-content');
     }
-
-    renderDeleteFolderContainer(id, name) {
-        this.dialog.appendChild(new DeleteFolderContainer(id, name, this));
-        this.renderDialog();
-    }
-
-    renderNewFolderContainer() {
-        this.dialog.appendChild(new NewFolderContainer(this));
-        this.renderDialog();
-    }
-
+    /**
+     * This method renders a array of subfolders.
+     * 
+     * This method renders a array of subfolders to the list div.
+     * If the array is empty this method does nothing.
+     * 
+     * @param {Array} subfolders is an array of subfolders.
+     * @returns {void}
+     */
     renderListViewSubfolders(subfolders) {
         for (let i = 0; i < subfolders.length; i++) {
             const ID = subfolders[i].id;
@@ -31,6 +29,15 @@ export class SubfolderView {
         }
     }
 
+    /**
+     * This method renders a array of subfolders.
+     * 
+     * This method renders a array of subfolders to the content div.
+     * If the array is empty this method does nothing.
+     * 
+     * @param {Array} subfolders is an array of subfolders.
+     * @returns {void}
+     */
     renderSubfolders(subfolders) {
         for (let i = 0; i < subfolders.length; i++) {
             const ID = subfolders[i].id;
@@ -38,6 +45,58 @@ export class SubfolderView {
             const SUBFOLDER_CARD = this.subfolder(ID, NAME);
             this._content.appendChild(SUBFOLDER_CARD);
         }
+    }
+
+    /**
+     * This method adds a single subfolder to the UI.
+     * 
+     * This method adds the subfolder to the content div and list div.
+     * 
+     * @param {dict} subfolder The subfolder that needs to be added to the UI.
+     * @returns {void}
+     * 
+     */
+    renderSubfolder(subfolder) {
+        const ID = subfolder.id;
+        const NAME = subfolder.name;
+        const FOLDER_CARD = this.subfolder(ID, NAME);
+        const FOLDER_LIST_CARD = this.listSubfolder(ID, NAME);
+        this._content.appendChild(FOLDER_CARD);
+        this._list.appendChild(FOLDER_LIST_CARD);
+        this.removeDialog();
+    }
+
+    /**
+     * This method renders a confirmation container telling the user if they want to delete the folder.
+     * 
+     * @param {String} id The ID of the folder wished to be deleted.
+     * @param {String} name The name of the folder wished to be deleted.
+     * @returns {void}
+     */
+    renderDeleteFolderContainer(id, name) {
+        this.dialog.appendChild(new DeleteFolderContainer(id, name, this));
+        this.renderDialog();
+    }
+
+
+    /**
+     * This method renders the dialog.
+     * @returns {void}
+     */
+    renderDialog() {
+        this.dialog.style.visibility = 'visible';
+        this.dialog.style.top = '0%';
+    }
+
+    /**
+     * This method removes the child of the dialog and the dialog itself from the UI.
+     * @returns {void}
+     */
+    removeDialog() {
+        this.dialog.style.visibility = 'hidden';
+        this.dialog.style.top = '100%';
+        const CHILD = this.dialog.firstChild;
+        this.dialog.removeChild(CHILD);
     }
 
     listSubfolder(id, name) {
@@ -52,9 +111,10 @@ export class SubfolderView {
         this.subfolderController.updateSubfolder(id, name);
     }
 
-    async deleteFolder(id) {
+    async handleConfirmButtonClick(id) {
         this.subfolderController.deleteSubfolder(id);
     }
+
 
     /**
      * Takes the user into a folder and displays the notes inside it.
@@ -70,6 +130,12 @@ export class SubfolderView {
         this.subfolderController.navigateIntoFolder(id);
     }
 
+    /**
+     * Remove all the content from the sreen.
+     * 
+     * This method removes all the notes and folders from both the content div and list div.
+     * @returns {void}
+     */
     removeFolders() {
         const CONTENT = this._content;
         const LIST = this._list;
@@ -82,7 +148,8 @@ export class SubfolderView {
      * Removes a specific folder from the UI.
      *
      * This method removes the folder from the UI that it has been given.
-     * @param {number} id the ID of the folder to be removed from the UI.
+     * @param {dict} folder the folder to be removed from the UI.
+     * This method recieves the folder from the backend through the subfolder model.
      * @returns {void}
      */
     removefolder(folder) {
@@ -97,17 +164,4 @@ export class SubfolderView {
         }
         this.removeDialog();
     }
-
-    renderDialog() {
-        this.dialog.style.visibility = 'visible';
-        this.dialog.style.top = '0%';
-    }
-
-    removeDialog() {
-        this.dialog.style.visibility = 'hidden';
-        this.dialog.style.top = '100%';
-        const CHILD = this.dialog.firstChild;
-        this.dialog.removeChild(CHILD);
-    }
-
 }

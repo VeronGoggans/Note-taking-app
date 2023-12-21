@@ -15,49 +15,11 @@
                     "password": ""
                 }
             ],
-            "subfolders": [
-                {
-                    "id": "s-15",
-                    "name": "Note subfolder",
-                    "notes": [
-                        {
-                            "id": "n-11",
-                            "title": "Hello Subfolder",
-                            "content": "C:\\Users\\jsvgo\\Web Dev\\Note Taking App/storage/notes/note-n-11.html",
-                            "bookmark": false,
-                            "password_protected": false,
-                            "last_edit": "19/12/2023 13:10:27",
-                            "creation": "19/12/2023",
-                            "password": ""
-                        },
-                        {
-                            "id": "n-12",
-                            "title": "Hello Subfolder",
-                            "content": "C:\\Users\\jsvgo\\Web Dev\\Note Taking App/storage/notes/note-n-12.html",
-                            "bookmark": false,
-                            "password_protected": false,
-                            "last_edit": "19/12/2023 13:10:27",
-                            "creation": "19/12/2023",
-                            "password": ""
-                        },
-                        {
-                            "id": "n-13",
-                            "title": "Sorrow",
-                            "content": "C:\\Users\\jsvgo\\Web Dev\\Note Taking App/storage/notes/note-n-13.html",
-                            "bookmark": false,
-                            "password_protected": false,
-                            "last_edit": "19/12/2023 13:10:27",
-                            "creation": "19/12/2023",
-                            "password": ""
-                        }
-                    ],
-                    "subfolders": []
-                }
-            ]
+            "subfolders": []
         },
         {
             "id": "f-29",
-            "name": "New Folder",
+            "name": "New\u00a0",
             "notes": [],
             "subfolders": []
         }
