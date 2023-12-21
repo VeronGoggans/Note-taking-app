@@ -19,6 +19,7 @@ export class ApplicationController {
 
     navigateToHomescreen() {
         this.folderController.getFolders();
+        this.applicationModel.setCurrentFolderID(null);
     }
 
     getCurrentFolderID() {
