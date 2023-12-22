@@ -1,25 +1,26 @@
-.note,
-.secure-note {
+.note {
+    cursor: pointer;
     height: 340px;
     border-radius: 15px;
     background-color: rgb(255, 255, 255);
     color: rgb(36, 40, 109);
     display: grid;
-    grid-template-rows: 30px 1fr;
+    grid-template-rows: 40px 1fr 50px;
     margin: 20px;
     box-shadow: .5rem .4rem 1rem rgb(213, 226, 241);
     transition: .5s;
+    overflow: visible;
 }
 
-.note-title-box,
-.secure-note-title-box {
+.note-name-box {
+    cursor: auto;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    position: relative;
+    overflow: visible;
 }
 
-.note-title-box i,
-.secure-note-title-box i  {
+.note-name-box i  {
     cursor: pointer;
     margin-right: 15px;
     border-radius: 50%;
@@ -31,33 +32,99 @@
     transition: .4s;
 }
 
-.note-title-box h4,
-.secure-note-title-box h4 {
+.note-name-box h4 {
+    width: 100%;
+    outline: none;
+    padding: 5px;
     margin-left: 10px;
+    margin-right: 10px;
     color: #444863;
+    border-bottom: 2px solid transparent;
     font-weight: 500;
 }
 
-.note-content-box,
-.secure-note-content-box {
+.note-content-box {
     display: grid;
     grid-template-rows: 1fr 30px;
     padding: 10px;
     color: rgb(56, 56, 56);
 }
 
-.note-content-box div,
-.secure-note-content-box div {
+.note-util-bar{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    padding-right: 10px;
+    gap: 10px;
+    opacity: 0;
+    transition: .2s;
+    cursor: auto;
     box-shadow: 0px -5px 5px rgb(255, 255, 255);
 }
 
+.note-util-bar:hover {
+    opacity: 1;
+}
+
+.note-util-bar button {
+    cursor: pointer;
+    outline: none;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 7px;
+    background-color: transparent;
+    color: #444863;
+    transition: .3s;
+}
+
+.note-util-bar button:hover {
+    background-color: aliceblue;    
+}
+
+.update-note-btns-container {
+    position: absolute;
+    margin-left: auto;
+    background-color: white;
+    box-shadow: 0 0 20px rgb(213, 226, 241);
+    width: 50px;
+    display: flex;
+    padding: 10px;
+    border-radius: 10px;
+    right: -19px;
+    top: -18px;
+    visibility: hidden;
+}
+
+.update-note-btns-container button {
+    cursor: pointer;
+    outline: none;
+    border: none;
+    display: flex;
+    padding: 3px 5px;
+    border-radius: 3px;
+    background-color: transparent;
+}
+
+.confirm-note-update-btn {
+    margin-left: auto;
+    margin-right: 3px;
+}
+
+.cancel-note-update-btn {
+    margin-right: 3px;
+}
+
+.update-note-btns-container button:hover {
+    background-color: aliceblue;
+}
+
 .note-content-box p {
-    font-size: 12px;
+    font-size: 14px;
     cursor: pointer;
 }
 
-.note-content-box i,
-.secure-note-content-box div i {
+.note-content-box i {
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -66,15 +133,4 @@
     height: 35px;
     color: #444863;
     transition: .4s;
-}
-
-.secure-note-content-box #lock_icon {
-    cursor: pointer;
-    font-size: 120px;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #5c7dff;
 }

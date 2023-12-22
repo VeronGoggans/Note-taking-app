@@ -1,26 +1,30 @@
 import { CNode } from "../util/CNode.js";
 
-export class Folder {
-    constructor(id, name, view) {
+export class Note {
+    constructor(id, name, bookmark, content, view) {
         this.id = id;
         this.name = name;
+        this.bookmark = bookmark;
+        this.content = content;
         this.view = view;
 
         // creating HTML elements.
-        this.HOST = CNode.create('div', {'class': 'folder', 'id': this.id});
-        this.NAME_BOX = CNode.create('div', {'class': 'folder-name-box'});
-        this.H4 = CNode.create('h4', {'contentEditable': 'false', 'textContent': this.name, 'spellCheck': 'false'});
-        this.BTN_CONTAINER = CNode.create('div', {'class': 'update-folder-btns-container'});
-        this.CONFIRM = CNode.create('button', {'class': 'confirm-folder-update-btn'});
+        this.HOST = CNode.create('div', {'class': 'note', 'id': this.id});
+        this.NAME_BOX = CNode.create('div', {'class': 'note-name-box'});
+        this.H4 = CNode.create('h4', {'textContent': this.name});
+        this.BTN_CONTAINER = CNode.create('div', {'class': 'update-note-btns-container'});
+        this.CONFIRM = CNode.create('button', {'class': 'confirm-note-update-btn'});
         this.CONFIRM_ICON = CNode.create('i', {'class': 'fa-solid fa-check'});
-        this.CANCEL = CNode.create('button', {'class': 'cancel-folder-update-btn'});
+        this.CANCEL = CNode.create('button', {'class': 'cancel-note-update-btn'});
         this.CANCEL_ICON = CNode.create('i', {'class': 'fa-solid fa-xmark'});
-        this.LOGO = CNode.create('div', {'class': 'folder-logo'});
-        this.ICON = CNode.create('i', {'class': 'fa-solid fa-folder'});
-        this.UTIL_BAR = CNode.create('div', {'class': 'folder-util-bar'});
-        this.EDIT = CNode.create('button', {'id': 'edit-folder-btn'});
+        this.CONTENT_BOX = CNode.create('div', {'class': 'note-content-box'});
+        this.CONTENT = CNode.create('p', {'innerHTML': this.content});
+        this.UTIL_BAR = CNode.create('div', {'class': 'note-util-bar'});
+        this.BOOKMARK = CNode.create('button', {'class': 'bookmark-note-btn'});
+        this.BOOKMARK_ICON = CNode.create('i', {'class': 'fa-solid fa-bookmark'});
+        this.EDIT = CNode.create('button', {'class': 'edit-note-btn'});
         this.EDIT_ICON = CNode.create('i', {'class': 'fa-solid fa-pen'});
-        this.DELETE = CNode.create('button', {'id': 'delete-folder-btn'});
+        this.DELETE = CNode.create('button', {'class': 'delete-note-btn'});
         this.DELETE_ICON = CNode.create('i', {'class': 'fa-solid fa-trash'});
 
         this.attachEventListeners();
@@ -35,23 +39,23 @@ export class Folder {
         this.CANCEL.appendChild(this.CANCEL_ICON);
         this.BTN_CONTAINER.appendChild(this.CANCEL);
         this.NAME_BOX.appendChild(this.BTN_CONTAINER);
-        this.HOST.appendChild(this.LOGO);
-        this.LOGO.appendChild(this.ICON);
-        this.HOST.appendChild(this.UTIL_BAR);
+        this.CONTENT_BOX.appendChild(this.CONTENT);
+        this.HOST.appendChild(this.CONTENT_BOX);
+        this.UTIL_BAR.appendChild(this.BOOKMARK);
+        this.BOOKMARK.appendChild(this.BOOKMARK_ICON);
         this.UTIL_BAR.appendChild(this.EDIT);
         this.EDIT.appendChild(this.EDIT_ICON);
         this.UTIL_BAR.appendChild(this.DELETE);
-        this.DELETE.appendChild(this.DELETE_ICON); 
-        return this.HOST;
+        this.DELETE.appendChild(this.DELETE_ICON);
+        this.HOST.appendChild(this.UTIL_BAR);
+        return this.HOST
     }
-
 
     attachEventListeners() {
         this.EDIT.addEventListener('click', () => {this.toggleEditableFolderName()});
-        this.CONFIRM.addEventListener('click', () => {this.updateFolder()});
+        this.CONFIRM.addEventListener('click', () => {this.updateNoteName()});
         this.CANCEL.addEventListener('click', () => {this.toggleEditableFolderName()});
         this.DELETE.addEventListener('click', () => {this.view.renderDeleteFolderContainer(this.id, this.name)});
-        this.LOGO.addEventListener('click', () => { this.view.handleFolderCardClick(this.id)});
     }
 
     toggleEditableFolderName() {
@@ -63,8 +67,7 @@ export class Folder {
         this.BTN_CONTAINER.style.visibility = this.BTN_CONTAINER.style.visibility === 'visible' ? 'hidden' : 'visible';
     }
 
-    async updateFolder() {
-        this.view.updateFolder(this.id, this.H4.textContent);
-        this.toggleEditableFolderName();
+    async updateNoteName() {
+
     }
 }
