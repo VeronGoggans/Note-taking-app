@@ -55,7 +55,7 @@ export class Note {
         this.EDIT.addEventListener('click', () => {this.toggleEditableFolderName()});
         this.CONFIRM.addEventListener('click', () => {this.updateNoteName()});
         this.CANCEL.addEventListener('click', () => {this.toggleEditableFolderName()});
-        this.DELETE.addEventListener('click', () => {this.view.renderDeleteFolderContainer(this.id, this.name)});
+        this.DELETE.addEventListener('click', () => {this.view.renderDeleteContainer(this.id, this.name)});
     }
 
     toggleEditableFolderName() {
@@ -68,6 +68,7 @@ export class Note {
     }
 
     async updateNoteName() {
+        this.view.updateNote(this.id, this.H4.textContent, this);
 
     }
 }

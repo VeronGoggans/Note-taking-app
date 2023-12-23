@@ -42,7 +42,7 @@ def note(delete_request: DeleteNoteRequest):
     response = note_service.delete_note(delete_request)
 
     if response != RespMsg.NOT_FOUND:
-        return {'Status_code': response}
+        return {'Status_code': RespMsg.OK, 'Note': response}
     return {'Status_code': RespMsg.NOT_FOUND}
 
 
@@ -51,5 +51,5 @@ def note(put_request: PutNoteRequest):
     response = note_service.update_note(put_request)
 
     if response != RespMsg.NOT_FOUND:
-        return {'Status_code': RespMsg.OK, "Object": response}
+        return {'Status_code': RespMsg.OK, "Note": response}
     return {'Status_code': RespMsg.NOT_FOUND}

@@ -18,11 +18,16 @@ export class NoteController {
 
     }
 
-    async updateNote() {
-
+    async updateNote(noteId, name, content, bookmark) {
+        const RESPONSE = await this.noteModel.updateNote('/note', noteId, name, content, bookmark);
+        const NOTE = RESPONSE.Note;
+        this.noteView.renderNoteCard(NOTE);
     }
 
-    async deleteNote() {
-
+    async deleteNote(noteId) {
+        const PARENT_ID = this.applicationController.getCurrentFolderID();
+        const RESPONSE = await this.noteModel.deleteNote('/note', PARENT_ID, noteId);
+        const NOTE = RESPONSE.Note;
+        this.noteView.removeNote(NOTE);
     }
 }

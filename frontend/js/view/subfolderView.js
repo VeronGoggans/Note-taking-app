@@ -1,6 +1,6 @@
 import { Folder } from "../components/folder.js";
 import { ListFolder } from "../components/listFolder.js";
-import { DeleteFolderContainer } from '../components/deleteFolderContainer.js';
+import { DeleteContainer } from '../components/deleteContainer.js';
 
 
 
@@ -70,8 +70,8 @@ export class SubfolderView {
      * @param {String} id The ID of the subfolder wished to be deleted.
      * @param {String} name The name of the subfolder wished to be deleted.
      */
-    renderDeleteFolderContainer(id, name) {
-        this.dialog.appendChild(new DeleteFolderContainer(id, name, this));
+    renderDeleteContainer(id, name) {
+        this.dialog.appendChild(new DeleteContainer(id, name, this));
         this.renderDialog();
     }
 

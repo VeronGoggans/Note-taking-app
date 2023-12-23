@@ -67,13 +67,11 @@ class NoteService:
 
         Args:
             post_request (PostNoteRequest): 
-            Object containing the folder_id, title, content, bookmark and password_protected fields for a new note.
+            Object containing the folder_id, title, content and bookmark fields for a new note.
             - folder_id (str): The ID of the folder to which the note will be added to.
             - title (str): The title of the note.
             - content (str): The content of the note.
             - bookmrk (bool): A boolean indicating if the note is boomarked or not.
-            - password_protected (bool): A boolean indicating if the note is secure or not.
-
 
         Returns:
             dict or RespMsg.NOT_FOUND: 
@@ -100,12 +98,11 @@ class NoteService:
 
         Args:
             put_request (PutNoteRequest): 
-            Object containing the note_id, title, content, bookmark and password_protected fields for a new note.
+            Object containing the note_id, title, content and bookmark fields for a new note.
             - note_id (str): The ID of the note that will be updated.
             - title (str): The title of the note.
             - content (str): The content of the note.
             - bookmrk (bool): A boolean indicating if the note is boomarked or not.
-            - password_protected (bool): A boolean indicating if the note is secure or not.
 
         Returns:
             dict or RespMsg.NOT_FOUND: 
@@ -145,7 +142,7 @@ class NoteService:
 
         if deleted_note:
             Json.update(self.folders_path, folder_structure)
-            return RespMsg.OK
+            return deleted_note
         return RespMsg.NOT_FOUND
 
 
@@ -157,5 +154,4 @@ class NoteService:
             post_request.title, 
             post_request.content, 
             post_request.bookmark, 
-            post_request.password_protected
             )

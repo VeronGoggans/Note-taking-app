@@ -3,15 +3,13 @@ from backend.application.service.util.date_service import DateService
 
 class Note:
     def __init__(self, id: int, title: str, content: str, bookmark: bool, 
-                 password_protected: bool, last_edit = DateService.datetime(), creation = DateService.date(), password = ''):
+                last_edit = DateService.datetime(), creation = DateService.date()):
         self.id = id
         self.title = title
         self.content = content
         self.bookmark = bookmark
-        self.password_protected = password_protected
         self.last_edit = last_edit
         self.creation = creation
-        self.password = password
 
     
     def set_content_path(self):

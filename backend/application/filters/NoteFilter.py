@@ -14,17 +14,12 @@ class NoteFilter:
 
         if note_type == NoteTypes.STANDARD.value:
             for note in note_objects:
-                if note.bookmark == False and note.password_protected == False:
+                if note.bookmark == False:
                     filtered_list.append(note)
             return filtered_list
         if note_type == NoteTypes.BOOKMARKED.value:
             for note in note_objects:
                 if note.bookmark == True:
-                    filtered_list.append(note)
-            return filtered_list
-        if note_type == NoteTypes.PROTECTED.value:
-            for note in note_objects:
-                if note.password_protected == True:
                     filtered_list.append(note)
             return filtered_list
         if note_type == NoteTypes.ALL.value:
@@ -57,7 +52,6 @@ class NoteFilter:
             note_data['title'], 
             note_data['content'], 
             note_data['bookmark'], 
-            note_data['password_protected'],
             note_data['last_edit'],
             note_data['creation']
             )

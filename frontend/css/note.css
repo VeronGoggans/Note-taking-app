@@ -20,18 +20,6 @@
     overflow: visible;
 }
 
-.note-name-box i  {
-    cursor: pointer;
-    margin-right: 15px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 25px;
-    height: 25px;
-    transition: .4s;
-}
-
 .note-name-box h4 {
     width: 100%;
     outline: none;
@@ -41,11 +29,10 @@
     color: #444863;
     border-bottom: 2px solid transparent;
     font-weight: 500;
+    transition: .2s;
 }
 
 .note-content-box {
-    display: grid;
-    grid-template-rows: 1fr 30px;
     padding: 10px;
     color: rgb(56, 56, 56);
 }

@@ -1,6 +1,6 @@
 import { CNode } from "../util/CNode.js";
 
-export class DeleteFolderContainer {
+export class DeleteContainer {
     constructor(id, name, view) {
         this.id = id;
         this.view = view;

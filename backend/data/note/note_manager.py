@@ -181,7 +181,6 @@ class NoteManager:
             note_data['title'], 
             note_data['content'], 
             note_data['bookmark'], 
-            note_data['password_protected'],
             note_data['last_edit'],
             note_data['creation']
             )
@@ -199,6 +198,5 @@ class NoteManager:
 
         current_note['title'] = updated_note.title
         current_note['bookmark'] = updated_note.bookmark
-        current_note['password_protected'] = updated_note.password_protected
         current_note['last_edit'] = DateService.datetime()
         return current_note

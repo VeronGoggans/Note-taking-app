@@ -5,4 +5,3 @@ class PostNoteRequest(BaseModel):
     title: str
     content: str
     bookmark: bool
-    password_protected: bool

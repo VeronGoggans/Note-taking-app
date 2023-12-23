@@ -1,6 +1,6 @@
 import { Folder } from '../components/folder.js';
 import { ListFolder } from '../components/listFolder.js';
-import { DeleteFolderContainer } from '../components/deleteFolderContainer.js';
+import { DeleteContainer } from '../components/deleteContainer.js';
 
 
 export class FolderView {
@@ -72,8 +72,8 @@ export class FolderView {
      * @param {String} id The ID of the folder wished to be deleted.
      * @param {String} name The name of the folder wished to be deleted.
      */
-    renderDeleteFolderContainer(id, name) {
-        this.dialog.appendChild(new DeleteFolderContainer(id, name, this));
+    renderDeleteContainer(id, name) {
+        this.dialog.appendChild(new DeleteContainer(id, name, this));
         this.renderDialog();
     }
 
@@ -174,8 +174,7 @@ export class FolderView {
      * Removes a specific folder from the UI.
      *
      * This method removes the folder from the UI that it has been given.
-     * @param {number} id the ID of the folder to be removed from the UI.
-     * @returns {void}
+     * @param {String} id the ID of the folder to be removed from the UI.
      */
     removefolder(folder) {
         const ALL_FOLDERS = this._content.children;

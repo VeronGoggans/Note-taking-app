@@ -2,27 +2,20 @@
     "folders": [
         {
             "id": "f-40",
-            "name": "Games",
+            "name": "untitled",
             "notes": [
                 {
-                    "id": "n-14",
-                    "title": "Sorrow Lyrics",
-                    "content": "C:\\Users\\jsvgo\\Web Dev\\Note Taking App/storage/notes/note-n-14.html",
+                    "id": "n-16",
+                    "title": "untitled",
+                    "content": "C:\\Users\\jsvgo\\Web Dev\\Note Taking App/storage/notes/note-n-16.html",
                     "bookmark": false,
                     "password_protected": false,
-                    "last_edit": "22/12/2023 00:04:05",
-                    "creation": "22/12/2023",
+                    "last_edit": "23/12/2023 22:15:45",
+                    "creation": "23/12/2023",
                     "password": ""
                 }
             ],
-            "subfolders": [
-                {
-                    "id": "s-34",
-                    "name": "Firewatch",
-                    "notes": [],
-                    "subfolders": []
-                }
-            ]
+            "subfolders": []
         }
     ]
 }

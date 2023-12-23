@@ -50,7 +50,7 @@ export class Folder {
         this.EDIT.addEventListener('click', () => {this.toggleEditableFolderName()});
         this.CONFIRM.addEventListener('click', () => {this.updateFolder()});
         this.CANCEL.addEventListener('click', () => {this.toggleEditableFolderName()});
-        this.DELETE.addEventListener('click', () => {this.view.renderDeleteFolderContainer(this.id, this.name)});
+        this.DELETE.addEventListener('click', () => {this.view.renderDeleteContainer(this.id, this.name)});
         this.LOGO.addEventListener('click', () => { this.view.handleFolderCardClick(this.id)});
     }
 
