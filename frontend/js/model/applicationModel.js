@@ -1,15 +1,26 @@
 export class ApplicationModel {
     constructor() {
         // use a set for this 
-        this.currentFolder = null;
-        this.foldersIds = [null];
+        this.folderIds = [];
+    }
+
+    clearFolderIdlist() {
+        this.folderIds = [];
     }
 
     getCurrentFolderID() {
-        return this.currentFolder;
+        return this.folderIds[this.folderIds.length - 1];
     }
 
-    setCurrentFolderID(ID) {
-        this.currentFolder = ID;
+
+    addFolderIdToList(ID) {
+        if (ID !== this.folderIds[this.folderIds.length - 1]) {
+            this.folderIds.push(ID);
+        }
+    }
+
+    removeFolderIdFromList() {
+        this.folderIds.pop();
+        return this.folderIds[this.folderIds.length - 1];
     }
 }

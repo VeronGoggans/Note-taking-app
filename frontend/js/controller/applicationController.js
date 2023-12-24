@@ -19,7 +19,7 @@ export class ApplicationController {
 
     navigateToHomescreen() {
         this.folderController.getFolders();
-        this.applicationModel.setCurrentFolderID(null);
+        this.applicationModel.clearFolderIdlist();
     }
 
     getCurrentFolderID() {
@@ -40,22 +40,16 @@ export class ApplicationController {
         else await this.addSubfolder(name, CURRENT_FOLDER);
     }
 
-
-
-    
-
-
-
-    // NEEDS WORK
     navigateOutofFolder() {
-        const PARENT_ID = this.applicationModel.getParentFolderID();
-        this.navigateIntoFolder(PARENT_ID, 'all');
+        const PARENT_ID = this.applicationModel.removeFolderIdFromList();
+        if (PARENT_ID === undefined) this.navigateToHomescreen();
+        else this.navigateIntoFolder(PARENT_ID, 'all');
     }
 
     navigateIntoFolder(folderId, noteType) {
         this.subfolderController.getSubFolders(folderId);
         this.noteController.getNotes(folderId, noteType);
-        this.applicationModel.setCurrentFolderID(folderId);
-        console.log(`Current folder: ${this.applicationModel.getCurrentFolderID()}`);
+        this.applicationModel.addFolderIdToList(folderId);
+        // console.log(`Current folder: ${this.applicationModel.getCurrentFolderID()}`);
     }
 }

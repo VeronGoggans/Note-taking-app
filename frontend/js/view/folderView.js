@@ -10,7 +10,6 @@ export class FolderView {
         this._list = document.querySelector('.list-content');
         this._cover = document.querySelector('.cover');
         this.dialog = document.querySelector('.dialog');
-
     }
 
     /**

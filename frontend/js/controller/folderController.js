@@ -35,10 +35,7 @@ export class FolderController {
         const FOLDER = RESPONSE.Object;
         this.folderView.removefolder(FOLDER);
     }
-
-    async navigateOutofFolder() {
-        this.applicationController.navigateOutofFolder();
-    }
+    
 
     async navigateIntoFolder(folderId) {
         this.applicationController.navigateIntoFolder(folderId);

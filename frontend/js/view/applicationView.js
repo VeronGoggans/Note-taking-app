@@ -61,7 +61,8 @@ export class ApplicationView {
     }
 
     back() {
-
+        this.removeContent();
+        this.applicationController.navigateOutofFolder();
     }
 
     async handleAddFolderButtonClick(name) {
