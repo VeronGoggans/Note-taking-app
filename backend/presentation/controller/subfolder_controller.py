@@ -12,7 +12,7 @@ class SubfolderRouter:
         self.route = APIRouter()
         self.subfolder_service = SubfolderService(SubfolderManager(), json_manager)
 
-        self.route.add_api_route('/subfolders', self.subfolders, methods=['GET'])
+        self.route.add_api_route('/subfolders/{folder_id}', self.subfolders, methods=['GET'])
         self.route.add_api_route('/subfolder', self.create_subfolder, methods=['POST'])
         self.route.add_api_route('/subfolder', self.update_subfolder, methods=['PUT'])
         self.route.add_api_route('/subfolder', self.delete_subfolder, methods=['DELETE'])
