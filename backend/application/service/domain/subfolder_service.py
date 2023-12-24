@@ -3,15 +3,17 @@ from backend.presentation.request_bodies.subfolder.post_subfolder_request import
 from backend.presentation.request_bodies.subfolder.put_subfolder_request import PutSubfolderRequest
 from backend.presentation.request_bodies.subfolder.del_subfolder_request import DeleteSubfolderRequest
 from backend.domain.subfolder import Subfolder
-from backend.data.file.json_manager import Json
+from backend.data.file.json_manager import JsonManager
 from backend.domain.enums.responseMessages import RespMsg
-from backend.application.generators.Id_generator import IDGenerator
 import os 
 
 class SubfolderService:
-    def __init__(self, subfolder_manager: SubfolderManager):
+    def __init__(self, subfolder_manager: SubfolderManager, json_manager: JsonManager):
         self.subfolder_manager = subfolder_manager
+        self.json_manager = json_manager
         self.folders_path = os.getcwd() + '/storage/json/notes.json'
+        self.id_path = os.getcwd() + "/storage/json/id.json"
+
 
     
     def get_subfolders(self, folder_id: int):
@@ -26,7 +28,7 @@ class SubfolderService:
             - If subfolders are found, it returns a list containing information about the subfolders.
             - If no subfolders are found or the specified folder does not exist, it returns a message indicating 'NOT_FOUND'.
         """
-        folder_structure = Json.load(self.folders_path)
+        folder_structure = self.json_manager.load(self.folders_path)
         folders = folder_structure['folders']
         manager_response = self.subfolder_manager.get_subfolders(folders, folder_id)
 
@@ -51,15 +53,15 @@ class SubfolderService:
               successfully added, returns a dictionary representing the new subfolder.
             - If the parent folder is not found, returns RespMsg.NOT_FOUND.
         """
-        folder_structure = Json.load(self.folders_path)
+        folder_structure = self.json_manager.load(self.folders_path)
         folders = folder_structure['folders']
-        id = IDGenerator.ID('subfolder')
+        id = self.json_manager.generateID(self.id_path, 'subfolder')
         subfolder: Subfolder = Subfolder(id, post_request.name)
 
         manager_response = self.subfolder_manager.add_subfolder(folders, post_request.folder_id, subfolder)
 
         if manager_response:
-            Json.update(self.folders_path, folder_structure)
+            self.json_manager.update(self.folders_path, folder_structure)
             return manager_response
         return RespMsg.NOT_FOUND
     
@@ -81,12 +83,12 @@ class SubfolderService:
               returns a dictionary representing the updated subfolder.
             - If the subfolder is not found, returns RespMsg.NOT_FOUND.
         """
-        folder_structure = Json.load(self.folders_path)
+        folder_structure = self.json_manager.load(self.folders_path)
         folders = folder_structure['folders']
         manager_response = self.subfolder_manager.update_subfolder(folders, update_request.subfolder_id, update_request.name)
 
         if manager_response is not None:
-            Json.update(self.folders_path, folder_structure)
+            self.json_manager.update(self.folders_path, folder_structure)
             return manager_response
         return RespMsg.NOT_FOUND
     
@@ -106,12 +108,12 @@ class SubfolderService:
             - If the subfolder is successfully deleted, it returns 'OK'.
             - If the specified subfolder or parent folder is not found, it returns 'NOT_FOUND'.
         """
-        folder_structure = Json.load(self.folders_path)
+        folder_structure = self.json_manager.load(self.folders_path)
         folders = folder_structure['folders']
         manager_response = self.subfolder_manager.delete_subfolder(folders, delete_request.folder_id, delete_request.subfolder_id)
 
         if manager_response is not None:
-            Json.update(self.folders_path, folder_structure)
+            self.json_manager.update(self.folders_path, folder_structure)
             return manager_response
         return RespMsg.NOT_FOUND
 

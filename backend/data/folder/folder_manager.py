@@ -1,6 +1,5 @@
 from backend.domain.folder import Folder
 from backend.domain.enums.responseMessages import RespMsg
-from backend.data.file.json_manager import Json
 import os
 
 class FolderManager:

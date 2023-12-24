@@ -9,10 +9,16 @@
                     "title": "untitled",
                     "content": "C:\\Users\\jsvgo\\Web Dev\\Note Taking App/storage/notes/note-n-16.html",
                     "bookmark": false,
-                    "password_protected": false,
                     "last_edit": "23/12/2023 22:15:45",
-                    "creation": "23/12/2023",
-                    "password": ""
+                    "creation": "23/12/2023"
+                },
+                {
+                    "id": "n-21",
+                    "title": "Note router",
+                    "content": "C:\\Users\\jsvgo\\Web Dev\\Note Taking App/storage/notes/note-n-21.html",
+                    "bookmark": false,
+                    "last_edit": "24/12/2023 20:35:17",
+                    "creation": "24/12/2023"
                 }
             ],
             "subfolders": []

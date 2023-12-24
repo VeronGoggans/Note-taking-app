@@ -18,6 +18,7 @@ export class NoteModel {
             'content': content,
             'bookmark': bookmark
         }
+        console.log(PUT_NOTE_OBJECT);
         const OPTIONS = {
             method: 'PUT',
             headers: {"Content-Type": "application/json"},

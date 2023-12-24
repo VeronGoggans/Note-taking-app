@@ -27,8 +27,25 @@ export class NoteView {
         const NAME = note.title;
         const BOOKMARK = note.bookmark;
         const CONTENT = note.content;
-        const NOTE_CARD = this.noteCard(ID, NAME, BOOKMARK, CONTENT);
+        const NOTE_CARD = this.note(ID, NAME, BOOKMARK, CONTENT);
         this._content.appendChild(NOTE_CARD);
+    }
+
+    /**
+     * This method updates the note card inside the list div.
+     * 
+     * @param {dict} note the updated note.
+     */
+    renderNoteUpdate(note) {
+        const ID = note.id;
+        const NAME = note.name;
+        const NOTE_LIST_CARDS = this._list.children;
+        for (let i = 0; i < NOTE_LIST_CARDS.length; i++) {
+            if (NOTE_LIST_CARDS[i].id === ID) {
+                const SPAN = NOTE_LIST_CARDS[i].querySelector('span');
+                SPAN.textContent = NAME;
+            }
+        }
     }
 
     /**
@@ -74,8 +91,8 @@ export class NoteView {
      * @param {String} id The ID of the note wished to be updated.
      * @param {String} name The new name for the note.
      */
-    async updateNote(id, name) {
-        await this.noteController.updateNote(id, name);
+    async updateNote(id, name, content, bookmark) {
+        await this.noteController.updateNote(id, name, content, bookmark);
     }
 
     /**

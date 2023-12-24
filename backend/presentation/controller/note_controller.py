@@ -6,50 +6,54 @@ from backend.presentation.request_bodies.note.put_note_request import PutNoteReq
 from backend.presentation.request_bodies.note.del_note_request import DeleteNoteRequest
 from backend.domain.enums.responseMessages import RespMsg
 
-route = APIRouter()
-note_service = NoteService(NoteManager())
+
+class NoteRouter:
+    def __init__(self, json_manager):
+        self.route = APIRouter()
+        self.note_service = NoteService(NoteManager(), json_manager)
+
+        self.route.add_api_route("/notes/{folder_id}/{note_type}", self.notes, methods=['GET'])
+        self.route.add_api_route('/noteById/{note_id}', self.note_by_id, methods=['GET'])
+        self.route.add_api_route('/note', self.create_note, methods=['POST'])
+        self.route.add_api_route('/note', self.delete_note, methods=['DELETE'])
+        self.route.add_api_route('/note', self.update_note, methods=['PUT'])
 
 
-@route.get("/notes/{folder_id}/{note_type}")
-def notes(folder_id: str, note_type: str):
-    response = note_service.get_notes(folder_id, note_type)
+    def notes(self, folder_id: str, note_type: str):
+        response = self.note_service.get_notes(folder_id, note_type)
 
-    if response != RespMsg.NOT_FOUND:
-        return {'Status_code': RespMsg.OK, "Object": response}
-    return {'Status_code': response}
-
-
-@route.get('/noteById/{note_id}')
-def note_by_id(note_id: str):
-    response = note_service.get_note_by_id(note_id)
-
-    if response != RespMsg.NOT_FOUND:
-        return {'Status_code': RespMsg.OK, "Object": response}
-    return {'Status_code': RespMsg.NOT_FOUND}
+        if response != RespMsg.NOT_FOUND:
+            return {'Status_code': RespMsg.OK, "Object": response}
+        return {'Status_code': response}
 
 
-@route.post('/note')
-def note(post_request: PostNoteRequest):  
-    response = note_service.add_note(post_request)
+    def note_by_id(self, note_id: str):
+        response = self.note_service.get_note_by_id(note_id)
 
-    if response != RespMsg.NOT_FOUND:
-        return {'Status_code': RespMsg.OK, "Object": response}
-    return {'Status_code': response}
-
-
-@route.delete('/note')
-def note(delete_request: DeleteNoteRequest):
-    response = note_service.delete_note(delete_request)
-
-    if response != RespMsg.NOT_FOUND:
-        return {'Status_code': RespMsg.OK, 'Note': response}
-    return {'Status_code': RespMsg.NOT_FOUND}
+        if response != RespMsg.NOT_FOUND:
+            return {'Status_code': RespMsg.OK, "Object": response}
+        return {'Status_code': RespMsg.NOT_FOUND}
 
 
-@route.put('/note')
-def note(put_request: PutNoteRequest):
-    response = note_service.update_note(put_request)
+    def create_note(self, post_request: PostNoteRequest):
+        response = self.note_service.add_note(post_request)
 
-    if response != RespMsg.NOT_FOUND:
-        return {'Status_code': RespMsg.OK, "Note": response}
-    return {'Status_code': RespMsg.NOT_FOUND}
+        if response != RespMsg.NOT_FOUND:
+            return {'Status_code': RespMsg.OK, "Object": response}
+        return {'Status_code': response}
+
+
+    def delete_note(self, delete_request: DeleteNoteRequest):
+        response = self.note_service.delete_note(delete_request)
+
+        if response != RespMsg.NOT_FOUND:
+            return {'Status_code': RespMsg.OK, 'Note': response}
+        return {'Status_code': RespMsg.NOT_FOUND}
+
+
+    def update_note(self, put_request: PutNoteRequest):
+        response = self.note_service.update_note(put_request)
+
+        if response != RespMsg.NOT_FOUND:
+            return {'Status_code': RespMsg.OK, "Note": response}
+        return {'Status_code': RespMsg.NOT_FOUND}

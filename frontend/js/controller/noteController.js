@@ -21,7 +21,7 @@ export class NoteController {
     async updateNote(noteId, name, content, bookmark) {
         const RESPONSE = await this.noteModel.updateNote('/note', noteId, name, content, bookmark);
         const NOTE = RESPONSE.Note;
-        this.noteView.renderNoteCard(NOTE);
+        this.noteView.renderNoteUpdate(NOTE);
     }
 
     async deleteNote(noteId) {

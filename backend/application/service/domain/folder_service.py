@@ -1,17 +1,17 @@
 from backend.data.folder.folder_manager import FolderManager
 from backend.presentation.request_bodies.folder.post_folder_request import PostFolderRequest
 from backend.presentation.request_bodies.folder.put_folder_request import PutFolderRequest
-from backend.presentation.request_bodies.folder.del_folder_request import DeleteFolderRequest
 from backend.domain.folder import Folder
-from backend.data.file.json_manager import Json
+from backend.data.file.json_manager import JsonManager
 from backend.domain.enums.responseMessages import RespMsg
-from backend.application.generators.Id_generator import IDGenerator
 import os
 
 class FolderService:
-    def __init__(self, folder_manager: FolderManager):
+    def __init__(self, folder_manager: FolderManager, json_manager: JsonManager):
         self.folder_manager = folder_manager
+        self.json_manager = json_manager
         self.folders_path = os.getcwd() + '/storage/json/notes.json'
+        self.id_path = os.getcwd() + "/storage/json/id.json"
 
 
     def get_folders(self):
@@ -22,7 +22,7 @@ class FolderService:
             list or RespMsg: 
             - A list containing information (name, id) about the folders.
         """
-        folder_structure = Json.load(self.folders_path)
+        folder_structure = self.json_manager.load(self.folders_path)
         folders = folder_structure['folders']
         folder_info = self.folder_manager.get_folders(folders)
         return folder_info
@@ -42,14 +42,14 @@ class FolderService:
             - If the folder is successfully added, it returns the new folder object.
             - If there is an internal server error during the process, it returns 'INTERNAL_SERVER_ERROR'.
         """
-        folder_structure = Json.load(self.folders_path)
+        folder_structure = self.json_manager.load(self.folders_path)
         folders = folder_structure['folders']
-        id = IDGenerator.ID('folder')
+        id = self.json_manager.generateID(self.id_path, 'folder')
         folder: Folder = Folder(id, post_request.name)
 
         new_folder = self.folder_manager.add_folder(folders, folder)
         if new_folder:
-            Json.update(self.folders_path, folder_structure)
+            self.json_manager.update(self.folders_path, folder_structure)
             return new_folder
         return RespMsg.INTERAL_SERVER_ERROR
     
@@ -69,12 +69,12 @@ class FolderService:
             - If the folder is successfully updated, it returns the updated folder.
             - If the specified folder is not found, it returns 'NOT_FOUND'.
         """
-        folder_structure = Json.load(self.folders_path)
+        folder_structure = self.json_manager.load(self.folders_path)
         folders = folder_structure['folders']
         updated_folder = self.folder_manager.update_folder(folders, put_request.folder_id, put_request.new_name)
         
         if updated_folder is not None:
-            Json.update(self.folders_path, folder_structure)
+            self.json_manager.update(self.folders_path, folder_structure)
             return updated_folder
         return RespMsg.NOT_FOUND
     
@@ -93,11 +93,11 @@ class FolderService:
             - If the folder is successfully deleted, it returns 'OK'.
             - If the specified folder is not found, it returns 'NOT_FOUND'.
         """
-        folder_structure = Json.load(self.folders_path)
+        folder_structure = self.json_manager.load(self.folders_path)
         folders = folder_structure['folders']
         deleted_folder = self.folder_manager.delete_folder(folders, folder_id)
 
         if deleted_folder is not None:
-            Json.update(self.folders_path, folder_structure)
+            self.json_manager.update(self.folders_path, folder_structure)
             return deleted_folder
         return RespMsg.NOT_FOUND

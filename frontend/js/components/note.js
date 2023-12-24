@@ -53,7 +53,7 @@ export class Note {
 
     attachEventListeners() {
         this.EDIT.addEventListener('click', () => {this.toggleEditableFolderName()});
-        this.CONFIRM.addEventListener('click', () => {this.updateNoteName()});
+        this.CONFIRM.addEventListener('click', () => {this.updateNote()});
         this.CANCEL.addEventListener('click', () => {this.toggleEditableFolderName()});
         this.DELETE.addEventListener('click', () => {this.view.renderDeleteContainer(this.id, this.name)});
     }
@@ -67,8 +67,8 @@ export class Note {
         this.BTN_CONTAINER.style.visibility = this.BTN_CONTAINER.style.visibility === 'visible' ? 'hidden' : 'visible';
     }
 
-    async updateNoteName() {
-        this.view.updateNote(this.id, this.H4.textContent, this);
-
+    async updateNote() {
+        this.view.updateNote(this.id, this.H4.textContent, this.content, this.bookmark);
+        this.toggleEditableFolderName();
     }
 }
