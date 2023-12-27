@@ -15,15 +15,8 @@
 <div class="editor-wrapper">
   <div class="toolbar">
     <div class="toolbar-top">
-        <select onchange="executeCommand('fontSize', this.value)">
-            <option value="1">Size 1</option>
-            <option value="2">Size 2</option>
-            <option value="3">Size 3</option>
-            <option value="4">Size 4</option>
-            <option value="5">Size 5</option>
-            <option value="6">Size 6</option>
-            <option value="7">Size 7</option>
-            </select>
+        <!-- <select onchange="executeCommand('fontSize', this.value)"> -->
+            
             <!-- <select onchange="executeCommand('formatBlock', this.value)"> -->
             <input type="text" class="note-name-input" placeholder="untitled">
             <button class="save-note-btn">Save</button>
@@ -31,7 +24,7 @@
     <div class="toolbar-middle">
       <div class="file-dropdown">
         <span class="dropdown-title">Bestand</span>
-        <div class="option">
+        <div class="options">
           <span><i class="fa-solid fa-plus"></i>New</span>
           <span><i class="fa-regular fa-floppy-disk"></i>Save</span>
           <span><i class="fa-solid fa-trash"></i>Delete</span>
@@ -53,10 +46,16 @@
             <span class="heading-6">Heading 6</span>
           </div>
         </div>
-        <button onclick="executeCommand('bold')"><i class="fa-solid fa-b"></i></button>
+        <div class="fonts-size-container">
+          <button class="subtract-1px-btn"><i class="fa-solid fa-minus"></i></button>
+          <input class="font-size-input" type="text" value="16px">
+          <button class="add-1px-btn"><i class="fa-solid fa-plus"></i></button>
+        </div>
+        <button onclick="executeCommand('bold', )"><i class="fa-solid fa-b"></i></button>
         <button onclick="executeCommand('italic')"><i class="fa-solid fa-italic"></i></button>
         <button onclick="executeCommand('underline')"><i class="fa-solid fa-underline"></i></button>
         <button onclick="executeCommand('strikeThrough')"><i class="fa-solid fa-strikethrough"></i></button>
+        <input class="foreground-color-picker" type="color" value="#5c7dff">
         <button onclick="createLink()"><i class="fa-solid fa-link"></i></button>
         <button onclick="executeCommand('insertUnorderedList')"><i class="fa-solid fa-list-ul"></i></button>
         <button onclick="executeCommand('insertOrderedList')"><i class="fa-solid fa-list-ol"></i></button>
@@ -84,6 +83,7 @@
 
   }
 </script>
+<script type="module" src="../js/view/textEditorView.js"></script>
 
 </body>
 </html>

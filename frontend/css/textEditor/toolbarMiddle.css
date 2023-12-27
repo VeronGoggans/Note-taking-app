@@ -1,0 +1,49 @@
+.file-dropdown {
+    position: relative;
+    width: fit-content;
+    transition: .2s;
+    cursor: pointer;
+    padding: 7px;
+    border-radius: 5px;
+    color: #444863;
+    overflow: visible;
+}
+
+.file-dropdown:hover {
+    background-color: #f9fbfd;
+}
+
+.file-dropdown .options {
+    visibility: hidden;
+    position: absolute;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    width: 140px;
+    top: 30px;
+    left: 0;
+    border-radius: 7px;
+    padding: 10px;
+    font-size: 14px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+}
+
+.file-dropdown .options span {
+    cursor: pointer;
+    margin: 5px 0;
+    padding: 5px 2px;
+    border-radius: 5px;
+}
+
+.file-dropdown .options span:hover {
+    background-color: rgb(221 240 255);
+}
+
+.file-dropdown .options i {
+    margin-right: 5px;
+}
+
+.dropdown-title {
+    font-size: 16px;
+}

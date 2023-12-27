@@ -1,0 +1,18 @@
+.note-name-input {
+    outline: none;
+    border: none;
+    border: 1px solid rgb(212, 212, 212);
+    border-radius: 15px;
+    padding: 5px 10px;
+}
+
+.save-note-btn {
+    cursor: pointer;
+    padding: 5px 0;
+    outline: none;
+    border: none;
+    width: 80px;
+    background-color: #5c7dff;
+    color: #fff;
+    border-radius: 15px;
+}

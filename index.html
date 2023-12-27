@@ -8,10 +8,12 @@
     <link rel="stylesheet" href="frontend/css/note.css">
     <link rel="stylesheet" href="frontend/css/folder.css">
     <link rel="stylesheet" href="frontend/css/dialog.css">
-    <link rel="stylesheet" href="frontend/css/textEditor.css">
+    <link rel="stylesheet" href="frontend/css/textEditor/textEditor.css">
+    <link rel="stylesheet" href="frontend/css/textEditor/toolbarBottom.css">
+    <link rel="stylesheet" href="frontend/css/textEditor/toolbarMiddle.css">
+    <link rel="stylesheet" href="frontend/css/textEditor/toolbarTop.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Note</title>
-
 </head>
 <body>
     <div class="wrapper">
@@ -49,7 +51,77 @@
         
     </div>    
     <div class="dialog"></div>
-    <div class="editor"></div>
+    <div class="editor-wrapper">
+        <div class="toolbar">
+          <div class="toolbar-top">
+              <!-- <select onchange="executeCommand('fontSize', this.value)"> -->
+                  
+                  <!-- <select onchange="executeCommand('formatBlock', this.value)"> -->
+                  <input type="text" class="note-name-input" placeholder="untitled">
+                  <button class="save-note-btn">Save</button>
+          </div>
+          <div class="toolbar-middle">
+            <div class="file-dropdown">
+              <span class="dropdown-title">Bestand</span>
+              <div class="options">
+                <span><i class="fa-solid fa-plus"></i>New</span>
+                <span><i class="fa-regular fa-floppy-disk"></i>Save</span>
+                <span><i class="fa-solid fa-trash"></i>Delete</span>
+                <span><i class="fa-solid fa-info"></i>Details</span>
+              </div>
+            </div>
+          </div>
+          <div class="toolbar-bottom">
+              <button onclick="executeCommand('undo')"><i class="fa-solid fa-rotate-left"></i></button>
+              <button onclick="executeCommand('redo')"><i class="fa-solid fa-rotate-right"></i></button>
+              <div class="heading-dropdown">
+                <input type="text" value="Heading 1" readonly>
+                <div class="options">
+                  <span class="heading-1">Heading 1</span>
+                  <span class="heading-2">Heading 2</span>
+                  <span class="heading-3">Heading 3</span>
+                  <span class="heading-4">Heading 4</span>
+                  <span class="heading-5">Heading 5</span>
+                  <span class="heading-6">Heading 6</span>
+                </div>
+              </div>
+              <div class="fonts-size-container">
+                <button class="subtract-1px-btn"><i class="fa-solid fa-minus"></i></button>
+                <input class="font-size-input" type="text" value="16px">
+                <button class="add-1px-btn"><i class="fa-solid fa-plus"></i></button>
+              </div>
+              <button onclick="executeCommand('bold', )"><i class="fa-solid fa-b"></i></button>
+              <button onclick="executeCommand('italic')"><i class="fa-solid fa-italic"></i></button>
+              <button onclick="executeCommand('underline')"><i class="fa-solid fa-underline"></i></button>
+              <button onclick="executeCommand('strikeThrough')"><i class="fa-solid fa-strikethrough"></i></button>
+              <input class="foreground-color-picker" type="color" value="#5c7dff">
+              <button onclick="createLink()"><i class="fa-solid fa-link"></i></button>
+              <button onclick="executeCommand('insertUnorderedList')"><i class="fa-solid fa-list-ul"></i></button>
+              <button onclick="executeCommand('insertOrderedList')"><i class="fa-solid fa-list-ol"></i></button>
+              <button onclick="executeCommand('justifyLeft')"><i class="fa-solid fa-align-left"></i></button>
+              <button onclick="executeCommand('justifyCenter')"><i class="fa-solid fa-align-center"></i></button>
+              <button onclick="executeCommand('justifyRight')"><i class="fa-solid fa-align-right"></i></button>
+          </div>
+        </div>
+        <div class="editor-scroll-container">
+          <div class="editor" contenteditable="true" spellcheck="false"></div>
+        </div>
+      </div>
+      
+      <script>
+        function executeCommand(command, value = null) {
+          if (document.queryCommandSupported(command)) {
+            document.execCommand(command, false, value);
+          }
+        }
+      
+        function createLink() {
+          const selection = document.getSelection();
+          const range = selection.getRangeAt(0);
+          
+      
+        }
+      </script>
     <script type="module" src="/frontend/js/view/sideBarView.js"></script>
     <script type="module" src="/frontend/js/view/textEditorView.js"></script>
     <script type="module" src="index.js"></script>

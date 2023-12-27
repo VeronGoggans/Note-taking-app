@@ -18,6 +18,7 @@ export class ApplicationView {
     attachEventListeners() {
         this.backButton.addEventListener('click', () => {this.back()});
         this.homeButton.addEventListener('click', () => {this.home()});
+        this.createNoteButton.addEventListener('click', () => {this.showTextEditor()});
         this.createFolderButton.addEventListener('click', () => {this.renderNewFolderContainer()});
         this.dialog.addEventListener('click', (event) => {if (!event.target.closest('.new-folder-container') && !event.target.closest('.delete-folder-container')) this.removeDialog()})
     }
@@ -44,7 +45,6 @@ export class ApplicationView {
      *
      * This method removes all the child elements from the content html div and list-view html div
      *
-     * @returns {void}
      */
     removeContent() {
         const CONTENT = this._content;
@@ -53,8 +53,12 @@ export class ApplicationView {
         while (LIST.firstChild) LIST.removeChild(LIST.firstChild);
     }
 
-    // Communication with the application controller
+    toggleTextEditorVisibility() {
+        // toggle the visibility.
+        this.textEditorWrapper.style.visibility = this.textEditorWrapper.style.visibility === 'visible' ? 'hidden' : 'visible';
+    }
 
+    // Communication with the application controller
     home() {
         this.removeContent();
         this.applicationController.navigateToHomescreen();
@@ -65,9 +69,11 @@ export class ApplicationView {
         this.applicationController.navigateOutofFolder();
     }
 
+    showTextEditor() {
+        this.applicationController.showTextEditor();
+    }
+
     async handleAddFolderButtonClick(name) {
         await this.applicationController.handleAddFolder(name);
     }
-
-    // aysnc handle
 }
