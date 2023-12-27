@@ -4,6 +4,19 @@
     border: 1px solid rgb(212, 212, 212);
     border-radius: 15px;
     padding: 5px 10px;
+    font-weight: 600;
+}
+
+.exit-text-editor-btn {
+    cursor: pointer;
+    padding: 5px 0;
+    outline: none;
+    border: 1px solid rgb(212, 212, 212);
+    width: 80px;
+    background-color: rgb(246 246 246);
+    color: #444863;
+    font-weight: 600;
+    border-radius: 15px;
 }
 
 .save-note-btn {
@@ -14,5 +27,6 @@
     width: 80px;
     background-color: #5c7dff;
     color: #fff;
+    font-weight: 600;
     border-radius: 15px;
 }
