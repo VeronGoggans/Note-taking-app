@@ -16,7 +16,9 @@ export class NoteView {
             const NAME = notes[i].title;
             const BOOKMARK = notes[i].bookmark;
             const CONTENT = notes[i].content;
-            const NOTE_CARD = this.note(ID, NAME, BOOKMARK, CONTENT);
+            const CREATED = notes[i].creation;
+            const EDIT = notes[i].last_edit;
+            const NOTE_CARD = this.note(ID, NAME, BOOKMARK, CONTENT, CREATED, EDIT);
             this._content.appendChild(NOTE_CARD);
         }
     }
@@ -27,7 +29,9 @@ export class NoteView {
         const NAME = note.title;
         const BOOKMARK = note.bookmark;
         const CONTENT = note.content;
-        const NOTE_CARD = this.note(ID, NAME, BOOKMARK, CONTENT);
+        const CREATED = note.creation;
+        const EDIT = note.last_edit;
+        const NOTE_CARD = this.note(ID, NAME, BOOKMARK, CONTENT, CREATED, EDIT);
         this._content.appendChild(NOTE_CARD);
     }
 
@@ -78,8 +82,8 @@ export class NoteView {
     }
 
 
-    note(id, name, bookmark, content) {
-        return new Note(id, name, bookmark, content, this);
+    note(id, name, bookmark, content, created, lastEdit) {
+        return new Note(id, name, bookmark, content, created, lastEdit, this);
     }
 
     /**

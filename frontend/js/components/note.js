@@ -1,15 +1,18 @@
 import { CNode } from "../util/CNode.js";
 
 export class Note {
-    constructor(id, name, bookmark, content, view) {
+    constructor(id, name, bookmark, content, created, lastEdit, view) {
         this.id = id;
         this.name = name;
         this.bookmark = bookmark;
         this.content = content;
+        this.created = created;
+        this.lastEdit = lastEdit;
         this.view = view;
 
         // creating HTML elements.
         this.HOST = CNode.create('div', {'class': 'note', 'id': this.id});
+        this.HOST.dataset.info = `${created}--${lastEdit}`;
         this.NAME_BOX = CNode.create('div', {'class': 'note-name-box'});
         this.H4 = CNode.create('h4', {'textContent': this.name});
         this.BTN_CONTAINER = CNode.create('div', {'class': 'update-note-btns-container'});
