@@ -51,7 +51,8 @@ export class ApplicationController {
 
     async handleAddFolder(name) {
         const CURRENT_FOLDER = this.applicationModel.getCurrentFolderID();
-        if (CURRENT_FOLDER === null) await this.addFolder(name);
+        console.log(CURRENT_FOLDER);
+        if (CURRENT_FOLDER === undefined) await this.addFolder(name);
         else await this.addSubfolder(name, CURRENT_FOLDER);
     }
 

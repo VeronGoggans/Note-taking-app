@@ -55,16 +55,20 @@
     background-color: #ffffff;
     max-width: 700px;
     width: 70%;
-    height: 100%;
+    min-height: 100%;
     margin: 40px auto 0 auto;
     border-radius: 3px;
     border: 1px solid rgb(212, 212, 212);
     padding: 40px;
+    font-family: sans-serif;
+    overflow: visible;
 }
+
 
 /*Note details container*/
 
 .note-details-container {
+    font-family: Roboto;
     display: flex;
     flex-direction: column;
     padding: 10px;
