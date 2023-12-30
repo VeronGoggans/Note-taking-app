@@ -88,6 +88,7 @@ class NoteService:
 
         if new_note:
             self.json_manager.update(self.folders_path, folder_structure)
+            new_note.set_content_text()
             return new_note
         return RespMsg.NOT_FOUND
     
