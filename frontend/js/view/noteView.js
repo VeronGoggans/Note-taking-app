@@ -112,6 +112,17 @@ export class NoteView {
     }
 
     /**
+     * This method opens up the text editor
+     * And puts the note the user clicked on, in the text editor.
+     * 
+     * @param {String} content is the content of the note.
+     * @param {String} name is the name/title of the note. 
+     */
+    handleNoteCardClick(content, name) {
+        this.noteController.handleNoteCardClick(content, name);
+    }
+
+    /**
      * Removes a specific note from the UI.
      *
      * This method removes the note from the UI that it has been given.

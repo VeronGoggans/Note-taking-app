@@ -11,6 +11,28 @@ export class NoteModel {
         }
     }
 
+    async addNote(endpoint, folderId, content, name) {
+        const POST_NOTE_OBJECT = {
+            'folder_id': folderId,
+            'title': name,
+            'content': content,
+            'bookmark': false
+        }
+        const OPTIONS = {
+            method: 'POST',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(POST_NOTE_OBJECT)
+        }
+        try {
+            const RESPONSE = await fetch(`${endpoint}`, OPTIONS);
+            if (!RESPONSE.ok) throw new Error(`HTTP error Status: ${RESPONSE.status}`);
+            return await RESPONSE.json();
+        } catch (error) {
+            console.error('Error fetching data: ', error.message);
+            throw error;
+        }
+    }
+
     async updateNote(endpoint, noteId, name, content, bookmark) {
         const PUT_NOTE_OBJECT = {
             'note_id': noteId,
@@ -18,7 +40,6 @@ export class NoteModel {
             'content': content,
             'bookmark': bookmark
         }
-        console.log(PUT_NOTE_OBJECT);
         const OPTIONS = {
             method: 'PUT',
             headers: {"Content-Type": "application/json"},

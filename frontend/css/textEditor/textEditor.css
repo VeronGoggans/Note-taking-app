@@ -28,7 +28,7 @@
 }
 
 .toolbar-bottom {
-    background-color: rgb(221 240 255);
+    background-color: #e8f0fe; /*rgb(221 240 255)*/
     border-radius: 20px;
     display: flex;
     align-items: center;
@@ -60,7 +60,7 @@
     border-radius: 3px;
     border: 1px solid rgb(212, 212, 212);
     padding: 40px;
-    font-family: sans-serif;
+    font-family: Roboto;
     overflow: visible;
 }
 

@@ -33,6 +33,8 @@
 
 .note-content-box {
     padding: 10px;
+    font-weight: 600;
+    overflow: hidden;
     color: rgb(56, 56, 56);
 }
 

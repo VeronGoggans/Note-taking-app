@@ -14,8 +14,10 @@ export class NoteController {
         this.noteView.renderNoteCards(NOTES);
     }
 
-    async addNote() {
-
+    async addNote(folderId, content, name) {
+        const RESPONSE = await this.noteModel.addNote('/note', folderId, content, name);
+        const NOTE = RESPONSE.Note;
+        this.noteView.renderNoteCard(NOTE);
     }
 
     async updateNote(noteId, name, content, bookmark) {
@@ -29,5 +31,16 @@ export class NoteController {
         const RESPONSE = await this.noteModel.deleteNote('/note', PARENT_ID, noteId);
         const NOTE = RESPONSE.Note;
         this.noteView.removeNote(NOTE);
+    }
+
+    /**
+     * This method opens up the text editor
+     * And puts the note the user clicked on, in the text editor.
+     * 
+     * @param {String} content is the content of the note.
+     * @param {String} name is the name/title of the note. 
+     */
+    handleNoteCardClick(content, name) {
+        this.applicationController.openNoteInTextEditor(content, name);
     }
 }

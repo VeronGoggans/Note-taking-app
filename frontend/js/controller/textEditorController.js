@@ -11,4 +11,19 @@ export class TextEditorController {
     showTextEditor() {
         this.textEditorView.show();
     }
+
+    /**
+     * This method tells the controller to open up a note inside the text editor.
+     * 
+     * @param {String} content 
+     * @param {String} name 
+     */
+    openNoteInTextEditor(content, name) {
+        this.textEditorView.open(content, name);
+    }
+
+
+    handleSaveButtonClick(content, name) {
+        this.applicationController.createNote(content, name);
+    }
 }

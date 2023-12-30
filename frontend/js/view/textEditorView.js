@@ -1,13 +1,16 @@
 import { NoteDetailContainer } from "../components/noteDetailContainer.js";
 
 export class TextEditorView {
-  constructor() {
+  constructor(textEditorController) {
+    this.textEditorController = textEditorController;
     this.fileDropdown = document.querySelector('.file-dropdown');
     this.fileDropdownOptions = this.fileDropdown.querySelector('.options');
     this.headingDropdown = document.querySelector('.heading-dropdown');
     this.headingDropdownOptions = this.headingDropdown.querySelector('.options');
     this.exitButton = document.querySelector('.exit-text-editor-btn');
+    this.saveButton = document.querySelector('.save-note-btn');
     this.textEditor = document.querySelector('.editor-wrapper');
+    this.noteNameInput = document.querySelector('.note-name-input');
     this.page = document.querySelector('.editor');
     this.dialog = document.querySelector('.dialog');
 
@@ -21,6 +24,7 @@ export class TextEditorView {
     this.headingDropdown.addEventListener('click', () => {this.toggleVisibleDropdown(this.headingDropdownOptions)});
     this.noteDetailsSpan.addEventListener('click', () => {this.renderNoteDetails()});
     this.exitButton.addEventListener('click', () => {this.removeTextEditor()});
+    this.saveButton.addEventListener('click', () => {this.handleSaveButtonClick()})
   }
 
   /**
@@ -40,7 +44,33 @@ export class TextEditorView {
     // Turn text editor visible
     this.textEditor.style.visibility = 'visible';
     this.textEditor.style.top = '0%';
+  }
 
+  /**
+   * This method opens a note inside the text editor.
+   * 
+   * @param {String} content 
+   * @param {String} name 
+   */
+  open(content, name) {
+    this.page.innerHTML = content;
+    this.noteNameInput.value = name;
+    this.show();
+  }
+
+   /**
+   * This method removes all the content in the text editor.
+   */
+   clear() {
+    this.page.innerHTML = '';
+    this.noteNameInput.value = '';
+  }
+
+  handleSaveButtonClick() {
+    const CONTENT = this.page.innerHTML;
+    const NAME = this.noteNameInput.value;
+    this.removeTextEditor();
+    this.textEditorController.handleSaveButtonClick(CONTENT, NAME);
   }
 
   /**
@@ -51,7 +81,9 @@ export class TextEditorView {
     // Turn text editor invisible
     this.textEditor.style.top = '100%';
     this.textEditor.style.visibility = 'hidden';
+    this.clear();
   }
+
 
   // The following methods are related to the file dropdown menu.
   /**

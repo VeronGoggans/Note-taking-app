@@ -72,4 +72,20 @@ export class ApplicationController {
     showTextEditor() {
         this.textEditorController.showTextEditor();
     }
+
+    /**
+     * This method opens up the text editor
+     * And puts the note the user clicked on, in the text editor.
+     * 
+     * @param {String} content is the content of the note.
+     * @param {String} name is the name/title of the note. 
+     */
+    openNoteInTextEditor(content, name) {
+        this.textEditorController.openNoteInTextEditor(content, name);
+    }
+
+    createNote(content, name) {
+        const CURRENT_FOLDER_ID = this.applicationModel.getCurrentFolderID();
+        this.noteController.addNote(CURRENT_FOLDER_ID, content, name);
+    }
 }

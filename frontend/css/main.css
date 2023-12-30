@@ -49,7 +49,7 @@ body {
 }
 
 .main-bottom .content-list-view {
-    background-color: rgb(221 240 255); /*rgb(221 240 255)*/
+    background-color: #e8f0fe; /*rgb(221 240 255)*/
     display: grid;
     grid-template-rows: 30px 1fr;
 }
@@ -75,7 +75,7 @@ body {
     background-color: #fff;
     color: #444863;
     font-weight: 600;
-    box-shadow: 5px 5px 5px rgb(212 236 255);
+    box-shadow: 5px 5px 5px #dfeaff;
     border-radius: 5px;
 }
 
