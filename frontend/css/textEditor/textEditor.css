@@ -23,7 +23,9 @@
 }
 
 .toolbar-middle {
-    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
     overflow: visible;
 }
 

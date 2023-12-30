@@ -17,6 +17,15 @@ class NoteRouter:
         self.route.add_api_route('/note', self.create_note, methods=['POST'])
         self.route.add_api_route('/note', self.delete_note, methods=['DELETE'])
         self.route.add_api_route('/note', self.update_note, methods=['PUT'])
+        self.route.add_api_route('/cache', self.cache, methods=['GET'])
+
+    # This endpoint is for testing only.
+    def cache(self):
+        response = self.note_service.get_cache()
+
+        if response != RespMsg.INTERAL_SERVER_ERROR:
+            return {'Status_code': RespMsg.OK, "Cache-content": response}
+        return {'Status_code': response}
 
 
     def notes(self, folder_id: str, note_type: str):

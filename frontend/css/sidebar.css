@@ -68,5 +68,6 @@
 }
 
 .sidebar-content button:hover {
-    background-color: rgb(217 238 255);
+    background-color: #c2e7ff;
+    color: #444863;
 }

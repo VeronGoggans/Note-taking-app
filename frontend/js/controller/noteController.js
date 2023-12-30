@@ -16,8 +16,9 @@ export class NoteController {
 
     async addNote(folderId, content, name) {
         const RESPONSE = await this.noteModel.addNote('/note', folderId, content, name);
-        const NOTE = RESPONSE.Note;
-        this.noteView.renderNoteCard(NOTE);
+        let note = RESPONSE.Note;
+        note.content = content;
+        this.noteView.renderNoteCard(note);
     }
 
     async updateNote(noteId, name, content, bookmark) {

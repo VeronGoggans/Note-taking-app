@@ -17,11 +17,12 @@ class HTMLManager:
         Returns:
             str: The file path where the HTML content is saved.
         """
-        notes_folder = os.getcwd() + '/storage/notes'
+        BASE_URL = os.getcwd()
+        notes_folder = 'storage/notes'
         file_name = f'note-{note_id}.html'
         file_path = f'{notes_folder}/{file_name}'
 
-        with open(file_path, 'w') as file:
+        with open(f'{BASE_URL}/{file_path}', 'w') as file:
             file.write(html_content)
         return file_path
     
@@ -37,8 +38,9 @@ class HTMLManager:
         Returns:
             str: The content of the file as a string.
         """
+        BASE_URL = os.getcwd()
         html_content = ''
-        with open(file_path, 'r') as file:
+        with open(f'{BASE_URL}/{file_path}', 'r') as file:
             html_content = file.read()
         return html_content
     

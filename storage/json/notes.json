@@ -7,7 +7,7 @@
                 {
                     "id": "n-16",
                     "title": "untitled",
-                    "content": "C:\\Users\\jsvgo\\Web Dev\\Note Taking App/storage/notes/note-n-16.html",
+                    "content": "storage/notes/note-n-16.html",
                     "bookmark": false,
                     "last_edit": "23/12/2023 22:15:45",
                     "creation": "23/12/2023"
@@ -15,7 +15,7 @@
                 {
                     "id": "n-24",
                     "title": "Author",
-                    "content": "C:\\Users\\jsvgo\\Web Dev\\Note Taking App/storage/notes/note-n-24.html",
+                    "content": "storage/notes/note-n-24.html",
                     "bookmark": false,
                     "last_edit": "26/12/2023 20:35:03",
                     "creation": "24/12/2023"
@@ -26,16 +26,7 @@
         {
             "id": "f-46",
             "name": "My folder",
-            "notes": [
-                {
-                    "id": "n-33",
-                    "title": "untitled",
-                    "content": "hello world",
-                    "bookmark": false,
-                    "last_edit": "30/12/2023 16:10:25",
-                    "creation": "30/12/2023"
-                }
-            ],
+            "notes": [],
             "subfolders": []
         }
     ]

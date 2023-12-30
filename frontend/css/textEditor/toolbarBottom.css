@@ -15,7 +15,7 @@
 }
 
 .toolbar-bottom button:hover {
-    background-color: aliceblue;
+    background-color: #d3e3fd;
 }
 
 /*Custom Heading dropdown menu.*/
@@ -67,7 +67,7 @@
 }
 
 .heading-dropdown .options span:hover {
-    background-color: rgb(221 240 255);
+    background-color: #c2e7ff
 }
 
 .heading-dropdown .options .heading-1 {font-size: 32px}

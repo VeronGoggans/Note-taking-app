@@ -68,9 +68,10 @@ export class TextEditorView {
 
   handleSaveButtonClick() {
     const CONTENT = this.page.innerHTML;
-    const NAME = this.noteNameInput.value;
+    let name = this.noteNameInput.value;
+    if (name === '') name = 'untitled';
     this.removeTextEditor();
-    this.textEditorController.handleSaveButtonClick(CONTENT, NAME);
+    this.textEditorController.handleSaveButtonClick(CONTENT, name);
   }
 
   /**

@@ -1,37 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simple Text Editor</title>
-  <style>
-    * {
-        margin: 0;
-        padding: 0;
-    }
-    #editor {
-      border: 1px solid #ccc;
-      padding: 10px;
-      min-height: 200px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keep Text Selected</title>
+    <style>
+        /* Add some styling to the selected text */
+        ::selection {
+            background-color: yellow;
+        }
+    </style>
 </head>
 <body>
+    <p id="myText">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    </p>
 
-<div>
-  <button onclick="executeCommand('insertUnorderedList')">UL</button>
-  <button onclick="executeCommand('insertOrderedList')">OL</button>
-</div>
+    <button onclick="saveSelection()">Save Selection</button>
+    <button onclick="restoreSelection()">Restore Selection</button>
 
-<div id="editor" contenteditable="true"></div>
+    <script>
+        let savedSelection;
 
-<script>
-  function executeCommand(command, value = null) {
-          if (document.queryCommandSupported(command)) {
-            document.execCommand(command, false, value);
-          }
+        function saveSelection() {
+            const selection = window.getSelection();
+            if (selection.rangeCount > 0) {
+                savedSelection = selection.getRangeAt(0).cloneRange();
+            }
         }
-</script>
 
+        function restoreSelection() {
+            if (savedSelection) {
+                const selection = window.getSelection();
+                selection.removeAllRanges();
+                selection.addRange(savedSelection);
+            }
+        }
+    </script>
 </body>
 </html>

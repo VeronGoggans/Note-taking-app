@@ -11,9 +11,17 @@ class NoteService:
     def __init__(self, note_manager: NoteManager, json_manager: JsonManager):
         self.note_manager = note_manager
         self.json_manager = json_manager
-        self.folders_path = os.getcwd() + '/storage/json/notes.json'
-        self.id_path = os.getcwd() + "/storage/json/id.json"
+        self.BASE_URL = os.getcwd()
+        self.folders_path = f'{self.BASE_URL}/storage/json/notes.json'
+        self.id_path = f'{self.BASE_URL}/storage/json/id.json'
 
+
+    def get_cache(self):
+        try:
+            content = self.json_manager.load(self.folders_path)
+            return content
+        except OSError as e:
+            return RespMsg.INTERAL_SERVER_ERROR
 
 
     def get_notes(self, folder_id: int, note_type: str):
@@ -80,15 +88,14 @@ class NoteService:
               returns a dictionary representing the new note.
             - If the folder is not found, returns RespMsg.NOT_FOUND.
         """
-        note : Note = self.__construct_note_object(post_request)
+        note = self.__construct_note_object(post_request)
         note.set_content_path()
         folder_structure = self.json_manager.load(self.folders_path)
         folders = folder_structure['folders']
         new_note = self.note_manager.add_note(folders, post_request.folder_id, note)
-
+        
         if new_note:
             self.json_manager.update(self.folders_path, folder_structure)
-            new_note.set_content_text()
             return new_note
         return RespMsg.NOT_FOUND
     

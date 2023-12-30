@@ -42,7 +42,7 @@ class JsonManager:
         with open(file_path, 'w') as file:
             json.dump(updated_data, file, indent=4)
 
-    
+
     def generateID(self, file_path, entity_name):
         """
         Generate a unique identifier for a specified entity type.
