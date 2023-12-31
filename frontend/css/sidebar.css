@@ -59,7 +59,7 @@
     background-color: transparent;
     color: #6d6d6d;
     font-family: Roboto;
-    transition: .4s;
+    transition: .2s;
 }
 
 .sidebar-content button i {
@@ -68,6 +68,6 @@
 }
 
 .sidebar-content button:hover {
-    background-color: #c2e7ff;
+    background-color: rgba(92, 125, 255, .3);
     color: #444863;
 }

@@ -101,7 +101,7 @@
 }
 
 .folder-util-bar button:hover {
-    background-color: aliceblue;
+    background-color: rgba(92, 125, 255, .3);
 }
 
 .folder h4 {

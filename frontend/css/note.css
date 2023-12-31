@@ -67,7 +67,7 @@
 }
 
 .note-util-bar button:hover {
-    background-color: aliceblue;    
+    background-color: rgba(92, 125, 255, .3);    
 }
 
 .update-note-btns-container {
@@ -104,7 +104,7 @@
 }
 
 .update-note-btns-container button:hover {
-    background-color: aliceblue;
+    background-color: rgba(92, 125, 255, .3);
 }
 
 .note-content-box p {

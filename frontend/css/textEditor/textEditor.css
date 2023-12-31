@@ -14,6 +14,7 @@
     padding: 5px;
     display: grid;
     grid-template-rows: 1fr 35px 1fr;
+    border-radius: 0 0 20px 20px;
     border-bottom: 1px solid rgb(212, 212, 212);
     overflow: visible;
 }
@@ -30,7 +31,7 @@
 }
 
 .toolbar-bottom {
-    background-color: #e8f0fe; /*rgb(221 240 255)*/
+    background-color: transparent; /*rgb(221 240 255)*/
     border-radius: 20px;
     display: flex;
     align-items: center;
@@ -55,11 +56,11 @@
 .editor {
     outline: none;
     background-color: #ffffff;
-    max-width: 700px;
+    max-width: 730px;
     width: 70%;
     min-height: 100%;
     margin: 40px auto 0 auto;
-    border-radius: 3px;
+    border-radius: 10px;
     border: 1px solid rgb(212, 212, 212);
     padding: 40px;
     font-family: Roboto;

@@ -42,7 +42,7 @@
 }
 
 .file-dropdown .options span:hover {
-    background-color: rgb(221 240 255);
+    background-color: rgba(92, 125, 255, .3);
 }
 
 .file-dropdown .options i {

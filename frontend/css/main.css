@@ -38,11 +38,11 @@ body {
     justify-content: space-evenly;
     align-items: center;
     margin: 7px 10px 7px 0px;
-    width: 80px;
-    background-color: #5c7dff;
-    color: #fff;
+    width: 90px;
+    background-color: #5c7dff; /*#c2e7ff*/
+    color: #ffffff;
     font-weight: 600;
-    border-radius: 5px;
+    border-radius: 20px;
     font-family: Roboto;
 }
 
@@ -53,9 +53,10 @@ body {
 }
 
 .main-bottom .content-list-view {
-    background-color: #e8f0fe; /*rgb(221 240 255)*/
+    background-color: #f9fbfd; /*rgb(221 240 255)*/
     display: grid;
     grid-template-rows: 30px 1fr;
+    border-right: 1px solid rgb(212, 212, 212);
 }
 
 .main-bottom .content-list-view .content-list-view-title {
@@ -76,11 +77,15 @@ body {
     padding: 10px 0;
     display: inline-block;
     width: calc(100% - 20px);
-    background-color: #fff;
+    background-color: transparent;
     color: #444863;
     font-weight: 600;
-    box-shadow: 5px 5px 5px #dfeaff;
-    border-radius: 5px;
+    border-radius: 15px;
+    transition: .2s;
+}
+
+.list-content .list-view-folder:hover {
+    background-color: rgba(92, 125, 255, .3);
 }
 
 .list-view-folder .folder-name {margin-left: 5px;}

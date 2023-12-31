@@ -2,10 +2,16 @@
     font-family: Roboto;
     outline: none;
     border: none;
-    border: 1px solid rgb(212, 212, 212);
-    border-radius: 15px;
+    border-bottom: 2px solid transparent;
+    width: 200px;
     padding: 5px 10px;
     font-weight: 600;
+    transition: .2s;
+}
+
+.note-name-input:hover,
+.note-name-input:focus {
+    border-color: #5c7dff;
 }
 
 .exit-text-editor-btn {
@@ -13,18 +19,15 @@
     cursor: pointer;
     padding: 5px 0;
     outline: none;
-    border: 1px solid rgb(212, 212, 212);
+    border: 1px solid #5c7dff;
     width: 80px;
-    background-color: rgb(246 246 246);
-    color: #444863;
+    background-color: rgb(255, 255, 255);
+    color: #5c7dff;
     font-weight: 600;
     border-radius: 15px;
     transition: .2s;
 }
 
-.exit-text-editor-btn:hover {
-    color: #5c7dff;
-}
 
 .save-note-btn {
     font-family: Roboto;
