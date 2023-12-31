@@ -3,24 +3,35 @@ import { NoteDetailContainer } from "../components/noteDetailContainer.js";
 export class TextEditorView {
   constructor(textEditorController) {
     this.textEditorController = textEditorController;
-    this.fileDropdown = document.querySelector('.file-dropdown');
-    this.fileDropdownOptions = this.fileDropdown.querySelector('.options');
-    this.headingDropdown = document.querySelector('.heading-dropdown');
-    this.headingDropdownOptions = this.headingDropdown.querySelector('.options');
+    // toolbar top
+    this.noteNameInput = document.querySelector('.note-name-input');
+
+    // toolbar middle
+    this.noteDropdown = document.querySelector('.file-dropdown');
+    this.noteDropdownOptions = this.noteDropdown.querySelector('.options');
+    this.noteDetailsSpan = document.querySelector('.note-details-span');
+
     this.exitButton = document.querySelector('.exit-text-editor-btn');
     this.saveButton = document.querySelector('.save-note-btn');
+
+    // toolbar bottom
+    this.headingButton = document.querySelector('.heading-button');
+    this.headingDropdown = document.querySelector('.heading-dropdown');
+    this.headingDropdownOptions = this.headingDropdown.querySelector('.options');
+    this.pxUpButton = document.querySelector('.add-1px-btn');
+    this.pxDownButton = document.querySelector('.subtract-1px-btn');
+    this.fontSizeInput = document.querySelector('.font-size-input');
+
+    // other
     this.textEditor = document.querySelector('.editor-wrapper');
-    this.noteNameInput = document.querySelector('.note-name-input');
     this.page = document.querySelector('.editor');
     this.dialog = document.querySelector('.dialog');
 
-    // File dropdown spans
-    this.noteDetailsSpan = document.querySelector('.note-details-span');
     this.attachEventListeners();
   }
 
   attachEventListeners() {
-    this.fileDropdown.addEventListener('click', () => {this.toggleVisibleDropdown(this.fileDropdownOptions)});
+    this.noteDropdown.addEventListener('click', () => {this.toggleVisibleDropdown(this.noteDropdownOptions)});
     this.headingDropdown.addEventListener('click', () => {this.toggleVisibleDropdown(this.headingDropdownOptions)});
     this.noteDetailsSpan.addEventListener('click', () => {this.renderNoteDetails()});
     this.exitButton.addEventListener('click', () => {this.removeTextEditor()});
@@ -114,5 +125,44 @@ export class TextEditorView {
       this.dialog.style.top = '100%';
       const CHILD = this.dialog.firstChild;
       this.dialog.removeChild(CHILD);
+  }
+
+  /**
+   * This method surrounds the selected text with the selected heading value.
+   * 
+   * @param {String} heading the heading value the selected text should be. 
+   */
+  heading(heading) {
+    // get the new heading value from the button
+    this.headingButton.textContent = heading;
+
+    // turn the human readable heading into the code version
+    let headingFormat = this.headingFormat(heading);
+    if (window.getSelection) {
+      let selection = window.getSelection();
+      if (selection.rangeCount > 0) {
+        let range = selection.getRangeAt(0);
+        
+        // Create an h1 element
+        let h1Element = document.createElement(headingFormat);
+        
+        // Surround the selected text with the h1 element
+        range.surroundContents(h1Element);
+        
+        // Clear the selection (optional, depends on your use case)
+        selection.removeAllRanges();
+      }
+    }
+  }
+
+  headingFormat(heading) {
+    let headingFormat = '';
+    if (heading === 'Heading 1') headingFormat = 'h1'
+    else if (heading === 'Heading 2') headingFormat = 'h2';
+    else if (heading === 'Heading 3') headingFormat = 'h3';
+    else if (heading === 'Heading 4') headingFormat = 'h4';
+    else if (heading === 'Heading 5') headingFormat = 'h5';
+    else if (heading === 'Heading 6') headingFormat = 'h6';
+    return headingFormat;
   }
 }

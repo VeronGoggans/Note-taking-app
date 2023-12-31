@@ -1,41 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Keep Text Selected</title>
-    <style>
-        /* Add some styling to the selected text */
-        ::selection {
-            background-color: yellow;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text Selection Dropdown</title>
+  <style>
+    /* Style for the dropdown */
+    .dropdown {
+      position: absolute;
+      display: none;
+      border: 1px solid #ccc;
+      padding: 8px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+  </style>
 </head>
 <body>
-    <p id="myText">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    </p>
 
-    <button onclick="saveSelection()">Save Selection</button>
-    <button onclick="restoreSelection()">Restore Selection</button>
+<!-- Sample content with a heading dropdown -->
+<div id="content" contenteditable="true">
+  <h1>Select some text and use the dropdown:</h1>
+  <p>This is some sample text. Try selecting this and using the dropdown.</p>
+</div>
 
-    <script>
-        let savedSelection;
+<!-- Heading dropdown -->
+<div id="headingDropdown" class="dropdown">
+  <label for="headingOptions">Choose Heading:</label>
+  <select id="headingOptions">
+    <option value="h1">Heading 1</option>
+    <option value="h2">Heading 2</option>
+    <option value="h3">Heading 3</option>
+  </select>
+</div>
 
-        function saveSelection() {
-            const selection = window.getSelection();
-            if (selection.rangeCount > 0) {
-                savedSelection = selection.getRangeAt(0).cloneRange();
-            }
-        }
+<script>
+  // Function to show the dropdown at the selected text position
+  function showDropdown() {
+    const selection = window.getSelection();
+    const range = selection.getRangeAt(0);
+    const rect = range.getBoundingClientRect();
+    const dropdown = document.getElementById('headingDropdown');
 
-        function restoreSelection() {
-            if (savedSelection) {
-                const selection = window.getSelection();
-                selection.removeAllRanges();
-                selection.addRange(savedSelection);
-            }
-        }
-    </script>
+    dropdown.style.display = 'block';
+    dropdown.style.top = rect.bottom + 'px';
+    dropdown.style.left = rect.left + 'px';
+  }
+
+  // Function to apply the selected heading to the text
+  function applyHeading() {
+    const dropdown = document.getElementById('headingDropdown');
+    const selectedHeading = document.getElementById('headingOptions').value;
+    const selection = window.getSelection();
+    const range = selection.getRangeAt(0);
+    
+    // Wrap the selected text with the chosen heading tag
+    const headingTag = document.createElement(selectedHeading);
+    range.surroundContents(headingTag);
+
+    // Hide the dropdown after applying the heading
+    dropdown.style.display = 'none';
+  }
+
+  document.getElementById('content').addEventListener('mouseup', function() {
+    const selection = window.getSelection();
+    
+    // Check if there is a valid selection
+    if (!selection.isCollapsed) {
+      showDropdown();
+    }
+  });
+
+  document.getElementById('headingOptions').addEventListener('change', function() {
+    applyHeading();
+  });
+
+  // Close the dropdown when clicking outside of it
+  document.addEventListener('mouseup', function(event) {
+    const dropdown = document.getElementById('headingDropdown');
+    if (!dropdown.contains(event.target)) {
+      dropdown.style.display = 'none';
+    }
+  });
+</script>
+
 </body>
 </html>
