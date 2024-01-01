@@ -1,5 +1,6 @@
 from fastapi import APIRouter
 from backend.data.folder.folder_manager import FolderManager
+from backend.presentation.request_bodies.folder.del_folder_request import DeleteFolderRequest
 from backend.presentation.request_bodies.folder.post_folder_request import PostFolderRequest
 from backend.presentation.request_bodies.folder.put_folder_request import PutFolderRequest
 from backend.domain.enums.responseMessages import RespMsg
@@ -37,8 +38,8 @@ class FolderRouter:
         return {'Status_code': RespMsg.NOT_FOUND}
     
 
-    def delete_folder(self, folder_id: str):
-        response = self.folder_service.delete_folder(folder_id)
+    def delete_folder(self, folder: DeleteFolderRequest):
+        response = self.folder_service.delete_folder(folder)
 
         if response != RespMsg.NOT_FOUND:
             return {'Status_code': RespMsg.OK, "Object": response}

@@ -1,4 +1,5 @@
 from backend.data.folder.folder_manager import FolderManager
+from backend.presentation.request_bodies.folder.del_folder_request import DeleteFolderRequest
 from backend.presentation.request_bodies.folder.post_folder_request import PostFolderRequest
 from backend.presentation.request_bodies.folder.put_folder_request import PutFolderRequest
 from backend.domain.folder import Folder
@@ -79,7 +80,7 @@ class FolderService:
         return RespMsg.NOT_FOUND
     
     
-    def delete_folder(self, folder_id: str):
+    def delete_folder(self, delete_folder_request: DeleteFolderRequest):
         """
         Delete an existing folder with the specified ID.
 
@@ -95,7 +96,7 @@ class FolderService:
         """
         folder_structure = self.json_manager.load(self.folders_path)
         folders = folder_structure['folders']
-        deleted_folder = self.folder_manager.delete_folder(folders, folder_id)
+        deleted_folder = self.folder_manager.delete_folder(folders, delete_folder_request.folder_id)
 
         if deleted_folder is not None:
             self.json_manager.update(self.folders_path, folder_structure)

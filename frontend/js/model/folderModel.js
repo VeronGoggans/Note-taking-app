@@ -60,12 +60,16 @@ export class FolderModel {
 
 
     async deleteFolder(endpoint, folderId) {
+        const DELETE_FOLDER_OBJECT = {
+            'folder_id': folderId
+        }
         const OPTIONS = {
             method: 'DELETE',
             headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(DELETE_FOLDER_OBJECT)
         }
         try {
-            const response = await fetch(`${endpoint}/${folderId}`, OPTIONS);
+            const response = await fetch(`${endpoint}`, OPTIONS);
             if (!response.ok) throw new Error(`HTTP error Status: ${response.status}`)
             return await response.json();
         } catch (error) {

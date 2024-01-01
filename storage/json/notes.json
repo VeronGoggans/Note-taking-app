@@ -26,6 +26,21 @@
         {
             "id": "f-46",
             "name": "My folder",
+            "notes": [
+                {
+                    "id": "n-175",
+                    "title": "2024",
+                    "content": "storage/notes/note-n-175.html",
+                    "bookmark": false,
+                    "last_edit": "01/01/2024 00:57:22",
+                    "creation": "01/01/2024"
+                }
+            ],
+            "subfolders": []
+        },
+        {
+            "id": "f-47",
+            "name": "2024",
             "notes": [],
             "subfolders": []
         }
