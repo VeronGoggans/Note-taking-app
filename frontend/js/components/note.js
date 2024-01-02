@@ -6,13 +6,13 @@ export class Note {
         this.name = name;
         this.bookmark = bookmark;
         this.content = content;
-        this.created = created;
-        this.lastEdit = lastEdit;
+        this.created = this.dateFormat(created);
+        this.lastEdit = this.dateFormat(lastEdit);
         this.view = view;
 
         // creating HTML elements.
         this.HOST = CNode.create('div', {'class': 'note', 'id': this.id});
-        this.HOST.dataset.info = `${created}--${lastEdit}`;
+        this.HOST.dataset.info = `${this.created}--${this.lastEdit}`;
         this.NAME_BOX = CNode.create('div', {'class': 'note-name-box'});
         this.H4 = CNode.create('h4', {'textContent': this.name});
         this.BTN_CONTAINER = CNode.create('div', {'class': 'update-note-btns-container'});
@@ -59,7 +59,7 @@ export class Note {
         this.CONFIRM.addEventListener('click', () => {this.updateNote()});
         this.CANCEL.addEventListener('click', () => {this.toggleEditableFolderName()});
         this.DELETE.addEventListener('click', () => {this.view.renderDeleteContainer(this.id, this.name)});
-        this.CONTENT_BOX.addEventListener('click', () => {this.view.handleNoteCardClick(this.content, this.name)});
+        this.CONTENT_BOX.addEventListener('click', () => {this.view.handleNoteCardClick(this.content, this.name, this.created, this.lastEdit, this.id)});
     }
 
     toggleEditableFolderName() {
@@ -69,6 +69,39 @@ export class Note {
 
         // Toggle visibility
         this.BTN_CONTAINER.style.visibility = this.BTN_CONTAINER.style.visibility === 'visible' ? 'hidden' : 'visible';
+    }
+
+    /**
+     * This method formats a date string given from the backend.
+     * 01/01/2024 turns into 1 Jan 2024
+     * 25/12/2023 turns into 25 Dec 2023
+     * 
+     * @param {String} date A date string. Could be both the creation date or last edit date.
+     * @returns A formatted date string.
+     */
+    dateFormat(date) {
+        let dateParts = date.split('/');
+        const MONTH = dateParts[1];
+        const DAY = dateParts[0];
+        const DAY_PARTS = DAY.split('');
+        if (DAY_PARTS[0] === '0') dateParts[0] = DAY_PARTS[1];
+
+        let monthFormatted = '';
+        if (MONTH === '01') monthFormatted = 'Jan'
+        if (MONTH === '02') monthFormatted = 'Feb'
+        if (MONTH === '03') monthFormatted = 'Mar'
+        if (MONTH === '04') monthFormatted = 'Apr'
+        if (MONTH === '05') monthFormatted = 'Mei'
+        if (MONTH === '06') monthFormatted = 'Jun'
+        if (MONTH === '07') monthFormatted = 'Jul'
+        if (MONTH === '08') monthFormatted = 'Aug'
+        if (MONTH === '09') monthFormatted = 'Sep'
+        if (MONTH === '10') monthFormatted = 'Okt'
+        if (MONTH === '11') monthFormatted = 'Nov'
+        if (MONTH === '12') monthFormatted = 'Dec'
+        dateParts[1] = monthFormatted;
+        const NEW_DATE_STRING = dateParts.join(' ');
+        return NEW_DATE_STRING
     }
 
     async updateNote() {

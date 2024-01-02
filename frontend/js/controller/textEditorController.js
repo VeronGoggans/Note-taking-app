@@ -18,8 +18,17 @@ export class TextEditorController {
      * @param {String} content 
      * @param {String} name 
      */
-    openNoteInTextEditor(content, name) {
+    openNoteInTextEditor(content, name, creation, lastEdit, noteId) {
+        this.textEditorModel.storeNoteData(noteId, creation, lastEdit);
         this.textEditorView.open(content, name);
+    }
+
+    /**
+     * 
+     * @returns This method returns a list of stored note data.
+     */
+    getStoredNoteData() {
+        return this.textEditorModel.getStoredNoteData();
     }
 
 

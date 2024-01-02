@@ -1,7 +1,7 @@
 import { CNode } from "../util/CNode.js";
 
 export class NoteDetailContainer {
-    constructor(created, edit) {
+    constructor(created, lastEdit) {
         this.editor = document.querySelector('.editor');
         this.HOST = CNode.create('div', {'class': 'note-details-container'});
         this.H2 = CNode.create('h2', {'textContent': 'Note details'});
@@ -12,8 +12,8 @@ export class NoteDetailContainer {
         this.P3 = CNode.create('p', {'textContent': 'Edit'});
         this.DETAILS_RIGHT = CNode.create('div', {'class': 'details-right'});
         this.P_WORD_COUNT = CNode.create('p', {'textContent': this._getWordCount()});
-        this.P_CREATED = CNode.create('p', {});
-        this.P_EDIT = CNode.create('p', {});
+        this.P_CREATED = CNode.create('p', {'textContent': this.checkDateForNull(created)});
+        this.P_EDIT = CNode.create('p', {'textContent': this.checkDateForNull(lastEdit)});
         return this.render();
     }
 
@@ -31,6 +31,25 @@ export class NoteDetailContainer {
         return this.HOST
     }
 
+    /**
+     * This method checks if the date given is null.
+     * 
+     * A null value is expected when a user is in the proces of creating a new note
+     * within the editor.
+     * 
+     * @param {String} date A date string. Could be both the creation date or last edit date.
+     * @returns A message indicating that the data involving dates is unavailable.
+     */
+    checkDateForNull(date) {
+        if (date === null) return 'Not available';
+        else return date;
+    }
+
+    /**
+     * This method returns the number of words a note has.
+     * 
+     * @returns The number of words in the note
+     */
     _getWordCount() {
         let text = this.editor.innerText;
         return text.split(/[ \n]+/).length;

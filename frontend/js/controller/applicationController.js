@@ -80,8 +80,8 @@ export class ApplicationController {
      * @param {String} content is the content of the note.
      * @param {String} name is the name/title of the note. 
      */
-    openNoteInTextEditor(content, name) {
-        this.textEditorController.openNoteInTextEditor(content, name);
+    openNoteInTextEditor(content, name, creation, lastEdit, noteId) {
+        this.textEditorController.openNoteInTextEditor(content, name, creation, lastEdit, noteId);
     }
 
     createNote(content, name) {

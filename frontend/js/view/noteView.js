@@ -118,8 +118,8 @@ export class NoteView {
      * @param {String} content is the content of the note.
      * @param {String} name is the name/title of the note. 
      */
-    handleNoteCardClick(content, name) {
-        this.noteController.handleNoteCardClick(content, name);
+    handleNoteCardClick(content, name, creation, lastEdit, noteId) {
+        this.noteController.handleNoteCardClick(content, name, creation, lastEdit, noteId);
     }
 
     /**

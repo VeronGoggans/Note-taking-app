@@ -3,86 +3,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Text Selection Dropdown</title>
+  <title>Your Note-Taking App</title>
+  <!-- Include the Quill library -->
+  <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
   <style>
-    /* Style for the dropdown */
-    .dropdown {
-      position: absolute;
-      display: none;
+    #editor {
       border: 1px solid #ccc;
-      padding: 8px;
-      background-color: #fff;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      min-height: 400px; /* Increased height for better editing experience */
+      font-family: Arial, sans-serif;
     }
   </style>
 </head>
 <body>
+  <div id="editor"></div>
 
-<!-- Sample content with a heading dropdown -->
-<div id="content" contenteditable="true">
-  <h1>Select some text and use the dropdown:</h1>
-  <p>This is some sample text. Try selecting this and using the dropdown.</p>
-</div>
-
-<!-- Heading dropdown -->
-<div id="headingDropdown" class="dropdown">
-  <label for="headingOptions">Choose Heading:</label>
-  <select id="headingOptions">
-    <option value="h1">Heading 1</option>
-    <option value="h2">Heading 2</option>
-    <option value="h3">Heading 3</option>
-  </select>
-</div>
-
-<script>
-  // Function to show the dropdown at the selected text position
-  function showDropdown() {
-    const selection = window.getSelection();
-    const range = selection.getRangeAt(0);
-    const rect = range.getBoundingClientRect();
-    const dropdown = document.getElementById('headingDropdown');
-
-    dropdown.style.display = 'block';
-    dropdown.style.top = rect.bottom + 'px';
-    dropdown.style.left = rect.left + 'px';
-  }
-
-  // Function to apply the selected heading to the text
-  function applyHeading() {
-    const dropdown = document.getElementById('headingDropdown');
-    const selectedHeading = document.getElementById('headingOptions').value;
-    const selection = window.getSelection();
-    const range = selection.getRangeAt(0);
-    
-    // Wrap the selected text with the chosen heading tag
-    const headingTag = document.createElement(selectedHeading);
-    range.surroundContents(headingTag);
-
-    // Hide the dropdown after applying the heading
-    dropdown.style.display = 'none';
-  }
-
-  document.getElementById('content').addEventListener('mouseup', function() {
-    const selection = window.getSelection();
-    
-    // Check if there is a valid selection
-    if (!selection.isCollapsed) {
-      showDropdown();
-    }
-  });
-
-  document.getElementById('headingOptions').addEventListener('change', function() {
-    applyHeading();
-  });
-
-  // Close the dropdown when clicking outside of it
-  document.addEventListener('mouseup', function(event) {
-    const dropdown = document.getElementById('headingDropdown');
-    if (!dropdown.contains(event.target)) {
-      dropdown.style.display = 'none';
-    }
-  });
-</script>
-
+  <script>
+    // Initialize the rich text editor (Quill)
+    var editor = new Quill('#editor', {
+      theme: 'snow',
+      placeholder: 'Start typing...',
+      modules: {
+        toolbar: [
+          ['bold', 'italic', 'underline', 'strike'],        // text formatting
+          ['blockquote', 'code-block'],                      // blockquote and code block
+          [{ 'header': 1 }, { 'header': 2 }],               // heading 1 and heading 2
+          [{ 'list': 'ordered' }, { 'list': 'bullet' }],    // ordered and unordered lists
+          [{ 'script': 'sub' }, { 'script': 'super' }],     // subscript and superscript
+          [{ 'indent': '-1' }, { 'indent': '+1' }],         // decrease and increase indent
+          [{ 'direction': 'rtl' }],                         // text direction
+          [{ 'size': ['small', false, 'large', 'huge'] }],  // font size
+          [{ 'header': [1, 2, 3, 4, 5, 6, false] }],        // custom header dropdown
+          [{ 'color': [] }, { 'background': [] }],          // text and background color
+          [{ 'font': [] }],                                 // font family
+          ['link', 'image', 'video'],                       // links, images, and videos
+          ['clean'],                                       // remove formatting
+        ]
+      },
+    });
+  </script>
 </body>
 </html>

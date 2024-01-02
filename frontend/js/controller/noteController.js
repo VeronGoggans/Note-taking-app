@@ -41,7 +41,7 @@ export class NoteController {
      * @param {String} content is the content of the note.
      * @param {String} name is the name/title of the note. 
      */
-    handleNoteCardClick(content, name) {
-        this.applicationController.openNoteInTextEditor(content, name);
+    handleNoteCardClick(content, name, creation, lastEdit, noteId) {
+        this.applicationController.openNoteInTextEditor(content, name, creation, lastEdit, noteId);
     }
 }

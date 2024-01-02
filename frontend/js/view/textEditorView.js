@@ -1,4 +1,5 @@
 import { NoteDetailContainer } from "../components/noteDetailContainer.js";
+import { DeleteContainer } from "../components/deleteContainer.js";
 
 export class TextEditorView {
   constructor(textEditorController) {
@@ -10,6 +11,7 @@ export class TextEditorView {
     this.noteDropdown = document.querySelector('.file-dropdown');
     this.noteDropdownOptions = this.noteDropdown.querySelector('.options');
     this.noteDetailsSpan = document.querySelector('.note-details-span');
+    this.deleteNoteSpan = document.querySelector('.delete-note-span');
 
     this.exitButton = document.querySelector('.exit-text-editor-btn');
     this.saveButton = document.querySelector('.save-note-btn');
@@ -18,9 +20,6 @@ export class TextEditorView {
     this.headingButton = document.querySelector('.heading-button');
     this.headingDropdown = document.querySelector('.heading-dropdown');
     this.headingDropdownOptions = this.headingDropdown.querySelector('.options');
-    this.pxUpButton = document.querySelector('.add-1px-btn');
-    this.pxDownButton = document.querySelector('.subtract-1px-btn');
-    this.fontSizeInput = document.querySelector('.font-size-input');
 
     // other
     this.textEditor = document.querySelector('.editor-wrapper');
@@ -34,8 +33,18 @@ export class TextEditorView {
     this.noteDropdown.addEventListener('click', () => {this.toggleVisibleDropdown(this.noteDropdownOptions)});
     this.headingDropdown.addEventListener('click', () => {this.toggleVisibleDropdown(this.headingDropdownOptions)});
     this.noteDetailsSpan.addEventListener('click', () => {this.renderNoteDetails()});
+    this.deleteNoteSpan.addEventListener('click', () => {this.renderNoteDeleteContainer()});
     this.exitButton.addEventListener('click', () => {this.removeTextEditor()});
-    this.saveButton.addEventListener('click', () => {this.handleSaveButtonClick()})
+    this.saveButton.addEventListener('click', () => {this.handleSaveButtonClick()});
+
+
+    this.headingDropdownOptions.addEventListener('click', (event) => {
+      if (event.target.matches('span')) {
+        // Get the text content of the clicked heading option
+        const selectedHeading = event.target.textContent;
+        this.applyHeading(selectedHeading);
+      }
+    });
   }
 
   /**
@@ -43,7 +52,6 @@ export class TextEditorView {
    * by toggling the visibility style property.
    */
   toggleVisibleDropdown(dropdownOptions) {
-    // Toggle visibility.
     dropdownOptions.style.visibility = dropdownOptions.style.visibility === 'visible' ? 'hidden' : 'visible';
   }
 
@@ -98,6 +106,7 @@ export class TextEditorView {
 
 
   // The following methods are related to the file dropdown menu.
+
   /**
    * This method renders the note details container showing the following.
    * 1. Word count.
@@ -105,8 +114,27 @@ export class TextEditorView {
    * 3. The last time the not was edited.
    */
   renderNoteDetails() {
-    this.dialog.appendChild(new NoteDetailContainer())
+    const NOTE_DATA = this.getNoteData();
+    this.dialog.appendChild(new NoteDetailContainer(NOTE_DATA[1], NOTE_DATA[2]))
     this.renderDialog();
+  }
+
+  /**
+   * This method renders the delete container from within the editor.
+   */
+  renderNoteDeleteContainer() {
+    const NOTE_DATA = this.getNoteData();
+    const ID = NOTE_DATA[0];
+    this.dialog.appendChild(new DeleteContainer(ID, this.noteNameInput.value, this))
+    this.renderDialog();
+  }
+
+  /**
+   * 
+   * @returns a list of note data stored in the text editor model
+   */
+  getNoteData() {
+    return this.textEditorController.getStoredNoteData();
   }
 
   /**
@@ -125,44 +153,5 @@ export class TextEditorView {
       this.dialog.style.top = '100%';
       const CHILD = this.dialog.firstChild;
       this.dialog.removeChild(CHILD);
-  }
-
-  /**
-   * This method surrounds the selected text with the selected heading value.
-   * 
-   * @param {String} heading the heading value the selected text should be. 
-   */
-  heading(heading) {
-    // get the new heading value from the button
-    this.headingButton.textContent = heading;
-
-    // turn the human readable heading into the code version
-    let headingFormat = this.headingFormat(heading);
-    if (window.getSelection) {
-      let selection = window.getSelection();
-      if (selection.rangeCount > 0) {
-        let range = selection.getRangeAt(0);
-        
-        // Create an h1 element
-        let h1Element = document.createElement(headingFormat);
-        
-        // Surround the selected text with the h1 element
-        range.surroundContents(h1Element);
-        
-        // Clear the selection (optional, depends on your use case)
-        selection.removeAllRanges();
-      }
-    }
-  }
-
-  headingFormat(heading) {
-    let headingFormat = '';
-    if (heading === 'Heading 1') headingFormat = 'h1'
-    else if (heading === 'Heading 2') headingFormat = 'h2';
-    else if (heading === 'Heading 3') headingFormat = 'h3';
-    else if (heading === 'Heading 4') headingFormat = 'h4';
-    else if (heading === 'Heading 5') headingFormat = 'h5';
-    else if (heading === 'Heading 6') headingFormat = 'h6';
-    return headingFormat;
-  }
+  }  
 }
