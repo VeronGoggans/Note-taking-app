@@ -12,6 +12,8 @@ export class TextEditorView {
     this.noteDropdownOptions = this.noteDropdown.querySelector('.options');
     this.noteDetailsSpan = document.querySelector('.note-details-span');
     this.deleteNoteSpan = document.querySelector('.delete-note-span');
+    this.saveNoteSpan = document.querySelector('.save-note-span');
+    this.newNoteSpan = document.querySelector('.new-note-span');
 
     this.exitButton = document.querySelector('.exit-text-editor-btn');
     this.saveButton = document.querySelector('.save-note-btn');
@@ -34,6 +36,8 @@ export class TextEditorView {
     this.headingDropdown.addEventListener('click', () => {this.toggleVisibleDropdown(this.headingDropdownOptions)});
     this.noteDetailsSpan.addEventListener('click', () => {this.renderNoteDetails()});
     this.deleteNoteSpan.addEventListener('click', () => {this.renderNoteDeleteContainer()});
+    this.saveNoteSpan.addEventListener('click', () => {this.handleSaveButtonClick()});
+    this.newNoteSpan.addEventListener('click', () => {this.handleSaveButtonClick(false)});
     this.exitButton.addEventListener('click', () => {this.removeTextEditor()});
     this.saveButton.addEventListener('click', () => {this.handleSaveButtonClick()});
   }
@@ -136,9 +140,9 @@ export class TextEditorView {
    * 
    * This method communicates with the text editor controller 
    * that the save button has been clicked. 
-   * 
+   * @param {Boolean} closeEditor indicates if the editor should be closed or not.
    */
-  handleSaveButtonClick() {
+  handleSaveButtonClick(closeEditor = true) {
     // Collect the content inside the text editor
     const CONTENT = this.page.innerHTML;
 
@@ -151,7 +155,11 @@ export class TextEditorView {
 
     // Communicate with the text editor controller.
     this.textEditorController.handleSaveButtonClick(CONTENT, name, BOOKMARK);
-    this.removeTextEditor();
+    if (closeEditor) this.removeTextEditor();
+    if (!closeEditor) {
+      this.textEditorController.clearStoredNoteData();
+      this.clear();
+    }
   }
 
   /**
