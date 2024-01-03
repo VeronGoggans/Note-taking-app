@@ -8,6 +8,7 @@ export class ApplicationModel {
         this.folderIds = [];
     }
 
+    
     getCurrentFolderID() {
         return this.folderIds[this.folderIds.length - 1];
     }

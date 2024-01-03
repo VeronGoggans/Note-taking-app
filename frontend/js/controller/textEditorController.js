@@ -13,17 +13,26 @@ export class TextEditorController {
     }
 
     /**
-     * This method tells the controller to open up a note inside the text editor.
+     * This method opens a note inside the text editor.
+     * 
+     * This method is called when a note card has been clicked.
      * 
      * @param {String} content 
      * @param {String} name 
      */
-    openNoteInTextEditor(content, name, creation, lastEdit, noteId) {
-        this.textEditorModel.storeNoteData(noteId, creation, lastEdit);
+    openNoteInTextEditor(content, name, creation, lastEdit, noteId, bookmark) {
+        this.textEditorModel.storeNoteData(noteId, creation, lastEdit, bookmark);
         this.textEditorView.open(content, name);
     }
 
     /**
+     * This method returns a list of note data
+     * 1. noteId
+     * 2. creation date
+     * 3. lastEdit date
+     * 4. bookmark
+     * 
+     * And clears the stored data from the model.
      * 
      * @returns This method returns a list of stored note data.
      */
@@ -31,8 +40,32 @@ export class TextEditorController {
         return this.textEditorModel.getStoredNoteData();
     }
 
+    /**
+     * This method turns all stored note values to null
+     */
+    clearStoredNoteData() {
+        this.textEditorModel.clear();
+    }
 
-    handleSaveButtonClick(content, name) {
-        this.applicationController.createNote(content, name);
+    /**
+     * This method handles the save button click.
+     * 
+     * This method decides if the save button click 
+     * was for an existing note or a new note.
+     * 
+     * If for an existing note, the changeNote method is called
+     * If for a new note, the createNote method is called.
+     * 
+     * @param {String} content 
+     * @param {String} name 
+     * @param {Boolean} bookmark 
+     */
+    handleSaveButtonClick(content, name, bookmark) {
+        const NOTE_ID = this.textEditorModel.getStoredNoteId()
+        if (NOTE_ID !== null) {
+            this.applicationController.changeNote(NOTE_ID, name, content, bookmark)
+            this.clearStoredNoteData();
+        }
+        else this.applicationController.createNote(content, name);
     }
 }

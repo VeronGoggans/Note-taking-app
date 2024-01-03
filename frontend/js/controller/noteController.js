@@ -35,13 +35,26 @@ export class NoteController {
     }
 
     /**
+     * This method clears the noteObjects list 
+     * inside the noteView
+     */
+    clearNotObjectsList() {
+        this.noteView.clearNoteObjectsList()
+    }
+
+
+    
+    // Methods that communicate with the application controller
+    // communicating <--- 
+
+    /**
      * This method opens up the text editor
      * And puts the note the user clicked on, in the text editor.
      * 
      * @param {String} content is the content of the note.
      * @param {String} name is the name/title of the note. 
      */
-    handleNoteCardClick(content, name, creation, lastEdit, noteId) {
-        this.applicationController.openNoteInTextEditor(content, name, creation, lastEdit, noteId);
+    handleNoteCardClick(content, name, creation, lastEdit, noteId, bookmark) {
+        this.applicationController.openNoteInTextEditor(content, name, creation, lastEdit, noteId, bookmark);
     }
 }

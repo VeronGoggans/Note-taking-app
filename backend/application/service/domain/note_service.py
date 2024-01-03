@@ -121,7 +121,7 @@ class NoteService:
         """
         folder_structure = self.json_manager.load(self.folders_path)
         folders = folder_structure['folders']
-        note = self.note_manager.update_note(folders, put_request.note_id, put_request)
+        note = self.note_manager.update_note(folders, put_request.note_id, put_request)[1]
 
         if note:
             self.json_manager.update(self.folders_path, folder_structure)

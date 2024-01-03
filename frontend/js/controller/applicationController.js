@@ -15,16 +15,21 @@ export class ApplicationController {
         this.textEditorController = new TextEditorController(this);
     }
 
+
     /**
      * This method starts the application by fetching the root folders.
+     * 
+     * This method is called when the app starts.
      */
     start() {
         this.folderController.getFolders();
     }
 
     /**
-     * This method returns the user too the homescreen, by fetching the root folders again.
+     * This method returns the user to the homescreen, by fetching the root folders again.
      * This method also removes the folder id list.
+     * 
+     * This method is called when the homescreen button is clicked.
      */
     navigateToHomescreen() {
         this.folderController.getFolders();
@@ -32,8 +37,10 @@ export class ApplicationController {
     }
 
     /**
-     * This methos returns the current folder ID,
+     * This method returns the current folder ID
      * by calling the application model to retrieve it.
+     * 
+     * This method is called when
      * 
      * @returns {String} The current folder ID.
      */
@@ -51,22 +58,27 @@ export class ApplicationController {
 
     async handleAddFolder(name) {
         const CURRENT_FOLDER = this.applicationModel.getCurrentFolderID();
-        console.log(CURRENT_FOLDER);
         if (CURRENT_FOLDER === undefined) await this.addFolder(name);
         else await this.addSubfolder(name, CURRENT_FOLDER);
     }
 
+    
     navigateOutofFolder() {
         const PARENT_ID = this.applicationModel.removeFolderIdFromList();
-        if (PARENT_ID === undefined) this.navigateToHomescreen();
-        else this.navigateIntoFolder(PARENT_ID, 'all');
+        if (PARENT_ID === undefined) {
+            this.navigateToHomescreen();
+            this.noteController.clearNotObjectsList();
+        }
+        else {
+            this.navigateIntoFolder(PARENT_ID, 'all');
+            this.noteController.clearNotObjectsList();
+        }
     }
 
     navigateIntoFolder(folderId, noteType) {
         this.subfolderController.getSubFolders(folderId);
         this.noteController.getNotes(folderId, noteType);
         this.applicationModel.addFolderIdToList(folderId);
-        // console.log(`Current folder: ${this.applicationModel.getCurrentFolderID()}`);
     }
 
     showTextEditor() {
@@ -80,12 +92,37 @@ export class ApplicationController {
      * @param {String} content is the content of the note.
      * @param {String} name is the name/title of the note. 
      */
-    openNoteInTextEditor(content, name, creation, lastEdit, noteId) {
-        this.textEditorController.openNoteInTextEditor(content, name, creation, lastEdit, noteId);
+    openNoteInTextEditor(content, name, creation, lastEdit, noteId, bookmark) {
+        this.textEditorController.openNoteInTextEditor(content, name, creation, lastEdit, noteId, bookmark);
     }
 
+
+    /**
+     * This method adds a note to the backend.
+     * 
+     * This method is called when the save button inside the text editor 
+     * is clicked for a new note.
+     * 
+     * @param {String} content 
+     * @param {String} name 
+     */
     createNote(content, name) {
         const CURRENT_FOLDER_ID = this.applicationModel.getCurrentFolderID();
         this.noteController.addNote(CURRENT_FOLDER_ID, content, name);
+    }
+
+    /**
+     * This method updates a note.
+     * 
+     * This method is called when the save button inside the text editor
+     * is clicked for an existing note 
+     * 
+     * @param {String} noteId 
+     * @param {String} name 
+     * @param {String} content 
+     * @param {String} bookmark 
+     */
+    changeNote(noteId, name, content, bookmark) {
+        this.noteController.updateNote(noteId, name, content, bookmark);
     }
 }

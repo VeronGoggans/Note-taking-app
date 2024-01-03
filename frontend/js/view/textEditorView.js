@@ -36,15 +36,6 @@ export class TextEditorView {
     this.deleteNoteSpan.addEventListener('click', () => {this.renderNoteDeleteContainer()});
     this.exitButton.addEventListener('click', () => {this.removeTextEditor()});
     this.saveButton.addEventListener('click', () => {this.handleSaveButtonClick()});
-
-
-    this.headingDropdownOptions.addEventListener('click', (event) => {
-      if (event.target.matches('span')) {
-        // Get the text content of the clicked heading option
-        const selectedHeading = event.target.textContent;
-        this.applyHeading(selectedHeading);
-      }
-    });
   }
 
   /**
@@ -85,26 +76,6 @@ export class TextEditorView {
     this.noteNameInput.value = '';
   }
 
-  handleSaveButtonClick() {
-    const CONTENT = this.page.innerHTML;
-    let name = this.noteNameInput.value;
-    if (name === '') name = 'untitled';
-    this.removeTextEditor();
-    this.textEditorController.handleSaveButtonClick(CONTENT, name);
-  }
-
-  /**
-   * This method hides the text editor,
-   * by setting the visibility style property to hidden
-   */
-  removeTextEditor() {
-    // Turn text editor invisible
-    this.textEditor.style.top = '100%';
-    this.textEditor.style.visibility = 'hidden';
-    this.clear();
-  }
-
-
   // The following methods are related to the file dropdown menu.
 
   /**
@@ -130,14 +101,6 @@ export class TextEditorView {
   }
 
   /**
-   * 
-   * @returns a list of note data stored in the text editor model
-   */
-  getNoteData() {
-    return this.textEditorController.getStoredNoteData();
-  }
-
-  /**
      * This method renders the dialog.
      */
   renderDialog() {
@@ -154,4 +117,52 @@ export class TextEditorView {
       const CHILD = this.dialog.firstChild;
       this.dialog.removeChild(CHILD);
   }  
+
+  // Methods communicating with the text editor controller.
+  // Communicating <---
+
+
+  /**
+   * 
+   * @returns a list of note data stored in the text editor model
+   */
+  getNoteData() {
+    return this.textEditorController.getStoredNoteData();
+  }
+
+  /**
+   * This method handles the save button click 
+   * inside the text editor
+   * 
+   * This method communicates with the text editor controller 
+   * that the save button has been clicked. 
+   * 
+   */
+  handleSaveButtonClick() {
+    // Collect the content inside the text editor
+    const CONTENT = this.page.innerHTML;
+
+    // Collecting the notes bookmark value
+    const STORED_NOTE_DATA = this.getNoteData();
+    const BOOKMARK = STORED_NOTE_DATA[3];
+
+    let name = this.noteNameInput.value;
+    if (name === '') name = 'untitled';
+
+    // Communicate with the text editor controller.
+    this.textEditorController.handleSaveButtonClick(CONTENT, name, BOOKMARK);
+    this.removeTextEditor();
+  }
+
+  /**
+   * This method hides the text editor,
+   * by setting the visibility style property to hidden
+   */
+  removeTextEditor() {
+    // Turn text editor invisible
+    this.textEditor.style.top = '100%';
+    this.textEditor.style.visibility = 'hidden';
+    this.clear();
+    this.textEditorController.clearStoredNoteData();
+  }
 }

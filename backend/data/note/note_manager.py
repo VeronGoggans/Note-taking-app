@@ -193,10 +193,14 @@ class NoteManager:
 
     
     def __update_note(self, current_note: dict, updated_note: PutNoteRequest):
-        note: Note = self.__create_note_object(current_note)
+        note = self.__create_note_object(current_note)
         note.update_content(note.content, updated_note.content)
+        note.content = updated_note.content
+        note.bookmark = updated_note.bookmark
+        note.title = updated_note.title
+        note.last_edit = DateService.datetime()
 
         current_note['title'] = updated_note.title
         current_note['bookmark'] = updated_note.bookmark
         current_note['last_edit'] = DateService.datetime()
-        return current_note
+        return [current_note, note]

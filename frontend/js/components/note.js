@@ -59,7 +59,7 @@ export class Note {
         this.CONFIRM.addEventListener('click', () => {this.updateNote()});
         this.CANCEL.addEventListener('click', () => {this.toggleEditableFolderName()});
         this.DELETE.addEventListener('click', () => {this.view.renderDeleteContainer(this.id, this.name)});
-        this.CONTENT_BOX.addEventListener('click', () => {this.view.handleNoteCardClick(this.content, this.name, this.created, this.lastEdit, this.id)});
+        this.CONTENT_BOX.addEventListener('click', () => {this.view.handleNoteCardClick(this.id, this.created)});
     }
 
     toggleEditableFolderName() {
@@ -104,8 +104,15 @@ export class Note {
         return NEW_DATE_STRING
     }
 
+    /**
+     * This method updates a note
+     * 
+     * Note: That this method can only update the following.
+     * 1. Name.
+     * 2. Bookmark. 
+     */
     async updateNote() {
-        this.view.updateNote(this.id, this.H4.textContent, this.content, this.bookmark);
+        this.view.updateNote(this.id, this.H4.textContent, this.CONTENT.innerHTML, this.bookmark);
         this.toggleEditableFolderName();
     }
 }
