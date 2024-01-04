@@ -1,72 +1,51 @@
 .editor-wrapper {
     position: absolute;
-    top: 0;
+    top: 100%;
     visibility: hidden;
     display: grid;
-    grid-template-rows: 115px 1fr;
+    grid-template-rows: 110px 1fr;
     height: 100dvh;
     width: 100dvw;
-    background-color: #f9fbfd;
+    background-color: #fff;
+}
+
+.editor {
+    outline: none;
+    padding: 30px 70px;
+    overflow-y: scroll;
+    font-family: Arial, sans-serif;
+    color: rgb(56, 56, 56);
+}
+
+.editor::-webkit-scrollbar {
+    background-color: transparent;
+    width: 8px;
+}
+
+.editor::-webkit-scrollbar-thumb {
+    background-color: #cecece;
+    border-radius: 5px;
 }
 
 .toolbar {
-    background-color: #ffffff;
-    padding: 5px;
     display: grid;
-    grid-template-rows: 1fr 35px 1fr;
-    border-radius: 0 0 20px 20px;
-    border-bottom: 1px solid rgb(212, 212, 212);
-    overflow: visible;
+    grid-template-rows: 1fr 50px;
 }
 
 .toolbar-top {
-    background-color: #ffffff;
-}
-
-.toolbar-middle {
+    position: relative;
     display: flex;
     align-items: center;
     gap: 10px;
-    overflow: visible;
 }
 
 .toolbar-bottom {
-    background-color: transparent; /*rgb(221 240 255)*/
-    border-radius: 20px;
+    background-color: rgb(239, 241, 247); 
     display: flex;
     align-items: center;
     padding: 0px 10px;
     overflow: visible;
 }
-
-.editor-scroll-container {
-    overflow-y: scroll;
-}
-
-.editor-scroll-container::-webkit-scrollbar {
-    background-color: transparent;
-    width: 8px;
-}
-
-.editor-scroll-container::-webkit-scrollbar-thumb {
-    background-color: #cecece;
-    border-radius: 5px;
-}
-
-.editor {
-    outline: none;
-    background-color: #ffffff;
-    max-width: 730px;
-    width: 70%;
-    min-height: 100%;
-    margin: 40px auto 0 auto;
-    border-radius: 10px;
-    border: 1px solid rgb(212, 212, 212);
-    padding: 40px;
-    font-family: Roboto;
-    overflow: visible;
-}
-
 
 /*Note details container*/
 

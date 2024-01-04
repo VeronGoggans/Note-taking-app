@@ -1,5 +1,6 @@
+
 .note-name-input {
-    font-family: Roboto;
+    font-family: sans-serif;
     outline: none;
     border: none;
     border-bottom: 2px solid transparent;
@@ -7,9 +8,120 @@
     max-width: 400px;
     padding: 5px 10px;
     font-weight: 600;
+    font-size: 14px;
+    color: #444863;
     transition: .2s;
 }
 
+.file-dropdown {
+    position: absolute;
+    overflow: visible;
+    right: 0px;
+    font-family: Roboto;
+    width: fit-content;
+    transition: .2s;
+    cursor: pointer;
+    padding: 7px;
+    margin: 7px 10px 7px 0px;
+    border-radius: 15px;
+    color: #444863;
+    background-color: rgb(239, 241, 247);
+    font-weight: 600;
+    overflow: visible;
+}
+
+.file-dropdown .dropdown-title:hover {
+    color: #5c7dff;
+}
+
+.file-dropdown .options {
+    font-family: Roboto;
+    visibility: hidden;
+    position: absolute;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    width: 140px;
+    top: 40px;
+    left: -110px;
+    border-radius: 7px;
+    padding: 10px;
+    font-size: 14px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+}
+
+.file-dropdown .options button {
+    font-family: Roboto;
+    cursor: pointer;
+    margin: 5px 0;
+    padding: 5px 2px;
+    border-radius: 15px;
+    font-weight: 600;
+    background-color: transparent;
+    border: none;
+    text-align: start;
+}
+
+.file-dropdown .options button:hover {
+    background-color: rgba(92, 125, 255, .2);
+}
+
+.file-dropdown .options i {
+    margin: 0 5px;
+
+}
+
+.dropdown-title {
+    font-family: Roboto;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.save-note-btn {
+    position: absolute;
+    right: 70px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 7px 10px 7px 0px;
+    width: 90px;
+    height: 35px;
+    background-color: #5c7dff; /*#c2e7ff*/
+    color: #ffffff;
+    font-weight: 600;
+    border-radius: 20px;
+    font-family: Roboto;
+}
+
+.exit-text-editor-btn {
+    font-family: Roboto;
+    cursor: pointer;
+    padding: 5px 0;
+    margin-left: 10px;
+    outline: none;
+    border: none;
+    width: 40px;
+    height: 40px;
+    background-color: rgb(239, 241, 247);
+    color: #444863;
+    font-weight: 600;
+    font-size: 16px;
+    border-radius: 50%;
+    transition: .2s;
+}
+
+.exit-text-editor-btn:hover {
+    color: #5c7dff;
+}
 .note-name-input:hover,
 .note-name-input:focus {
     border-color: #5c7dff;

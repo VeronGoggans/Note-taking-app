@@ -30,15 +30,14 @@
                 </div>
             </div>
             <div class="sidebar-content">
-                <button class="create-note-btn"><i class="fa-solid fa-plus"></i>Note</button>
-                <button class="exit-folder-btn"><i class="fa-solid fa-arrow-left"></i>Exit</button>
-                <button class="home-screen-btn"><i class="fa-solid fa-house"></i>Home</button>
+                <button class="create-note-btn"><i class="fa-solid fa-plus"></i><span>Note</span></button>
+                <button class="exit-folder-btn"><i class="fa-solid fa-arrow-left"></i><span>Exit</span></button>
+                <button class="home-screen-btn"><i class="fa-solid fa-house"></i><span>Home</span></button>
             </div>
         </div>
 
         <main class="main">
             <div class="main-top">
-                <my-element></my-element>
                 <button class="create-folder-btn"><i class="fa-solid fa-plus"></i> Folder</button>
             </div>
             <div class="main-bottom">
@@ -55,30 +54,26 @@
     </div>    
     <div class="dialog"></div>
     <div class="editor-wrapper">
-        <div class="toolbar">
-          <div class="toolbar-top">
-              <!-- <select onchange="executeCommand('fontSize', this.value)"> -->
-                  
-                  <!-- <select onchange="executeCommand('formatBlock', this.value)"> -->
-                  <input type="text" class="note-name-input" placeholder="untitled" spellcheck="false">
+      <div class="toolbar">
+        <div class="toolbar-top">
+          <button class="exit-text-editor-btn"><i class="fa-solid fa-arrow-left"></i></button>
+          <div class="file-dropdown">
+            <button class="dropdown-title">Note</button>
+            <div class="options">
+              <button class="new-note-span"><i class="fa-solid fa-plus"></i>New</button>
+              <button class="save-note-span"><i class="fa-regular fa-floppy-disk"></i>Save</button>
+              <button class="delete-note-span"><i class="fa-solid fa-trash"></i>Delete</button>
+              <button class="note-details-span"><i class="fa-solid fa-info"></i>Details</button>
+            </div>
           </div>
-          <div class="toolbar-middle">
-            <div class="file-dropdown">
-              <span class="dropdown-title">Note</span>
-              <div class="options">
-                <span class="new-note-span"><i class="fa-solid fa-plus"></i>New</span>
-                <span class="save-note-span"><i class="fa-regular fa-floppy-disk"></i>Save</span>
-                <span class="delete-note-span"><i class="fa-solid fa-trash"></i>Delete</span>
-                <span class="note-details-span"><i class="fa-solid fa-info"></i>Details</span>
-              </div>
-            </div>
-            <div class="btn-container">
-              <button class="exit-text-editor-btn">Exit</button>
-              <button class="save-note-btn">Save</button>
-            </div>
+          <input type="text" class="note-name-input" placeholder="untitled" spellcheck="false">
+            
+            
+  
+            <button class="save-note-btn">Save</button>
           </div>
           <div class="toolbar-bottom">
-            <div class="btn-container-2">
+            <div class="btn-container">
               <button onclick="executeCommand('undo')"><i class="fa-solid fa-rotate-left"></i></button>
               <button onclick="executeCommand('redo')"><i class="fa-solid fa-rotate-right"></i></button>
             </div>
@@ -98,26 +93,27 @@
                 <button onclick="executeCommand('italic')"><i class="fa-solid fa-italic"></i></button>
                 <button onclick="executeCommand('underline')"><i class="fa-solid fa-underline"></i></button>
                 <button onclick="executeCommand('strikeThrough')"><i class="fa-solid fa-strikethrough"></i></button>
-              </div>
-              <div class="btn-container-2">
-                <input class="foreground-color-picker" type="color" value="#5c7dff">
                 <button onclick="executeCommand('createLink')"><i class="fa-solid fa-link"></i></button>
-              </div>
-              <div class="btn-container">
-                <button onclick="executeCommand('insertUnorderedList')"><i class="fa-solid fa-list-ul"></i></button>
-                <button onclick="executeCommand('insertOrderedList')"><i class="fa-solid fa-list-ol"></i></button>
-              </div>
-              <div class="btn-container">
+                
+                <div class="color-picker">
+                  <i class="fa-solid fa-eye-dropper"></i>
+                  <input class="foreground-color-picker" type="color" value="#5c7dff">
+                </div>
+                
+    
                 <button onclick="executeCommand('justifyLeft')"><i class="fa-solid fa-align-left"></i></button>
                 <button onclick="executeCommand('justifyCenter')"><i class="fa-solid fa-align-center"></i></button>
                 <button onclick="executeCommand('justifyRight')"><i class="fa-solid fa-align-right"></i></button>
+    
+                <button onclick="executeCommand('insertUnorderedList')"><i class="fa-solid fa-list-ul"></i></button>
+                <button onclick="executeCommand('insertOrderedList')"><i class="fa-solid fa-list-ol"></i></button>
+              
               </div>
           </div>
         </div>
-        <div class="editor-scroll-container">
-          <div class="editor" contenteditable="true" spellcheck="false"></div>
-        </div>
+        <div class="editor" contenteditable="true" spellcheck="false"></div>
       </div>
+    </div>
       
       <script>
         function executeCommand(command, value = null) {
