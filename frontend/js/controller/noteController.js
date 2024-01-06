@@ -63,4 +63,9 @@ export class NoteController {
     handleNoteCardClick(content, name, creation, lastEdit, noteId, bookmark) {
         this.applicationController.openNoteInTextEditor(content, name, creation, lastEdit, noteId, bookmark);
     }
+
+    handleSearchbarUpdate() {
+        
+
+    }
 }

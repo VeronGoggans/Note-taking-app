@@ -180,8 +180,6 @@ export class NoteView {
         this.noteObjects = [];
     }
 
-
-
     // Methods that communicate with the note controller
     // Communicating <---
 

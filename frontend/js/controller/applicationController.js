@@ -95,6 +95,24 @@ export class ApplicationController {
     }
 
     /**
+     * This method retrieves a spicific note
+     * 
+     * This method retrieves the note that has been 
+     * clicked on in the search bar and then opens 
+     * the note in the text editor 
+     * 
+     * @param {String} noteId 
+     */
+    async getSearchedNote(noteId) {
+        const RESPONSE = await this.noteController.getNoteById(noteId);
+        const CONTENT = await RESPONSE.content;
+        const NAME = await RESPONSE.title;
+        const CREATION = await RESPONSE.creation;
+        const LAST_EDIT = await RESPONSE.last_edit;
+        this.openNoteInTextEditor(CONTENT, NAME, CREATION, LAST_EDIT, noteId, false);
+    }
+
+    /**
      * This method opens up the text editor
      * And puts the note the user clicked on, in the text editor.
      * 
