@@ -22,6 +22,9 @@ export class TextEditorView {
     this.headingButton = document.querySelector('.heading-button');
     this.headingDropdown = document.querySelector('.heading-dropdown');
     this.headingDropdownOptions = this.headingDropdown.querySelector('.options');
+    this.linkButton = document.querySelector('.link-btn');
+    this.codeBlockButton = document.querySelector('.code-block-btn');
+    this.paragrapghButton = document.querySelector('.paragraph-btn');
 
     // other
     this.textEditor = document.querySelector('.editor-wrapper');
@@ -40,6 +43,9 @@ export class TextEditorView {
     this.newNoteSpan.addEventListener('click', () => {this.handleSaveButtonClick(false)});
     this.exitButton.addEventListener('click', () => {this.removeTextEditor()});
     this.saveButton.addEventListener('click', () => {this.handleSaveButtonClick()});
+    this.linkButton.addEventListener('click', () => {this.addLink()});
+    this.codeBlockButton.addEventListener('click', () => {this.addCodeBlock()});
+    this.paragrapghButton.addEventListener('click', () => {this.addParagraph()});
   }
 
   /**
@@ -69,6 +75,7 @@ export class TextEditorView {
   open(content, name) {
     this.page.innerHTML = content;
     this.noteNameInput.value = name;
+    this.listenForLinkClicks();
     this.show();
   }
 
@@ -172,5 +179,94 @@ export class TextEditorView {
     this.textEditor.style.visibility = 'hidden';
     this.clear();
     this.textEditorController.clearStoredNoteData();
+  }
+
+
+  // Toolbar button functionality 
+
+  /**
+   * This method listens for link clicks.
+   * 
+   * This method is usefull for when a note has <a> tags in them.
+   * Because the <a> tags dont have eventlisteners on them when loaded in.
+   * This method creates that event listener.
+   */
+  listenForLinkClicks() {
+    const LINKS = this.page.querySelectorAll('a');
+    LINKS.forEach(function(LINK) {
+      LINK.addEventListener('click', () => {window.open(LINK.href)})
+    });
+  }
+
+  addLink() {
+    // Get the current selection 
+    const SELECTION = window.getSelection();
+
+    // Get the range of the selection
+    const RANGE = SELECTION.getRangeAt(0);
+
+    // Create a <a> element
+    const LINK = document.createElement('a');
+
+    LINK.addEventListener('click', () => {window.open(RANGE)});
+
+    // Styling the link
+    LINK.style.cursor = 'pointer';
+    LINK.href = RANGE;
+
+    // Surround the selected text with a <a> tag
+    RANGE.surroundContents(LINK);
+
+    SELECTION.removeRange(RANGE);
+  }
+
+
+  addCodeBlock() {
+    // Get the current range 
+    const RANGE = window.getSelection().getRangeAt(0);
+
+    // Creating the html elements
+    const PRE = document.createElement('pre');
+    const CODE_BLOCK = document.createElement('p');
+    CODE_BLOCK.textContent = '...';
+
+    // Creating a <br> tag to put below the <pre> tag.
+    const BREAK = document.createElement('br');
+
+    PRE.appendChild(CODE_BLOCK);
+
+    // Insert the <pre> element at the cursor position
+    RANGE.insertNode(BREAK);
+    RANGE.insertNode(PRE);
+
+    // Collapse the range
+    RANGE.collapse(false);
+  }
+
+
+  addParagraph() {
+    // Get the current selection 
+    const SELECTION = window.getSelection();
+
+    // Get the range of the selection
+    const RANGE = SELECTION.getRangeAt(0);
+
+    // Create a <div> tag 
+    const PARAGRAPH = document.createElement('div');
+    PARAGRAPH.classList.add('paragraph');
+
+    // Create a <p> tag
+    const P = document.createElement('p');
+    P.textContent = '... '
+    PARAGRAPH.appendChild(P);
+
+    // Creating a <br> tag to put below the <pre> tag.
+    const BREAK = document.createElement('br');
+
+    RANGE.insertNode(BREAK);
+    RANGE.insertNode(PARAGRAPH);
+
+    // Collapse the range
+    RANGE.collapse(false);
   }
 }

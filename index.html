@@ -10,9 +10,11 @@
     <link rel="stylesheet" href="frontend/css/dialog.css">
     <link rel="stylesheet" href="frontend/css/textEditor/textEditor.css">
     <link rel="stylesheet" href="frontend/css/textEditor/toolbarBottom.css">
-    <link rel="stylesheet" href="frontend/css/textEditor/toolbarMiddle.css">
     <link rel="stylesheet" href="frontend/css/textEditor/toolbarTop.css">
+    <!-- CDN for the icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- CND for the color coding in pre tags-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism.min.css">
     <title>Note</title>
 </head>
 <style>
@@ -38,7 +40,14 @@
 
         <main class="main">
             <div class="main-top">
-                <button class="create-folder-btn"><i class="fa-solid fa-plus"></i> Folder</button>
+
+              <div class="search-container">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" spellcheck="false" placeholder="Search">
+              </div>
+
+              <button class="create-folder-btn"><i class="fa-solid fa-plus"></i> Folder</button>
+
             </div>
             <div class="main-bottom">
                 <div class="content-list-view">
@@ -93,13 +102,7 @@
                 <button onclick="executeCommand('italic')"><i class="fa-solid fa-italic"></i></button>
                 <button onclick="executeCommand('underline')"><i class="fa-solid fa-underline"></i></button>
                 <button onclick="executeCommand('strikeThrough')"><i class="fa-solid fa-strikethrough"></i></button>
-                <button onclick="executeCommand('createLink')"><i class="fa-solid fa-link"></i></button>
-                
-                <div class="color-picker">
-                  <i class="fa-solid fa-eye-dropper"></i>
-                  <input class="foreground-color-picker" type="color" value="#5c7dff">
-                </div>
-                
+                <button class="link-btn"><i class="fa-solid fa-link"></i></button>            
     
                 <button onclick="executeCommand('justifyLeft')"><i class="fa-solid fa-align-left"></i></button>
                 <button onclick="executeCommand('justifyCenter')"><i class="fa-solid fa-align-center"></i></button>
@@ -107,6 +110,13 @@
     
                 <button onclick="executeCommand('insertUnorderedList')"><i class="fa-solid fa-list-ul"></i></button>
                 <button onclick="executeCommand('insertOrderedList')"><i class="fa-solid fa-list-ol"></i></button>
+                <button class="paragraph-btn"><i class="fa-solid fa-paragraph"></i></button>
+                <button class="code-block-btn"><i class="fa-solid fa-code"></i></button>
+
+                <div class="color-picker">
+                  <i class="fa-solid fa-eye-dropper"></i>
+                  <input class="foreground-color-picker" type="color" value="#5c7dff" onchange="changeColor(this.value)">
+                </div>
               
               </div>
           </div>
@@ -122,9 +132,29 @@
             document.execCommand(command, false, value);
           }
         }
+
+        function changeColor(color) {
+            // Get the selection
+            console.log(`hello color: ${color}`);
+            const selection = window.getSelection();
+            
+            // Get the range of the selection
+            const range = selection.getRangeAt(0);
+
+            // Create a span element
+            const span = document.createElement('span');
+
+            // Set the style of the span (change 'red' to your desired color)
+            span.style.color = color;
+
+            // Surround the selected text with the span
+            range.surroundContents(span);
+        }
       </script>
     <script type="module" src="/frontend/js/view/sideBarView.js"></script>
     <script type="module" src="/frontend/js/view/textEditorView.js"></script>
     <script type="module" src="index.js"></script>
+    <!-- CND for the color coding in pre tags-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js"></script>
 </body>
 </html>

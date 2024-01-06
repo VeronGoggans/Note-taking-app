@@ -8,6 +8,7 @@ class NoteManager:
     def __init__(self):
         self.notes_relative_path = os.getcwd() + '/storage/json/notes.json'
         self.filter = NoteFilter()
+        self.search_bar_note_objects = []
     
 
     def add_note(self, folders, folder_id: str, note: Note):
@@ -77,6 +78,23 @@ class NoteManager:
                 if note_in_subfolder:
                     return note_in_subfolder
         return None
+    
+
+    def get_note_name_id(self, folders):
+        
+        for folder in folders:
+            for note in folder['notes']:
+                search_object = {'title': note['title'], 'id': note['id']}
+                self.search_bar_note_objects.append(search_object)
+
+            self.get_note_name_id(folder['subfolders'])
+        return self.search_bar_note_objects    
+
+
+
+    def clear_search_options_list(self):
+        self.search_bar_note_objects = []      
+
                         
 
     def update_note(self, folders, note_id: str, put_request: PutNoteRequest):
@@ -126,7 +144,6 @@ class NoteManager:
         return None
                 
     
-
 
     def __find_note(self, folders, note_id: str):
         """

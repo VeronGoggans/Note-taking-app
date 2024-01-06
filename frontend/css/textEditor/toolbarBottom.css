@@ -1,3 +1,7 @@
+.toolbar-bottom .btn-container {
+    display: flex;
+}
+
 .toolbar-bottom .btn-container button {
     cursor: pointer;
     background-color: transparent;
@@ -32,10 +36,12 @@
     border-radius: 5px;
     font-size: 16px;
     font-weight: 600;
+    transition: .2s;
 }
 
 .heading-dropdown .heading-button:hover {
     background-color: rgba(92, 125, 255, .2);
+    color: rgba(92, 125, 255);
 }
 
 .heading-dropdown .options {
@@ -78,6 +84,12 @@
 .heading-dropdown .options .heading-6 {font-size: 10.72px}
 
 /*Fore ground color picker*/
+
+.color-picker {
+    display: flex;
+    align-items: center;
+}
+
 .foreground-color-picker {
     cursor: pointer;
     width: 30px;

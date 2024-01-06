@@ -3,72 +3,92 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="test.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
   <style>
-      @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+    #autocomplete-container {
+      position: relative;
+      display: inline-block;
+    }
 
+    #autocomplete-input {
+      padding: 10px;
+      width: 200px;
+    }
+
+    #suggestions-list {
+      position: absolute;
+      z-index: 1;
+      width: 100%;
+      max-height: 150px;
+      overflow-y: auto;
+      border: 1px solid #ccc;
+      border-top: none;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    #suggestions-list li {
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    #suggestions-list li:hover {
+      background-color: #f4f4f4;
+    }
   </style>
 </head>
 <body>
-  <div class="editor-wrapper">
-    <div class="toolbar">
-      <div class="toolbar-top">
-        <button class="exit-text-editor-btn"><i class="fa-solid fa-arrow-left"></i></button>
-          <input type="text" class="note-name-input" placeholder="untitled" spellcheck="false">
-          <div class="file-dropdown">
-            <span class="dropdown-title">Note</span>
-            <div class="options">
-              <span class="new-note-span"><i class="fa-solid fa-plus"></i>New</span>
-              <span class="save-note-span"><i class="fa-regular fa-floppy-disk"></i>Save</span>
-              <span class="delete-note-span"><i class="fa-solid fa-trash"></i>Delete</span>
-              <span class="note-details-span"><i class="fa-solid fa-info"></i>Details</span>
-            </div>
-          </div>
-          
 
-            <button class="save-note-btn">Save</button>
-        </div>
-        <div class="toolbar-bottom">
-          <div class="btn-container">
-            <button onclick="executeCommand('undo')"><i class="fa-solid fa-rotate-left"></i></button>
-            <button onclick="executeCommand('redo')"><i class="fa-solid fa-rotate-right"></i></button>
-          </div>
-          <div class="heading-dropdown">
-            <button class="heading-button">heading 1</button>
-            <div class="options">
-              <button class="heading-1" onclick="executeCommand('formatBlock', 'h1')">Heading 1</button>
-              <button class="heading-2" onclick="executeCommand('formatBlock', 'h2')">Heading 2</button>
-              <button class="heading-3" onclick="executeCommand('formatBlock', 'h3')">Heading 3</button>
-              <button class="heading-4" onclick="executeCommand('formatBlock', 'h4')">Heading 4</button>
-              <button class="heading-5" onclick="executeCommand('formatBlock', 'h5')">Heading 5</button>
-              <button class="heading-6" onclick="executeCommand('formatBlock', 'h6')">Heading 6</button>
-            </div>
-          </div>
-            <div class="btn-container">
-              <button onclick="executeCommand('bold')"><i class="fa-solid fa-b"></i></button>
-              <button onclick="executeCommand('italic')"><i class="fa-solid fa-italic"></i></button>
-              <button onclick="executeCommand('underline')"><i class="fa-solid fa-underline"></i></button>
-              <button onclick="executeCommand('strikeThrough')"><i class="fa-solid fa-strikethrough"></i></button>
-              <button onclick="executeCommand('createLink')"><i class="fa-solid fa-link"></i></button>
-  
-              <input class="foreground-color-picker" type="color" value="#5c7dff">
-  
-              <button onclick="executeCommand('justifyLeft')"><i class="fa-solid fa-align-left"></i></button>
-              <button onclick="executeCommand('justifyCenter')"><i class="fa-solid fa-align-center"></i></button>
-              <button onclick="executeCommand('justifyRight')"><i class="fa-solid fa-align-right"></i></button>
-  
-              <button onclick="executeCommand('insertUnorderedList')"><i class="fa-solid fa-list-ul"></i></button>
-              <button onclick="executeCommand('insertOrderedList')"><i class="fa-solid fa-list-ol"></i></button>
-            
-            </div>
-        </div>
-      </div>
-      <div class="editor" contenteditable="true" spellcheck="false"></div>
-    </div>
-  </div>
-  
+<div id="autocomplete-container">
+  <input type="text" id="autocomplete-input" oninput="handleInput()">
+  <ul id="suggestions-list"></ul>
+</div>
+
+<script>
+  // Sample data for demonstration purposes
+  const suggestions = [
+    "Apple",
+    "Banana",
+    "Cherry",
+    "Date",
+    "Grape",
+    "Kiwi",
+    "Lemon",
+    "Mango",
+    "Orange",
+    "Peach"
+  ];
+
+  const inputElement = document.getElementById("autocomplete-input");
+  const suggestionsList = document.getElementById("suggestions-list");
+
+  function handleInput() {
+    const inputValue = inputElement.value.toLowerCase();
+    const filteredSuggestions = suggestions.filter(suggestion =>
+      suggestion.toLowerCase().includes(inputValue)
+    );
+
+    displaySuggestions(filteredSuggestions);
+  }
+
+  function displaySuggestions(suggestionsArray) {
+    const html = suggestionsArray.map(suggestion => `<li>${suggestion}</li>`).join("");
+    suggestionsList.innerHTML = html;
+  }
+
+  suggestionsList.addEventListener("click", function (event) {
+    if (event.target.tagName === "LI") {
+      inputElement.value = event.target.textContent;
+      suggestionsList.innerHTML = "";
+    }
+  });
+
+  document.addEventListener("click", function (event) {
+    if (!event.target.closest("#autocomplete-container")) {
+      suggestionsList.innerHTML = "";
+    }
+  });
+</script>
+
 </body>
 </html>

@@ -14,6 +14,7 @@ class NoteRouter:
 
         self.route.add_api_route("/notes/{folder_id}/{note_type}", self.notes, methods=['GET'])
         self.route.add_api_route('/noteById/{note_id}', self.note_by_id, methods=['GET'])
+        self.route.add_api_route('/noteSearchObjects', self.note_name_id, methods=['GET'])
         self.route.add_api_route('/note', self.create_note, methods=['POST'])
         self.route.add_api_route('/note', self.delete_note, methods=['DELETE'])
         self.route.add_api_route('/note', self.update_note, methods=['PUT'])
@@ -42,6 +43,14 @@ class NoteRouter:
         if response != RespMsg.NOT_FOUND:
             return {'Status_code': RespMsg.OK, "Object": response}
         return {'Status_code': RespMsg.NOT_FOUND}
+    
+
+    def note_name_id(self):
+        response = self.note_service.get_search_options()
+
+        if response != RespMsg.INTERAL_SERVER_ERROR:
+            return {'Status_code': RespMsg.OK, 'Notes': response}
+        return {'Status_code': RespMsg.INTERAL_SERVER_ERROR}
 
 
     def create_note(self, post_request: PostNoteRequest):

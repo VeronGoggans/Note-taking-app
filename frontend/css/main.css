@@ -28,6 +28,7 @@ body {
     display: flex;
     justify-content: right;
     border-bottom: 1px solid rgb(212, 212, 212);
+    gap: 10px;
 }
 
 .create-folder-btn {
@@ -44,6 +45,34 @@ body {
     font-weight: 600;
     border-radius: 20px;
     font-family: Roboto;
+    transition: .2s;
+}
+
+.search-container {
+    margin: 7px 10px 7px 0px;
+    background-color: #f9fbfd;
+    display: flex;
+    border: 1px solid rgb(212, 212, 212);
+    border-radius: 20px;
+    padding: 5px 10px;
+    align-items: center;
+}
+
+.search-container input {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding: 2px 5px;
+}
+
+.search-container i {
+    margin-right: 5px;
+    color: #444863;
+    cursor: pointer;
+}
+
+.create-folder-btn:hover {
+    background-color: #4a6eff;
 }
 
 .main-bottom {

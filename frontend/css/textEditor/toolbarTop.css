@@ -87,7 +87,6 @@
     position: absolute;
     right: 70px;
     cursor: pointer;
-    outline: none;
     border: none;
     display: flex;
     justify-content: space-evenly;
@@ -100,14 +99,19 @@
     font-weight: 600;
     border-radius: 20px;
     font-family: Roboto;
+    transition: .2s;
 }
+
+.save-note-btn:hover {
+    background-color: #4a6eff;
+}
+
 
 .exit-text-editor-btn {
     font-family: Roboto;
     cursor: pointer;
     padding: 5px 0;
     margin-left: 10px;
-    outline: none;
     border: none;
     width: 40px;
     height: 40px;

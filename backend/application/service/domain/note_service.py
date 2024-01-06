@@ -22,6 +22,18 @@ class NoteService:
             return content
         except OSError as e:
             return RespMsg.INTERAL_SERVER_ERROR
+        
+
+    def get_search_options(self):
+        folder_structure = self.json_manager.load(self.folders_path)
+        folders = folder_structure['folders']
+        notes = self.note_manager.get_note_name_id(folders)
+
+        if notes:
+            self.note_manager.clear_search_options_list()
+            return notes
+        return RespMsg.INTERAL_SERVER_ERROR
+
 
 
     def get_notes(self, folder_id: int, note_type: str):

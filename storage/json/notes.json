@@ -40,11 +40,27 @@
                     "title": "Meme",
                     "content": "storage/notes/note-n-199.html",
                     "bookmark": false,
-                    "last_edit": "04/01/2024 15:57:12",
+                    "last_edit": "05/01/2024 16:21:58",
                     "creation": "04/01/2024"
                 }
             ],
-            "subfolders": []
+            "subfolders": [
+                {
+                    "id": "s-47",
+                    "name": "nested",
+                    "notes": [
+                        {
+                            "id": "n-205",
+                            "title": "test note",
+                            "content": "storage/notes/note-n-205.html",
+                            "bookmark": false,
+                            "last_edit": "06/01/2024 12:56:19",
+                            "creation": "06/01/2024"
+                        }
+                    ],
+                    "subfolders": []
+                }
+            ]
         }
     ]
 }
