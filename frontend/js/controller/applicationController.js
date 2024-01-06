@@ -21,8 +21,11 @@ export class ApplicationController {
      * 
      * This method is called when the app starts.
      */
-    start() {
-        this.folderController.getFolders();
+    async start() {
+        await this.folderController.getFolders();
+        const RESPONSE = await this.applicationModel.getSearchOptions('/noteSearchObjects');
+        this.applicationView.giveSearchOptions(RESPONSE.Notes);
+        this.applicationView.renderSearchOptions(RESPONSE.Notes);
     }
 
     /**
@@ -56,6 +59,12 @@ export class ApplicationController {
         await this.folderController.addFolder(name);
     }
 
+    /**
+     * This method handle the create folder button click
+     * 
+     * This method is called by the application view. 
+     * @param {String} name 
+     */
     async handleAddFolder(name) {
         const CURRENT_FOLDER = this.applicationModel.getCurrentFolderID();
         if (CURRENT_FOLDER === undefined) await this.addFolder(name);

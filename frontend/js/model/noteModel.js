@@ -11,6 +11,28 @@ export class NoteModel {
         }
     }
 
+    async getNoteById(endpoint, noteId) {
+        try {
+            const RESPONSE = await fetch(`${endpoint}/${noteId}`);
+            if (!RESPONSE.OK) throw new Error(`HTTP error Status: ${RESPONSE.status}`);
+            return await RESPONSE.json();
+        } catch(error) {
+            console.error('Error fetching data: ', error.message);
+            throw error;
+        }
+    }
+
+    async getSearchOptions(endpoint) {
+        try {
+            const RESPONSE = await fetch(`${endpoint}`);
+            if (!RESPONSE.ok) throw new Error(`HTTP error Status: ${RESPONSE.status}`);
+            return await RESPONSE.json();
+        } catch(error) {
+            console.error('Error fetching data: ', error.message);
+            throw error;
+        }
+    }
+
     async addNote(endpoint, folderId, content, name) {
         const POST_NOTE_OBJECT = {
             'folder_id': folderId,

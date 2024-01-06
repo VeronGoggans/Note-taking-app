@@ -71,6 +71,44 @@ body {
     cursor: pointer;
 }
 
+
+.note-suggestions-list {
+    position: absolute;
+    top: 50px;
+    z-index: 1;
+    width: 165px;
+    max-height: 150px;
+    overflow-y: auto;
+    border: 1px solid rgb(212, 212, 212);
+    border-radius: 10px;
+    background-color: #ffffff;
+    list-style: none;
+    margin: 0;
+    padding: 10px;
+}
+
+.note-suggestions-list::-webkit-scrollbar {
+    background-color: transparent;
+    width: 5px;
+}
+
+.note-suggestions-list::-webkit-scrollbar-thumb {
+    background-color: rgb(212, 212, 212);
+    border-radius: 5px;
+}
+
+.note-suggestions-list li {
+    cursor: pointer;
+    margin: 10px 0;
+    padding: 5px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.note-suggestions-list li:hover {
+    background-color: rgba(92, 125, 255, .3);
+}
+
 .create-folder-btn:hover {
     background-color: #4a6eff;
 }

@@ -14,6 +14,12 @@ export class NoteController {
         this.noteView.renderNoteCards(NOTES);
     }
 
+    async getNoteById(noteId) {
+        const RESPONSE = await this.noteModel.getNoteById('/noteById', noteId);
+        const NOTE = RESPONSE.Note;
+        return NOTE;
+    }
+
     async addNote(folderId, content, name) {
         const RESPONSE = await this.noteModel.addNote('/note', folderId, content, name);
         let note = RESPONSE.Note;
