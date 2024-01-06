@@ -61,7 +61,10 @@ export class ApplicationView {
         const SEARCHBAR_VALUES = this.noteOptionsList.children;
         for (let i = 0; i < SEARCHBAR_VALUES.length; i++) {
             const ID = SEARCHBAR_VALUES[i].id;
-            SEARCHBAR_VALUES[i].addEventListener('click', () => {this.handleSearch(ID)});
+            SEARCHBAR_VALUES[i].addEventListener('click', () => {
+                this.handleSearch(ID);
+                this.searchBarInput.value = '';
+            });
         }
     }
 
