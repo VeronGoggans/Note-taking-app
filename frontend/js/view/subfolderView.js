@@ -9,7 +9,7 @@ export class SubfolderView {
         this.subfolderController = controller;
         this.dialog = document.querySelector('.dialog');
         this._content = document.querySelector('.content-view');
-        this._list = document.querySelector('.list-content');
+        this._list = document.querySelector('.list-content-folders');
     }
     /**
      * This method renders a array of subfolders.
@@ -147,27 +147,14 @@ export class SubfolderView {
      * Takes the user into a folder and displays the notes inside it.
      * 
      * This method is triggered when a folder card is clicked. It removes all existing folders from the screen
-     * using {@link removeContent}, and then it navigates into the specified folder, displaying its notes and subfolders
      * using {@link navigateIntoFolder}.
      * 
      * @param {string} id - The ID of the folder to navigate into.
      */
     handleFolderCardClick(id) {
-        this.removeContent();
         this.subfolderController.navigateIntoFolder(id);
     }
 
-    /**
-     * Remove all the content from the sreen.
-     * 
-     * This method removes all the notes and folders from both the content div and list div.
-     */
-    removeContent() {
-        const CONTENT = this._content;
-        const LIST = this._list;
-        while (CONTENT.firstChild) CONTENT.removeChild(CONTENT.firstChild);
-        while (LIST.firstChild) LIST.removeChild(LIST.firstChild);
-    }
 
     /**
      * Removes a specific subfolder from the UI.

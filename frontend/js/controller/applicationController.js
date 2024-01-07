@@ -85,6 +85,8 @@ export class ApplicationController {
     }
 
     navigateIntoFolder(folderId, noteType) {
+        // removing the content from the folder the user is moving out of 
+        this.applicationView.removeContent();
         this.subfolderController.getSubFolders(folderId);
         this.noteController.getNotes(folderId, noteType);
         this.applicationModel.addFolderIdToList(folderId);

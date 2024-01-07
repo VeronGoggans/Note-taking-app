@@ -114,3 +114,21 @@
     border-bottom: 2px solid transparent;
     transition: .2s;
 }
+
+.list-view-folder {
+    cursor: pointer;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    padding: 10px 5px;
+    display: inline-block;
+    width: calc(100% - 30px);
+    background-color: transparent;
+    color: #444863;
+    font-weight: 600;
+    border-radius: 15px;
+    transition: .2s;
+}
+
+.list-view-folder:hover {
+    background-color: rgba(92, 125, 255, .3);
+}

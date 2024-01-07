@@ -7,7 +7,7 @@ export class FolderView {
     constructor(folderController) {
         this.folderController = folderController;
         this._content = document.querySelector('.content-view');
-        this._list = document.querySelector('.list-content');
+        this._list = document.querySelector('.list-content-folders');
         this._cover = document.querySelector('.cover');
         this.dialog = document.querySelector('.dialog');
     }
@@ -41,8 +41,8 @@ export class FolderView {
     renderFolder(folder) {
         const ID = folder.id;
         const NAME = folder.name;
-        const FOLDER_CARD = this.folder(ID, NAME);
         const FOLDER_LIST_CARD = this.listFolder(ID, NAME);
+        const FOLDER_CARD = this.folder(ID, NAME);
         this._content.appendChild(FOLDER_CARD);
         this._list.appendChild(FOLDER_LIST_CARD);
         this.removeDialog();
@@ -50,6 +50,9 @@ export class FolderView {
 
     /**
      * This method updates the subfolder card inside the list div.
+     * 
+     * This method is called when a 
+     * folder's name has been changed
      * 
      * @param {dict} folder the updated folder.
      */
@@ -135,42 +138,27 @@ export class FolderView {
      * This method communicates with the folder controller
      * to delete the specified folder.
      * 
-     * @param {String} id The ID of the folder wished to be updated
+     * @param {String} id The ID of the folder wished to be deleted
      */
     async handleConfirmButtonClick(id) {
         await this.folderController.deleteFolder(id);
     }
 
     /**
-     * Takes the user into a folder and displays the notes inside it.
+     * This method takes the user into a folder 
+     * and displays the notes inside it.
      * 
      * This method is triggered when a folder card is clicked. It removes all existing folders from the screen
-     * using {@link removeContent}, and then it navigates into the specified folder, displaying its notes and subfolders
      * using {@link navigateIntoFolder}.
      * 
      * @param {string} id - The ID of the folder to navigate into.
      */
     handleFolderCardClick(id) {
-        this.removeContent();
         this.folderController.navigateIntoFolder(id);
     }
 
     /**
-     * Removes folders from the UI.
-     *
-     * This method removes all the child elements from the content html div and list-view html div
-     *
-     * @returns {void}
-     */
-    removeContent() {
-        const CONTENT = this._content;
-        const LIST = this._list;
-        while (CONTENT.firstChild) CONTENT.removeChild(CONTENT.firstChild);
-        while (LIST.firstChild) LIST.removeChild(LIST.firstChild);
-    }
-
-    /**
-     * Removes a specific folder from the UI.
+     * This method removes a specific folder from the UI.
      *
      * This method removes the folder from the UI that it has been given.
      * @param {String} id the ID of the folder to be removed from the UI.

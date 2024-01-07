@@ -121,8 +121,7 @@ body {
 
 .main-bottom .content-list-view {
     background-color: #f9fbfd; /*rgb(221 240 255)*/
-    display: grid;
-    grid-template-rows: 30px 1fr;
+    display: block;
     border-right: 1px solid rgb(212, 212, 212);
 }
 
@@ -133,11 +132,15 @@ body {
     font-weight: 600;
 }
 
-.content-list-view .list-content {
+.list-content-folders,
+.list-content-notes {
     display: block;
+    height: fit-content;
+    margin-bottom: 20px;
 }
 
-.list-content .list-view-folder {
+.list-view-folder,
+.list-view-note {
     cursor: pointer;
     margin-left: 10px;
     margin-bottom: 10px;
@@ -151,7 +154,8 @@ body {
     transition: .2s;
 }
 
-.list-content .list-view-folder:hover {
+.list-view-folder:hover,
+.list-view-note:hover {
     background-color: rgba(92, 125, 255, .3);
 }
 

@@ -1,11 +1,12 @@
 import { Note } from "../components/note.js";
 import { DeleteContainer } from "../components/deleteContainer.js";
+import { ListNote } from "../components/listNote.js";
 
 export class NoteView {
     constructor(noteController) {
         this.noteController = noteController;
         this._content = document.querySelector('.content-view');
-        this._list = document.querySelector('.list-content');
+        this._list = document.querySelector('.list-content-notes');
         this._cover = document.querySelector('.cover');
         this.dialog = document.querySelector('.dialog');
         this.noteObjects = [];
@@ -30,8 +31,10 @@ export class NoteView {
             const CONTENT = notes[i].content;
             const CREATED = notes[i].creation;
             const EDIT = notes[i].last_edit;
+            const LIST_NOTE_CARD = this.listNote(ID, NAME, CREATED);
             const NOTE_CARD = this.note(ID, NAME, BOOKMARK, CONTENT, CREATED, EDIT);
             this._content.appendChild(NOTE_CARD);
+            this._list.appendChild(LIST_NOTE_CARD);
         }
     }
 
@@ -53,8 +56,10 @@ export class NoteView {
         const CONTENT = note.content;
         const CREATED = note.creation;
         const EDIT = note.last_edit;
+        const LIST_NOTE_CARD = this.listNote(ID, NAME, CREATED);
         const NOTE_CARD = this.note(ID, NAME, BOOKMARK, CONTENT, CREATED, EDIT);
         this._content.appendChild(NOTE_CARD);
+        this._list.appendChild(LIST_NOTE_CARD);
     }
 
     /**
@@ -147,9 +152,13 @@ export class NoteView {
      */
     removeNote(note) {
         const ALL_NOTES = this._content.children;
+        const ALL_LIST_NOTES = this._list.children;
         const ID = note.id
         for (let i = 0; i < ALL_NOTES.length; i++) {
-            if (ALL_NOTES[i].id === ID) this._content.removeChild(ALL_NOTES[i]);
+            if (ALL_NOTES[i].id === ID) {
+                this._content.removeChild(ALL_NOTES[i]);
+                this._list.removeChild(ALL_LIST_NOTES[i]);
+            }
         }
         this.removeDialog();
     }
@@ -173,6 +182,18 @@ export class NoteView {
     }
 
     /**
+     * This method creates a ListNote component and returns it
+     * 
+     * @param {String} id The ID of the note
+     * @param {String} name The name of the note
+     * @param {String} creation The creation date of the note
+     * @returns {ListNote} The list note card
+     */
+    listNote(id, name, creation) {
+        return new ListNote(id, name, creation, this);
+    }
+
+    /**
      * This method clears the noteObjects list 
      * inside the noteView
      */
@@ -187,10 +208,10 @@ export class NoteView {
      * This method updates a note
      * 
      * This method will communicate with the note controller 
-     * to update a note.
+     * to update a note
      * 
-     * @param {String} id The ID of the note wished to be updated.
-     * @param {String} name The new name for the note.
+     * @param {String} id The ID of the note wished to be updated
+     * @param {String} name The new name for the note
      */
     async updateNote(id, name, content, bookmark) {
         await this.noteController.updateNote(id, name, content, bookmark);

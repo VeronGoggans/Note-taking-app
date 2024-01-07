@@ -17,7 +17,8 @@ export class ApplicationView {
         // other
         this.dialog = document.querySelector('.dialog');
         this._content = document.querySelector('.content-view');
-        this._list = document.querySelector('.list-content');
+        this._listViewFolders = document.querySelector('.list-content-folders');
+        this._listViewNotes = document.querySelector('.list-content-notes');
         this._searchNoteObjects = [];
 
         this.attachEventListeners();
@@ -124,16 +125,19 @@ export class ApplicationView {
 
 
     /**
-     * Removes folders from the UI.
-     *
-     * This method removes all the child elements from the content html div and list-view html div
-     *
+     * This method removes the following from the UI
+     * - list folder card 
+     * - folder card
+     * - list note card 
+     * - note card
      */
     removeContent() {
         const CONTENT = this._content;
-        const LIST = this._list;
+        const FOLDERS = this._listViewFolders;
+        const NOTES = this._listViewNotes;
         while (CONTENT.firstChild) CONTENT.removeChild(CONTENT.firstChild);
-        while (LIST.firstChild) LIST.removeChild(LIST.firstChild);
+        while (FOLDERS.firstChild) FOLDERS.removeChild(FOLDERS.firstChild);
+        while (NOTES.firstChild) NOTES.removeChild(NOTES.firstChild);
     }
 
     toggleTextEditorVisibility() {
