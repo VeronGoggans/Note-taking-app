@@ -52,7 +52,30 @@
                     "creation": "06/01/2024"
                 }
             ],
-            "subfolders": []
+            "subfolders": [
+                {
+                    "id": "s-50",
+                    "name": "test",
+                    "notes": [
+                        {
+                            "id": "n-212",
+                            "title": "My Note",
+                            "content": "storage/notes/note-n-212.html",
+                            "bookmark": false,
+                            "last_edit": "07/01/2024 02:45:36",
+                            "creation": "07/01/2024"
+                        }
+                    ],
+                    "subfolders": [
+                        {
+                            "id": "s-51",
+                            "name": "My subfolder",
+                            "notes": [],
+                            "subfolders": []
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }

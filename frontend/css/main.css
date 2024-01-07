@@ -123,6 +123,7 @@ body {
     background-color: #f9fbfd; /*rgb(221 240 255)*/
     display: block;
     border-right: 1px solid rgb(212, 212, 212);
+    padding: 10px 5px;
 }
 
 .main-bottom .content-list-view .content-list-view-title {
@@ -136,7 +137,7 @@ body {
 .list-content-notes {
     display: block;
     height: fit-content;
-    margin-bottom: 20px;
+    margin: 20px 0;
 }
 
 .list-view-folder,
