@@ -24,6 +24,7 @@ export class ApplicationView {
         this.attachEventListeners();
     }
 
+
     /**
      * This method initiates all the event listeners 
      * that are in the following html elements
@@ -51,12 +52,16 @@ export class ApplicationView {
         });
     }
 
+
     /**
-     * This method is listens for <li> clicks 
-     * within the noteOptionsList <ul> tag
+     * This method listens for li element clicks 
+     * within the noteOptionsList ul element
      * 
      * This method is called everytime the suggested 
      * notes are updated.
+     * 
+     * The suggested notes in the searchbar are updated 
+     * when the user gives input.
      */
     listenForSearchClicks() {
         const SEARCHBAR_VALUES = this.noteOptionsList.children;
@@ -68,6 +73,7 @@ export class ApplicationView {
             });
         }
     }
+
 
     /**
      * This method renders a new folder container
@@ -81,6 +87,7 @@ export class ApplicationView {
         this.renderDialog();
     }
 
+
     /**
      * This method shows the dialog to the screen.
      */
@@ -88,6 +95,7 @@ export class ApplicationView {
         this.dialog.style.visibility = 'visible';
         this.dialog.style.top = '0%';
     }
+
 
     /**
      * This method renders all the note names 
@@ -103,6 +111,7 @@ export class ApplicationView {
         this.listenForSearchClicks();
     }
 
+
     /**
      * This method hides the dialog from the screen
      */
@@ -112,6 +121,7 @@ export class ApplicationView {
         const CHILD = this.dialog.firstChild;
         this.dialog.removeChild(CHILD);
     }
+
 
     /**
      * This method puts all the note option objects
@@ -140,25 +150,21 @@ export class ApplicationView {
         while (NOTES.firstChild) NOTES.removeChild(NOTES.firstChild);
     }
 
+
+    /**
+     * This method toggles the text editor visibility
+     * 
+     * This method is called by the following events 
+     * 1. Note button inside sidebar is clicked
+     * 2. Note suggestion inside the searchbar is clicked
+     * 3. Note card is clicked
+     * 4. Return button inside text editor is clicked
+     */
     toggleTextEditorVisibility() {
         // toggle the visibility.
         this.textEditorWrapper.style.visibility = this.textEditorWrapper.style.visibility === 'visible' ? 'hidden' : 'visible';
     }
 
-    // Communication with the application controller
-    home() {
-        this.removeContent();
-        this.applicationController.navigateToHomescreen();
-    }
-
-    back() {
-        this.removeContent();
-        this.applicationController.navigateOutofFolder();
-    }
-
-    showTextEditor() {
-        this.applicationController.showTextEditor();
-    }
 
     /**
      * This method handles input in the searchbar
@@ -179,6 +185,36 @@ export class ApplicationView {
         this.renderSearchOptions(FILTERED_OPTIONS);
       }
 
+
+    // Communication with the application controller
+
+
+    /**
+     * This method is called when the home button is clicked
+     */
+    home() {
+        this.removeContent();
+        this.applicationController.navigateToHomescreen();
+    }
+
+
+    /**
+     * This method is called when the back button is clicked
+     */
+    back() {
+        this.removeContent();
+        this.applicationController.navigateOutofFolder();
+    }
+
+
+    /**
+     * This method is called when the note button is clicked
+     */
+    showTextEditor() {
+        this.applicationController.showTextEditor();
+    }
+
+
     /**
      * This method handles the  event of a user 
      * searching for a note.
@@ -193,10 +229,11 @@ export class ApplicationView {
         await this.applicationController.getSearchedNote(noteId);
     }
 
+
     /**
      * This method handle the add folder button click 
      * 
-     * This method is triggered from with in the new folder container
+     * This method is called from with in the new folder container
      *  
      * @param {String} name 
      */

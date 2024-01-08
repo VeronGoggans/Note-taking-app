@@ -26,56 +26,14 @@
         {
             "id": "f-49",
             "name": "My folder",
-            "notes": [
-                {
-                    "id": "n-196",
-                    "title": "Favorite Games",
-                    "content": "storage/notes/note-n-196.html",
-                    "bookmark": false,
-                    "last_edit": "07/01/2024 00:24:32",
-                    "creation": "03/01/2024"
-                },
-                {
-                    "id": "n-199",
-                    "title": "Meme",
-                    "content": "storage/notes/note-n-199.html",
-                    "bookmark": false,
-                    "last_edit": "05/01/2024 16:21:58",
-                    "creation": "04/01/2024"
-                },
-                {
-                    "id": "n-208",
-                    "title": "Sorrow",
-                    "content": "storage/notes/note-n-208.html",
-                    "bookmark": false,
-                    "last_edit": "06/01/2024 22:30:58",
-                    "creation": "06/01/2024"
-                }
-            ],
-            "subfolders": [
-                {
-                    "id": "s-50",
-                    "name": "test",
-                    "notes": [
-                        {
-                            "id": "n-212",
-                            "title": "My Note",
-                            "content": "storage/notes/note-n-212.html",
-                            "bookmark": false,
-                            "last_edit": "07/01/2024 02:45:36",
-                            "creation": "07/01/2024"
-                        }
-                    ],
-                    "subfolders": [
-                        {
-                            "id": "s-51",
-                            "name": "My subfolder",
-                            "notes": [],
-                            "subfolders": []
-                        }
-                    ]
-                }
-            ]
+            "notes": [],
+            "subfolders": []
+        },
+        {
+            "id": "f-50",
+            "name": "School",
+            "notes": [],
+            "subfolders": []
         }
     ]
 }

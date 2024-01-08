@@ -1,3 +1,5 @@
+// This class is independent and does not get instantiated by any parent class
+
 class SidebarView {
     constructor() {
         window.addEventListener('resize', () => this.sidebarWidth());
@@ -12,12 +14,21 @@ class SidebarView {
         this._collapsed = false;
     }
 
+    /**
+     * This method is called when the screen width 
+     * becomes smaller then 700 pixels
+     */
     collapseButtons() {
         this._createSNoteSpan.textContent = '';
         this._backSpan.textContent = '';
         this._homeSpan.textContent = '';
     }
 
+    
+    /**
+     * This method is called when the screen width 
+     * becomes bigger then 700 pixels
+     */
     openButtons() {
         this._createSNoteSpan.textContent = 'Note';
         this._backSpan.textContent = 'Back';
@@ -25,6 +36,12 @@ class SidebarView {
     }
 
 
+    /**
+     * This method checks if the app should display 
+     * it's small version or large version.
+     * 
+     * This method is called when the window resizes
+     */
     sidebarWidth() {
         if (window.innerWidth < 700) {
             this._collapsed = true;
@@ -36,4 +53,5 @@ class SidebarView {
     }
 }
 
+// Instantiate a SidebarView object 
 const VIEW = new SidebarView();

@@ -6,8 +6,9 @@ export class TextEditorView {
     this.textEditorController = textEditorController;
     // toolbar top
     this.noteNameInput = document.querySelector('.note-name-input');
+    this.exitButton = document.querySelector('.exit-text-editor-btn');
+    this.saveButton = document.querySelector('.save-note-btn');
 
-    // toolbar middle
     this.noteDropdown = document.querySelector('.file-dropdown');
     this.noteDropdownOptions = this.noteDropdown.querySelector('.options');
     this.noteDetailsSpan = document.querySelector('.note-details-span');
@@ -15,13 +16,11 @@ export class TextEditorView {
     this.saveNoteSpan = document.querySelector('.save-note-span');
     this.newNoteSpan = document.querySelector('.new-note-span');
 
-    this.exitButton = document.querySelector('.exit-text-editor-btn');
-    this.saveButton = document.querySelector('.save-note-btn');
-
     // toolbar bottom
     this.headingButton = document.querySelector('.heading-button');
     this.headingDropdown = document.querySelector('.heading-dropdown');
     this.headingDropdownOptions = this.headingDropdown.querySelector('.options');
+    
     this.linkButton = document.querySelector('.link-btn');
     this.codeBlockButton = document.querySelector('.code-block-btn');
     this.paragrapghButton = document.querySelector('.paragraph-btn');

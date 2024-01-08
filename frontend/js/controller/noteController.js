@@ -64,6 +64,14 @@ export class NoteController {
         this.applicationController.openNoteInTextEditor(content, name, creation, lastEdit, noteId, bookmark);
     }
 
+    /**
+     * This method updates the searchbar.
+     * 
+     * This method updates the searchbar for the following events
+     * 1. Note name changed 
+     * 2. Note deleted 
+     * 3. Note added
+     */
     handleSearchbarUpdate() {
         
 
