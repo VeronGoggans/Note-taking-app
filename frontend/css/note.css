@@ -125,7 +125,7 @@
 
 .note-content-box .paragraph {
     border-radius: 5px;
-    background-color: rgb(239, 241, 247);
+    background-color: rgba(239, 241, 247, .4);
     padding: 20px;
 }
 
@@ -133,9 +133,6 @@
     margin: 3px;
  }
 
- .note-content-box pre {
-    background-color: #24292e;
-    border-radius: 5px;
-    padding: 20px;
-    color: #fff;
+ .note-content-box hr {
+    border: 1px dashed rgb(145 150 167);
  }

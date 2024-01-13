@@ -8,13 +8,12 @@
     <link rel="stylesheet" href="frontend/css/note.css">
     <link rel="stylesheet" href="frontend/css/folder.css">
     <link rel="stylesheet" href="frontend/css/dialog.css">
+    <link rel="stylesheet" href="frontend/css/listView.css">
     <link rel="stylesheet" href="frontend/css/textEditor/textEditor.css">
     <link rel="stylesheet" href="frontend/css/textEditor/toolbarBottom.css">
     <link rel="stylesheet" href="frontend/css/textEditor/toolbarTop.css">
     <!-- CDN for the icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- CND for the color coding in pre tags-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism.min.css">
     <title>Note</title>
 </head>
 <style>
@@ -42,8 +41,8 @@
             <div class="main-top">
 
               <div class="search-container">
-                <i class="fa-solid fa-magnifying-glass"></i>
                 <input type="text" spellcheck="false" placeholder="Search" class="searchbar-input">
+                <i class="fa-solid fa-magnifying-glass"></i>
                 <ul class="note-suggestions-list"></ul>
               </div>
 
@@ -108,14 +107,31 @@
     
                 <button onclick="executeCommand('insertUnorderedList')"><i class="fa-solid fa-list-ul"></i></button>
                 <button onclick="executeCommand('insertOrderedList')"><i class="fa-solid fa-list-ol"></i></button>
-                <button class="paragraph-btn"><i class="fa-solid fa-paragraph"></i></button>
-                <button class="code-block-btn"><i class="fa-solid fa-code"></i></button>
-
-                <div class="color-picker">
-                  <i class="fa-solid fa-eye-dropper"></i>
-                  <input class="foreground-color-picker" type="color" value="#5c7dff" onchange="changeColor(this.value)">
+                <button class="paragraph-btn"><i class="fa-solid fa-p"></i></i></button>
+                <button class="image-btn"><i class="fa-regular fa-image"></i></button>
+                <button class="hr-btn"><i class="fa-solid fa-scissors"></i></button>
+                <button class="bookmark-btn"><i class="fa-regular fa-bookmark"></i></button>            
+              </div>
+              <div class="color-picker">
+                <button class="foreground-color-picker"></button>
+                <div class="color-palette">
+                  <div class="soft-colors">
+                    <button class="soft-green" data-color="#95ffac"></button>
+                    <button class="soft-blue" data-color="#5c7dff"></button>
+                    <button class="soft-purple" data-color="#e97bff"></button>
+                    <button class="soft-red" data-color="#ff6b84"></button>
+                    <button class="soft-orange" data-color="#ff9d70"></button>
+                    <button class="color-white" data-color="#ffffff"></button>
+                  </div>
+                  <div class="dark-colors">
+                    <button class="dark-green" data-color="#4da560"></button>
+                    <button class="dark-blue" data-color="#3e56ba"></button>
+                    <button class="dark-purple" data-color="#a95ab9"></button>
+                    <button class="dark-red" data-color="#ff5252"></button>
+                    <button class="dark-orange" data-color="#fa783c"></button>
+                    <button class="color-black" data-color="#383838"></button>
+                  </div>
                 </div>
-              
               </div>
           </div>
         </div>
@@ -129,24 +145,6 @@
             document.execCommand('styleWithCSS', false, true);
             document.execCommand(command, false, value);
           }
-        }
-
-        function changeColor(color) {
-            // Get the selection
-            console.log(`hello color: ${color}`);
-            const selection = window.getSelection();
-            
-            // Get the range of the selection
-            const range = selection.getRangeAt(0);
-
-            // Create a span element
-            const span = document.createElement('span');
-
-            // Set the style of the span (change 'red' to your desired color)
-            span.style.color = color;
-
-            // Surround the selected text with the span
-            range.surroundContents(span);
         }
       </script>
     <script type="module" src="/frontend/js/view/sideBarView.js"></script>

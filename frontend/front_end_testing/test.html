@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text Editor with Resizable Images</title>
+  <script src="https://unpkg.com/interactjs/dist/interact.js"></script>
+  <style>
+    .resizable {
+      display: inline-block;
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+
+<div contenteditable="true" id="editor"></div>
+<input type="file" id="fileInput">
+
+<script>
+  const editor = document.getElementById('editor');
+  const fileInput = document.getElementById('fileInput');
+
+  function handleFileSelect(event) {
+    const file = event.target.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onload = function (e) {
+        const img = document.createElement('img');
+        img.src = e.target.result;
+        img.draggable = true;
+        img.classList.add('resizable'); // Add a class for styling and interaction
+        editor.appendChild(img);
+
+        // Make the image resizable using interact.js
+        interact(img)
+          .resizable({
+            edges: { left: true, right: true, bottom: true, top: true }
+          })
+          .on('resizemove', function (event) {
+            const target = event.target;
+            const x = (parseFloat(target.getAttribute('data-x')) || 0);
+            const y = (parseFloat(target.getAttribute('data-y')) || 0);
+
+            target.style.width = event.rect.width + 'px';
+            target.style.height = event.rect.height + 'px';
+
+            // translate when resizing from top or left edges
+            target.style.transform = 'translate(' + x + 'px,' + y + 'px)';
+          });
+      };
+
+      reader.readAsDataURL(file);
+    }
+  }
+
+  fileInput.addEventListener('change', handleFileSelect);
+</script>
+
+</body>
+</html>

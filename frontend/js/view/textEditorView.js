@@ -22,13 +22,17 @@ export class TextEditorView {
     this.headingDropdownOptions = this.headingDropdown.querySelector('.options');
     
     this.linkButton = document.querySelector('.link-btn');
-    this.codeBlockButton = document.querySelector('.code-block-btn');
     this.paragrapghButton = document.querySelector('.paragraph-btn');
+    this.lineBreakButton = document.querySelector('.hr-btn');
+    this.foregroundColor = document.querySelector('.foreground-color-picker');
+    this.palette = document.querySelector('.color-palette');
+    this.paletteColors = this.palette.querySelectorAll('.soft-colors button, .dark-colors button');
 
     // other
     this.textEditor = document.querySelector('.editor-wrapper');
     this.page = document.querySelector('.editor');
     this.dialog = document.querySelector('.dialog');
+    console.log(this.paletteColors);
 
     this.attachEventListeners();
   }
@@ -43,8 +47,19 @@ export class TextEditorView {
     this.exitButton.addEventListener('click', () => {this.removeTextEditor()});
     this.saveButton.addEventListener('click', () => {this.handleSaveButtonClick()});
     this.linkButton.addEventListener('click', () => {this.addLink()});
-    this.codeBlockButton.addEventListener('click', () => {this.addCodeBlock()});
     this.paragrapghButton.addEventListener('click', () => {this.addParagraph()});
+    this.lineBreakButton.addEventListener('click', () => {this.addLineBreak()});
+    this.foregroundColor.addEventListener('click', () => {this.toggleVisibleDropdown(this.palette)});
+    this.paletteColors.forEach(button => {
+      button.addEventListener('click', () => {
+          // Get the data-color attribute of the clicked div
+          const COLOR = button.getAttribute('data-color');
+
+          // Call the applyColor method with the color
+          this.applyColor(COLOR);
+          this.toggleVisibleDropdown(this.palette);
+      });
+    });
   }
 
   /**
@@ -52,6 +67,7 @@ export class TextEditorView {
    * by toggling the visibility style property.
    */
   toggleVisibleDropdown(dropdownOptions) {
+    console.log(dropdownOptions);
     dropdownOptions.style.visibility = dropdownOptions.style.visibility === 'visible' ? 'hidden' : 'visible';
   }
 
@@ -220,29 +236,6 @@ export class TextEditorView {
   }
 
 
-  addCodeBlock() {
-    // Get the current range 
-    const RANGE = window.getSelection().getRangeAt(0);
-
-    // Creating the html elements
-    const PRE = document.createElement('pre');
-    const CODE_BLOCK = document.createElement('p');
-    CODE_BLOCK.textContent = '...';
-
-    // Creating a <br> tag to put below the <pre> tag.
-    const BREAK = document.createElement('br');
-
-    PRE.appendChild(CODE_BLOCK);
-
-    // Insert the <pre> element at the cursor position
-    RANGE.insertNode(BREAK);
-    RANGE.insertNode(PRE);
-
-    // Collapse the range
-    RANGE.collapse(false);
-  }
-
-
   addParagraph() {
     // Get the current selection 
     const SELECTION = window.getSelection();
@@ -267,5 +260,32 @@ export class TextEditorView {
 
     // Collapse the range
     RANGE.collapse(false);
+  }
+
+
+  addLineBreak() {
+    // Get the current selection 
+    const SELECTION = window.getSelection();
+
+    // Get the range of the selection
+    const RANGE = SELECTION.getRangeAt(0);
+
+    const HR = document.createElement('hr');
+
+    // Creating a <br> tag to put below the <pre> tag.
+    const BREAK = document.createElement('br');
+
+    RANGE.insertNode(BREAK);
+    RANGE.insertNode(HR);
+
+
+    // Collapse the range
+    RANGE.collapse(false);
+  }
+
+  applyColor(color) {
+    // Use document.execCommand to change text color
+    document.execCommand('styleWithCSS', false, true);
+    document.execCommand('foreColor', false, color);
   }
 }

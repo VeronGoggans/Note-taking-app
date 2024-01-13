@@ -50,7 +50,6 @@ body {
 
 .search-container {
     margin: 7px 10px 7px 0px;
-    background-color: #f9fbfd;
     display: flex;
     border: 1px solid rgb(212, 212, 212);
     border-radius: 20px;
@@ -101,7 +100,7 @@ body {
     cursor: pointer;
     margin: 10px 0;
     padding: 5px;
-    border-radius: 10px;
+    border-radius: 20px;
     font-weight: 600;
 }
 
@@ -119,47 +118,6 @@ body {
     max-height: calc(100dvh - 50px);
 }
 
-.main-bottom .content-list-view {
-    background-color: #f9fbfd; /*rgb(221 240 255)*/
-    display: block;
-    border-right: 1px solid rgb(212, 212, 212);
-    padding: 10px 5px;
-}
-
-.main-bottom .content-list-view .content-list-view-title {
-    padding: 5px;
-    color: #444863;
-    font-size: 18px;
-    font-weight: 600;
-}
-
-.list-content-folders,
-.list-content-notes {
-    display: block;
-    height: fit-content;
-    margin: 20px 0;
-}
-
-.list-view-folder,
-.list-view-note {
-    cursor: pointer;
-    margin-left: 10px;
-    margin-bottom: 10px;
-    padding: 10px 5px;
-    display: inline-block;
-    width: calc(100% - 30px);
-    background-color: transparent;
-    color: #444863;
-    font-weight: 600;
-    border-radius: 15px;
-    transition: .2s;
-}
-
-.list-view-folder:hover,
-.list-view-note:hover {
-    background-color: rgba(92, 125, 255, .3);
-}
-
 .content-view {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -173,7 +131,7 @@ body {
 }
 
 .content-view::-webkit-scrollbar-thumb {
-    background-color: rgb(221 240 255);
+    background-color: #cecece;
     border-radius: 10px;
 }
 

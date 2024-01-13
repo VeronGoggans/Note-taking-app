@@ -37,7 +37,8 @@ export class ApplicationView {
         this.homeButton.addEventListener('click', () => {this.home()});
         this.createNoteButton.addEventListener('click', () => {this.showTextEditor()});
         this.createFolderButton.addEventListener('click', () => {this.renderNewFolderContainer()});
-        this.searchBarInput.addEventListener('input', () => {this.handleSearchBarInput()})
+        this.searchBarInput.addEventListener('input', () => {this.handleSearchBarInput()});
+
         this.dialog.addEventListener('click', (event) => {
             if (!event.target.closest('.new-folder-container') && 
             !event.target.closest('.delete-folder-container')) {
