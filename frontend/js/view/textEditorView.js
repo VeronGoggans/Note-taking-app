@@ -112,6 +112,7 @@ export class TextEditorView {
    */
   renderNoteDetails() {
     const NOTE_DATA = this.getNoteData();
+    console.log(NOTE_DATA);
     this.dialog.appendChild(new NoteDetailContainer(NOTE_DATA[1], NOTE_DATA[2]))
     this.renderDialog();
   }

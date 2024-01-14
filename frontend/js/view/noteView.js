@@ -236,12 +236,11 @@ export class NoteView {
      * @param {String} content is the content of the note.
      * @param {String} name is the name/title of the note. 
      */
-    handleNoteCardClick(noteId, creation) {
+    handleNoteCardClick(noteId, creation, lastEdit) {
         const NOTE = this.noteObjects.find(obj => obj.id === noteId);
         const NAME = NOTE.name;
         const CONTENT = NOTE.content;
         const BOOKMARK = NOTE.bookmark;
-        const LAST_EDIT = NOTE.lastEdit;
-        this.noteController.handleNoteCardClick(CONTENT, NAME, creation, LAST_EDIT, noteId, BOOKMARK);
+        this.noteController.handleNoteCardClick(CONTENT, NAME, creation, lastEdit, noteId, BOOKMARK);
     }
 }

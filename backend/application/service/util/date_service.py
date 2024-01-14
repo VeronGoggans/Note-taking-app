@@ -38,8 +38,8 @@ class DateService():
 
         Args:
             region (str, optional): The region for date and time formatting. Defaults to 'EU'.
-                - 'EU': European date and time format (dd/mm/yyyy HH:MM:SS).
-                - 'US': American date and time format (mm/dd/yyyy HH:MM:SS).
+                - 'EU': European date and time format (dd/mm/yyyy HH:MM).
+                - 'US': American date and time format (mm/dd/yyyy HH:MM).
 
         Returns:
             Union[str, RespMsg]: 
@@ -49,9 +49,9 @@ class DateService():
         current_datetime = datetime.now()
 
         if region.upper() == 'EU':
-            return current_datetime.strftime("%d/%m/%Y %H:%M:%S")
+            return current_datetime.strftime("%d/%m/%Y %H:%M")
         if region.upper() == 'US':
-            return current_datetime.strftime("%m/%d/%Y %H:%M:%S")
+            return current_datetime.strftime("%m/%d/%Y %H:%M")
         else:
             return 'Use EU or US for this method.'
         

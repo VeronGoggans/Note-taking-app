@@ -31,6 +31,7 @@ export class Note {
         this.DELETE_ICON = CNode.create('i', {'class': 'fa-solid fa-trash'});
 
         this.attachEventListeners();
+        this.applyBookmarkStyle(bookmark);
         return this.render();
     }
 
@@ -59,8 +60,15 @@ export class Note {
         this.CONFIRM.addEventListener('click', () => {this.updateNote()});
         this.CANCEL.addEventListener('click', () => {this.toggleEditableFolderName()});
         this.DELETE.addEventListener('click', () => {this.view.renderDeleteContainer(this.id, this.name)});
-        this.CONTENT_BOX.addEventListener('click', () => {this.view.handleNoteCardClick(this.id, this.created)});
+        this.CONTENT_BOX.addEventListener('click', () => {this.view.handleNoteCardClick(this.id, this.created, this.lastEdit)});
+        this.BOOKMARK.addEventListener('click', () => {this.toggleBookmarkStyle()});
     }
+
+    applyBookmarkStyle(bookmarkValue) {
+        if (bookmarkValue) this.HOST.style.backgroundColor = 'aliceblue';
+    }
+
+
 
     toggleEditableFolderName() {
         // Toggle contentEditable
@@ -83,6 +91,8 @@ export class Note {
         let dateParts = date.split('/');
         const MONTH = dateParts[1];
         const DAY = dateParts[0];
+
+        // checking if the day of the month is before the 10th
         const DAY_PARTS = DAY.split('');
         if (DAY_PARTS[0] === '0') dateParts[0] = DAY_PARTS[1];
 
