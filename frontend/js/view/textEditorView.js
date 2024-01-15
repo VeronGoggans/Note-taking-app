@@ -67,7 +67,6 @@ export class TextEditorView {
    * by toggling the visibility style property.
    */
   toggleVisibleDropdown(dropdownOptions) {
-    console.log(dropdownOptions);
     dropdownOptions.style.visibility = dropdownOptions.style.visibility === 'visible' ? 'hidden' : 'visible';
   }
 
@@ -226,8 +225,6 @@ export class TextEditorView {
 
     LINK.addEventListener('click', () => {window.open(RANGE)});
 
-    // Styling the link
-    LINK.style.cursor = 'pointer';
     LINK.href = RANGE;
 
     // Surround the selected text with a <a> tag
@@ -250,7 +247,7 @@ export class TextEditorView {
 
     // Create a <p> tag
     const P = document.createElement('p');
-    P.textContent = '... '
+    P.textContent = ' '
     PARAGRAPH.appendChild(P);
 
     // Creating a <br> tag to put below the <pre> tag.

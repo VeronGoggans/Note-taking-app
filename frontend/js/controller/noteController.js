@@ -23,6 +23,7 @@ export class NoteController {
     async addNote(folderId, content, name) {
         const RESPONSE = await this.noteModel.addNote('/note', folderId, content, name);
         let note = RESPONSE.Note;
+        // swithing the path with the content
         note.content = content;
         this.noteView.renderNoteCard(note);
     }

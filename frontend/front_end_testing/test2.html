@@ -3,104 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>Text Editor with Image Upload</title>
   <style>
-    body {
-      background-color: black;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    #editor {
+      width: 80%;
+      margin: 20px auto;
+      border: 1px solid #ccc;
+      min-height: 200px;
+      padding: 10px;
     }
-
-    .color-picker {
-      position: relative;
-      background-color: aliceblue;
-      width: fit-content;
-      padding: 5px;
-      display: flex;
-      align-items: center;
-      border-radius: 5px;
-      color: #444863;
-      flex-direction: column;
-    }
-
-    .foreground-color-picker {
-      cursor: pointer;
-      width: 30px;
-      height: 10px;
-      background-color: #444863;
-      border-radius: 4px;
-    }
-
-    .foreground-color-picker::-webkit-color-swatch {
-      border-radius: 4px;
-      height: 7px;
-      border: none;
-    }
-
-    .color-palette {
-      position: absolute;
-      padding: 5px;
-      top: 40px;
-      border-radius: 5px;
-      background-color: rgb(46, 49, 51);
-    }
-
-    .soft-colors,
-    .dark-colors {
-      display: flex;
-    }
-
-    .soft-colors div,
-    .dark-colors div {
-      width: 30px;
-      height: 15px;
-      border-radius: 4px;
-      cursor: pointer;
-      margin: 5px 10px;
-    }
-
-    .soft-green {background-color: #95ffac;}
-    .soft-blue {background-color: #5c7dff;}
-    .soft-purple {background-color: #e97bff;}
-    .soft-red {background-color: #ff6b84;}
-    .soft-orange {background-color: #ff9d70;}
-    .color-white {background-color: #ffffff;}
-
-    .dark-green {background-color: #4da560;}
-    .dark-blue {background-color: #3e56ba;}
-    .dark-purple {background-color: #a95ab9;}
-    .dark-red {background-color: #ff5252}
-    .dark-orange {background-color: #fa783c;}
-    .color-black {background-color: #000000;}
-
-
-
   </style>
 </head>
 <body>
-  <div class="color-picker">
-    <i class="fa-solid fa-eye-dropper"></i>
-    <span class="foreground-color-picker"></span>
-    <div class="color-palette">
-      <div class="soft-colors">
-        <div class="soft-green"></div>
-        <div class="soft-blue"></div>
-        <div class="soft-purple"></div>
-        <div class="soft-red"></div>
-        <div class="soft-orange"></div>
-        <div class="color-white"></div>
-      </div>
-      <div class="dark-colors">
-        <div class="dark-green"></div>
-        <div class="dark-blue"></div>
-        <div class="dark-purple"></div>
-        <div class="dark-red"></div>
-        <div class="dark-orange"></div>
-        <div class="color-black"></div>
-      </div>
-    </div>
-  </div>
+  <div id="editor" contenteditable="true" placeholder="Start typing..."></div>
+  <input type="file" id="imageInput" style="display: none" accept="image/*">
+  <button onclick="openFileExplorer()">Insert Image</button>
+
+  <script>
+    function openFileExplorer() {
+      var imageInput = document.getElementById('imageInput');
+      imageInput.click();
+      imageInput.addEventListener('change', function() {
+        handleImageUpload(imageInput);
+        // Clear the input value to allow selecting the same file again
+        imageInput.value = null;
+      });
+    }
+
+    function handleImageUpload(input) {
+      var file = input.files[0];
+      if (file) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+          var imageUrl = e.target.result;
+          var img = document.createElement('img');
+          img.src = imageUrl;
+          img.alt = "Image";
+          document.getElementById('editor').appendChild(img);
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+  </script>
 </body>
 </html>

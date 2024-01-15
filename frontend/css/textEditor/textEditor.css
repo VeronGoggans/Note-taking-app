@@ -78,11 +78,9 @@
     background-color:  transparent;
  }
 
- .editor pre {
-    background-color: #24292e;
-    border-radius: 5px;
-    padding: 20px;
-    color: #fff;
+ .editor a {
+    cursor: pointer;
+    color: rgb(92, 125, 255);
  }
 
  .editor .paragraph {
@@ -93,6 +91,7 @@
 
  .editor .paragraph p {
     margin: 3px;
+    height: 16px;
  }
 
  .editor hr {
