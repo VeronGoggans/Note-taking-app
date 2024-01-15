@@ -3,7 +3,7 @@ from backend.data.folder.folder_manager import FolderManager
 from backend.presentation.request_bodies.folder.del_folder_request import DeleteFolderRequest
 from backend.presentation.request_bodies.folder.post_folder_request import PostFolderRequest
 from backend.presentation.request_bodies.folder.put_folder_request import PutFolderRequest
-from backend.domain.enums.responseMessages import RespMsg
+from backend.domain.enums.responseMessages import Status
 from backend.application.service.domain.folder_service import FolderService
 
 class FolderRouter:
@@ -19,28 +19,28 @@ class FolderRouter:
     
     def folders(self):
         response = self.folder_service.get_folders()
-        return {"Status_code": RespMsg.OK, "folders": response}
+        return {"Status_code": Status.OK, "folders": response}
     
 
     def create_folder(self, folder: PostFolderRequest):
         response = self.folder_service.add_folder(folder)
 
-        if response != RespMsg.INTERAL_SERVER_ERROR:
-            return {'Status_code': RespMsg.OK, "Object": response}
-        return {'Status_code': RespMsg.INTERAL_SERVER_ERROR}
+        if response != Status.INTERAL_SERVER_ERROR:
+            return {'Status_code': Status.OK, "Object": response}
+        return {'Status_code': Status.INTERAL_SERVER_ERROR}
     
 
     def update_folder(self, folder: PutFolderRequest):
         response = self.folder_service.update_folder(folder)
 
-        if response != RespMsg.NOT_FOUND:
-            return {'Status_code': RespMsg.OK, "Folder": response}
-        return {'Status_code': RespMsg.NOT_FOUND}
+        if response != Status.NOT_FOUND:
+            return {'Status_code': Status.OK, "Folder": response}
+        return {'Status_code': Status.NOT_FOUND}
     
 
     def delete_folder(self, folder: DeleteFolderRequest):
         response = self.folder_service.delete_folder(folder)
 
-        if response != RespMsg.NOT_FOUND:
-            return {'Status_code': RespMsg.OK, "Object": response}
-        return {'Status_code': RespMsg.NOT_FOUND}
+        if response != Status.NOT_FOUND:
+            return {'Status_code': Status.OK, "Object": response}
+        return {'Status_code': Status.NOT_FOUND}

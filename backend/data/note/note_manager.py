@@ -1,13 +1,11 @@
 from backend.domain.note import Note
 from backend.presentation.request_bodies.note.put_note_request import PutNoteRequest
 from backend.application.service.util.date_service import DateService
-from backend.application.filters.NoteFilter import NoteFilter
 import os
 
 class NoteManager:
     def __init__(self):
         self.notes_relative_path = os.getcwd() + '/storage/json/notes.json'
-        self.filter = NoteFilter()
         self.search_bar_note_objects = []
     
 
@@ -34,14 +32,13 @@ class NoteManager:
         
 
     
-    def get_notes(self, folders, folder_id: str, note_type: str):
+    def get_notes(self, folders, folder_id: str):
         """
-        Retrieve a filtered list of notes from a specified folder in the notes structure.
+        Retrieve a list of notes from a specified folder in the notes structure.
 
         Args:
             folders (List[dict]): The list of folders to search within.
             folder_id (str): The identifier of the folder from which to retrieve notes from.
-            note_type (str): The type of notes to filter.
 
         Returns:
             dict or None: 
@@ -50,7 +47,8 @@ class NoteManager:
         """
         parent_folder = self.__find_folder_by_id(folders, folder_id)
         if parent_folder:
-            return self.filter.filter_by_type(parent_folder['notes'], note_type)
+            notes_list = self.__create_note_object_list(parent_folder['notes'])
+            return notes_list
         return None
 
 
@@ -190,6 +188,15 @@ class NoteManager:
             if subfolder:
                 return subfolder
         return None
+    
+    
+    def __create_note_object_list(self, notes: list):
+        note_objects = []
+        for note in notes:
+            note_obj = self.__create_note_object(note)
+            note_obj.set_content_text()
+            note_objects.append(note_obj)
+        return note_objects
         
     
     def __create_note_object(self, note_data: Note):

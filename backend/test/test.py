@@ -1,8 +1,3 @@
-class Hello:
-    def __init__(self) -> None:
-        self.say_hello = ''
-
-
-my_hello = Hello()
-my_hello.say_hello = 'Hello There'
-print(my_hello.say_hello)
+my_html = '<ul><li>git pull origin "<span style="font-weight: bold; font-style: italic;">branch name</span>"</li><li>git clone "<span style="font-weight: bold; font-style: italic;">repository link</span>"</li><li>git commit -m "<span style="font-style: italic; font-weight: bold;">your commit message</span>"</li><li>git push&nbsp;</li></ul><div><br></div><div><br></div>'
+my_html_list = my_html.split(' ')
+print(my_html_list)

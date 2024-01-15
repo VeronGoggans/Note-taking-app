@@ -1,5 +1,5 @@
 from backend.domain.folder import Folder
-from backend.domain.enums.responseMessages import RespMsg
+from backend.domain.enums.responseMessages import Status
 import os
 
 class FolderManager:
@@ -24,7 +24,7 @@ class FolderManager:
         return folder_list
 
 
-    def add_folder(self, folders, folder: Folder) -> RespMsg:
+    def add_folder(self, folders, folder: Folder) -> Status:
         """
         Add a new folder to the notes structure.
 
@@ -40,7 +40,7 @@ class FolderManager:
         return folder
 
     
-    def update_folder(self, folders, folder_id: str, folder_name: str) -> RespMsg:
+    def update_folder(self, folders, folder_id: str, folder_name: str) -> Status:
         """
         Update the name of a folder in the notes structure.
 
@@ -61,7 +61,7 @@ class FolderManager:
         return None
         
     
-    def delete_folder(self, folders, folder_id: str) -> RespMsg:
+    def delete_folder(self, folders, folder_id: str) -> Status:
         """
         Delete a folder from the notes structure.
 

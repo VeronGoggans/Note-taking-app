@@ -4,7 +4,7 @@ from backend.presentation.request_bodies.folder.post_folder_request import PostF
 from backend.presentation.request_bodies.folder.put_folder_request import PutFolderRequest
 from backend.domain.folder import Folder
 from backend.data.file.json_manager import JsonManager
-from backend.domain.enums.responseMessages import RespMsg
+from backend.domain.enums.responseMessages import Status
 import os
 
 class FolderService:
@@ -20,7 +20,7 @@ class FolderService:
         Get information about folders in the folder structure.
 
         Returns:
-            list or RespMsg: 
+            list or Status: 
             - A list containing information (name, id) about the folders.
         """
         folder_structure = self.json_manager.load(self.folders_path)
@@ -39,7 +39,7 @@ class FolderService:
             - name (str): The name for the new folder.
 
         Returns:
-            Union[Folder, RespMsg]: 
+            Union[Folder, Status]: 
             - If the folder is successfully added, it returns the new folder object.
             - If there is an internal server error during the process, it returns 'INTERNAL_SERVER_ERROR'.
         """
@@ -52,7 +52,7 @@ class FolderService:
         if new_folder:
             self.json_manager.update(self.folders_path, folder_structure)
             return new_folder
-        return RespMsg.INTERAL_SERVER_ERROR
+        return Status.INTERAL_SERVER_ERROR
     
 
     def update_folder(self, put_request: PutFolderRequest):
@@ -66,7 +66,7 @@ class FolderService:
             - new_name (str): The new name of the folder.
 
         Returns:
-            dict or RespMsg: 
+            dict or Status: 
             - If the folder is successfully updated, it returns the updated folder.
             - If the specified folder is not found, it returns 'NOT_FOUND'.
         """
@@ -77,7 +77,7 @@ class FolderService:
         if updated_folder is not None:
             self.json_manager.update(self.folders_path, folder_structure)
             return updated_folder
-        return RespMsg.NOT_FOUND
+        return Status.NOT_FOUND
     
     
     def delete_folder(self, delete_folder_request: DeleteFolderRequest):
@@ -90,7 +90,7 @@ class FolderService:
             - folder_id (str): The ID of the folder whished to be deleted. 
 
         Returns:
-            RespMsg: 
+            Status: 
             - If the folder is successfully deleted, it returns 'OK'.
             - If the specified folder is not found, it returns 'NOT_FOUND'.
         """
@@ -101,4 +101,4 @@ class FolderService:
         if deleted_folder is not None:
             self.json_manager.update(self.folders_path, folder_structure)
             return deleted_folder
-        return RespMsg.NOT_FOUND
+        return Status.NOT_FOUND

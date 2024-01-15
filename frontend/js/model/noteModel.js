@@ -1,8 +1,8 @@
 export class NoteModel {
     
-    async getNotes(endpoint, folderId, noteType) {
+    async getNotes(endpoint, folderId) {
         try {
-            const RESPONSE = await fetch(`${endpoint}/${folderId}/${noteType}`);
+            const RESPONSE = await fetch(`${endpoint}/${folderId}`);
             if (!RESPONSE.ok) throw new Error(`HTTP error Status: ${RESPONSE.status}`);
             return await RESPONSE.json();
         } catch(error) {

@@ -3,7 +3,7 @@ from backend.presentation.request_bodies.note.post_note_request import PostNoteR
 from backend.presentation.request_bodies.note.put_note_request import PutNoteRequest
 from backend.presentation.request_bodies.note.del_note_request import DeleteNoteRequest
 from backend.domain.note import Note
-from backend.domain.enums.responseMessages import RespMsg
+from backend.domain.enums.responseMessages import Status
 from backend.data.file.json_manager import JsonManager
 import os 
 
@@ -21,7 +21,7 @@ class NoteService:
             content = self.json_manager.load(self.folders_path)
             return content
         except OSError as e:
-            return RespMsg.INTERAL_SERVER_ERROR
+            return Status.INTERAL_SERVER_ERROR
         
 
     def get_search_options(self):
@@ -32,33 +32,32 @@ class NoteService:
         if notes:
             self.note_manager.clear_search_options_list()
             return notes
-        return RespMsg.INTERAL_SERVER_ERROR
+        return Status.INTERAL_SERVER_ERROR
 
 
 
-    def get_notes(self, folder_id: int, note_type: str):
+    def get_notes(self, folder_id: int):
         """
         Retrieves notes of a specific type within the specified folder.
         Note types are standard, protected, bookmark or all.
 
         Args:
             folder_id (int): The ID of the folder from which to retrieve notes.
-            note_type (str): The type of notes to retrieve.
 
         Returns:
-            list(dict) or RespMsg.NOT_FOUND: 
+            list(dict) or Status.NOT_FOUND: 
             - If the folder with the specified ID is found and contains notes of the specified type,
               returns a list of notes.
             - If the folder is not found or does not contain notes of the specified type,
-              returns RespMsg.NOT_FOUND.
+              returns Status.NOT_FOUND.
         """
         folder_structure = self.json_manager.load(self.folders_path)
         folders = folder_structure['folders']
-        notes = self.note_manager.get_notes(folders, folder_id, note_type)
+        notes = self.note_manager.get_notes(folders, folder_id)
 
-        if notes is not None:
+        if notes:
             return notes
-        return RespMsg.NOT_FOUND
+        return Status.NOT_FOUND
 
 
 
@@ -70,15 +69,15 @@ class NoteService:
             note_id (int): The ID of the note to retrieve.
 
         Returns:
-            dict or RespMsg.NOT_FOUND: 
+            dict or Status.NOT_FOUND: 
             - If a note with the specified ID is found, returns the note as a dictionary.
-            - If the note is not found, returns RespMsg.NOT_FOUND.
+            - If the note is not found, returns Status.NOT_FOUND.
         """
         folders = self.json_manager.load(self.folders_path)['folders']
         note = self.note_manager.get_note_by_id(folders, note_id)
         if note:
             return note
-        return RespMsg.NOT_FOUND
+        return Status.NOT_FOUND
     
 
 
@@ -95,10 +94,10 @@ class NoteService:
             - bookmark (bool): A boolean indicating if the note is boomarked or not.
 
         Returns:
-            dict or RespMsg.NOT_FOUND: 
+            dict or Status.NOT_FOUND: 
             - If the folder with the specified ID is found and the note is successfully added,
               returns a dictionary representing the new note.
-            - If the folder is not found, returns RespMsg.NOT_FOUND.
+            - If the folder is not found, returns Status.NOT_FOUND.
         """
         note = self.__construct_note_object(post_request)
         note.set_content_path()
@@ -109,7 +108,7 @@ class NoteService:
         if new_note:
             self.json_manager.update(self.folders_path, folder_structure)
             return new_note
-        return RespMsg.NOT_FOUND
+        return Status.NOT_FOUND
     
     
 
@@ -126,10 +125,10 @@ class NoteService:
             - bookmrk (bool): A boolean indicating if the note is boomarked or not.
 
         Returns:
-            dict or RespMsg.NOT_FOUND: 
+            dict or Status.NOT_FOUND: 
             - If a note with the specified ID is found and successfully updated,
               returns a dictionary representing the updated note.
-            - If the note is not found, returns RespMsg.NOT_FOUND.
+            - If the note is not found, returns Status.NOT_FOUND.
         """
         folder_structure = self.json_manager.load(self.folders_path)
         folders = folder_structure['folders']
@@ -138,7 +137,7 @@ class NoteService:
         if note:
             self.json_manager.update(self.folders_path, folder_structure)
             return note 
-        return RespMsg.NOT_FOUND
+        return Status.NOT_FOUND
     
 
 
@@ -153,7 +152,7 @@ class NoteService:
             - note_id (str): The ID of the note whished to be deleted.
 
         Returns:
-            RespMsg: 
+            Status: 
             - If the note is successfully deleted, it returns 'OK'.
             - If the specified folder or note is not found, it returns 'NOT_FOUND'.
         """
@@ -164,7 +163,7 @@ class NoteService:
         if deleted_note:
             self.json_manager.update(self.folders_path, folder_structure)
             return deleted_note
-        return RespMsg.NOT_FOUND
+        return Status.NOT_FOUND
 
 
 
