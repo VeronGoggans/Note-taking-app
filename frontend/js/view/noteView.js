@@ -87,7 +87,6 @@ export class NoteView {
                 const P_ELEMENT = NOTE_CARDS[i].querySelector('p');
                 P_ELEMENT.innerHTML = CONTENT;
                 this.updateNoteObject(note);
-                console.log(this.noteObjects);
             }
         }
     }
@@ -178,7 +177,7 @@ export class NoteView {
     note(id, name, bookmark, content, created, lastEdit) {
         const NOTE_OBJECT = {'id': id, 'name': name, 'bookmark': bookmark, 'content': content, 'creation': created, 'lastEdit': lastEdit}
         this.noteObjects.push(NOTE_OBJECT);
-        return new Note(id, name, bookmark, content, created, lastEdit, this);
+        return new Note(id, name, bookmark, content, created, lastEdit, this, this.noteController);
     }
 
     /**

@@ -56,12 +56,12 @@ export class Note {
     }
 
     attachEventListeners() {
-        this.EDIT.addEventListener('click', () => {this.toggleEditableFolderName()});
-        this.CONFIRM.addEventListener('click', () => {this.updateNote()});
-        this.CANCEL.addEventListener('click', () => {this.toggleEditableFolderName()});
+        this.EDIT.addEventListener('click', () => {this.toggleEditableNoteName()});
+        this.CONFIRM.addEventListener('click', () => {this.updateNoteName()});
+        this.CANCEL.addEventListener('click', () => {this.toggleEditableNoteName()});
         this.DELETE.addEventListener('click', () => {this.view.renderDeleteContainer(this.id, this.name)});
         this.CONTENT_BOX.addEventListener('click', () => {this.view.handleNoteCardClick(this.id, this.created, this.lastEdit)});
-        this.BOOKMARK.addEventListener('click', () => {this.toggleBookmarkStyle()});
+        this.BOOKMARK.addEventListener('click', () => {this.updateNoteBookmark()});
     }
 
     applyBookmarkStyle(bookmarkValue) {
@@ -69,8 +69,12 @@ export class Note {
     }
 
 
+    toggleBookmarkStyle() {
+        this.HOST.style.backgroundColor = this.HOST.style.backgroundColor === 'aliceblue' ? 'white': 'aliceblue'
+    }
 
-    toggleEditableFolderName() {
+
+    toggleEditableNoteName() {
         // Toggle contentEditable
         this.H4.contentEditable = this.H4.contentEditable === 'true' ? 'false' : 'true';
         this.H4.style.borderColor = this.H4.style.borderColor === 'rgb(92, 125, 255)' ? 'transparent' : '#5c7dff';
@@ -115,14 +119,24 @@ export class Note {
     }
 
     /**
-     * This method updates a note
-     * 
-     * Note: That this method can only update the following.
-     * 1. Name.
-     * 2. Bookmark. 
+     * This method updates the name of a note
      */
-    async updateNote() {
+    async updateNoteName() {
+        // Sending an update request to the view
         this.view.updateNote(this.id, this.H4.textContent, this.CONTENT.innerHTML, this.bookmark);
-        this.toggleEditableFolderName();
+        this.toggleEditableNoteName();
+    }
+
+
+    /**
+     * This method updates the bookmark value of a note
+     */
+    async updateNoteBookmark() {
+        // Reverting the bookmark value
+        let newBookmarkValue = !this.bookmark;
+        // Give the note card the right background color
+        this.toggleBookmarkStyle();
+        // Sending an update request to the view
+        await this.view.updateNote(this.id, this.name, this.CONTENT.innerHTML, newBookmarkValue);
     }
 }
