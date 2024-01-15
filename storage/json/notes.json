@@ -42,6 +42,14 @@
                     "bookmark": true,
                     "last_edit": "16/01/2024 00:07",
                     "creation": "13/01/2024"
+                },
+                {
+                    "id": "n-223",
+                    "title": "Test Note!",
+                    "content": "storage/notes/note-n-223.html",
+                    "bookmark": false,
+                    "last_edit": "16/01/2024 00:33",
+                    "creation": "16/01/2024"
                 }
             ],
             "subfolders": []

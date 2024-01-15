@@ -75,18 +75,23 @@ export class NoteView {
         const NAME = note.title;
         const CONTENT = note.content;
         const NOTE_CARDS = this._content.children; 
+        const NOTE_LIST_CARDS = this._list.children;
 
         // update the note
         for (let i = 0; i < NOTE_CARDS.length; i++) {
             if (NOTE_CARDS[i].id === ID) {
-                // updating the <h4> element.
+                // updating the <h4> element inside the note card.
                 const H4 = NOTE_CARDS[i].querySelector('h4');
                 H4.textContent = NAME;
 
-                // updating the <p> element representing the note content
+                // updating the <p> element inside the note card.
                 const P_ELEMENT = NOTE_CARDS[i].querySelector('p');
                 P_ELEMENT.innerHTML = CONTENT;
                 this.updateNoteObject(note);
+
+                // updating the <span> element inside the note list card
+                const SPAN = NOTE_LIST_CARDS[i].querySelector('span');
+                SPAN.textContent = NAME;
             }
         }
     }
