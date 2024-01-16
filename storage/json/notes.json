@@ -32,26 +32,32 @@
                     "title": "Github commands",
                     "content": "storage/notes/note-n-216.html",
                     "bookmark": false,
-                    "last_edit": "15/01/2024 19:48",
+                    "last_edit": "16/01/2024 09:07",
                     "creation": "09/01/2024"
                 },
                 {
                     "id": "n-219",
                     "title": "My gamelist",
                     "content": "storage/notes/note-n-219.html",
-                    "bookmark": true,
-                    "last_edit": "16/01/2024 00:07",
+                    "bookmark": false,
+                    "last_edit": "16/01/2024 11:11",
                     "creation": "13/01/2024"
                 },
                 {
                     "id": "n-223",
-                    "title": "Test Note!",
+                    "title": "Test note",
                     "content": "storage/notes/note-n-223.html",
                     "bookmark": false,
-                    "last_edit": "16/01/2024 00:33",
+                    "last_edit": "16/01/2024 00:47",
                     "creation": "16/01/2024"
                 }
             ],
+            "subfolders": []
+        },
+        {
+            "id": "f-53",
+            "name": "test",
+            "notes": [],
             "subfolders": []
         }
     ]

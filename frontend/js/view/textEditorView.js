@@ -247,7 +247,7 @@ export class TextEditorView {
 
     // Create a <p> tag
     const P = document.createElement('p');
-    P.textContent = ' '
+    P.textContent = RANGE;
     PARAGRAPH.appendChild(P);
 
     // Creating a <br> tag to put below the <pre> tag.
@@ -275,7 +275,6 @@ export class TextEditorView {
 
     RANGE.insertNode(BREAK);
     RANGE.insertNode(HR);
-
 
     // Collapse the range
     RANGE.collapse(false);

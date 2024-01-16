@@ -14,7 +14,7 @@ export class Note {
         this.HOST = CNode.create('div', {'class': 'note', 'id': this.id});
         this.HOST.dataset.info = `${this.created}--${this.lastEdit}`;
         this.NAME_BOX = CNode.create('div', {'class': 'note-name-box'});
-        this.H4 = CNode.create('h4', {'textContent': this.name});
+        this.H4 = CNode.create('h4', {'contentEditable': 'false', 'textContent': this.name, 'spellCheck': false});
         this.BTN_CONTAINER = CNode.create('div', {'class': 'update-note-btns-container'});
         this.CONFIRM = CNode.create('button', {'class': 'confirm-note-update-btn'});
         this.CONFIRM_ICON = CNode.create('i', {'class': 'fa-solid fa-check'});

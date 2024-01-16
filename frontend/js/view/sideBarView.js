@@ -11,6 +11,8 @@ class SidebarView {
         this._backSpan = this._backButton.querySelector('span');
         this._homeButton = document.querySelector('.home-screen-btn');
         this._homeSpan = this._homeButton.querySelector('span');
+        this._settingsButton = document.querySelector('.settings-btn');
+        this._settingsSpan = this._settingsButton.querySelector('span');
         this._collapsed = false;
     }
 
@@ -22,6 +24,7 @@ class SidebarView {
         this._createSNoteSpan.textContent = '';
         this._backSpan.textContent = '';
         this._homeSpan.textContent = '';
+        this._settingsSpan.textContent = '';
     }
 
     
@@ -33,6 +36,7 @@ class SidebarView {
         this._createSNoteSpan.textContent = 'Note';
         this._backSpan.textContent = 'Back';
         this._homeSpan.textContent = 'Home';
+        this._settingsSpan.textContent = 'Settings';
     }
 
 

@@ -38,8 +38,14 @@
 }
 
 .sidebar-content {
-    display: block;
+    display: grid;
+    grid-template-rows: 1fr 50px;
     padding: 10px;
+}
+
+.sidebar-content-upper,
+.sidebar-content-lower {
+    display: block;
 }
 
 .sidebar-content button {
@@ -69,8 +75,6 @@
     position: absolute;
     left: 5px;
 }
-
-
 
 .sidebar-content button:hover {
     background-color: rgba(92, 125, 255, .3);
