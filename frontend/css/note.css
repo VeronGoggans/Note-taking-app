@@ -7,9 +7,10 @@
     display: grid;
     grid-template-rows: 40px 1fr 50px;
     margin: 20px;
-    box-shadow: .5rem .4rem 1rem rgb(213, 226, 241);
+    /* box-shadow: .5rem .4rem 1rem rgb(213, 226, 241); */
     transition: .5s;
     overflow: visible;
+    border: 1px solid rgb(212, 212, 212);
 }
 
 .note-name-box {

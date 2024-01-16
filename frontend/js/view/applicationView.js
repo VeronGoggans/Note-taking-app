@@ -13,6 +13,8 @@ export class ApplicationView {
         this.createNoteButton = document.querySelector('.create-note-btn');
         this.backButton = document.querySelector('.exit-folder-btn');
         this.homeButton = document.querySelector('.home-screen-btn');
+        this.settingsButton = document.querySelector('.settings-btn');
+        
 
         // other
         this.dialog = document.querySelector('.dialog');

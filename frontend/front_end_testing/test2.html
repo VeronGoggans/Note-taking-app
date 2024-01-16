@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme Switcher</title>
+    <style>
+        body {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+}
+
+.dark-mode body {
+    background-color: #333;
+    color: #fff;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hello, World!</h1>
+        <button id="theme-toggle">Toggle Theme</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    // Check if a theme preference is stored in localStorage
+    const currentTheme = localStorage.getItem('theme');
+    if (currentTheme) {
+        body.classList.add(currentTheme);
+    }
+
+    // Toggle between light and dark themes
+    themeToggle.addEventListener('click', function () {
+        body.classList.toggle('dark-mode');
+        
+        // Store the current theme preference in localStorage
+        const newTheme = body.classList.contains('dark-mode') ? 'dark-mode' : '';
+        localStorage.setItem('theme', newTheme);
+    });
+});
+
+    </script>
+</body>
+</html>
