@@ -1,0 +1,32 @@
+:root {
+    --primary: #1b1c22;
+    --secondary: #191a1f;
+    --card: #1f2129;
+    --text: #a4a7bf;
+    --important: #d6d8e5;
+    --toolbar: #191a1f;
+    --icon: #a4a7bf;
+    --border1: #;
+    --border2: #;
+    --border3: #;
+}
+
+.dark {
+    --primary: #1b1c22;
+    --secondary: #191a1f;
+    --card: #1f2129;
+    --text: #a4a7bf;
+    --icon: #a4a7bf;
+    --important: #d6d8e5;
+    --toolbar: #191a1f;
+}
+
+.light {
+    --primary: #1b1c22;
+    --secondary: #191a1f;
+    --card: #ffffff;
+    --text: #444863;
+    --icon: #444863;
+    --important: #d6d8e5;
+    --toolbar: #191a1f;
+}
