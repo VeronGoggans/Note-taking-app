@@ -94,6 +94,15 @@
     height: 16px;
  }
 
+ .editor .copyable-block {
+    border-radius: 5px;
+    background-color: rgba(239, 241, 247, .4);
+    padding: 2px;
+    width: fit-content;
+    border: 1px solid #d5d7e0;
+    cursor: pointer;
+ }
+
  .editor hr {
     border: 1px dashed rgb(145 150 167);
  }
