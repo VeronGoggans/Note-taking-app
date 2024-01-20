@@ -281,8 +281,6 @@ export class ApplicationView {
      */
     updateSearchObject(noteId, newName) {
         const OPTION = this._searchNoteObjects.find(obj => obj.id === noteId);
-        console.log(this._searchNoteObjects, noteId);
-        console.log(OPTION);
         OPTION.name = newName;
     }
 }
