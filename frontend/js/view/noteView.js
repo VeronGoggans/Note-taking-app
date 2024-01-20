@@ -13,7 +13,7 @@ export class NoteView {
     }
 
     /**
-     * This method renders a lbunch of notes.
+     * This method renders a bunch of notes.
      * 
      * This method renders a list of note objects to the content <div>
      * and adds a note object to the noteObjects list for each note.

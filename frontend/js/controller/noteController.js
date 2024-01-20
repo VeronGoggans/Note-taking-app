@@ -10,35 +10,39 @@ export class NoteController {
 
     async getNotes(folderId) {
         const RESPONSE = await this.noteModel.getNotes('/notes', folderId);
-        const NOTES = RESPONSE.Object;
+        const NOTES = await RESPONSE.Object;
         this.noteView.renderNoteCards(NOTES);
     }
 
     async getNoteById(noteId) {
         const RESPONSE = await this.noteModel.getNoteById('/noteById', noteId);
-        const NOTE = RESPONSE.Note;
+        const NOTE = await RESPONSE.Note;
         return NOTE;
     }
 
     async addNote(folderId, content, name) {
         const RESPONSE = await this.noteModel.addNote('/note', folderId, content, name);
-        let note = RESPONSE.Note;
-        // swithing the path with the content
+        let note = await RESPONSE.Note;
+        // Swithing the path with the content
         note.content = content;
+        // Rendering the new note in the note view
         this.noteView.renderNoteCard(note);
+        // Adding the new note to the searchbar objects array
+        this.addSearchObject(note.id, note.title);
     }
 
     async updateNote(noteId, name, content, bookmark) {
         const RESPONSE = await this.noteModel.updateNote('/note', noteId, name, content, bookmark);
-        const NOTE = RESPONSE.Note;
+        const NOTE = await RESPONSE.Note;
         this.noteView.renderNoteUpdate(NOTE);
     }
 
     async deleteNote(noteId) {
         const PARENT_ID = this.applicationController.getCurrentFolderID();
         const RESPONSE = await this.noteModel.deleteNote('/note', PARENT_ID, noteId);
-        const NOTE = RESPONSE.Note;
+        const NOTE = await RESPONSE.Note;
         this.noteView.removeNote(NOTE);
+        this.deleteSearchObject(noteId);
     }
 
     /**
@@ -75,6 +79,29 @@ export class NoteController {
      */
     handleSearchbarUpdate() {
         
+    }
 
+    /**
+     * This method will add a new note to the search bar's options
+     * 
+     * This method is called everytime a new note is created
+     * 
+     * @param {String} id 
+     * @param {String} name 
+     */
+    addSearchObject(id, name) {
+        this.applicationController.addSearchObject(id, name)
+    }
+
+    /**
+     * This method will remove a search object from 
+     * the search bar options
+     * 
+     * This method is called everytime a note gets deleted.
+     * 
+     * @param {String} id 
+     */
+    deleteSearchObject(id) {
+        this.applicationController.deleteSearchObject(id);
     }
 }

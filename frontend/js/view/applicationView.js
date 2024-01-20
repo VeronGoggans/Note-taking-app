@@ -109,7 +109,7 @@ export class ApplicationView {
      * @param {Array} options 
      */
     renderSearchOptions(options) { 
-        const HTML = options.map(option => `<li id=${option.id}>${option.title}</li>`).join("");
+        const HTML = options.map(option => `<li id=${option.id}>${option.name}</li>`).join("");
         this.noteOptionsList.innerHTML = HTML;
         this.listenForSearchClicks();
     }
@@ -183,7 +183,7 @@ export class ApplicationView {
         this.noteOptionsList.style.visibility = 'visible';
         const INPUT_VALUE = this.searchBarInput.value.toLowerCase();
         const FILTERED_OPTIONS = this._searchNoteObjects.filter(suggestion =>
-          suggestion.title.toLowerCase().includes(INPUT_VALUE)
+          suggestion.name.toLowerCase().includes(INPUT_VALUE)
         );
         this.renderSearchOptions(FILTERED_OPTIONS);
       }
@@ -242,5 +242,31 @@ export class ApplicationView {
      */
     async handleAddFolderButtonClick(name) {
         await this.applicationController.handleAddFolder(name);
+    }
+
+    /**
+     * This method will add a search bar object to the 
+     * _searchNoteObjects array. 
+     * 
+     * This method is called everytime a new note is created.
+     * 
+     * @param {String} id 
+     * @param {String} name 
+     */
+    addSearchObject(id, name) {
+        const SEARCH_OBJECT = {'id': id, 'name': name};
+        this._searchNoteObjects.push(SEARCH_OBJECT);
+    }
+
+    /**
+     * This method will remove a search object from 
+     * the search bar options
+     * 
+     * This method is called everytime a note gets deleted.
+     * 
+     * @param {String} id 
+     */
+    deleteSearchObject(id) {
+        this._searchNoteObjects = this._searchNoteObjects.filter(obj => obj.id !== id);
     }
 }

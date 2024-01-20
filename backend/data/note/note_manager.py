@@ -82,7 +82,7 @@ class NoteManager:
         
         for folder in folders:
             for note in folder['notes']:
-                search_object = {'title': note['title'], 'id': note['id']}
+                search_object = {'id': note['id'], 'name': note['title']}
                 self.search_bar_note_objects.append(search_object)
 
             self.get_note_name_id(folder['subfolders'])

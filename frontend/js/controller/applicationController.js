@@ -115,6 +115,30 @@ export class ApplicationController {
     }
 
     /**
+     * This method will add a new note to the search bar's options
+     * 
+     * This method is called everytime a new note is created.
+     * 
+     * @param {String} id 
+     * @param {String} name 
+     */
+    addSearchObject(id, name) {
+        this.applicationView.addSearchObject(id, name);
+    }
+
+    /**
+     * This method will remove a search object from 
+     * the search bar options
+     * 
+     * This method is called everytime a note gets deleted.
+     * 
+     * @param {String} id 
+     */
+    deleteSearchObject(id) {
+        this.applicationView.deleteSearchObject(id);
+    }
+
+    /**
      * This method opens up the text editor
      * And puts the note the user clicked on, in the text editor.
      * 
