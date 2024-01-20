@@ -74,10 +74,6 @@
 
  /* Styling for text editor html elements */
 
- .paragraph div, h1,h2, h3, h4, h5, h6 {
-    background-color:  transparent;
- }
-
  .editor a {
     cursor: pointer;
     color: rgb(92, 125, 255);
@@ -94,14 +90,33 @@
     height: 16px;
  }
 
- .editor .copyable-block {
+ .copyable-block {
     border-radius: 5px;
-    background-color: rgba(239, 241, 247, .4);
-    padding: 2px;
-    width: fit-content;
-    border: 1px solid #d5d7e0;
+    display: flex;
+    height: 60px;
+    width: 350px;
+    flex-direction: column;
+    background-color: rgb(39, 39, 44);
+}
+
+.copyable-block .top {
+    display: flex;
+    justify-content: end;
+    padding: 5px 5px;
+    font-size: 14px;
+    color: aliceblue;
+    font-weight: 600;
+}
+
+.copyable-block .top span {
     cursor: pointer;
- }
+}
+
+.copyable-text {
+    padding: 5px 20px;
+    margin: 0;
+    color: aliceblue;
+}
 
  .editor hr {
     border: 1px dashed rgb(145 150 167);

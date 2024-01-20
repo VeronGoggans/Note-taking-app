@@ -35,6 +35,7 @@ export class NoteController {
         const RESPONSE = await this.noteModel.updateNote('/note', noteId, name, content, bookmark);
         const NOTE = await RESPONSE.Note;
         this.noteView.renderNoteUpdate(NOTE);
+        this.updateSearchObject(noteId, name);
     }
 
     async deleteNote(noteId) {
@@ -86,11 +87,11 @@ export class NoteController {
      * 
      * This method is called everytime a new note is created
      * 
-     * @param {String} id 
+     * @param {String} noteId 
      * @param {String} name 
      */
-    addSearchObject(id, name) {
-        this.applicationController.addSearchObject(id, name)
+    addSearchObject(noteId, name) {
+        this.applicationController.addSearchObject(noteId, name)
     }
 
     /**
@@ -99,9 +100,22 @@ export class NoteController {
      * 
      * This method is called everytime a note gets deleted.
      * 
-     * @param {String} id 
+     * @param {String} noteId 
      */
-    deleteSearchObject(id) {
-        this.applicationController.deleteSearchObject(id);
+    deleteSearchObject(noteId) {
+        this.applicationController.deleteSearchObject(noteId);
+    }
+
+    /**
+     * This method will update a search object from 
+     * the search bar options
+     * 
+     * This method is called everytime a note gets updated.
+     * 
+     * @param {String} noteId 
+     * @param {String} name 
+     */
+    updateSearchObject(noteId, name) {
+        this.applicationController.updateSearchObject(noteId, name);
     }
 }

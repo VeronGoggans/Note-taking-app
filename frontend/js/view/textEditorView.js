@@ -1,5 +1,6 @@
 import { NoteDetailContainer } from "../components/noteDetailContainer.js";
 import { DeleteContainer } from "../components/deleteContainer.js";
+import { CNode } from "../util/CNode.js";
 
 export class TextEditorView {
   constructor(textEditorController) {
@@ -24,7 +25,6 @@ export class TextEditorView {
     this.linkButton = document.querySelector('.link-btn');
     this.paragrapghButton = document.querySelector('.paragraph-btn');
     this.lineBreakButton = document.querySelector('.hr-btn');
-    this.copyAbleBlockButton = document.querySelector('.copy-block-btn');
     this.foregroundColor = document.querySelector('.foreground-color-picker');
     this.palette = document.querySelector('.color-palette');
     this.paletteColors = this.palette.querySelectorAll('.soft-colors button, .dark-colors button');
@@ -49,7 +49,6 @@ export class TextEditorView {
     this.saveButton.addEventListener('click', () => {this.handleSaveButtonClick()});
     this.linkButton.addEventListener('click', () => {this.addLink()});
     this.paragrapghButton.addEventListener('click', () => {this.addParagraph()});
-    this.copyAbleBlockButton.addEventListener('click', () => {this.addCopyableBlock()});
     this.lineBreakButton.addEventListener('click', () => {this.addLineBreak()});
     this.foregroundColor.addEventListener('click', () => {this.toggleVisibleDropdown(this.palette)});
     this.paletteColors.forEach(button => {
@@ -126,6 +125,21 @@ export class TextEditorView {
     const ID = NOTE_DATA[0];
     this.dialog.appendChild(new DeleteContainer(ID, this.noteNameInput.value, this))
     this.renderDialog();
+  }
+
+  /**
+   * This method deletes a specific note from withing 
+   * the text editor
+   * 
+   * This method is called when the confirm button 
+   * inside the noteDeleteContainer is clicked.
+   * 
+   * @param {String} noteId 
+   */
+  async handleConfirmButtonClick(noteId) {
+    await this.textEditorController.handleConfirmButtonClick(noteId);
+    // clear the text editor.
+    this.clear();
   }
 
   /**
@@ -260,24 +274,6 @@ export class TextEditorView {
 
     // Collapse the range
     RANGE.collapse(false);
-  }
-
-
-  addCopyableBlock() {
-    // Get the current selection 
-    const SELECTION = window.getSelection();
-
-    // Get the range of the selection
-    const RANGE = SELECTION.getRangeAt(0);
-
-    // Create a <p> tag
-    const P = document.createElement('p');
-    P.classList.add('copyable-block');
-    P.textContent = RANGE;
-
-    RANGE.surroundContents(P);
-
-    SELECTION.removeRange(RANGE);
   }
 
 

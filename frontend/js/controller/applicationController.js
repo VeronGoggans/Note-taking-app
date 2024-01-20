@@ -119,11 +119,11 @@ export class ApplicationController {
      * 
      * This method is called everytime a new note is created.
      * 
-     * @param {String} id 
+     * @param {String} noteId 
      * @param {String} name 
      */
-    addSearchObject(id, name) {
-        this.applicationView.addSearchObject(id, name);
+    addSearchObject(noteId, name) {
+        this.applicationView.addSearchObject(noteId, name);
     }
 
     /**
@@ -132,10 +132,23 @@ export class ApplicationController {
      * 
      * This method is called everytime a note gets deleted.
      * 
-     * @param {String} id 
+     * @param {String} noteId 
      */
-    deleteSearchObject(id) {
-        this.applicationView.deleteSearchObject(id);
+    deleteSearchObject(noteId) {
+        this.applicationView.deleteSearchObject(noteId);
+    }
+
+    /**
+     * This method will update a search object from 
+     * the search bar options
+     * 
+     * This method is called everytime a note gets updated.
+     * 
+     * @param {String} noteId 
+     * @param {String} name 
+     */
+    updateSearchObject(noteId, name) {
+        this.applicationView.updateSearchObject(noteId, name);
     }
 
     /**
@@ -159,9 +172,9 @@ export class ApplicationController {
      * @param {String} content 
      * @param {String} name 
      */
-    createNote(content, name) {
+    async createNote(content, name) {
         const CURRENT_FOLDER_ID = this.applicationModel.getCurrentFolderID();
-        this.noteController.addNote(CURRENT_FOLDER_ID, content, name);
+        await this.noteController.addNote(CURRENT_FOLDER_ID, content, name);
     }
 
     /**
@@ -175,7 +188,20 @@ export class ApplicationController {
      * @param {String} content 
      * @param {String} bookmark 
      */
-    changeNote(noteId, name, content, bookmark) {
-        this.noteController.updateNote(noteId, name, content, bookmark);
+    async changeNote(noteId, name, content, bookmark) {
+        await this.noteController.updateNote(noteId, name, content, bookmark);
+    }
+
+    /**
+     * This method deletes a specific note from withing 
+     * the text editor
+     * 
+     * This method is called when the confirm button 
+     * inside the noteDeleteContainer is clicked.
+     * 
+     * @param {String} noteId 
+     */
+    async deleteNote(noteId) {
+        await this.noteController.deleteNote(noteId);
     }
 }

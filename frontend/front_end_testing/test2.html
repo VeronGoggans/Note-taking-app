@@ -3,52 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Theme Switcher</title>
+    <title>Document</title>
     <style>
+          @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
+
         body {
-    background-color: #f0f0f0;
-    color: #333;
-}
+            height: 100dvh;
+        }
+        .copyable-block {
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            background-color: rgb(39, 39, 44);
+        }
 
-.container {
-    max-width: 600px;
-    margin: 50px auto;
-}
+        .copyable-block .top {
+            display: flex;
+            justify-content: end;
+            padding: 2px 5px;
+            color: aliceblue;
+            font-weight: 600;
+        }
 
-.dark-mode body {
-    background-color: #333;
-    color: #fff;
-}
+        .copyable-block .top span {
+            cursor: pointer;
+        }
 
+        .copyable-text {
+            padding: 5px;
+            color: #ffffff;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Hello, World!</h1>
-        <button id="theme-toggle">Toggle Theme</button>
+    <div class="copyable-block">
+        <div class="top"><span>Copy</span></div>
+        <section class="copyable-text">dwwdwdjwi</section>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-    const themeToggle = document.getElementById('theme-toggle');
-    const body = document.body;
-
-    // Check if a theme preference is stored in localStorage
-    const currentTheme = localStorage.getItem('theme');
-    if (currentTheme) {
-        body.classList.add(currentTheme);
-    }
-
-    // Toggle between light and dark themes
-    themeToggle.addEventListener('click', function () {
-        body.classList.toggle('dark-mode');
-        
-        // Store the current theme preference in localStorage
-        const newTheme = body.classList.contains('dark-mode') ? 'dark-mode' : '';
-        localStorage.setItem('theme', newTheme);
-    });
-});
-
-    </script>
+    
 </body>
 </html>

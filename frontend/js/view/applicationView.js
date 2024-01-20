@@ -269,4 +269,20 @@ export class ApplicationView {
     deleteSearchObject(id) {
         this._searchNoteObjects = this._searchNoteObjects.filter(obj => obj.id !== id);
     }
+
+    /**
+     * This method will update a search object from 
+     * the search bar options
+     * 
+     * This method is called everytime a note gets updated.
+     * 
+     * @param {String} noteId 
+     * @param {String} name 
+     */
+    updateSearchObject(noteId, newName) {
+        const OPTION = this._searchNoteObjects.find(obj => obj.id === noteId);
+        console.log(this._searchNoteObjects, noteId);
+        console.log(OPTION);
+        OPTION.name = newName;
+    }
 }

@@ -68,4 +68,17 @@ export class TextEditorController {
         }
         else this.applicationController.createNote(content, name);
     }
+
+    /**
+     * This method deletes a specific note from withing 
+     * the text editor
+     * 
+     * This method is called when the confirm button 
+     * inside the noteDeleteContainer is clicked.
+     * 
+     * @param {String} noteId 
+     */
+    handleConfirmButtonClick(noteId) {
+        this.applicationController.deleteNote(noteId);
+    }
 }

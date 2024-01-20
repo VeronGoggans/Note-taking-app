@@ -133,6 +133,10 @@
     margin: 3px;
  }
 
+ .note-content-box .copyable-block {
+    width: -webkit-fill-available
+ }
+
  .note-content-box hr {
     border: 1px dashed rgb(145 150 167);
  }
