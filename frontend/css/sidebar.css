@@ -3,13 +3,13 @@
     position: relative;
     display: grid;
     grid-template-rows: 50px 1fr;
-    background-color: #ffffff;
-    border-right: 1px solid rgb(212, 212, 212);
+    background-color: var(--sidebar);
+    border-right: 1px solid var(--border-sidebar-right);
 }
 
 .sidebar-logo {
     display: block;
-    border-bottom: 1px solid rgb(212, 212, 212);
+    border-bottom: 1px solid var(--border-sidebar-top);
     padding: 5px;
 }
 
@@ -62,7 +62,7 @@
     font-size: 16px;
     font-weight: 600;
     background-color: transparent;
-    color: #6d6d6d;
+    color: var(--sidebar-text);
     font-family: Roboto;
     transition: .2s;
 }
@@ -78,5 +78,5 @@
 
 .sidebar-content button:hover {
     background-color: rgba(92, 125, 255, .3);
-    color: #444863;
+    color: var(--sidebar-text-hover);
 }

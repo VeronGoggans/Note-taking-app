@@ -1,24 +1,16 @@
 .content-list-view {
-    background-color: #f9fbfd; /*rgb(221 240 255)*/
+    background-color: var(--list-view);
     display: block;
     padding: 10px 5px;
 }
 
 .content-list-view-title {
     padding: 5px;
-    color: #444863;
+    color: var(--important);
     font-size: 18px;
     font-weight: 600;
     display: flex;
     gap: 7px;
-}
-
-.list-view-caret-folders,
-.list-view-caret-notes {
-    rotate: 180deg;
-    color: #6d6d6d;
-    cursor: pointer;
-    transition: .1s;
 }
 
 .list-content-folders,
@@ -38,7 +30,7 @@
     opacity: 1;
     width: calc(100% - 30px);
     background-color: transparent;
-    color: #444863;
+    color: var(--text);
     font-weight: 600;
     border-radius: 20px;
     transition: .2s;

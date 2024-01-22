@@ -2,15 +2,12 @@
     cursor: pointer;
     height: 340px;
     border-radius: 15px;
-    background-color: rgb(255, 255, 255);
-    color: rgb(36, 40, 109);
+    background-color: var(--card);
     display: grid;
     grid-template-rows: 40px 1fr 50px;
     margin: 20px;
-    /* box-shadow: .5rem .4rem 1rem rgb(213, 226, 241); */
-    transition: .5s;
-    overflow: visible;
-    border: 1px solid rgb(212, 212, 212);
+        overflow: visible;
+    border: 1px solid var(--border-card);
 }
 
 .note-name-box {
@@ -27,7 +24,7 @@
     padding: 5px;
     margin-left: 10px;
     margin-right: 10px;
-    color: #444863;
+    color: var(--important);
     border-bottom: 2px solid transparent;
     transition: .2s;
 }
@@ -36,7 +33,7 @@
     padding: 10px;
     font-weight: 600;
     overflow: hidden;
-    color: rgb(56, 56, 56);
+    color: var(--text);
 }
 
 .note-util-bar{
@@ -62,7 +59,7 @@
     height: 30px;
     border-radius: 7px;
     background-color: transparent;
-    color: #444863;
+    color: var(--icon);
     transition: .3s;
 }
 
@@ -73,7 +70,7 @@
 .update-note-btns-container {
     position: absolute;
     margin-left: auto;
-    background-color: white;
+    background-color: var(--card);
     box-shadow: 0 0 20px rgb(213, 226, 241);
     width: 50px;
     display: flex;
@@ -119,7 +116,7 @@
     align-items: center;
     width: 35px;
     height: 35px;
-    color: #444863;
+    color: var(--text);
     transition: .4s;
 }
 
@@ -133,8 +130,9 @@
     margin: 3px;
  }
 
- .note-content-box .copyable-block {
-    width: -webkit-fill-available
+ .note-content-box h1,
+ .note-content-box h2 {
+    color: var(--important);
  }
 
  .note-content-box hr {

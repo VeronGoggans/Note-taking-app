@@ -3,13 +3,14 @@
     font-family: sans-serif;
     outline: none;
     border: none;
+    background-color: var(--background);
     border-bottom: 2px solid transparent;
     min-width: 200px;
     max-width: 400px;
     padding: 5px 10px;
     font-weight: 600;
     font-size: 14px;
-    color: #444863;
+    color: var(--editor-text);
     transition: .2s;
 }
 

@@ -6,7 +6,7 @@
     grid-template-rows: 110px 1fr;
     height: 100dvh;
     width: 100dvw;
-    background-color: #fff;
+    background-color: var(--background);
 }
 
 .editor {
@@ -14,7 +14,7 @@
     padding: 30px 70px;
     overflow-y: scroll;
     font-family: Arial, sans-serif;
-    color: rgb(56, 56, 56);
+    color: var(--editor-text);
 }
 
 .editor::-webkit-scrollbar {
@@ -40,7 +40,7 @@
 }
 
 .toolbar-bottom {
-    background-color: rgb(239, 241, 247); 
+    background-color: var(--toolbar); 
     display: flex;
     align-items: center;
     padding: 0px 10px;

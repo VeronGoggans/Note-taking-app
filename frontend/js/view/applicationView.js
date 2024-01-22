@@ -1,9 +1,13 @@
 import { NewFolderContainer } from '../components/newFolderContainer.js';
+import { SettingsContainer } from '../components/settingsContainer.js';
+import { Themes } from '../util/themes.js';
 
 
 export class ApplicationView {
     constructor(applicationController) {
         this.applicationController = applicationController;
+        this.themes = new Themes(window.localStorage.getItem('theme'));
+        
         // <main-top> 
         this.createFolderButton = document.querySelector('.create-folder-btn');
         this.searchBarInput = document.querySelector('.searchbar-input');
@@ -14,7 +18,6 @@ export class ApplicationView {
         this.backButton = document.querySelector('.exit-folder-btn');
         this.homeButton = document.querySelector('.home-screen-btn');
         this.settingsButton = document.querySelector('.settings-btn');
-        
 
         // other
         this.dialog = document.querySelector('.dialog');
@@ -24,6 +27,7 @@ export class ApplicationView {
         this._searchNoteObjects = [];
 
         this.attachEventListeners();
+
     }
 
 
@@ -39,11 +43,13 @@ export class ApplicationView {
         this.homeButton.addEventListener('click', () => {this.home()});
         this.createNoteButton.addEventListener('click', () => {this.showTextEditor()});
         this.createFolderButton.addEventListener('click', () => {this.renderNewFolderContainer()});
+        this.settingsButton.addEventListener('click', () => {this.renderSettingsContainer()});
         this.searchBarInput.addEventListener('input', () => {this.handleSearchBarInput()});
 
         this.dialog.addEventListener('click', (event) => {
             if (!event.target.closest('.new-folder-container') && 
-            !event.target.closest('.delete-folder-container')) {
+            !event.target.closest('.delete-folder-container') &&
+            !event.target.closest('.settings-container')) {
                 this.removeDialog();
             }
         });
@@ -87,6 +93,12 @@ export class ApplicationView {
      */
     renderNewFolderContainer() {
         this.dialog.appendChild(new NewFolderContainer(this));
+        this.renderDialog();
+    }
+
+    
+    renderSettingsContainer() {
+        this.dialog.appendChild(new SettingsContainer(this, this.themes));
         this.renderDialog();
     }
 

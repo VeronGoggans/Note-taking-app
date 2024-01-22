@@ -1,32 +1,62 @@
 :root {
-    --primary: #1b1c22;
-    --secondary: #191a1f;
-    --card: #1f2129;
-    --text: #a4a7bf;
-    --important: #d6d8e5;
-    --toolbar: #191a1f;
-    --icon: #a4a7bf;
-    --border1: #;
-    --border2: #;
-    --border3: #;
-}
-
-.dark {
-    --primary: #1b1c22;
-    --secondary: #191a1f;
-    --card: #1f2129;
-    --text: #a4a7bf;
-    --icon: #a4a7bf;
-    --important: #d6d8e5;
-    --toolbar: #191a1f;
-}
-
-.light {
-    --primary: #ffffff;
-    --secondary: #191a1f;
+    --background: #ffffff;
+    --list-view: #f9fbfd;
+    --sidebar: #ffffff;
+    --sidebar-text: #6d6d6d;
     --card: #ffffff;
     --text: #444863;
     --icon: #444863;
+    --important: #444863;
+    --toolbar: #eff1f7;
+    --editor-text: #383838;
+    --sidebar: #ffffff;
+    --border-card: #d4d4d4;
+    --border-sidebar-right: #d4d4d4;
+    --border-sidebar-top: #d4d4d4;
+    --border-main-top: #d4d4d4;
+    --border-search-bar: #d4d4d4;
+    --selection: #e8f0fe;
+    --dialog: rgba(0, 3, 24, 0.30);
+}
+
+.dark {
+    --background: #1b1c22;
+    --list-view: #1b1c22;
+    --sidebar: #191a1f;
+    --sidebar-text: #d6d8e5;
+    --sidebar-text-hover: #d6d8e5; 
+    --card: #1f2129;
+    --text: #bbbed2;
+    --icon: #bbbed2;
     --important: #d6d8e5;
     --toolbar: #191a1f;
+    --editor-text: #f3f5fa;
+    --border-card: #1f2129;
+    --border-sidebar-right: #191a1f;
+    --border-sidebar-top: #191a1f;
+    --border-main-top: #1b1c22;
+    --border-search-bar: #191a1f;
+    --selection: #4481ea;
+    --dialog: rgba(68, 70, 90, 0.30);
+}
+
+.light {
+    --background: #ffffff;
+    --list-view: #f9fbfd;
+    --sidebar: #ffffff;
+    --sidebar-text: #6d6d6d;
+    --card: #ffffff;
+    --text: #444863;
+    --icon: #444863;
+    --important: #444863;
+    --toolbar: #eff1f7;
+    --editor-text: #383838;
+    --sidebar: #ffffff;
+    --border-card: #d4d4d4;
+    --border-sidebar-right: #d4d4d4;
+    --border-sidebar-top: #d4d4d4;
+    --border-main-top: #d4d4d4;
+    --border-search-bar: #d4d4d4;
+    --selection: #e8f0fe;
+    --dialog: rgba(0, 3, 24, 0.30);
 }

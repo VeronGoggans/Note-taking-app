@@ -2,15 +2,13 @@
     cursor: pointer;
     height: 340px;
     border-radius: 15px;
-    background-color: rgb(255, 255, 255);
+    background-color: var(--card);
     color: rgb(36, 40, 109);
     display: grid;
     grid-template-rows: 40px 1fr 50px;
     margin: 20px;
-    /* box-shadow: .5rem .4rem 1rem rgb(213, 226, 241); */
-    transition: .5s;
     overflow: visible;
-    border: 1px solid rgb(212, 212, 212);
+    border: 1px solid var(--border-card);
 }
 
 .folder-name-box {
@@ -24,7 +22,7 @@
 .update-folder-btns-container {
     position: absolute;
     margin-left: auto;
-    background-color: white;
+    background-color: var(--card);
     box-shadow: 0 0 20px rgb(213, 226, 241);
     width: 50px;
     display: flex;
@@ -70,7 +68,7 @@
 }
 
 .folder-logo i {
-    color: #444863;
+    color: var(--icon);
     font-size: 40px;
 }
 
@@ -97,7 +95,7 @@
     height: 30px;
     border-radius: 7px;
     background-color: transparent;
-    color: #444863;
+    color: var(--icon);
     transition: .3s;
 }
 
@@ -111,7 +109,7 @@
     padding: 5px;
     margin-left: 10px;
     margin-right: 10px;
-    color: #444863;
+    color: var(--important);
     border-bottom: 2px solid transparent;
     transition: .2s;
 }
@@ -124,7 +122,7 @@
     display: inline-block;
     width: calc(100% - 30px);
     background-color: transparent;
-    color: #444863;
+    color: var(--text);
     font-weight: 600;
     border-radius: 15px;
     transition: .2s;
