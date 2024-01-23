@@ -56,8 +56,12 @@
     padding: 10px 40px;
     width: 230px;
     height: 280px;
-    background-color: rgb(255, 255, 255);
+    background-color: var(--background);
     border-radius: 15px;
+}
+
+.note-details-container h2 {
+    color: var(--important);
 }
 
  .note-details-container .details {
@@ -69,6 +73,7 @@
  .note-details-container .details p {
     font-weight: 600;
     margin: 35px 0;
+    color: var(--text);
  }
 
 
@@ -81,13 +86,13 @@
 
  .editor .paragraph {
     border-radius: 5px;
-    background-color: rgba(239, 241, 247, .4);
+    background-color: var(--paragraph);
     padding: 20px;
  }
 
  .editor .paragraph p {
     margin: 3px;
-    height: 16px;
+    min-height: 16px;
  }
 
  .copyable-block {

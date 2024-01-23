@@ -1,6 +1,6 @@
 
 .note-name-input {
-    font-family: sans-serif;
+    font-family: Roboto;
     outline: none;
     border: none;
     background-color: var(--background);
@@ -15,7 +15,7 @@
 }
 
 .note-name-input::placeholder {
-    color: var(--text);
+    color: var(--placeholder);
 }
 
 .file-dropdown {

@@ -18,8 +18,10 @@
     --hover: rgba(92, 125, 255, .3);
     --hover-toolbar-btns: rgba(185, 198, 250, 0.5);
     --bookmark: #f0f8ff;
+    --placeholder: #9093a2;
     --selection: #e8f0fe;
     --dialog: rgba(0, 3, 24, 0.30);
+    --paragraph: rgba(239, 241, 247, .4);
 }
 
 .dark {
@@ -42,8 +44,10 @@
     --hover: #5c7dff;
     --hover-toolbar-btns: #bbbed2;
     --bookmark: #303446;
+    --placeholder: #9093a2;
     --selection: #4481ea;
     --dialog: rgba(68, 70, 90, 0.30);
+    --paragraph: #252831;
 }
 
 .light {
@@ -66,6 +70,8 @@
     --hover: rgba(92, 125, 255, .3);
     --hover-toolbar-btns: rgba(185, 198, 250, 0.5);
     --bookmark: #f0f8ff;
+    --placeholder: #9093a2;
     --selection: #e8f0fe;
     --dialog: rgba(0, 3, 24, 0.30);
+    --paragraph: rgba(239, 241, 247, .4);
 }

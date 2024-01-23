@@ -87,10 +87,15 @@
   outline: none;
   border: none;
   box-sizing: border-box;
+  color: var(--text);
   background-color: var(--background);
   border-bottom: 2px solid var(--text);
   padding: 10px;
   transition: .2s;
+}
+
+.new-folder-container input::placeholder {
+  color: var(--placeholder);
 }
 
 .new-folder-container input:hover,
