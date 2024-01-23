@@ -15,6 +15,9 @@
     --border-sidebar-top: #d4d4d4;
     --border-main-top: #d4d4d4;
     --border-search-bar: #d4d4d4;
+    --hover: rgba(92, 125, 255, .3);
+    --hover-toolbar-btns: rgba(185, 198, 250, 0.5);
+    --bookmark: #f0f8ff;
     --selection: #e8f0fe;
     --dialog: rgba(0, 3, 24, 0.30);
 }
@@ -25,17 +28,20 @@
     --sidebar: #191a1f;
     --sidebar-text: #d6d8e5;
     --sidebar-text-hover: #d6d8e5; 
-    --card: #1f2129;
+    --card: #252831;
     --text: #bbbed2;
     --icon: #bbbed2;
     --important: #d6d8e5;
-    --toolbar: #191a1f;
-    --editor-text: #f3f5fa;
+    --toolbar: #252831;
+    --editor-text: #d5d9e0;
     --border-card: #1f2129;
     --border-sidebar-right: #191a1f;
     --border-sidebar-top: #191a1f;
     --border-main-top: #1b1c22;
     --border-search-bar: #191a1f;
+    --hover: #5c7dff;
+    --hover-toolbar-btns: #bbbed2;
+    --bookmark: #303446;
     --selection: #4481ea;
     --dialog: rgba(68, 70, 90, 0.30);
 }
@@ -57,6 +63,9 @@
     --border-sidebar-top: #d4d4d4;
     --border-main-top: #d4d4d4;
     --border-search-bar: #d4d4d4;
+    --hover: rgba(92, 125, 255, .3);
+    --hover-toolbar-btns: rgba(185, 198, 250, 0.5);
+    --bookmark: #f0f8ff;
     --selection: #e8f0fe;
     --dialog: rgba(0, 3, 24, 0.30);
 }

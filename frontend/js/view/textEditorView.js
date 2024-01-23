@@ -43,10 +43,10 @@ export class TextEditorView {
     this.headingDropdown.addEventListener('click', () => {this.toggleVisibleDropdown(this.headingDropdownOptions)});
     this.noteDetailsSpan.addEventListener('click', () => {this.renderNoteDetails()});
     this.deleteNoteSpan.addEventListener('click', () => {this.renderNoteDeleteContainer()});
-    this.saveNoteSpan.addEventListener('click', () => {this.handleSaveButtonClick()});
-    this.newNoteSpan.addEventListener('click', () => {this.handleSaveButtonClick(false)});
+    this.saveNoteSpan.addEventListener('click', () => {this.save()});
+    this.newNoteSpan.addEventListener('click', () => {this.save(false)});
     this.exitButton.addEventListener('click', () => {this.removeTextEditor()});
-    this.saveButton.addEventListener('click', () => {this.handleSaveButtonClick()});
+    this.saveButton.addEventListener('click', () => {this.save()});
     this.linkButton.addEventListener('click', () => {this.addLink()});
     this.paragrapghButton.addEventListener('click', () => {this.addParagraph()});
     this.lineBreakButton.addEventListener('click', () => {this.addLineBreak()});
@@ -97,9 +97,37 @@ export class TextEditorView {
    /**
    * This method removes all the content in the text editor.
    */
-   clear() {
+  clear() {
     this.page.innerHTML = '';
     this.noteNameInput.value = '';
+  }
+
+  /**
+   * This method handles the save button click 
+   * inside the text editor
+   * 
+   * This method communicates with the text editor controller 
+   * that the save button has been clicked. 
+   * @param {Boolean} closeEditor indicates if the editor should be closed or not.
+   */
+  save(closeEditor = true) {
+    // Collect the content inside the text editor
+    const CONTENT = this.page.innerHTML;
+
+    // Collecting the notes bookmark value
+    const STORED_NOTE_DATA = this.getNoteData();
+    const BOOKMARK = STORED_NOTE_DATA[3];
+
+    let name = this.noteNameInput.value;
+    if (name === '') name = 'untitled';
+
+    // Communicate with the text editor controller.
+    this.textEditorController.save(CONTENT, name, BOOKMARK);
+    if (closeEditor) this.removeTextEditor();
+    if (!closeEditor) {
+      this.textEditorController.clearStoredNoteData();
+      this.clear();
+    }
   }
 
   // The following methods are related to the file dropdown menu.
@@ -172,33 +200,7 @@ export class TextEditorView {
     return this.textEditorController.getStoredNoteData();
   }
 
-  /**
-   * This method handles the save button click 
-   * inside the text editor
-   * 
-   * This method communicates with the text editor controller 
-   * that the save button has been clicked. 
-   * @param {Boolean} closeEditor indicates if the editor should be closed or not.
-   */
-  handleSaveButtonClick(closeEditor = true) {
-    // Collect the content inside the text editor
-    const CONTENT = this.page.innerHTML;
-
-    // Collecting the notes bookmark value
-    const STORED_NOTE_DATA = this.getNoteData();
-    const BOOKMARK = STORED_NOTE_DATA[3];
-
-    let name = this.noteNameInput.value;
-    if (name === '') name = 'untitled';
-
-    // Communicate with the text editor controller.
-    this.textEditorController.handleSaveButtonClick(CONTENT, name, BOOKMARK);
-    if (closeEditor) this.removeTextEditor();
-    if (!closeEditor) {
-      this.textEditorController.clearStoredNoteData();
-      this.clear();
-    }
-  }
+  
 
   /**
    * This method hides the text editor,

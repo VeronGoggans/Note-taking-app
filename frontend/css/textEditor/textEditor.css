@@ -19,12 +19,12 @@
 
 .editor::-webkit-scrollbar {
     background-color: transparent;
-    width: 8px;
+    width: 3px;
 }
 
 .editor::-webkit-scrollbar-thumb {
     background-color: #cecece;
-    border-radius: 5px;
+    border-radius: 3px;
 }
 
 .toolbar {
@@ -119,5 +119,5 @@
 }
 
  .editor hr {
-    border: 1px dashed rgb(145 150 167);
+    border: 1px solid rgb(145 150 167);
  }

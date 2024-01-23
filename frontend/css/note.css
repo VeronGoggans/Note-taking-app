@@ -10,6 +10,10 @@
     border: 1px solid var(--border-card);
 }
 
+.bookmark {
+    background-color: var(--bookmark);
+}
+
 .note-name-box {
     cursor: auto;
     display: flex;
@@ -86,6 +90,7 @@
     outline: none;
     border: none;
     display: flex;
+    color: var(--text);
     padding: 3px 5px;
     border-radius: 3px;
     background-color: transparent;
@@ -136,5 +141,5 @@
  }
 
  .note-content-box hr {
-    border: 1px dashed rgb(145 150 167);
+    border: 1px solid rgb(145 150 167);
  }

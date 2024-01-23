@@ -14,6 +14,10 @@
     transition: .2s;
 }
 
+.note-name-input::placeholder {
+    color: var(--text);
+}
+
 .file-dropdown {
     position: absolute;
     overflow: visible;
@@ -25,7 +29,7 @@
     padding: 7px;
     margin: 7px 10px 7px 0px;
     border-radius: 15px;
-    color: #444863;
+    color: var(--icon);
     background-color: rgb(239, 241, 247);
     font-weight: 600;
     overflow: visible;
@@ -39,7 +43,7 @@
     font-family: Roboto;
     visibility: hidden;
     position: absolute;
-    background-color: #fff;
+    background-color: var(--card);
     display: flex;
     flex-direction: column;
     width: 140px;
@@ -59,6 +63,7 @@
     padding: 5px 2px;
     border-radius: 15px;
     font-weight: 600;
+    color: var(--editor-text);
     background-color: transparent;
     border: none;
     text-align: start;

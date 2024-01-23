@@ -111,7 +111,8 @@ export class ApplicationController {
         const NAME = await RESPONSE.title;
         const CREATION = await RESPONSE.creation;
         const LAST_EDIT = await RESPONSE.last_edit;
-        this.openNoteInTextEditor(CONTENT, NAME, CREATION, LAST_EDIT, noteId, false);
+        const BOOKMARK = await RESPONSE.bookmark;
+        this.openNoteInTextEditor(CONTENT, NAME, CREATION, LAST_EDIT, noteId, BOOKMARK);
     }
 
     /**

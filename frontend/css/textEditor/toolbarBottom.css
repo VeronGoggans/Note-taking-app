@@ -17,7 +17,7 @@
 
 .toolbar-bottom .btn-container button:hover {
     color: rgba(92, 125, 255);
-    background-color: rgba(185, 198, 250, 0.5);
+    background-color: var(--hover-toolbar-btns);
 }
 
 .heading-dropdown {
@@ -30,6 +30,7 @@
     cursor: pointer;
     outline: none;
     border: none;
+    color: var(--icon);
     width: 80px;
     height: 30px;
     background-color: transparent;
@@ -47,7 +48,7 @@
 .heading-dropdown .options {
     visibility: hidden;
     position: absolute;
-    background-color: #fff;
+    background-color: var(--card);
     display: flex;
     flex-direction: column;
     top: 35px;
@@ -67,6 +68,7 @@
     padding: 5px 2px;
     border-radius: 15px;
     font-weight: 600;
+    color: var(--editor-text);
     width: 100%;
     height: auto;
     text-align: start;

@@ -18,7 +18,7 @@ export class TextEditorModel {
         this.creation = creation;
         this.lastEdit = lastEdit;
         this.bookmark = bookmark;
-        console.log(`Stored data: ${this.noteId}`);
+        console.log(`Stored data: id: ${this.noteId} Bookmark: ${this.bookmark}`);
     }
 
     /**

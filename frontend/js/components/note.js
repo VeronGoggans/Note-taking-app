@@ -65,12 +65,16 @@ export class Note {
     }
 
     applyBookmarkStyle(bookmarkValue) {
-        if (bookmarkValue) this.HOST.style.backgroundColor = 'aliceblue';
+        if (bookmarkValue) this.HOST.classList.add('bookmark');
     }
 
 
     toggleBookmarkStyle() {
-        this.HOST.style.backgroundColor = this.HOST.style.backgroundColor === 'aliceblue' ? 'white': 'aliceblue'
+        if (this.HOST.classList.contains('bookmark')) {
+            this.HOST.classList.remove('bookmark');
+        } else {
+            this.HOST.classList.add('bookmark');
+        }
     }
 
 

@@ -24,6 +24,7 @@ export class NoteView {
      * @param {Array} notes 
      */
     renderNoteCards(notes) {
+        this.noteObjects = [];
         for (let i = 0; i < notes.length; i++) {
             const ID = notes[i].id;
             const NAME = notes[i].title;
@@ -242,6 +243,8 @@ export class NoteView {
      */
     handleNoteCardClick(noteId, creation, lastEdit) {
         const NOTE = this.noteObjects.find(obj => obj.id === noteId);
+        console.log(this.noteObjects);
+        console.log(NOTE);
         const NAME = NOTE.name;
         const CONTENT = NOTE.content;
         const BOOKMARK = NOTE.bookmark;

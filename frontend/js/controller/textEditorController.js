@@ -60,7 +60,7 @@ export class TextEditorController {
      * @param {String} name 
      * @param {Boolean} bookmark 
      */
-    handleSaveButtonClick(content, name, bookmark) {
+    save(content, name, bookmark) {
         const NOTE_ID = this.textEditorModel.getStoredNoteId()
         if (NOTE_ID !== null) {
             this.applicationController.changeNote(NOTE_ID, name, content, bookmark)

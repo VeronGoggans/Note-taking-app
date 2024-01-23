@@ -38,6 +38,7 @@
     outline: none;
     border: none;
     display: flex;
+    color: var(--text);
     padding: 3px 5px;
     border-radius: 3px;
     background-color: transparent;
