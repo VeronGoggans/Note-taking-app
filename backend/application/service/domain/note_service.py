@@ -158,7 +158,7 @@ class NoteService:
         """
         folder_structure = self.json_manager.load(self.folders_path)
         folders = folder_structure['folders']
-        deleted_note = self.note_manager.delete_note(folders,delete_request.folder_id, delete_request.note_id)
+        deleted_note = self.note_manager.delete_note(folders, delete_request.note_id)
 
         if deleted_note:
             self.json_manager.update(self.folders_path, folder_structure)

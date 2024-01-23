@@ -118,7 +118,7 @@ class NoteManager:
     
     
     
-    def delete_note(self, folders, folder_id: str, note_id: str):
+    def delete_note(self, folders, note_id: str):
         """
         Delete a specific note from the notes structure by its unique identifier.
 
@@ -131,14 +131,16 @@ class NoteManager:
             - If successful, it returns the deleted note.
             - If the note is not found, it returns None.
         """
-        folder = self.__find_folder_by_id(folders, folder_id)
-        if folder:
-            for note in folder['notes']:
-                if note.get('id') == note_id:
+        for folder in folders:
+            for note in folder["notes"]:
+                if note.get("id") == note_id:
                     folder['notes'].remove(note)
                     self.__delete_note_html_file(note)
                     return note
-            return None
+        
+                note_in_subfolder = self.delete_note(folder["subfolders"], note_id)
+                if note_in_subfolder:
+                    return note_in_subfolder
         return None
                 
     

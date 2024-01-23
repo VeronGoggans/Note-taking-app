@@ -77,9 +77,8 @@ export class NoteModel {
         }
     }
 
-    async deleteNote(endpoint, folderId, noteId) {
+    async deleteNote(endpoint, noteId) {
         const DELETE_NOTE_OBJECT = {
-            'folder_id': folderId,
             'note_id': noteId
         }
         const OPTIONS = {

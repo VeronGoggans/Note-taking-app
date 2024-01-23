@@ -39,8 +39,7 @@ export class NoteController {
     }
 
     async deleteNote(noteId) {
-        const PARENT_ID = this.applicationController.getCurrentFolderID();
-        const RESPONSE = await this.noteModel.deleteNote('/note', PARENT_ID, noteId);
+        const RESPONSE = await this.noteModel.deleteNote('/note', noteId);
         const NOTE = await RESPONSE.Note;
         this.noteView.removeNote(NOTE);
         this.deleteSearchObject(noteId);
