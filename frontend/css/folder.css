@@ -137,3 +137,46 @@
 .list-view-folder:hover {
     background-color: rgba(92, 125, 255, .3);
 }
+
+
+.card-style-blue {
+    background-color: #c1e2ff;
+}
+
+.card-style-orange {
+    background-color: #ffebc1;
+}
+
+.card-style-green {
+    background-color: #c7ffc1;
+}
+
+.card-style-purple {
+    background-color: #dfc1ff;
+}
+
+.card-style-red {
+    background-color: #ffc1c1;
+}
+
+
+
+.hover-style-blue {
+    background-color: #aad7ff;
+}
+
+.hover-style-orange {
+    background-color: #ffe1a1;
+}
+
+.hover-style-green {
+    background-color: #a7ff9e;
+}
+
+.hover-style-purple {
+    background-color: #d2a8ff;
+}
+
+.hover-style-red {
+    background-color: #ffadad;
+}
