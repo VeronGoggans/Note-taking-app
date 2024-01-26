@@ -1,9 +1,10 @@
 import { CNode } from "../util/CNode.js";
 
 export class Folder {
-    constructor(id, name, view) {
+    constructor(id, name, color, view) {
         this.id = id;
         this.name = name;
+        this.color = color;
         this.view = view;
 
         // creating HTML elements.
@@ -25,6 +26,7 @@ export class Folder {
         this.DELETE = CNode.create('button', {'id': 'delete-folder-btn'});
         this.DELETE_ICON = CNode.create('i', {'class': 'fa-solid fa-trash'});
 
+        this.applyColor(this.color);
         this.attachEventListeners();
         return this.render();
     }
@@ -49,6 +51,32 @@ export class Folder {
         return this.HOST;
     }
 
+    applyColor(color) {
+        const CARD_CLASS = CARD_CLASSES[color];
+        const HOVER_CLASS = HOVER_CLASSES[color];
+
+        const CARD_CLASSES = {
+            '#ffffff': null,
+            '#c1e2ff': 'card-style-blue',
+            '#ffebc1': 'card-style-orange',
+            '#c7ffc1': 'card-style-green',
+            '#dfc1ff': 'card-style-purple',
+            '#ffc1c1': 'card-style-red'
+        }
+
+        const HOVER_CLASSES = {
+            '#ffffff': null,
+            '#c1e2ff': 'hover-style-blue',
+            '#ffebc1': 'hover-style-orange',
+            '#c7ffc1': 'hover-style-green',
+            '#dfc1ff': 'hover-style-purple',
+            '#ffc1c1': 'hover-style-red'
+        }
+
+        if (CARD_CLASS !== null){
+            this.HOST.classList.add(CARD_CLASS);
+        }
+    }
 
     attachEventListeners() {
         this.EDIT.addEventListener('click', () => {this.toggleEditableFolderName()});
