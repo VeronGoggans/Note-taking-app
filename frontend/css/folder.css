@@ -71,6 +71,11 @@
 .folder-logo i {
     color: var(--icon);
     font-size: 40px;
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .folder-util-bar {

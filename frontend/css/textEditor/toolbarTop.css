@@ -7,9 +7,10 @@
     border-bottom: 2px solid transparent;
     min-width: 200px;
     max-width: 400px;
+    height: 25px;
     padding: 5px 10px;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 18px;
     color: var(--editor-text);
     transition: .2s;
 }

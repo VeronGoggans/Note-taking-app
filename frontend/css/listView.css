@@ -2,6 +2,17 @@
     background-color: var(--list-view);
     display: block;
     padding: 10px 5px;
+    overflow-y: scroll;
+}
+
+.content-list-view::-webkit-scrollbar {
+    background-color: transparent;
+    width: 5px;
+}
+
+.content-list-view::-webkit-scrollbar-thumb {
+    background-color: rgb(212, 212, 212);
+    border-radius: 5px;
 }
 
 .content-list-view-title {

@@ -90,37 +90,53 @@
     padding: 20px;
  }
 
+ .editor iframe {
+    border-radius: 10px;
+    transition: .2s;
+    width: 444px;
+    height: 250px;
+ }
+
+ .editor iframe:hover {
+    border-radius: 20px;
+ }
+
  .editor .paragraph p {
     margin: 3px;
     min-height: 16px;
  }
 
- .copyable-block {
-    border-radius: 5px;
+ .insert-video-container {
+    background-color: var(--toolbar);
+    border-radius: 10px;
+    padding: 7px;
+    position: relative;
     display: flex;
-    height: 60px;
-    width: 350px;
-    flex-direction: column;
-    background-color: rgb(39, 39, 44);
+    align-items: center;
+    opacity: 0;
+    transition: .3s;
 }
 
-.copyable-block .top {
-    display: flex;
-    justify-content: end;
-    padding: 5px 5px;
-    font-size: 14px;
-    color: aliceblue;
-    font-weight: 600;
-}
-
-.copyable-block .top span {
+.insert-video-container input {
     cursor: pointer;
+    outline: none;
+    border: 2px solid #5c7dff;
+    border-radius: 15px;
+    padding: 5px;
+    padding-left: 20px;
+    background-color: transparent;
+    color: var(--text);
+    width: -webkit-fill-available;
+    font-size: 16px;
+    transition: .3s;
 }
 
-.copyable-text {
-    padding: 5px 20px;
-    margin: 0;
-    color: aliceblue;
+.insert-video-container input:hover {
+    background-color: var(--background);
+}
+
+.insert-video-container input::placeholder {
+    color: var(--placeholder);
 }
 
  .editor hr {

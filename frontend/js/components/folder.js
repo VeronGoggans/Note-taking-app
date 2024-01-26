@@ -18,6 +18,8 @@ export class Folder {
         this.LOGO = CNode.create('div', {'class': 'folder-logo'});
         this.ICON = CNode.create('i', {'class': 'fa-solid fa-folder'});
         this.UTIL_BAR = CNode.create('div', {'class': 'folder-util-bar'});
+        this.COLOR = CNode.create('button', {'class': 'color-folder-btn'});
+        this.COLOR_ICON = CNode.create('i', {'class': 'fa-solid fa-palette'});
         this.EDIT = CNode.create('button', {'id': 'edit-folder-btn'});
         this.EDIT_ICON = CNode.create('i', {'class': 'fa-solid fa-pen'});
         this.DELETE = CNode.create('button', {'id': 'delete-folder-btn'});
@@ -38,6 +40,8 @@ export class Folder {
         this.HOST.appendChild(this.LOGO);
         this.LOGO.appendChild(this.ICON);
         this.HOST.appendChild(this.UTIL_BAR);
+        this.UTIL_BAR.appendChild(this.COLOR);
+        this.COLOR.appendChild(this.COLOR_ICON);
         this.UTIL_BAR.appendChild(this.EDIT);
         this.EDIT.appendChild(this.EDIT_ICON);
         this.UTIL_BAR.appendChild(this.DELETE);

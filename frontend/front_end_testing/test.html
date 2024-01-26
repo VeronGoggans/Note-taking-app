@@ -3,19 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="test.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Video Embed Example</title>
+    <style>
+        iframe {
+            border-radius: 5px;
+            transition: .2s;
+        }
 
+        iframe:hover {
+            border-radius: 20px;
+        }
+    </style>
 </head>
 <body>
-    <div class="settings-container">
-        <div class="settings-container-upper">
-            <h1 class="settings-container-header">Settings</h1>
-        </div>
-        <div class="settings-container-lower">
-            <span>Theme <i id="theme-btn" class="fa-solid fa-circle-half-stroke fa-flip-horizontal"></i></span> 
-        </div>
-    </div>
+
+<div contenteditable="true">
+    <!-- Users can paste their video embed code here -->
+    <p>Paste your video embed code here:</p>
+    <iframe width="853" height="480" src="https://www.youtube.com/embed/HAn6B7TTtuQ" title="Instant Messaging App in C++ // Code Review" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+</div>
+
+<script>
+    // Example: Parse and render embedded video
+    function renderVideo() {
+        var contentDiv = document.querySelector('[contenteditable="true"]');
+        var embedCode = contentDiv.innerHTML;
+        var previewDiv = document.createElement('div');
+        previewDiv.innerHTML = embedCode;
+        contentDiv.innerHTML = ''; // Clear original content
+        contentDiv.appendChild(previewDiv);
+    }
+
+    // Example: Trigger rendering on some event (e.g., button click)
+    document.addEventListener('DOMContentLoaded', function () {
+        renderVideo();
+    });
+</script>
+
 </body>
 </html>

@@ -55,7 +55,7 @@ class NoteService:
         folders = folder_structure['folders']
         notes = self.note_manager.get_notes(folders, folder_id)
 
-        if notes:
+        if notes is not None:
             return notes
         return Status.NOT_FOUND
 

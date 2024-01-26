@@ -131,6 +131,10 @@
     padding: 20px;
 }
 
+.note-content-box iframe {
+    visibility: hidden;
+}
+
 .note-content-box .paragraph p {
     margin: 3px;
  }

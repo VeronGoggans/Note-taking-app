@@ -79,16 +79,16 @@ export class ApplicationController {
             this.noteController.clearNotObjectsList();
         }
         else {
-            this.navigateIntoFolder(PARENT_ID, 'all');
+            this.navigateIntoFolder(PARENT_ID);
             this.noteController.clearNotObjectsList();
         }
     }
 
-    navigateIntoFolder(folderId, noteType) {
+    async navigateIntoFolder(folderId) {
         // removing the content from the folder the user is moving out of 
         this.applicationView.removeContent();
-        this.subfolderController.getSubFolders(folderId);
-        this.noteController.getNotes(folderId, noteType);
+        await this.subfolderController.getSubFolders(folderId);
+        await this.noteController.getNotes(folderId);
         this.applicationModel.addFolderIdToList(folderId);
     }
 

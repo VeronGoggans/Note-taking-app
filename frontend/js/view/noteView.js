@@ -1,6 +1,7 @@
 import { Note } from "../components/note.js";
 import { DeleteContainer } from "../components/deleteContainer.js";
 import { ListNote } from "../components/listNote.js";
+import { NoteArray } from "../util/array.js";
 
 export class NoteView {
     constructor(noteController) {
@@ -24,18 +25,23 @@ export class NoteView {
      * @param {Array} notes 
      */
     renderNoteCards(notes) {
+        // clear the array everytime this method gets called.
         this.noteObjects = [];
-        for (let i = 0; i < notes.length; i++) {
-            const ID = notes[i].id;
-            const NAME = notes[i].title;
-            const BOOKMARK = notes[i].bookmark;
-            const CONTENT = notes[i].content;
-            const CREATED = notes[i].creation;
-            const EDIT = notes[i].last_edit;
-            const LIST_NOTE_CARD = this.listNote(ID, NAME, CREATED);
-            const NOTE_CARD = this.note(ID, NAME, BOOKMARK, CONTENT, CREATED, EDIT);
-            this._content.appendChild(NOTE_CARD);
-            this._list.appendChild(LIST_NOTE_CARD);
+        if (notes.length > 0) {
+            for (let i = 0; i < notes.length; i++) {
+                const ID = notes[i].id;
+                const NAME = notes[i].title;
+                const BOOKMARK = notes[i].bookmark;
+                const CONTENT = notes[i].content;
+                const CREATED = notes[i].creation;
+                const EDIT = notes[i].last_edit;
+                const LIST_NOTE_CARD = this.listNote(ID, NAME, CREATED);
+                const NOTE_CARD = this.note(ID, NAME, BOOKMARK, CONTENT, CREATED, EDIT);
+                this._content.appendChild(NOTE_CARD);
+                this._list.appendChild(LIST_NOTE_CARD);
+            }
+        } else {
+            // give user feedback that this folder is empty
         }
     }
 
@@ -75,7 +81,7 @@ export class NoteView {
         const ID = note.id;
         const NAME = note.title;
         const CONTENT = note.content;
-        const NOTE_CARDS = this._content.children; 
+        const NOTE_CARDS = new NoteArray(this._content.children); 
         const NOTE_LIST_CARDS = this._list.children;
 
         // update the note
@@ -156,7 +162,7 @@ export class NoteView {
      * @param {String} id the ID of the note to be removed from the UI.
      */
     removeNote(note) {
-        const ALL_NOTES = this._content.children;
+        const ALL_NOTES = new NoteArray(this._content.children);
         const ALL_LIST_NOTES = this._list.children;
         const ID = note.id
         for (let i = 0; i < ALL_NOTES.length; i++) {

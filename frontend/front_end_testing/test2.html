@@ -4,42 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <style>
           @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
 
 
         body {
             height: 100dvh;
+            background-color: #1b1c22;
         }
-        .copyable-block {
+
+        .insert-video-container {
+            background-color: #252831;
             border-radius: 5px;
-            display: flex;
-            flex-direction: column;
-            background-color: rgb(39, 39, 44);
-        }
-
-        .copyable-block .top {
-            display: flex;
-            justify-content: end;
-            padding: 2px 5px;
-            color: aliceblue;
-            font-weight: 600;
-        }
-
-        .copyable-block .top span {
-            cursor: pointer;
-        }
-
-        .copyable-text {
             padding: 5px;
-            color: #ffffff;
+            position: relative;
+            display: flex;
+            align-items: center;
         }
+
+        .insert-video-container input {
+            outline: none;
+            border: 1px solid #5c7dff;
+            border-radius: 5px;
+            padding: 5px;
+            background-color: transparent;
+            color: #bbbed2;
+            width: -webkit-fill-available;
+        }
+
+        .insert-video-container input::placeholder {
+            color: #9093a2;
+        }
+        
     </style>
 </head>
 <body>
-    <div class="copyable-block">
-        <div class="top"><span>Copy</span></div>
-        <section class="copyable-text">dwwdwdjwi</section>
+    <div class="insert-video-container">
+        <input type="" placeholder="Insert embed link here">
     </div>
     
 </body>

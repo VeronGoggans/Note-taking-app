@@ -25,6 +25,7 @@ export class TextEditorView {
     this.linkButton = document.querySelector('.link-btn');
     this.paragrapghButton = document.querySelector('.paragraph-btn');
     this.lineBreakButton = document.querySelector('.hr-btn');
+    this.embedVideoButton = document.querySelector('.video-btn');
     this.foregroundColor = document.querySelector('.foreground-color-picker');
     this.palette = document.querySelector('.color-palette');
     this.paletteColors = this.palette.querySelectorAll('.soft-colors button, .dark-colors button');
@@ -33,7 +34,6 @@ export class TextEditorView {
     this.textEditor = document.querySelector('.editor-wrapper');
     this.page = document.querySelector('.editor');
     this.dialog = document.querySelector('.dialog');
-    console.log(this.paletteColors);
 
     this.attachEventListeners();
   }
@@ -50,6 +50,7 @@ export class TextEditorView {
     this.linkButton.addEventListener('click', () => {this.addLink()});
     this.paragrapghButton.addEventListener('click', () => {this.addParagraph()});
     this.lineBreakButton.addEventListener('click', () => {this.addLineBreak()});
+    this.embedVideoButton.addEventListener('click', () => {this.addEmbedInput()});
     this.foregroundColor.addEventListener('click', () => {this.toggleVisibleDropdown(this.palette)});
     this.paletteColors.forEach(button => {
       button.addEventListener('click', () => {
@@ -302,5 +303,45 @@ export class TextEditorView {
     // Use document.execCommand to change text color
     document.execCommand('styleWithCSS', false, true);
     document.execCommand('foreColor', false, color);
+  }
+
+
+  addEmbedInput() {
+    // Get the current selection 
+    const SELECTION = window.getSelection();
+    console.log(SELECTION);
+
+    // Get the range of the selection
+    const RANGE = SELECTION.getRangeAt(0);
+
+    const EMBED_CONTAINER = CNode.create('div', {'class': 'insert-video-container'});
+    const EMBED_INPUT = CNode.create('input', {'placeholder': 'Insert embed link here', 'type': 'text'});
+
+    EMBED_CONTAINER.appendChild(EMBED_INPUT);
+
+    EMBED_INPUT.addEventListener('keydown', (event) => {
+      if (event.keyCode === 13) {
+        RANGE.deleteContents();
+        this.addEmbedVideo(EMBED_INPUT.value, RANGE);
+      }
+    })
+
+    RANGE.insertNode(EMBED_CONTAINER);
+    EMBED_CONTAINER.style.opacity = '100'
+  }
+
+
+  addEmbedVideo(embedLink, range) {
+    const NO_COOKIES = 'youtube-nocookie';
+    const IFRAME_CONTAINER = document.createElement('div');
+
+    // adding nocookies text to the embed link for reduced cookies
+    let iframeArray = embedLink.split('youtube');
+    iframeArray.splice(1, 0, NO_COOKIES);
+
+    const NO_COOKIE_IFRAME = iframeArray.join('');
+
+    IFRAME_CONTAINER.innerHTML = NO_COOKIE_IFRAME;
+    range.insertNode(IFRAME_CONTAINER);
   }
 }
