@@ -20,11 +20,15 @@ class FolderManager:
         """
         folder_list = []
         for folder in folders:
-            folder_list.append({'id': folder['id'], 'name': folder['name']})
+            folder_list.append({
+                'id': folder['id'], 
+                'name': folder['name'],
+                'color': folder['color']
+                })
         return folder_list
 
 
-    def add_folder(self, folders, folder: Folder) -> Status:
+    def add_folder(self, folders, folder: Folder):
         """
         Add a new folder to the notes structure.
 
@@ -40,7 +44,7 @@ class FolderManager:
         return folder
 
     
-    def update_folder(self, folders, folder_id: str, folder_name: str) -> Status:
+    def update_folder(self, folders, folder_id: str, folder_name: str, folder_color: str):
         """
         Update the name of a folder in the notes structure.
 
@@ -48,6 +52,7 @@ class FolderManager:
             folders (List[dict]): The list of folders to search within.
             folder_id (str): The unique identifier of the folder to update.
             folder_name (str): The new name for the folder.
+            folder_color (str): The new color for the folder.
 
         Returns:
             dict or None:
@@ -57,11 +62,12 @@ class FolderManager:
         for folder in folders:
             if folder.get('id') == folder_id:
                 folder['name'] = folder_name
-                return {'name': folder_name, 'id': folder_id}
+                folder['color'] = folder_color
+                return {'name': folder_name, 'id': folder_id, 'color': folder_color}
         return None
         
     
-    def delete_folder(self, folders, folder_id: str) -> Status:
+    def delete_folder(self, folders, folder_id: str):
         """
         Delete a folder from the notes structure.
 

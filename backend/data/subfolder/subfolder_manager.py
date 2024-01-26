@@ -23,8 +23,8 @@ class SubfolderManager:
         target_folder = self.__find_folder_by_id(folders, folder_id)
     
         if target_folder:
-            subfolders = target_folder.get("subfolders", [])
-            subfolder_info = [{"id": subfolder["id"], "name": subfolder["name"]} for subfolder in subfolders]
+            subfolders = target_folder.get('subfolders', [])
+            subfolder_info = [{'id': subfolder['id'], 'name': subfolder['name'], 'color': subfolder['color']} for subfolder in subfolders]
             return subfolder_info
         return None
 
@@ -50,7 +50,7 @@ class SubfolderManager:
         return None
 
 
-    def update_subfolder(self, folders, subfolder_id: str, new_subfolder_name: str):
+    def update_subfolder(self, folders, subfolder_id: str, subfolder_name: str, subfolder_color: str):
         """
         Update the name of a subfolder in the notes structure.
 
@@ -66,8 +66,9 @@ class SubfolderManager:
         """
         subfolder = self.__find_folder_by_id(folders, subfolder_id)
         if subfolder:
-            subfolder['name'] = new_subfolder_name
-            return {'name': new_subfolder_name, 'id': subfolder_id}
+            subfolder['name'] = subfolder_name
+            subfolder['color'] = subfolder_color
+            return {'name': subfolder_name, 'id': subfolder_id, 'color': subfolder_color}
         return None
 
 

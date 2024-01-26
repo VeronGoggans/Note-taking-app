@@ -12,7 +12,7 @@ class FolderService:
         self.folder_manager = folder_manager
         self.json_manager = json_manager
         self.folders_path = os.getcwd() + '/storage/json/notes.json'
-        self.id_path = os.getcwd() + "/storage/json/id.json"
+        self.id_path = os.getcwd() + '/storage/json/id.json'
 
 
     def get_folders(self):
@@ -46,7 +46,7 @@ class FolderService:
         folder_structure = self.json_manager.load(self.folders_path)
         folders = folder_structure['folders']
         id = self.json_manager.generateID(self.id_path, 'folder')
-        folder: Folder = Folder(id, post_request.name)
+        folder: Folder = Folder(id, post_request.name, post_request.color)
 
         new_folder = self.folder_manager.add_folder(folders, folder)
         if new_folder:
@@ -72,7 +72,7 @@ class FolderService:
         """
         folder_structure = self.json_manager.load(self.folders_path)
         folders = folder_structure['folders']
-        updated_folder = self.folder_manager.update_folder(folders, put_request.folder_id, put_request.new_name)
+        updated_folder = self.folder_manager.update_folder(folders, put_request.folder_id, put_request.name, put_request.color)
         
         if updated_folder is not None:
             self.json_manager.update(self.folders_path, folder_structure)

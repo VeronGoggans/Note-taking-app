@@ -56,7 +56,7 @@ class SubfolderService:
         folder_structure = self.json_manager.load(self.folders_path)
         folders = folder_structure['folders']
         id = self.json_manager.generateID(self.id_path, 'subfolder')
-        subfolder: Subfolder = Subfolder(id, post_request.name)
+        subfolder: Subfolder = Subfolder(id, post_request.name, post_request.color)
 
         manager_response = self.subfolder_manager.add_subfolder(folders, post_request.folder_id, subfolder)
 
@@ -66,12 +66,12 @@ class SubfolderService:
         return Status.NOT_FOUND
     
 
-    def update_subfolder(self, update_request: PutSubfolderRequest):
+    def update_subfolder(self, put_request: PutSubfolderRequest):
         """
         Updates a subfolder's name within the folder structure.
 
         Args:
-            update_request (PutSubfolderRequest): 
+            put_request (PutSubfolderRequest): 
             Object containing the subfolder_id and name.
             - subfolder_id (str) The ID of the subfolder that will be updated.
             - name (str) The new name for the subfolder.
@@ -85,7 +85,7 @@ class SubfolderService:
         """
         folder_structure = self.json_manager.load(self.folders_path)
         folders = folder_structure['folders']
-        manager_response = self.subfolder_manager.update_subfolder(folders, update_request.subfolder_id, update_request.name)
+        manager_response = self.subfolder_manager.update_subfolder(folders, put_request.subfolder_id, put_request.name, put_request.color)
 
         if manager_response is not None:
             self.json_manager.update(self.folders_path, folder_structure)

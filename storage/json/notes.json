@@ -3,6 +3,7 @@
         {
             "id": "f-40",
             "name": "untitled",
+            "color": "#ffffff",
             "notes": [
                 {
                     "id": "n-16",
@@ -34,6 +35,7 @@
         {
             "id": "f-49",
             "name": "GitHub",
+            "color": "#ffffff",
             "notes": [
                 {
                     "id": "n-216",
@@ -49,6 +51,7 @@
         {
             "id": "f-55",
             "name": "Songs",
+            "color": "#ffffff",
             "notes": [
                 {
                     "id": "n-264",
@@ -63,12 +66,14 @@
                 {
                     "id": "s-63",
                     "name": "subfolder 1",
+                    "color": "#ffffff",
                     "notes": [],
                     "subfolders": []
                 },
                 {
                     "id": "s-64",
                     "name": "subfolder two",
+                    "color": "#ffffff",
                     "notes": [],
                     "subfolders": []
                 }
