@@ -3,7 +3,7 @@
         {
             "id": "f-40",
             "name": "untitled",
-            "color": "#ffffff",
+            "color": "#c1e2ff",
             "notes": [
                 {
                     "id": "n-16",
@@ -28,6 +28,14 @@
                     "bookmark": false,
                     "last_edit": "24/01/2024 18:08",
                     "creation": "24/01/2024"
+                },
+                {
+                    "id": "n-268",
+                    "title": "app roadmap",
+                    "content": "storage/notes/note-n-268.html",
+                    "bookmark": false,
+                    "last_edit": "27/01/2024 01:00",
+                    "creation": "27/01/2024"
                 }
             ],
             "subfolders": []
@@ -50,34 +58,26 @@
         },
         {
             "id": "f-55",
-            "name": "Songs",
-            "color": "#ffffff",
+            "name": "Green folder",
+            "color": "#c7ffc1",
             "notes": [
                 {
                     "id": "n-264",
                     "title": "test 2",
                     "content": "storage/notes/note-n-264.html",
                     "bookmark": false,
-                    "last_edit": "26/01/2024 11:41",
+                    "last_edit": "27/01/2024 00:59",
                     "creation": "25/01/2024"
                 }
             ],
-            "subfolders": [
-                {
-                    "id": "s-63",
-                    "name": "subfolder 1",
-                    "color": "#ffffff",
-                    "notes": [],
-                    "subfolders": []
-                },
-                {
-                    "id": "s-64",
-                    "name": "subfolder two",
-                    "color": "#ffffff",
-                    "notes": [],
-                    "subfolders": []
-                }
-            ]
+            "subfolders": []
+        },
+        {
+            "id": "f-58",
+            "name": "No notes feedback",
+            "color": "#ffffff",
+            "notes": [],
+            "subfolders": []
         }
     ]
 }

@@ -3,7 +3,7 @@
     height: 340px;
     border-radius: 15px;
     background-color: var(--card);
-    color: rgb(36, 40, 109);
+    color: var(--icon);
     display: grid;
     grid-template-rows: 40px 1fr 50px;
     margin: 20px;
@@ -59,6 +59,7 @@
 
 
 .folder-logo {
+    position: relative;
     height: 100%;
     width: 100%;
     margin: auto;
@@ -79,6 +80,7 @@
 }
 
 .folder-util-bar {
+    position: relative;
     display: flex;
     justify-content: right;
     align-items: center;
@@ -120,6 +122,29 @@
     transition: .2s;
 }
 
+.folder-color-options-container {
+    position: absolute;
+    right: 10px;
+    bottom: 0px;
+    background-color: #ffffff;
+    width: fit-content;
+    border-radius: 35px;
+    padding: 5px 0;
+    transition: .2s;
+    opacity: 0;
+    visibility: hidden;
+}
+
+
+.folder-color-options-container div {
+    width: 17px;
+    height: 17px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 1px solid #ddd;
+}
+
 .list-view-folder {
     cursor: pointer;
     margin-left: 10px;
@@ -141,42 +166,69 @@
 
 .card-style-blue {
     background-color: #c1e2ff;
+    border: none;
 }
 
 .card-style-orange {
     background-color: #ffebc1;
+    border: none;
 }
 
 .card-style-green {
     background-color: #c7ffc1;
+    border: none;
 }
 
 .card-style-purple {
     background-color: #dfc1ff;
+    border: none;
 }
 
 .card-style-red {
     background-color: #ffc1c1;
+    border: none;
 }
 
-
-
-.hover-style-blue {
+.card-style-blue .folder-util-bar button:hover {
     background-color: #aad7ff;
 }
 
-.hover-style-orange {
+.card-style-blue h4,
+.card-style-orange h4,
+.card-style-green h4,
+.card-style-purple h4,
+.card-style-red h4 {
+    color: #1b1c22;
+}
+
+.card-style-blue .folder-logo i,
+.card-style-green .folder-logo i,
+.card-style-orange .folder-logo i,
+.card-style-purple .folder-logo i,
+.card-style-red .folder-logo i {
+    color: #444863;
+}
+
+.card-style-blue .folder-util-bar button,
+.card-style-orange .folder-util-bar button,
+.card-style-green .folder-util-bar button,
+.card-style-purple .folder-util-bar button,
+.card-style-red .folder-util-bar button {
+    color: #444863;
+}
+
+.card-style-orange .folder-util-bar button:hover {
     background-color: #ffe1a1;
 }
 
-.hover-style-green {
+.card-style-green .folder-util-bar button:hover {
     background-color: #a7ff9e;
 }
 
-.hover-style-purple {
+.card-style-purple .folder-util-bar button:hover {
     background-color: #d2a8ff;
 }
 
-.hover-style-red {
+.card-style-red .folder-util-bar button:hover {
     background-color: #ffadad;
 }

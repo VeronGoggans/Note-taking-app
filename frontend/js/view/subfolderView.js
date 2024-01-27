@@ -24,8 +24,9 @@ export class SubfolderView {
         for (let i = 0; i < subfolders.length; i++) {
             const ID = subfolders[i].id;
             const NAME = subfolders[i].name;
+            const COLOR = subfolders[i].color;
             const SUBFOLDER_LIST_CARD = this.listSubfolder(ID, NAME);
-            const SUBFOLDER_CARD = this.subfolder(ID, NAME);
+            const SUBFOLDER_CARD = this.subfolder(ID, NAME, COLOR);
             this._content.appendChild(SUBFOLDER_CARD);
             this._list.appendChild(SUBFOLDER_LIST_CARD);
         }
@@ -114,8 +115,8 @@ export class SubfolderView {
      * @param {String} name The name of the subfolder.
      * @returns {Folder} The subfolder card 
      */
-    subfolder(id, name) {
-        return new Folder(id, name, this);
+    subfolder(id, name, color) {
+        return new Folder(id, name, color, this);
     }
 
     /**

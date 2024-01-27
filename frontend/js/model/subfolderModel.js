@@ -15,8 +15,8 @@ export class SubfolderModel {
     }
 
 
-    async addSubfolder(endpoint, name, parentID) {
-        const POST_SUBFOLDER_OBJECT = {'folder_id': parentID, 'name': name}
+    async addSubfolder(endpoint, name, parentID, color='#ffffff') {
+        const POST_SUBFOLDER_OBJECT = {'folder_id': parentID, 'name': name, 'color': color}
         const OPTIONS = {
             method: 'POST',
             headers: {"Content-Type": "application/json"},

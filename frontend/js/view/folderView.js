@@ -24,8 +24,9 @@ export class FolderView {
         for (let i = 0; i < folders.length; i++) {
             const ID = folders[i].id;
             const NAME = folders[i].name;
+            const COLOR = folders[i].color;
             const LIST_FOLDER_CARD = this.listFolder(ID, NAME);
-            const FOLDER_CARD = this.folder(ID, NAME);
+            const FOLDER_CARD = this.folder(ID, NAME, COLOR);
             this._content.appendChild(FOLDER_CARD);
             this._list.appendChild(LIST_FOLDER_CARD);
         }
@@ -115,8 +116,8 @@ export class FolderView {
      * @param {String} name The name of the folder.
      * @returns {Folder} The folder card 
      */
-    folder(id, name) {
-        return new Folder(id, name, this);
+    folder(id, name, color) {
+        return new Folder(id, name, color, this);
     }
 
     /**

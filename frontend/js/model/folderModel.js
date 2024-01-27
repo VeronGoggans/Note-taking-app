@@ -20,8 +20,8 @@ export class FolderModel {
     }
 
 
-    async addFolder(endpoint, name) {
-        const postFoldersObject = {'name': name}
+    async addFolder(endpoint, name, color='#ffffff') {
+        const postFoldersObject = {'name': name, 'color': color}
         const OPTIONS = {
             method: 'POST',
             headers: {"Content-Type": "application/json"},

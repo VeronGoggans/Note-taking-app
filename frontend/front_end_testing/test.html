@@ -1,45 +1,47 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Embed Example</title>
-    <style>
-        iframe {
-            border-radius: 5px;
-            transition: .2s;
-        }
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/themes.css">
+    <link rel="stylesheet" href="../css/folder.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-        iframe:hover {
-            border-radius: 20px;
+    <style>
+        body {
+            height: 100dvh;
+            background-color: rgb(255, 255, 255);
         }
     </style>
 </head>
 <body>
-
-<div contenteditable="true">
-    <!-- Users can paste their video embed code here -->
-    <p>Paste your video embed code here:</p>
-    <iframe width="853" height="480" src="https://www.youtube.com/embed/HAn6B7TTtuQ" title="Instant Messaging App in C++ // Code Review" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-</div>
-
-<script>
-    // Example: Parse and render embedded video
-    function renderVideo() {
-        var contentDiv = document.querySelector('[contenteditable="true"]');
-        var embedCode = contentDiv.innerHTML;
-        var previewDiv = document.createElement('div');
-        previewDiv.innerHTML = embedCode;
-        contentDiv.innerHTML = ''; // Clear original content
-        contentDiv.appendChild(previewDiv);
-    }
-
-    // Example: Trigger rendering on some event (e.g., button click)
-    document.addEventListener('DOMContentLoaded', function () {
-        renderVideo();
-    });
-</script>
-
+    <div class="content-view">
+        <div class="folder">
+            <div class="folder-name-box">
+                <h4>Folder</h4>
+                <div class="update-folder-btns-container"></div>
+            </div>
+            <div class="folder-logo">
+                <i class="fa-solid fa-folder"></i>
+                <div class="folder-color-options-container">
+                    <div style="background-color: #c1e2ff;"></div>
+                    <div style="background-color: #ffe7b3;"></div>
+                    <div style="background-color: #c7ffc1;"></div>
+                
+                    <div style="background-color: #dfc1ff;"></div>
+                    <div style="background-color: #ffc1c1;"></div>
+                    <div style="background-color: #ffffff;" ></div>
+                </div>
+            </div>
+            <div class="folder-util-bar">
+                <button><i class="fa-solid fa-palette"></i></button>
+                <button><i class="fa-solid fa-pen"></i></button>
+                <button><i class="fa-solid fa-trash"></i></button>
+            </div>
+        </div>    
+    </div>
 </body>
 </html>

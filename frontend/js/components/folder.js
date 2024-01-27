@@ -18,6 +18,13 @@ export class Folder {
         this.CANCEL_ICON = CNode.create('i', {'class': 'fa-solid fa-xmark'});
         this.LOGO = CNode.create('div', {'class': 'folder-logo'});
         this.ICON = CNode.create('i', {'class': 'fa-solid fa-folder'});
+        this.COLOR_CONTAINER = CNode.create('div', {'class': 'folder-color-options-container'});
+        this.BLUE = CNode.create('div', {'style': 'background-color: #c1e2ff;'});
+        this.ORANGE = CNode.create('div', {'style': 'background-color: #ffe7b3;'});
+        this.GREEN = CNode.create('div', {'style': 'background-color: #c7ffc1;'});
+        this.PURPLE = CNode.create('div', {'style': 'background-color: #dfc1ff;'});
+        this.RED = CNode.create('div', {'style': 'background-color: #ffc1c1;'});
+        this.WHITE = CNode.create('div', {'style': 'background-color: #ffffff;'});
         this.UTIL_BAR = CNode.create('div', {'class': 'folder-util-bar'});
         this.COLOR = CNode.create('button', {'class': 'color-folder-btn'});
         this.COLOR_ICON = CNode.create('i', {'class': 'fa-solid fa-palette'});
@@ -41,6 +48,13 @@ export class Folder {
         this.NAME_BOX.appendChild(this.BTN_CONTAINER);
         this.HOST.appendChild(this.LOGO);
         this.LOGO.appendChild(this.ICON);
+        this.LOGO.appendChild(this.COLOR_CONTAINER);
+        this.COLOR_CONTAINER.appendChild(this.BLUE);
+        this.COLOR_CONTAINER.appendChild(this.ORANGE);
+        this.COLOR_CONTAINER.appendChild(this.GREEN);
+        this.COLOR_CONTAINER.appendChild(this.PURPLE);
+        this.COLOR_CONTAINER.appendChild(this.RED);
+        this.COLOR_CONTAINER.appendChild(this.WHITE);
         this.HOST.appendChild(this.UTIL_BAR);
         this.UTIL_BAR.appendChild(this.COLOR);
         this.COLOR.appendChild(this.COLOR_ICON);
@@ -52,26 +66,17 @@ export class Folder {
     }
 
     applyColor(color) {
-        const CARD_CLASS = CARD_CLASSES[color];
-        const HOVER_CLASS = HOVER_CLASSES[color];
-
+        console.log(color);
         const CARD_CLASSES = {
             '#ffffff': null,
             '#c1e2ff': 'card-style-blue',
-            '#ffebc1': 'card-style-orange',
+            '#ffe7b3': 'card-style-orange',
             '#c7ffc1': 'card-style-green',
             '#dfc1ff': 'card-style-purple',
             '#ffc1c1': 'card-style-red'
         }
 
-        const HOVER_CLASSES = {
-            '#ffffff': null,
-            '#c1e2ff': 'hover-style-blue',
-            '#ffebc1': 'hover-style-orange',
-            '#c7ffc1': 'hover-style-green',
-            '#dfc1ff': 'hover-style-purple',
-            '#ffc1c1': 'hover-style-red'
-        }
+        const CARD_CLASS = CARD_CLASSES[color];
 
         if (CARD_CLASS !== null){
             this.HOST.classList.add(CARD_CLASS);
@@ -83,7 +88,13 @@ export class Folder {
         this.CONFIRM.addEventListener('click', () => {this.updateFolder()});
         this.CANCEL.addEventListener('click', () => {this.toggleEditableFolderName()});
         this.DELETE.addEventListener('click', () => {this.view.renderDeleteContainer(this.id, this.name)});
+        this.COLOR.addEventListener('click', () => {this.togglePalette()});
         this.LOGO.addEventListener('click', () => { this.view.handleFolderCardClick(this.id)});
+    }
+
+    togglePalette() {
+        this.COLOR_CONTAINER.style.visibility = this.COLOR_CONTAINER.style.visibility === 'visible' ? 'hidden' : 'visible';
+        this.COLOR_CONTAINER.style.opacity = this.COLOR_CONTAINER.style.opacity === '100' ? '0' : '100';
     }
 
     toggleEditableFolderName() {
