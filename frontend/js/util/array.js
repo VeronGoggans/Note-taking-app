@@ -87,6 +87,7 @@ export class NoteObjectArray {
                 this.objects.splice(i, 1);
             }
         }
+        console.log(this.objects);
     }
 
     /**
@@ -96,20 +97,15 @@ export class NoteObjectArray {
      * containing the updated note information.
      */
     update(note) {
-        const ID = note.id;
-        const NAME = note.title;
-        const CONTENT = note.content;
-        const BOOKMARK = note.bookmark;
-        const LAST_EDIT = note.last_edit;
-
         for (let i = 0; i < this.objects.length; i++) {
-            if (this.objects[i].id === ID) {
-                this.objects[i].name = NAME;
-                this.objects[i].content = CONTENT;
-                this.objects[i].bookmark = BOOKMARK;
-                this.objects[i].lastEdit = LAST_EDIT;
+            if (this.objects[i].id === note.id) {
+                this.objects[i].name = note.title;
+                this.objects[i].content = note.content;
+                this.objects[i].bookmark = note.bookmark;
+                this.objects[i].lastEdit = note.last_edit;
             }
         }
+        console.log(this.objects);
     }
 
     /**

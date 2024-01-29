@@ -9,7 +9,6 @@ export class UserFeedbackHandler {
     }
 
     noNotes(message) {
-        console.log(this._noteList);
         this._noteList.appendChild(message);
     }
 
