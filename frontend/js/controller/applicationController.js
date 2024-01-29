@@ -76,11 +76,9 @@ export class ApplicationController {
         const PARENT_ID = this.applicationModel.removeFolderIdFromList();
         if (PARENT_ID === undefined) {
             this.navigateToHomescreen();
-            this.noteController.clearNotObjectsList();
         }
         else {
             this.navigateIntoFolder(PARENT_ID);
-            this.noteController.clearNotObjectsList();
         }
     }
 

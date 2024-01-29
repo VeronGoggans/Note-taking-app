@@ -45,14 +45,6 @@ export class NoteController {
         this.deleteSearchObject(noteId);
     }
 
-    /**
-     * This method clears the noteObjects list 
-     * inside the noteView
-     */
-    clearNotObjectsList() {
-        this.noteView.clearNoteObjectsList()
-    }
-
     
     // Methods that communicate with the application controller
     // communicating <--- 

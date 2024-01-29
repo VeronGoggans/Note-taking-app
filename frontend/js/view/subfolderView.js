@@ -1,16 +1,20 @@
 import { Folder } from "../components/folder.js";
-import { ListFolder } from "../components/listFolder.js";
+import { ListFolder, NoFolderMessage } from "../components/listFolder.js";
 import { DeleteContainer } from '../components/deleteContainer.js';
-import { SubfolderArray } from "../util/array.js";
+import { HTMLArray } from "../util/array.js";
+import { Dialog } from "../util/dialog.js";
+import { UserFeedbackHandler } from "../handlers/notificationHandler.js";
 
 
 
 export class SubfolderView {
     constructor(controller) {
         this.subfolderController = controller;
-        this.dialog = document.querySelector('.dialog');
+        this.dialog = new Dialog();
+        this.userFeedbackHandler = new UserFeedbackHandler();
         this._content = document.querySelector('.content-view');
         this._list = document.querySelector('.list-content-folders');
+        this.subfoldersObjects = [];
     }
     /**
      * This method renders a array of subfolders.
@@ -21,14 +25,18 @@ export class SubfolderView {
      * @param {Array} subfolders is an array of subfolders.
      */
     renderSubfolders(subfolders) {
-        for (let i = 0; i < subfolders.length; i++) {
-            const ID = subfolders[i].id;
-            const NAME = subfolders[i].name;
-            const COLOR = subfolders[i].color;
-            const SUBFOLDER_LIST_CARD = this.listSubfolder(ID, NAME);
-            const SUBFOLDER_CARD = this.subfolder(ID, NAME, COLOR);
-            this._content.appendChild(SUBFOLDER_CARD);
-            this._list.appendChild(SUBFOLDER_LIST_CARD);
+        if (subfolders.length > 0) {
+            for (let i = 0; i < subfolders.length; i++) {
+                const SUBFOLDER = subfolders[i];
+                const SUBFOLDER_LIST_CARD = this.listSubfolder(SUBFOLDER);
+                const SUBFOLDER_CARD = this.subfolder(SUBFOLDER);
+
+                this._content.appendChild(SUBFOLDER_CARD);
+                this._list.appendChild(SUBFOLDER_LIST_CARD);
+            }
+        } else {
+            // give user feedback that this folder is empty
+            this.userFeedbackHandler.noFolders(new NoFolderMessage());
         }
     }
 
@@ -40,13 +48,18 @@ export class SubfolderView {
      * @param {dict} subfolder The subfolder that needs to be added to the UI. 
      */
     renderSubfolder(subfolder) {
-        const ID = subfolder.id;
-        const NAME = subfolder.name;
-        const SUBFOLDER_CARD = this.subfolder(ID, NAME);
-        const SUBFOLDER_LIST_CARD = this.listSubfolder(ID, NAME);
+        // Checking if the list-view html element currently says "no folders"
+        if (this._list.children.length === 1) {
+            this.userFeedbackHandler.removeNoFoldersMessage();
+        }
+        // Creating the html for the subfolder
+        const SUBFOLDER_CARD = this.subfolder(subfolder);
+        const SUBFOLDER_LIST_CARD = this.listSubfolder(subfolder);
+
+        // Adding the note html cards to the screen
         this._content.appendChild(SUBFOLDER_CARD);
         this._list.appendChild(SUBFOLDER_LIST_CARD);
-        this.removeDialog();
+        this.dialog.hide();
     }
 
     /**
@@ -67,56 +80,60 @@ export class SubfolderView {
     }
 
     /**
+     * Removes a specific subfolder from the UI.
+     *
+     * This method removes the subfolder from the UI that it has been given.
+     * @param {dict} subfolder the subfolder to be removed from the UI.
+     * This method recieves the subfolder from the backend through the subfolder model.
+     */
+    removeSubfolder(subfolder) {
+        const ALL_SUBFOLDERS = this._content.children;
+        const ALL_LIST_SUBFOLDERS = this._list.children;
+        const ID = subfolder.id
+
+        for (let i = 0; i < ALL_SUBFOLDERS.length; i++) {
+            if (ALL_SUBFOLDERS[i].id === ID) {
+                // Removing the html related to the given subfolder 
+                this._content.removeChild(ALL_SUBFOLDERS[i]);
+                this._list.removeChild(ALL_LIST_SUBFOLDERS[i]);
+                // Checking if there are no subfolder cards inside the list-view html element
+                if (this._list.children.length === 0) {
+                    this.userFeedbackHandler.noFolders(new NoFolderMessage());
+                }
+            }
+        }
+        this.dialog.hide();
+    }
+
+    /**
+     * This method creates a ListFolder component and returns it.
+     * 
+     * @param {Dict} subfolder
+     * @returns {ListFolder}
+     */
+    listSubfolder(subfolder) {
+        return new ListFolder(subfolder, this);
+    }
+
+    /**
+     * This method creates a Folder component and returns it.
+     * 
+     * @param {Dict} subfolder
+     * @returns {Folder}
+     */
+    subfolder(subfolder) {
+        return new Folder(subfolder, this);
+    }
+
+    /**
      * This method renders a confirmation container telling the user if they want to delete the subfolder.
      * 
      * @param {String} id The ID of the subfolder wished to be deleted.
      * @param {String} name The name of the subfolder wished to be deleted.
      */
     renderDeleteContainer(id, name) {
-        this.dialog.appendChild(new DeleteContainer(id, name, this));
-        this.renderDialog();
-    }
-
-
-    /**
-     * This method renders the dialog.
-     */
-    renderDialog() {
-        this.dialog.style.visibility = 'visible';
-        this.dialog.style.top = '0%';
-    }
-
-    /**
-     * This method removes the child of the dialog and the dialog itself from the UI.
-     */
-    removeDialog() {
-        this.dialog.style.visibility = 'hidden';
-        this.dialog.style.top = '100%';
-        const CHILD = this.dialog.firstChild;
-        this.dialog.removeChild(CHILD);
-    }
-
-
-    /**
-     * This method creates a ListFolder component and returns it.
-     * 
-     * @param {String} id The ID of the subfolder.
-     * @param {String} name The name of the subfolder.
-     * @returns {ListFolder} The list subfolder card 
-     */
-    listSubfolder(id, name) {
-        return new ListFolder(id, name, this);
-    }
-
-    /**
-     * This method creates a Folder component and returns it.
-     * 
-     * @param {String} id The ID of the subfolder.
-     * @param {String} name The name of the subfolder.
-     * @returns {Folder} The subfolder card 
-     */
-    subfolder(id, name, color) {
-        return new Folder(id, name, color, this);
+        this.dialog.addChild(new DeleteContainer(id, name, this));
+        this.dialog.show();
     }
 
     /**
@@ -128,8 +145,8 @@ export class SubfolderView {
      * @param {String} id The ID of the subfolder wished to be updated.
      * @param {String} name The new name for the subfolder.
      */
-    async updateFolder(id, name) {
-        this.subfolderController.updateSubfolder(id, name);
+    async updateFolder(id, name, color) {
+        this.subfolderController.updateSubfolder(id, name, color);
     }
 
     /**
@@ -155,26 +172,5 @@ export class SubfolderView {
      */
     handleFolderCardClick(id) {
         this.subfolderController.navigateIntoFolder(id);
-    }
-
-
-    /**
-     * Removes a specific subfolder from the UI.
-     *
-     * This method removes the subfolder from the UI that it has been given.
-     * @param {dict} subfolder the subfolder to be removed from the UI.
-     * This method recieves the subfolder from the backend through the subfolder model.
-     */
-    removefolder(subfolder) {
-        const ALL_SUBFOLDERS = this._content.children;
-        const ALL_LIST_SUBFOLDERS = this._list.children;
-        const ID = subfolder.id
-        for (let i = 0; i < ALL_SUBFOLDERS.length; i++) {
-            if (ALL_SUBFOLDERS[i].id === ID) {
-                this._content.removeChild(ALL_SUBFOLDERS[i]);
-                this._list.removeChild(ALL_LIST_SUBFOLDERS[i]);
-            }
-        }
-        this.removeDialog();
     }
 }

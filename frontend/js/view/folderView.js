@@ -1,6 +1,7 @@
 import { Folder } from '../components/folder.js';
 import { ListFolder } from '../components/listFolder.js';
 import { DeleteContainer } from '../components/deleteContainer.js';
+import { Dialog } from '../util/dialog.js';
 
 
 export class FolderView {
@@ -9,7 +10,7 @@ export class FolderView {
         this._content = document.querySelector('.content-view');
         this._list = document.querySelector('.list-content-folders');
         this._cover = document.querySelector('.cover');
-        this.dialog = document.querySelector('.dialog');
+        this.dialog = new Dialog();
     }
 
     /**
@@ -22,11 +23,10 @@ export class FolderView {
      */
     renderFolders(folders) {
         for (let i = 0; i < folders.length; i++) {
-            const ID = folders[i].id;
-            const NAME = folders[i].name;
-            const COLOR = folders[i].color;
-            const LIST_FOLDER_CARD = this.listFolder(ID, NAME);
-            const FOLDER_CARD = this.folder(ID, NAME, COLOR);
+            const FOLDER = folders[i];
+            const LIST_FOLDER_CARD = this.listFolder(FOLDER);
+            const FOLDER_CARD = this.folder(FOLDER);
+
             this._content.appendChild(FOLDER_CARD);
             this._list.appendChild(LIST_FOLDER_CARD);
         }
@@ -40,13 +40,12 @@ export class FolderView {
      * @param {dict} folder The folder that needs to be added to the UI. 
      */
     renderFolder(folder) {
-        const ID = folder.id;
-        const NAME = folder.name;
-        const FOLDER_LIST_CARD = this.listFolder(ID, NAME);
-        const FOLDER_CARD = this.folder(ID, NAME);
+        const FOLDER_LIST_CARD = this.listFolder(folder);
+        const FOLDER_CARD = this.folder(folder);
+
         this._content.appendChild(FOLDER_CARD);
         this._list.appendChild(FOLDER_LIST_CARD);
-        this.removeDialog();
+        this.dialog.hide();
     }
 
     /**
@@ -70,54 +69,53 @@ export class FolderView {
     }
 
     /**
+     * This method removes a specific folder from the UI.
+     *
+     * This method removes the folder from the UI that it has been given.
+     * @param {String} id the ID of the folder to be removed from the UI.
+     */
+    removeFolder(folder) {
+        const ALL_FOLDERS = this._content.children;
+        const ALL_LIST_FOLDERS = this._list.children;
+        const ID = folder.id
+        for (let i = 0; i < ALL_FOLDERS.length; i++) {
+            if (ALL_FOLDERS[i].id === ID) {
+                this._content.removeChild(ALL_FOLDERS[i]);
+                this._list.removeChild(ALL_LIST_FOLDERS[i]);
+            }
+        }
+        this.dialog.hide();
+    }
+
+    /**
+     * This method creates a ListFolder component and returns it.
+     * 
+     * @param {Dict} folder
+     * @returns {ListFolder} 
+     */
+    listFolder(folder) {
+        return new ListFolder(folder, this);
+    }
+
+    /**
+     * This method creates a Folder component and returns it.
+     * 
+     * @param {Dict} folder
+     * @returns {Folder}
+     */
+    folder(folder) {
+        return new Folder(folder, this);
+    }
+
+    /**
      * This method renders a confirmation container telling the user if they want to delete the folder.
      * 
      * @param {String} id The ID of the folder wished to be deleted.
      * @param {String} name The name of the folder wished to be deleted.
      */
     renderDeleteContainer(id, name) {
-        this.dialog.appendChild(new DeleteContainer(id, name, this));
-        this.renderDialog();
-    }
-
-    /**
-     * This method renders the dialog.
-     */
-    renderDialog() {
-        this.dialog.style.visibility = 'visible';
-        this.dialog.style.top = '0%';
-    }
-
-    /**
-     * This method removes the child of the dialog and the dialog itself from the UI.
-     */
-    removeDialog() {
-        this.dialog.style.visibility = 'hidden';
-        this.dialog.style.top = '100%';
-        const CHILD = this.dialog.firstChild;
-        this.dialog.removeChild(CHILD);
-    }
-
-    /**
-     * This method creates a ListFolder component and returns it.
-     * 
-     * @param {String} id The ID of the folder.
-     * @param {String} name The name of the folder.
-     * @returns {ListFolder} The list folder card 
-     */
-    listFolder(id, name) {
-        return new ListFolder(id, name, this);
-    }
-
-    /**
-     * This method creates a Folder component and returns it.
-     * 
-     * @param {String} id The ID of the folder.
-     * @param {String} name The name of the folder.
-     * @returns {Folder} The folder card 
-     */
-    folder(id, name, color) {
-        return new Folder(id, name, color, this);
+        this.dialog.addChild(new DeleteContainer(id, name, this));
+        this.dialog.show();
     }
 
     /**
@@ -129,8 +127,8 @@ export class FolderView {
      * @param {String} id The ID of the folder wished to be updated.
      * @param {String} name The new name for the folder.
      */
-    async updateFolder(id, name) {
-        await this.folderController.updateFolder(id, name);
+    async updateFolder(id, name, color) {
+        await this.folderController.updateFolder(id, name, color);
     }
 
     /**
@@ -156,24 +154,5 @@ export class FolderView {
      */
     handleFolderCardClick(id) {
         this.folderController.navigateIntoFolder(id);
-    }
-
-    /**
-     * This method removes a specific folder from the UI.
-     *
-     * This method removes the folder from the UI that it has been given.
-     * @param {String} id the ID of the folder to be removed from the UI.
-     */
-    removefolder(folder) {
-        const ALL_FOLDERS = this._content.children;
-        const ALL_LIST_FOLDERS = this._list.children;
-        const ID = folder.id
-        for (let i = 0; i < ALL_FOLDERS.length; i++) {
-            if (ALL_FOLDERS[i].id === ID) {
-                this._content.removeChild(ALL_FOLDERS[i]);
-                this._list.removeChild(ALL_LIST_FOLDERS[i]);
-            }
-        }
-        this.removeDialog();
     }
 }

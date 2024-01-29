@@ -22,8 +22,8 @@ export class FolderController {
     }
 
 
-    async updateFolder(folderId, newName) {
-        const RESPONSE = await this.folderModel.updateFolder('/folder', folderId, newName);
+    async updateFolder(folderId, newName, color) {
+        const RESPONSE = await this.folderModel.updateFolder('/folder', folderId, newName, color);
         const FOLDER = RESPONSE.Folder;
         console.log(FOLDER);
         this.folderView.renderFolderUpdate(FOLDER);
@@ -33,7 +33,7 @@ export class FolderController {
     async deleteFolder(folderId) {
         const RESPONSE = await this.folderModel.deleteFolder('/folder', folderId);
         const FOLDER = RESPONSE.Object;
-        this.folderView.removefolder(FOLDER);
+        this.folderView.removeFolder(FOLDER);
     }
     
 

@@ -1,13 +1,13 @@
 import { CNode } from "../util/CNode.js";
 
 export class Note {
-    constructor(id, name, bookmark, content, created, lastEdit, view) {
-        this.id = id;
-        this.name = name;
-        this.bookmark = bookmark;
-        this.content = content;
-        this.created = this.dateFormat(created);
-        this.lastEdit = this.dateFormat(lastEdit);
+    constructor(note, view) {
+        this.id = note.id;
+        this.name = note.title;
+        this.bookmark = note.bookmark;
+        this.content = note.content;
+        this.created = this.dateFormat(note.creation);
+        this.lastEdit = this.dateFormat(note.last_edit);
         this.view = view;
 
         // creating HTML elements.
@@ -31,7 +31,7 @@ export class Note {
         this.DELETE_ICON = CNode.create('i', {'class': 'fa-solid fa-trash'});
 
         this.attachEventListeners();
-        this.applyBookmarkStyle(bookmark);
+        this.applyBookmarkStyle(this.bookmark);
         return this.render();
     }
 

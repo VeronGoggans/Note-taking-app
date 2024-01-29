@@ -38,10 +38,11 @@ export class FolderModel {
     }
 
 
-    async updateFolder(endpoint, folderId, newName) {
+    async updateFolder(endpoint, folderId, newName, color) {
         const putFolderObject = {
             'folder_id': folderId,
-            'new_name': newName
+            'new_name': newName,
+            'color': color
         }
         const OPTIONS = {
             method: 'PUT',

@@ -47,6 +47,19 @@
     transition: .2s;
 }
 
+.list-view-no-note,
+.list-view-no-folder {
+    margin-left: 10px;
+    margin-bottom: 10px;
+    padding: 10px 5px;
+    display: inline-block;
+    opacity: 1;
+    font-style: italic;
+    width: calc(100% - 30px);
+    color: var(--no-content);
+    font-weight: 600;
+}
+
 .list-view-folder:hover,
 .list-view-note:hover {
     background-color: rgba(92, 125, 255, .3);

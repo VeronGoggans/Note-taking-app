@@ -7,43 +7,54 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <style>
-          @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+           @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
 
 
         body {
             height: 100dvh;
-            background-color: #1b1c22;
+            background-color: #ffffff;
         }
 
-        .insert-video-container {
-            background-color: #252831;
-            border-radius: 5px;
-            padding: 5px;
-            position: relative;
+        .no-content-container {
             display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 500px;
+            height: 500px;
+            background-color: rgb(255, 255, 255);
+        }
+
+        .no-content-circle {
+            width: 300px;
+            height: 300px;
+            background-color: #f3f3f3;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
             align-items: center;
         }
 
-        .insert-video-container input {
-            outline: none;
-            border: 1px solid #5c7dff;
-            border-radius: 5px;
-            padding: 5px;
-            background-color: transparent;
-            color: #bbbed2;
-            width: -webkit-fill-available;
+        .no-content-circle i {
+            font-size: 60px;
+            color: #d5d5d5;
         }
 
-        .insert-video-container input::placeholder {
-            color: #9093a2;
-        }
+        .no-content-container h2,
+        .no-content-container p {
+            color: #575966;
+            font-family: Roboto;
+        }        
         
     </style>
 </head>
 <body>
-    <div class="insert-video-container">
-        <input type="" placeholder="Insert embed link here">
-    </div>
-    
+    <div class="no-content-container">
+        <div class="no-content-circle">
+            <i class="fa-solid fa-lightbulb"></i>
+        </div>
+        <h2>No Results Found</h2>
+        <p>Try to create a note or a folder</p>
+    </div>    
 </body>
 </html>

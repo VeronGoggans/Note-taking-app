@@ -22,8 +22,8 @@ export class SubfolderController {
     }
 
 
-    async updateSubfolder(subfolderId, newName) {
-        const RESPONSE = await this.subfolderModel.updateSubfolder('/subfolder', subfolderId, newName);
+    async updateSubfolder(subfolderId, newName, color) {
+        const RESPONSE = await this.subfolderModel.updateSubfolder('/subfolder', subfolderId, newName, color);
         const FOLDER = RESPONSE.Subfolder;
         this.subfolderView.renderSubfolderUpdate(FOLDER);
     }
@@ -33,7 +33,7 @@ export class SubfolderController {
         const PARENT_ID = this.applicationController.getCurrentFolderID();
         const RESPONSE = await this.subfolderModel.deleteSubfolder('/subfolder', PARENT_ID, subfolderId);
         const FOLDER = RESPONSE.Subfolder;
-        this.subfolderView.removefolder(FOLDER);
+        this.subfolderView.removeSubfolder(FOLDER);
     }
 
     async navigateToHomescreen() {

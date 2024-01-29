@@ -1,15 +1,4 @@
-export class ArrayUtil {
-    /**
-     * This method will convert a html collection array 
-     * into a converntional array.
-     * 
-     * @param {HTMLCollection} array 
-     */
-    static collectionToArray(array) {
-        return Array.from(array);
-    }
-
-
+class ArrayUtil {
     /**
      * This method will filter out all of the folders
      * from a given array
@@ -48,7 +37,7 @@ export class ArrayUtil {
 }
 
 
-export class NoteArray {
+export class HTMLArray {
     /**
      * This class is used to create arrays of note html collections.
      * This._content.children returns an HTML collections array of notes and subfolders.
@@ -57,30 +46,87 @@ export class NoteArray {
      * @param {HTMLCollection} array 
      * @returns 
      */
-    constructor(array) {
-        return this.#createNoteArray(array);
+    constructor(array, type) {
+        return this.#createHtmlArray(array, type);
     }
 
-    #createNoteArray(array) {
-        return ArrayUtil.filterNotes(array);
+    #createHtmlArray(array, type) {
+        if (type === 'note') {
+            return ArrayUtil.filterNotes(array);
+        } else {
+            return ArrayUtil.filterSubfolders(array);
+        }
     }
 }
 
 
-export class SubfolderArray {
-    /**
-     * This class is used to create arrays of subfolder html collections.
-     * This._content.children returns an HTML collections array of notes and subfolders.
-     * Given this array, this class will return an HTML collections array with only subfolders. 
-     * 
-     * @param {HTMLCollection} array 
-     * @returns 
-     */
-    constructor(array) {
-        return this.#createSubfolderArray(array);
+export class NoteObjectArray {
+    constructor() {
+        this.objects = [];
     }
 
-    #createSubfolderArray(array) {
-        return ArrayUtil.filterSubfolders(array);
+    /**
+     * This method adds the given note to the array.
+     * 
+     * @param {Dict} note 
+     */
+    add(note) {
+        this.objects.push(note);
+    }
+
+    /**
+     * This method removes the given note from the array.
+     * 
+     * @param {Dict} note 
+     */
+    remove(note) {
+        const ID = note.id;
+
+        for (let i = 0; i < this.objects.length; i++) {
+            if (this.objects[i].id === ID) {
+                this.objects.splice(i, 1);
+            }
+        }
+    }
+
+    /**
+     * This method updates a note object in the noteObjects list.
+     * 
+     * @param {Dict} note The updated note from the backend 
+     * containing the updated note information.
+     */
+    update(note) {
+        const ID = note.id;
+        const NAME = note.title;
+        const CONTENT = note.content;
+        const BOOKMARK = note.bookmark;
+        const LAST_EDIT = note.last_edit;
+
+        for (let i = 0; i < this.objects.length; i++) {
+            if (this.objects[i].id === ID) {
+                this.objects[i].name = NAME;
+                this.objects[i].content = CONTENT;
+                this.objects[i].bookmark = BOOKMARK;
+                this.objects[i].lastEdit = LAST_EDIT;
+            }
+        }
+    }
+
+    /**
+     * This method finds the note with the given note ID.
+     * 
+     * @param {String} noteId 
+     * @returns a note dictionary
+     */
+    get(noteId) {
+        return this.objects.find(obj => obj.id === noteId)
+    }
+
+    clear() {
+        this.objects = [];
+    }
+
+    size() {
+        return this.objects.length;
     }
 }

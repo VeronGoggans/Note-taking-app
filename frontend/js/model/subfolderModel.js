@@ -33,10 +33,11 @@ export class SubfolderModel {
     }
 
 
-    async updateSubfolder(endpoint, subfolderID, newName) {
+    async updateSubfolder(endpoint, subfolderID, newName, color) {
         const PUT_SUBFOLDER_OBJECT = {
             'subfolder_id': subfolderID,
-            'name': newName
+            'name': newName,
+            'color': color
         }
         const OPTIONS = {
             method: 'PUT',

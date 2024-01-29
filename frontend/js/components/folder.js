@@ -1,10 +1,10 @@
 import { CNode } from "../util/CNode.js";
 
 export class Folder {
-    constructor(id, name, color, view) {
-        this.id = id;
-        this.name = name;
-        this.color = color;
+    constructor(folder, view) {
+        this.id = folder.id;
+        this.name = folder.name;
+        this.color = folder.color;
         this.view = view;
 
         // creating HTML elements.
@@ -66,7 +66,6 @@ export class Folder {
     }
 
     applyColor(color) {
-        console.log(color);
         const CARD_CLASSES = {
             '#ffffff': null,
             '#c1e2ff': 'card-style-blue',
@@ -107,7 +106,7 @@ export class Folder {
     }
 
     async updateFolder() {
-        this.view.updateFolder(this.id, this.H4.textContent);
+        this.view.updateFolder(this.id, this.H4.textContent, this.color);
         this.toggleEditableFolderName();
     }
 }

@@ -1,7 +1,9 @@
 import { Note } from "../components/note.js";
 import { DeleteContainer } from "../components/deleteContainer.js";
-import { ListNote } from "../components/listNote.js";
-import { NoteArray } from "../util/array.js";
+import { ListNote, NoNoteMessage } from "../components/listNote.js";
+import { HTMLArray, NoteObjectArray } from "../util/array.js";
+import { Dialog } from "../util/dialog.js";
+import { UserFeedbackHandler } from "../handlers/notificationHandler.js";
 
 export class NoteView {
     constructor(noteController) {
@@ -9,8 +11,9 @@ export class NoteView {
         this._content = document.querySelector('.content-view');
         this._list = document.querySelector('.list-content-notes');
         this._cover = document.querySelector('.cover');
-        this.dialog = document.querySelector('.dialog');
-        this.noteObjects = [];
+        this.userFeedbackHandler = new UserFeedbackHandler();
+        this.dialog = new Dialog();
+        this.noteObjects = new NoteObjectArray();
     }
 
     /**
@@ -26,30 +29,27 @@ export class NoteView {
      */
     renderNoteCards(notes) {
         // clear the array everytime this method gets called.
-        this.noteObjects = [];
+        this.noteObjects.clear();
         if (notes.length > 0) {
             for (let i = 0; i < notes.length; i++) {
-                const ID = notes[i].id;
-                const NAME = notes[i].title;
-                const BOOKMARK = notes[i].bookmark;
-                const CONTENT = notes[i].content;
-                const CREATED = notes[i].creation;
-                const EDIT = notes[i].last_edit;
-                const LIST_NOTE_CARD = this.listNote(ID, NAME, CREATED);
-                const NOTE_CARD = this.note(ID, NAME, BOOKMARK, CONTENT, CREATED, EDIT);
+                const NOTE = notes[i];
+
+                const LIST_NOTE_CARD = this.listNote(NOTE);
+                const NOTE_CARD = this.note(NOTE);
+
                 this._content.appendChild(NOTE_CARD);
                 this._list.appendChild(LIST_NOTE_CARD);
             }
         } else {
-            // give user feedback that this folder is empty
+            this.userFeedbackHandler.noNotes(new NoNoteMessage());
         }
     }
 
     /**
      * This method renders a single not card.
      * 
-     * This method renders a single note card to the content <div>
-     * and adds a note object to the noteObjects list.
+     * This method renders a single note card to the content div
+     * and adds a note object to the noteObjects array.
      * 
      * This method is called by the noteController 
      * when a note has been made.
@@ -57,14 +57,15 @@ export class NoteView {
      * @param {Dict} note 
      */
     renderNoteCard(note) {
-        const ID = note.id;
-        const NAME = note.title;
-        const BOOKMARK = note.bookmark;
-        const CONTENT = note.content;
-        const CREATED = note.creation;
-        const EDIT = note.last_edit;
-        const LIST_NOTE_CARD = this.listNote(ID, NAME, CREATED);
-        const NOTE_CARD = this.note(ID, NAME, BOOKMARK, CONTENT, CREATED, EDIT);
+        // Checking if the list-view html element currently says "no notes"
+        if (this.noteObjects.size() === 0) {
+            this.userFeedbackHandler.removeNoNotesMessage();
+        }
+        // Creating the html for the note
+        const LIST_NOTE_CARD = this.listNote(note);
+        const NOTE_CARD = this.note(note);
+
+        // Adding the note html cards to the screen
         this._content.appendChild(NOTE_CARD);
         this._list.appendChild(LIST_NOTE_CARD);
     }
@@ -81,48 +82,87 @@ export class NoteView {
         const ID = note.id;
         const NAME = note.title;
         const CONTENT = note.content;
-        const NOTE_CARDS = new NoteArray(this._content.children); 
+        const NOTE_CARDS = new HTMLArray(this._content.children, 'note'); 
         const NOTE_LIST_CARDS = this._list.children;
 
-        // update the note
         for (let i = 0; i < NOTE_CARDS.length; i++) {
             if (NOTE_CARDS[i].id === ID) {
-                // updating the <h4> element inside the note card.
+                // updating the h4 element inside the note card.
                 const H4 = NOTE_CARDS[i].querySelector('h4');
                 H4.textContent = NAME;
 
-                // updating the <p> element inside the note card.
+                // updating the p element inside the note card.
                 const P_ELEMENT = NOTE_CARDS[i].querySelector('p');
                 P_ELEMENT.innerHTML = CONTENT;
-                this.updateNoteObject(note);
 
-                // updating the <span> element inside the note list card
+                // updating the span element inside the note list card
                 const SPAN = NOTE_LIST_CARDS[i].querySelector('span');
                 SPAN.textContent = NAME;
+
+                // updating the note object 
+                this.noteObjects.update(note);
             }
         }
     }
 
     /**
-     * This method updates a note object in the noteObjects list.
-     * 
-     * @param {Dict} note The updated note from the backend 
-     * containing the updated note information.
+     * Removes a specific note from the UI.
+     *
+     * This method removes the note from the UI that it has been given.
+     * @param {String} id the ID of the note to be removed from the UI.
      */
-    updateNoteObject(note) {
-        const ID = note.id;
-        const NAME = note.title;
-        const CONTENT = note.content;
-        const BOOKMARK = note.bookmark;
-        const LAST_EDIT = note.last_edit;
+    removeNote(note) {
+        const ALL_NOTES = new HTMLArray(this._content.children, 'note');
+        const ALL_LIST_NOTES = this._list.children;
+        const ID = note.id
 
-        for (let i = 0; i < this.noteObjects.length; i++) {
-            if (this.noteObjects[i].id === ID) {
-                this.noteObjects[i].name = NAME;
-                this.noteObjects[i].content = CONTENT;
-                this.noteObjects[i].bookmark = BOOKMARK;
-                this.noteObjects[i].lastEdit = LAST_EDIT;
+        for (let i = 0; i < ALL_NOTES.length; i++) {
+            if (ALL_NOTES[i].id === ID) {
+                // Removing the html related to the given note 
+                this._content.removeChild(ALL_NOTES[i]);
+                this._list.removeChild(ALL_LIST_NOTES[i]);
+                // Removing the note object 
+                this.noteObjects.remove(note);
+                // Checking if the note object array is empty
+                if (this.noteObjects.size() === 0) {
+                    this.userFeedbackHandler.noNotes(new NoNoteMessage());
+                }
             }
+        }
+        this.dialog.hide();
+    }
+
+    /**
+     * This method creates a note card component 
+     * And adds a note object to the noteObjects array. 
+     * 
+     * @param {Dict} note 
+     * @returns A note card component.
+     */
+    note(note) {
+        this.noteObjects.add(note);
+        return new Note(note, this);
+    }
+
+    /**
+     * This method creates a ListNote component and returns it
+     * 
+     * @param {Dict} note
+     * @returns {ListNote} The list note card
+     */
+    listNote(note) {
+        return new ListNote(note, this);
+    }
+
+    /**
+     * This method checks if the "No notes" text is still 
+     * in the list view when a new note gets created.
+     * If so it removes that text from the list view.
+     * If the text is already gone it does nothing.
+     */
+    test() {
+        if (this.noteObjects.length === 0) {
+            this._list.removeChild();
         }
     }
 
@@ -133,87 +173,9 @@ export class NoteView {
      * @param {String} name The name of the note wished to be deleted.
      */
     renderDeleteContainer(id, name) {
-        this.dialog.appendChild(new DeleteContainer(id, name, this));
-        this.renderDialog();
+        this.dialog.addChild(new DeleteContainer(id, name, this));
+        this.dialog.show();
     }
-
-    /**
-     * This method renders the dialog.
-     */
-    renderDialog() {
-        this.dialog.style.visibility = 'visible';
-        this.dialog.style.top = '0%';
-    }
-
-    /**
-     * This method removes the child of the dialog and the dialog itself from the UI.
-     */
-    removeDialog() {
-        this.dialog.style.visibility = 'hidden';
-        this.dialog.style.top = '100%';
-        const CHILD = this.dialog.firstChild;
-        this.dialog.removeChild(CHILD);
-    }
-
-    /**
-     * Removes a specific note from the UI.
-     *
-     * This method removes the note from the UI that it has been given.
-     * @param {String} id the ID of the note to be removed from the UI.
-     */
-    removeNote(note) {
-        const ALL_NOTES = new NoteArray(this._content.children);
-        const ALL_LIST_NOTES = this._list.children;
-        const ID = note.id
-        for (let i = 0; i < ALL_NOTES.length; i++) {
-            if (ALL_NOTES[i].id === ID) {
-                this._content.removeChild(ALL_NOTES[i]);
-                this._list.removeChild(ALL_LIST_NOTES[i]);
-            }
-        }
-        this.removeDialog();
-    }
-
-    /**
-     * This method creates a note card component 
-     * And add a note object to the noteObjects list. 
-     * 
-     * @param {String} id 
-     * @param {String} name 
-     * @param {Boolean} bookmark 
-     * @param {String} content 
-     * @param {String} created 
-     * @param {String} lastEdit 
-     * @returns A note card component.
-     */
-    note(id, name, bookmark, content, created, lastEdit) {
-        const NOTE_OBJECT = {'id': id, 'name': name, 'bookmark': bookmark, 'content': content, 'creation': created, 'lastEdit': lastEdit}
-        this.noteObjects.push(NOTE_OBJECT);
-        return new Note(id, name, bookmark, content, created, lastEdit, this, this.noteController);
-    }
-
-    /**
-     * This method creates a ListNote component and returns it
-     * 
-     * @param {String} id The ID of the note
-     * @param {String} name The name of the note
-     * @param {String} creation The creation date of the note
-     * @returns {ListNote} The list note card
-     */
-    listNote(id, name, creation) {
-        return new ListNote(id, name, creation, this);
-    }
-
-    /**
-     * This method clears the noteObjects list 
-     * inside the noteView
-     */
-    clearNoteObjectsList() {
-        this.noteObjects = [];
-    }
-
-    // Methods that communicate with the note controller
-    // Communicating <---
 
     /**
      * This method updates a note
@@ -248,9 +210,7 @@ export class NoteView {
      * @param {String} name is the name/title of the note. 
      */
     handleNoteCardClick(noteId, creation, lastEdit) {
-        const NOTE = this.noteObjects.find(obj => obj.id === noteId);
-        console.log(this.noteObjects);
-        console.log(NOTE);
+        const NOTE = this.noteObjects.get(noteId);
         const NAME = NOTE.name;
         const CONTENT = NOTE.content;
         const BOOKMARK = NOTE.bookmark;
