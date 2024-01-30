@@ -87,14 +87,12 @@ export class NoteObjectArray {
                 this.objects.splice(i, 1);
             }
         }
-        console.log(this.objects);
     }
 
     /**
-     * This method updates a note object in the noteObjects list.
+     * This method updates the outdated note inside the objects array.
      * 
-     * @param {Dict} note The updated note from the backend 
-     * containing the updated note information.
+     * @param {Dict} note 
      */
     update(note) {
         for (let i = 0; i < this.objects.length; i++) {
@@ -105,7 +103,6 @@ export class NoteObjectArray {
                 this.objects[i].lastEdit = note.last_edit;
             }
         }
-        console.log(this.objects);
     }
 
     /**
@@ -116,6 +113,68 @@ export class NoteObjectArray {
      */
     get(noteId) {
         return this.objects.find(obj => obj.id === noteId)
+    }
+
+    clear() {
+        this.objects = [];
+    }
+
+    size() {
+        return this.objects.length;
+    }
+}
+
+
+export class SubfolderObjectArray {
+    constructor() {
+        this.objects = [];
+    }
+
+    /**
+     * This method adds the given subfolder to the array.
+     * 
+     * @param {Dict} subfolder 
+     */
+    add(subfolder) {
+        this.objects.push(subfolder);
+    }
+
+    /**
+     * This method removes the given subfolder from the array.
+     * 
+     * @param {Dict} subfolder 
+     */
+    remove(subfolder) {
+        const ID = subfolder.id;
+
+        for (let i = 0; i < this.objects.length; i++) {
+            if (this.objects[i].id === ID) {
+                this.objects.splice(i, 1);
+            }
+        }
+    }
+
+    /**
+     * This method updates the outdated subfolder inside the objects array.
+     * 
+     * @param {Dict} subfolder 
+     */
+    update(subfolder) {
+        for (let i = 0; i < this.objects.length; i++) {
+            if (this.objects[i].id === subfolder.id) {
+                this.objects[i].name = subfolder.name;
+            }
+        }
+    }
+
+    /**
+     * This method finds the subfolder with the given subfolder ID.
+     * 
+     * @param {String} subfolderId 
+     * @returns a subfolder dictionary
+     */
+    get(subfolderId) {
+        return this.objects.find(obj => obj.id === subfolderId)
     }
 
     clear() {
