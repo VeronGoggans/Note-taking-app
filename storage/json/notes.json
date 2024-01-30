@@ -28,14 +28,6 @@
                     "bookmark": false,
                     "last_edit": "24/01/2024 18:08",
                     "creation": "24/01/2024"
-                },
-                {
-                    "id": "n-268",
-                    "title": "undefined",
-                    "content": "storage/notes/note-n-268.html",
-                    "bookmark": false,
-                    "last_edit": "30/01/2024 14:46",
-                    "creation": "27/01/2024"
                 }
             ],
             "subfolders": []
@@ -52,22 +44,6 @@
                     "bookmark": false,
                     "last_edit": "28/01/2024 12:06",
                     "creation": "09/01/2024"
-                }
-            ],
-            "subfolders": []
-        },
-        {
-            "id": "f-55",
-            "name": "Green folder",
-            "color": "#c7ffc1",
-            "notes": [
-                {
-                    "id": "n-264",
-                    "title": "test 2",
-                    "content": "storage/notes/note-n-264.html",
-                    "bookmark": true,
-                    "last_edit": "29/01/2024 13:05",
-                    "creation": "25/01/2024"
                 }
             ],
             "subfolders": []

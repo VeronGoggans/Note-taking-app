@@ -1,5 +1,6 @@
 import { NewFolderContainer } from '../components/newFolderContainer.js';
 import { SettingsContainer } from '../components/settingsContainer.js';
+import { Dialog } from '../util/dialog.js';
 import { Themes } from '../util/themes.js';
 
 
@@ -7,6 +8,7 @@ export class ApplicationView {
     constructor(applicationController) {
         this.applicationController = applicationController;
         this.themes = new Themes(window.localStorage.getItem('theme'));
+        this.dialog = new Dialog();
         
         // <main-top> 
         this.createFolderButton = document.querySelector('.create-folder-btn');
@@ -20,7 +22,7 @@ export class ApplicationView {
         this.settingsButton = document.querySelector('.settings-btn');
 
         // other
-        this.dialog = document.querySelector('.dialog');
+        this._dialog = document.querySelector('.dialog');
         this._content = document.querySelector('.content-view');
         this._listViewFolders = document.querySelector('.list-content-folders');
         this._listViewNotes = document.querySelector('.list-content-notes');
@@ -46,11 +48,11 @@ export class ApplicationView {
         this.settingsButton.addEventListener('click', () => {this.renderSettingsContainer()});
         this.searchBarInput.addEventListener('input', () => {this.handleSearchBarInput()});
 
-        this.dialog.addEventListener('click', (event) => {
+        this._dialog.addEventListener('click', (event) => {
             if (!event.target.closest('.new-folder-container') && 
             !event.target.closest('.delete-folder-container') &&
             !event.target.closest('.settings-container')) {
-                this.removeDialog();
+                this.dialog.hide();
             }
         });
         document.addEventListener("click", (event) => {
@@ -60,7 +62,6 @@ export class ApplicationView {
             }
         });
     }
-
 
     /**
      * This method listens for li element clicks 
@@ -83,7 +84,6 @@ export class ApplicationView {
         }
     }
 
-
     /**
      * This method renders a new folder container
      * 
@@ -92,25 +92,15 @@ export class ApplicationView {
      * button is to confirm the new folder 
      */
     renderNewFolderContainer() {
-        this.dialog.appendChild(new NewFolderContainer(this));
-        this.renderDialog();
+        const CONTAINER = new NewFolderContainer(this);
+        this.dialog.addChild(CONTAINER);
+        this.dialog.show();
     }
-
     
     renderSettingsContainer() {
-        this.dialog.appendChild(new SettingsContainer(this, this.themes));
-        this.renderDialog();
+        this.dialog.addChild(new SettingsContainer(this, this.themes));
+        this.dialog.show();
     }
-
-
-    /**
-     * This method shows the dialog to the screen.
-     */
-    renderDialog() {
-        this.dialog.style.visibility = 'visible';
-        this.dialog.style.top = '0%';
-    }
-
 
     /**
      * This method renders all the note names 
@@ -126,18 +116,6 @@ export class ApplicationView {
         this.listenForSearchClicks();
     }
 
-
-    /**
-     * This method hides the dialog from the screen
-     */
-    removeDialog() {
-        this.dialog.style.visibility = 'hidden';
-        this.dialog.style.top = '100%';
-        const CHILD = this.dialog.firstChild;
-        this.dialog.removeChild(CHILD);
-    }
-
-
     /**
      * This method puts all the note option objects
      * in the _searchNoteObjects list
@@ -147,7 +125,6 @@ export class ApplicationView {
     giveSearchOptions(options) {
         this._searchNoteObjects = options;
     }
-
 
     /**
      * This method removes the following from the UI
@@ -165,7 +142,6 @@ export class ApplicationView {
         while (NOTES.firstChild) NOTES.removeChild(NOTES.firstChild);
     }
 
-
     /**
      * This method toggles the text editor visibility
      * 
@@ -179,7 +155,6 @@ export class ApplicationView {
         // toggle the visibility.
         this.textEditorWrapper.style.visibility = this.textEditorWrapper.style.visibility === 'visible' ? 'hidden' : 'visible';
     }
-
 
     /**
      * This method handles input in the searchbar
@@ -200,10 +175,6 @@ export class ApplicationView {
         this.renderSearchOptions(FILTERED_OPTIONS);
       }
 
-
-    // Communication with the application controller
-
-
     /**
      * This method is called when the home button is clicked
      */
@@ -211,7 +182,6 @@ export class ApplicationView {
         this.removeContent();
         this.applicationController.navigateToHomescreen();
     }
-
 
     /**
      * This method is called when the back button is clicked
@@ -221,14 +191,12 @@ export class ApplicationView {
         this.applicationController.navigateOutofFolder();
     }
 
-
     /**
      * This method is called when the note button is clicked
      */
     showTextEditor() {
         this.applicationController.showTextEditor();
     }
-
 
     /**
      * This method handles the  event of a user 
@@ -243,7 +211,6 @@ export class ApplicationView {
         this.noteOptionsList.style.visibility = 'hidden';
         await this.applicationController.getSearchedNote(noteId);
     }
-
 
     /**
      * This method handle the add folder button click 

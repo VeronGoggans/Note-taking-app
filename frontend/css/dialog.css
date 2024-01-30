@@ -18,7 +18,7 @@
   gap: 20px;
   align-items: center;
   justify-content: center;
-  background-color: white;
+  background-color: var(--background);
   width: 300px;
   height: 200px;
   border-radius: 20px;
@@ -27,13 +27,13 @@
 
 .delete-warning {
   display: inline-flex;
-  color: #444863;
+  color: var(--text);
   font-size: 16px;
 }
 
 .delete-folder-name {
   display: inline-flex;
-  color: #444863;
+  color: var(--important);
   font-weight: 600;
   font-size: 14px;
 }
@@ -42,7 +42,7 @@
   cursor: pointer;
   outline: none;
   border: none;
-  background-color: aliceblue;
+  background-color: var(--toolbar);
   padding: 10px 30px;
   border-radius: 10px;
   font-size: 16px;
@@ -78,7 +78,7 @@
   padding: 10px 20px;
   border-radius: 15px;
   box-sizing: border-box;
-  background-color: var(--list-view);
+  background-color: var(--toolbar);
   color: var(--text);
   font-weight: 600;
 }

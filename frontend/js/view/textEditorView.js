@@ -89,6 +89,7 @@ export class TextEditorView {
    * @param {String} name 
    */
   open(content, name) {
+    console.log(name);
     this.page.innerHTML = content;
     this.noteNameInput.value = name;
     this.listenForLinkClicks();

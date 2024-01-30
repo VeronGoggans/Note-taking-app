@@ -7,7 +7,9 @@ export class NewFolderContainer {
         // Creating HTMl elements
         this.HOST = CNode.create('div', {'class': 'new-folder-container'});
         this.H2 = CNode.create('h2', {'textContent': 'New folder'});
-        this.INPUT = CNode.create('input', {'spellCheck': 'false', 'placeholder': 'Folder name', 'type': 'text'});
+        this.INPUT = document.createElement('input');
+        this.INPUT.placeholder = 'Folder name';
+        this.INPUT.spellcheck = false;
         this.BUTTON = CNode.create('button', {'textContent': 'Add'});
 
         this.attachEventListeners();
