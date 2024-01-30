@@ -126,7 +126,7 @@
 }
 
 .note-content-box .paragraph {
-    border-radius: 5px;
+    border-radius: 2px;
     background-color: var(--paragraph);
     padding: 20px;
 }

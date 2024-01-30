@@ -85,9 +85,15 @@
  }
 
  .editor .paragraph {
-    border-radius: 5px;
+    border-radius: 2px;
+    border-left: 3px solid transparent;
     background-color: var(--paragraph);
     padding: 20px;
+    transition: .2s;
+ }
+
+ .editor .paragraph:hover {
+    border-color: #a3b5ff;
  }
 
  .editor iframe {
