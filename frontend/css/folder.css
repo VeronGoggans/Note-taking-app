@@ -124,25 +124,25 @@
 
 .folder-color-options-container {
     position: absolute;
-    right: 10px;
-    bottom: 0px;
-    background-color: #ffffff;
+    display: flex;
+    right: 5px;
+    bottom: 50px;
     width: fit-content;
-    border-radius: 35px;
-    padding: 5px 0;
     transition: .2s;
+    background-color: #444863;
+    padding: 3px;
+    border-radius: 10px;
     opacity: 0;
     visibility: hidden;
 }
 
 
 .folder-color-options-container div {
-    width: 17px;
-    height: 17px;
-    margin: 5px;
-    border-radius: 5px;
+    width: 16px;
+    height: 16px;
+    margin: 0 5px;
+    border-radius: 50%;
     cursor: pointer;
-    border: 1px solid #ddd;
 }
 
 .list-view-folder {
@@ -165,28 +165,28 @@
 
 
 .card-style-blue {
-    background-color: #a7beff; /* #c1e2ff*/
-    border: none;
+    background-color: #c1e2ff; /* #c1e2ff*/
+    border-color: #c1e2ff;
 }
 
 .card-style-orange {
     background-color: #ffebc1;
-    border: none;
+    border-color: #ffebc1;
 }
 
 .card-style-green {
     background-color: #c7ffc1;
-    border: none;
+    border-color: #c7ffc1;
 }
 
 .card-style-purple {
     background-color: #dfc1ff;
-    border: none;
+    border-color: #dfc1ff;
 }
 
 .card-style-red {
     background-color: #ffc1c1;
-    border: none;
+    border-color: #ffc1c1;
 }
 
 .card-style-blue .folder-util-bar button:hover {

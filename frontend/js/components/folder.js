@@ -19,7 +19,7 @@ export class Folder {
         this.LOGO = CNode.create('div', {'class': 'folder-logo'});
         this.ICON = CNode.create('i', {'class': 'fa-solid fa-folder'});
         this.COLOR_CONTAINER = CNode.create('div', {'class': 'folder-color-options-container'});
-        this.BLUE = CNode.create('div', {'style': 'background-color: #a7beff;'});
+        this.BLUE = CNode.create('div', {'style': 'background-color: #c1e2ff;'});
         this.ORANGE = CNode.create('div', {'style': 'background-color: #ffe7b3;'});
         this.GREEN = CNode.create('div', {'style': 'background-color: #c7ffc1;'});
         this.PURPLE = CNode.create('div', {'style': 'background-color: #dfc1ff;'});
@@ -48,7 +48,7 @@ export class Folder {
         this.NAME_BOX.appendChild(this.BTN_CONTAINER);
         this.HOST.appendChild(this.LOGO);
         this.LOGO.appendChild(this.ICON);
-        this.LOGO.appendChild(this.COLOR_CONTAINER);
+        this.UTIL_BAR.appendChild(this.COLOR_CONTAINER);
         this.COLOR_CONTAINER.appendChild(this.BLUE);
         this.COLOR_CONTAINER.appendChild(this.ORANGE);
         this.COLOR_CONTAINER.appendChild(this.GREEN);
@@ -65,20 +65,42 @@ export class Folder {
         return this.HOST;
     }
 
+    /**
+     * This method will apply a specified color to the folder.
+     * 
+     * This method is called when the folder gets rendered,
+     * to check if the folder already has a custom color.
+     * 
+     * This method is called when the user changes the folder color. 
+     * 
+     * @param {String} color 
+     */
     applyColor(color) {
         const CARD_CLASSES = {
             '#ffffff': null,
-            '#a7beff': 'card-style-blue',
+            '#c1e2ff': 'card-style-blue',
             '#ffe7b3': 'card-style-orange',
             '#c7ffc1': 'card-style-green',
             '#dfc1ff': 'card-style-purple',
             '#ffc1c1': 'card-style-red'
         }
-
+       
         const CARD_CLASS = CARD_CLASSES[color];
 
+        const CURRENT_CLASSES = Array.from(this.HOST.classList);
+
         if (CARD_CLASS !== null){
+            // This if statement will be true if the user is changing the color
+            // more then one time.
+            if (CURRENT_CLASSES.length === 2) {
+                // Remove the previous class before adding the new one
+                this.HOST.classList.remove(CURRENT_CLASSES[1]);
+            }
             this.HOST.classList.add(CARD_CLASS);
+        } else {
+            if (Array.from(this.HOST.classList).length > 1) {
+                this.HOST.classList.remove(CURRENT_CLASSES[1]);
+            }
         }
     }
 
@@ -89,6 +111,18 @@ export class Folder {
         this.DELETE.addEventListener('click', () => {this.view.renderDeleteContainer(this.id, this.name)});
         this.COLOR.addEventListener('click', () => {this.togglePalette()});
         this.LOGO.addEventListener('click', () => { this.view.handleFolderCardClick(this.id)});
+        this.BLUE.addEventListener('click', () => {this.updateFolder('#c1e2ff', false)});
+        // this.BLUE.addEventListener('mouseover', () => {this.applyColor('#c1e2ff')});
+        this.ORANGE.addEventListener('click', () => {this.updateFolder('#ffe7b3', false)});
+        // this.ORANGE.addEventListener('mouseover', () => {this.applyColor('#ffe7b3')});
+        this.GREEN.addEventListener('click', () => {this.updateFolder('#c7ffc1', false)});
+        // this.GREEN.addEventListener('mouseover', () => {this.applyColor('#c7ffc1')});
+        this.PURPLE.addEventListener('click', () => {this.updateFolder('#dfc1ff', false)});
+        // this.PURPLE.addEventListener('mouseover', () => {this.applyColor('#dfc1ff')});
+        this.RED.addEventListener('click', () => {this.updateFolder('#ffc1c1', false)});
+        // this.RED.addEventListener('mouseover', () => {this.applyColor('#ffc1c1')});
+        this.WHITE.addEventListener('click', () => {this.updateFolder('#ffffff', false)});
+        // this.WHITE.addEventListener('mouseover', () => {this.applyColor('#ffffff')});
     }
 
     togglePalette() {
@@ -105,8 +139,12 @@ export class Folder {
         this.BTN_CONTAINER.style.visibility = this.BTN_CONTAINER.style.visibility === 'visible' ? 'hidden' : 'visible';
     }
 
-    async updateFolder() {
-        this.view.updateFolder(this.id, this.H4.textContent, this.color);
-        this.toggleEditableFolderName();
+    async updateFolder(color = this.color, toggle = true) {
+        this.view.updateFolder(this.id, this.H4.textContent, color);
+        if (toggle) {
+            this.toggleEditableFolderName();
+        } else {
+            this.applyColor(color);
+        }
     }
 }

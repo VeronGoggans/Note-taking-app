@@ -25,7 +25,6 @@ export class FolderController {
     async updateFolder(folderId, newName, color) {
         const RESPONSE = await this.folderModel.updateFolder('/folder', folderId, newName, color);
         const FOLDER = RESPONSE.Folder;
-        console.log(FOLDER);
         this.folderView.renderFolderUpdate(FOLDER);
     }
 
