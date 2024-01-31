@@ -19,7 +19,7 @@ export class Folder {
         this.LOGO = CNode.create('div', {'class': 'folder-logo'});
         this.ICON = CNode.create('i', {'class': 'fa-solid fa-folder'});
         this.COLOR_CONTAINER = CNode.create('div', {'class': 'folder-color-options-container'});
-        this.BLUE = CNode.create('div', {'style': 'background-color: #c1e2ff;'});
+        this.BLUE = CNode.create('div', {'style': 'background-color: #a7beff;'});
         this.ORANGE = CNode.create('div', {'style': 'background-color: #ffe7b3;'});
         this.GREEN = CNode.create('div', {'style': 'background-color: #c7ffc1;'});
         this.PURPLE = CNode.create('div', {'style': 'background-color: #dfc1ff;'});
@@ -68,7 +68,7 @@ export class Folder {
     applyColor(color) {
         const CARD_CLASSES = {
             '#ffffff': null,
-            '#c1e2ff': 'card-style-blue',
+            '#a7beff': 'card-style-blue',
             '#ffe7b3': 'card-style-orange',
             '#c7ffc1': 'card-style-green',
             '#dfc1ff': 'card-style-purple',

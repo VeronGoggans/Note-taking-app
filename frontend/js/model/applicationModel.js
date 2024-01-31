@@ -17,6 +17,7 @@ export class ApplicationModel {
     addFolderIdToList(ID) {
         if (ID !== this.folderIds[this.folderIds.length - 1]) {
             this.folderIds.push(ID);
+            console.log(this.folderIds);
         }
     }
 

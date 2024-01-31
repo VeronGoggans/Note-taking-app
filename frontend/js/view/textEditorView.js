@@ -167,6 +167,7 @@ export class TextEditorView {
    * @param {String} noteId 
    */
   async handleConfirmButtonClick(noteId) {
+    await this.textEditorController.clearStoredNoteData();
     await this.textEditorController.handleConfirmButtonClick(noteId);
     // clear the text editor.
     this.clear();

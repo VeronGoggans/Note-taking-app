@@ -105,11 +105,13 @@ export class ApplicationController {
      */
     async getSearchedNote(noteId) {
         const RESPONSE = await this.noteController.getNoteById(noteId);
-        const CONTENT = await RESPONSE.content;
-        const NAME = await RESPONSE.title;
-        const CREATION = await RESPONSE.creation;
-        const LAST_EDIT = await RESPONSE.last_edit;
-        const BOOKMARK = await RESPONSE.bookmark;
+        const NOTE = await RESPONSE[0];
+        const FOLDER_ID = await RESPONSE[1];
+        const CONTENT = await NOTE.content;
+        const NAME = await NOTE.title;
+        const CREATION = await NOTE.creation;
+        const LAST_EDIT = await NOTE.last_edit;
+        const BOOKMARK = await NOTE.bookmark;
         this.openNoteInTextEditor(CONTENT, NAME, CREATION, LAST_EDIT, noteId, BOOKMARK);
     }
 

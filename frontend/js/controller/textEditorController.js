@@ -61,7 +61,8 @@ export class TextEditorController {
      * @param {Boolean} bookmark 
      */
     save(content, name, bookmark) {
-        const NOTE_ID = this.textEditorModel.getStoredNoteId()
+        const NOTE_ID = this.textEditorModel.getStoredNoteId();
+        console.log(NOTE_ID);
         if (NOTE_ID !== null) {
             this.applicationController.changeNote(NOTE_ID, name, content, bookmark)
             this.clearStoredNoteData();

@@ -62,5 +62,6 @@
 
 .list-view-folder:hover,
 .list-view-note:hover {
-    background-color: rgba(92, 125, 255, .3);
+    background-color: var(--hover);
+    color: var(--hover-text);
 }

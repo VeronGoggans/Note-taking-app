@@ -70,7 +70,7 @@ class NoteManager:
                 if note.get("id") == note_id:
                     note_object = self.__create_note_object(note)
                     note_object.set_content_text()
-                    return note_object
+                    return [note_object, folder['id']]
         
                 note_in_subfolder = self.get_note_by_id(folder["subfolders"], note_id)
                 if note_in_subfolder:
@@ -82,8 +82,7 @@ class NoteManager:
         
         for folder in folders:
             for note in folder['notes']:
-                search_object = {'id': note['id'], 'name': note['title']}
-                self.search_bar_note_objects.append(search_object)
+                self.search_bar_note_objects.append({'id': note['id'], 'name': note['title']})
 
             self.get_note_name_id(folder['subfolders'])
         return self.search_bar_note_objects    

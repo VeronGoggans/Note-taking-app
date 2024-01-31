@@ -77,6 +77,6 @@
 }
 
 .sidebar-content button:hover {
-    background-color: rgba(92, 125, 255, .3);
+    background-color: var(--hover);
     color: var(--sidebar-text-hover);
 }

@@ -58,7 +58,7 @@ export class SubfolderView {
 
         // Adding the note html cards to the screen
         this._content.insertBefore(SUBFOLDER_CARD, this._content.firstChild);
-        this._list.appendChild(SUBFOLDER_LIST_CARD);
+        this._list.insertBefore(SUBFOLDER_LIST_CARD, this._list.firstChild);
         this.dialog.hide();
     }
 

@@ -41,7 +41,7 @@ class NoteRouter:
         response = self.note_service.get_note_by_id(note_id)
 
         if response != Status.NOT_FOUND:
-            return {'Status_code': Status.OK, "Note": response}
+            return {'Status_code': Status.OK, 'Note': response[0], 'Folder': response[1]}
         return {'Status_code': Status.NOT_FOUND}
     
 

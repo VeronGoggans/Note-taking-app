@@ -16,6 +16,7 @@
     --border-main-top: #d4d4d4;
     --border-search-bar: #d4d4d4;
     --hover: rgba(92, 125, 255, .3);
+    --hover-text: #444863;
     --hover-toolbar-btns: rgba(185, 198, 250, 0.5);
     --bookmark: #f0f8ff;
     --no-content: #aaabb4;
@@ -28,7 +29,7 @@
 .dark {
     --background: #1b1c22;
     --list-view: #1b1c22;
-    --sidebar: #191a1f;
+    --sidebar: #16171c; /*#191a1f */
     --sidebar-text: #d6d8e5;
     --sidebar-text-hover: #d6d8e5; 
     --card: #252831;
@@ -42,7 +43,8 @@
     --border-sidebar-top: #191a1f;
     --border-main-top: #1b1c22;
     --border-search-bar: #191a1f;
-    --hover: #5c7dff;
+    --hover: #252831; /*#7992ff*/
+    --hover-text: #ffffff;
     --hover-toolbar-btns: #bbbed2;
     --bookmark: #303446;
     --no-content: #757789;
@@ -70,6 +72,7 @@
     --border-main-top: #d4d4d4;
     --border-search-bar: #d4d4d4;
     --hover: rgba(92, 125, 255, .3);
+    --hover-text: #444863;
     --hover-toolbar-btns: rgba(185, 198, 250, 0.5);
     --bookmark: #f0f8ff;
     --no-content: #aaabb4;

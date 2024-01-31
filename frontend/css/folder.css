@@ -108,7 +108,7 @@
 }
 
 .folder-util-bar button:hover {
-    background-color: rgba(92, 125, 255, .3);
+    background-color: var(--hover);
 }
 
 .folder h4 {
@@ -165,7 +165,7 @@
 
 
 .card-style-blue {
-    background-color: #c1e2ff;
+    background-color: #a7beff; /* #c1e2ff*/
     border: none;
 }
 
