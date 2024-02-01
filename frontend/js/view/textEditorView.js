@@ -1,5 +1,6 @@
 import { NoteDetailContainer } from "../components/noteDetailContainer.js";
 import { DeleteContainer } from "../components/deleteContainer.js";
+import { ForgotSaveContainer } from "../components/forgotSaveContainer.js"
 import { CNode } from "../util/CNode.js";
 
 export class TextEditorView {
@@ -38,6 +39,8 @@ export class TextEditorView {
     this.page = document.querySelector('.editor');
     this.dialog = document.querySelector('.dialog');
 
+    this.noteContent = '';
+
     this.attachEventListeners();
   }
 
@@ -66,23 +69,26 @@ export class TextEditorView {
           this.toggleVisibleDropdown(this.foregroundPalette);
       });
     });
+
     this.backgroundPaletteColors.forEach(button => {
       button.addEventListener('click', () => {
           // Get the data-color attribute of the clicked div
-          const COLOR = button.getAttribute('data-color');
+          let color = button.getAttribute('data-color');
+          if (color === '#ffffff') {
+              color = 'transparent';
+          }
 
           // Call the applyColor method with the color
-          this.applyColor(COLOR, 'BackColor');
+          this.applyColor(color, 'BackColor');
           this.toggleVisibleDropdown(this.backgroundPalette);
       });
     });
-
     // Key bindings
-     document.addEventListener('keydown', function(event) {
-      // Check if the 'A' key is pressed and the Ctrl key is also held down
-      if (event.key === 'a' || event.key === 'A' && event.ctrlKey) {
-        console.log('Ctrl + A pressed!');
-        // Add your code or function call here
+     document.addEventListener('keydown', (event) => {
+      if (event.key === 's' || event.key === 'S' && event.ctrlKey) {
+        if (this.textEditor.style.top === '0%') {
+          this.save()
+        }
       }
     });
   }
@@ -112,7 +118,7 @@ export class TextEditorView {
    * @param {String} name 
    */
   open(content, name) {
-    console.log(name);
+    this.noteContent = content;
     this.page.innerHTML = content;
     this.noteNameInput.value = name;
     this.listenForLinkClicks();
@@ -123,6 +129,7 @@ export class TextEditorView {
    * This method removes all the content in the text editor.
    */
   clear() {
+    this.noteContent = '';
     this.page.innerHTML = '';
     this.noteNameInput.value = '';
   }
@@ -165,7 +172,6 @@ export class TextEditorView {
    */
   renderNoteDetails() {
     const NOTE_DATA = this.getNoteData();
-    console.log(NOTE_DATA);
     this.dialog.appendChild(new NoteDetailContainer(NOTE_DATA[1], NOTE_DATA[2]))
     this.renderDialog();
   }
@@ -177,6 +183,11 @@ export class TextEditorView {
     const NOTE_DATA = this.getNoteData();
     const ID = NOTE_DATA[0];
     this.dialog.appendChild(new DeleteContainer(ID, this.noteNameInput.value, this))
+    this.renderDialog();
+  }
+
+  renderForgotSaveContainer() {
+    this.dialog.appendChild(new ForgotSaveContainer(this));
     this.renderDialog();
   }
 
@@ -192,7 +203,6 @@ export class TextEditorView {
   async handleConfirmButtonClick(noteId) {
     await this.textEditorController.clearStoredNoteData();
     await this.textEditorController.handleConfirmButtonClick(noteId);
-    // clear the text editor.
     this.clear();
   }
 
@@ -228,10 +238,29 @@ export class TextEditorView {
    */
   removeTextEditor() {
     // Turn text editor invisible
-    this.textEditor.style.top = '100%';
-    this.textEditor.style.visibility = 'hidden';
-    this.clear();
-    this.textEditorController.clearStoredNoteData();
+    if (this.noteContent === this.page.innerHTML) {
+      this.textEditor.style.top = '100%';
+      this.textEditor.style.visibility = 'hidden';
+      this.clear();
+      this.textEditorController.clearStoredNoteData();
+    } else {
+      this.renderForgotSaveContainer(this);
+    }
+  }
+
+  exitNoSave() {
+      this.textEditor.style.top = '100%';
+      this.textEditor.style.visibility = 'hidden';
+      this.clear();
+      this.textEditorController.clearStoredNoteData();
+      this.removeDialog();
+      this.noteContent = '';
+  }
+
+  exitBySave() {
+    this.noteContent = this.page.innerHTML;
+    this.removeDialog();
+    this.save();
   }
 
   // Toolbar button functionality 

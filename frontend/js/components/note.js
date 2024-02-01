@@ -138,6 +138,7 @@ export class Note {
     async updateNoteBookmark() {
         // Reverting the bookmark value
         let newBookmarkValue = !this.bookmark;
+        this.bookmark = newBookmarkValue;
         // Give the note card the right background color
         this.toggleBookmarkStyle();
         // Sending an update request to the view

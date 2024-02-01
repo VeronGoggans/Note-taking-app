@@ -199,7 +199,6 @@ export class NoteView {
      */
     handleNoteCardClick(noteId, creation, lastEdit) {
         const NOTE = this.noteObjects.get(noteId);
-        console.log(NOTE);
         const NAME = NOTE.title;
         const CONTENT = NOTE.content;
         const BOOKMARK = NOTE.bookmark;

@@ -51,7 +51,8 @@ export class ApplicationView {
         this._dialog.addEventListener('click', (event) => {
             if (!event.target.closest('.new-folder-container') && 
             !event.target.closest('.delete-folder-container') &&
-            !event.target.closest('.settings-container')) {
+            !event.target.closest('.settings-container') && 
+            !event.target.closest('.dont-forget-to-save-container')) {
                 this.dialog.hide();
             }
         });
