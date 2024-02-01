@@ -76,6 +76,15 @@ export class TextEditorView {
           this.toggleVisibleDropdown(this.backgroundPalette);
       });
     });
+
+    // Key bindings
+     document.addEventListener('keydown', function(event) {
+      // Check if the 'A' key is pressed and the Ctrl key is also held down
+      if (event.key === 'a' || event.key === 'A' && event.ctrlKey) {
+        console.log('Ctrl + A pressed!');
+        // Add your code or function call here
+      }
+    });
   }
 
   /**

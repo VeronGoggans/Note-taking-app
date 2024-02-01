@@ -43,7 +43,7 @@
 }
 
 .heading-dropdown .heading-button:hover {
-    background-color: rgba(92, 125, 255, .2);
+    background-color: var(--hover-toolbar-btns);
     color: rgba(92, 125, 255);
 }
 

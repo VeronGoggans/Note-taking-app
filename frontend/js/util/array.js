@@ -97,7 +97,7 @@ export class NoteObjectArray {
     update(note) {
         for (let i = 0; i < this.objects.length; i++) {
             if (this.objects[i].id === note.id) {
-                this.objects[i].name = note.title;
+                this.objects[i].title = note.title;
                 this.objects[i].content = note.content;
                 this.objects[i].bookmark = note.bookmark;
                 this.objects[i].lastEdit = note.last_edit;

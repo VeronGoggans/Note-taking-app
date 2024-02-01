@@ -155,18 +155,6 @@ export class NoteView {
     }
 
     /**
-     * This method checks if the "No notes" text is still 
-     * in the list view when a new note gets created.
-     * If so it removes that text from the list view.
-     * If the text is already gone it does nothing.
-     */
-    test() {
-        if (this.noteObjects.length === 0) {
-            this._list.removeChild();
-        }
-    }
-
-    /**
      * This method renders a confirmation container telling the user if they want to delete the note.
      * 
      * @param {String} id The ID of the note wished to be deleted.
@@ -211,6 +199,7 @@ export class NoteView {
      */
     handleNoteCardClick(noteId, creation, lastEdit) {
         const NOTE = this.noteObjects.get(noteId);
+        console.log(NOTE);
         const NAME = NOTE.title;
         const CONTENT = NOTE.content;
         const BOOKMARK = NOTE.bookmark;

@@ -6,7 +6,7 @@
     display: grid;
     grid-template-rows: 40px 1fr 50px;
     margin: 20px;
-        overflow: visible;
+    overflow: visible;
     border: 1px solid var(--border-card);
 }
 
@@ -68,7 +68,7 @@
 }
 
 .note-util-bar button:hover {
-    background-color: rgba(92, 125, 255, .3);    
+    background-color: var(--hover)   
 }
 
 .update-note-btns-container {
