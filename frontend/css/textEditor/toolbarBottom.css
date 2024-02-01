@@ -2,7 +2,8 @@
     display: flex;
 }
 
-.toolbar-bottom .btn-container button {
+.toolbar-bottom .btn-container button,
+.background-color-picker {
     cursor: pointer;
     background-color: transparent;
     border: none;
@@ -15,7 +16,8 @@
     font-family: Roboto;
 }
 
-.toolbar-bottom .btn-container button:hover {
+.toolbar-bottom .btn-container button:hover,
+.background-color-picker:hover {
     color: rgba(92, 125, 255);
     background-color: var(--hover-toolbar-btns);
 }
@@ -75,7 +77,7 @@
 }
 
 .heading-dropdown .options button:hover {
-    background-color: rgba(92, 125, 255, .3)
+    background-color: var(--hover);
 }
 
 .heading-dropdown .options .heading-1 {font-size: 32px}
@@ -96,31 +98,44 @@
     align-items: center;
     border-radius: 5px;
     flex-direction: column;
+    color: var(--icon);
+  }
+
+  .color-picker i {
+    position: relative;
+    bottom: 3px;
+    font-size: 12px;
   }
 
   .foreground-color-picker {
     cursor: pointer;
     width: 30px;
-    height: 10px;
+    height: 7px;
     background-color: #444863;
     border-radius: 4px;
     border: none;
   }
 
-  .foreground-color-picker::-webkit-color-swatch {
-    border-radius: 4px;
-    height: 7px;
-    border: none;
-  }
-
-  .color-palette {
+  .foreground-color-palette,
+  .background-color-palette {
     position: absolute;
     visibility: hidden;
     padding: 5px;
-    top: 40px;
+    top: 45px;
     right: 10px;
     border-radius: 5px;
     background-color: var(--toolbar);
+  }
+
+  .background-color-palette {
+    top: 53px;
+  }
+
+  .foreground-color-palette h3,
+  .background-color-palette h3 {
+    margin: 5px 10px;
+    font-family: Roboto;
+    color: var(--text);
   }
 
   .soft-colors,
@@ -131,9 +146,9 @@
   .soft-colors button,
   .dark-colors button {
     border: none;
-    width: 30px;
-    height: 15px;
-    border-radius: 4px;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
     cursor: pointer;
     margin: 5px 10px;
   }

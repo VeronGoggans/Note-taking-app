@@ -11,9 +11,10 @@
 
 .editor {
     outline: none;
+    cursor: text;
     padding: 30px 70px;
     overflow-y: scroll;
-    font-family: Arial, sans-serif;
+    font-family: sans-serif;
     color: var(--editor-text);
 }
 
@@ -112,24 +113,14 @@
     min-height: 16px;
  }
 
- .insert-video-container {
-    background-color: var(--toolbar);
-    border-radius: 10px;
-    padding: 7px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    opacity: 0;
-    transition: .3s;
-}
-
-.insert-video-container input {
-    cursor: pointer;
+.embed-link-input {
+    cursor: text;
     outline: none;
     border: 2px solid #5c7dff;
     border-radius: 15px;
     padding: 5px;
-    padding-left: 20px;
+    margin: 10px 0;
+    padding-left: 25px;
     background-color: transparent;
     color: var(--text);
     width: -webkit-fill-available;
@@ -147,4 +138,27 @@
 
  .editor hr {
     border: 1px solid rgb(145 150 167);
+ }
+
+ .editor img {
+    border-radius: 10px;
+    cursor: grab;
+    margin: 10px 0;
+ }
+
+ .editor h2 {
+    margin: 7px 0;
+ }
+
+ .editor h3 {
+    margin: 5px 0;
+ }
+
+ .editor h4 {
+    margin: 5px 0;
+ }
+
+ .editor h5,
+ .editor h6 {
+    margin: 0;
  }

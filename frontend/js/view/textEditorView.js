@@ -27,8 +27,11 @@ export class TextEditorView {
     this.lineBreakButton = document.querySelector('.hr-btn');
     this.embedVideoButton = document.querySelector('.video-btn');
     this.foregroundColor = document.querySelector('.foreground-color-picker');
-    this.palette = document.querySelector('.color-palette');
-    this.paletteColors = this.palette.querySelectorAll('.soft-colors button, .dark-colors button');
+    this.backgroundColor = document.querySelector('.background-color-picker');
+    this.foregroundPalette = document.querySelector('.foreground-color-palette');
+    this.foregroundPaletteColors = this.foregroundPalette.querySelectorAll('.soft-colors button, .dark-colors button');
+    this.backgroundPalette = document.querySelector('.background-color-palette');
+    this.backgroundPaletteColors = this.backgroundPalette.querySelectorAll('.soft-colors button, .dark-colors button');
 
     // other
     this.textEditor = document.querySelector('.editor-wrapper');
@@ -51,15 +54,26 @@ export class TextEditorView {
     this.paragrapghButton.addEventListener('click', () => {this.addParagraph()});
     this.lineBreakButton.addEventListener('click', () => {this.addLineBreak()});
     this.embedVideoButton.addEventListener('click', () => {this.addEmbedInput()});
-    this.foregroundColor.addEventListener('click', () => {this.toggleVisibleDropdown(this.palette)});
-    this.paletteColors.forEach(button => {
+    this.foregroundColor.addEventListener('click', () => {this.toggleVisibleDropdown(this.foregroundPalette)});
+    this.backgroundColor.addEventListener('click', () => {this.toggleVisibleDropdown(this.backgroundPalette)});
+    this.foregroundPaletteColors.forEach(button => {
       button.addEventListener('click', () => {
           // Get the data-color attribute of the clicked div
           const COLOR = button.getAttribute('data-color');
 
           // Call the applyColor method with the color
-          this.applyColor(COLOR);
-          this.toggleVisibleDropdown(this.palette);
+          this.applyColor(COLOR, 'forecolor');
+          this.toggleVisibleDropdown(this.foregroundPalette);
+      });
+    });
+    this.backgroundPaletteColors.forEach(button => {
+      button.addEventListener('click', () => {
+          // Get the data-color attribute of the clicked div
+          const COLOR = button.getAttribute('data-color');
+
+          // Call the applyColor method with the color
+          this.applyColor(COLOR, 'BackColor');
+          this.toggleVisibleDropdown(this.backgroundPalette);
       });
     });
   }
@@ -191,10 +205,6 @@ export class TextEditorView {
       this.dialog.removeChild(CHILD);
   }  
 
-  // Methods communicating with the text editor controller.
-  // Communicating <---
-
-
   /**
    * 
    * @returns a list of note data stored in the text editor model
@@ -202,8 +212,6 @@ export class TextEditorView {
   getNoteData() {
     return this.textEditorController.getStoredNoteData();
   }
-
-  
 
   /**
    * This method hides the text editor,
@@ -216,7 +224,6 @@ export class TextEditorView {
     this.clear();
     this.textEditorController.clearStoredNoteData();
   }
-
 
   // Toolbar button functionality 
 
@@ -254,7 +261,6 @@ export class TextEditorView {
     SELECTION.removeRange(RANGE);
   }
 
-
   addParagraph() {
     // Get the current selection 
     const SELECTION = window.getSelection();
@@ -281,7 +287,6 @@ export class TextEditorView {
     RANGE.collapse(false);
   }
 
-
   addLineBreak() {
     // Get the current selection 
     const SELECTION = window.getSelection();
@@ -301,25 +306,20 @@ export class TextEditorView {
     RANGE.collapse(false);
   }
 
-  applyColor(color) {
+  applyColor(color, command) {
     // Use document.execCommand to change text color
     document.execCommand('styleWithCSS', false, true);
-    document.execCommand('foreColor', false, color);
+    document.execCommand(command, false, color);
   }
-
 
   addEmbedInput() {
     // Get the current selection 
     const SELECTION = window.getSelection();
-    console.log(SELECTION);
 
     // Get the range of the selection
     const RANGE = SELECTION.getRangeAt(0);
 
-    const EMBED_CONTAINER = CNode.create('div', {'class': 'insert-video-container'});
-    const EMBED_INPUT = CNode.create('input', {'placeholder': 'Insert embed link here', 'type': 'text'});
-
-    EMBED_CONTAINER.appendChild(EMBED_INPUT);
+    const EMBED_INPUT = CNode.create('input', {'placeholder': 'Embed link', 'type': 'text', 'class': 'embed-link-input'});
 
     EMBED_INPUT.addEventListener('keydown', (event) => {
       if (event.keyCode === 13) {
@@ -328,10 +328,8 @@ export class TextEditorView {
       }
     })
 
-    RANGE.insertNode(EMBED_CONTAINER);
-    EMBED_CONTAINER.style.opacity = '100'
+    RANGE.insertNode(EMBED_INPUT);
   }
-
 
   addEmbedVideo(embedLink, range) {
     const NO_COOKIES = 'youtube-nocookie';

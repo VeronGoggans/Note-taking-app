@@ -3,7 +3,7 @@
         {
             "id": "f-40",
             "name": "untitled",
-            "color": "#c7ffc1",
+            "color": "#ffffff",
             "notes": [
                 {
                     "id": "n-16",
@@ -50,16 +50,32 @@
         },
         {
             "id": "f-58",
-            "name": "No notes feedback",
-            "color": "#c1e2ff",
+            "name": "Docs",
+            "color": "#ffc1c1",
             "notes": [
                 {
                     "id": "n-290",
                     "title": "New leaf",
                     "content": "storage/notes/note-n-290.html",
                     "bookmark": false,
-                    "last_edit": "31/01/2024 17:14",
+                    "last_edit": "01/02/2024 15:47",
                     "creation": "31/01/2024"
+                }
+            ],
+            "subfolders": []
+        },
+        {
+            "id": "f-61",
+            "name": "Song Lyrics",
+            "color": "#ffffff",
+            "notes": [
+                {
+                    "id": "n-295",
+                    "title": "Royalty super (Slowed)",
+                    "content": "storage/notes/note-n-295.html",
+                    "bookmark": false,
+                    "last_edit": "01/02/2024 02:25",
+                    "creation": "01/02/2024"
                 }
             ],
             "subfolders": []
