@@ -46,6 +46,8 @@
     align-items: center;
     padding: 0px 10px;
     overflow: visible;
+    box-shadow: 0 25px 30px var(--background);
+    z-index: 1;
 }
 
 /*Note details container*/

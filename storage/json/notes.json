@@ -51,14 +51,14 @@
         {
             "id": "f-58",
             "name": "Docs",
-            "color": "#dfc1ff",
+            "color": "#c1e2ff",
             "notes": [
                 {
                     "id": "n-336",
                     "title": "App Todo",
                     "content": "storage/notes/note-n-336.html",
                     "bookmark": false,
-                    "last_edit": "03/02/2024 20:20",
+                    "last_edit": "03/02/2024 23:22",
                     "creation": "03/02/2024"
                 }
             ],

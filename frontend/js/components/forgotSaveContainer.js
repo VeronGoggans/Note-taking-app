@@ -4,11 +4,11 @@ export class ForgotSaveContainer {
     constructor(view) {
         this.view = view;
         this.HOST = CNode.create('div', {'class': 'dont-forget-to-save-container'});
-        this.H1 = CNode.create('h1', {'textContent': 'you forgot to save'});
-        this.P = CNode.create('p', {'textContent': 'You have unsaved changes'});
+        this.H1 = CNode.create('h1', {'textContent': 'You forgot to save'});
+        this.P = CNode.create('p', {'textContent': 'There are unsaved changes'});
         this.SAVE_OPTIONS = CNode.create('div', {'class': 'save-options'});
         this.EXIT = CNode.create('button', {'class': 'exit-without-save-btn', 'textContent': 'Exit'});
-        this.SAVE = CNode.create('button', {'class': 'exit-with-save-btn', 'textContent': 'save'});
+        this.SAVE = CNode.create('button', {'class': 'exit-with-save-btn', 'textContent': 'Save'});
         
         this.attachEventListeners();
         return this.render();

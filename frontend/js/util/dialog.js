@@ -26,15 +26,15 @@ export class Dialog {
     renderNoteDetails(noteInfo) {
         this.addChild(new NoteDetailContainer(noteInfo[1], noteInfo[2]))
         this.show();
-      }
+    }
     
-      renderNoteDeleteContainer(noteInfo, view) {
-        this.addChild(new DeleteContainer(noteInfo[0], noteInfo, view))
+    renderNoteDeleteContainer(id, name, view) {
+        this.addChild(new DeleteContainer(id, name, view))
         this.show();
-      }
-    
-      renderForgotSaveContainer(view) {
+    }
+
+    renderForgotSaveContainer(view) {
         this.addChild(new ForgotSaveContainer(view));
         this.show();
-      }
+    }
 }

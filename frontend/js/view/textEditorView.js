@@ -47,13 +47,13 @@ export class TextEditorView {
 
 
     this.noteDetailsSpan.addEventListener('click', () => {this.dialog.renderNoteDetails(this.#getNoteData())});
-    this.deleteNoteSpan.addEventListener('click', () => {this.renderNoteDeleteContainer()});
-    this.saveNoteSpan.addEventListener('click', () => {this.save()});
-    this.newNoteSpan.addEventListener('click', () => {this.save(false)});
+    this.deleteNoteSpan.addEventListener('click', () => {this.dialog.renderNoteDeleteContainer(this.#getNoteData()[0], this.noteNameInput.value, this)});
+    this.saveNoteSpan.addEventListener('click', () => {this.save(false, false)});
+    this.newNoteSpan.addEventListener('click', () => {this.new()});
 
   
-    this.exitButton.addEventListener('click', () => {this.removeTextEditor()});
-    this.saveButton.addEventListener('click', () => {this.save()});
+    this.exitButton.addEventListener('click', () => {this.closeEditor()});
+    this.saveButton.addEventListener('click', () => {this.save(true, false)});
 
 
     this.linkButton.addEventListener('click', () => {TextFormatter.addLink()});
@@ -107,8 +107,7 @@ export class TextEditorView {
   }
 
   /**
-   * This method shows the text editor,
-   * by setting the visibility style property to visible
+   * This method shows the text editor
    */
   show() {
     // Turn text editor visible
@@ -117,7 +116,42 @@ export class TextEditorView {
   }
 
   /**
-   * This method opens a note inside the text editor.
+   * This method closes the editor
+   */
+  close() {
+    this.textEditor.style.top = '100%';
+    this.textEditor.style.visibility = 'hidden';
+  }
+
+  /**
+   * This method removes all the content in the editor.
+   */
+  clear() {
+    this.noteContent = '';
+    this.page.innerHTML = '';
+    this.noteNameInput.value = '';
+  }
+
+  /**
+   * This method closes the editor and clears all the data 
+   */
+  closeAndClear() {
+    this.close();
+    this.clear();
+    this.textEditorController.clearStoredNoteData();
+  }
+
+  /**
+   * This method clears data from the previous note 
+   * and clears the editor
+   */
+  new() {
+    this.textEditorController.clearStoredNoteData();
+    this.clear();
+  }
+
+  /**
+   * This method opens a note inside the editor.
    * 
    * @param {String} content 
    * @param {String} name 
@@ -130,41 +164,23 @@ export class TextEditorView {
     this.show();
   }
 
-   /**
-   * This method removes all the content in the text editor.
-   */
-  clear() {
-    this.noteContent = '';
-    this.page.innerHTML = '';
-    this.noteNameInput.value = '';
-  }
-
   /**
    *
    * @param {Boolean} closeEditor - 
    * indicates if the editor should be closed or not.
    */
-  save(closeEditor = true) {
+  save(closeEditor = true, checkForChanges = true) {
     // Collect the content inside the text editor
     const content = this.page.innerHTML;
     const name = this.noteNameInput.value || 'untitled';
     const bookmark = this.#getNoteData()[3];
-
-    // Communicate with the text editor controller.
+    
     this.textEditorController.save(content, name, bookmark);
     if (closeEditor) {
-      this.removeTextEditor();
+      this.closeEditor(checkForChanges);
     } else {
-      this.textEditorController.clearStoredNoteData();
-      this.clear();
+      this.noteContent = this.page.innerHTML;
     }
-  }
-
-  renderNoteDeleteContainer() {
-    const NOTE_DATA = this.#getNoteData();
-    const ID = NOTE_DATA[0];
-    this.dialog.addChild(new DeleteContainer(ID, this.noteNameInput.value, this))
-    this.dialog.show();
   }
 
   /**
@@ -183,7 +199,6 @@ export class TextEditorView {
   }
 
   /**
-   * 
    * @returns a list of note data stored in the text editor model
    */
   #getNoteData() {
@@ -194,30 +209,28 @@ export class TextEditorView {
    * This method hides the text editor,
    * by setting the visibility style property to hidden
    */
-  removeTextEditor() {
-    // Turn text editor invisible
-    if (this.noteContent === this.page.innerHTML) {
-      this.textEditor.style.top = '100%';
-      this.textEditor.style.visibility = 'hidden';
-      this.clear();
-      this.textEditorController.clearStoredNoteData();
+  closeEditor(checkForChanges = true) {
+    if (checkForChanges) {
+      // If no changes have been made, exit the editor
+      if (this.noteContent === this.page.innerHTML) {
+        this.closeAndClear();
+      } else {
+        // If changes have been made notify the user.
+        this.dialog.renderForgotSaveContainer(this);
+      }
     } else {
-      this.dialog.renderForgotSaveContainer(this);
+      this.closeAndClear();
     }
   }
 
   exitNoSave() {
-    this.textEditor.style.top = '100%';
-    this.textEditor.style.visibility = 'hidden';
-    this.clear();
-    this.textEditorController.clearStoredNoteData();
+    this.closeAndClear();
     this.dialog.hide();
-    this.noteContent = '';
   }
 
   exitBySave() {
     this.noteContent = this.page.innerHTML;
     this.dialog.hide();
-    this.save();
+    this.save(true, false);
   }
 }
