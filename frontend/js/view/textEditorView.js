@@ -1,7 +1,5 @@
-import { NoteDetailContainer } from "../components/noteDetailContainer.js";
-import { DeleteContainer } from "../components/deleteContainer.js";
-import { ForgotSaveContainer } from "../components/forgotSaveContainer.js"
-import { CNode } from "../util/CNode.js";
+import { TextFormatter } from "../textFormat/textFormatter.js"; 
+import { Dialog } from "../util/dialog.js"; 
 
 export class TextEditorView {
   constructor(textEditorController) {
@@ -37,9 +35,8 @@ export class TextEditorView {
     // other
     this.textEditor = document.querySelector('.editor-wrapper');
     this.page = document.querySelector('.editor');
-    this.dialog = document.querySelector('.dialog');
-
     this.noteContent = '';
+    this.dialog = new Dialog();
 
     this.attachEventListeners();
   }
@@ -47,16 +44,22 @@ export class TextEditorView {
   attachEventListeners() {
     this.noteDropdown.addEventListener('click', () => {this.toggleVisibleDropdown(this.noteDropdownOptions)});
     this.headingDropdown.addEventListener('click', () => {this.toggleVisibleDropdown(this.headingDropdownOptions)});
-    this.noteDetailsSpan.addEventListener('click', () => {this.renderNoteDetails()});
+
+
+    this.noteDetailsSpan.addEventListener('click', () => {this.dialog.renderNoteDetails(this.#getNoteData())});
     this.deleteNoteSpan.addEventListener('click', () => {this.renderNoteDeleteContainer()});
     this.saveNoteSpan.addEventListener('click', () => {this.save()});
     this.newNoteSpan.addEventListener('click', () => {this.save(false)});
+
+  
     this.exitButton.addEventListener('click', () => {this.removeTextEditor()});
     this.saveButton.addEventListener('click', () => {this.save()});
-    this.linkButton.addEventListener('click', () => {this.addLink()});
-    this.paragrapghButton.addEventListener('click', () => {this.addParagraph()});
-    this.lineBreakButton.addEventListener('click', () => {this.addLineBreak()});
-    this.embedVideoButton.addEventListener('click', () => {this.addEmbedInput()});
+
+
+    this.linkButton.addEventListener('click', () => {TextFormatter.addLink()});
+    this.paragrapghButton.addEventListener('click', () => {TextFormatter.addParagraph()});
+    this.lineBreakButton.addEventListener('click', () => {TextFormatter.addLine()});
+    this.embedVideoButton.addEventListener('click', () => {TextFormatter.addEmbedVideo()});
     this.foregroundColor.addEventListener('click', () => {this.toggleVisibleDropdown(this.foregroundPalette)});
     this.backgroundColor.addEventListener('click', () => {this.toggleVisibleDropdown(this.backgroundPalette)});
     this.foregroundPaletteColors.forEach(button => {
@@ -65,7 +68,7 @@ export class TextEditorView {
           const COLOR = button.getAttribute('data-color');
 
           // Call the applyColor method with the color
-          this.applyColor(COLOR, 'forecolor');
+          TextFormatter.addColor(COLOR, 'forecolor');
           this.toggleVisibleDropdown(this.foregroundPalette);
       });
     });
@@ -79,19 +82,21 @@ export class TextEditorView {
           }
 
           // Call the applyColor method with the color
-          this.applyColor(color, 'BackColor');
+          TextFormatter.addColor(color, 'BackColor');
           this.toggleVisibleDropdown(this.backgroundPalette);
       });
     });
     // Key bindings
-     document.addEventListener('keydown', (event) => {
-      if (event.key === 's' || event.key === 'S' && event.ctrlKey) {
-        if (this.textEditor.style.top === '0%') {
-          this.save()
-        }
-      }
-    });
+    //  document.addEventListener('keydown', (event) => {
+    //   if (event.key === 's' && event.ctrlKey) {
+    //     if (this.textEditor.style.top === '0%') {
+    //       this.save();
+    //     }
+    //   }
+    // });
   }
+
+
 
   /**
    * This method toggles the visibility of a specified dropdown,
@@ -121,7 +126,7 @@ export class TextEditorView {
     this.noteContent = content;
     this.page.innerHTML = content;
     this.noteNameInput.value = name;
-    this.listenForLinkClicks();
+    TextFormatter.listenForLinkClicks(this.page);
     this.show();
   }
 
@@ -135,60 +140,31 @@ export class TextEditorView {
   }
 
   /**
-   * This method handles the save button click 
-   * inside the text editor
-   * 
-   * This method communicates with the text editor controller 
-   * that the save button has been clicked. 
-   * @param {Boolean} closeEditor indicates if the editor should be closed or not.
+   *
+   * @param {Boolean} closeEditor - 
+   * indicates if the editor should be closed or not.
    */
   save(closeEditor = true) {
     // Collect the content inside the text editor
-    const CONTENT = this.page.innerHTML;
-
-    // Collecting the notes bookmark value
-    const STORED_NOTE_DATA = this.getNoteData();
-    const BOOKMARK = STORED_NOTE_DATA[3];
-
-    let name = this.noteNameInput.value;
-    if (name === '') name = 'untitled';
+    const content = this.page.innerHTML;
+    const name = this.noteNameInput.value || 'untitled';
+    const bookmark = this.#getNoteData()[3];
 
     // Communicate with the text editor controller.
-    this.textEditorController.save(CONTENT, name, BOOKMARK);
-    if (closeEditor) this.removeTextEditor();
-    if (!closeEditor) {
+    this.textEditorController.save(content, name, bookmark);
+    if (closeEditor) {
+      this.removeTextEditor();
+    } else {
       this.textEditorController.clearStoredNoteData();
       this.clear();
     }
   }
 
-  // The following methods are related to the file dropdown menu.
-
-  /**
-   * This method renders the note details container showing the following.
-   * 1. Word count.
-   * 2. When the note was created.
-   * 3. The last time the not was edited.
-   */
-  renderNoteDetails() {
-    const NOTE_DATA = this.getNoteData();
-    this.dialog.appendChild(new NoteDetailContainer(NOTE_DATA[1], NOTE_DATA[2]))
-    this.renderDialog();
-  }
-
-  /**
-   * This method renders the delete container from within the editor.
-   */
   renderNoteDeleteContainer() {
-    const NOTE_DATA = this.getNoteData();
+    const NOTE_DATA = this.#getNoteData();
     const ID = NOTE_DATA[0];
-    this.dialog.appendChild(new DeleteContainer(ID, this.noteNameInput.value, this))
-    this.renderDialog();
-  }
-
-  renderForgotSaveContainer() {
-    this.dialog.appendChild(new ForgotSaveContainer(this));
-    this.renderDialog();
+    this.dialog.addChild(new DeleteContainer(ID, this.noteNameInput.value, this))
+    this.dialog.show();
   }
 
   /**
@@ -207,28 +183,10 @@ export class TextEditorView {
   }
 
   /**
-     * This method renders the dialog.
-     */
-  renderDialog() {
-    this.dialog.style.visibility = 'visible';
-    this.dialog.style.top = '0%';
-  }
-
-  /**
-   * This method removes the child of the dialog and the dialog itself from the UI.
-   */
-  removeDialog() {
-      this.dialog.style.visibility = 'hidden';
-      this.dialog.style.top = '100%';
-      const CHILD = this.dialog.firstChild;
-      this.dialog.removeChild(CHILD);
-  }  
-
-  /**
    * 
    * @returns a list of note data stored in the text editor model
    */
-  getNoteData() {
+  #getNoteData() {
     return this.textEditorController.getStoredNoteData();
   }
 
@@ -244,142 +202,22 @@ export class TextEditorView {
       this.clear();
       this.textEditorController.clearStoredNoteData();
     } else {
-      this.renderForgotSaveContainer(this);
+      this.dialog.renderForgotSaveContainer(this);
     }
   }
 
   exitNoSave() {
-      this.textEditor.style.top = '100%';
-      this.textEditor.style.visibility = 'hidden';
-      this.clear();
-      this.textEditorController.clearStoredNoteData();
-      this.removeDialog();
-      this.noteContent = '';
+    this.textEditor.style.top = '100%';
+    this.textEditor.style.visibility = 'hidden';
+    this.clear();
+    this.textEditorController.clearStoredNoteData();
+    this.dialog.hide();
+    this.noteContent = '';
   }
 
   exitBySave() {
     this.noteContent = this.page.innerHTML;
-    this.removeDialog();
+    this.dialog.hide();
     this.save();
-  }
-
-  // Toolbar button functionality 
-
-  /**
-   * This method listens for link clicks.
-   * 
-   * This method is usefull for when a note has <a> tags in them.
-   * Because the <a> tags dont have eventlisteners on them when loaded in.
-   * This method creates that event listener.
-   */
-  listenForLinkClicks() {
-    const LINKS = this.page.querySelectorAll('a');
-    LINKS.forEach(function(LINK) {
-      LINK.addEventListener('click', () => {window.open(LINK.href)})
-    });
-  }
-
-  addLink() {
-    // Get the current selection 
-    const SELECTION = window.getSelection();
-
-    // Get the range of the selection
-    const RANGE = SELECTION.getRangeAt(0);
-
-    // Create a <a> element
-    const LINK = document.createElement('a');
-
-    LINK.addEventListener('click', () => {window.open(RANGE)});
-
-    LINK.href = RANGE;
-
-    // Surround the selected text with a <a> tag
-    RANGE.surroundContents(LINK);
-
-    SELECTION.removeRange(RANGE);
-  }
-
-  addParagraph() {
-    // Get the current selection 
-    const SELECTION = window.getSelection();
-
-    // Get the range of the selection
-    const RANGE = SELECTION.getRangeAt(0);
-
-    // Create a <div> tag 
-    const PARAGRAPH = document.createElement('div');
-    PARAGRAPH.classList.add('paragraph');
-
-    // Create a <p> tag
-    const P = document.createElement('p');
-    P.textContent = RANGE;
-    PARAGRAPH.appendChild(P);
-
-    // Creating a <br> tag to put below the <pre> tag.
-    const BREAK = document.createElement('br');
-
-    RANGE.insertNode(BREAK);
-    RANGE.insertNode(PARAGRAPH);
-
-    // Collapse the range
-    RANGE.collapse(false);
-  }
-
-  addLineBreak() {
-    // Get the current selection 
-    const SELECTION = window.getSelection();
-
-    // Get the range of the selection
-    const RANGE = SELECTION.getRangeAt(0);
-
-    const HR = document.createElement('hr');
-
-    // Creating a <br> tag to put below the <pre> tag.
-    const BREAK = document.createElement('br');
-
-    RANGE.insertNode(BREAK);
-    RANGE.insertNode(HR);
-
-    // Collapse the range
-    RANGE.collapse(false);
-  }
-
-  applyColor(color, command) {
-    // Use document.execCommand to change text color
-    document.execCommand('styleWithCSS', false, true);
-    document.execCommand(command, false, color);
-  }
-
-  addEmbedInput() {
-    // Get the current selection 
-    const SELECTION = window.getSelection();
-
-    // Get the range of the selection
-    const RANGE = SELECTION.getRangeAt(0);
-
-    const EMBED_INPUT = CNode.create('input', {'placeholder': 'Embed link', 'type': 'text', 'class': 'embed-link-input'});
-
-    EMBED_INPUT.addEventListener('keydown', (event) => {
-      if (event.keyCode === 13) {
-        RANGE.deleteContents();
-        this.addEmbedVideo(EMBED_INPUT.value, RANGE);
-      }
-    })
-
-    RANGE.insertNode(EMBED_INPUT);
-  }
-
-  addEmbedVideo(embedLink, range) {
-    const NO_COOKIES = 'youtube-nocookie';
-    const IFRAME_CONTAINER = document.createElement('div');
-
-    // adding nocookies text to the embed link for reduced cookies
-    let iframeArray = embedLink.split('youtube');
-    iframeArray.splice(1, 0, NO_COOKIES);
-
-    const NO_COOKIE_IFRAME = iframeArray.join('');
-
-    IFRAME_CONTAINER.innerHTML = NO_COOKIE_IFRAME;
-    range.insertNode(IFRAME_CONTAINER);
   }
 }

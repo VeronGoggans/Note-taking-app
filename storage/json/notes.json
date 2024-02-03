@@ -51,31 +51,15 @@
         {
             "id": "f-58",
             "name": "Docs",
-            "color": "#c1e2ff",
+            "color": "#dfc1ff",
             "notes": [
                 {
-                    "id": "n-290",
-                    "title": "Todo",
-                    "content": "storage/notes/note-n-290.html",
+                    "id": "n-336",
+                    "title": "App Todo",
+                    "content": "storage/notes/note-n-336.html",
                     "bookmark": false,
-                    "last_edit": "01/02/2024 23:40",
-                    "creation": "31/01/2024"
-                }
-            ],
-            "subfolders": []
-        },
-        {
-            "id": "f-61",
-            "name": "Song Lyrics",
-            "color": "#ffffff",
-            "notes": [
-                {
-                    "id": "n-295",
-                    "title": "Royalty super (Slowed)",
-                    "content": "storage/notes/note-n-295.html",
-                    "bookmark": false,
-                    "last_edit": "01/02/2024 23:52",
-                    "creation": "01/02/2024"
+                    "last_edit": "03/02/2024 20:20",
+                    "creation": "03/02/2024"
                 }
             ],
             "subfolders": []
