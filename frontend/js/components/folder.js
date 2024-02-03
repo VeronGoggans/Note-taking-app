@@ -112,17 +112,11 @@ export class Folder {
         this.COLOR.addEventListener('click', () => {this.togglePalette()});
         this.LOGO.addEventListener('click', () => { this.view.handleFolderCardClick(this.id)});
         this.BLUE.addEventListener('click', () => {this.updateFolder('#c1e2ff', false)});
-        // this.BLUE.addEventListener('mouseover', () => {this.applyColor('#c1e2ff')});
         this.ORANGE.addEventListener('click', () => {this.updateFolder('#ffe7b3', false)});
-        // this.ORANGE.addEventListener('mouseover', () => {this.applyColor('#ffe7b3')});
         this.GREEN.addEventListener('click', () => {this.updateFolder('#c7ffc1', false)});
-        // this.GREEN.addEventListener('mouseover', () => {this.applyColor('#c7ffc1')});
         this.PURPLE.addEventListener('click', () => {this.updateFolder('#dfc1ff', false)});
-        // this.PURPLE.addEventListener('mouseover', () => {this.applyColor('#dfc1ff')});
         this.RED.addEventListener('click', () => {this.updateFolder('#ffc1c1', false)});
-        // this.RED.addEventListener('mouseover', () => {this.applyColor('#ffc1c1')});
         this.WHITE.addEventListener('click', () => {this.updateFolder('#ffffff', false)});
-        // this.WHITE.addEventListener('mouseover', () => {this.applyColor('#ffffff')});
     }
 
     togglePalette() {
@@ -145,6 +139,7 @@ export class Folder {
             this.toggleEditableFolderName();
         } else {
             this.applyColor(color);
+            this.togglePalette();
         }
     }
 }
