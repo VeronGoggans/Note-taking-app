@@ -46,10 +46,12 @@ export class NoteController {
         this.deleteSearchObject(noteId);
     }
 
-    
-    // Methods that communicate with the application controller
-    // communicating <--- 
+    // async deleteFolderContent(folderId) {
+    //     await this.noteModel.deleteFolderContent('/notes', folderId);
+    //     console.log('note controller says hi');
+    // }
 
+    
     /**
      * This method opens up the text editor
      * And puts the note the user clicked on, in the text editor.

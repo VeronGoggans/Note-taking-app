@@ -4,6 +4,7 @@ from backend.data.note.note_manager import NoteManager
 from backend.presentation.request_bodies.note.post_note_request import PostNoteRequest
 from backend.presentation.request_bodies.note.put_note_request import PutNoteRequest
 from backend.presentation.request_bodies.note.del_note_request import DeleteNoteRequest
+from backend.presentation.request_bodies.note.del_notes_request import DeleteNotesRequest
 from backend.domain.enums.responseMessages import Status
 
 
@@ -12,7 +13,7 @@ class NoteRouter:
         self.route = APIRouter()
         self.note_service = NoteService(NoteManager(), json_manager)
 
-        self.route.add_api_route("/notes/{folder_id}", self.notes, methods=['GET'])
+        self.route.add_api_route('/notes/{folder_id}', self.notes, methods=['GET'])
         self.route.add_api_route('/noteById/{note_id}', self.note_by_id, methods=['GET'])
         self.route.add_api_route('/noteSearchObjects', self.note_name_id, methods=['GET'])
         self.route.add_api_route('/note', self.create_note, methods=['POST'])
@@ -75,3 +76,11 @@ class NoteRouter:
         if response != Status.NOT_FOUND:
             return {'Status_code': Status.OK, "Note": response}
         return {'Status_code': Status.NOT_FOUND}
+    
+
+    # def delete_folder_contents(self, delete_request: DeleteNotesRequest):
+    #     response = self.note_service.delete_folder_content(delete_request.folderId)
+
+    #     if response != Status.NOT_FOUND:
+    #         return {'Status_code': Status.OK, "Note": response}
+    #     return {'Status_code': Status.NOT_FOUND}

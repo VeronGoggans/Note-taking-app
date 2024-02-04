@@ -95,4 +95,23 @@ export class NoteModel {
             throw error;
         }
     }
+
+    // async deleteFolderContent(endpoint, folderId) {
+    //     const DELETE_NOTES_OBJECT = {
+    //         'folderId': folderId
+    //     }
+    //     const OPTIONS = {
+    //         method: 'DELETE',
+    //         headers: {"Content-Type": "application/json"},
+    //         body: JSON.stringify(DELETE_NOTES_OBJECT)
+    //     }
+    //     try {
+    //         const RESPONSE = await fetch(`${endpoint}`, OPTIONS);
+    //         if (!RESPONSE.ok) throw new Error(`HTTP error Status: ${RESPONSE.status}`)
+    //         return await RESPONSE.json();
+    //     } catch (error) {
+    //         console.error('Error fetching data: ', error.message);
+    //         throw error;
+    //     }
+    // }
 }

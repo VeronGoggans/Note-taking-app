@@ -148,7 +148,6 @@ class NoteService:
         Args:
             delete_request (DeleteNoteRequest): 
             Object containing the folder_id and note_id.
-            - folder_id (str): The ID of the folder the note is in.
             - note_id (str): The ID of the note whished to be deleted.
 
         Returns:
@@ -164,6 +163,21 @@ class NoteService:
             self.json_manager.update(self.folders_path, folder_structure)
             return deleted_note
         return Status.NOT_FOUND
+    
+
+    # def delete_folder_content(self, folder):
+    #     """
+    #     Delete all the notes inside the given folder
+
+    #     Args:
+    #         - folder (dict) the folder wished to deleted.
+
+    #     """
+
+    #     deleted = self.note_manager.delete_notes(folder)
+
+    #     if deleted:
+    #         return 
 
 
 

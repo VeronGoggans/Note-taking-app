@@ -131,17 +131,22 @@ class NoteManager:
             - If the note is not found, it returns None.
         """
         for folder in folders:
-            for note in folder["notes"]:
-                if note.get("id") == note_id:
+            for note in folder['notes']:
+                if note.get('id') == note_id:
                     folder['notes'].remove(note)
                     self.__delete_note_html_file(note)
                     return note
         
-                note_in_subfolder = self.delete_note(folder["subfolders"], note_id)
+                note_in_subfolder = self.delete_note(folder['subfolders'], note_id)
                 if note_in_subfolder:
                     return note_in_subfolder
         return None
-                
+    
+
+    # def delete_notes(self, folder): 
+    #     for note in folder['notes']:
+    #         self.__delete_note_html_file(note)
+    #     self.delete_notes(folder['subfolders'])        
     
 
     def __find_note(self, folders, note_id: str):

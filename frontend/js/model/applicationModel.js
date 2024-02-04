@@ -1,11 +1,13 @@
 export class ApplicationModel {
     constructor() {
-        // use a set for this 
         this.folderIds = [];
+        this.createNoteButton = document.querySelector('.create-note-btn');
+        this.createNoteButtonContext();
     }
 
     clearFolderIdlist() {
         this.folderIds = [];
+        this.createNoteButtonContext();
     }
 
     
@@ -17,13 +19,28 @@ export class ApplicationModel {
     addFolderIdToList(ID) {
         if (ID !== this.folderIds[this.folderIds.length - 1]) {
             this.folderIds.push(ID);
-            console.log(this.folderIds);
+            this.createNoteButtonContext();
         }
     }
 
     removeFolderIdFromList() {
         this.folderIds.pop();
+        this.createNoteButtonContext();
         return this.folderIds[this.folderIds.length - 1];
+    }
+
+    /**
+     * This method checks if the create note button 
+     * should be disabled or enabled.
+     */
+    createNoteButtonContext() {
+        if (this.folderIds.length > 0) {
+            if (this.createNoteButton.disabled) {
+                this.createNoteButton.removeAttribute('disabled');
+            }
+        } else {
+            this.createNoteButton.setAttribute('disabled', 'true');
+        }
     }
 
     

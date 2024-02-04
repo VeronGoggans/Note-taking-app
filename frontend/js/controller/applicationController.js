@@ -106,7 +106,6 @@ export class ApplicationController {
     async getSearchedNote(noteId) {
         const RESPONSE = await this.noteController.getNoteById(noteId);
         const NOTE = await RESPONSE[0];
-        const FOLDER_ID = await RESPONSE[1];
         const CONTENT = await NOTE.content;
         const NAME = await NOTE.title;
         const CREATION = await NOTE.creation;
@@ -162,6 +161,16 @@ export class ApplicationController {
     openNoteInTextEditor(content, name, creation, lastEdit, noteId, bookmark) {
         this.textEditorController.openNoteInTextEditor(content, name, creation, lastEdit, noteId, bookmark);
     }
+
+    /**
+     * This method removes all the notes inside the 
+     * folder that has been deleted. 
+     * @param {Dict} folder 
+     */
+    // async deleteFolderContent(folderId) {
+    //     await this.noteController.deleteFolderContent(folderId)
+    //     console.log('application controller says hi');
+    // }
 
 
     /**
