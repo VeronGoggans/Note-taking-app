@@ -23,7 +23,8 @@
     position: absolute;
     margin-left: auto;
     background-color: var(--card);
-    box-shadow: 0 0 20px rgb(213, 226, 241);
+    color: var(--text);
+    box-shadow: 0 0 20px var(--shadow); /*rgb(213, 226, 241)*/
     width: 50px;
     display: flex;
     padding: 10px;
@@ -54,7 +55,8 @@
 }
 
 .update-folder-btns-container button:hover {
-    background-color: aliceblue;
+    background-color: var(--hover-toolbar-btns);
+    color: var(--hover-text);
 }
 
 
@@ -109,6 +111,7 @@
 
 .folder-util-bar button:hover {
     background-color: var(--hover);
+    color: var(--icon-hover);
 }
 
 .folder h4 {
@@ -165,18 +168,18 @@
 
 
 .card-style-blue {
-    background-color: #c1e2ff; /* #c1e2ff*/
-    border-color: #c1e2ff;
+    background-color: #a9d7ff; 
+    border-color: #a9d7ff;
 }
 
 .card-style-orange {
-    background-color: #ffebc1;
-    border-color: #ffebc1;
+    background-color: #ffe09e;
+    border-color: #ffe09e;
 }
 
 .card-style-green {
-    background-color: #c7ffc1;
-    border-color: #c7ffc1;
+    background-color: #9ffb95;
+    border-color: #9ffb95;
 }
 
 .card-style-purple {
@@ -185,12 +188,8 @@
 }
 
 .card-style-red {
-    background-color: #ffc1c1;
-    border-color: #ffc1c1;
-}
-
-.card-style-blue .folder-util-bar button:hover {
-    background-color: #aad7ff;
+    background-color: #ffa3a3;
+    border-color: #ffa3a3;
 }
 
 .card-style-blue h4,
@@ -217,12 +216,16 @@
     color: #444863;
 }
 
+.card-style-blue .folder-util-bar button:hover {
+    background-color: #87c6ff;
+}
+
 .card-style-orange .folder-util-bar button:hover {
-    background-color: #ffe1a1;
+    background-color: #ffd06b;
 }
 
 .card-style-green .folder-util-bar button:hover {
-    background-color: #a7ff9e;
+    background-color: #6ae25e;
 }
 
 .card-style-purple .folder-util-bar button:hover {
@@ -230,5 +233,5 @@
 }
 
 .card-style-red .folder-util-bar button:hover {
-    background-color: #ffadad;
+    background-color: #ff8d8d;
 }

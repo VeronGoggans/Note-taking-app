@@ -19,11 +19,11 @@ export class Folder {
         this.LOGO = CNode.create('div', {'class': 'folder-logo'});
         this.ICON = CNode.create('i', {'class': 'fa-solid fa-folder'});
         this.COLOR_CONTAINER = CNode.create('div', {'class': 'folder-color-options-container'});
-        this.BLUE = CNode.create('div', {'style': 'background-color: #c1e2ff;'});
-        this.ORANGE = CNode.create('div', {'style': 'background-color: #ffe7b3;'});
-        this.GREEN = CNode.create('div', {'style': 'background-color: #c7ffc1;'});
+        this.BLUE = CNode.create('div', {'style': 'background-color: #a9d7ff;'});
+        this.ORANGE = CNode.create('div', {'style': 'background-color: #ffe09e;'});
+        this.GREEN = CNode.create('div', {'style': 'background-color: #9ffb95;'});
         this.PURPLE = CNode.create('div', {'style': 'background-color: #dfc1ff;'});
-        this.RED = CNode.create('div', {'style': 'background-color: #ffc1c1;'});
+        this.RED = CNode.create('div', {'style': 'background-color: #ffa3a3;'});
         this.WHITE = CNode.create('div', {'style': 'background-color: #ffffff;'});
         this.UTIL_BAR = CNode.create('div', {'class': 'folder-util-bar'});
         this.COLOR = CNode.create('button', {'class': 'color-folder-btn'});
@@ -78,11 +78,11 @@ export class Folder {
     applyColor(color) {
         const CARD_CLASSES = {
             '#ffffff': null,
-            '#c1e2ff': 'card-style-blue',
-            '#ffe7b3': 'card-style-orange',
-            '#c7ffc1': 'card-style-green',
+            '#a9d7ff': 'card-style-blue',
+            '#ffe09e': 'card-style-orange',
+            '#9ffb95': 'card-style-green',
             '#dfc1ff': 'card-style-purple',
-            '#ffc1c1': 'card-style-red'
+            '#ffa3a3': 'card-style-red'
         }
        
         const CARD_CLASS = CARD_CLASSES[color];
@@ -111,11 +111,11 @@ export class Folder {
         this.DELETE.addEventListener('click', () => {this.view.renderDeleteContainer(this.id, this.name)});
         this.COLOR.addEventListener('click', () => {this.togglePalette()});
         this.LOGO.addEventListener('click', () => { this.view.handleFolderCardClick(this.id)});
-        this.BLUE.addEventListener('click', () => {this.updateFolder('#c1e2ff', false)});
-        this.ORANGE.addEventListener('click', () => {this.updateFolder('#ffe7b3', false)});
-        this.GREEN.addEventListener('click', () => {this.updateFolder('#c7ffc1', false)});
+        this.BLUE.addEventListener('click', () => {this.updateFolder('#a9d7ff', false)});
+        this.ORANGE.addEventListener('click', () => {this.updateFolder('#ffe09e', false)});
+        this.GREEN.addEventListener('click', () => {this.updateFolder('#9ffb95', false)});
         this.PURPLE.addEventListener('click', () => {this.updateFolder('#dfc1ff', false)});
-        this.RED.addEventListener('click', () => {this.updateFolder('#ffc1c1', false)});
+        this.RED.addEventListener('click', () => {this.updateFolder('#ffa3a3', false)});
         this.WHITE.addEventListener('click', () => {this.updateFolder('#ffffff', false)});
     }
 

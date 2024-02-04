@@ -68,14 +68,15 @@
 }
 
 .note-util-bar button:hover {
-    background-color: var(--hover)   
+    background-color: var(--hover);
+    color: var(--icon-hover);  
 }
 
 .update-note-btns-container {
     position: absolute;
     margin-left: auto;
     background-color: var(--card);
-    box-shadow: 0 0 20px rgb(213, 226, 241);
+    box-shadow: 0 0 20px var(--shadow);
     width: 50px;
     display: flex;
     padding: 10px;
@@ -107,6 +108,7 @@
 
 .update-note-btns-container button:hover {
     background-color: var(--hover);
+    color: var(--hover-text);
 }
 
 .note-content-box p {

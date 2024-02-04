@@ -125,6 +125,7 @@
     right: 10px;
     border-radius: 5px;
     background-color: var(--toolbar);
+    box-shadow: 0 5px 20px var(--shadow);
   }
 
   .background-color-palette {

@@ -3,9 +3,11 @@
     --list-view: #f9fbfd;
     --sidebar: #ffffff;
     --sidebar-text: #6d6d6d;
+    --sidebar-text-hover: #6d6d6d;
     --card: #ffffff;
     --text: #444863;
     --icon: #444863;
+    --icon-hover: #444863;
     --important: #444863;
     --toolbar: #eff1f7;
     --editor-text: #383838;
@@ -23,35 +25,38 @@
     --placeholder: #9093a2;
     --selection: #e8f0fe;
     --dialog: rgba(0, 3, 24, 0.30);
-    --paragraph: rgba(239, 241, 247, .4);
+    --paragraph: rgba(239, 241, 250, .4);
+    --shadow: rgba(0, 0, 0, 0.1);
 }
 
 .dark {
     --background: #1b1c22;
     --list-view: #1b1c22;
-    --sidebar: #16171c; /*#191a1f */
+    --sidebar: #16171c; 
     --sidebar-text: #d6d8e5;
-    --sidebar-text-hover: #d6d8e5; 
+    --sidebar-text-hover: #5c7dff; 
     --card: #252831;
     --text: #bbbed2;
     --icon: #bbbed2;
+    --icon-hover: #5c7dff;
     --important: #d6d8e5;
     --toolbar: #252831;
     --editor-text: #d5d9e0;
     --border-card: #1f2129;
-    --border-sidebar-right: #191a1f;
-    --border-sidebar-top: #191a1f;
+    --border-sidebar-right: #16171c;
+    --border-sidebar-top: #16171c;
     --border-main-top: #1b1c22;
     --border-search-bar: #191a1f;
-    --hover: #5c7dff; /*#7992ff*/
-    --hover-text: #ffffff;
-    --hover-toolbar-btns: #d5d9e0;
+    --hover: #31343d; 
+    --hover-text: #5c7dff;
+    --hover-toolbar-btns: #31343d;
     --bookmark: #303446;
     --no-content: #757789;
     --placeholder: #9093a2;
     --selection: #4481ea;
     --dialog: rgba(47, 49, 72, 0.30);
     --paragraph: #252831;
+    --shadow: rgba(0, 0, 0, 0.1);
 }
 
 .light {
@@ -59,9 +64,11 @@
     --list-view: #f9fbfd;
     --sidebar: #ffffff;
     --sidebar-text: #6d6d6d;
+    --sidebar-text-hover: #6d6d6d;
     --card: #ffffff;
     --text: #444863;
     --icon: #444863;
+    --icon-hover: #444863;
     --important: #444863;
     --toolbar: #eff1f7;
     --editor-text: #383838;
@@ -79,5 +86,6 @@
     --placeholder: #9093a2;
     --selection: #e8f0fe;
     --dialog: rgba(0, 3, 24, 0.30);
-    --paragraph: rgba(239, 241, 247, .4);
+    --paragraph: rgba(239, 241, 250, .4); /*rgba(239, 241, 247, .4) original color*/
+    --shadow: rgba(0, 0, 0, 0.1);
 }
