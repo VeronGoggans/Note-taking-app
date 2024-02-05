@@ -3,7 +3,7 @@
     font-family: Roboto;
     outline: none;
     border: none;
-    background-color: var(--background);
+    background-color: var(--editor);
     border-bottom: 2px solid transparent;
     min-width: 200px;
     max-width: 400px;

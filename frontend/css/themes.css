@@ -1,22 +1,23 @@
 :root {
-    --background: #ffffff;
-    --list-view: #f9fbfd;
+    --background: #f4f5f7; /*ffffff*/
+    --editor: #ffffff;
+    --list-view: #f4f5f7;
     --sidebar: #ffffff;
-    --sidebar-text: #6d6d6d;
+    --sidebar-text: #495080;
     --sidebar-text-hover: #16171c;
     --card: #ffffff;
     --text: #444863;
-    --icon: #444863;
+    --icon: #495080;
     --icon-hover: #444863;
     --important: #444863;
     --toolbar: #eff1f7;
     --editor-text: #383838;
     --sidebar: #ffffff;
-    --border-card: #d4d4d4;
-    --border-sidebar-right: #d4d4d4;
-    --border-sidebar-top: #d4d4d4;
-    --border-main-top: #d4d4d4;
-    --border-search-bar: #d4d4d4;
+    --border-card: #ffffff;
+    --border-sidebar-right: #ffffff; /*d4d4d4*/
+    --border-sidebar-top: #ffffff; /*d4d4d4*/
+    --border-main-top: #f4f5f7; /*d4d4d4*/
+    --border-search-bar: #ffffff; /*d4d4d4*/
     --hover: rgba(92, 125, 255, .3);
     --hover-text: #444863;
     --hover-toolbar-btns: rgba(185, 198, 250, 0.5);
@@ -31,6 +32,7 @@
 
 .dark {
     --background: #1b1c22;
+    --editor: #1b1c22;
     --list-view: #1b1c22;
     --sidebar: #16171c; 
     --sidebar-text: #d6d8e5;
@@ -46,7 +48,7 @@
     --border-sidebar-right: #16171c;
     --border-sidebar-top: #16171c;
     --border-main-top: #1b1c22;
-    --border-search-bar: #191a1f;
+    --border-search-bar: #1b1c22;
     --hover: #31343d; 
     --hover-text: #5c7dff;
     --hover-toolbar-btns: #31343d;
@@ -60,24 +62,25 @@
 }
 
 .light {
-    --background: #ffffff;
-    --list-view: #f9fbfd;
+    --background: #f4f5f7;
+    --editor: #ffffff;
+    --list-view: #f4f5f7;
     --sidebar: #ffffff;
-    --sidebar-text: #6d6d6d;
+    --sidebar-text: #495080;
     --sidebar-text-hover: #16171c;
     --card: #ffffff;
     --text: #444863;
-    --icon: #444863;
+    --icon: #495080;
     --icon-hover: #444863;
     --important: #444863;
     --toolbar: #eff1f7;
     --editor-text: #383838;
     --sidebar: #ffffff;
-    --border-card: #d4d4d4;
-    --border-sidebar-right: #d4d4d4;
-    --border-sidebar-top: #d4d4d4;
-    --border-main-top: #d4d4d4;
-    --border-search-bar: #d4d4d4;
+    --border-card: #ffffff;
+    --border-sidebar-right: #ffffff;
+    --border-sidebar-top: #ffffff;
+    --border-main-top: #f4f5f7;
+    --border-search-bar: #ffffff;
     --hover: rgba(92, 125, 255, .3);
     --hover-text: #444863;
     --hover-toolbar-btns: rgba(185, 198, 250, 0.5);

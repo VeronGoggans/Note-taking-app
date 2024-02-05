@@ -1,0 +1,19 @@
+.no-content-container {
+    display: block;
+    text-align: center;
+    margin-top: 60px;
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
+    background-color: var(--background);
+}
+
+.no-content-container h2 {
+    font-size: 40px;
+    margin: 0px;
+}
+
+.no-content-container h2,
+.no-content-container p {
+    color: var(--text);
+    font-family: Roboto;
+} 

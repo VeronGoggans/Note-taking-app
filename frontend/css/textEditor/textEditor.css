@@ -6,7 +6,7 @@
     grid-template-rows: 110px 1fr;
     height: 100dvh;
     width: 100dvw;
-    background-color: var(--background);
+    background-color: var(--editor);
 }
 
 .editor {
@@ -46,7 +46,7 @@
     align-items: center;
     padding: 0px 10px;
     overflow: visible;
-    box-shadow: 0 25px 30px var(--background);
+    box-shadow: 0 25px 30px var(--editor);
     z-index: 1;
 }
 

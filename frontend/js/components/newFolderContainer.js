@@ -17,7 +17,10 @@ export class NewFolderContainer {
     }
 
     attachEventListeners() {
-        this.BUTTON.addEventListener('click', () => {this.view.handleAddFolderButtonClick(this.INPUT.value)});
+        this.BUTTON.addEventListener('click', () => {
+            const NAME = this.INPUT.value || 'untitled';
+            this.view.handleAddFolderButtonClick(NAME)
+        });
     }
 
     render() {
