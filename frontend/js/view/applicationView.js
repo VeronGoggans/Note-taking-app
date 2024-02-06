@@ -12,6 +12,7 @@ export class ApplicationView {
         
         // <main-top> 
         this.createFolderButton = document.querySelector('.create-folder-btn');
+        this.currentFolderName = document.querySelector('.current-folder-name');
         this.searchBarInput = document.querySelector('.searchbar-input');
         this.noteOptionsList = document.querySelector('.note-suggestions-list');
 
@@ -197,6 +198,10 @@ export class ApplicationView {
      */
     showTextEditor() {
         this.applicationController.showTextEditor();
+    }
+
+    displayFolderName(name) {
+        this.currentFolderName.textContent = name;
     }
 
     /**

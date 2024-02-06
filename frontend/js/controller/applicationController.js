@@ -82,9 +82,10 @@ export class ApplicationController {
         }
     }
 
-    async navigateIntoFolder(folderId) {
+    async navigateIntoFolder(folderId, name) {
         // removing the content from the folder the user is moving out of 
         this.applicationView.removeContent();
+        this.applicationView.displayFolderName(name);
         await this.subfolderController.getSubFolders(folderId);
         await this.noteController.getNotes(folderId);
         this.applicationModel.addFolderIdToList(folderId);

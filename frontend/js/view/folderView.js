@@ -152,7 +152,7 @@ export class FolderView {
      * 
      * @param {string} id - The ID of the folder to navigate into.
      */
-    handleFolderCardClick(id) {
-        this.folderController.navigateIntoFolder(id);
+    handleFolderCardClick(id, name) {
+        this.folderController.navigateIntoFolder(id, name);
     }
 }

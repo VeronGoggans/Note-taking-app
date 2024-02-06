@@ -49,6 +49,24 @@ body {
     transition: .2s;
 }
 
+.current-folder-name-container {
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    margin: 7px 10px 7px 0px;
+    color: var(--text);
+    border-radius: 15px;
+    background-color: var(--card);
+}
+
+.current-folder-name{
+    color: var(--placeholder);
+    font-size: 16px;
+    font-weight: 900;
+    margin-left: 7px;
+    max-width: -webkit-fill-available;
+}
+
 .search-container {
     position: relative;
     margin: 7px 10px 7px 0px;

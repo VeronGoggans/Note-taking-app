@@ -110,7 +110,7 @@ export class Folder {
         this.CANCEL.addEventListener('click', () => {this.toggleEditableFolderName()});
         this.DELETE.addEventListener('click', () => {this.view.renderDeleteContainer(this.id, this.name)});
         this.COLOR.addEventListener('click', () => {this.togglePalette()});
-        this.LOGO.addEventListener('click', () => { this.view.handleFolderCardClick(this.id)});
+        this.LOGO.addEventListener('click', () => { this.view.handleFolderCardClick(this.id, this.H4.textContent)});
         this.BLUE.addEventListener('click', () => {this.updateFolder('#a9d7ff', false)});
         this.ORANGE.addEventListener('click', () => {this.updateFolder('#ffe09e', false)});
         this.GREEN.addEventListener('click', () => {this.updateFolder('#9ffb95', false)});

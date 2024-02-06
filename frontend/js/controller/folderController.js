@@ -36,7 +36,7 @@ export class FolderController {
     }
     
 
-    async navigateIntoFolder(folderId) {
-        this.applicationController.navigateIntoFolder(folderId);
+    async navigateIntoFolder(folderId, name) {
+        this.applicationController.navigateIntoFolder(folderId, name);
     }
 }
