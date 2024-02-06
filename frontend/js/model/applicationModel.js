@@ -11,11 +11,17 @@ export class ApplicationModel {
     }
     
     getCurrentFolderID() {
-        return this.folderIds[this.folderIds.length - 1].id;
+        if (this.folderIds.length > 0) {
+            return this.folderIds[this.folderIds.length - 1].id;
+        }
+        return undefined
     }
 
     getCurrentFolderName() {
-        return this.folderIds[this.folderIds.length - 1].name;
+        if (this.folderIds.length > 0) {
+            return this.folderIds[this.folderIds.length - 1].name;
+        }
+        return undefined
     }
 
 

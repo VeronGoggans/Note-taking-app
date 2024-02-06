@@ -2,7 +2,7 @@
     width: 380px;
     height: 150px;
     padding: 10px;
-    background-color: var(--background);
+    background-color: var(--editor);
     border-radius: 20px;
     display: grid;
     grid-template-rows: 60px 1fr;
