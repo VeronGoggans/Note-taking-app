@@ -1,4 +1,3 @@
-import { NoContentMessage } from "../components/noContentMessage.js";
 
 export class UserFeedbackHandler {
     constructor() {
@@ -15,7 +14,7 @@ export class UserFeedbackHandler {
         this._noteList.appendChild(message);
         if (this._folderList.children.length === 1) {
             if (this._folderList.children[0].classList.contains('list-view-no-folder')) {
-                this.showNoContentMessage();
+                // this.showNoContentMessage();
             }
         }
     }

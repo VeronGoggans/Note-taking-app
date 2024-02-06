@@ -172,7 +172,7 @@ export class SubfolderView {
      * 
      * @param {string} id - The ID of the folder to navigate into.
      */
-    handleFolderCardClick(id) {
-        this.subfolderController.navigateIntoFolder(id);
+    handleFolderCardClick(id, name) {
+        this.subfolderController.navigateIntoFolder(id, name);
     }
 }

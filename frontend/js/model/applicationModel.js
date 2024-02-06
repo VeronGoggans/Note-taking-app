@@ -9,23 +9,41 @@ export class ApplicationModel {
         this.folderIds = [];
         this.createNoteButtonContext();
     }
-
     
     getCurrentFolderID() {
-        return this.folderIds[this.folderIds.length - 1];
+        return this.folderIds[this.folderIds.length - 1].id;
+    }
+
+    getCurrentFolderName() {
+        return this.folderIds[this.folderIds.length - 1].name;
     }
 
 
-    addFolderIdToList(ID) {
-        if (ID !== this.folderIds[this.folderIds.length - 1]) {
-            this.folderIds.push(ID);
+    addFolderIdToList(ID, name) {
+        if (this.folderIds.length > 0) {
+            // if the id is not already in the last index of the array, push.
+            if (ID !== this.folderIds[this.folderIds.length - 1].id) {
+                this.folderIds.push({'id': ID, 'name': name});
+                this.createNoteButtonContext();
+            }
+        } else {
+            this.folderIds.push({'id': ID, 'name': name});
             this.createNoteButtonContext();
         }
     }
 
+    /**
+     * This method returns the parent folder ID of the subfolder
+     * the user is currently in. 
+     * 
+     * This method also removes the folder ID of which the user is currently in.
+     * 
+     * @returns {String} parent folder ID
+     */
     removeFolderIdFromList() {
         this.folderIds.pop();
         this.createNoteButtonContext();
+        console.log(this.folderIds);
         return this.folderIds[this.folderIds.length - 1];
     }
 

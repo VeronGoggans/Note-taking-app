@@ -1,19 +1,22 @@
-.no-content-container {
+.current-folder-name-container {
     display: block;
     text-align: center;
-    margin-top: 60px;
+    margin-top: 15px;
     width: -webkit-fill-available;
-    height: -webkit-fill-available;
     background-color: var(--background);
 }
 
-.no-content-container h2 {
+.current-folder-name-container h2 {
     font-size: 40px;
     margin: 0px;
 }
 
-.no-content-container h2,
-.no-content-container p {
+.current-folder-name-container h2,
+.current-folder-name-container p {
     color: var(--text);
     font-family: Roboto;
 } 
+
+@media (max-width: 740px) {
+    .no-content-container h2 {font-size: 30px;}
+}

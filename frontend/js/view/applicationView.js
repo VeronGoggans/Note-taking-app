@@ -182,6 +182,7 @@ export class ApplicationView {
      */
     home() {
         this.removeContent();
+        this.displayFolderName('Home');
         this.applicationController.navigateToHomescreen();
     }
 

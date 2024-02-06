@@ -37,6 +37,7 @@ export class ApplicationController {
     navigateToHomescreen() {
         this.folderController.getFolders();
         this.applicationModel.clearFolderIdlist();
+        this.applicationView.displayFolderName('Home');
     }
 
     /**
@@ -73,12 +74,12 @@ export class ApplicationController {
 
     
     navigateOutofFolder() {
-        const PARENT_ID = this.applicationModel.removeFolderIdFromList();
-        if (PARENT_ID === undefined) {
+        const PARENT = this.applicationModel.removeFolderIdFromList();
+        if (PARENT === undefined) {
             this.navigateToHomescreen();
         }
         else {
-            this.navigateIntoFolder(PARENT_ID);
+            this.navigateIntoFolder(PARENT.id, PARENT.name);
         }
     }
 
@@ -86,9 +87,11 @@ export class ApplicationController {
         // removing the content from the folder the user is moving out of 
         this.applicationView.removeContent();
         this.applicationView.displayFolderName(name);
+        // rendering the subfolders and notes
         await this.subfolderController.getSubFolders(folderId);
         await this.noteController.getNotes(folderId);
-        this.applicationModel.addFolderIdToList(folderId);
+        // adding the folder id and name to the folders hierarchy array
+        this.applicationModel.addFolderIdToList(folderId, name);
     }
 
     showTextEditor() {
