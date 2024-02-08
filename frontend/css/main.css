@@ -77,6 +77,7 @@ body {
     padding: 5px 10px;
     align-items: center;
     width: 250px;
+    box-shadow: 1px 1px 10px var(--card-shadow);
 }
 
 .search-container input {
@@ -113,6 +114,7 @@ body {
     margin: 0;
     padding: 10px;
     visibility: hidden;
+    box-shadow: 1px 1px 10px var(--card-shadow);
 }
 
 .note-suggestions-list::-webkit-scrollbar {
@@ -157,8 +159,8 @@ body {
 
 .content-view {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    grid-template-rows: repeat(auto-fill, 380px);
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-rows: repeat(auto-fill, 320px);
 }
 
 .content-view-notification-layer::-webkit-scrollbar {

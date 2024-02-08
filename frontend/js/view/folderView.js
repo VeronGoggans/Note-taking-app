@@ -39,7 +39,6 @@ export class FolderView {
 
         this._content.appendChild(FOLDER_CARD);
         this._list.appendChild(FOLDER_LIST_CARD);
-        this.dialog.hide();
     }
 
     /**

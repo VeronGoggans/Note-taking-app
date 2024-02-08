@@ -1,6 +1,6 @@
 .note {
     cursor: pointer;
-    height: 340px;
+    height: 280px;
     border-radius: 15px;
     background-color: var(--card);
     display: grid;
@@ -8,6 +8,7 @@
     margin: 20px;
     overflow: visible;
     border: 1px solid var(--border-card);
+    box-shadow: 5px 5px 10px var(--card-shadow);
 }
 
 .bookmark {
@@ -112,8 +113,12 @@
 }
 
 .note-content-box p {
-    font-size: 14px;
+    font-size: 9px;
     cursor: pointer;
+}
+
+.note-content-box img {
+    max-width: 100px;
 }
 
 .note-content-box i {

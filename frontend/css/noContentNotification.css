@@ -1,7 +1,7 @@
 .current-folder-name-container {
     display: block;
-    text-align: center;
     margin-top: 15px;
+    margin-left: 15px;
     width: -webkit-fill-available;
     background-color: var(--background);
 }

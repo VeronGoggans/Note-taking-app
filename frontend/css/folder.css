@@ -1,6 +1,6 @@
 .folder {
     cursor: pointer;
-    height: 340px;
+    height: 280px;
     border-radius: 15px;
     background-color: var(--card);
     color: var(--icon);
@@ -9,6 +9,7 @@
     margin: 20px;
     overflow: visible;
     border: 1px solid var(--border-card);
+    box-shadow: 5px 5px 10px var(--card-shadow);
 }
 
 .folder-name-box {
@@ -73,7 +74,7 @@
 
 .folder-logo i {
     color: var(--icon);
-    font-size: 40px;
+    font-size: 30px;
     width: -webkit-fill-available;
     height: -webkit-fill-available;
     display: flex;
@@ -165,7 +166,6 @@
 .list-view-folder:hover {
     background-color: rgba(92, 125, 255, .3);
 }
-
 
 .card-style-blue {
     background-color: #a9d7ff; 

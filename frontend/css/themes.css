@@ -28,6 +28,7 @@
     --dialog: rgba(0, 3, 24, 0.30);
     --paragraph: rgba(239, 241, 250, .4);
     --shadow: rgba(0, 0, 0, 0.1);
+    --card-shadow: #e0e2ec;
 }
 
 .dark {
@@ -59,6 +60,7 @@
     --dialog: rgba(47, 49, 72, 0.30);
     --paragraph: #252831;
     --shadow: rgba(0, 0, 0, 0.1);
+    --card-shadow: #1b1c22;
 }
 
 .light {
@@ -91,4 +93,5 @@
     --dialog: rgba(0, 3, 24, 0.30);
     --paragraph: rgba(239, 241, 250, .4); /*rgba(239, 241, 247, .4) original color*/
     --shadow: rgba(0, 0, 0, 0.1);
+    --card-shadow: #e0e2ec;
 }
