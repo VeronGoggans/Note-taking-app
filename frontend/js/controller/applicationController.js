@@ -4,7 +4,8 @@ import { SubfolderController } from "./subfolderController.js";
 import { NoteController } from "./noteController.js";
 import { ApplicationView } from "../view/applicationView.js";
 import { TextEditorController } from "./textEditorController.js"
-
+import { ThemeController } from "./themeController.js";
+ 
 export class ApplicationController {
     constructor() {
         this.applicationView = new ApplicationView(this);
@@ -13,6 +14,7 @@ export class ApplicationController {
         this.subfolderController = new SubfolderController(this);
         this.noteController = new NoteController(this);
         this.textEditorController = new TextEditorController(this);
+        this.themeController = new ThemeController();
     }
 
 
@@ -22,6 +24,7 @@ export class ApplicationController {
      * This method is called when the app starts.
      */
     async start() {
+        await this.setTheme(true);
         await this.folderController.getFolders();
         const RESPONSE = await this.applicationModel.getSearchOptions('/noteSearchObjects');
         this.applicationView.giveSearchOptions(RESPONSE.Notes);
@@ -217,5 +220,10 @@ export class ApplicationController {
      */
     async deleteNote(noteId) {
         await this.noteController.deleteNote(noteId);
+    }
+
+    async setTheme(init) {
+        const THEME = await this.themeController.getTheme();
+        this.themeController.setTheme(init, THEME);
     }
 }

@@ -1,9 +1,7 @@
-export class Themes {
-    constructor(currentTheme) {
-        this.currentTheme = currentTheme;
-        this.setTheme(true);
+export class ThemeView {
+    constructor(themeController) {
+        this.themeController = themeController
     }
-
     /**
      * This method sets the nesecary theme 
      * 
@@ -17,27 +15,25 @@ export class Themes {
      * set the theme to the oposite theme that is inside the local storage, 
      * and update the theme value. 
      */
-    setTheme(init = false) {
+    async setTheme(init = false, theme) {
         if (init) {
-            if (this.currentTheme === 'light') this.#lightMode();
-            else this.#darkmode();
+            if (theme === 'light') await this.#lightMode();
+            else await this.#darkmode();
         } else {
-            if (this.currentTheme === 'light') this.#darkmode();
-            else this.#lightMode();
+            if (theme === 'light') await this.#darkmode();
+            else await this.#lightMode();
         }
     }
 
-    #lightMode() {
+    async #lightMode() {
         document.body.classList.remove('dark')
         document.body.classList.add('light');
-        this.currentTheme = 'light';
-        window.localStorage.setItem('theme', 'light');
+        await this.themeController.updateTheme('light')
     }
 
-    #darkmode() {
+    async #darkmode() {
         document.body.classList.remove('light')
         document.body.classList.add('dark');
-        this.currentTheme = 'dark';
-        window.localStorage.setItem('theme', 'dark');
+        await this.themeController.updateTheme('dark')
     }
 }

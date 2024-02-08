@@ -1,10 +1,8 @@
 import { CNode } from "../util/CNode.js";
-import { Themes } from "../util/themes.js";
 
 export class SettingsContainer {
-    constructor(view, themes) {
+    constructor(view) {
         this.view = view;
-        this.currentTheme = themes;
 
         this.themeIconLight = 'fa-solid fa-circle-half-stroke fa-flip-horizontal';
         this.themeIconDark = 'fa-solid fa-circle fa-flip-horizontal';
@@ -31,6 +29,6 @@ export class SettingsContainer {
     }
 
     attachEventListeners() {
-        this.THEME_ICON.addEventListener('click', () => {this.currentTheme.setTheme()});
+        this.THEME_ICON.addEventListener('click', () => {this.view.updateTheme()});
     }
 }

@@ -7,7 +7,6 @@ import { Themes } from '../util/themes.js';
 export class ApplicationView {
     constructor(applicationController) {
         this.applicationController = applicationController;
-        this.themes = new Themes(window.localStorage.getItem('theme'));
         this.dialog = new Dialog();
         
         // <main-top> 
@@ -100,7 +99,7 @@ export class ApplicationView {
     }
     
     renderSettingsContainer() {
-        this.dialog.addChild(new SettingsContainer(this, this.themes));
+        this.dialog.addChild(new SettingsContainer(this));
         this.dialog.show();
     }
 
@@ -268,5 +267,9 @@ export class ApplicationView {
     updateSearchObject(noteId, newName) {
         const OPTION = this._searchNoteObjects.find(obj => obj.id === noteId);
         OPTION.name = newName;
+    }
+
+    async updateTheme() {
+        await this.applicationController.setTheme(false)
     }
 }
