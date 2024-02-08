@@ -2,7 +2,7 @@
     "folders": [
         {
             "id": "f-1",
-            "name": "Untitled",
+            "name": "untitled",
             "color": "#ffffff",
             "notes": [
                 {
@@ -14,7 +14,15 @@
                     "creation": "09/02/2024"
                 }
             ],
-            "subfolders": []
+            "subfolders": [
+                {
+                    "id": "s-1",
+                    "name": "untitled",
+                    "color": "#ffffff",
+                    "notes": [],
+                    "subfolders": []
+                }
+            ]
         }
     ]
 }
