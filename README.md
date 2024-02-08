@@ -1,9 +1,4 @@
 # Note
-A simple note taking app for the person who just wants to take some notes.
-Structured in a classic folder subfolder fashion
-and delivered with a lightweight text editor that is perfect for taking notes.
-
-This app also provides two themes 
 
 # Light mode
 ### Home
