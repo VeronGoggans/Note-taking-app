@@ -1,3 +1,20 @@
 {
-    "folders": []
+    "folders": [
+        {
+            "id": "f-1",
+            "name": "Untitled",
+            "color": "#ffffff",
+            "notes": [
+                {
+                    "id": "n-1",
+                    "title": "untitled",
+                    "content": "storage/notes/note-n-1.html",
+                    "bookmark": false,
+                    "last_edit": "09/02/2024 00:39",
+                    "creation": "09/02/2024"
+                }
+            ],
+            "subfolders": []
+        }
+    ]
 }
