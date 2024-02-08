@@ -1,8 +1,7 @@
 import { TextFormatter } from "../textFormat/textFormatter.js"; 
-import { Dialog } from "../util/dialog.js"; 
 
 export class TextEditorView {
-  constructor(textEditorController) {
+  constructor(textEditorController, dialog) {
     this.textEditorController = textEditorController;
     // toolbar top
     this.noteNameInput = document.querySelector('.note-name-input');
@@ -36,7 +35,7 @@ export class TextEditorView {
     this.textEditor = document.querySelector('.editor-wrapper');
     this.page = document.querySelector('.editor');
     this.noteContent = '';
-    this.dialog = new Dialog();
+    this.dialog = dialog;
 
     this.attachEventListeners();
   }

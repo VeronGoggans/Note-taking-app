@@ -1,12 +1,4 @@
 export class FolderModel {
-    constructor() {
-        this.previousFolder = null;
-    }
-
-    getPreviousFolderID() {
-        return this.previousFolder;
-    }
-    
     
     async getFolders(endpoint) {
         try {

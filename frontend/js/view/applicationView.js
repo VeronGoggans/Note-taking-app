@@ -1,7 +1,6 @@
 import { NewFolderContainer } from '../components/newFolderContainer.js';
 import { SettingsContainer } from '../components/settingsContainer.js';
 import { Dialog } from '../util/dialog.js';
-import { Themes } from '../util/themes.js';
 
 
 export class ApplicationView {
@@ -32,30 +31,13 @@ export class ApplicationView {
 
     }
 
-
-    /**
-     * This method initiates all the event listeners 
-     * that are in the following html elements
-     * - <main-top>
-     * - <sidebar-content>
-     * - <dialog>
-     */
     attachEventListeners() {
         this.backButton.addEventListener('click', () => {this.back()});
         this.homeButton.addEventListener('click', () => {this.home()});
         this.createNoteButton.addEventListener('click', () => {this.showTextEditor()});
-        this.createFolderButton.addEventListener('click', () => {this.renderNewFolderContainer()});
-        this.settingsButton.addEventListener('click', () => {this.renderSettingsContainer()});
+        this.createFolderButton.addEventListener('click', () => {this.dialog.renderNewFolderContainer(this)});
+        this.settingsButton.addEventListener('click', () => {this.dialog.renderSettingsContainer(this)});
         this.searchBarInput.addEventListener('input', () => {this.handleSearchBarInput()});
-
-        this._dialog.addEventListener('click', (event) => {
-            if (!event.target.closest('.new-folder-container') && 
-            !event.target.closest('.delete-folder-container') &&
-            !event.target.closest('.settings-container') && 
-            !event.target.closest('.dont-forget-to-save-container')) {
-                this.dialog.hide();
-            }
-        });
         document.addEventListener("click", (event) => {
             if (!event.target.closest(".search-container")) {
                 this.noteOptionsList.innerHTML = "";
@@ -84,25 +66,7 @@ export class ApplicationView {
             });
         }
     }
-
-    /**
-     * This method renders a new folder container
-     * 
-     * The new folder container contains a input and a button 
-     * Input is for the new folder name and the 
-     * button is to confirm the new folder 
-     */
-    renderNewFolderContainer() {
-        const CONTAINER = new NewFolderContainer(this);
-        this.dialog.addChild(CONTAINER);
-        this.dialog.show();
-    }
     
-    renderSettingsContainer() {
-        this.dialog.addChild(new SettingsContainer(this));
-        this.dialog.show();
-    }
-
     /**
      * This method renders all the note names 
      * in the search options container
@@ -128,11 +92,7 @@ export class ApplicationView {
     }
 
     /**
-     * This method removes the following from the UI
-     * - list folder card 
-     * - folder card
-     * - list note card 
-     * - note card
+     * This method removes all the creatable components from the UI
      */
     removeContent() {
         const CONTENT = this._content;
@@ -141,20 +101,6 @@ export class ApplicationView {
         while (CONTENT.firstChild) CONTENT.removeChild(CONTENT.firstChild);
         while (FOLDERS.firstChild) FOLDERS.removeChild(FOLDERS.firstChild);
         while (NOTES.firstChild) NOTES.removeChild(NOTES.firstChild);
-    }
-
-    /**
-     * This method toggles the text editor visibility
-     * 
-     * This method is called by the following events 
-     * 1. Note button inside sidebar is clicked
-     * 2. Note suggestion inside the searchbar is clicked
-     * 3. Note card is clicked
-     * 4. Return button inside text editor is clicked
-     */
-    toggleTextEditorVisibility() {
-        // toggle the visibility.
-        this.textEditorWrapper.style.visibility = this.textEditorWrapper.style.visibility === 'visible' ? 'hidden' : 'visible';
     }
 
     /**
@@ -178,6 +124,7 @@ export class ApplicationView {
 
     /**
      * This method is called when the home button is clicked
+     * The home button takes the user to the home screen
      */
     home() {
         this.removeContent();
@@ -187,6 +134,7 @@ export class ApplicationView {
 
     /**
      * This method is called when the back button is clicked
+     * The back button takes the user to the previous folder
      */
     back() {
         this.removeContent();
@@ -200,6 +148,10 @@ export class ApplicationView {
         this.applicationController.showTextEditor();
     }
 
+    /**
+     * This method displays the current folder name 
+     * @param {String} name 
+     */
     displayFolderName(name) {
         this.currentFolderName.textContent = name;
     }
@@ -244,7 +196,7 @@ export class ApplicationView {
     }
 
     /**
-     * This method will remove a search object from 
+     * This method removes a search object from 
      * the search bar options
      * 
      * This method is called everytime a note gets deleted.
@@ -256,7 +208,7 @@ export class ApplicationView {
     }
 
     /**
-     * This method will update a search object from 
+     * This method updates a search object from 
      * the search bar options
      * 
      * This method is called everytime a note gets updated.

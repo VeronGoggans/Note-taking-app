@@ -5,15 +5,17 @@ import { NoteController } from "./noteController.js";
 import { ApplicationView } from "../view/applicationView.js";
 import { TextEditorController } from "./textEditorController.js"
 import { ThemeController } from "./themeController.js";
+import { Dialog } from "../util/dialog.js";
  
 export class ApplicationController {
     constructor() {
+        this.dialog = new Dialog()
         this.applicationView = new ApplicationView(this);
         this.applicationModel = new ApplicationModel();
-        this.folderController = new FolderController(this);
-        this.subfolderController = new SubfolderController(this);
-        this.noteController = new NoteController(this);
-        this.textEditorController = new TextEditorController(this);
+        this.folderController = new FolderController(this, this.dialog);
+        this.subfolderController = new SubfolderController(this, this.dialog);
+        this.noteController = new NoteController(this, this.dialog);
+        this.textEditorController = new TextEditorController(this, this.dialog);
         this.themeController = new ThemeController();
     }
 

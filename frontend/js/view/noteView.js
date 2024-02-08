@@ -2,25 +2,22 @@ import { Note } from "../components/note.js";
 import { DeleteContainer } from "../components/deleteContainer.js";
 import { ListNote, NoNoteMessage } from "../components/listNote.js";
 import { HTMLArray, NoteObjectArray } from "../util/array.js";
-import { Dialog } from "../util/dialog.js";
 import { UserFeedbackHandler } from "../handlers/notificationHandler.js";
 
 export class NoteView {
-    constructor(noteController) {
+    constructor(noteController, dialog) {
         this.noteController = noteController;
         this._content = document.querySelector('.content-view');
         this._list = document.querySelector('.list-content-notes');
         this._cover = document.querySelector('.cover');
         this.userFeedbackHandler = new UserFeedbackHandler();
-        this.dialog = new Dialog();
+        this.dialog = dialog;
         this.noteObjects = new NoteObjectArray();
     }
 
-    /**
-     * This method renders a bunch of notes.
-     * 
-     * This method renders a list of note objects to the content <div>
-     * and adds a note object to the noteObjects list for each note.
+    /** 
+     * This method renders an array of note objects to the UI
+     * and adds a note object to the noteObjects array for each note.
      * 
      * This method is called by the noteController 
      * when a user clicks on a folder card. 
@@ -46,9 +43,7 @@ export class NoteView {
     }
 
     /**
-     * This method renders a single not card.
-     * 
-     * This method renders a single note card to the content div
+     * This method renders a single note card to the UI
      * and adds a note object to the noteObjects array.
      * 
      * This method is called by the noteController 
@@ -70,34 +65,29 @@ export class NoteView {
         this._list.appendChild(LIST_NOTE_CARD);
     }
 
-    /**
-     * This method updates a note card inside the content <div>.
-     * 
+    /** 
      * This method updates a note card and the linked note object
-     * in the noteObjects list.
+     * in the noteObjects array.
      * 
-     * @param {dict} note the updated note.
+     * @param {dict} note
      */
     renderNoteUpdate(note) {
-        const ID = note.id;
-        const NAME = note.title;
-        const CONTENT = note.content;
         const NOTE_CARDS = new HTMLArray(this._content.children, 'note'); 
         const NOTE_LIST_CARDS = this._list.children;
 
         for (let i = 0; i < NOTE_CARDS.length; i++) {
-            if (NOTE_CARDS[i].id === ID) {
+            if (NOTE_CARDS[i].id === note.id) {
                 // updating the h4 element inside the note card.
                 const H4 = NOTE_CARDS[i].querySelector('h4');
-                H4.textContent = NAME;
+                H4.textContent = note.title;
 
                 // updating the p element inside the note card.
                 const P_ELEMENT = NOTE_CARDS[i].querySelector('p');
-                P_ELEMENT.innerHTML = CONTENT;
+                P_ELEMENT.innerHTML = note.content;
 
                 // updating the span element inside the note list card
                 const SPAN = NOTE_LIST_CARDS[i].querySelector('span');
-                SPAN.textContent = NAME;
+                SPAN.textContent = note.title;
 
                 // updating the note object 
                 this.noteObjects.update(note);
@@ -107,17 +97,15 @@ export class NoteView {
 
     /**
      * Removes a specific note from the UI.
-     *
-     * This method removes the note from the UI that it has been given.
-     * @param {String} id the ID of the note to be removed from the UI.
+     * 
+     * @param {String} id
      */
     removeNote(note) {
         const ALL_NOTES = new HTMLArray(this._content.children, 'note');
         const ALL_LIST_NOTES = this._list.children;
-        const ID = note.id
 
         for (let i = 0; i < ALL_NOTES.length; i++) {
-            if (ALL_NOTES[i].id === ID) {
+            if (ALL_NOTES[i].id === note.id) {
                 // Removing the html related to the given note 
                 this._content.removeChild(ALL_NOTES[i]);
                 this._list.removeChild(ALL_LIST_NOTES[i]);
@@ -148,7 +136,7 @@ export class NoteView {
      * This method creates a ListNote component and returns it
      * 
      * @param {Dict} note
-     * @returns {ListNote} The list note card
+     * @returns {ListNote} 
      */
     listNote(note) {
         return new ListNote(note, this);
@@ -157,8 +145,8 @@ export class NoteView {
     /**
      * This method renders a confirmation container telling the user if they want to delete the note.
      * 
-     * @param {String} id The ID of the note wished to be deleted.
-     * @param {String} name The name of the note wished to be deleted.
+     * @param {String} id 
+     * @param {String} name
      */
     renderDeleteContainer(id, name) {
         this.dialog.addChild(new DeleteContainer(id, name, this));
@@ -171,8 +159,8 @@ export class NoteView {
      * This method will communicate with the note controller 
      * to update a note
      * 
-     * @param {String} id The ID of the note wished to be updated
-     * @param {String} name The new name for the note
+     * @param {String} id 
+     * @param {String} name
      */
     async updateNote(id, name, content, bookmark) {
         await this.noteController.updateNote(id, name, content, bookmark);
@@ -184,7 +172,7 @@ export class NoteView {
      * This method communicates with the note controller
      * to delete the specified note.
      * 
-     * @param {String} id The ID of the note wished to be updated
+     * @param {String} id
      */
     async handleConfirmButtonClick(id) {
         await this.noteController.deleteNote(id);
@@ -194,8 +182,8 @@ export class NoteView {
      * This method opens up the text editor
      * And puts the note the user clicked on, in the text editor.
      * 
-     * @param {String} content is the content of the note.
-     * @param {String} name is the name/title of the note. 
+     * @param {String} content
+     * @param {String} name
      */
     handleNoteCardClick(noteId, creation, lastEdit) {
         const NOTE = this.noteObjects.get(noteId);

@@ -2,10 +2,10 @@ import { SubfolderModel } from "../model/subfolderModel.js";
 import { SubfolderView } from "../view/subfolderView.js";
 
 export class SubfolderController {
-    constructor(applicationController) {
+    constructor(applicationController, dialog) {
         this.applicationController = applicationController;
         this.subfolderModel = new SubfolderModel();
-        this.subfolderView = new SubfolderView(this);
+        this.subfolderView = new SubfolderView(this, dialog);
     }
 
     async getSubFolders(folderId) {

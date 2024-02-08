@@ -1,10 +1,22 @@
 import { NoteDetailContainer } from "../components/noteDetailContainer.js";
 import { DeleteContainer } from "../components/deleteContainer.js";
 import { ForgotSaveContainer } from "../components/forgotSaveContainer.js";
+import { NewFolderContainer } from "../components/newFolderContainer.js";
+import { SettingsContainer } from "../components/settingsContainer.js";
 
 export class Dialog {
     constructor() {
         this.dialog = document.querySelector('.dialog');
+        this.attachEventlistener();
+    }
+
+    attachEventlistener() {
+        this.dialog.addEventListener('click', (event) => {
+            if (!event.target.closest('.new-folder-container') && 
+            !event.target.closest('.delete-folder-container') &&
+            !event.target.closest('.settings-container') && 
+            !event.target.closest('.dont-forget-to-save-container')) {this.hide()}
+        });
     }
 
     show() {
@@ -35,6 +47,16 @@ export class Dialog {
 
     renderForgotSaveContainer(view) {
         this.addChild(new ForgotSaveContainer(view));
+        this.show();
+    }
+
+    renderNewFolderContainer(view) {
+        this.addChild(new NewFolderContainer(view));
+        this.show();
+    }
+
+    renderSettingsContainer(view) {
+        this.addChild(new SettingsContainer(view));
         this.show();
     }
 }

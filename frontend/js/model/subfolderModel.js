@@ -1,7 +1,4 @@
 export class SubfolderModel {
-    constructor() {
-        
-    }
 
     async getsubfolders(endpoint, parentID) {
         try {

@@ -1,7 +1,4 @@
 export class ThemeModel {
-    constructor() {
-
-    }
 
     async getTheme(endpoint) {
         try {

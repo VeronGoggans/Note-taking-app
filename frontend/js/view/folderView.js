@@ -1,21 +1,17 @@
 import { Folder } from '../components/folder.js';
 import { ListFolder } from '../components/listFolder.js';
 import { DeleteContainer } from '../components/deleteContainer.js';
-import { Dialog } from '../util/dialog.js';
-
 
 export class FolderView {
-    constructor(folderController) {
+    constructor(folderController, dialog) {
         this.folderController = folderController;
         this._content = document.querySelector('.content-view');
         this._list = document.querySelector('.list-content-folders');
         this._cover = document.querySelector('.cover');
-        this.dialog = new Dialog();
+        this.dialog = dialog;
     }
 
-    /**
-     * This method renders a array of folders.
-     * 
+    /** 
      * This method renders a array of folders and adds them to the UI.
      * If the array is empty this method does nothing.
      * 
@@ -35,9 +31,7 @@ export class FolderView {
     /**
      * This method adds a single folder to the UI.
      * 
-     * This method adds the folder to the content div and list div.
-     * 
-     * @param {dict} folder The folder that needs to be added to the UI. 
+     * @param {dict} folder
      */
     renderFolder(folder) {
         const FOLDER_LIST_CARD = this.listFolder(folder);
@@ -49,37 +43,32 @@ export class FolderView {
     }
 
     /**
-     * This method updates the subfolder card inside the list div.
+     * This method updates the folder card inside the list div.
      * 
      * This method is called when a 
      * folder's name has been changed
      * 
-     * @param {dict} folder the updated folder.
+     * @param {dict} folder
      */
     renderFolderUpdate(folder) {
-        const ID = folder.id;
-        const NAME = folder.name;
         const FOLDER_LIST_CARDS = this._list.children;
         for (let i = 0; i < FOLDER_LIST_CARDS.length; i++) {
-            if (FOLDER_LIST_CARDS[i].id === ID) {
+            if (FOLDER_LIST_CARDS[i].id === folder.id) {
                 const SPAN = FOLDER_LIST_CARDS[i].querySelector('span');
-                SPAN.textContent = NAME;
+                SPAN.textContent = folder.name;
             }
         }
     }
 
     /**
      * This method removes a specific folder from the UI.
-     *
-     * This method removes the folder from the UI that it has been given.
-     * @param {String} id the ID of the folder to be removed from the UI.
+     * @param {String} id 
      */
     removeFolder(folder) {
         const ALL_FOLDERS = this._content.children;
         const ALL_LIST_FOLDERS = this._list.children;
-        const ID = folder.id
         for (let i = 0; i < ALL_FOLDERS.length; i++) {
-            if (ALL_FOLDERS[i].id === ID) {
+            if (ALL_FOLDERS[i].id === folder.id) {
                 this._content.removeChild(ALL_FOLDERS[i]);
                 this._list.removeChild(ALL_LIST_FOLDERS[i]);
             }
@@ -110,8 +99,8 @@ export class FolderView {
     /**
      * This method renders a confirmation container telling the user if they want to delete the folder.
      * 
-     * @param {String} id The ID of the folder wished to be deleted.
-     * @param {String} name The name of the folder wished to be deleted.
+     * @param {String} id 
+     * @param {String} name
      */
     renderDeleteContainer(id, name) {
         this.dialog.addChild(new DeleteContainer(id, name, this));

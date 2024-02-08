@@ -2,9 +2,9 @@ import { TextEditorView } from "../view/textEditorView.js";
 import { TextEditorModel } from "../model/textEditorModel.js";
 
 export class TextEditorController {
-    constructor(applicationController) {
+    constructor(applicationController, dialog) {
         this.applicationController = applicationController;
-        this.textEditorView = new TextEditorView(this);
+        this.textEditorView = new TextEditorView(this, dialog);
         this.textEditorModel = new TextEditorModel();
     }
 

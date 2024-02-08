@@ -2,9 +2,9 @@ import { NoteModel } from "../model/noteModel.js";
 import { NoteView } from "../view/noteView.js";
 
 export class NoteController {
-    constructor(applicationController) {
+    constructor(applicationController, dialog) {
         this.applicationController = applicationController;
-        this.noteView = new NoteView(this);
+        this.noteView = new NoteView(this, dialog);
         this.noteModel = new NoteModel();
     }
 
