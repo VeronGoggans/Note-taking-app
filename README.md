@@ -15,3 +15,7 @@
 ![folder view darkmode](https://github.com/VeronGoggans/Keeps/blob/main/docs/img/latest/folder-view-dark.png?raw=true)
 ### Inside the editor
 ![editor view darkmode](https://github.com/VeronGoggans/Keeps/blob/main/docs/img/latest/editor-view-dark.png?raw=true)
+
+## Upcoming features 
+Documentation for this can be found here\
+[future plans](https://github.com/VeronGoggans/Notes-App/blob/main/docs/future.md)
