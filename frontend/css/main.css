@@ -72,7 +72,7 @@ body {
     margin: 7px 10px 7px 0px;
     display: flex;
     border: 1px solid var(--border-search-bar);
-    background-color: var(--card);
+    background-color: var(--searchbar);
     border-radius: 20px;
     padding: 5px 10px;
     align-items: center;
@@ -96,7 +96,7 @@ body {
 
 .search-container i {
     margin-left: 5px;
-    color: var(--text);
+    color: var(--icon);
 }
 
 .note-suggestions-list {
@@ -109,7 +109,7 @@ body {
     overflow-y: auto;
     border: 1px solid var(--border-search-bar);
     border-radius: 10px;
-    background-color: var(--card);
+    background-color: var(--searchbar);
     list-style: none;
     margin: 0;
     padding: 10px;
@@ -160,7 +160,7 @@ body {
 .content-view {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    grid-template-rows: repeat(auto-fill, 320px);
+    grid-template-rows: repeat(auto-fill, 360px);
 }
 
 .content-view-notification-layer::-webkit-scrollbar {

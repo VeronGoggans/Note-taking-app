@@ -6,7 +6,7 @@
     color: var(--icon);
     display: grid;
     grid-template-rows: 40px 1fr 50px;
-    margin: 20px;
+    margin: 40px 20px;
     overflow: visible;
     border: 1px solid var(--border-card);
     box-shadow: 5px 5px 10px var(--card-shadow);
@@ -104,7 +104,7 @@
     border: none;
     width: 30px;
     height: 30px;
-    border-radius: 7px;
+    border-radius: 10px;
     background-color: transparent;
     color: var(--icon);
     transition: .3s;

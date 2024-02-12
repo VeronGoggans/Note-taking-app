@@ -20,14 +20,6 @@
                     "bookmark": false,
                     "last_edit": "07/02/2024 16:47",
                     "creation": "07/02/2024"
-                },
-                {
-                    "id": "n-361",
-                    "title": "untitled",
-                    "content": "storage/notes/note-n-361.html",
-                    "bookmark": false,
-                    "last_edit": "10/02/2024 00:37",
-                    "creation": "10/02/2024"
                 }
             ],
             "subfolders": []
@@ -46,15 +38,31 @@
                     "creation": "08/02/2024"
                 },
                 {
-                    "id": "n-357",
-                    "title": "untitled",
-                    "content": "storage/notes/note-n-357.html",
+                    "id": "n-362",
+                    "title": "Word Scramble",
+                    "content": "storage/notes/note-n-362.html",
                     "bookmark": false,
-                    "last_edit": "10/02/2024 00:58",
-                    "creation": "08/02/2024"
+                    "last_edit": "12/02/2024 16:04",
+                    "creation": "10/02/2024"
+                },
+                {
+                    "id": "n-368",
+                    "title": "Icon no fill",
+                    "content": "storage/notes/note-n-368.html",
+                    "bookmark": false,
+                    "last_edit": "12/02/2024 20:23",
+                    "creation": "12/02/2024"
                 }
             ],
-            "subfolders": []
+            "subfolders": [
+                {
+                    "id": "s-104",
+                    "name": "untitled",
+                    "color": "#ffffff",
+                    "notes": [],
+                    "subfolders": []
+                }
+            ]
         }
     ]
 }

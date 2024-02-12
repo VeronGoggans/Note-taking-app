@@ -1,22 +1,22 @@
 :root {
-    --background: #f4f5f7; /*ffffff*/
+    --background: #ffffff; /*f4f5f7*/
     --editor: #ffffff;
-    --list-view: #f4f5f7;
-    --sidebar: #ffffff;
+    --list-view: #ffffff; /*f4f5f7*/
+    --sidebar: #f4f5f7;
+    --searchbar: #ffffff;
     --sidebar-text: #495080;
     --sidebar-text-hover: #16171c;
-    --card: #ffffff;
+    --card: #ffffff; /*f4f5f7*/
     --text: #444863;
-    --icon: #495080;
+    --icon: #747aa0; /*495080*/
     --icon-hover: #444863;
     --important: #444863;
     --toolbar: #eff1f7;
     --editor-text: #383838;
-    --sidebar: #ffffff;
     --border-card: #f4f5f7;
     --border-sidebar-right: #ffffff; /*d4d4d4*/
-    --border-sidebar-top: #ffffff; /*d4d4d4*/
-    --border-main-top: #f4f5f7; /*d4d4d4*/
+    --border-sidebar-top: #f4f5f7; /*ffffff*/
+    --border-main-top: #ffffff; /*f4f5f7*/
     --border-search-bar: #ffffff; /*d4d4d4*/
     --hover: rgba(92, 125, 255, .3);
     --hover-text: #444863;
@@ -36,6 +36,7 @@
     --editor: #16171c;
     --list-view: #1b1c22;
     --sidebar: #16171c; 
+    --searchbar: #252831;
     --sidebar-text: #d6d8e5;
     --sidebar-text-hover: #5c7dff; 
     --card: #252831;
@@ -60,28 +61,28 @@
     --dialog: rgba(47, 49, 72, 0.30);
     --paragraph: #252831;
     --shadow: rgba(0, 0, 0, 0.1);
-    --card-shadow: #1b1c22;
+    --card-shadow: #1b1c22; /*16171c*/
 }
 
 .light {
-    --background: #f4f5f7;
+    --background: #ffffff;
     --editor: #ffffff;
-    --list-view: #f4f5f7;
-    --sidebar: #ffffff;
+    --list-view: #ffffff;
+    --searchbar: #ffffff;
+    --sidebar: #f4f5f7;
     --sidebar-text: #495080;
     --sidebar-text-hover: #16171c;
     --card: #ffffff;
     --text: #444863;
-    --icon: #495080;
+    --icon: #747aa0;
     --icon-hover: #444863;
     --important: #444863;
     --toolbar: #eff1f7;
     --editor-text: #383838;
-    --sidebar: #ffffff;
     --border-card: #f4f5f7;
     --border-sidebar-right: #ffffff;
-    --border-sidebar-top: #ffffff;
-    --border-main-top: #f4f5f7;
+    --border-sidebar-top: #f4f5f7;
+    --border-main-top: #ffffff;
     --border-search-bar: #ffffff;
     --hover: rgba(92, 125, 255, .3);
     --hover-text: #444863;

@@ -100,7 +100,7 @@ export class NoteObjectArray {
                 this.objects[i].title = note.title;
                 this.objects[i].content = note.content;
                 this.objects[i].bookmark = note.bookmark;
-                this.objects[i].lastEdit = note.last_edit;
+                this.objects[i].last_edit = note.last_edit;
             }
         }
     }

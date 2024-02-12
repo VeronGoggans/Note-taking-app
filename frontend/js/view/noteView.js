@@ -3,6 +3,7 @@ import { DeleteContainer } from "../components/deleteContainer.js";
 import { ListNote, NoNoteMessage } from "../components/listNote.js";
 import { HTMLArray, NoteObjectArray } from "../util/array.js";
 import { UserFeedbackHandler } from "../handlers/notificationHandler.js";
+import { dateFormat } from "../util/date.js";
 
 export class NoteView {
     constructor(noteController, dialog) {
@@ -88,6 +89,8 @@ export class NoteView {
                 // updating the span element inside the note list card
                 const SPAN = NOTE_LIST_CARDS[i].querySelector('span');
                 SPAN.textContent = note.title;
+
+                NOTE_CARDS[i].setAttribute("data-info", `${dateFormat(note.creation)}--${dateFormat(note.last_edit)}`);
 
                 // updating the note object 
                 this.noteObjects.update(note);
@@ -185,11 +188,12 @@ export class NoteView {
      * @param {String} content
      * @param {String} name
      */
-    handleNoteCardClick(noteId, creation, lastEdit) {
+    handleNoteCardClick(noteId, creation) {
         const NOTE = this.noteObjects.get(noteId);
+        const LAST_EDIT = dateFormat(NOTE.last_edit);
         const NAME = NOTE.title;
         const CONTENT = NOTE.content;
         const BOOKMARK = NOTE.bookmark;
-        this.noteController.handleNoteCardClick(CONTENT, NAME, creation, lastEdit, noteId, BOOKMARK);
+        this.noteController.handleNoteCardClick(CONTENT, NAME, creation, LAST_EDIT, noteId, BOOKMARK);
     }
 }
