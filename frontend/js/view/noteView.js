@@ -4,6 +4,7 @@ import { ListNote, NoNoteMessage } from "../components/listNote.js";
 import { HTMLArray, NoteObjectArray } from "../util/array.js";
 import { UserFeedbackHandler } from "../handlers/notificationHandler.js";
 import { dateFormat } from "../util/date.js";
+import { formatName } from "../util/formatters.js";
 
 export class NoteView {
     constructor(noteController, dialog) {
@@ -30,14 +31,13 @@ export class NoteView {
         this.noteObjects.clear();
         if (notes.length > 0) {
             for (let i = 0; i < notes.length; i++) {
-                const NOTE = notes[i];
-
-                const LIST_NOTE_CARD = this.listNote(NOTE);
-                const NOTE_CARD = this.note(NOTE);
+                const LIST_NOTE_CARD = this.listNote(notes[i]);
+                const NOTE_CARD = this.note(notes[i]);
 
                 this._content.appendChild(NOTE_CARD);
                 this._list.appendChild(LIST_NOTE_CARD);
             }
+            console.log(this.noteObjects);
         } else {
             this.userFeedbackHandler.noNotes(new NoNoteMessage());
         }
@@ -80,7 +80,7 @@ export class NoteView {
             if (NOTE_CARDS[i].id === note.id) {
                 // updating the h4 element inside the note card.
                 const H4 = NOTE_CARDS[i].querySelector('h4');
-                H4.textContent = note.title;
+                H4.textContent = formatName(note.title);
 
                 // updating the p element inside the note card.
                 const P_ELEMENT = NOTE_CARDS[i].querySelector('p');
@@ -88,7 +88,7 @@ export class NoteView {
 
                 // updating the span element inside the note list card
                 const SPAN = NOTE_LIST_CARDS[i].querySelector('span');
-                SPAN.textContent = note.title;
+                SPAN.textContent = formatName(note.title);
 
                 NOTE_CARDS[i].setAttribute("data-info", `${dateFormat(note.creation)}--${dateFormat(note.last_edit)}`);
 

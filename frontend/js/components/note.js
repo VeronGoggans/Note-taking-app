@@ -1,5 +1,6 @@
 import { CNode } from "../util/CNode.js";
 import { dateFormat } from "../util/date.js";
+import { formatName } from "../util/formatters.js";
 
 export class Note {
     constructor(note, view) {
@@ -15,7 +16,7 @@ export class Note {
         this.HOST = CNode.create('div', {'class': 'note', 'id': this.id});
         this.HOST.dataset.info = `${this.created}--${this.lastEdit}`;
         this.NAME_BOX = CNode.create('div', {'class': 'note-name-box'});
-        this.H4 = CNode.create('h4', {'contentEditable': 'false', 'textContent': this.name, 'spellCheck': false});
+        this.H4 = CNode.create('h4', {'contentEditable': 'false', 'textContent': formatName(this.name), 'spellCheck': false});
         this.BTN_CONTAINER = CNode.create('div', {'class': 'update-note-btns-container'});
         this.CONFIRM = CNode.create('button', {'class': 'confirm-note-update-btn'});
         this.CONFIRM_ICON = CNode.create('i', {'class': 'fa-solid fa-check'});
@@ -82,7 +83,7 @@ export class Note {
     toggleEditableNoteName() {
         // Toggle contentEditable
         this.H4.contentEditable = this.H4.contentEditable === 'true' ? 'false' : 'true';
-        this.H4.style.borderColor = this.H4.style.borderColor === 'rgb(92, 125, 255)' ? 'transparent' : '#5c7dff';
+        this.H4.style.borderColor = this.H4.style.borderColor === 'rgb(116, 122, 160)' ? 'transparent' : '#747aa0';
 
         // Toggle visibility
         this.BTN_CONTAINER.style.visibility = this.BTN_CONTAINER.style.visibility === 'visible' ? 'hidden' : 'visible';

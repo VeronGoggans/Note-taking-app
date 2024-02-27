@@ -1,4 +1,5 @@
 import { CNode } from "../util/CNode.js";
+import { formatName } from "../util/formatters.js";
 
 export class ListNote {
     constructor(note, view) {
@@ -9,7 +10,7 @@ export class ListNote {
 
         // Creating HTML elements.
         this.HOST = CNode.create('div', {'class': 'list-view-note', 'id': this.id});
-        this.SPAN = CNode.create('span', {'textContent': this.name});
+        this.SPAN = CNode.create('span', {'textContent': formatName(this.name)});
 
         this.attachEventListeners();
         return this.render();

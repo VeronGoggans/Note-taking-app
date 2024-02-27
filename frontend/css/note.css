@@ -73,6 +73,13 @@
     color: var(--icon-hover);  
 }
 
+.note .last-edit-text {
+    position: absolute;
+    bottom: 50px;
+    left: 40px;
+    color: var(--placeholder);
+}
+
 .update-note-btns-container {
     position: absolute;
     margin-left: auto;
