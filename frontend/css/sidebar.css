@@ -25,7 +25,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 7px;
+    border-radius: 15px 10px 15px 10px;
     color: aliceblue;
     font-weight: 600;
     background-color: #5c7dff;

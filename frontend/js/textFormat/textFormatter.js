@@ -97,8 +97,8 @@ export class TextFormatter {
 
     const EMBED_INPUT = document.createElement('input');
     EMBED_INPUT.type = 'text';
-    EMBED_INPUT.placeholder = 'Embed ink...';
-    EMBED_INPUT.classList.add('embed-link-input');
+    EMBED_INPUT.placeholder = 'Paste the video link here';
+    EMBED_INPUT.classList.add('embed-link-input'); 
 
     EMBED_INPUT.addEventListener('keydown', (event) => {
       if (event.key === 'Enter') {

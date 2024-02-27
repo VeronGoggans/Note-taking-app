@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="frontend/css/textEditor/textEditor.css">
     <link rel="stylesheet" href="frontend/css/textEditor/toolbarBottom.css">
     <link rel="stylesheet" href="frontend/css/textEditor/toolbarTop.css">
-    <link rel="stylesheet" href="frontend/css/textEditor/colorPalletes.css">
     <!-- CDN for the icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Note</title>
@@ -41,7 +40,7 @@
                 <button class="home-screen-btn"><i class="fa-solid fa-house"></i><span>Home</span></button>
               </div>
               <div class="sidebar-content-lower">
-                <button class="settings-btn"><i id="current-theme-icon" class="fa-regular fa-sun"></i><span class="current-theme-text">Light</span></button>
+                <button class="settings-btn"><i class="fa-solid fa-gear"></i><span>Settings</span></button>
               </div>
             </div>
         </div>
@@ -86,7 +85,6 @@
               <button class="new-note-span"><i class="fa-solid fa-plus"></i>New</button>
               <button class="save-note-span"><i class="fa-regular fa-floppy-disk"></i>Save</button>
               <button class="delete-note-span"><i class="fa-solid fa-trash"></i>Delete</button>
-              <button class="background-note-span"><i class="fa-solid fa-swatchbook"></i>Background</button>
               <button class="note-details-span"><i class="fa-solid fa-info"></i>Details</button>
             </div>
           </div>
@@ -131,37 +129,21 @@
                 <button class="foreground-color-picker"><i class="fa-solid fa-palette"></i></button>
                 <div class="foreground-color-palette">
                   <h3>Colors</h3>
-                  <div class="nature-colors">
-                    <button style="background-color: #8EC3B0;" data-color="#8EC3B0"></button>
-                    <button style="background-color: #9ED5C5;" data-color="#9ED5C5"></button>
-                    <button style="background-color: #BCEAD5;" data-color="#BCEAD5"></button>
-                    <button style="background-color: #DEF5E5;" data-color="#DEF5E5"></button>
-                    <button style="background-color: #ABD9FF;" data-color="#ff9d70"></button>
-                    <button style="background-color: #87c9ff;" data-color="#87c9ff"></button>
+                  <div class="soft-colors">
+                    <button class="soft-green" data-color="#95ffac"></button>
+                    <button class="soft-blue" data-color="#5c7dff"></button>
+                    <button class="soft-purple" data-color="#e97bff"></button>
+                    <button class="soft-red" data-color="#ff6b84"></button>
+                    <button class="soft-orange" data-color="#ff9d70"></button>
+                    <button class="color-white" data-color="#ffffff"></button>
                   </div>
-                  <div class="sunset-colors">
-                    <button style="background-color: #FFACAC;" data-color="#FFACAC"></button>
-                    <button style="background-color: #FFBFA9;" data-color="#FFBFA9"></button>
-                    <button style="background-color: #FFEBB4;" data-color="#FFEBB4"></button>
-                    <button style="background-color: #FBFFB1;" data-color="#FBFFB1"></button>
-                    <button style="background-color: #FEECE2;" data-color="#FEECE2"></button>
-                    <button style="background-color: #FFBE98;" data-color="#FFBE98"></button>
-                  </div>
-                  <div class="neon-colors">
-                    <button style="background-color: #8E7AB5;" data-color="#8E7AB5"></button>
-                    <button style="background-color: #B784B7;" data-color="#B784B7"></button>
-                    <button style="background-color: #E493B3;" data-color="#E493B3"></button>
-                    <button style="background-color: #EEA5A6;" data-color="#EEA5A6"></button>
-                    <button style="background-color: #9F70FD;" data-color="#9F70FD"></button>
-                    <button style="background-color: #7F27FF;" data-color="#7F27FF"></button>
-                  </div>
-                  <div class="text-colors">
-                    <button style="background-color: #404258;" data-color="#404258"></button>
-                    <button style="background-color: #474E68;" data-color="#474E68"></button>
-                    <button style="background-color: #50577A;" data-color="#50577A"></button>
-                    <button style="background-color: #6B728E;" data-color="#6B728E"></button>
-                    <button style="background-color: #ffffff;" data-color="#ffffff"></button>
-                    <button style="background-color: #000000;" data-color="#000000"></button>
+                  <div class="dark-colors">
+                    <button class="dark-green" data-color="#4da560"></button>
+                    <button class="dark-blue" data-color="#3e56ba"></button>
+                    <button class="dark-purple" data-color="#a95ab9"></button>
+                    <button class="dark-red" data-color="#ff5252"></button>
+                    <button class="dark-orange" data-color="#fa783c"></button>
+                    <button class="color-black" data-color="#383838"></button>
                   </div>
                 </div>
               </div>
@@ -169,37 +151,21 @@
                 <button class="background-color-picker"><i class="fa-solid fa-highlighter"></i></button>
                 <div class="background-color-palette">
                   <h3>Markers</h3>
-                  <div class="nature-colors">
-                    <button style="background-color: #8EC3B0;" data-color="#8EC3B0"></button>
-                    <button style="background-color: #9ED5C5;" data-color="#9ED5C5"></button>
-                    <button style="background-color: #BCEAD5;" data-color="#BCEAD5"></button>
-                    <button style="background-color: #DEF5E5;" data-color="#ff6b84"></button>
-                    <button style="background-color: #ABD9FF;" data-color="#ABD9FF"></button>
-                    <button style="background-color: #87c9ff;" data-color="#87c9ff"></button>
+                  <div class="soft-colors">
+                    <button class="soft-green" data-color="#95ffac"></button>
+                    <button class="soft-blue" data-color="#5c7dff"></button>
+                    <button class="soft-purple" data-color="#e97bff"></button>
+                    <button class="soft-red" data-color="#ff6b84"></button>
+                    <button class="soft-orange" data-color="#ff9d70"></button>
+                    <button class="color-white" data-color="#ffffff"></button>
                   </div>
-                  <div class="sunset-colors">
-                    <button style="background-color: #FFACAC;" data-color="#FFACAC"></button>
-                    <button style="background-color: #FFBFA9;" data-color="#FFBFA9"></button>
-                    <button style="background-color: #FFEBB4;" data-color="#FFEBB4"></button>
-                    <button style="background-color: #FBFFB1;" data-color="#FBFFB1"></button>
-                    <button style="background-color: #FEECE2;" data-color="#FEECE2"></button>
-                    <button style="background-color: #FFBE98;" data-color="#FFBE98"></button>
-                  </div>
-                  <div class="neon-colors">
-                    <button style="background-color: #8E7AB5;" data-color="#8E7AB5"></button>
-                    <button style="background-color: #B784B7;" data-color="#B784B7"></button>
-                    <button style="background-color: #E493B3;" data-color="#E493B3"></button>
-                    <button style="background-color: #EEA5A6;" data-color="#EEA5A6"></button>
-                    <button style="background-color: #9F70FD;" data-color="#9F70FD"></button>
-                    <button style="background-color: #7F27FF;" data-color="#7F27FF"></button>
-                  </div>
-                  <div class="text-colors">
-                    <button style="background-color: #404258;" data-color="#404258"></button>
-                    <button style="background-color: #474E68;" data-color="#474E68"></button>
-                    <button style="background-color: #50577A;" data-color="#50577A"></button>
-                    <button style="background-color: #6B728E;" data-color="#6B728E"></button>
-                    <button style="background-color: #ffffff;" data-color="#ffffff"></button>
-                    <button style="background-color: #000000;" data-color="#000000"></button>
+                  <div class="dark-colors">
+                    <button class="dark-green" data-color="#4da560"></button>
+                    <button class="dark-blue" data-color="#3e56ba"></button>
+                    <button class="dark-purple" data-color="#a95ab9"></button>
+                    <button class="dark-red" data-color="#ff5252"></button>
+                    <button class="dark-orange" data-color="#fa783c"></button>
+                    <button class="color-black" data-color="#383838"></button>
                   </div>
                 </div>
               </div>

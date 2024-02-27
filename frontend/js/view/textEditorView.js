@@ -27,9 +27,9 @@ export class TextEditorView {
     this.foregroundColor = document.querySelector('.foreground-color-picker');
     this.backgroundColor = document.querySelector('.background-color-picker');
     this.foregroundPalette = document.querySelector('.foreground-color-palette');
-    this.foregroundPaletteColors = this.foregroundPalette.querySelectorAll('.soft-colors button, .dark-colors button');
+    this.foregroundPaletteColors = this.foregroundPalette.querySelectorAll('.nature-colors button, .sunset-colors button, .neon-colors button, .text-colors button');
     this.backgroundPalette = document.querySelector('.background-color-palette');
-    this.backgroundPaletteColors = this.backgroundPalette.querySelectorAll('.soft-colors button, .dark-colors button');
+    this.backgroundPaletteColors = this.backgroundPalette.querySelectorAll('.nature-colors button, .sunset-colors button, .neon-colors button, .text-colors button');
 
     // other
     this.textEditor = document.querySelector('.editor-wrapper');
@@ -85,14 +85,6 @@ export class TextEditorView {
           this.toggleVisibleDropdown(this.backgroundPalette);
       });
     });
-    // Key bindings
-    //  document.addEventListener('keydown', (event) => {
-    //   if (event.key === 's' && event.ctrlKey) {
-    //     if (this.textEditor.style.top === '0%') {
-    //       this.save();
-    //     }
-    //   }
-    // });
   }
 
 

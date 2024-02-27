@@ -1,5 +1,3 @@
-import { NewFolderContainer } from '../components/newFolderContainer.js';
-import { SettingsContainer } from '../components/settingsContainer.js';
 import { Dialog } from '../util/dialog.js';
 
 
@@ -36,7 +34,7 @@ export class ApplicationView {
         this.homeButton.addEventListener('click', () => {this.home()});
         this.createNoteButton.addEventListener('click', () => {this.showTextEditor()});
         this.createFolderButton.addEventListener('click', () => {this.dialog.renderNewFolderContainer(this)});
-        this.settingsButton.addEventListener('click', () => {this.dialog.renderSettingsContainer(this)});
+        this.settingsButton.addEventListener('click', () => {this.updateTheme()});
         this.searchBarInput.addEventListener('input', () => {this.handleSearchBarInput()});
         document.addEventListener("click", (event) => {
             if (!event.target.closest(".search-container")) {

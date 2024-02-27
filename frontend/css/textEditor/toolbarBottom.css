@@ -2,8 +2,7 @@
     display: flex;
 }
 
-.toolbar-bottom .btn-container button,
-.background-color-picker {
+.toolbar-bottom .btn-container button {
     cursor: pointer;
     background-color: transparent;
     border: none;
@@ -11,13 +10,12 @@
     width: 30px;
     height: 30px;
     margin: 3px 1px;
-    border-radius: 5px;
+    border-radius: 10px;
     transition: .2s;
     font-family: Roboto;
 }
 
-.toolbar-bottom .btn-container button:hover,
-.background-color-picker:hover {
+.toolbar-bottom .btn-container button:hover {
     color: rgba(92, 125, 255);
     background-color: var(--hover-toolbar-btns);
 }
@@ -36,7 +34,7 @@
     width: 80px;
     height: 30px;
     background-color: transparent;
-    border-radius: 5px;
+    border-radius: 10px;
     font-size: 17px;
     font-weight: 600;
     transition: .2s;
@@ -53,7 +51,7 @@
     background-color: var(--card);
     display: flex;
     flex-direction: column;
-    top: 35px;
+    top: 45px;
     border-radius: 7px;
     padding: 10px;
     width: 150px;
@@ -106,64 +104,3 @@
     bottom: 3px;
     font-size: 12px;
   }
-
-  .foreground-color-picker {
-    cursor: pointer;
-    width: 20px;
-    height: 20px;
-    background-color: #444863;
-    border-radius: 50%;
-    border: none;
-  }
-
-  .foreground-color-palette,
-  .background-color-palette {
-    position: absolute;
-    visibility: hidden;
-    padding: 5px;
-    top: 45px;
-    right: 10px;
-    border-radius: 5px;
-    background-color: var(--toolbar);
-    box-shadow: 0 5px 20px var(--shadow);
-  }
-
-  .background-color-palette {
-    top: 53px;
-  }
-
-  .foreground-color-palette h3,
-  .background-color-palette h3 {
-    margin: 5px 10px;
-    font-family: Roboto;
-    color: var(--text);
-  }
-
-  .soft-colors,
-  .dark-colors {
-    display: flex;
-  }
-
-  .soft-colors button,
-  .dark-colors button {
-    border: none;
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    cursor: pointer;
-    margin: 5px 10px;
-  }
-
-  .soft-green {background-color: #95ffac;}
-  .soft-blue {background-color: #5c7dff;}
-  .soft-purple {background-color: #e97bff;}
-  .soft-red {background-color: #ff6b84;}
-  .soft-orange {background-color: #ff9d70;}
-  .color-white {background-color: #ffffff;}
-
-  .dark-green {background-color: #4da560;}
-  .dark-blue {background-color: #3e56ba;}
-  .dark-purple {background-color: #a95ab9;}
-  .dark-red {background-color: #ff5252}
-  .dark-orange {background-color: #fa783c;}
-  .color-black {background-color: #000000;}

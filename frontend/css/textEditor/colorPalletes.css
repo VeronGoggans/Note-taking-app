@@ -1,0 +1,73 @@
+.background-color-picker,
+.foreground-color-picker {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    color: var(--icon);
+    width: 30px;
+    height: 30px;
+    margin: 3px 1px;
+    border-radius: 10px;
+    transition: .2s;
+    font-family: Roboto;
+}
+
+.background-color-picker:hover,
+.foreground-color-picker:hover {
+    color: rgba(92, 125, 255);
+    background-color: var(--hover-toolbar-btns);
+}
+
+.foreground-color-palette,
+.background-color-palette {
+    position: absolute;
+    visibility: hidden;
+    padding: 25px;
+    top: 55px;
+    right: 10px;
+    border-radius: 10px;
+    border: 1px solid var(--border-card);
+    background-color: var(--background);
+    box-shadow: 0 5px 20px var(--shadow);
+}
+
+.background-color-palette {
+    top: 53px;
+}
+
+.foreground-color-palette h3,
+.background-color-palette h3 {
+    margin: 5px 0;
+    font-family: Roboto;
+    color: var(--text);
+}
+
+.nature-colors,
+.sunset-colors,
+.neon-colors,
+.text-colors{
+    display: flex;
+}
+
+.nature-colors button,
+.sunset-colors button,
+.neon-colors button,
+.text-colors button {
+    border: none;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    margin: 5px 0px;
+}
+
+.nature-colors:first-child,
+.sunset-colors:first-child,
+.neon-colors:first-child {
+    border-radius: 10px 0 0 10px;
+}
+
+.nature-colors:last-child,
+.sunset-colors:last-child,
+.neon-colors:last-child {
+    border-radius: 0 10px 10px 0;
+}

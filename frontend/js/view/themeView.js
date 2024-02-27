@@ -1,6 +1,10 @@
 export class ThemeView {
     constructor(themeController) {
         this.themeController = themeController
+        this.themeText = document.querySelector('.current-theme-text');
+        this.themeIcon = document.querySelector('#current-theme-icon');
+        this.lightIconClass = 'fa-regular fa-sun';
+        this.darkIconClass = 'fa-regular fa-moon';
     }
     /**
      * This method sets the nesecary theme 
@@ -28,12 +32,16 @@ export class ThemeView {
     async #lightMode() {
         document.body.classList.remove('dark')
         document.body.classList.add('light');
+        this.themeIcon.setAttribute('class', this.lightIconClass)
+        this.themeText.textContent = 'Light';
         await this.themeController.updateTheme('light')
     }
 
     async #darkmode() {
         document.body.classList.remove('light')
         document.body.classList.add('dark');
+        this.themeIcon.setAttribute('class', this.darkIconClass)
+        this.themeText.textContent = 'Dark';
         await this.themeController.updateTheme('dark')
     }
 }

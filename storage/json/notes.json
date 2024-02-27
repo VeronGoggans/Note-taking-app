@@ -3,14 +3,14 @@
         {
             "id": "f-49",
             "name": "School",
-            "color": "#ffffff",
+            "color": "#a9d7ff",
             "notes": [
                 {
                     "id": "n-216",
                     "title": "Github commands",
                     "content": "storage/notes/note-n-216.html",
                     "bookmark": false,
-                    "last_edit": "13/02/2024 14:34",
+                    "last_edit": "27/02/2024 15:04",
                     "creation": "09/01/2024"
                 },
                 {
@@ -18,7 +18,7 @@
                     "title": "CISC",
                     "content": "storage/notes/note-n-349.html",
                     "bookmark": false,
-                    "last_edit": "26/02/2024 11:20",
+                    "last_edit": "27/02/2024 15:39",
                     "creation": "07/02/2024"
                 }
             ],
@@ -26,23 +26,15 @@
         },
         {
             "id": "f-73",
-            "name": "Test folder",
+            "name": "App",
             "color": "#ffffff",
             "notes": [
                 {
-                    "id": "n-369",
-                    "title": "hello StormyCurve7454 bumblebee",
-                    "content": "storage/notes/note-n-369.html",
-                    "bookmark": false,
-                    "last_edit": "13/02/2024 14:35",
-                    "creation": "13/02/2024"
-                },
-                {
                     "id": "n-370",
-                    "title": "untitled",
+                    "title": "Todo March",
                     "content": "storage/notes/note-n-370.html",
                     "bookmark": false,
-                    "last_edit": "13/02/2024 13:07",
+                    "last_edit": "27/02/2024 15:55",
                     "creation": "13/02/2024"
                 }
             ],

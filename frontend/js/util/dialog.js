@@ -2,7 +2,6 @@ import { NoteDetailContainer } from "../components/noteDetailContainer.js";
 import { DeleteContainer } from "../components/deleteContainer.js";
 import { ForgotSaveContainer } from "../components/forgotSaveContainer.js";
 import { NewFolderContainer } from "../components/newFolderContainer.js";
-import { SettingsContainer } from "../components/settingsContainer.js";
 
 export class Dialog {
     constructor() {
@@ -52,11 +51,6 @@ export class Dialog {
 
     renderNewFolderContainer(view) {
         this.addChild(new NewFolderContainer(view));
-        this.show();
-    }
-
-    renderSettingsContainer(view) {
-        this.addChild(new SettingsContainer(view));
         this.show();
     }
 }
