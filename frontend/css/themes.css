@@ -13,12 +13,14 @@
     --important: #444863;
     --toolbar: #eff1f7;
     --editor-text: #383838;
-    --border-card: #f4f5f7;
-    --border-sidebar-right: #ffffff; /*d4d4d4*/
+    --border-card: #dee1ef;
+    --border-sidebar-right: #dee1ef; /*d4d4d4*/
     --border-sidebar-top: #f4f5f7; /*ffffff*/
     --border-main-top: #ffffff; /*f4f5f7*/
     --border-search-bar: #ffffff; /*d4d4d4*/
-    --hover: rgba(92, 125, 255, .3);
+    --hover: rgba(92, 125, 255, .3); 
+    --hover-list-view-buttons: #f4f5f7;
+    --hover-searchbar-options: #f4f5f7;
     --hover-text: #444863;
     --hover-toolbar-btns: rgba(185, 198, 250, 0.5);
     --bookmark: #a9d7ff;
@@ -52,13 +54,15 @@
     --border-main-top: #1b1c22;
     --border-search-bar: #1b1c22;
     --hover: #31343d; 
+    --hover-list-view-buttons: #31343d;
+    --hover-searchbar-options: #31343d;
     --hover-text: #5c7dff;
     --hover-toolbar-btns: #31343d;
     --bookmark: #303446;
     --no-content: #757789;
     --placeholder: #9093a2;
     --selection: #4481ea;
-    --dialog: rgba(47, 49, 72, 0.30);
+    --dialog: rgba(58, 64, 106, 0.15);
     --paragraph: #252831;
     --shadow: rgba(0, 0, 0, 0.1);
     --card-shadow: #1b1c22; /*16171c*/
@@ -79,19 +83,21 @@
     --important: #444863;
     --toolbar: #eff1f7;
     --editor-text: #383838;
-    --border-card: #f4f5f7;
-    --border-sidebar-right: #ffffff;
+    --border-card: #dee1ef;
+    --border-sidebar-right: #dee1ef;
     --border-sidebar-top: #f4f5f7;
     --border-main-top: #ffffff;
     --border-search-bar: #ffffff;
     --hover: rgba(92, 125, 255, .3);
+    --hover-list-view-buttons: #f4f5f7;
+    --hover-searchbar-options: #f4f5f7;
     --hover-text: #444863;
     --hover-toolbar-btns: rgba(185, 198, 250, 0.5);
     --bookmark: #a9d7ff;
     --no-content: #aaabb4;
     --placeholder: #9093a2;
     --selection: #e8f0fe;
-    --dialog: rgba(0, 3, 24, 0.30);
+    --dialog: rgba(58, 64, 106, 0.15);
     --paragraph: rgba(239, 241, 250, .4); /*rgba(239, 241, 247, .4) original color*/
     --shadow: rgba(0, 0, 0, 0.1);
     --card-shadow: #e0e2ec;

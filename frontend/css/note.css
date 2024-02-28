@@ -8,7 +8,7 @@
     margin: 40px 20px;
     overflow: visible;
     border: 1px solid var(--border-card);
-    box-shadow: 5px 5px 10px var(--card-shadow);
+    /* box-shadow: 5px 5px 10px var(--card-shadow); */
 }
 
 .bookmark {

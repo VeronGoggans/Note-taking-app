@@ -45,7 +45,7 @@
     background-color: transparent;
     color: var(--text);
     font-weight: 600;
-    border-radius: 20px;
+    border-radius: 15px;
     transition: .2s;
 }
 
@@ -64,6 +64,6 @@
 
 .list-view-folder:hover,
 .list-view-note:hover {
-    background-color: var(--hover);
+    background-color: var(--hover-list-view-buttons);
     color: var(--hover-text);
 }

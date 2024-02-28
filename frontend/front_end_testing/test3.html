@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pick Your Background</title>
+    <link rel="stylesheet" href="/frontend/css/textEditor/colorPalletes.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
+        body {
+            padding: 0;
+            margin: 0;
+            font-family: Roboto;
+        }
+
+        .note-background-wrapper {
+            background-color: rgba(1, 5, 36, 0.3);
+            height: 100dvh;
+            display: flex;
+            justify-content: center;
+        }
+
+        h2 {
+            color: rgb(47, 47, 56);
+        }
+
+        .note-barground-container {
+            position: relative;
+            background-color: white;
+            width: 50%;
+            max-width: 450px;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .note-barground-container span {
+            font-weight: 600;
+        }
+
+        .background-preview-box {
+            position: relative;
+            width: 250px;
+            height: 200px;
+            border-radius: 10px;
+            background-color: #BCEAD5;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 50px;
+        }
+
+        .background-preview-paper {
+            position: relative;
+            background-color: #9ED5C5;
+            width: 60%;
+            height: 100%;
+        }
+
+        .note-background-btn-bar {
+            position: absolute;
+            bottom: 20px;
+        }
+
+        .cancel-note-background-btn {
+            cursor: pointer;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100px;
+            height: 40px;
+            font-size: 16px;
+            background-color: #ffffff;
+            font-family: Roboto;
+            font-weight: 600;
+        }
+
+        .save-note-background-btn {
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            width: 100px;
+            height: 40px;
+            font-size: 16px;
+            background-color: #5c7dff;
+            color: white;
+            font-weight: 600;
+            font-family: Roboto;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="note-background-wrapper">
+        <div class="note-barground-container">
+            <h2>Background Colors</h2>
+            <section class="background-preview-box">
+                <div class="background-preview-paper"></div>
+            </section>
+            <span>Nature colors</span>
+            <section class="nature-colors">
+                <button style="background-color: #8EC3B0;" data-color="#8EC3B0"></button>
+                <button style="background-color: #9ED5C5;" data-color="#9ED5C5"></button>
+                <button style="background-color: #BCEAD5;" data-color="#BCEAD5"></button>
+                <button style="background-color: #DEF5E5;" data-color="#DEF5E5"></button>
+                <button style="background-color: #ABD9FF;" data-color="#ABD9FF"></button>
+                <button style="background-color: #87c9ff;" data-color="#87c9ff"></button>
+            </section>
+            <span>Sunset colors</span>
+            <section class="nature-colors">
+                <button style="background-color: #FFACAC;" data-color="#FFACAC"></button>
+                <button style="background-color: #FFBFA9;" data-color="#FFBFA9"></button>
+                <button style="background-color: #FFEBB4;" data-color="#FFEBB4"></button>
+                <button style="background-color: #E0AED0;" data-color="#E0AED0"></button>
+                <button style="background-color: #AC87C5;" data-color="#AC87C5"></button>
+                <button style="background-color: #FFBE98;" data-color="#FFBE98"></button>
+            </section>
+            <span>Retro colors</span>
+            <section class="nature-colors">
+                <button style="background-color: #FF6969;" data-color="#FF6969"></button>
+                <button style="background-color: #6F61C0;" data-color="#6F61C0"></button>
+                <button style="background-color: #FAA300;" data-color="#FAA300"></button>
+                <button style="background-color: #37B5B6;" data-color="#37B5B6"></button>
+                <button style="background-color: #86A7FC;" data-color="#86A7FC"></button>
+                <button style="background-color: #F8BDEB;" data-color="#F8BDEB"></button>
+            </section>
+            <span>Vintage colors</span>
+            <section class="nature-colors">
+                <button style="background-color: #EBD9B4;" data-color="#EBD9B4"></button>
+                <button style="background-color: #F9EFDB;" data-color="#F9EFDB"></button>
+                <button style="background-color: #F8FAE5;" data-color="#F8FAE5"></button>
+                <button style="background-color: #9DBC98;" data-color="#9DBC98"></button>
+                <button style="background-color: #638889;" data-color="#638889"></button>
+                <button style="background-color: #607274;" data-color="#607274"></button>
+            </section>
+            <div class="note-background-btn-bar">
+                <button class="cancel-note-background-btn">Cancel</button>
+                <button class="save-note-background-btn">Save</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        const previewPaper = document.querySelector('.background-preview-paper');
+        const colors = document.querySelectorAll('.nature-colors button');
+        colors.forEach(button => {
+            button.addEventListener('click', () => {
+            const COLOR = button.getAttribute('data-color');
+            previewPaper.style.backgroundColor = COLOR;
+            });
+        }); 
+    </script>
+</body>
+</html>

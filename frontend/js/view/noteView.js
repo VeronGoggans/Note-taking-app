@@ -37,7 +37,6 @@ export class NoteView {
                 this._content.appendChild(NOTE_CARD);
                 this._list.appendChild(LIST_NOTE_CARD);
             }
-            console.log(this.noteObjects);
         } else {
             this.userFeedbackHandler.noNotes(new NoNoteMessage());
         }

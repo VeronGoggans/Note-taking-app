@@ -3,14 +3,14 @@
         {
             "id": "f-49",
             "name": "School",
-            "color": "#a9d7ff",
+            "color": "#ffffff",
             "notes": [
                 {
                     "id": "n-216",
                     "title": "Github commands",
                     "content": "storage/notes/note-n-216.html",
                     "bookmark": false,
-                    "last_edit": "27/02/2024 15:04",
+                    "last_edit": "28/02/2024 16:43",
                     "creation": "09/01/2024"
                 },
                 {
@@ -18,7 +18,7 @@
                     "title": "CISC",
                     "content": "storage/notes/note-n-349.html",
                     "bookmark": false,
-                    "last_edit": "27/02/2024 15:39",
+                    "last_edit": "28/02/2024 00:02",
                     "creation": "07/02/2024"
                 }
             ],
@@ -34,10 +34,17 @@
                     "title": "Todo March",
                     "content": "storage/notes/note-n-370.html",
                     "bookmark": false,
-                    "last_edit": "27/02/2024 15:55",
+                    "last_edit": "28/02/2024 16:59",
                     "creation": "13/02/2024"
                 }
             ],
+            "subfolders": []
+        },
+        {
+            "id": "f-77",
+            "name": "untitled",
+            "color": "#ffffff",
+            "notes": [],
             "subfolders": []
         }
     ]

@@ -41,7 +41,7 @@ body {
     align-items: center;
     margin: 7px 10px 7px 0px;
     width: 90px;
-    background-color: #5c7dff;
+    background-color: #5c7dff; 
     color: #ffffff;
     font-weight: 600;
     border-radius: 20px;
@@ -132,12 +132,12 @@ body {
     margin: 10px 0;
     padding: 5px;
     color: var(--editor-text);
-    border-radius: 20px;
+    border-radius: 10px;
     font-weight: 600;
 }
 
 .note-suggestions-list li:hover {
-    background-color: var(--hover);
+    background-color: var(--hover-searchbar-options);
     color: var(--hover-text);
 }
 

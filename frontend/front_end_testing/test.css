@@ -1,0 +1,29 @@
+.notification-card {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border: 1px solid #dee1ef;
+    height: 50px;
+    width: fit-content;
+    padding: 0 15px;
+    border-radius: 10px;
+    box-shadow: 10px 10px 10px #dcdee6;
+}
+
+#notification-icon {
+    color: #ffffff;
+    font-size: 20px;
+    background-color: #41a5ee;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.notification-message {
+    font-size: 16px;
+    font-family: sans-serif;
+}
