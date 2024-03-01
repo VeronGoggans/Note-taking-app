@@ -2,9 +2,9 @@ import { NoteModel } from "../model/noteModel.js";
 import { NoteView } from "../view/noteView.js";
 
 export class NoteController {
-    constructor(applicationController, dialog) {
+    constructor(applicationController, dialog, notificationHandler) {
         this.applicationController = applicationController;
-        this.noteView = new NoteView(this, dialog);
+        this.noteView = new NoteView(this, dialog, notificationHandler);
         this.noteModel = new NoteModel();
     }
 
@@ -26,9 +26,8 @@ export class NoteController {
         let note = await RESPONSE.Note;
         // Swithing the path with the content
         note.content = content;
-        // Rendering the new note in the note view
         this.noteView.renderNoteCard(note);
-        // Adding the new note to the searchbar objects array
+        this.noteView.pushNotification('Saved');
         this.addSearchObject(note.id, note.title);
     }
 
@@ -36,6 +35,7 @@ export class NoteController {
         const RESPONSE = await this.noteModel.updateNote('/note', noteId, name, content, bookmark);
         const NOTE = await RESPONSE.Note;
         this.noteView.renderNoteUpdate(NOTE);
+        this.noteView.pushNotification('Updated');
         this.updateSearchObject(noteId, name);
     }
 
@@ -43,14 +43,9 @@ export class NoteController {
         const RESPONSE = await this.noteModel.deleteNote('/note', noteId);
         const NOTE = await RESPONSE.Note;
         this.noteView.removeNote(NOTE);
+        this.noteView.pushNotification('Deleted', NOTE.title);
         this.deleteSearchObject(noteId);
     }
-
-    // async deleteFolderContent(folderId) {
-    //     await this.noteModel.deleteFolderContent('/notes', folderId);
-    //     console.log('note controller says hi');
-    // }
-
     
     /**
      * This method opens up the text editor
@@ -62,7 +57,6 @@ export class NoteController {
     handleNoteCardClick(content, name, creation, lastEdit, noteId, bookmark) {
         this.applicationController.openNoteInTextEditor(content, name, creation, lastEdit, noteId, bookmark);
     }
-
 
     /**
      * This method will add a new note to the search bar's options

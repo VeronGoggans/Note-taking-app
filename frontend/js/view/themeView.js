@@ -5,6 +5,7 @@ export class ThemeView {
         this.themeIcon = document.querySelector('#current-theme-icon');
         this.lightIconClass = 'fa-regular fa-sun';
         this.darkIconClass = 'fa-regular fa-moon';
+        this.currentTheme = '';
     }
     /**
      * This method sets the nesecary theme 

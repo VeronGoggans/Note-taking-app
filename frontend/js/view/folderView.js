@@ -3,12 +3,13 @@ import { ListFolder } from '../components/listFolder.js';
 import { DeleteContainer } from '../components/deleteContainer.js';
 
 export class FolderView {
-    constructor(folderController, dialog) {
+    constructor(folderController, dialog, notificationHandler) {
         this.folderController = folderController;
         this._content = document.querySelector('.content-view');
         this._list = document.querySelector('.list-content-folders');
         this._cover = document.querySelector('.cover');
         this.dialog = dialog;
+        this.notificationHandler = notificationHandler;
     }
 
     /** 

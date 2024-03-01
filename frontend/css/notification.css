@@ -1,6 +1,6 @@
 .notification-card {
     position: absolute;
-    bottom: 100px;
+    bottom: -100px;
     right: 20px;
     cursor: pointer;
     display: grid;
@@ -10,7 +10,7 @@
     height: 70px;
     width: fit-content;
     padding: 0 15px;
-    border-radius: 20px;
+    border-radius: 7px;
     box-shadow: 7px 5px 5px #dcdee6;
     transition: 300ms;
     z-index: 5;

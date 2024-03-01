@@ -1,5 +1,5 @@
-
 .note-name-input {
+    position: relative;
     font-family: Roboto;
     outline: none;
     border: none;
@@ -12,8 +12,9 @@
     font-weight: 600;
     font-size: 18px;
     color: var(--editor-text);
-    transition: .2s;
+    transition: 200ms ease-in-out;
 }
+
 
 .note-name-input::placeholder {
     color: var(--placeholder);

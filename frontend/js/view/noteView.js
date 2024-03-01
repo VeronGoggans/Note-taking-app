@@ -2,19 +2,21 @@ import { Note } from "../components/note.js";
 import { DeleteContainer } from "../components/deleteContainer.js";
 import { ListNote, NoNoteMessage } from "../components/listNote.js";
 import { HTMLArray, NoteObjectArray } from "../util/array.js";
-import { UserFeedbackHandler } from "../handlers/notificationHandler.js";
+import { NoContentFeedbackHandler } from "../handlers/userFeedback/noContentFeedbackHandler.js";
 import { dateFormat } from "../util/date.js";
 import { formatName } from "../util/formatters.js";
 
+
 export class NoteView {
-    constructor(noteController, dialog) {
+    constructor(noteController, dialog, notificationHandler) {
         this.noteController = noteController;
         this._content = document.querySelector('.content-view');
         this._list = document.querySelector('.list-content-notes');
         this._cover = document.querySelector('.cover');
-        this.userFeedbackHandler = new UserFeedbackHandler();
+        this.noContentFeedbackHandler = new NoContentFeedbackHandler(this);
         this.dialog = dialog;
         this.noteObjects = new NoteObjectArray();
+        this.notificationHandler = notificationHandler;
     }
 
     /** 
@@ -38,7 +40,7 @@ export class NoteView {
                 this._list.appendChild(LIST_NOTE_CARD);
             }
         } else {
-            this.userFeedbackHandler.noNotes(new NoNoteMessage());
+            this.noContentFeedbackHandler.noNotes(new NoNoteMessage());
         }
     }
 
@@ -54,7 +56,7 @@ export class NoteView {
     renderNoteCard(note) {
         // Checking if the list-view html element currently says "no notes"
         if (this.noteObjects.size() === 0) {
-            this.userFeedbackHandler.removeNoNotesMessage();
+            this.noContentFeedbackHandler.removeNoNotesMessage();
         }
         // Creating the html for the note
         const LIST_NOTE_CARD = this.listNote(note);
@@ -115,11 +117,27 @@ export class NoteView {
                 this.noteObjects.remove(note);
                 // Checking if the note object array is empty
                 if (this.noteObjects.size() === 0) {
-                    this.userFeedbackHandler.noNotes(new NoNoteMessage());
+                    this.noContentFeedbackHandler.noNotes(new NoNoteMessage());
                 }
             }
         }
         this.dialog.hide();
+    }
+
+    /**
+     * This method opens up the text editor
+     * And puts the note the user clicked on, in the text editor.
+     * 
+     * @param {String} content
+     * @param {String} name
+     */
+    handleNoteCardClick(noteId, creation) {
+        const NOTE = this.noteObjects.get(noteId);
+        const LAST_EDIT = dateFormat(NOTE.last_edit);
+        const NAME = NOTE.title;
+        const CONTENT = NOTE.content;
+        const BOOKMARK = NOTE.bookmark;
+        this.noteController.handleNoteCardClick(CONTENT, NAME, creation, LAST_EDIT, noteId, BOOKMARK);
     }
 
     /**
@@ -142,6 +160,20 @@ export class NoteView {
      */
     listNote(note) {
         return new ListNote(note, this);
+    }
+
+   /**
+    * type has to be one of the following 
+    * (saved, deleted, new, empty).
+    * 
+    * noteName is optional and only nessecary for the 
+    * deleted type.
+    * 
+    * @param {String} type 
+    * @param {String} noteName 
+    */
+    pushNotification(type, noteName = null) {
+        this.notificationHandler.push(type, noteName);
     }
 
     /**
@@ -178,21 +210,5 @@ export class NoteView {
      */
     async handleConfirmButtonClick(id) {
         await this.noteController.deleteNote(id);
-    }
-
-    /**
-     * This method opens up the text editor
-     * And puts the note the user clicked on, in the text editor.
-     * 
-     * @param {String} content
-     * @param {String} name
-     */
-    handleNoteCardClick(noteId, creation) {
-        const NOTE = this.noteObjects.get(noteId);
-        const LAST_EDIT = dateFormat(NOTE.last_edit);
-        const NAME = NOTE.title;
-        const CONTENT = NOTE.content;
-        const BOOKMARK = NOTE.bookmark;
-        this.noteController.handleNoteCardClick(CONTENT, NAME, creation, LAST_EDIT, noteId, BOOKMARK);
     }
 }

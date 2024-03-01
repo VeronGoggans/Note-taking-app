@@ -1,9 +1,10 @@
 
-export class UserFeedbackHandler {
-    constructor() {
+export class NoContentFeedbackHandler {
+    constructor(view) {
         this._contentNotificationContainer = document.querySelector('.content-view-notification-layer');
         this._folderList = document.querySelector('.list-content-folders');
         this._noteList = document.querySelector('.list-content-notes');
+        this.view = view;
     }
 
     noFolders(message) {
@@ -14,7 +15,7 @@ export class UserFeedbackHandler {
         this._noteList.appendChild(message);
         if (this._folderList.children.length === 1) {
             if (this._folderList.children[0].classList.contains('list-view-no-folder')) {
-                // this.showNoContentMessage();
+                this.view.pushNotification('Empty');
             }
         }
     }

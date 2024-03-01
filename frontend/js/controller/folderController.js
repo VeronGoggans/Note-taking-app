@@ -2,9 +2,9 @@ import { FolderView } from '../view/folderView.js';
 import { FolderModel } from '../model/folderModel.js';
 
 export class FolderController {
-    constructor(applicationController, dialog) {
+    constructor(applicationController, dialog, notificationHandler) {
         this.applicationController = applicationController;
-        this.folderView = new FolderView(this, dialog);
+        this.folderView = new FolderView(this, dialog, notificationHandler);
         this.folderModel = new FolderModel();
     }
 

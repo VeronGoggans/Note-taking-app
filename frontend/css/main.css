@@ -11,6 +11,7 @@ body {
 }
 
 .wrapper {
+    position: relative;
     width: 100dvw;
     height: 100dvh;
     display: grid;
@@ -44,7 +45,7 @@ body {
     background-color: #5c7dff; 
     color: #ffffff;
     font-weight: 600;
-    border-radius: 20px;
+    border-radius: 15px;
     font-family: Roboto;
     transition: .2s;
 }
@@ -77,6 +78,7 @@ body {
     padding: 5px 10px;
     align-items: center;
     width: 250px;
+    transition: 200ms;
     box-shadow: 1px 1px 10px var(--card-shadow);
 }
 

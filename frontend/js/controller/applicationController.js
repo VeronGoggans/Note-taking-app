@@ -6,15 +6,17 @@ import { ApplicationView } from "../view/applicationView.js";
 import { TextEditorController } from "./textEditorController.js"
 import { ThemeController } from "./themeController.js";
 import { Dialog } from "../util/dialog.js";
+import { NotificationHandler } from "../handlers/userFeedback/notificationHandler.js";
  
 export class ApplicationController {
     constructor() {
-        this.dialog = new Dialog()
+        this.dialog = new Dialog();
+        this.notificationHandler = new NotificationHandler();
         this.applicationView = new ApplicationView(this);
         this.applicationModel = new ApplicationModel();
-        this.folderController = new FolderController(this, this.dialog);
-        this.subfolderController = new SubfolderController(this, this.dialog);
-        this.noteController = new NoteController(this, this.dialog);
+        this.folderController = new FolderController(this, this.dialog, this.notificationHandler);
+        this.subfolderController = new SubfolderController(this, this.dialog, this.notificationHandler);
+        this.noteController = new NoteController(this, this.dialog, this.notificationHandler);
         this.textEditorController = new TextEditorController(this, this.dialog);
         this.themeController = new ThemeController();
     }
@@ -46,29 +48,11 @@ export class ApplicationController {
     }
 
     /**
-     * This method returns the current folder ID
-     * by calling the application model to retrieve it.
-     * 
-     * This method is called when
-     * 
-     * @returns {String} The current folder ID.
-     */
-    getCurrentFolderID() {
-        return this.applicationModel.getCurrentFolderID();
-    }
-
-    async addSubfolder(name, parentID) {
-        await this.subfolderController.addSubfolder(name, parentID);
-    }
-
-    async addFolder(name) {
-        await this.folderController.addFolder(name);
-    }
-
-    /**
      * This method handle the create folder button click
      * 
-     * This method is called by the application view. 
+     * This method is called when the add button inside the 
+     * create new folder container is clicked. 
+     * 
      * @param {String} name 
      */
     async handleAddFolder(name) {
@@ -124,6 +108,18 @@ export class ApplicationController {
     }
 
     /**
+     * This method returns the current folder ID
+     * by calling the application model to retrieve it.
+     * 
+     * This method is called when
+     * 
+     * @returns {String} The current folder ID.
+     */
+    getCurrentFolderID() {
+        return this.applicationModel.getCurrentFolderID();
+    }
+
+    /**
      * This method will add a new note to the search bar's options
      * 
      * This method is called everytime a new note is created.
@@ -164,23 +160,12 @@ export class ApplicationController {
      * This method opens up the text editor
      * And puts the note the user clicked on, in the text editor.
      * 
-     * @param {String} content is the content of the note.
-     * @param {String} name is the name/title of the note. 
+     * @param {String} content 
+     * @param {String} name 
      */
     openNoteInTextEditor(content, name, creation, lastEdit, noteId, bookmark) {
         this.textEditorController.openNoteInTextEditor(content, name, creation, lastEdit, noteId, bookmark);
     }
-
-    /**
-     * This method removes all the notes inside the 
-     * folder that has been deleted. 
-     * @param {Dict} folder 
-     */
-    // async deleteFolderContent(folderId) {
-    //     await this.noteController.deleteFolderContent(folderId)
-    //     console.log('application controller says hi');
-    // }
-
 
     /**
      * This method adds a note to the backend.
@@ -191,9 +176,34 @@ export class ApplicationController {
      * @param {String} content 
      * @param {String} name 
      */
-    async createNote(content, name) {
+    async addNote(content, name) {
         const CURRENT_FOLDER_ID = this.applicationModel.getCurrentFolderID();
         await this.noteController.addNote(CURRENT_FOLDER_ID, content, name);
+    }
+
+    /**
+     * This method adds a subfolder to the backend.
+     * 
+     * This method is called when the add button inside the 
+     * create new folder container is clicked, while being inside a parent folder. 
+     * 
+     * @param {String} name 
+     * @param {String} parentID 
+     */
+    async addSubfolder(name, parentID) {
+        await this.subfolderController.addSubfolder(name, parentID);
+    }
+
+    /**
+     * This method adds a folder to the backend.
+     * 
+     * This method is called when the add button inside the 
+     * create new folder container is clicked.
+     * 
+     * @param {String} name 
+     */
+    async addFolder(name) {
+        await this.folderController.addFolder(name);
     }
 
     /**
@@ -224,6 +234,7 @@ export class ApplicationController {
         await this.noteController.deleteNote(noteId);
     }
 
+    
     async setTheme(init) {
         const THEME = await this.themeController.getTheme();
         this.themeController.setTheme(init, THEME);

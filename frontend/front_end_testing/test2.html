@@ -6,12 +6,44 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="test.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+        body {
+            height: 100dvh;
+            overflow: hidden;
+        }
+
+    </style>
 </head>
 <body>
+    <button>Save</button>
     <div class="notification-card">
         <i id="notification-icon" class="fa-solid fa-check"></i>
-        <p class="notification-message">Your changes have been saved.</p>
+        <div class="notification-message-box">
+            <p class="notification-message-title">Saved</p>
+            <p class="notification-message">Your changes have been saved</p>
+        </div>
+        
     </div>
+
+    <script>
+        const card = document.querySelector('.notification-card');
+        const screen = document.querySelector('button')
+        screen.addEventListener('click', () => {
+            const card = document.querySelector('.notification-card');
+            card.classList.add('show-notification');
+            setTimeout(() => {
+            card.classList.remove('show-notification')
+            }, 5000)
+        }) 
+
+        card.addEventListener(click), () => {
+            card.classList.remove('show-notification')
+        }
+
+        
+        
+    </script>
     
 </body>
 </html>

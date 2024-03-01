@@ -54,7 +54,7 @@ export class TextEditorController {
      * was for an existing note or a new note.
      * 
      * If for an existing note, the changeNote method is called
-     * If for a new note, the createNote method is called.
+     * If for a new note, the addNote method is called.
      * 
      * @param {String} content 
      * @param {String} name 
@@ -62,12 +62,11 @@ export class TextEditorController {
      */
     save(content, name, bookmark) {
         const NOTE_ID = this.textEditorModel.getStoredNoteId();
-        console.log(NOTE_ID);
         if (NOTE_ID !== null) {
             this.applicationController.changeNote(NOTE_ID, name, content, bookmark)
             this.clearStoredNoteData();
         }
-        else this.applicationController.createNote(content, name);
+        else this.applicationController.addNote(content, name);
     }
 
     /**

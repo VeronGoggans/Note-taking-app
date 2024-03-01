@@ -2,16 +2,18 @@ import { Folder } from "../components/folder.js";
 import { ListFolder, NoFolderMessage } from "../components/listFolder.js";
 import { DeleteContainer } from '../components/deleteContainer.js';
 import { SubfolderObjectArray } from "../util/array.js";
-import { UserFeedbackHandler } from "../handlers/notificationHandler.js";
+import { NoContentFeedbackHandler } from "../handlers/userFeedback/noContentFeedbackHandler.js";
 
 export class SubfolderView {
-    constructor(controller, dialog) {
+    constructor(controller, dialog, notificationHandler) {
         this.subfolderController = controller;
-        this.dialog = dialog;
-        this.userFeedbackHandler = new UserFeedbackHandler();
+        this.noContentFeedbackHandler = new NoContentFeedbackHandler();
         this._content = document.querySelector('.content-view');
         this._list = document.querySelector('.list-content-folders');
         this.subfoldersObjects = new SubfolderObjectArray();
+        
+        this.dialog = dialog;
+        this.notificationHandler = notificationHandler;
     }
     /** 
      * This method renders a array of subfolders and adds them to the UI.
@@ -31,7 +33,7 @@ export class SubfolderView {
             }
         } else {
             // give user feedback that this folder is empty
-            this.userFeedbackHandler.noFolders(new NoFolderMessage());
+            this.noContentFeedbackHandler.noFolders(new NoFolderMessage());
         }
     }
 
@@ -43,7 +45,7 @@ export class SubfolderView {
     renderSubfolder(subfolder) {
         // Checking if the list-view html element currently says "no folders"
         if (this.subfoldersObjects.size() === 0) {
-            this.userFeedbackHandler.removeNoFoldersMessage();
+            this.noContentFeedbackHandler.removeNoFoldersMessage();
         }
         // Creating the html for the subfolder
         const SUBFOLDER_CARD = this.subfolder(subfolder);
@@ -88,11 +90,25 @@ export class SubfolderView {
                 this.subfoldersObjects.remove(subfolder);
                 // Checking if there are no subfolder cards inside the list-view html element
                 if (this._list.children.length === 0) {
-                    this.userFeedbackHandler.noFolders(new NoFolderMessage());
+                    this.noContentFeedbackHandler.noFolders(new NoFolderMessage());
                 }
             }
         }
         this.dialog.hide();
+    }
+
+    /**
+    * type has to be one of the following 
+    * (saved, deleted, new, empty).
+    * 
+    * noteName is optional and only nessecary for the 
+    * deleted type.
+    * 
+    * @param {String} type 
+    * @param {String} noteName 
+    */
+    pushNotification(type, noteName = null) {
+        this.notificationHandler.push(type, noteName);
     }
 
     /**
