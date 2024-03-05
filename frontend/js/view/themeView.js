@@ -3,8 +3,9 @@ export class ThemeView {
         this.themeController = themeController
         this.themeText = document.querySelector('.current-theme-text');
         this.themeIcon = document.querySelector('#current-theme-icon');
+        this.sidebar = document.querySelector('.sidebar');
         this.lightIconClass = 'fa-regular fa-sun';
-        this.darkIconClass = 'fa-regular fa-moon';
+        this.darkIconClass = 'fa-solid fa-moon';
         this.currentTheme = '';
     }
     /**
@@ -33,8 +34,10 @@ export class ThemeView {
     async #lightMode() {
         document.body.classList.remove('dark')
         document.body.classList.add('light');
-        this.themeIcon.setAttribute('class', this.lightIconClass)
-        this.themeText.textContent = 'Light';
+        this.themeIcon.setAttribute('class', this.lightIconClass);
+        if (this.sidebar.dataset.width !== 'small') {
+            this.themeText.textContent = 'Light';
+        }
         await this.themeController.updateTheme('light')
     }
 
@@ -42,7 +45,9 @@ export class ThemeView {
         document.body.classList.remove('light')
         document.body.classList.add('dark');
         this.themeIcon.setAttribute('class', this.darkIconClass)
-        this.themeText.textContent = 'Dark';
+        if (this.sidebar.dataset.width !== 'small') {
+            this.themeText.textContent = 'Dark';
+        }
         await this.themeController.updateTheme('dark')
     }
 }

@@ -93,12 +93,9 @@ export class ApplicationView {
      * This method removes all the creatable components from the UI
      */
     removeContent() {
-        const CONTENT = this._content;
-        const FOLDERS = this._listViewFolders;
-        const NOTES = this._listViewNotes;
-        while (CONTENT.firstChild) CONTENT.removeChild(CONTENT.firstChild);
-        while (FOLDERS.firstChild) FOLDERS.removeChild(FOLDERS.firstChild);
-        while (NOTES.firstChild) NOTES.removeChild(NOTES.firstChild);
+        while (this._content.firstChild) this._content.removeChild(this._content.firstChild);
+        while (this._listViewFolders.firstChild) this._listViewFolders.removeChild(this._listViewFolders.firstChild);
+        while (this._listViewNotes.firstChild) this._listViewNotes.removeChild(this._listViewNotes.firstChild);
     }
 
     /**
@@ -147,39 +144,6 @@ export class ApplicationView {
     }
 
     /**
-     * This method displays the current folder name 
-     * @param {String} name 
-     */
-    displayFolderName(name) {
-        this.currentFolderName.textContent = name;
-    }
-
-    /**
-     * This method handles the  event of a user 
-     * searching for a note.
-     * 
-     * This method is called when a user clicks on 
-     * a note in the search suggestions.
-     * 
-     * @param {String} noteId 
-     */
-    async handleSearch(noteId) {
-        this.noteOptionsList.style.visibility = 'hidden';
-        await this.applicationController.getSearchedNote(noteId);
-    }
-
-    /**
-     * This method handle the add folder button click 
-     * 
-     * This method is called from with in the new folder container
-     *  
-     * @param {String} name 
-     */
-    async handleAddFolderButtonClick(name) {
-        await this.applicationController.handleAddFolder(name);
-    }
-
-    /**
      * This method will add a search bar object to the 
      * _searchNoteObjects array. 
      * 
@@ -217,6 +181,42 @@ export class ApplicationView {
     updateSearchObject(noteId, newName) {
         const OPTION = this._searchNoteObjects.find(obj => obj.id === noteId);
         OPTION.name = newName;
+    }
+
+    /**
+     * This method displays the current folder name 
+     * @param {String} name 
+     */
+    displayFolderName(name) {
+        this.currentFolderName.textContent = name;
+    }
+
+    
+
+
+    /**
+     * This method handles the  event of a user 
+     * searching for a note.
+     * 
+     * This method is called when a user clicks on 
+     * a note in the search suggestions.
+     * 
+     * @param {String} noteId 
+     */
+    async handleSearch(noteId) {
+        this.noteOptionsList.style.visibility = 'hidden';
+        await this.applicationController.getSearchedNote(noteId);
+    }
+
+    /**
+     * This method handle the add folder button click 
+     * 
+     * This method is called from with in the new folder container
+     *  
+     * @param {String} name 
+     */
+    async handleAddFolderButtonClick(name) {
+        await this.applicationController.handleAddFolder(name);
     }
 
     async updateTheme() {

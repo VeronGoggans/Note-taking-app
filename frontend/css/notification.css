@@ -1,4 +1,5 @@
 .notification-card {
+    background-color: var(--notification);
     position: absolute;
     bottom: -100px;
     right: 20px;
@@ -6,12 +7,12 @@
     display: grid;
     grid-template-columns: 50px 1fr;
     align-items: center;
-    border: 1px solid #e9ebf4;
+    border: 1px solid var(--border-card);
     height: 70px;
     width: fit-content;
     padding: 0 15px;
     border-radius: 7px;
-    box-shadow: 7px 5px 5px #dcdee6;
+    box-shadow: 7px 5px 5px var(--shadow-notification);
     transition: 300ms;
     z-index: 5;
 }
@@ -43,11 +44,12 @@
     font-family: sans-serif;
     margin: 0;
     font-size: 15px;
+    color: var(--important);
 }
 
 .notification-message {
     margin: 5px 0;
     font-size: 14px;
-    color: rgb(75, 80, 100);
-    font-family: sans-serif
+    color: var(--text);
+    font-family: sans-serif;
 }

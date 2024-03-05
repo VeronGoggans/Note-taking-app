@@ -1,49 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="test.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
-        body {
-            height: 100dvh;
-            overflow: hidden;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sidebar Collapse</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .wrapper {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  height: 100vh;
+}
 
-    </style>
+.sidebar {
+  background-color: #333;
+  color: white;
+  transition: width 0.3s ease;
+}
+
+.sidebar.collapsed {
+  width: 50px; /* Adjust this width according to your design */
+}
+
+.content {
+  background-color: #f0f0f0;
+  padding: 20px;
+}
+
+  </style>
 </head>
 <body>
-    <button>Save</button>
-    <div class="notification-card">
-        <i id="notification-icon" class="fa-solid fa-check"></i>
-        <div class="notification-message-box">
-            <p class="notification-message-title">Saved</p>
-            <p class="notification-message">Your changes have been saved</p>
-        </div>
-        
+  <div class="wrapper" id="wrapper">
+    <div class="sidebar" id="sidebar">
+      Sidebar Content
+      <button onclick="toggleSidebar()">Toggle Sidebar</button>
     </div>
+    <div class="content">
+      Main Content
+    </div>
+  </div>
+  <script>
+    function toggleSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  const content = document.querySelector('.content');
+  sidebar.classList.toggle('collapsed');
+  if (sidebar.classList.contains('collapsed')) {
+    content.style.gridColumn = '1 / span 2'; // Expand content to fill both columns
+  } else {
+    content.style.gridColumn = '2'; // Default behavior, content spans only the second column
+  }
+}
 
-    <script>
-        const card = document.querySelector('.notification-card');
-        const screen = document.querySelector('button')
-        screen.addEventListener('click', () => {
-            const card = document.querySelector('.notification-card');
-            card.classList.add('show-notification');
-            setTimeout(() => {
-            card.classList.remove('show-notification')
-            }, 5000)
-        }) 
-
-        card.addEventListener(click), () => {
-            card.classList.remove('show-notification')
-        }
-
-        
-        
-    </script>
-    
+  </script>
 </body>
 </html>

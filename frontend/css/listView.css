@@ -21,8 +21,13 @@
     font-size: 16px;
     font-weight: 600;
     display: flex;
+    align-items: center;
     gap: 7px;
     margin-top: 15px;
+}
+
+.content-list-view-title i {
+    color: var(--sidebar-icon);
 }
 
 .list-content-folders,
@@ -45,7 +50,7 @@
     background-color: transparent;
     color: var(--text);
     font-weight: 600;
-    border-radius: 15px;
+    border-radius: 20px;
     transition: .2s;
 }
 
@@ -65,5 +70,5 @@
 .list-view-folder:hover,
 .list-view-note:hover {
     background-color: var(--hover-list-view-buttons);
-    color: var(--hover-text);
+    color: var(--hover-text-list-view);
 }

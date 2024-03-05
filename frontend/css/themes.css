@@ -1,11 +1,13 @@
 :root {
     --background: #ffffff; /*f4f5f7*/
+    --notification: #ffffff;
     --editor: #ffffff;
     --list-view: #ffffff; /*f4f5f7*/
     --sidebar: #f4f5f7;
     --searchbar: #ffffff;
     --sidebar-text: #495080;
-    --sidebar-text-hover: #16171c;
+    --sidebar-text-hover: #495080;
+    --sidebar-icon: #747aa0;
     --card: #ffffff; /*f4f5f7*/
     --text: #444863;
     --icon: #747aa0; /*495080*/
@@ -22,7 +24,9 @@
     --hover-list-view-buttons: #f4f5f7;
     --hover-searchbar-options: #f4f5f7;
     --hover-text: #444863;
+    --hover-text-list-view: #444863;
     --hover-toolbar-btns: rgba(185, 198, 250, 0.5);
+    --hover-sidebar: rgba(92, 125, 255, .3);
     --bookmark: #a9d7ff;
     --no-content: #aaabb4;
     --placeholder: #9093a2;
@@ -30,17 +34,20 @@
     --dialog: rgba(0, 3, 24, 0.30);
     --paragraph: rgba(239, 241, 250, .4);
     --shadow: rgba(0, 0, 0, 0.1);
+    --shadow-notification: #dcdee6;
     --card-shadow: #e0e2ec;
 }
 
 .dark {
     --background: #1b1c22;
+    --notification: #16171c;
     --editor: #16171c;
     --list-view: #1b1c22;
     --sidebar: #16171c; 
     --searchbar: #252831;
     --sidebar-text: #d6d8e5;
-    --sidebar-text-hover: #5c7dff; 
+    --sidebar-text-hover: #ffffff; 
+    --sidebar-icon: #d6d8e5;
     --card: #252831;
     --text: #bbbed2;
     --icon: #bbbed2;
@@ -54,10 +61,12 @@
     --border-main-top: #1b1c22;
     --border-search-bar: #1b1c22;
     --hover: #31343d; 
-    --hover-list-view-buttons: #31343d;
+    --hover-list-view-buttons: #252831;
     --hover-searchbar-options: #31343d;
     --hover-text: #5c7dff;
+    --hover-text-list-view: #5c7dff;
     --hover-toolbar-btns: #31343d;
+    --hover-sidebar: #5c7dff;
     --bookmark: #303446;
     --no-content: #757789;
     --placeholder: #9093a2;
@@ -65,17 +74,20 @@
     --dialog: rgba(58, 64, 106, 0.15);
     --paragraph: #252831;
     --shadow: rgba(0, 0, 0, 0.1);
+    --shadow-notification: #121216;
     --card-shadow: #1b1c22; /*16171c*/
 }
 
 .light {
     --background: #ffffff;
+    --notification: #ffffff;
     --editor: #ffffff;
     --list-view: #ffffff;
     --searchbar: #ffffff;
     --sidebar: #f4f5f7;
     --sidebar-text: #495080;
-    --sidebar-text-hover: #16171c;
+    --sidebar-text-hover: #495080;
+    --sidebar-icon: #747aa0;
     --card: #ffffff;
     --text: #444863;
     --icon: #747aa0;
@@ -92,7 +104,9 @@
     --hover-list-view-buttons: #f4f5f7;
     --hover-searchbar-options: #f4f5f7;
     --hover-text: #444863;
+    --hover-text-list-view: #444863;
     --hover-toolbar-btns: rgba(185, 198, 250, 0.5);
+    --hover-sidebar: rgba(92, 125, 255, .3);
     --bookmark: #a9d7ff;
     --no-content: #aaabb4;
     --placeholder: #9093a2;
@@ -100,5 +114,6 @@
     --dialog: rgba(58, 64, 106, 0.15);
     --paragraph: rgba(239, 241, 250, .4); /*rgba(239, 241, 247, .4) original color*/
     --shadow: rgba(0, 0, 0, 0.1);
+    --shadow-notification: #dcdee6;
     --card-shadow: #e0e2ec;
 }
