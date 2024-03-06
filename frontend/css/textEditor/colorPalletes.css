@@ -60,14 +60,13 @@
     margin: 5px 0px;
 }
 
-.nature-colors:first-child,
-.sunset-colors:first-child,
-.neon-colors:first-child {
-    border-radius: 10px 0 0 10px;
+.background-color-palette .nature-colors:first-child,
+.background-color-palette .sunset-colors:first-child,
+.background-color-palette.neon-colors:first-child {
+    border-radius: 5px 0 0 5px;
 }
-
-.nature-colors:last-child,
-.sunset-colors:last-child,
-.neon-colors:last-child {
-    border-radius: 0 10px 10px 0;
+.background-color-palette .nature-colors:last-child,
+.background-color-palette .sunset-colors:last-child,
+.background-color-palette .neon-colors:last-child {
+    border-radius: 0 5px 5px 0;
 }

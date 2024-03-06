@@ -3,14 +3,14 @@
         {
             "id": "f-49",
             "name": "Github",
-            "color": "#dfc1ff",
+            "color": "#ffffff",
             "notes": [
                 {
                     "id": "n-216",
                     "title": "Github commands",
                     "content": "storage/notes/note-n-216.html",
                     "bookmark": false,
-                    "last_edit": "05/03/2024 23:01",
+                    "last_edit": "06/03/2024 12:39",
                     "creation": "09/01/2024"
                 }
             ],
@@ -19,7 +19,7 @@
         {
             "id": "f-78",
             "name": "Empty",
-            "color": "#ffa3a3",
+            "color": "#ffffff",
             "notes": [
                 {
                     "id": "n-410",
@@ -35,7 +35,7 @@
         {
             "id": "f-79",
             "name": "Youtube",
-            "color": "#a9d7ff",
+            "color": "#ffa3a3",
             "notes": [
                 {
                     "id": "n-411",

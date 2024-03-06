@@ -79,7 +79,7 @@ body {
     align-items: center;
     width: 250px;
     transition: 200ms;
-    box-shadow: 1px 1px 10px var(--card-shadow);
+    border: 1px solid var(--border-card);
 }
 
 .search-container input {
@@ -98,7 +98,7 @@ body {
 
 .search-container i {
     margin-left: 5px;
-    color: var(--icon);
+    color: var(--searchbar-icon);
 }
 
 .note-suggestions-list {
