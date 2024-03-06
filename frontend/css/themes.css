@@ -2,12 +2,14 @@
     --background: #ffffff; /*f4f5f7*/
     --notification: #ffffff;
     --editor: #ffffff;
+    --editor-background: #f9f9f9;
+    --editor-border: #dee1ef;
     --list-view: #ffffff; /*f4f5f7*/
     --list-view-icon: #ced2ea;
     --sidebar: #f4f5f7;
     --searchbar: #ffffff;
-    --sidebar-text: #495080;
-    --sidebar-text-hover: #495080;
+    --sidebar-text: #777c9f;
+    --sidebar-text-hover: #ffffff;
     --sidebar-icon: #747aa0;
     --card: #ffffff; /*f4f5f7*/
     --text: #444863;
@@ -44,6 +46,8 @@
     --background: #1b1c22;
     --notification: #16171c;
     --editor: #16171c;
+    --editor-background: #1f2129;
+    --editor-border: #16171c;
     --list-view: #1b1c22;
     --list-view-icon: #d6d8e5;
     --sidebar: #16171c; 
@@ -85,12 +89,14 @@
     --background: #ffffff;
     --notification: #ffffff;
     --editor: #ffffff;
+    --editor-background: #f9f9f9;
+    --editor-border: #dee1ef;
     --list-view: #ffffff;
     --list-view-icon: #ced2ea;
     --searchbar: #ffffff;
     --sidebar: #f4f5f7;
-    --sidebar-text: #495080;
-    --sidebar-text-hover: #495080;
+    --sidebar-text: #777c9f;
+    --sidebar-text-hover: #ffffff;
     --sidebar-icon: #747aa0;
     --card: #ffffff;
     --text: #444863;

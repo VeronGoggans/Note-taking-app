@@ -33,7 +33,7 @@ export class TextEditorView {
 
     // other
     this.textEditor = document.querySelector('.editor-wrapper');
-    this.page = document.querySelector('.editor');
+    this.page = document.querySelector('.editor-paper');
     this.noteContent = '';
     this.dialog = dialog;
 

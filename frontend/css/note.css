@@ -82,15 +82,17 @@
 
 .update-note-btns-container {
     position: absolute;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     margin-left: auto;
     background-color: var(--card);
-    box-shadow: 0 0 20px var(--shadow);
-    width: 50px;
-    display: flex;
-    padding: 10px;
+    color: var(--text);
+    box-shadow: 0 0 20px var(--shadow); 
+    width: 70px;
+    height: 40px;
     border-radius: 10px;
-    right: -19px;
-    top: -18px;
+    right: -29px;
+    top: -30px;
     visibility: hidden;
 }
 
@@ -99,19 +101,20 @@
     outline: none;
     border: none;
     display: flex;
+    justify-content: center;
+    align-items: center;
     color: var(--text);
-    padding: 3px 5px;
-    border-radius: 3px;
+    width: 100%;
+    margin: 0;
     background-color: transparent;
 }
 
 .confirm-note-update-btn {
-    margin-left: auto;
-    margin-right: 3px;
+    border-radius: 10px 0 0 10px;
 }
 
 .cancel-note-update-btn {
-    margin-right: 3px;
+    border-radius: 0 10px 10px 0;
 }
 
 .update-note-btns-container button:hover {
@@ -161,4 +164,8 @@
 
  .note-content-box hr {
     border: 1px solid rgb(145 150 167);
+ }
+
+ .note-content-box a {
+    color: rgb(67, 142, 255);
  }

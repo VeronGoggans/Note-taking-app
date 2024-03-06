@@ -10,20 +10,36 @@
 }
 
 .editor {
-    outline: none;
-    cursor: text;
-    padding: 30px 70px;
-    overflow-y: scroll;
-    font-family: sans-serif;
-    color: var(--editor-text);
+   position: relative;
+   display: flex;
+   justify-content: center;
+   background-color: var(--editor-background);
+   max-height: calc(100dvh - 110px);
 }
 
-.editor::-webkit-scrollbar {
+.editor-paper {
+   position: relative;
+   width: 50%;
+   height: calc(100% - 60px);
+   min-width: 400px;
+   max-width: 800px;
+   outline: none;
+   cursor: text;
+   padding: 30px 70px;
+   overflow-y: scroll;
+   font-family: sans-serif;
+   border-left: 1px solid var(--editor-border);
+   border-right: 1px solid var(--editor-border);
+   background-color: var(--background);
+   color: var(--editor-text);
+}
+
+.editor-paper::-webkit-scrollbar {
     background-color: transparent;
     width: 3px;
 }
 
-.editor::-webkit-scrollbar-thumb {
+.editor-paper::-webkit-scrollbar-thumb {
     background-color: #cecece;
     border-radius: 3px;
 }
@@ -46,7 +62,7 @@
     align-items: center;
     padding: 0px 10px;
     overflow: visible;
-    box-shadow: 0 25px 30px var(--editor);
+    border-bottom: 1px solid var(--editor-border);
     z-index: 1;
 }
 
@@ -162,4 +178,8 @@
  .editor h5,
  .editor h6 {
     margin: 0;
+ }
+
+ .editor a {
+   color: rgb(67, 142, 255);
  }

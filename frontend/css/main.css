@@ -171,6 +171,6 @@ body {
 }
 
 .content-view-notification-layer::-webkit-scrollbar-thumb {
-    background-color: #cecece;
+    background-color: #dee1ef;
     border-radius: 10px;
 }
