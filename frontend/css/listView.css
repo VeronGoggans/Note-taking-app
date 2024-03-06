@@ -27,7 +27,7 @@
 }
 
 .content-list-view-title i {
-    color: var(--sidebar-icon);
+    color: var(--list-view-icon);
 }
 
 .list-content-folders,

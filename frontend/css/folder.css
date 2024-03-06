@@ -22,13 +22,14 @@
 
 .update-folder-btns-container {
     position: absolute;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     margin-left: auto;
     background-color: var(--card);
     color: var(--text);
-    box-shadow: 0 0 20px var(--shadow); /*rgb(213, 226, 241)*/
-    width: 50px;
-    display: flex;
-    padding: 10px;
+    box-shadow: 0 0 20px var(--shadow); 
+    width: 70px;
+    height: 40px;
     border-radius: 10px;
     right: -19px;
     top: -18px;
@@ -40,10 +41,20 @@
     outline: none;
     border: none;
     display: flex;
+    justify-content: center;
+    align-items: center;
     color: var(--text);
-    padding: 3px 5px;
-    border-radius: 3px;
+    width: 100%;
+    margin: 0;
     background-color: transparent;
+}
+
+.update-folder-btns-container .confirm-folder-update-btn {
+    border-radius: 10px 0 0 10px;
+}
+
+.update-folder-btns-container .cancel-folder-update-btn {
+    border-radius: 0 10px 10px 0;
 }
 
 .confirm-folder-update-btn {
@@ -200,12 +211,21 @@
     color: #1b1c22;
 }
 
-.card-style-blue .folder-logo i,
-.card-style-green .folder-logo i,
-.card-style-orange .folder-logo i,
-.card-style-purple .folder-logo i,
+.card-style-blue .folder-logo i {
+    color: #6eb7f9;
+}
+.card-style-green .folder-logo i {
+    color: #58cc4c;
+}
+.card-style-orange .folder-logo i {
+    color: #ffc954;
+}
+.card-style-purple .folder-logo i {
+    color: #c997ff;
+}
+
 .card-style-red .folder-logo i {
-    color: #444863;
+    color: #ff7676;
 }
 
 .card-style-blue .folder-util-bar button,

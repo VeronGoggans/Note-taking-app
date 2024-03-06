@@ -12,7 +12,6 @@ export class NoteView {
         this.noteController = noteController;
         this._content = document.querySelector('.content-view');
         this._list = document.querySelector('.list-content-notes');
-        this._cover = document.querySelector('.cover');
         this.noContentFeedbackHandler = new NoContentFeedbackHandler(this);
         this.dialog = dialog;
         this.noteObjects = new NoteObjectArray();

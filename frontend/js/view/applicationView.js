@@ -19,7 +19,6 @@ export class ApplicationView {
         this.settingsButton = document.querySelector('.settings-btn');
 
         // other
-        this._dialog = document.querySelector('.dialog');
         this._content = document.querySelector('.content-view');
         this._listViewFolders = document.querySelector('.list-content-folders');
         this._listViewNotes = document.querySelector('.list-content-notes');

@@ -7,7 +7,6 @@ export class FolderView {
         this.folderController = folderController;
         this._content = document.querySelector('.content-view');
         this._list = document.querySelector('.list-content-folders');
-        this._cover = document.querySelector('.cover');
         this.dialog = dialog;
         this.notificationHandler = notificationHandler;
     }
@@ -40,6 +39,7 @@ export class FolderView {
 
         this._content.appendChild(FOLDER_CARD);
         this._list.appendChild(FOLDER_LIST_CARD);
+        this.dialog.hide();
     }
 
     /**

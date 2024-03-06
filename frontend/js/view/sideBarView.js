@@ -4,8 +4,8 @@ class SidebarView {
     constructor() {
         window.addEventListener('resize', () => this.resizeSidebar());
         this._sidebar = document.querySelector('.sidebar');
-        this._collapseButton = document.querySelector('.collapse-sidebar-btn');
-        this._collapseButton.addEventListener('click', () => {this.toggleSidebar()});
+        this._icon = document.querySelector('.logo');
+        this._icon.addEventListener('click', () => {this.toggleSidebar()});
         this._wrapper = document.querySelector('.wrapper');
         this._createNoteButton = document.querySelector('.create-note-btn');
         this._createNoteSpan = this._createNoteButton.querySelector('span');
