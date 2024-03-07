@@ -17,35 +17,10 @@
             "subfolders": []
         },
         {
-            "id": "f-78",
-            "name": "Empty",
-            "color": "#ffffff",
-            "notes": [
-                {
-                    "id": "n-410",
-                    "title": "untitled",
-                    "content": "storage/notes/note-n-410.html",
-                    "bookmark": false,
-                    "last_edit": "03/03/2024 23:21",
-                    "creation": "03/03/2024"
-                }
-            ],
-            "subfolders": []
-        },
-        {
             "id": "f-79",
             "name": "Youtube",
             "color": "#ffa3a3",
-            "notes": [
-                {
-                    "id": "n-411",
-                    "title": "Hollow horror game",
-                    "content": "storage/notes/note-n-411.html",
-                    "bookmark": false,
-                    "last_edit": "06/03/2024 17:22",
-                    "creation": "05/03/2024"
-                }
-            ],
+            "notes": [],
             "subfolders": []
         }
     ]
