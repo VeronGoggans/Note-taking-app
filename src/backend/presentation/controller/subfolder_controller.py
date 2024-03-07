@@ -1,10 +1,10 @@
 from fastapi import APIRouter
-from backend.application.service.domain.subfolder_service import SubfolderService
-from backend.data.subfolder.subfolder_manager import SubfolderManager
-from backend.presentation.request_bodies.subfolder.post_subfolder_request import PostSubfolderRequest
-from backend.presentation.request_bodies.subfolder.put_subfolder_request import PutSubfolderRequest
-from backend.presentation.request_bodies.subfolder.del_subfolder_request import DeleteSubfolderRequest
-from backend.domain.enums.responseMessages import Status
+from src.backend.application.service.domain.subfolder_service import SubfolderService
+from src.backend.data.subfolder.subfolder_manager import SubfolderManager
+from src.backend.presentation.request_bodies.subfolder.post_subfolder_request import PostSubfolderRequest
+from src.backend.presentation.request_bodies.subfolder.put_subfolder_request import PutSubfolderRequest
+from src.backend.presentation.request_bodies.subfolder.del_subfolder_request import DeleteSubfolderRequest
+from src.backend.domain.enums.responseMessages import Status
 
 
 class SubfolderRouter:

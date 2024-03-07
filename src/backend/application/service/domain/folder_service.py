@@ -1,10 +1,10 @@
-from backend.data.folder.folder_manager import FolderManager
-from backend.presentation.request_bodies.folder.del_folder_request import DeleteFolderRequest
-from backend.presentation.request_bodies.folder.post_folder_request import PostFolderRequest
-from backend.presentation.request_bodies.folder.put_folder_request import PutFolderRequest
-from backend.domain.folder import Folder
-from backend.data.file.json_manager import JsonManager
-from backend.domain.enums.responseMessages import Status
+from src.backend.data.folder.folder_manager import FolderManager
+from src.backend.presentation.request_bodies.folder.del_folder_request import DeleteFolderRequest
+from src.backend.presentation.request_bodies.folder.post_folder_request import PostFolderRequest
+from src.backend.presentation.request_bodies.folder.put_folder_request import PutFolderRequest
+from src.backend.domain.folder import Folder
+from src.backend.data.file.json_manager import JsonManager
+from src.backend.domain.enums.responseMessages import Status
 import os
 
 class FolderService:

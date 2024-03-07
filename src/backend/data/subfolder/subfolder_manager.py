@@ -1,4 +1,4 @@
-from backend.domain.subfolder import Subfolder
+from src.backend.domain.subfolder import Subfolder
 import os
 
 class SubfolderManager:

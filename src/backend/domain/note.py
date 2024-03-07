@@ -1,5 +1,5 @@
-from backend.data.file.html_manager import HTMLManager
-from backend.application.service.util.date_service import DateService
+from src.backend.data.file.html_manager import HTMLManager
+from src.backend.application.service.util.date_service import DateService
 
 class Note:
     def __init__(self, id: int, title: str, content: str, bookmark: bool, 

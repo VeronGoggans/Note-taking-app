@@ -1,7 +1,7 @@
 from fastapi import APIRouter
-from backend.presentation.request_bodies.theme.put_theme_request import PutThemeRequest
-from backend.domain.enums.responseMessages import Status
-from backend.application.service.util.theme_service import ThemeService
+from src.backend.presentation.request_bodies.theme.put_theme_request import PutThemeRequest
+from src.backend.domain.enums.responseMessages import Status
+from src.backend.application.service.util.theme_service import ThemeService
 
 class ThemeRouter:
     def __init__(self, json_manager):

@@ -1,10 +1,10 @@
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
-from backend.presentation.controller.note_controller import NoteRouter
-from backend.presentation.controller.folder_controller import FolderRouter
-from backend.presentation.controller.subfolder_controller import SubfolderRouter
-from backend.presentation.controller.theme_controller import ThemeRouter
-from backend.data.file.json_manager import JsonManager
+from src.backend.presentation.controller.note_controller import NoteRouter
+from src.backend.presentation.controller.folder_controller import FolderRouter
+from src.backend.presentation.controller.subfolder_controller import SubfolderRouter
+from src.backend.presentation.controller.theme_controller import ThemeRouter
+from src.backend.data.file.json_manager import JsonManager
 
 app = FastAPI()
 json_manager = JsonManager()

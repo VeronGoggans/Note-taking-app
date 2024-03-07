@@ -1,5 +1,4 @@
-from backend.domain.folder import Folder
-from backend.domain.enums.responseMessages import Status
+from src.backend.domain.folder import Folder
 import os
 
 class FolderManager:

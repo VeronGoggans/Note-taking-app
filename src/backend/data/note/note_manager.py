@@ -1,6 +1,6 @@
-from backend.domain.note import Note
-from backend.presentation.request_bodies.note.put_note_request import PutNoteRequest
-from backend.application.service.util.date_service import DateService
+from src.backend.domain.note import Note
+from src.backend.presentation.request_bodies.note.put_note_request import PutNoteRequest
+from src.backend.application.service.util.date_service import DateService
 import os
 
 class NoteManager:

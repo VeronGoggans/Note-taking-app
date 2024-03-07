@@ -1,10 +1,10 @@
-from backend.data.note.note_manager import NoteManager
-from backend.presentation.request_bodies.note.post_note_request import PostNoteRequest
-from backend.presentation.request_bodies.note.put_note_request import PutNoteRequest
-from backend.presentation.request_bodies.note.del_note_request import DeleteNoteRequest
-from backend.domain.note import Note
-from backend.domain.enums.responseMessages import Status
-from backend.data.file.json_manager import JsonManager
+from src.backend.data.note.note_manager import NoteManager
+from src.backend.presentation.request_bodies.note.post_note_request import PostNoteRequest
+from src.backend.presentation.request_bodies.note.put_note_request import PutNoteRequest
+from src.backend.presentation.request_bodies.note.del_note_request import DeleteNoteRequest
+from src.backend.domain.note import Note
+from src.backend.domain.enums.responseMessages import Status
+from src.backend.data.file.json_manager import JsonManager
 import os 
 
 class NoteService:

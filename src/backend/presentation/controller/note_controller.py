@@ -1,11 +1,10 @@
 from fastapi import APIRouter
-from backend.application.service.domain.note_service import NoteService
-from backend.data.note.note_manager import NoteManager
-from backend.presentation.request_bodies.note.post_note_request import PostNoteRequest
-from backend.presentation.request_bodies.note.put_note_request import PutNoteRequest
-from backend.presentation.request_bodies.note.del_note_request import DeleteNoteRequest
-from backend.presentation.request_bodies.note.del_notes_request import DeleteNotesRequest
-from backend.domain.enums.responseMessages import Status
+from src.backend.application.service.domain.note_service import NoteService
+from src.backend.data.note.note_manager import NoteManager
+from src.backend.presentation.request_bodies.note.post_note_request import PostNoteRequest
+from src.backend.presentation.request_bodies.note.put_note_request import PutNoteRequest
+from src.backend.presentation.request_bodies.note.del_note_request import DeleteNoteRequest
+from src.backend.domain.enums.responseMessages import Status
 
 
 class NoteRouter:

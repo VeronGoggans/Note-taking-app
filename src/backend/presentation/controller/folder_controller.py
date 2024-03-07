@@ -1,10 +1,10 @@
 from fastapi import APIRouter
-from backend.data.folder.folder_manager import FolderManager
-from backend.presentation.request_bodies.folder.del_folder_request import DeleteFolderRequest
-from backend.presentation.request_bodies.folder.post_folder_request import PostFolderRequest
-from backend.presentation.request_bodies.folder.put_folder_request import PutFolderRequest
-from backend.domain.enums.responseMessages import Status
-from backend.application.service.domain.folder_service import FolderService
+from src.backend.data.folder.folder_manager import FolderManager
+from src.backend.presentation.request_bodies.folder.del_folder_request import DeleteFolderRequest
+from src.backend.presentation.request_bodies.folder.post_folder_request import PostFolderRequest
+from src.backend.presentation.request_bodies.folder.put_folder_request import PutFolderRequest
+from src.backend.domain.enums.responseMessages import Status
+from src.backend.application.service.domain.folder_service import FolderService
 
 class FolderRouter:
     def __init__(self, json_manager):

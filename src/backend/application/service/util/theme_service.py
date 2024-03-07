@@ -1,5 +1,5 @@
-from backend.data.file.json_manager import JsonManager
-from backend.presentation.request_bodies.theme.put_theme_request import PutThemeRequest
+from src.backend.data.file.json_manager import JsonManager
+from src.backend.presentation.request_bodies.theme.put_theme_request import PutThemeRequest
 import os 
 
 
