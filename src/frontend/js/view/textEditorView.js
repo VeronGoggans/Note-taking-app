@@ -1,3 +1,4 @@
+import { KeyEventListener } from "../eventListeners/keyEventListener.js";
 import { TextFormatter } from "../textFormat/textFormatter.js"; 
 
 export class TextEditorView {
@@ -36,6 +37,7 @@ export class TextEditorView {
     this.page = document.querySelector('.editor-paper');
     this.noteContent = '';
     this.dialog = dialog;
+    this.keyEventListener = new KeyEventListener(this);
 
     this.attachEventListeners();
   }
