@@ -20,7 +20,16 @@
             "id": "f-79",
             "name": "Youtube",
             "color": "#ffffff",
-            "notes": [],
+            "notes": [
+                {
+                    "id": "n-417",
+                    "title": "untitled",
+                    "content": "storage/notes/note-n-417.html",
+                    "bookmark": false,
+                    "last_edit": "08/03/2024 14:32",
+                    "creation": "08/03/2024"
+                }
+            ],
             "subfolders": []
         }
     ]
