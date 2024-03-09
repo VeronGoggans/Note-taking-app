@@ -7,8 +7,8 @@ export class DeleteContainer {
         this.HOST = CNode.create('div', {'class': 'delete-folder-container'});
         this.MESSAGE = CNode.create('p', {'class': 'delete-warning', 'textContent': 'Press Confirm to delete'});
         this.FOLDER_NAME = CNode.create('strong', {'class': 'delete-folder-name', 'textContent': name});
-        this. DELETE = CNode.create('button', {'class': 'confirm-delete-folder-btn', 'textContent': 'Confirm'});
-
+        this.DELETE = CNode.create('button', {'class': 'confirm-delete-folder-btn', 'textContent': 'Confirm'});
+        console.log(id);
         this.attachEventListeners();
         return this.render();
     }

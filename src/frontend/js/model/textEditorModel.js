@@ -4,6 +4,7 @@ export class TextEditorModel {
         this.creation = null;
         this.lastEdit = null;
         this.bookmark = null;
+        this.name = null;
     }
 
     /**
@@ -13,11 +14,12 @@ export class TextEditorModel {
      * @param {String} creation 
      * @param {String} lastEdit 
      */
-    storeNoteData(noteId, creation, lastEdit, bookmark) {
+    storeNoteData(noteId, creation, lastEdit, bookmark, name) {
         this.noteId = noteId
         this.creation = creation;
         this.lastEdit = lastEdit;
         this.bookmark = bookmark;
+        this.name = name;
     }
 
     /**

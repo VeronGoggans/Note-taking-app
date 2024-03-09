@@ -29,6 +29,7 @@ export class NoteController {
         this.noteView.renderNoteCard(note);
         this.noteView.pushNotification('Saved');
         this.addSearchObject(note.id, note.title);
+        return await note
     }
 
     async updateNote(noteId, name, content, bookmark) {

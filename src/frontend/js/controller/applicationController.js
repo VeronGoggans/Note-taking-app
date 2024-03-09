@@ -178,7 +178,8 @@ export class ApplicationController {
      */
     async addNote(content, name) {
         const CURRENT_FOLDER_ID = this.applicationModel.getCurrentFolderID();
-        await this.noteController.addNote(CURRENT_FOLDER_ID, content, name);
+        const NOTE = await this.noteController.addNote(CURRENT_FOLDER_ID, content, name);
+        this.textEditorController.storeNoteData(NOTE.id, NOTE.creation, NOTE.last_edit, NOTE.bookmark, NOTE.title)
     }
 
     /**

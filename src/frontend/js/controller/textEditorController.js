@@ -41,6 +41,21 @@ export class TextEditorController {
     }
 
     /**
+     * This method stores the following note data
+     * 1. noteId
+     * 2. creation date
+     * 3. lastEdit date
+     * 4. bookmark
+     * 
+     * And clears the stored data from the model.
+     * 
+     * @returns This method returns a list of stored note data.
+     */
+    storeNoteData(noteId, creation, lastEdit, bookmark) {
+        this.textEditorModel.storeNoteData(noteId, creation, lastEdit, bookmark);
+    }
+
+    /**
      * This method turns all stored note values to null
      */
     clearStoredNoteData() {
