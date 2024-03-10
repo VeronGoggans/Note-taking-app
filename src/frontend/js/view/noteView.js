@@ -37,6 +37,8 @@ export class NoteView {
 
                 this._content.appendChild(NOTE_CARD);
                 this._list.appendChild(LIST_NOTE_CARD);
+                this.#fadeInFromBottom(NOTE_CARD);
+                this.#fadeInFromSide(LIST_NOTE_CARD);
             }
         } else {
             this.noContentFeedbackHandler.noNotes(new NoNoteMessage());
@@ -57,13 +59,13 @@ export class NoteView {
         if (this.noteObjects.size() === 0) {
             this.noContentFeedbackHandler.removeNoNotesMessage();
         }
-        // Creating the html for the note
         const LIST_NOTE_CARD = this.listNote(note);
         const NOTE_CARD = this.note(note);
 
-        // Adding the note html cards to the screen
         this._content.appendChild(NOTE_CARD);
         this._list.appendChild(LIST_NOTE_CARD);
+        this.#fadeInFromBottom(NOTE_CARD);
+        this.#fadeInFromSide(LIST_NOTE_CARD);
     }
 
     /** 
@@ -173,6 +175,18 @@ export class NoteView {
     */
     pushNotification(type, noteName = null) {
         this.notificationHandler.push(type, noteName);
+    }
+
+    #fadeInFromBottom(note) {
+        setTimeout(() => {
+            note.classList.add('fadeInFromBottom');
+        }, 50);
+    }
+
+    #fadeInFromSide(note) {
+        setTimeout(() => {
+            note.classList.add('fadeInFromSide');
+        }, 50);
     }
 
     /**

@@ -23,22 +23,30 @@
             "notes": [
                 {
                     "id": "n-417",
-                    "title": "untitled",
+                    "title": "Youtube",
                     "content": "storage/notes/note-n-417.html",
                     "bookmark": false,
-                    "last_edit": "09/03/2024 17:23",
+                    "last_edit": "09/03/2024 19:59",
                     "creation": "08/03/2024"
                 },
                 {
-                    "id": "n-424",
-                    "title": "untitled",
-                    "content": "storage/notes/note-n-424.html",
+                    "id": "n-427",
+                    "title": "New test",
+                    "content": "storage/notes/note-n-427.html",
                     "bookmark": false,
-                    "last_edit": "09/03/2024 19:53",
+                    "last_edit": "09/03/2024 20:07",
                     "creation": "09/03/2024"
                 }
             ],
-            "subfolders": []
+            "subfolders": [
+                {
+                    "id": "s-107",
+                    "name": "subfolder",
+                    "color": "#ffffff",
+                    "notes": [],
+                    "subfolders": []
+                }
+            ]
         }
     ]
 }

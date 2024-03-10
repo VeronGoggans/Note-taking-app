@@ -25,6 +25,8 @@ export class FolderView {
 
             this._content.appendChild(FOLDER_CARD);
             this._list.appendChild(LIST_FOLDER_CARD);
+            this.#fadeInFromBottom(FOLDER_CARD);
+            this.#fadeInFromSide(LIST_FOLDER_CARD);
         }
     }
 
@@ -34,11 +36,13 @@ export class FolderView {
      * @param {dict} folder
      */
     renderFolder(folder) {
-        const FOLDER_LIST_CARD = this.listFolder(folder);
+        const LIST_FOLDER_CARD = this.listFolder(folder);
         const FOLDER_CARD = this.folder(folder);
 
         this._content.appendChild(FOLDER_CARD);
-        this._list.appendChild(FOLDER_LIST_CARD);
+        this._list.appendChild(LIST_FOLDER_CARD);
+        this.#fadeInFromBottom(FOLDER_CARD);
+        this.#fadeInFromSide(LIST_FOLDER_CARD);
         this.dialog.hide();
     }
 
@@ -94,6 +98,18 @@ export class FolderView {
      */
     folder(folder) {
         return new Folder(folder, this);
+    }
+
+    #fadeInFromBottom(folder) {
+        setTimeout(() => {
+            folder.classList.add('fadeInFromBottom');
+        }, 50);
+    }
+
+    #fadeInFromSide(folder) {
+        setTimeout(() => {
+            folder.classList.add('fadeInFromSide');
+        }, 50);
     }
 
     /**

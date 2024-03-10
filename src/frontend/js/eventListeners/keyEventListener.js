@@ -3,6 +3,7 @@ export class KeyEventListener {
         this.view = view; 
         this.editorWrapper = document.querySelector('.editor-paper');
         this.saveKeyEvent();
+        this.newKeyEvent();
     }
 
     saveKeyEvent() {
@@ -15,6 +16,17 @@ export class KeyEventListener {
                 const checkForChanges = false;
                 
                 this.view.save(closeEditor, checkForChanges);
+            }
+        })
+    }
+
+    newKeyEvent() {
+        this.editorWrapper.addEventListener("keydown", (event) => {
+            if (event.ctrlKey && (event.key === "n" || event.keyCode === 83)) {
+                // Prevent the default behavior (e.g., browser saving the page)
+                event.preventDefault();
+                
+                this.view.new();
             }
         })
     }

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Animating DOM Elements</title>
+<style>
+    body{
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+    }
+  .note {
+    opacity: 0;
+    transform: translateY(100%);
+    transition: opacity 2s ease, transform .4s ease;
+  }
+
+  h1 {
+    color: aqua;
+    /* Removed background-color to make text visible during animation */
+  }
+
+  div {
+    background-color: black;
+    width: fit-content;
+    padding: 10px 20px;
+    border-radius: 70px;
+  }
+  
+  .fadeInFromBottom {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+<div class="note">
+  <!-- Content to animate -->
+  <h1>Hello world</h1>
+</div>
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const element = document.querySelector('.note');
+    // Adding a slight delay to ensure the transition kicks in properly
+    setTimeout(() => {
+      element.classList.add('fadeInFromBottom');
+    }, 100);
+  });
+</script>
+</body>
+</html>

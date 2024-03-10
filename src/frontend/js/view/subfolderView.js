@@ -30,6 +30,8 @@ export class SubfolderView {
 
                 this._content.appendChild(SUBFOLDER_CARD);
                 this._list.appendChild(SUBFOLDER_LIST_CARD);
+                this.#fadeInFromBottom(SUBFOLDER_CARD);
+                this.#fadeInFromSide(SUBFOLDER_LIST_CARD);
             }
         } else {
             // give user feedback that this folder is empty
@@ -54,6 +56,8 @@ export class SubfolderView {
         // Adding the note html cards to the screen
         this._content.insertBefore(SUBFOLDER_CARD, this._content.firstChild);
         this._list.insertBefore(SUBFOLDER_LIST_CARD, this._list.firstChild);
+        this.#fadeInFromBottom(SUBFOLDER_CARD);
+        this.#fadeInFromSide(SUBFOLDER_LIST_CARD);
         this.dialog.hide();
     }
 
@@ -130,6 +134,18 @@ export class SubfolderView {
     subfolder(subfolder) {
         this.subfoldersObjects.add(subfolder);
         return new Folder(subfolder, this);
+    }
+
+    #fadeInFromBottom(subfolder) {
+        setTimeout(() => {
+            subfolder.classList.add('fadeInFromBottom');
+        }, 50);
+    }
+
+    #fadeInFromSide(subfolder) {
+        setTimeout(() => {
+            subfolder.classList.add('fadeInFromSide');
+        }, 50);
     }
 
     /**

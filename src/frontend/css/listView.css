@@ -3,6 +3,7 @@
     display: block;
     padding: 10px 5px;
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .content-list-view::-webkit-scrollbar {
@@ -51,7 +52,10 @@
     color: var(--text);
     font-weight: 600;
     border-radius: 20px;
-    transition: .2s;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: opacity 1s ease, transform .4s ease;
+    /* transition: background-color .2s; */
 }
 
 .list-view-no-note,

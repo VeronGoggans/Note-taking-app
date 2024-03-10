@@ -8,6 +8,9 @@
     margin: 20px;
     overflow: visible;
     border: 1px solid var(--border-card);
+    opacity: 0;
+    transform: translateY(90%);
+    transition: opacity 1s ease, transform .4s ease;
     /* box-shadow: 5px 5px 10px var(--card-shadow); */
 }
 
