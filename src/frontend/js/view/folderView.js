@@ -1,6 +1,7 @@
 import { Folder } from '../components/folder.js';
 import { ListFolder } from '../components/listFolder.js';
 import { DeleteContainer } from '../components/deleteContainer.js';
+import { AnimationHandler } from '../handlers/animation/animationHandler.js';
 
 export class FolderView {
     constructor(folderController, dialog, notificationHandler) {
@@ -20,29 +21,29 @@ export class FolderView {
     renderFolders(folders) {
         for (let i = 0; i < folders.length; i++) {
             const FOLDER = folders[i];
-            const LIST_FOLDER_CARD = this.listFolder(FOLDER);
-            const FOLDER_CARD = this.folder(FOLDER);
+            const LIST_FOLDER_CARD = this.#listFolder(FOLDER);
+            const FOLDER_CARD = this.#folder(FOLDER);
 
             this._content.appendChild(FOLDER_CARD);
             this._list.appendChild(LIST_FOLDER_CARD);
-            this.#fadeInFromBottom(FOLDER_CARD);
-            this.#fadeInFromSide(LIST_FOLDER_CARD);
+            AnimationHandler.fadeInFromBottom(FOLDER_CARD);
+            AnimationHandler.fadeInFromSide(LIST_FOLDER_CARD);
         }
     }
 
     /**
      * This method adds a single folder to the UI.
      * 
-     * @param {dict} folder
+     * @param {Object} folder
      */
     renderFolder(folder) {
-        const LIST_FOLDER_CARD = this.listFolder(folder);
-        const FOLDER_CARD = this.folder(folder);
+        const LIST_FOLDER_CARD = this.#listFolder(folder);
+        const FOLDER_CARD = this.#folder(folder);
 
         this._content.appendChild(FOLDER_CARD);
         this._list.appendChild(LIST_FOLDER_CARD);
-        this.#fadeInFromBottom(FOLDER_CARD);
-        this.#fadeInFromSide(LIST_FOLDER_CARD);
+        AnimationHandler.fadeInFromBottom(FOLDER_CARD);
+        AnimationHandler.fadeInFromSide(LIST_FOLDER_CARD);
         this.dialog.hide();
     }
 
@@ -52,7 +53,7 @@ export class FolderView {
      * This method is called when a 
      * folder's name has been changed
      * 
-     * @param {dict} folder
+     * @param {Object} folder
      */
     renderFolderUpdate(folder) {
         const FOLDER_LIST_CARDS = this._list.children;
@@ -65,16 +66,23 @@ export class FolderView {
     }
 
     /**
-     * This method removes a specific folder from the UI.
-     * @param {String} id 
+     * Removes a specific folder from the UI.
+     * The folder is removed from both the content view and the list view,
+     * After the animation for removing a folder is done
+     *
+     * @param {Object} folder 
      */
     removeFolder(folder) {
         const ALL_FOLDERS = this._content.children;
         const ALL_LIST_FOLDERS = this._list.children;
         for (let i = 0; i < ALL_FOLDERS.length; i++) {
             if (ALL_FOLDERS[i].id === folder.id) {
-                this._content.removeChild(ALL_FOLDERS[i]);
-                this._list.removeChild(ALL_LIST_FOLDERS[i]);
+                AnimationHandler.fadeOutCard(ALL_FOLDERS[i]);
+                AnimationHandler.fadeOutCard(ALL_LIST_FOLDERS[i]);
+                setTimeout(() => {
+                    this._content.removeChild(ALL_FOLDERS[i]);
+                    this._list.removeChild(ALL_LIST_FOLDERS[i]);
+                }, 700);
             }
         }
         this.dialog.hide();
@@ -83,33 +91,21 @@ export class FolderView {
     /**
      * This method creates a ListFolder component and returns it.
      * 
-     * @param {Dict} folder
+     * @param {Object} folder
      * @returns {ListFolder} 
      */
-    listFolder(folder) {
+    #listFolder(folder) {
         return new ListFolder(folder, this);
     }
 
     /**
      * This method creates a Folder component and returns it.
      * 
-     * @param {Dict} folder
+     * @param {Object} folder
      * @returns {Folder}
      */
-    folder(folder) {
+    #folder(folder) {
         return new Folder(folder, this);
-    }
-
-    #fadeInFromBottom(folder) {
-        setTimeout(() => {
-            folder.classList.add('fadeInFromBottom');
-        }, 50);
-    }
-
-    #fadeInFromSide(folder) {
-        setTimeout(() => {
-            folder.classList.add('fadeInFromSide');
-        }, 50);
     }
 
     /**

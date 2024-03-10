@@ -3,6 +3,7 @@ import { ListFolder, NoFolderMessage } from "../components/listFolder.js";
 import { DeleteContainer } from '../components/deleteContainer.js';
 import { SubfolderObjectArray } from "../util/array.js";
 import { NoContentFeedbackHandler } from "../handlers/userFeedback/noContentFeedbackHandler.js";
+import { AnimationHandler } from "../handlers/animation/animationHandler.js";
 
 export class SubfolderView {
     constructor(controller, dialog, notificationHandler) {
@@ -25,13 +26,13 @@ export class SubfolderView {
         if (subfolders.length > 0) {
             for (let i = 0; i < subfolders.length; i++) {
                 const SUBFOLDER = subfolders[i];
-                const SUBFOLDER_LIST_CARD = this.listSubfolder(SUBFOLDER);
-                const SUBFOLDER_CARD = this.subfolder(SUBFOLDER);
+                const SUBFOLDER_LIST_CARD = this.#listSubfolder(SUBFOLDER);
+                const SUBFOLDER_CARD = this.#subfolder(SUBFOLDER);
 
                 this._content.appendChild(SUBFOLDER_CARD);
                 this._list.appendChild(SUBFOLDER_LIST_CARD);
-                this.#fadeInFromBottom(SUBFOLDER_CARD);
-                this.#fadeInFromSide(SUBFOLDER_LIST_CARD);
+                AnimationHandler.fadeInFromBottom(SUBFOLDER_CARD);
+                AnimationHandler.fadeInFromSide(SUBFOLDER_LIST_CARD);
             }
         } else {
             // give user feedback that this folder is empty
@@ -50,14 +51,14 @@ export class SubfolderView {
             this.noContentFeedbackHandler.removeNoFoldersMessage();
         }
         // Creating the html for the subfolder
-        const SUBFOLDER_CARD = this.subfolder(subfolder);
-        const SUBFOLDER_LIST_CARD = this.listSubfolder(subfolder);
+        const SUBFOLDER_CARD = this.#subfolder(subfolder);
+        const SUBFOLDER_LIST_CARD = this.#listSubfolder(subfolder);
 
         // Adding the note html cards to the screen
         this._content.insertBefore(SUBFOLDER_CARD, this._content.firstChild);
         this._list.insertBefore(SUBFOLDER_LIST_CARD, this._list.firstChild);
-        this.#fadeInFromBottom(SUBFOLDER_CARD);
-        this.#fadeInFromSide(SUBFOLDER_LIST_CARD);
+        AnimationHandler.fadeInFromBottom(SUBFOLDER_CARD);
+        AnimationHandler.fadeInFromSide(SUBFOLDER_LIST_CARD);
         this.dialog.hide();
     }
 
@@ -78,8 +79,10 @@ export class SubfolderView {
 
     /**
      * Removes a specific subfolder from the UI.
-     *
-     * @param {dict} subfolder 
+     * The subfolder is removed from both the content view and the list view,
+     * After the animation for removing a subfolder is done
+     * 
+     * @param {Object} subfolder 
      */
     removeSubfolder(subfolder) {
         const ALL_SUBFOLDERS = this._content.children;
@@ -87,11 +90,14 @@ export class SubfolderView {
 
         for (let i = 0; i < ALL_SUBFOLDERS.length; i++) {
             if (ALL_SUBFOLDERS[i].id === subfolder.id) {
-                // Removing the html related to the given subfolder 
-                this._content.removeChild(ALL_SUBFOLDERS[i]);
-                this._list.removeChild(ALL_LIST_SUBFOLDERS[i]);
-                // Removing the subfolder object 
-                this.subfoldersObjects.remove(subfolder);
+                AnimationHandler.fadeOutCard(ALL_SUBFOLDERS[i]);
+                AnimationHandler.fadeOutCard(ALL_LIST_SUBFOLDERS[i]);
+                setTimeout(() => {
+                    this._content.removeChild(ALL_SUBFOLDERS[i]);
+                    this._list.removeChild(ALL_LIST_SUBFOLDERS[i]);
+                    this.subfoldersObjects.remove(subfolder);
+                }, 700);
+                
                 // Checking if there are no subfolder cards inside the list-view html element
                 if (this._list.children.length === 0) {
                     this.noContentFeedbackHandler.noFolders(new NoFolderMessage());
@@ -121,7 +127,7 @@ export class SubfolderView {
      * @param {Dict} subfolder
      * @returns {ListFolder}
      */
-    listSubfolder(subfolder) {
+    #listSubfolder(subfolder) {
         return new ListFolder(subfolder, this);
     }
 
@@ -131,21 +137,9 @@ export class SubfolderView {
      * @param {Dict} subfolder
      * @returns {Folder}
      */
-    subfolder(subfolder) {
+    #subfolder(subfolder) {
         this.subfoldersObjects.add(subfolder);
         return new Folder(subfolder, this);
-    }
-
-    #fadeInFromBottom(subfolder) {
-        setTimeout(() => {
-            subfolder.classList.add('fadeInFromBottom');
-        }, 50);
-    }
-
-    #fadeInFromSide(subfolder) {
-        setTimeout(() => {
-            subfolder.classList.add('fadeInFromSide');
-        }, 50);
     }
 
     /**

@@ -5,6 +5,7 @@ import { HTMLArray, NoteObjectArray } from "../util/array.js";
 import { NoContentFeedbackHandler } from "../handlers/userFeedback/noContentFeedbackHandler.js";
 import { dateFormat } from "../util/date.js";
 import { formatName } from "../util/formatters.js";
+import {AnimationHandler} from "../handlers/animation/animationHandler.js";
 
 
 export class NoteView {
@@ -32,13 +33,13 @@ export class NoteView {
         this.noteObjects.clear();
         if (notes.length > 0) {
             for (let i = 0; i < notes.length; i++) {
-                const LIST_NOTE_CARD = this.listNote(notes[i]);
-                const NOTE_CARD = this.note(notes[i]);
+                const LIST_NOTE_CARD = this.#listNote(notes[i]);
+                const NOTE_CARD = this.#note(notes[i]);
 
                 this._content.appendChild(NOTE_CARD);
                 this._list.appendChild(LIST_NOTE_CARD);
-                this.#fadeInFromBottom(NOTE_CARD);
-                this.#fadeInFromSide(LIST_NOTE_CARD);
+                AnimationHandler.fadeInFromBottom(NOTE_CARD);
+                AnimationHandler.fadeInFromSide(LIST_NOTE_CARD);
             }
         } else {
             this.noContentFeedbackHandler.noNotes(new NoNoteMessage());
@@ -59,13 +60,13 @@ export class NoteView {
         if (this.noteObjects.size() === 0) {
             this.noContentFeedbackHandler.removeNoNotesMessage();
         }
-        const LIST_NOTE_CARD = this.listNote(note);
-        const NOTE_CARD = this.note(note);
+        const LIST_NOTE_CARD = this.#listNote(note);
+        const NOTE_CARD = this.#note(note);
 
         this._content.appendChild(NOTE_CARD);
         this._list.appendChild(LIST_NOTE_CARD);
-        this.#fadeInFromBottom(NOTE_CARD);
-        this.#fadeInFromSide(LIST_NOTE_CARD);
+        AnimationHandler.fadeInFromBottom(NOTE_CARD);
+        AnimationHandler.fadeInFromSide(LIST_NOTE_CARD);
     }
 
     /** 
@@ -111,11 +112,13 @@ export class NoteView {
 
         for (let i = 0; i < ALL_NOTES.length; i++) {
             if (ALL_NOTES[i].id === note.id) {
-                // Removing the html related to the given note 
-                this._content.removeChild(ALL_NOTES[i]);
-                this._list.removeChild(ALL_LIST_NOTES[i]);
-                // Removing the note object 
-                this.noteObjects.remove(note);
+                AnimationHandler.fadeOutCard(ALL_NOTES[i]);
+                AnimationHandler.fadeOutCard(ALL_LIST_NOTES[i]);
+                setTimeout(() => {
+                    this._content.removeChild(ALL_NOTES[i]);
+                    this._list.removeChild(ALL_LIST_NOTES[i]);
+                    this.noteObjects.remove(note);
+                }, 700);
                 // Checking if the note object array is empty
                 if (this.noteObjects.size() === 0) {
                     this.noContentFeedbackHandler.noNotes(new NoNoteMessage());
@@ -148,7 +151,7 @@ export class NoteView {
      * @param {Dict} note 
      * @returns A note card component.
      */
-    note(note) {
+    #note(note) {
         this.noteObjects.add(note);
         return new Note(note, this);
     }
@@ -159,7 +162,7 @@ export class NoteView {
      * @param {Dict} note
      * @returns {ListNote} 
      */
-    listNote(note) {
+    #listNote(note) {
         return new ListNote(note, this);
     }
 
@@ -175,18 +178,6 @@ export class NoteView {
     */
     pushNotification(type, noteName = null) {
         this.notificationHandler.push(type, noteName);
-    }
-
-    #fadeInFromBottom(note) {
-        setTimeout(() => {
-            note.classList.add('fadeInFromBottom');
-        }, 50);
-    }
-
-    #fadeInFromSide(note) {
-        setTimeout(() => {
-            note.classList.add('fadeInFromSide');
-        }, 50);
     }
 
     /**

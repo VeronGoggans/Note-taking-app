@@ -54,7 +54,7 @@
     border-radius: 20px;
     opacity: 0;
     transform: translateX(100%);
-    transition: opacity 1s ease, transform .4s ease;
+    transition: opacity .7s ease, transform .4s ease;
     /* transition: background-color .2s; */
 }
 
