@@ -2,14 +2,14 @@
     --background: #ffffff; /*f4f5f7*/
     --notification: #ffffff;
     --editor: #ffffff;
-    --editor-background: #f9f9f9;
+    --editor-background: #fafbff;
     --editor-border: #dee1ef;
     --list-view: #ffffff; /*f4f5f7*/
     --list-view-icon: #ced2ea;
-    --sidebar: #f4f5f7;
+    --sidebar: #fafbff; /*f4f5f7*/
     --searchbar: #ffffff;
-    --sidebar-text: #4c4c4c;
-    --sidebar-text-hover: #414141;
+    --sidebar-text: #4c4c4c; /*4c4c4c*/
+    --sidebar-text-hover: #414141; /*414141*/
     --sidebar-icon: #747aa0;
     --card: #ffffff; /*f4f5f7*/
     --text: #444863;
@@ -18,10 +18,12 @@
     --icon-hover: #444863;
     --important: #444863;
     --toolbar: #eff1f7;
+    --toolbar-btn-text: #747aa0;
     --editor-text: #383838;
+    --editor-text-top: #383838;
     --border-card: #dee1ef;
     --border-sidebar-right: #dee1ef; /*d4d4d4*/
-    --border-sidebar-top: #f4f5f7; /*ffffff*/
+    --border-sidebar-top: #fafbff; /*ffffff*/
     --border-main-top: #ffffff; /*f4f5f7*/
     --border-search-bar: #ffffff; /*d4d4d4*/
     --hover: rgba(92, 125, 255, .3); 
@@ -61,7 +63,9 @@
     --icon-hover: #5c7dff;
     --important: #d6d8e5;
     --toolbar: #252831;
+    --toolbar-btn-text: #bbbed2;
     --editor-text: #d5d9e0;
+    --editor-text-top: #d5d9e0;
     --border-card: #1f2129;
     --border-sidebar-right: #16171c;
     --border-sidebar-top: #16171c;
@@ -89,12 +93,12 @@
     --background: #ffffff;
     --notification: #ffffff;
     --editor: #ffffff;
-    --editor-background: #f9f9f9;
+    --editor-background: #fafbff;
     --editor-border: #dee1ef;
     --list-view: #ffffff;
     --list-view-icon: #ced2ea;
     --searchbar: #ffffff;
-    --sidebar: #f4f5f7;
+    --sidebar: #fafbff;
     --sidebar-text: #4c4c4c;
     --sidebar-text-hover: #414141;
     --sidebar-icon: #747aa0;
@@ -104,10 +108,12 @@
     --icon-hover: #444863;
     --important: #444863;
     --toolbar: #eff1f7;
+    --toolbar-btn-text: #747aa0;
     --editor-text: #383838;
+    --editor-text-top: #383838;
     --border-card: #dee1ef;
     --border-sidebar-right: #dee1ef;
-    --border-sidebar-top: #f4f5f7;
+    --border-sidebar-top: #fafbff;
     --border-main-top: #ffffff;
     --border-search-bar: #ffffff;
     --hover: rgba(92, 125, 255, .3);
@@ -117,6 +123,51 @@
     --hover-text-list-view: #444863;
     --hover-toolbar-btns: rgba(185, 198, 250, 0.5);
     --hover-sidebar: rgba(92, 125, 255, .3);
+    --bookmark: #a9d7ff;
+    --no-content: #aaabb4;
+    --placeholder: #9093a2;
+    --selection: #b1daff;
+    --dialog: rgba(58, 64, 106, 0.15);
+    --paragraph: rgba(239, 241, 250, .4); /*rgba(239, 241, 247, .4) original color*/
+    --shadow: rgba(0, 0, 0, 0.1);
+    --shadow-notification: #dcdee6;
+    --card-shadow: #e0e2ec;
+}
+
+.twilight {
+    --background: #ffffff;
+    --notification: #ffffff;
+    --editor: #131623;
+    --editor-background: #fafbff;
+    --editor-border: #dee1ef;
+    --list-view: #ffffff;
+    --list-view-icon: #ced2ea;
+    --searchbar: #ffffff;
+    --sidebar: #131623;
+    --sidebar-text: #ffffff;
+    --sidebar-text-hover: #ffffff;
+    --sidebar-icon: #747aa0;
+    --card: #ffffff;
+    --text: #444863;
+    --icon: #747aa0;
+    --icon-hover: #444863;
+    --important: #444863;
+    --toolbar: #1d2239;
+    --toolbar-btn-text: #ffffff;
+    --editor-text: #383838;
+    --editor-text-top: #ffffff;
+    --border-card: #dee1ef;
+    --border-sidebar-right: #dee1ef;
+    --border-sidebar-top: #131623;
+    --border-main-top: #ffffff;
+    --border-search-bar: #ffffff;
+    --hover: rgba(92, 125, 255, .3);
+    --hover-list-view-buttons: #f4f5f7;
+    --hover-searchbar-options: #f4f5f7;
+    --hover-text: #444863;
+    --hover-text-list-view: #444863;
+    --hover-toolbar-btns: #1d2239;
+    --hover-sidebar: #2d314d;
     --bookmark: #a9d7ff;
     --no-content: #aaabb4;
     --placeholder: #9093a2;

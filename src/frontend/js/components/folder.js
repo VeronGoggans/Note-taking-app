@@ -84,23 +84,17 @@ export class Folder {
             '#dfc1ff': 'card-style-purple',
             '#ffa3a3': 'card-style-red'
         }
-       
         const CARD_CLASS = CARD_CLASSES[color];
-
         const CURRENT_CLASSES = Array.from(this.HOST.classList);
-
-        if (CARD_CLASS !== null){
-            // This if statement will be true if the user is changing the color
-            // more then one time.
-            if (CURRENT_CLASSES.length === 2) {
-                // Remove the previous class before adding the new one
-                this.HOST.classList.remove(CURRENT_CLASSES[1]);
-            }
-            this.HOST.classList.add(CARD_CLASS);
+        if (this.HOST.classList.length > 2) {
+            for (let i = 0; i < CURRENT_CLASSES.length; i++) {
+                if (CURRENT_CLASSES[i].includes('card-style')) {
+                    this.HOST.classList.remove(CURRENT_CLASSES[i]);
+                    this.HOST.classList.add(CARD_CLASS);
+                }
+            }        
         } else {
-            if (Array.from(this.HOST.classList).length > 1) {
-                this.HOST.classList.remove(CURRENT_CLASSES[1]);
-            }
+            this.HOST.classList.add(CARD_CLASS);
         }
     }
 

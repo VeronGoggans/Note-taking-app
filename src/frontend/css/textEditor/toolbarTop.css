@@ -3,7 +3,7 @@
     font-family: Roboto;
     outline: none;
     border: none;
-    background-color: var(--editor);
+    background-color: transparent;
     border-bottom: 2px solid transparent;
     min-width: 200px;
     width: 400px;
@@ -11,7 +11,7 @@
     padding: 5px 10px;
     font-weight: 600;
     font-size: 18px;
-    color: var(--editor-text);
+    color: var(--editor-text-top);
     transition: 200ms ease-in-out;
 }
 
@@ -82,7 +82,6 @@
 
 .file-dropdown .options i {
     margin: 0 5px;
-
 }
 
 .dropdown-title {
@@ -110,9 +109,9 @@
     background-color: #5c7dff; 
     color: #ffffff;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 18px;
     font-family: Roboto;
-    border-radius: 15px;
+    border-radius: 35px;
     transition: .2s;
 }
 

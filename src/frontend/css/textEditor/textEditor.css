@@ -127,6 +127,7 @@
 
  .editor .paragraph p {
     min-height: 16px;
+    margin: 5px 0;
  }
 
 .embed-link-input {

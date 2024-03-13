@@ -24,10 +24,12 @@ export class ThemeView {
     async setTheme(init = false, theme) {
         if (init) {
             if (theme === 'light') await this.#lightMode();
-            else await this.#darkmode();
+            if (theme == 'twilight') await this.#twilight();
+            if (theme == 'dark') await this.#darkmode();
         } else {
-            if (theme === 'light') await this.#darkmode();
-            else await this.#lightMode();
+            if (theme === 'light') await this.#twilight();
+            if (theme === 'twilight') await this.#darkmode();
+            if (theme === 'dark') await this.#lightMode();
         }
     }
 
@@ -41,8 +43,17 @@ export class ThemeView {
         await this.themeController.updateTheme('light')
     }
 
-    async #darkmode() {
+    async #twilight() {
         document.body.classList.remove('light')
+        document.body.classList.add('twilight');
+        if (this.sidebar.dataset.width !== 'small') {
+            this.themeText.textContent = 'Twilight';
+        }
+        await this.themeController.updateTheme('twilight')
+    }
+
+    async #darkmode() {
+        document.body.classList.remove('twilight')
         document.body.classList.add('dark');
         this.themeIcon.setAttribute('class', this.darkIconClass)
         if (this.sidebar.dataset.width !== 'small') {

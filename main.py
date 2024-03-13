@@ -52,6 +52,5 @@ webview.create_window(
     min_size=(650, 400),
     )
 
-
 # Run the pywebview event loop
 webview.start()

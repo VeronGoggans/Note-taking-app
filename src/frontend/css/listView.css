@@ -54,8 +54,7 @@
     border-radius: 20px;
     opacity: 0;
     transform: translateX(100%);
-    transition: opacity .7s ease, transform .4s ease;
-    /* transition: background-color .2s; */
+    transition: opacity .7s ease, transform .4s ease, background-color 0.2s ease;
 }
 
 .list-view-no-note,
@@ -69,6 +68,11 @@
     width: calc(100% - 30px);
     color: var(--no-content);
     font-weight: 600;
+}
+
+.list-view-note span,
+.list-view-folder span {
+    margin-left: 5px;
 }
 
 .list-view-folder:hover,

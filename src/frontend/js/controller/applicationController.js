@@ -234,10 +234,11 @@ export class ApplicationController {
     async deleteNote(noteId) {
         await this.noteController.deleteNote(noteId);
     }
-
     
     async setTheme(init) {
         const THEME = await this.themeController.getTheme();
         this.themeController.setTheme(init, THEME);
+        console.log(THEME);
+
     }
 }

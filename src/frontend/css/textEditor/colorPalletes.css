@@ -3,7 +3,7 @@
     cursor: pointer;
     background-color: transparent;
     border: none;
-    color: var(--icon);
+    color: var(--toolbar-btn-text);
     width: 30px;
     height: 30px;
     margin: 3px 1px;
@@ -69,4 +69,11 @@
 .background-color-palette .sunset-colors:last-child,
 .background-color-palette .neon-colors:last-child {
     border-radius: 0 5px 5px 0;
+}
+
+.color-pallete-first-color {
+    border-radius: 10px 0 0 10px;
+}
+.color-pallete-last-color { 
+    border-radius: 0 10px 10px 0;
 }
