@@ -47,8 +47,8 @@ while True:
 webview.create_window(
     "Note", 
     "http://127.0.0.1:8000", 
-    width=1000, 
-    height=600,
+    width=1100, 
+    height=700,
     min_size=(650, 400),
     )
 

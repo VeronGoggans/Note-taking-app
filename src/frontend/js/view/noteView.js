@@ -117,8 +117,8 @@ export class NoteView {
                 setTimeout(() => {
                     this._content.removeChild(ALL_NOTES[i]);
                     this._list.removeChild(ALL_LIST_NOTES[i]);
-                    this.noteObjects.remove(note);
                 }, 700);
+                this.noteObjects.remove(note);
                 // Checking if the note object array is empty
                 if (this.noteObjects.size() === 0) {
                     this.noContentFeedbackHandler.noNotes(new NoNoteMessage());

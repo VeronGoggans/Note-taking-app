@@ -7,10 +7,10 @@
             "notes": [
                 {
                     "id": "n-216",
-                    "title": "Github commands",
+                    "title": "Github cheatsheet",
                     "content": "storage/notes/note-n-216.html",
                     "bookmark": false,
-                    "last_edit": "11/03/2024 12:38",
+                    "last_edit": "13/03/2024 19:21",
                     "creation": "09/01/2024"
                 }
             ],
@@ -20,30 +20,29 @@
             "id": "f-79",
             "name": "Youtube",
             "color": "#ffffff",
-            "notes": [
-                {
-                    "id": "n-439",
-                    "title": "Songs",
-                    "content": "storage/notes/note-n-439.html",
-                    "bookmark": false,
-                    "last_edit": "13/03/2024 11:42",
-                    "creation": "13/03/2024"
-                }
-            ],
+            "notes": [],
             "subfolders": []
         },
         {
             "id": "f-98",
-            "name": "Remember me's",
+            "name": "Exam notes",
             "color": "#ffffff",
             "notes": [
                 {
-                    "id": "n-438",
+                    "id": "n-442",
                     "title": "psw",
-                    "content": "storage/notes/note-n-438.html",
+                    "content": "storage/notes/note-n-442.html",
                     "bookmark": false,
-                    "last_edit": "13/03/2024 17:56",
-                    "creation": "11/03/2024"
+                    "last_edit": "14/03/2024 12:30",
+                    "creation": "14/03/2024"
+                },
+                {
+                    "id": "n-443",
+                    "title": "Exam CISC summary",
+                    "content": "storage/notes/note-n-443.html",
+                    "bookmark": false,
+                    "last_edit": "16/03/2024 22:22",
+                    "creation": "14/03/2024"
                 }
             ],
             "subfolders": []

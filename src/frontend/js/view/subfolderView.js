@@ -23,6 +23,7 @@ export class SubfolderView {
      * @param {Array} subfolders
      */
     renderSubfolders(subfolders) {
+        this.subfoldersObjects.clear();
         if (subfolders.length > 0) {
             for (let i = 0; i < subfolders.length; i++) {
                 const SUBFOLDER = subfolders[i];
@@ -95,11 +96,10 @@ export class SubfolderView {
                 setTimeout(() => {
                     this._content.removeChild(ALL_SUBFOLDERS[i]);
                     this._list.removeChild(ALL_LIST_SUBFOLDERS[i]);
-                    this.subfoldersObjects.remove(subfolder);
                 }, 700);
-                
+                this.subfoldersObjects.remove(subfolder);
                 // Checking if there are no subfolder cards inside the list-view html element
-                if (this._list.children.length === 0) {
+                if (this.subfoldersObjects.size() === 0) {
                     this.noContentFeedbackHandler.noFolders(new NoFolderMessage());
                 }
             }
