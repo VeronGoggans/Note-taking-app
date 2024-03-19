@@ -104,7 +104,7 @@
 
  .editor .paragraph {
     border-radius: 2px;
-    border-left: 3px solid transparent;
+    border-left: 5px solid transparent;
     background-color: var(--paragraph);
     padding: 20px;
     transition: .2s;
@@ -130,19 +130,51 @@
     margin: 5px 0;
  }
 
+.embed-container {
+   position: relative;
+   background-color: white;
+   border-radius: 10px;
+   border: 1px solid #ced1e3;
+   padding: 15px;
+   width: fit-content;
+}
+
 .embed-link-input {
-    cursor: text;
-    outline: none;
-    border: 2px solid #5c7dff;
-    border-radius: 15px;
-    padding: 5px;
-    margin: 10px 0;
-    padding-left: 25px;
-    background-color: transparent;
-    color: var(--text);
-    width: -webkit-fill-available;
-    font-size: 16px;
-    transition: .3s;
+   cursor: text;
+   outline: none;
+   border: none;
+   border-bottom: 2px solid #ced1e3;
+   border-radius: 0px;
+   border-radius: 15px;
+   padding: 5px;
+   margin: 10px 0;
+   padding-left: 25px;
+   background-color: #f6f7ff;
+   color: var(--text);
+   font-size: 16px;
+   transition: .3s;
+}
+
+.embed-link-input:hover,
+.embed-link-input:focus {
+   border-color: #5c7dff;
+}
+
+.cancel-embed-video-btn {
+   position: absolute;
+   top: -10px;
+   left: -10px;
+   cursor: pointer;
+   background-color: #5c7dff;
+   color: rgb(255, 255, 255);
+   border: none;
+   border-radius: 50%;
+   width: 25px;
+   height: 25px;
+}
+
+.cancel-embed-video-btn:hover {
+   background-color: #3d64fd;
 }
 
 .insert-video-container input:hover {
@@ -154,12 +186,12 @@
 }
 
  .editor hr {
-    border: 1px solid rgb(145 150 167);
+    border: 1px solid #ced1e3;
  }
 
  .editor img {
     border-radius: 10px;
-    cursor: grab;
+    cursor: pointer;
     margin: 10px 0;
     max-width: 700px;
  }

@@ -3,37 +3,30 @@
         {
             "id": "f-49",
             "name": "Github",
-            "color": "#a9d7ff",
+            "color": "#ffffff",
             "notes": [
                 {
                     "id": "n-216",
                     "title": "Github cheatsheet",
                     "content": "storage/notes/note-n-216.html",
                     "bookmark": false,
-                    "last_edit": "13/03/2024 19:21",
+                    "last_edit": "17/03/2024 01:11",
                     "creation": "09/01/2024"
                 }
             ],
             "subfolders": []
         },
         {
-            "id": "f-79",
-            "name": "Youtube",
-            "color": "#ffffff",
-            "notes": [],
-            "subfolders": []
-        },
-        {
             "id": "f-98",
             "name": "Exam notes",
-            "color": "#ffffff",
+            "color": "#a9d7ff",
             "notes": [
                 {
                     "id": "n-442",
                     "title": "psw",
                     "content": "storage/notes/note-n-442.html",
                     "bookmark": false,
-                    "last_edit": "14/03/2024 12:30",
+                    "last_edit": "19/03/2024 19:12",
                     "creation": "14/03/2024"
                 },
                 {
@@ -41,7 +34,7 @@
                     "title": "Exam CISC summary",
                     "content": "storage/notes/note-n-443.html",
                     "bookmark": false,
-                    "last_edit": "16/03/2024 22:22",
+                    "last_edit": "18/03/2024 19:41",
                     "creation": "14/03/2024"
                 }
             ],

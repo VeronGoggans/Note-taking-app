@@ -1,3 +1,5 @@
+import {CNode} from "../util/CNode.js"
+
 export class TextFormatter {
     static addLink() {
       const SELECTION = window.getSelection();
@@ -94,13 +96,20 @@ export class TextFormatter {
 
     // Get the range of the selection
     const RANGE = SELECTION.getRangeAt(0);
+    
+    const CONTAINER = CNode.create('div', {'class': 'embed-container', 'contentEditable': 'false'});
+    const BTN = CNode.create('button', {'class': 'cancel-embed-video-btn'});
+    const ICON = CNode.create('i', {'class': 'fa-solid fa-xmark'});
+    const INPUT = CNode.create('input', {'type': 'text', 'placeholder': 'Link here...', 'class': 'embed-link-input'});
 
-    const EMBED_INPUT = document.createElement('input');
-    EMBED_INPUT.type = 'text';
-    EMBED_INPUT.placeholder = 'Paste the video link here';
-    EMBED_INPUT.classList.add('embed-link-input'); 
+    // Putting the UI together 
+    CONTAINER.appendChild(BTN);
+    BTN.appendChild(ICON);
+    CONTAINER.appendChild(INPUT);
 
-    EMBED_INPUT.addEventListener('keydown', (event) => {
+    BTN.addEventListener('click', () => {CONTAINER.remove()})
+
+    INPUT.addEventListener('keydown', (event) => {
       if (event.key === 'Enter') {
         // Delete the input
         RANGE.deleteContents();
@@ -110,7 +119,7 @@ export class TextFormatter {
         const IFRAME_CONTAINER = document.createElement('div');
 
         // adding nocookies text to the embed link for reduced cookies
-        let iframeArray = EMBED_INPUT.value.split('youtube');
+        let iframeArray = INPUT.value.split('youtube');
         iframeArray.splice(1, 0, NO_COOKIES);
 
         const NO_COOKIE_IFRAME = iframeArray.join('');
@@ -119,6 +128,6 @@ export class TextFormatter {
         RANGE.insertNode(IFRAME_CONTAINER);
       }
     })
-    RANGE.insertNode(EMBED_INPUT);
+    RANGE.insertNode(CONTAINER);
   }
 }

@@ -3,11 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Settings</title>
+    <title>Document</title>
+    <style>
+        .image-size-container {
+            background-color: white;
+            border: 1px solid #ced1e3;
+            border-radius: 5px;
+            width: fit-content;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .image-size-slider {
+            background-color: aqua;
+        }
+    </style>
 </head>
 <body>
-    
-
+    <div class="image-size-container">
+        <input class="image-size-slider" type="range">
+        <button class="cancel-image-size-btn">Cancel</button>
+        <button class="save-image-size-btn">Save</button>
+    </div>
     
 </body>
 </html>
