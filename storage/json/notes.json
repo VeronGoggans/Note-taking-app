@@ -17,25 +17,17 @@
             "subfolders": []
         },
         {
-            "id": "f-98",
-            "name": "Exam notes",
+            "id": "f-99",
+            "name": "School",
             "color": "#a9d7ff",
             "notes": [
                 {
-                    "id": "n-442",
-                    "title": "psw",
-                    "content": "storage/notes/note-n-442.html",
+                    "id": "n-458",
+                    "title": "untitled",
+                    "content": "storage/notes/note-n-458.html",
                     "bookmark": false,
-                    "last_edit": "19/03/2024 19:12",
-                    "creation": "14/03/2024"
-                },
-                {
-                    "id": "n-443",
-                    "title": "Exam CISC summary",
-                    "content": "storage/notes/note-n-443.html",
-                    "bookmark": false,
-                    "last_edit": "18/03/2024 19:41",
-                    "creation": "14/03/2024"
+                    "last_edit": "20/03/2024 17:10",
+                    "creation": "20/03/2024"
                 }
             ],
             "subfolders": []

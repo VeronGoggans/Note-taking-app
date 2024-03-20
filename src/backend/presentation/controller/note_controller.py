@@ -75,11 +75,3 @@ class NoteRouter:
         if response != Status.NOT_FOUND:
             return {'Status_code': Status.OK, "Note": response}
         return {'Status_code': Status.NOT_FOUND}
-    
-
-    # def delete_folder_contents(self, delete_request: DeleteNotesRequest):
-    #     response = self.note_service.delete_folder_content(delete_request.folderId)
-
-    #     if response != Status.NOT_FOUND:
-    #         return {'Status_code': Status.OK, "Note": response}
-    #     return {'Status_code': Status.NOT_FOUND}

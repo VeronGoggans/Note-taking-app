@@ -70,11 +70,14 @@ class NoteManager:
                 if note.get("id") == note_id:
                     note_object = self.__create_note_object(note)
                     note_object.set_content_text()
-                    return [note_object, folder['id']]
-        
-                note_in_subfolder = self.get_note_by_id(folder["subfolders"], note_id)
-                if note_in_subfolder:
-                    return note_in_subfolder
+                    return note_object, folder['id']
+            
+            # If note is not found in current folder, search in subfolders recursively
+            note_object = self.get_note_by_id(folder["subfolders"], note_id)
+            if note_object:
+                return note_object
+
+        # Note not found in any folder or subfolder
         return None
     
 
@@ -137,16 +140,10 @@ class NoteManager:
                     self.__delete_note_html_file(note)
                     return note
         
-                note_in_subfolder = self.delete_note(folder['subfolders'], note_id)
-                if note_in_subfolder:
-                    return note_in_subfolder
-        return None
-    
-
-    # def delete_notes(self, folder): 
-    #     for note in folder['notes']:
-    #         self.__delete_note_html_file(note)
-    #     self.delete_notes(folder['subfolders'])        
+            note_in_subfolder = self.delete_note(folder['subfolders'], note_id)
+            if note_in_subfolder:
+                return note_in_subfolder
+        return None    
     
 
     def __find_note(self, folders, note_id: str):
@@ -167,9 +164,9 @@ class NoteManager:
                 if note.get("id") == note_id:
                     return note
         
-                note_in_subfolder = self.__find_note(folder["subfolders"], note_id)
-                if note_in_subfolder:
-                    return note_in_subfolder
+            note_in_subfolder = self.__find_note(folder["subfolders"], note_id)
+            if note_in_subfolder:
+                return note_in_subfolder
         return None
     
 
@@ -233,4 +230,4 @@ class NoteManager:
         current_note['title'] = updated_note.title
         current_note['bookmark'] = updated_note.bookmark
         current_note['last_edit'] = DateService.datetime()
-        return [current_note, note]
+        return note
