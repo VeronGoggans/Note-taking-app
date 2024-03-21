@@ -125,6 +125,10 @@ export class TextFormatter {
         const NO_COOKIE_IFRAME = iframeArray.join('');
 
         IFRAME_CONTAINER.innerHTML = NO_COOKIE_IFRAME;
+        const iframeElement = IFRAME_CONTAINER.querySelector('iframe');
+        if (iframeElement) {
+          iframeElement.title = '';
+        }
         RANGE.insertNode(IFRAME_CONTAINER);
       }
     })

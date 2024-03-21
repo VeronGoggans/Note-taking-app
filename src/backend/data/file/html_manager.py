@@ -22,9 +22,13 @@ class HTMLManager:
         file_name = f'note-{note_id}.html'
         file_path = f'{notes_folder}/{file_name}'
 
-        with open(f'{BASE_URL}/{file_path}', 'w') as file:
-            file.write(html_content)
-        return file_path
+        try:
+            with open(f'{BASE_URL}/{file_path}', 'w') as file:
+                file.write(html_content)
+                return file_path
+        except UnicodeEncodeError as e:
+            print(f"UnicodeEncodeError occurred: {e}")
+            return None
     
     
     @staticmethod
@@ -57,8 +61,11 @@ class HTMLManager:
         Returns:
             None: This method does not return a value.
         """
-        with open(file_path, 'w') as file:
-            file.write(updated_html_content)
+        try:
+            with open(file_path, 'w') as file:
+                file.write(updated_html_content)
+        except UnicodeEncodeError as e:
+            pass
 
 
     
