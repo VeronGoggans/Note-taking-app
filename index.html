@@ -111,15 +111,15 @@
               </div>
             </div>
               <div class="btn-container">
-                <button onclick="executeCommand('bold')"><i class="fa-solid fa-b"></i></button>
-                <button onclick="executeCommand('italic')"><i class="fa-solid fa-italic"></i></button>
-                <button onclick="executeCommand('underline')"><i class="fa-solid fa-underline"></i></button>
-                <button onclick="executeCommand('strikeThrough')"><i class="fa-solid fa-strikethrough"></i></button>
+                <button onclick="executeCommand('bold')" id="boldBtn"><i class="fa-solid fa-b"></i></button>
+                <button onclick="executeCommand('italic')" id="italicBtn"><i class="fa-solid fa-italic"></i></button>
+                <button onclick="executeCommand('underline')" id="underlineBtn"><i class="fa-solid fa-underline"></i></button>
+                <button onclick="executeCommand('strikeThrough')" id="strikeBtn"><i class="fa-solid fa-strikethrough"></i></button>
                 <button class="link-btn"><i class="fa-solid fa-link"></i></button>            
     
                 <button onclick="executeCommand('justifyLeft')"><i class="fa-solid fa-align-left"></i></button>
-                <button onclick="executeCommand('justifyCenter')"><i class="fa-solid fa-align-center"></i></button>
-                <button onclick="executeCommand('justifyRight')"><i class="fa-solid fa-align-right"></i></button>
+                <button onclick="executeCommand('justifyCenter')" id="centerAlignBtn"><i class="fa-solid fa-align-center"></i></button>
+                <button onclick="executeCommand('justifyRight')" id="rightAlignBtn"><i class="fa-solid fa-align-right"></i></button>
     
                 <button onclick="executeCommand('insertUnorderedList')"><i class="fa-solid fa-list-ul"></i></button>
                 <button onclick="executeCommand('insertOrderedList')"><i class="fa-solid fa-list-ol"></i></button>
@@ -217,8 +217,30 @@
           if (document.queryCommandSupported(command)) {
             document.execCommand('styleWithCSS', false, true);
             document.execCommand(command, false, value);
+            updateToolbarState();
           }
         }
+
+        function updateToolbarState() {
+          console.log('active');
+            const italicButton = document.getElementById('italicBtn');
+            const boldButton = document.getElementById('boldBtn');
+            const underlineButton = document.getElementById('underlineBtn');
+            const strikeButton = document.getElementById('strikeBtn');
+            const centerAlignButton = document.getElementById('centerAlignBtn');
+            const rightAlignButton = document.getElementById('rightAlignBtn');
+
+            italicButton.classList.toggle('active-toolbar-btn', document.queryCommandState('italic'));
+            boldButton.classList.toggle('active-toolbar-btn', document.queryCommandState('bold'));
+            underlineButton.classList.toggle('active-toolbar-btn', document.queryCommandState('underline'));
+            strikeButton.classList.toggle('active-toolbar-btn', document.queryCommandState('strikeThrough'));
+            centerAlignButton.classList.toggle('active-toolbar-btn', document.queryCommandState('justifyCenter'));
+            rightAlignButton.classList.toggle('active-toolbar-btn', document.queryCommandState('justifyRight'));
+        }
+
+        // Update toolbar state on editor click or keyup
+        document.querySelector('.editor-paper').addEventListener('click', updateToolbarState);
+        document.querySelector('.editor-paper').addEventListener('keyup', updateToolbarState);
       </script>
     <script type="module" src="/src/frontend/js/view/sideBarView.js"></script>
     <script type="module" src="/src/frontend/js/view/textEditorView.js"></script>

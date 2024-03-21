@@ -31,6 +31,22 @@
                 }
             ],
             "subfolders": []
+        },
+        {
+            "id": "f-100",
+            "name": "test",
+            "color": "#ffffff",
+            "notes": [
+                {
+                    "id": "n-479",
+                    "title": "untitled",
+                    "content": "storage/notes/note-n-479.html",
+                    "bookmark": false,
+                    "last_edit": "21/03/2024 14:39",
+                    "creation": "21/03/2024"
+                }
+            ],
+            "subfolders": []
         }
     ]
 }

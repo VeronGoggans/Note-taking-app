@@ -15,6 +15,11 @@
     font-family: Roboto;
 }
 
+.active-toolbar-btn {
+    color: rgba(92, 125, 255) !important;
+    background-color: var(--hover-toolbar-btns) !important;
+}
+
 .toolbar-bottom .btn-container button:hover {
     color: rgba(92, 125, 255);
     background-color: var(--hover-toolbar-btns);
