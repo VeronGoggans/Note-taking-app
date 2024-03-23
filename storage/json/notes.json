@@ -26,7 +26,7 @@
                     "title": "CICQ exam summary",
                     "content": "storage/notes/note-n-466.html",
                     "bookmark": false,
-                    "last_edit": "21/03/2024 08:04",
+                    "last_edit": "23/03/2024 17:10",
                     "creation": "20/03/2024"
                 }
             ],
@@ -35,15 +35,31 @@
         {
             "id": "f-100",
             "name": "test",
-            "color": "#ffffff",
+            "color": "#9ffb95",
             "notes": [
                 {
                     "id": "n-479",
-                    "title": "untitled",
+                    "title": "active button class",
                     "content": "storage/notes/note-n-479.html",
                     "bookmark": false,
-                    "last_edit": "21/03/2024 14:39",
+                    "last_edit": "23/03/2024 14:28",
                     "creation": "21/03/2024"
+                },
+                {
+                    "id": "n-482",
+                    "title": "Bug report",
+                    "content": "storage/notes/note-n-482.html",
+                    "bookmark": true,
+                    "last_edit": "23/03/2024 14:29",
+                    "creation": "22/03/2024"
+                },
+                {
+                    "id": "n-483",
+                    "title": "Features",
+                    "content": "storage/notes/note-n-483.html",
+                    "bookmark": false,
+                    "last_edit": "23/03/2024 14:30",
+                    "creation": "22/03/2024"
                 }
             ],
             "subfolders": []

@@ -221,4 +221,8 @@ export class ApplicationView {
     async updateTheme() {
         await this.applicationController.setTheme(false)
     }
+
+    async updateEditorPageStyle() {
+        await this.applicationController.updateEditorPageStyle()
+    }
 }

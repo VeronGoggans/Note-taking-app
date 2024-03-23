@@ -15,6 +15,7 @@ export class TextEditorView {
     this.deleteNoteSpan = document.querySelector('.delete-note-span');
     this.saveNoteSpan = document.querySelector('.save-note-span');
     this.newNoteSpan = document.querySelector('.new-note-span');
+    this.editorPageStyleSpan = document.querySelector('.editor-page-style-span');
 
     // toolbar bottom
     this.headingButton = document.querySelector('.heading-button');
@@ -51,6 +52,7 @@ export class TextEditorView {
     this.deleteNoteSpan.addEventListener('click', () => {this.dialog.renderNoteDeleteContainer(this.#getNoteData()[0], this.noteNameInput.value, this)});
     this.saveNoteSpan.addEventListener('click', () => {this.save(false, false)});
     this.newNoteSpan.addEventListener('click', () => {this.new()});
+    this.editorPageStyleSpan.addEventListener('click', () => {this.updatePageStyle()});
 
   
     this.exitButton.addEventListener('click', () => {this.closeEditor()});
@@ -177,21 +179,6 @@ export class TextEditorView {
   }
 
   /**
-   * This method deletes a specific note from withing 
-   * the text editor
-   * 
-   * This method is called when the confirm button 
-   * inside the noteDeleteContainer is clicked.
-   * 
-   * @param {String} noteId 
-   */
-  async handleConfirmButtonClick(noteId) {
-    await this.textEditorController.clearStoredNoteData();
-    await this.textEditorController.handleConfirmButtonClick(noteId);
-    this.clear();
-  }
-
-  /**
    * @returns a list of note data stored in the text editor model
    */
   #getNoteData() {
@@ -226,4 +213,30 @@ export class TextEditorView {
     this.dialog.hide();
     this.save(true, false);
   }
+
+  /**
+   * This method deletes a specific note from withing 
+   * the text editor
+   * 
+   * This method is called when the confirm button 
+   * inside the noteDeleteContainer is clicked.
+   * 
+   * @param {String} noteId 
+   */
+  async handleConfirmButtonClick(noteId) {
+    await this.textEditorController.clearStoredNoteData();
+    await this.textEditorController.handleConfirmButtonClick(noteId);
+    this.clear();
+  }
+
+  async updatePageStyle() {
+    await this.textEditorController.changeEditorPageStyle(false);
+    this.toggleEditorStyleSpanName();
+  }
+
+  toggleEditorStyleSpanName() {
+    let currentStyle = this.editorPageStyleSpan.innerHTML;
+    this.editorPageStyleSpan.innerHTML = currentStyle === '<i class="fa-regular fa-file"></i>Original' ? '<i class="fa-regular fa-file"></i>Simplist' : '<i class="fa-regular fa-file"></i>Original';
+  }
+
 }

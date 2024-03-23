@@ -1,9 +1,11 @@
-export class ThemeView {
-    constructor(themeController) {
-        this.themeController = themeController
+export class SettingView {
+    constructor(settingController) {
+        this.settingController = settingController
         this.themeText = document.querySelector('.current-theme-text');
         this.themeIcon = document.querySelector('#current-theme-icon');
         this.sidebar = document.querySelector('.sidebar');
+        this.editor = document.querySelector('.editor');
+        this.editorPage = document.querySelector('.editor-paper');
         this.lightIconClass = 'fa-regular fa-sun';
         this.darkIconClass = 'fa-solid fa-moon';
         this.currentTheme = '';
@@ -33,6 +35,26 @@ export class ThemeView {
         }
     }
 
+    async setEditorPageStyle(init = false, style) {
+        if (init) {
+            if (style === 'simplist') {
+                this.editor.classList.add('simplist-e');
+                this.editorPage.classList.add('simplist-ep');
+            }
+        } else {
+            if (style === 'original') {
+                this.editor.classList.add('simplist-e');
+                this.editorPage.classList.add('simplist-ep');
+                await this.settingController.updateEditorPageStyle('simplist');
+            }
+            if (style === 'simplist') {
+                this.editor.classList.remove('simplist-e');
+                this.editorPage.classList.remove('simplist-ep');
+                await this.settingController.updateEditorPageStyle('original');
+            }
+        }
+    }
+
     async #lightMode() {
         document.body.classList.remove('dark')
         document.body.classList.add('light');
@@ -40,7 +62,7 @@ export class ThemeView {
         if (this.sidebar.dataset.width !== 'small') {
             this.themeText.textContent = 'Light';
         }
-        await this.themeController.updateTheme('light')
+        await this.settingController.updateTheme('light')
     }
 
     async #twilight() {
@@ -49,7 +71,7 @@ export class ThemeView {
         if (this.sidebar.dataset.width !== 'small') {
             this.themeText.textContent = 'Twilight';
         }
-        await this.themeController.updateTheme('twilight')
+        await this.settingController.updateTheme('twilight')
     }
 
     async #darkmode() {
@@ -59,6 +81,6 @@ export class ThemeView {
         if (this.sidebar.dataset.width !== 'small') {
             this.themeText.textContent = 'Dark';
         }
-        await this.themeController.updateTheme('dark')
+        await this.settingController.updateTheme('dark')
     }
 }

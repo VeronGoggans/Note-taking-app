@@ -13,18 +13,3 @@ export function formatName(name) {
         return name.slice(0, 22) + '...';
     }
 }
-
-/**
- * This method will take in a embed link and
- * replace the original title with an empty string
- * 
- * This is because surten title's on youtube are written 
- * with special encoding methods that python (backend) does not support 
- * out of the box. 
- * 
- * @param {String} link 
- */
-export function formatEmbedLink(link) {
-    let linkParts = link.replace();
-    let formattedLink = null;
-}

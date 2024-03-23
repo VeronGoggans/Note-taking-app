@@ -48,8 +48,6 @@ export class TextEditorController {
      * 4. bookmark
      * 
      * And clears the stored data from the model.
-     * 
-     * @returns This method returns a list of stored note data.
      */
     storeNoteData(noteId, creation, lastEdit, bookmark) {
         this.textEditorModel.storeNoteData(noteId, creation, lastEdit, bookmark);
@@ -80,8 +78,9 @@ export class TextEditorController {
         if (NOTE_ID !== null) {
             this.applicationController.changeNote(NOTE_ID, name, content, bookmark)
             this.clearStoredNoteData();
+        } else {
+            this.applicationController.addNote(content, name);
         }
-        else this.applicationController.addNote(content, name);
     }
 
     /**
@@ -93,7 +92,11 @@ export class TextEditorController {
      * 
      * @param {String} noteId 
      */
-    handleConfirmButtonClick(noteId) {
-        this.applicationController.deleteNote(noteId);
+    async handleConfirmButtonClick(noteId) {
+        await this.applicationController.deleteNote(noteId);
+    }
+
+    async changeEditorPageStyle(init) {
+        await this.applicationController.setEditorPageStyle(init);
     }
 }

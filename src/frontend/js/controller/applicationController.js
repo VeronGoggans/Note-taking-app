@@ -4,7 +4,7 @@ import { SubfolderController } from "./subfolderController.js";
 import { NoteController } from "./noteController.js";
 import { ApplicationView } from "../view/applicationView.js";
 import { TextEditorController } from "./textEditorController.js"
-import { ThemeController } from "./themeController.js";
+import { SettingController } from "./settingController.js";
 import { Dialog } from "../util/dialog.js";
 import { NotificationHandler } from "../handlers/userFeedback/notificationHandler.js";
  
@@ -18,7 +18,7 @@ export class ApplicationController {
         this.subfolderController = new SubfolderController(this, this.dialog, this.notificationHandler);
         this.noteController = new NoteController(this, this.dialog, this.notificationHandler);
         this.textEditorController = new TextEditorController(this, this.dialog);
-        this.themeController = new ThemeController();
+        this.settingController = new SettingController();
     }
 
 
@@ -29,6 +29,7 @@ export class ApplicationController {
      */
     async start() {
         await this.setTheme(true);
+        await this.setEditorPageStyle(true);
         await this.folderController.getFolders();
         const RESPONSE = await this.applicationModel.getSearchOptions('/noteSearchObjects');
         this.applicationView.giveSearchOptions(RESPONSE.Notes);
@@ -236,9 +237,12 @@ export class ApplicationController {
     }
     
     async setTheme(init) {
-        const THEME = await this.themeController.getTheme();
-        this.themeController.setTheme(init, THEME);
-        console.log(THEME);
+        const THEME = await this.settingController.getTheme();
+        this.settingController.setTheme(init, THEME);
+    }
 
+    async setEditorPageStyle(init) {
+        const STYLE = await this.settingController.getEditorPageStyle();
+        this.settingController.setEditorPageStyle(init, STYLE);
     }
 }

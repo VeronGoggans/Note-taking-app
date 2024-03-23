@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="src/frontend/css/textEditor/toolbarBottom.css">
     <link rel="stylesheet" href="src/frontend/css/textEditor/toolbarTop.css">
     <link rel="stylesheet" href="src/frontend/css/textEditor/colorPalletes.css">
+    <link rel="stylesheet" href="src/frontend/css/textEditor/textEditorStyle.css">
     <!-- CDN for the icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Note</title>
@@ -86,9 +87,10 @@
             <div class="options">
               <button class="new-note-span"><i class="fa-solid fa-plus"></i>New</button>
               <button class="save-note-span"><i class="fa-regular fa-floppy-disk"></i>Save</button>
-              <button class="delete-note-span"><i class="fa-solid fa-trash"></i>Delete</button>
-              <button class="background-note-span"><i class="fa-solid fa-swatchbook"></i>Background</button>
+              <button class="delete-note-span"><i class="fa-regular fa-trash-can"></i>Delete</button>
+              <button class="background-note-span"><i class="fa-solid fa-fill"></i>Background</button>
               <button class="note-details-span"><i class="fa-solid fa-info"></i>Details</button>
+              <button class="editor-page-style-span"><i class="fa-regular fa-file"></i>Original</button>
             </div>
           </div>
           <input type="text" class="note-name-input" placeholder="untitled" spellcheck="false">
@@ -124,7 +126,6 @@
                 <button onclick="executeCommand('insertUnorderedList')"><i class="fa-solid fa-list-ul"></i></button>
                 <button onclick="executeCommand('insertOrderedList')"><i class="fa-solid fa-list-ol"></i></button>
                 <button class="paragraph-btn"><i class="fa-solid fa-p"></i></i></button>
-                <!-- <button class="image-btn"><i class="fa-regular fa-image"></i></button> -->
                 <button class="hr-btn"><i class="fa-solid fa-scissors"></i></button>
                 <button class="video-btn"><i class="fa-solid fa-clapperboard"></i></button>
               </div>
