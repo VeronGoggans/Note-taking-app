@@ -134,10 +134,10 @@
     --card-shadow: #e0e2ec;
 }
 
-.twilight {
+.cosmic {
     --background: #ffffff;
     --notification: #ffffff;
-    --editor: #131623;
+    --editor: #ffffff;
     --editor-background: #fafbff;
     --editor-border: #ced1e3;
     --list-view: #ffffff;
@@ -152,10 +152,10 @@
     --icon: #747aa0;
     --icon-hover: #444863;
     --important: #444863;
-    --toolbar: #1d2239;
-    --toolbar-btn-text: #ffffff;
+    --toolbar: #eff1f7;
+    --toolbar-btn-text: #4f578f;
     --editor-text: #383838;
-    --editor-text-top: #ffffff;
+    --editor-text-top: #383838;
     --border-card: #dee1ef;
     --border-sidebar-right: #dee1ef;
     --border-sidebar-top: #131623;
@@ -166,8 +166,8 @@
     --hover-searchbar-options: #f4f5f7;
     --hover-text: #444863;
     --hover-text-list-view: #444863;
-    --hover-toolbar-btns: #1d2239;
-    --hover-sidebar: #2d314d;
+    --hover-toolbar-btns: rgba(185, 198, 250, 0.5);
+    --hover-sidebar: rgba(92, 125, 255, .3);
     --bookmark: #a9d7ff;
     --no-content: #aaabb4;
     --placeholder: #9093a2;

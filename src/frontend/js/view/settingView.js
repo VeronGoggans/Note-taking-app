@@ -26,11 +26,11 @@ export class SettingView {
     async setTheme(init = false, theme) {
         if (init) {
             if (theme === 'light') await this.#lightMode();
-            if (theme == 'twilight') await this.#twilight();
+            if (theme == 'cosmic') await this.#cosmic();
             if (theme == 'dark') await this.#darkmode();
         } else {
-            if (theme === 'light') await this.#twilight();
-            if (theme === 'twilight') await this.#darkmode();
+            if (theme === 'light') await this.#cosmic();
+            if (theme === 'cosmic') await this.#darkmode();
             if (theme === 'dark') await this.#lightMode();
         }
     }
@@ -65,17 +65,17 @@ export class SettingView {
         await this.settingController.updateTheme('light')
     }
 
-    async #twilight() {
+    async #cosmic() {
         document.body.classList.remove('light')
-        document.body.classList.add('twilight');
+        document.body.classList.add('cosmic');
         if (this.sidebar.dataset.width !== 'small') {
-            this.themeText.textContent = 'Twilight';
+            this.themeText.textContent = 'Cosmic';
         }
-        await this.settingController.updateTheme('twilight')
+        await this.settingController.updateTheme('cosmic')
     }
 
     async #darkmode() {
-        document.body.classList.remove('twilight')
+        document.body.classList.remove('cosmic')
         document.body.classList.add('dark');
         this.themeIcon.setAttribute('class', this.darkIconClass)
         if (this.sidebar.dataset.width !== 'small') {
