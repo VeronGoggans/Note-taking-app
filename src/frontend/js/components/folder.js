@@ -86,7 +86,8 @@ export class Folder {
         }
         const CARD_CLASS = CARD_CLASSES[color];
         const CURRENT_CLASSES = Array.from(this.HOST.classList);
-        if (this.HOST.classList.length > 2) {
+        console.log(this.HOST.classList.length);
+        if (this.HOST.classList.length > 3) {
             for (let i = 0; i < CURRENT_CLASSES.length; i++) {
                 if (CURRENT_CLASSES[i].includes('card-style')) {
                     this.HOST.classList.remove(CURRENT_CLASSES[i]);
