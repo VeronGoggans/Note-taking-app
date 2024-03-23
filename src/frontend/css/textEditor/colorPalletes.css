@@ -27,7 +27,7 @@
     right: 10px;
     border-radius: 10px;
     border: 1px solid var(--border-card);
-    background-color: var(--background);
+    background-color: var(--card);
     box-shadow: 0 5px 20px var(--shadow);
 }
 
