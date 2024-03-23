@@ -101,6 +101,18 @@ export class TextEditorView {
     dropdownOptions.style.visibility = dropdownOptions.style.visibility === 'visible' ? 'hidden' : 'visible';
   }
 
+  toggleEditorStyleSpanName() {
+    let currentStyle = this.editorPageStyleSpan.innerHTML;
+    this.editorPageStyleSpan.innerHTML = currentStyle === '<i class="fa-regular fa-file"></i>Original' ? '<i class="fa-regular fa-file"></i>Simplist' : '<i class="fa-regular fa-file"></i>Original';
+  }
+
+  closeDropdowns() {
+    this.backgroundPalette.style.visibility = 'hidden';
+    this.foregroundPalette.style.visibility = 'hidden';
+    this.headingDropdownOptions.style.visibility = 'hidden';
+    this.noteDropdownOptions.style.visibility = 'hidden';
+  }
+
   /**
    * This method shows the text editor
    */
@@ -132,6 +144,7 @@ export class TextEditorView {
    */
   closeAndClear() {
     this.close();
+    this.closeDropdowns();
     this.clear();
     this.textEditorController.clearStoredNoteData();
   }
@@ -194,12 +207,14 @@ export class TextEditorView {
       // If no changes have been made, exit the editor
       if (this.noteContent === this.page.innerHTML) {
         this.closeAndClear();
+        this.closeDropdowns();
       } else {
         // If changes have been made notify the user.
         this.dialog.renderForgotSaveContainer(this);
       }
     } else {
       this.closeAndClear();
+      this.closeDropdowns();
     }
   }
 
@@ -233,10 +248,4 @@ export class TextEditorView {
     await this.textEditorController.changeEditorPageStyle(false);
     this.toggleEditorStyleSpanName();
   }
-
-  toggleEditorStyleSpanName() {
-    let currentStyle = this.editorPageStyleSpan.innerHTML;
-    this.editorPageStyleSpan.innerHTML = currentStyle === '<i class="fa-regular fa-file"></i>Original' ? '<i class="fa-regular fa-file"></i>Simplist' : '<i class="fa-regular fa-file"></i>Original';
-  }
-
 }
