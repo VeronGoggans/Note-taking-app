@@ -3,12 +3,12 @@
         {
             "id": "f-49",
             "name": "Github",
-            "color": "#dfc1ff",
+            "color": "#ffffff",
             "notes": [
                 {
                     "id": "n-216",
                     "title": "Github cheatsheet",
-                    "content": "storage/notes/note-n-216.html",
+                    "content": "storage/notes/note-n-216.txt",
                     "bookmark": false,
                     "last_edit": "17/03/2024 01:11",
                     "creation": "09/01/2024"
@@ -18,15 +18,15 @@
         },
         {
             "id": "f-99",
-            "name": "School",
+            "name": "School \ud83d\udcd6\u270f\ufe0f",
             "color": "#a9d7ff",
             "notes": [
                 {
                     "id": "n-466",
                     "title": "CICQ exam summary",
-                    "content": "storage/notes/note-n-466.html",
+                    "content": "storage/notes/note-n-466.txt",
                     "bookmark": false,
-                    "last_edit": "23/03/2024 17:10",
+                    "last_edit": "27/03/2024 00:43",
                     "creation": "20/03/2024"
                 }
             ],
@@ -34,32 +34,56 @@
         },
         {
             "id": "f-100",
-            "name": "test",
+            "name": "Test folder\ud83d\udc68\u200d\ud83c\udf93",
             "color": "#9ffb95",
             "notes": [
                 {
                     "id": "n-479",
                     "title": "active button class",
-                    "content": "storage/notes/note-n-479.html",
+                    "content": "storage/notes/note-n-479.txt",
                     "bookmark": false,
-                    "last_edit": "23/03/2024 19:06",
+                    "last_edit": "25/03/2024 16:37",
                     "creation": "21/03/2024"
                 },
                 {
                     "id": "n-482",
                     "title": "Bug report",
-                    "content": "storage/notes/note-n-482.html",
-                    "bookmark": true,
-                    "last_edit": "23/03/2024 19:02",
+                    "content": "storage/notes/note-n-482.txt",
+                    "bookmark": false,
+                    "last_edit": "27/03/2024 00:42",
                     "creation": "22/03/2024"
                 },
                 {
                     "id": "n-483",
                     "title": "Features",
-                    "content": "storage/notes/note-n-483.html",
+                    "content": "storage/notes/note-n-483.txt",
                     "bookmark": false,
-                    "last_edit": "23/03/2024 19:53",
+                    "last_edit": "25/03/2024 17:08",
                     "creation": "22/03/2024"
+                },
+                {
+                    "id": "n-493",
+                    "title": "UTF-8 test \ud83e\udd8d",
+                    "content": "storage/notes/note-n-493.txt",
+                    "bookmark": false,
+                    "last_edit": "27/03/2024 00:58",
+                    "creation": "27/03/2024"
+                }
+            ],
+            "subfolders": []
+        },
+        {
+            "id": "f-101",
+            "name": "Scribles \ud83d\ude0e",
+            "color": "#ffffff",
+            "notes": [
+                {
+                    "id": "n-486",
+                    "title": "untitled",
+                    "content": "storage/notes/note-n-486.txt",
+                    "bookmark": false,
+                    "last_edit": "25/03/2024 16:33",
+                    "creation": "25/03/2024"
                 }
             ],
             "subfolders": []

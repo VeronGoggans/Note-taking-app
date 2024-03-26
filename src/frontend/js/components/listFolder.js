@@ -7,7 +7,7 @@ export class ListFolder {
         this.view = view;
 
         // Creating HTML elements.
-        this.HOST = CNode.create('div', {'class': 'list-view-folder', 'id': this.id});
+        this.HOST = CNode.create('div', {'class': 'list-view-folder', 'id': this.id, 'draggable': 'true'});
         this.SPAN = CNode.create('span', {'textContent': this.name});
 
         this.attachEventListeners();

@@ -9,7 +9,7 @@ export class ListNote {
         this.view = view;
 
         // Creating HTML elements.
-        this.HOST = CNode.create('div', {'class': 'list-view-note', 'id': this.id});
+        this.HOST = CNode.create('div', {'class': 'list-view-note', 'id': this.id, 'draggable': 'true'});
         this.SPAN = CNode.create('span', {'textContent': formatName(this.name)});
 
         this.attachEventListeners();

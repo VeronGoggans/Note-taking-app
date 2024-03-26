@@ -1,3 +1,4 @@
+import socket
 import threading
 import uvicorn
 import webview
@@ -25,9 +26,16 @@ app.include_router(theme_router.route)
 # Setting up a FRONT-END page for the API
 app.mount("/", StaticFiles(directory=".", html=True), name="static")
 
+# Find an available port dynamically
+def find_available_port():
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        s.bind(('127.0.0.1', 0))  # Bind to port 0 to let the OS choose an available port
+        return s.getsockname()[1]  # Get the port number chosen by the OS
+
+port = find_available_port()
 
 def run_server():
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+    uvicorn.run(app, host="127.0.0.1", port=port)
 
 # Start FastAPI server in a separate thread
 server_thread = threading.Thread(target=run_server)
@@ -37,7 +45,7 @@ server_thread.start()
 # You can implement more sophisticated waiting logic here if needed
 while True:
     try:
-        response = requests.get("http://127.0.0.1:8000/docs")
+        response = requests.get(f"http://127.0.0.1:{port}/docs")
         if response.status_code == 200:
             break
     except Exception:
@@ -46,11 +54,11 @@ while True:
 # Open the webview window
 webview.create_window(
     "Note", 
-    "http://127.0.0.1:8000", 
+    f"http://127.0.0.1:{port}", 
     width=1100, 
     height=700,
     min_size=(650, 400),
-    )
+)
 
 # Run the pywebview event loop
 webview.start()

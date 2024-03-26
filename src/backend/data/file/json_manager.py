@@ -38,9 +38,14 @@ class JsonManager:
             None: This method does not return a value.
         """
         self.cache.update(file_path, updated_data)
+        backup = self.load(file_path)
 
-        with open(file_path, 'w') as file:
-            json.dump(updated_data, file, indent=4)
+        try:
+            with open(file_path, 'w') as file:
+                json.dump(updated_data, file, indent=4)
+        except Exception as e:
+            with open(file_path, 'w') as file:
+                json.dump(backup, file, indent=4)
 
 
     def generateID(self, file_path, entity_name):
