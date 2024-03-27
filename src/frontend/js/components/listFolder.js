@@ -22,7 +22,7 @@ export class ListFolder {
 
     attachEventListeners() {
         //Functionality
-        this.HOST.addEventListener('click', () => {this.view.handleFolderCardClick(this.id)});
+        this.HOST.addEventListener('click', () => {this.view.handleFolderCardClick(this.id, this.SPAN.textContent)});
     }
 }
 
