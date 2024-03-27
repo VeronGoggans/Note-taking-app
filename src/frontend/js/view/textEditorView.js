@@ -21,6 +21,10 @@ export class TextEditorView {
     this.headingButton = document.querySelector('.heading-button');
     this.headingDropdown = document.querySelector('.heading-dropdown');
     this.headingDropdownOptions = this.headingDropdown.querySelector('.options');
+
+    this.fontButton = document.querySelector('.font-button');
+    this.fontDropdown = document.querySelector('.font-dropdown');
+    this.fontDropdownOptions = document.querySelector('.font-options');
     
     this.linkButton = document.querySelector('.link-btn');
     this.paragrapghButton = document.querySelector('.paragraph-btn');
@@ -46,18 +50,16 @@ export class TextEditorView {
   attachEventListeners() {
     this.noteDropdown.addEventListener('click', () => {this.toggleVisibleDropdown(this.noteDropdownOptions)});
     this.headingDropdown.addEventListener('click', () => {this.toggleVisibleDropdown(this.headingDropdownOptions)});
-
+    this.fontDropdown.addEventListener('click', () => {this.toggleVisibleDropdown(this.fontDropdownOptions)});
 
     this.noteDetailsSpan.addEventListener('click', () => {this.dialog.renderNoteDetails(this.#getNoteData())});
     this.deleteNoteSpan.addEventListener('click', () => {this.dialog.renderNoteDeleteContainer(this.#getNoteData()[0], this.noteNameInput.value, this)});
     this.saveNoteSpan.addEventListener('click', () => {this.save(false, false)});
     this.newNoteSpan.addEventListener('click', () => {this.new()});
     this.editorPageStyleSpan.addEventListener('click', () => {this.updatePageStyle()});
-
   
     this.exitButton.addEventListener('click', () => {this.closeEditor()});
     this.saveButton.addEventListener('click', () => {this.save(true, false)});
-
 
     this.linkButton.addEventListener('click', () => {TextFormatter.addLink()});
     this.paragrapghButton.addEventListener('click', () => {TextFormatter.addParagraph()});
@@ -110,6 +112,7 @@ export class TextEditorView {
     this.backgroundPalette.style.visibility = 'hidden';
     this.foregroundPalette.style.visibility = 'hidden';
     this.headingDropdownOptions.style.visibility = 'hidden';
+    this.fontDropdownOptions.style.visibility = 'hidden';
     this.noteDropdownOptions.style.visibility = 'hidden';
   }
 

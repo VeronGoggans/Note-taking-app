@@ -25,12 +25,14 @@
     background-color: var(--hover-toolbar-btns);
 }
 
-.heading-dropdown {
+.heading-dropdown,
+.font-dropdown {
     position: relative;
     overflow: visible;
 }
 
-.heading-dropdown .heading-button {
+.heading-dropdown .heading-button,
+.font-dropdown .font-button {
     font-family: Roboto;
     cursor: pointer;
     outline: none;
@@ -45,12 +47,14 @@
     transition: .2s;
 }
 
-.heading-dropdown .heading-button:hover {
+.heading-dropdown .heading-button:hover,
+.font-dropdown .font-button:hover {
     background-color: var(--hover-toolbar-btns);
     color: rgba(92, 125, 255);
 }
 
-.heading-dropdown .options {
+.heading-dropdown .options,
+.font-dropdown .font-options {
     visibility: hidden;
     position: absolute;
     background-color: var(--card);
@@ -79,7 +83,22 @@
     text-align: start;
 }
 
-.heading-dropdown .options button:hover {
+.font-dropdown .font-options button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    margin: 5px 0;
+    padding: 5px 7px;
+    border-radius: 15px;
+    color: var(--editor-text);
+    width: 100%;
+    height: auto;
+    text-align: start;
+}
+    
+
+.heading-dropdown .options button:hover,
+.font-dropdown .font-options button:hover {
     background-color: var(--hover);
 }
 
@@ -89,6 +108,14 @@
 .heading-dropdown .options .heading-4 {font-size: 16px}
 .heading-dropdown .options .heading-5 {font-size: 13.28px}
 .heading-dropdown .options .heading-6 {font-size: 10.72px}
+
+.font-dropdown .font-options .font-ariel {font-family: Ariel;}
+.font-dropdown .font-options .font-helvetica {font-family: Helvetica;}
+.font-dropdown .font-options .font-verdana {font-family: Verdana;}
+.font-dropdown .font-options .font-comic-sans-mf {font-family: 'Comic Sans MS', cursive;}
+.font-dropdown .font-options .font-lucida-console {font-family: Lucida Console;}
+.font-dropdown .font-options .font-courier-new {font-family: Courier New;}
+.font-dropdown .font-options .font-times-new-roman {font-family: Times New Roman;}
 
 /*Fore ground color picker*/
 

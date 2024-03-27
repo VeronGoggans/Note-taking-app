@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simple Text Editor</title>
+<style>
+    #editor {
+        width: 100%;
+        height: 300px;
+        border: 1px solid #ccc;
+        padding: 10px;
+        font-size: 16px;
+        font-family: Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+    <select id="fontSelector">
+        <option value="Arial">Arial</option>
+        <option value="Helvetica">Helvetica</option>
+        <option value="Times New Roman">Times New Roman</option>
+        <option value="Courier New">Courier New</option>
+        <option value="Verdana">Verdana</option>
+        <option value="Georgia">Georgia</option>
+        <option value="Palatino">Palatino</option>
+        <option value="Garamond">Garamond</option>
+        <option value="Bookman">Bookman</option>
+        <option value="Comic Sans MS">Comic Sans MS</option>
+        <option value="Impact">Impact</option>
+        <option value="Arial Black">Arial Black</option>
+        <option value="Tahoma">Tahoma</option>
+        <option value="Trebuchet MS">Trebuchet MS</option>
+        <option value="Lucida Console">Lucida Console</option>
+        <option value="Lucida Sans Unicode">Lucida Sans Unicode</option>
+    </select>
+    <div id="editor" contenteditable="true"></div>
+
+<script>
+    const fontSelector = document.getElementById('fontSelector');
+    const editor = document.getElementById('editor');
+
+    // Function to execute command for changing font
+    function changeFont() {
+        const selectedFont = fontSelector.value;
+        document.execCommand('fontName', false, selectedFont);
+    }
+
+    // Add event listener to font selector
+    fontSelector.addEventListener('change', changeFont);
+</script>
+</body>
+</html>

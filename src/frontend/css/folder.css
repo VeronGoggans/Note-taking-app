@@ -12,7 +12,6 @@
     opacity: 0;
     transform: translateY(90%);
     transition: opacity .7s ease, transform .4s ease;
-    /* box-shadow: 5px 5px 10px var(--card-shadow); */
 }
 
 .folder-name-box {
