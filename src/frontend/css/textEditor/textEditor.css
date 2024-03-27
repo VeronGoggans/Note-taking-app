@@ -36,11 +36,11 @@
 
 .editor-paper::-webkit-scrollbar {
     background-color: transparent;
-    width: 3px;
+    width: 5px;
 }
 
 .editor-paper::-webkit-scrollbar-thumb {
-    background-color: #cecece;
+    background-color: #e7e9f3;
     border-radius: 3px;
 }
 

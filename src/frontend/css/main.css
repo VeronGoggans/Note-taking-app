@@ -125,7 +125,7 @@ body {
 }
 
 .note-suggestions-list::-webkit-scrollbar-thumb {
-    background-color: rgb(212, 212, 212);
+    background-color: #e7e9f3;
     border-radius: 5px;
 }
 
@@ -171,6 +171,6 @@ body {
 }
 
 .content-view-notification-layer::-webkit-scrollbar-thumb {
-    background-color: #dee1ef;
+    background-color: #e7e9f3;
     border-radius: 10px;
 }

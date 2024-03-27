@@ -12,7 +12,7 @@
 }
 
 .content-list-view::-webkit-scrollbar-thumb {
-    background-color: rgb(212, 212, 212);
+    background-color: #e7e9f3;
     border-radius: 5px;
 }
 

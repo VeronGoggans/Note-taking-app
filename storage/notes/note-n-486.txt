@@ -1,1 +1,1 @@
-<h2>Sidebar color for light mode?<br>#e5e7ed</h2><br>
+<h2>Sidebar color for light mode?<br>#f4f5f9</h2><br>

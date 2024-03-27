@@ -6,7 +6,7 @@
     --editor-border: #ced1e3;
     --list-view: #ffffff; /*f4f5f7*/
     --list-view-icon: #ced2ea;
-    --sidebar: #fafbff; /*f4f5f7*/
+    --sidebar: #f4f5f9; /*fafbff*/ 
     --searchbar: #ffffff;
     --sidebar-text: #4c4c4c; /*4c4c4c*/
     --sidebar-text-hover: #414141; /*414141*/
@@ -23,7 +23,7 @@
     --editor-text-top: #383838;
     --border-card: #dee1ef;
     --border-sidebar-right: #dee1ef; /*d4d4d4*/
-    --border-sidebar-top: #fafbff; /*ffffff*/
+    --border-sidebar-top: #f4f5f9; 
     --border-main-top: #ffffff; /*f4f5f7*/
     --border-search-bar: #ffffff; /*d4d4d4*/
     --hover: rgba(92, 125, 255, .3); 
@@ -98,7 +98,7 @@
     --list-view: #ffffff;
     --list-view-icon: #ced2ea;
     --searchbar: #ffffff;
-    --sidebar: #fafbff;
+    --sidebar: #f4f5f9;
     --sidebar-text: #4c4c4c;
     --sidebar-text-hover: #414141;
     --sidebar-icon: #747aa0;
@@ -113,7 +113,7 @@
     --editor-text-top: #383838;
     --border-card: #dee1ef;
     --border-sidebar-right: #dee1ef;
-    --border-sidebar-top: #fafbff;
+    --border-sidebar-top: #f4f5f9;
     --border-main-top: #ffffff;
     --border-search-bar: #ffffff;
     --hover: rgba(92, 125, 255, .3);
