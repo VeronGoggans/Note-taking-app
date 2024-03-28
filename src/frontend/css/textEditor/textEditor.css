@@ -20,12 +20,12 @@
 .editor-paper {
    position: relative;
    width: 50%;
-   height: calc(100% - 60px);
+   height: calc(100% - 120px);
    min-width: 400px;
-   max-width: 800px;
+   max-width: 650px;
    outline: none;
    cursor: text;
-   padding: 30px 70px;
+   padding: 60px 70px;
    overflow-y: scroll;
    font-family: sans-serif;
    border-left: 1px solid var(--editor-border);
@@ -103,9 +103,9 @@
  }
 
  .editor .paragraph {
-    border-radius: 2px;
-    border-left: 5px solid transparent;
-    background-color: var(--paragraph);
+    border-radius: 10px;
+    border: 1px solid var(--editor-border);
+    background-color: transparent;
     padding: 20px;
     transition: .2s;
  }
@@ -144,8 +144,7 @@
    outline: none;
    border: none;
    border-bottom: 2px solid #ced1e3;
-   border-radius: 0px;
-   border-radius: 15px;
+   border-radius: 10px;
    padding: 5px;
    margin: 10px 0;
    padding-left: 25px;
@@ -160,7 +159,8 @@
    border-color: #5c7dff;
 }
 
-.cancel-embed-video-btn {
+.cancel-embed-video-btn,
+.cancel-link-btn {
    position: absolute;
    top: -10px;
    left: -10px;
@@ -171,6 +171,52 @@
    border-radius: 50%;
    width: 25px;
    height: 25px;
+}
+
+.link-container {
+   display: flex;
+   flex-direction: column;
+   position: relative;
+   background-color: white;
+   border-radius: 10px;
+   border: 1px solid #ced1e3;
+   padding: 15px;
+   width: fit-content;
+}
+
+.original-link-input,
+.custom-link-input {
+   cursor: text;
+   width: 270px;
+   outline: none;
+   border: none;
+   border-bottom: 2px solid #ced1e3;
+   border-radius: 10px;
+   padding: 5px;
+   margin: 10px 0;
+   padding-left: 25px;
+   background-color: #f6f7ff;
+   color: var(--text);
+   font-size: 16px;
+   transition: .3s;
+}
+
+.original-link-input:hover,
+.original-link-input:focus,
+.custom-link-input:hover,
+.custom-link-input:focus {
+   border-color: #5c7dff;
+}
+
+.save-link-btn {
+   background-color: transparent;
+   cursor: pointer;
+   border: 1px solid #ced2ea;
+   color: #444863;
+   border-radius: 20px;
+   height: 30px;
+   width: 90px;
+   font-size: 16px;
 }
 
 .cancel-embed-video-btn:hover {
@@ -193,7 +239,7 @@
     border-radius: 10px;
     cursor: pointer;
     margin: 10px 0;
-    max-width: 700px;
+    max-width: 600px;
  }
 
  .editor h2 {

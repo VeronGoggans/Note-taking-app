@@ -7,18 +7,42 @@ export class TextFormatter {
       // Get the range of the selection
       const RANGE = SELECTION.getRangeAt(0);
 
-      // Create a link element
-      const LINK = document.createElement('a');
+      const CONTAINER = CNode.create('div', {'class': 'link-container'});
+      const CANCEL_BTN = CNode.create('button', {'class': 'cancel-link-btn'});
+      const ICON = CNode.create('i', {'class': 'fa-solid fa-xmark'});
+      const SAVE_BTN = CNode.create('button', {'class': 'save-link-btn', 'textContent': 'Save'});
+      const ORIGINAL_LINK = CNode.create('input', {'class': 'original-link-input', 'type': 'text', 'placeholder': 'https://your-url'});
+      const CUSTOM_LINK = CNode.create('input', {'class': 'custom-link-input', 'type': 'text', 'placeholder': 'Custom text'});
 
-      LINK.addEventListener('click', () => {window.open(RANGE)});
-      
-      // The selected text is equal to the link.
-      LINK.href = RANGE;
+      // Putting the UI together 
+      CANCEL_BTN.appendChild(ICON);
+      CONTAINER.appendChild(CANCEL_BTN);
+      CONTAINER.appendChild(ORIGINAL_LINK);
+      CONTAINER.appendChild(CUSTOM_LINK);
+      CONTAINER.appendChild(SAVE_BTN);
 
-      // Surround the selected text with a link element
-      RANGE.surroundContents(LINK);
+      CANCEL_BTN.addEventListener('click', () => {CONTAINER.remove()});
+      SAVE_BTN.addEventListener('click', () => {
+        // Delete the input
+        RANGE.deleteContents();
 
-      SELECTION.removeRange(RANGE);
+        // Create a link element
+        const LINK = document.createElement('a');
+
+        LINK.addEventListener('click', () => {window.open(ORIGINAL_LINK.value)});
+        
+        // The selected text is equal to the link.
+        LINK.href = ORIGINAL_LINK.value;
+
+        if (CUSTOM_LINK.value !== '') {
+          LINK.textContent = CUSTOM_LINK.value;
+        } else {
+          LINK.textContent = ORIGINAL_LINK.value;
+        }
+
+        RANGE.insertNode(LINK);
+      });
+      RANGE.insertNode(CONTAINER);
    }
 
 
@@ -100,7 +124,7 @@ export class TextFormatter {
     const CONTAINER = CNode.create('div', {'class': 'embed-container', 'contentEditable': 'false'});
     const BTN = CNode.create('button', {'class': 'cancel-embed-video-btn'});
     const ICON = CNode.create('i', {'class': 'fa-solid fa-xmark'});
-    const INPUT = CNode.create('input', {'type': 'text', 'placeholder': 'Link here...', 'class': 'embed-link-input'});
+    const INPUT = CNode.create('input', {'type': 'text', 'placeholder': 'https://your-url', 'class': 'embed-link-input'});
 
     // Putting the UI together 
     CONTAINER.appendChild(BTN);

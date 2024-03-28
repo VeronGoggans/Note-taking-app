@@ -42,7 +42,7 @@
                     "title": "new feature examples",
                     "content": "storage/notes/note-n-479.txt",
                     "bookmark": false,
-                    "last_edit": "27/03/2024 18:21",
+                    "last_edit": "28/03/2024 13:46",
                     "creation": "21/03/2024"
                 },
                 {
@@ -52,6 +52,22 @@
                     "bookmark": false,
                     "last_edit": "27/03/2024 17:41",
                     "creation": "22/03/2024"
+                },
+                {
+                    "id": "n-495",
+                    "title": "links",
+                    "content": "storage/notes/note-n-495.txt",
+                    "bookmark": false,
+                    "last_edit": "28/03/2024 14:02",
+                    "creation": "28/03/2024"
+                },
+                {
+                    "id": "n-496",
+                    "title": "untitled",
+                    "content": "storage/notes/note-n-496.txt",
+                    "bookmark": false,
+                    "last_edit": "28/03/2024 14:25",
+                    "creation": "28/03/2024"
                 }
             ],
             "subfolders": []
@@ -60,16 +76,7 @@
             "id": "f-101",
             "name": "Scribles",
             "color": "#ffffff",
-            "notes": [
-                {
-                    "id": "n-486",
-                    "title": "untitled",
-                    "content": "storage/notes/note-n-486.txt",
-                    "bookmark": false,
-                    "last_edit": "27/03/2024 17:35",
-                    "creation": "25/03/2024"
-                }
-            ],
+            "notes": [],
             "subfolders": []
         }
     ]

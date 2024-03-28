@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+    <style>
+        .link-container {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            position: relative;
+            background-color: white;
+            border-radius: 10px;
+            border: 1px solid #ced1e3;
+            padding: 15px;
+            width: fit-content;
+        }
+
+        .cancel-link-btn {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            cursor: pointer;
+            background-color: #5c7dff;
+            color: rgb(255, 255, 255);
+            border: none;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+        }
+
+        .original-link-input,
+        .custom-link-input {
+            cursor: text;
+            outline: none;
+            border: none;
+            border-bottom: 2px solid #ced1e3;
+            border-radius: 10px;
+            padding: 5px;
+            margin: 10px 0;
+            padding-left: 25px;
+            background-color: #f6f7ff;
+            color: var(--text);
+            font-size: 16px;
+            transition: .3s;
+        }
+
+        .original-link-input:hover,
+        .original-link-input:focus,
+        .custom-link-input:hover,
+        .custom-link-input:focus {
+            border-color: #5c7dff;
+        }
+
+        .save-link-btn {
+            background-color: #5c7dff;
+            cursor: pointer;
+            border: none;
+            color: #fff;
+            border-radius: 10px;
+            height: 30px;
+            width: 90px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="link-container">
+        <button class="cancel-link-btn">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <input class="original-link-input" type="text" placeholder="https:/url">
+        <input class="custom-link-input" type="text" placeholder="Custom text">
+        <button class="save-link-btn">Save</button>
+    </div>
+    
+</body>
+</html>
