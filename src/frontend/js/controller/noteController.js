@@ -40,6 +40,12 @@ export class NoteController {
         this.updateSearchObject(noteId, name);
     }
 
+    async moveNote(noteId, folderId) {
+        const RESPONSE = await this.noteModel.moveNote('/moveNote', noteId, folderId);
+        const NOTE = RESPONSE.Note;
+        this.noteView.removeNote(NOTE, false);
+    }
+
     async deleteNote(noteId) {
         const RESPONSE = await this.noteModel.deleteNote('/note', noteId);
         const NOTE = await RESPONSE.Note;

@@ -184,6 +184,20 @@ export class ApplicationController {
     }
 
     /**
+     * This method moves a given note from it;s current folder into 
+     * the given new folder.
+     * 
+     * This method is called when the user drops a list note into 
+     * a list folder. 
+     * 
+     * @param {String} noteId 
+     * @param {String} folderId 
+     */
+    async moveNote(noteId, folderId) {
+        await this.noteController.moveNote(noteId, folderId);
+    }
+
+    /**
      * This method adds a subfolder to the backend.
      * 
      * This method is called when the add button inside the 

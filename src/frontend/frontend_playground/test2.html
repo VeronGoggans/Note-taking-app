@@ -1,31 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        .image-size-container {
-            background-color: white;
-            border: 1px solid #ced1e3;
-            border-radius: 5px;
-            width: fit-content;
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Draggable Divs</title>
+<style>
+    .draggable {
+        width: 100px;
+        height: 100px;
+        background-color: lightblue;
+        margin: 10px;
+        cursor: pointer;
+    }
 
-        .image-size-slider {
-            background-color: aqua;
-        }
-    </style>
+    .droppable {
+        border: 2px dashed black;
+        height: 120px;
+        width: 120px;
+        display: inline-block;
+        margin: 10px;
+        padding: 10px;
+    }
+</style>
 </head>
 <body>
-    <div class="image-size-container">
-        <input class="image-size-slider" type="range">
-        <button class="cancel-image-size-btn">Cancel</button>
-        <button class="save-image-size-btn">Save</button>
-    </div>
-    
+
+<div id="container">
+    <div class="draggable" id="div1" draggable="true">Div 1</div>
+    <div class="draggable" id="div2" draggable="true">Div 2</div>
+    <div class="draggable" id="div3" draggable="true">Div 3</div>
+    <div class="draggable" id="div4" draggable="true">Div 4</div>
+</div>
+
+<div class="droppable" ondrop="drop(event)" ondragover="allowDrop(event)">Drop Here</div>
+
+<button onclick="createNewDiv()">Create New Div</button>
+
+<script>
+    function allowDrop(ev) {
+        ev.preventDefault();
+    }
+
+    function drag(ev) {
+        ev.dataTransfer.setData("text", ev.target.id);
+    }
+
+    function drop(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        var draggedDiv = document.getElementById(data);
+        var dropZone = ev.target;
+
+        if (dropZone.classList.contains("droppable")) {
+            console.log("Removed div with ID:", data);
+            draggedDiv.remove();
+        }
+    }
+
+    function createNewDiv() {
+        var container = document.getElementById("container");
+        var newDiv = document.createElement("div");
+        newDiv.classList.add("draggable");
+        newDiv.setAttribute("draggable", "true");
+        newDiv.innerHTML = "New Div";
+        var id = "div" + (container.childElementCount + 1);
+        newDiv.id = id;
+
+        // Add drag event listener to the new div
+        newDiv.addEventListener("dragstart", drag);
+
+        container.appendChild(newDiv);
+    }
+</script>
+
 </body>
 </html>

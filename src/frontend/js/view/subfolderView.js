@@ -4,6 +4,7 @@ import { DeleteContainer } from '../components/deleteContainer.js';
 import { SubfolderObjectArray } from "../util/array.js";
 import { NoContentFeedbackHandler } from "../handlers/userFeedback/noContentFeedbackHandler.js";
 import { AnimationHandler } from "../handlers/animation/animationHandler.js";
+import { DragAndDrop } from "../handlers/drag&drop/dragAndDropHandler.js";
 
 export class SubfolderView {
     constructor(controller, dialog, notificationHandler) {
@@ -12,6 +13,7 @@ export class SubfolderView {
         this._content = document.querySelector('.content-view');
         this._list = document.querySelector('.list-content-folders');
         this.subfoldersObjects = new SubfolderObjectArray();
+        this.dragAndDrop = new DragAndDrop(this);
         
         this.dialog = dialog;
         this.notificationHandler = notificationHandler;
@@ -128,7 +130,7 @@ export class SubfolderView {
      * @returns {ListFolder}
      */
     #listSubfolder(subfolder) {
-        return new ListFolder(subfolder, this);
+        return new ListFolder(subfolder, this, this.dragAndDrop);
     }
 
     /**
@@ -176,6 +178,10 @@ export class SubfolderView {
      */
     async handleConfirmButtonClick(id) {
         this.subfolderController.deleteSubfolder(id);
+    }
+
+    async handleNoteDrop(noteId, folderId) {
+        await this.subfolderController.moveNote(noteId, folderId)
     }
 
 

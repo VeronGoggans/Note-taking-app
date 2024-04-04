@@ -2,10 +2,12 @@ from src.backend.data.note.note_manager import NoteManager
 from src.backend.presentation.request_bodies.note.post_note_request import PostNoteRequest
 from src.backend.presentation.request_bodies.note.put_note_request import PutNoteRequest
 from src.backend.presentation.request_bodies.note.del_note_request import DeleteNoteRequest
+from src.backend.presentation.request_bodies.note.move_note_request import MoveNoteRequest
 from src.backend.domain.note import Note
 from src.backend.domain.enums.responseMessages import Status
 from src.backend.data.file.json_manager import JsonManager
 import os 
+import copy
 
 class NoteService:
     def __init__(self, note_manager: NoteManager, json_manager: JsonManager):
@@ -80,6 +82,40 @@ class NoteService:
         return Status.NOT_FOUND
     
 
+    def move_note(self, move_request: MoveNoteRequest):
+        """
+        Moves a note from it's current folder into 
+        another folder specified with it's ID.
+
+        Args:
+            move_request (MoveNoteRequest): 
+            - folder_id (str): The ID of the folder to which the note will be added to.
+            - title (str): The title of the note.
+
+        Returns:
+            dict or Status.NOT_FOUND: 
+            - If a note with the specified ID is found, returns the note as a dictionary.
+            - If the note is not found, returns Status.NOT_FOUND.
+        """
+        folder_structure = self.json_manager.load(self.folders_path)
+        folders = folder_structure['folders']
+        folders_copy = copy.deepcopy(folder_structure)
+
+        try:
+            deleted_note = self.note_manager.delete_note(folders, move_request.note_id, delete_txt_file=False)
+            deleted_note_object = self.__create_note_object(deleted_note)
+        except Exception as e:
+            return Status.NOT_FOUND
+        
+        new_note = self.note_manager.add_note(folders, move_request.folder_id, deleted_note_object)
+
+        if new_note:
+            self.json_manager.update(self.folders_path, folder_structure)
+            return new_note
+        self.json_manager.update(self.folders_path, folders_copy)
+        return Status.NOT_FOUND
+    
+
 
     def add_note(self, post_request: PostNoteRequest):
         """
@@ -87,7 +123,6 @@ class NoteService:
 
         Args:
             post_request (PostNoteRequest): 
-            Object containing the folder_id, title, content and bookmark fields for a new note.
             - folder_id (str): The ID of the folder to which the note will be added to.
             - title (str): The title of the note.
             - content (str): The content of the note.
@@ -165,21 +200,6 @@ class NoteService:
         return Status.NOT_FOUND
     
 
-    # def delete_folder_content(self, folder):
-    #     """
-    #     Delete all the notes inside the given folder
-
-    #     Args:
-    #         - folder (dict) the folder wished to deleted.
-
-    #     """
-
-    #     deleted = self.note_manager.delete_notes(folder)
-
-    #     if deleted:
-    #         return 
-
-
 
     def __construct_note_object(self, post_request: PostNoteRequest):
         note_id = self.json_manager.generateID(self.id_path, "note")
@@ -188,4 +208,14 @@ class NoteService:
             post_request.title, 
             post_request.content, 
             post_request.bookmark, 
+            )
+    
+    def __create_note_object(self, note_data: Note):
+        return Note(
+            note_data['id'], 
+            note_data['title'], 
+            note_data['content'], 
+            note_data['bookmark'], 
+            note_data['last_edit'],
+            note_data['creation']
             )

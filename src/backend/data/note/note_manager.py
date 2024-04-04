@@ -120,13 +120,14 @@ class NoteManager:
     
     
     
-    def delete_note(self, folders, note_id: str):
+    def delete_note(self, folders, note_id: str, delete_txt_file = True):
         """
         Delete a specific note from the notes structure by its unique identifier.
 
         Args:
             folders (List[dict]): The list of folders to search within.
             note_id (str): The unique identifier of the note to delete.
+            delete_txt_file (bool): A boolean indicating if the linked txt file should be removed or not.
 
         Returns:
             dict or None: 
@@ -137,7 +138,8 @@ class NoteManager:
             for note in folder['notes']:
                 if note.get('id') == note_id:
                     folder['notes'].remove(note)
-                    self.__delete_note_html_file(note)
+                    if delete_txt_file:
+                        self.__delete_note_txt_file(note)
                     return note
         
             note_in_subfolder = self.delete_note(folder['subfolders'], note_id)
@@ -213,7 +215,7 @@ class NoteManager:
             )
     
 
-    def __delete_note_html_file(self, note_data: Note):
+    def __delete_note_txt_file(self, note_data: Note):
         """This method will delete the htm file linked to the note object."""
         note_object = self.__create_note_object(note_data)
         note_object.delete_note_file(note_object.content)

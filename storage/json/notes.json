@@ -34,23 +34,15 @@
         },
         {
             "id": "f-100",
-            "name": "Test folder\ud83d\udc68\u200d\ud83c\udf93",
+            "name": "Test folder",
             "color": "#9ffb95",
             "notes": [
-                {
-                    "id": "n-479",
-                    "title": "new feature examples",
-                    "content": "storage/notes/note-n-479.txt",
-                    "bookmark": false,
-                    "last_edit": "28/03/2024 13:46",
-                    "creation": "21/03/2024"
-                },
                 {
                     "id": "n-483",
                     "title": "Features",
                     "content": "storage/notes/note-n-483.txt",
                     "bookmark": false,
-                    "last_edit": "27/03/2024 17:41",
+                    "last_edit": "04/04/2024 13:21",
                     "creation": "22/03/2024"
                 },
                 {
@@ -58,26 +50,19 @@
                     "title": "links",
                     "content": "storage/notes/note-n-495.txt",
                     "bookmark": false,
-                    "last_edit": "28/03/2024 14:02",
-                    "creation": "28/03/2024"
-                },
-                {
-                    "id": "n-496",
-                    "title": "untitled",
-                    "content": "storage/notes/note-n-496.txt",
-                    "bookmark": false,
-                    "last_edit": "28/03/2024 14:25",
+                    "last_edit": "30/03/2024 11:20",
                     "creation": "28/03/2024"
                 }
             ],
-            "subfolders": []
-        },
-        {
-            "id": "f-101",
-            "name": "Scribles",
-            "color": "#ffffff",
-            "notes": [],
-            "subfolders": []
+            "subfolders": [
+                {
+                    "id": "s-139",
+                    "name": "new folder",
+                    "color": "#ffffff",
+                    "notes": [],
+                    "subfolders": []
+                }
+            ]
         }
     ]
 }

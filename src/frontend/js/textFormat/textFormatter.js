@@ -11,7 +11,7 @@ export class TextFormatter {
       const CANCEL_BTN = CNode.create('button', {'class': 'cancel-link-btn'});
       const ICON = CNode.create('i', {'class': 'fa-solid fa-xmark'});
       const SAVE_BTN = CNode.create('button', {'class': 'save-link-btn', 'textContent': 'Save'});
-      const ORIGINAL_LINK = CNode.create('input', {'class': 'original-link-input', 'type': 'text', 'placeholder': 'https://your-url'});
+      const ORIGINAL_LINK = CNode.create('input', {'class': 'original-link-input', 'type': 'text', 'placeholder': 'Paste link here...'});
       const CUSTOM_LINK = CNode.create('input', {'class': 'custom-link-input', 'type': 'text', 'placeholder': 'Custom text'});
 
       // Putting the UI together 
@@ -124,7 +124,7 @@ export class TextFormatter {
     const CONTAINER = CNode.create('div', {'class': 'embed-container', 'contentEditable': 'false'});
     const BTN = CNode.create('button', {'class': 'cancel-embed-video-btn'});
     const ICON = CNode.create('i', {'class': 'fa-solid fa-xmark'});
-    const INPUT = CNode.create('input', {'type': 'text', 'placeholder': 'https://your-url', 'class': 'embed-link-input'});
+    const INPUT = CNode.create('input', {'type': 'text', 'placeholder': 'Paste link here...', 'class': 'embed-link-input'});
 
     // Putting the UI together 
     CONTAINER.appendChild(BTN);

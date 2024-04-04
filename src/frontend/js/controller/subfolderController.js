@@ -43,4 +43,8 @@ export class SubfolderController {
     async navigateIntoFolder(folderId, name) {
         this.applicationController.navigateIntoFolder(folderId, name);
     }
+
+    async moveNote(noteId, folderId) {
+        await this.applicationController.moveNote(noteId, folderId);
+    }
 }

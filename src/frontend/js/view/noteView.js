@@ -6,6 +6,7 @@ import { NoContentFeedbackHandler } from "../handlers/userFeedback/noContentFeed
 import { dateFormat } from "../util/date.js";
 import { formatName } from "../util/formatters.js";
 import {AnimationHandler} from "../handlers/animation/animationHandler.js";
+import { DragAndDrop } from "../handlers/drag&drop/dragAndDropHandler.js";
 
 
 export class NoteView {
@@ -16,6 +17,7 @@ export class NoteView {
         this.noContentFeedbackHandler = new NoContentFeedbackHandler(this);
         this.dialog = dialog;
         this.noteObjects = new NoteObjectArray();
+        this.dragAndDrop = new DragAndDrop(this);
         this.notificationHandler = notificationHandler;
     }
 
@@ -106,7 +108,7 @@ export class NoteView {
      * 
      * @param {String} id
      */
-    removeNote(note) {
+    removeNote(note, closeDialog = true) {
         const ALL_NOTES = new HTMLArray(this._content.children, 'note');
         const ALL_LIST_NOTES = this._list.children;
 
@@ -125,7 +127,7 @@ export class NoteView {
                 }
             }
         }
-        this.dialog.hide();
+        if (closeDialog) this.dialog.hide();
     }
 
     /**
@@ -163,7 +165,7 @@ export class NoteView {
      * @returns {ListNote} 
      */
     #listNote(note) {
-        return new ListNote(note, this);
+        return new ListNote(note, this, this.dragAndDrop);
     }
 
    /**
