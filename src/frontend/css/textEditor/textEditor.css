@@ -18,6 +18,7 @@
 }
 
 .editor-paper {
+   margin-top: 20px;
    position: relative;
    width: 50%;
    height: calc(100% - 120px);
@@ -30,6 +31,7 @@
    font-family: sans-serif;
    border-left: 1px solid var(--editor-border);
    border-right: 1px solid var(--editor-border);
+   border-top: 1px solid var(--editor-border);
    background-color: var(--background);
    color: var(--editor-text);
 }

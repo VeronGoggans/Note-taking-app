@@ -52,17 +52,17 @@
                     "bookmark": false,
                     "last_edit": "30/03/2024 11:20",
                     "creation": "28/03/2024"
+                },
+                {
+                    "id": "n-505",
+                    "title": "text file export",
+                    "content": "storage/notes/note-n-505.txt",
+                    "bookmark": false,
+                    "last_edit": "04/04/2024 14:01",
+                    "creation": "04/04/2024"
                 }
             ],
-            "subfolders": [
-                {
-                    "id": "s-139",
-                    "name": "new folder",
-                    "color": "#ffffff",
-                    "notes": [],
-                    "subfolders": []
-                }
-            ]
+            "subfolders": []
         }
     ]
 }
