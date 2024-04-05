@@ -72,7 +72,6 @@ body {
     position: relative;
     margin: 7px 10px 7px 0px;
     display: flex;
-    border: 1px solid var(--border-search-bar);
     background-color: var(--searchbar);
     border-radius: 20px;
     padding: 5px 10px;
@@ -107,16 +106,15 @@ body {
     left: -1px;
     z-index: 1;
     width: 250px;
-    max-height: 150px;
+    max-height: 250px;
     overflow-y: auto;
-    border: 1px solid var(--border-search-bar);
-    border-radius: 10px;
+    border: 1px solid var(--border-card);
+    border-radius: 15px;
     background-color: var(--searchbar);
     list-style: none;
     margin: 0;
     padding: 10px;
     visibility: hidden;
-    box-shadow: 1px 1px 10px var(--card-shadow);
 }
 
 .note-suggestions-list::-webkit-scrollbar {
