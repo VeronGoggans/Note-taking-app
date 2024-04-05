@@ -18,7 +18,6 @@
 }
 
 .editor-paper {
-   margin-top: 20px;
    position: relative;
    width: 50%;
    height: calc(100% - 120px);
@@ -31,7 +30,6 @@
    font-family: sans-serif;
    border-left: 1px solid var(--editor-border);
    border-right: 1px solid var(--editor-border);
-   border-top: 1px solid var(--editor-border);
    background-color: var(--background);
    color: var(--editor-text);
 }
@@ -68,34 +66,6 @@
     z-index: 1;
 }
 
-/*Note details container*/
-
-.note-details-container {
-    font-family: Roboto;
-    display: flex;
-    flex-direction: column;
-    padding: 10px 40px;
-    width: 230px;
-    height: 280px;
-    background-color: var(--background);
-    border-radius: 15px;
-}
-
-.note-details-container h2 {
-    color: var(--important);
-}
-
- .note-details-container .details {
-    height: 100%;
-    display: grid;
-    grid-template-columns: 100px 1fr;
- }
-
- .note-details-container .details p {
-    font-weight: 600;
-    margin: 35px 0;
-    color: var(--text);
- }
 
  /* Styling for text editor html elements */
 
@@ -117,14 +87,10 @@
  }
 
  .editor iframe {
-    border-radius: 10px;
+    border-radius: 20px;
     transition: .2s;
     width: 444px;
     height: 250px;
- }
-
- .editor iframe:hover {
-    border-radius: 20px;
  }
 
  .editor .paragraph p {

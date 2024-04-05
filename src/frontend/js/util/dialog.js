@@ -2,6 +2,7 @@ import { NoteDetailContainer } from "../components/noteDetailContainer.js";
 import { DeleteContainer } from "../components/deleteContainer.js";
 import { ForgotSaveContainer } from "../components/forgotSaveContainer.js";
 import { NewFolderContainer } from "../components/newFolderContainer.js";
+import { AnimationHandler } from "../handlers/animation/animationHandler.js";
 
 export class Dialog {
     constructor() {
@@ -40,7 +41,7 @@ export class Dialog {
     }
     
     renderNoteDeleteContainer(id, name, view) {
-        this.addChild(new DeleteContainer(id, name, view))
+        this.addChild( new DeleteContainer(id, name, view))
         this.show();
     }
 

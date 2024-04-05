@@ -1,14 +1,106 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+        h2 {
+            font-family: Roboto;
+        }
+    </style>
 </head>
 <body>
     <div class="export-container">
+        <h2>Export</h2>
         
     </div>
     
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bounce In Bounce Out Animation</title>
+  <style>
+   body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100dvh;
+  margin: 0;
+}
+
+.modal {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 100%);
+  background-color: #ffffff;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  animation: slideIn 0.2s forwards, bounce 0.25s ease-in-out 0.2s forwards;
+  opacity: 0;
+  z-index: 9999;
+}
+
+.modal-content {
+  text-align: center;
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translate(-50%, 100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translate(-50%, -50%);
+  }
+  50% {
+    transform: translate(-50%, -45%);
+  }
+}
+
+
+  </style>
+</head>
+<body>
+    <div class="modal" id="modal">
+        <div class="modal-content">
+          <h2>This is a modal</h2>
+          <p>Modal content goes here.</p>
+        </div>
+      </div>
+  <script>
+    document.addEventListener('keydown', function(event) {
+  if (event.key === 's') {
+    showModal();
+  } else if (event.key === 'd') {
+    hideModal();
+  }
+});
+    function showModal() {
+  const modal = document.getElementById('modal');
+  modal.style.display = 'block';
+}
+
+function hideModal() {
+  const modal = document.getElementById('modal');
+  modal.style.display = 'none';
+}
+
+
+  </script>
 </body>
 </html>

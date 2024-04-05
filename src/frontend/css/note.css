@@ -14,6 +14,10 @@
     /* box-shadow: 5px 5px 10px var(--card-shadow); */
 }
 
+.note:hover {
+    border-color: #5c7dff;
+}
+
 .bookmark {
     background-color: var(--bookmark);
 }

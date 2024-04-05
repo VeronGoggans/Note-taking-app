@@ -1,13 +1,18 @@
 .fadeInFromBottom {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) !important;
 }
 
 .fadeInFromSide {
-    opacity: 1;
-    transform: translateX(0);
+    opacity: 1 !important;
+    transform: translateX(0) !important;
 }
 
 .fadeOut {
     opacity: 0;
+}
+
+.openDropdown {
+    opacity: 1;
+    
 }

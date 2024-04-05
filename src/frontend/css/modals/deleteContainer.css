@@ -1,0 +1,42 @@
+.delete-folder-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--editor);
+    width: 300px;
+    height: 200px;
+    border-radius: 20px;
+    font-weight: 600;
+  }
+  
+  .delete-warning {
+    display: inline-flex;
+    color: var(--text);
+    font-size: 16px;
+  }
+  
+  .delete-folder-name {
+    display: inline-flex;
+    color: var(--important);
+    font-weight: 600;
+    font-size: 14px;
+  }
+  
+  .confirm-delete-folder-btn {
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background-color: var(--toolbar);
+    padding: 10px 30px;
+    border-radius: 10px;
+    font-size: 16px;
+    color: var(--text);
+    transition: .2s;
+  }
+  
+  .confirm-delete-folder-btn:hover,
+  .new-folder-container button:hover {
+    color: #5c7dff;
+  }

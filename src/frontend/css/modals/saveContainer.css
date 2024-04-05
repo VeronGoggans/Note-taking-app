@@ -1,0 +1,47 @@
+.dont-forget-to-save-container {
+    position: relative;
+    height: 200px;
+    width: 350px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--editor);
+  }
+  
+  .dont-forget-to-save-container h1 {
+    margin: 0;
+    position: relative;
+    bottom: 10px;
+    color: var(--important);
+  }
+  
+  .dont-forget-to-save-container p {
+    position: relative;
+    bottom: 20px;
+    font-size: 18px;
+    color: var(--text);
+  }
+  
+  .exit-without-save-btn {
+    border: none;
+    padding: 10px 20px;
+    margin: 0 5px;
+    border-radius: 10px;
+    font-size: 16px;
+    background-color: var(--editor);
+    color: var(--text);
+    cursor: pointer;
+  }
+  
+  .exit-with-save-btn {
+    border: none;
+    padding: 10px 20px;
+    margin: 0 5px;
+    border-radius: 10px;
+    font-size: 16px;
+    background-color: var(--editor);
+    color: #5c7dff;
+    cursor: pointer;
+  }

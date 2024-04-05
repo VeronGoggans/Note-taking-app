@@ -1,0 +1,26 @@
+.note-details-container {
+    font-family: Roboto;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 40px;
+    width: 230px;
+    height: 280px;
+    background-color: var(--background);
+    border-radius: 15px;
+}
+
+.note-details-container h2 {
+    color: var(--important);
+}
+
+ .note-details-container .details {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 100px 1fr;
+ }
+
+ .note-details-container .details p {
+    font-weight: 600;
+    margin: 35px 0;
+    color: var(--text);
+ }
