@@ -26,6 +26,10 @@ export class TextEditorModel {
         this._color = color;
     }
 
+    storeNoteColor(color) {
+        this._color = color;
+    }
+
     /**
      * Returns stored note data as an array.
      * @returns {Array} A list of stored note data

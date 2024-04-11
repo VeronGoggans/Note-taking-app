@@ -82,6 +82,7 @@ export class TextEditorController {
 
     async updateNoteColor(color) {
         const NOTE_ID = this.textEditorModel.getStoredNoteId();
+        this.textEditorModel.storeNoteColor(color);
         this.applicationController.updateNoteColor(NOTE_ID, color);
     }
 
