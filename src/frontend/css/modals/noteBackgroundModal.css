@@ -1,0 +1,44 @@
+.note-background-color-container {
+    width: fit-content;
+    padding: 20px 40px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    align-items: center;
+    background-color: var(--background);
+  }
+
+  .note-background-color-container h2 {
+    color: var(--important);
+  }
+
+  .note-background-colors-row-one,
+  .note-background-colors-row-two {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    margin: 10px 0;
+  }
+
+  .note-background-colors-row-one div,
+  .note-background-colors-row-two div {
+    width: 40px;
+    height: 60px;
+    cursor: pointer;
+  }
+
+  .note-background-colors-row-one > div:first-child,
+  .note-background-colors-row-two > div:first-child {
+    border-radius: 5px 0 0 5px;
+  }
+
+  .note-background-colors-row-one > div:last-child,
+  .note-background-colors-row-two > div:last-child {
+    border-radius: 0 5px 5px 0;
+  }
+
+  .active-note-background-color {
+    height: 70px !important;
+    border-radius: 5px !important;
+  }

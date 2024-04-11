@@ -11,13 +11,13 @@ export class NoteDetailContainer {
         this.P2 = CNode.create('p', {'textContent': 'Created'});
         this.P3 = CNode.create('p', {'textContent': 'Edit'});
         this.DETAILS_RIGHT = CNode.create('div', {'class': 'details-right'});
-        this.P_WORD_COUNT = CNode.create('p', {'textContent': this._getWordCount()});
-        this.P_CREATED = CNode.create('p', {'textContent': this.checkDateForNull(created)});
-        this.P_EDIT = CNode.create('p', {'textContent': this.checkDateForNull(lastEdit)});
-        return this.render();
+        this.P_WORD_COUNT = CNode.create('p', {'textContent': this.#getWordCount()});
+        this.P_CREATED = CNode.create('p', {'textContent': this.#checkDateForNull(created)});
+        this.P_EDIT = CNode.create('p', {'textContent': this.#checkDateForNull(lastEdit)});
+        return this.#render();
     }
 
-    render() {
+    #render() {
         this.HOST.appendChild(this.H2);
         this.HOST.appendChild(this.DETAILS)
         this.DETAILS.appendChild(this.DETAILS_LEFT);
@@ -40,9 +40,8 @@ export class NoteDetailContainer {
      * @param {String} date A date string. Could be both the creation date or last edit date.
      * @returns A message indicating that the data involving dates is unavailable.
      */
-    checkDateForNull(date) {
-        if (date === null) return 'Not available';
-        else return date;
+    #checkDateForNull(date) {
+        return date === null ? 'Not available' : date;
     }
 
     /**
@@ -50,7 +49,7 @@ export class NoteDetailContainer {
      * 
      * @returns The number of words in the note
      */
-    _getWordCount() {
+    #getWordCount() {
         let text = this.editor.innerText;
         return text.split(/[ \n]+/).length;
     }

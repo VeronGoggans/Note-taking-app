@@ -9,7 +9,6 @@ export class DragAndDrop {
 
     drag(event) {
         event.dataTransfer.setData("text", event.target.id);
-        console.log('h');
     }
 
     drop(event) {

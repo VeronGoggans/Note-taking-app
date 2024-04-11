@@ -160,12 +160,10 @@ export class ApplicationController {
     /**
      * This method opens up the text editor
      * And puts the note the user clicked on, in the text editor.
-     * 
-     * @param {String} content 
-     * @param {String} name 
      */
-    openNoteInTextEditor(content, name, creation, lastEdit, noteId, bookmark) {
-        this.textEditorController.openNoteInTextEditor(content, name, creation, lastEdit, noteId, bookmark);
+    openNoteInTextEditor(content, name, creation, lastEdit, noteId, bookmark, color) {
+        console.log('recieved by app controller ', color);
+        this.textEditorController.openNoteInTextEditor(content, name, creation, lastEdit, noteId, bookmark, color);
     }
 
     /**
@@ -180,7 +178,7 @@ export class ApplicationController {
     async addNote(content, name) {
         const CURRENT_FOLDER_ID = this.applicationModel.getCurrentFolderID();
         const NOTE = await this.noteController.addNote(CURRENT_FOLDER_ID, content, name);
-        this.textEditorController.storeNoteData(NOTE.id, NOTE.creation, NOTE.last_edit, NOTE.bookmark, NOTE.title)
+        this.textEditorController.storeNoteData(NOTE.id, NOTE.creation, NOTE.last_edit, NOTE.bookmark, NOTE.title, NOTE.color)
     }
 
     /**
@@ -195,6 +193,10 @@ export class ApplicationController {
      */
     async moveNote(noteId, folderId) {
         await this.noteController.moveNote(noteId, folderId);
+    }
+
+    async updateNoteColor(noteId, color) {
+        await this.noteController.updateNoteColor(noteId, color);
     }
 
     /**
@@ -233,8 +235,8 @@ export class ApplicationController {
      * @param {String} content 
      * @param {String} bookmark 
      */
-    async changeNote(noteId, name, content, bookmark) {
-        await this.noteController.updateNote(noteId, name, content, bookmark);
+    async changeNote(noteId, name, content, bookmark, color) {
+        await this.noteController.updateNote(noteId, name, content, bookmark, color);
     }
 
     /**

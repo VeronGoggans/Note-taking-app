@@ -34,11 +34,11 @@ export class Folder {
         this.DELETE_ICON = CNode.create('i', {'class': 'fa-solid fa-trash'});
 
         this.applyColor(this.color);
-        this.attachEventListeners();
-        return this.render();
+        this.#attachEventListeners();
+        return this.#render();
     }
 
-    render() {
+    #render() {
         this.HOST.appendChild(this.NAME_BOX);
         this.NAME_BOX.appendChild(this.H4);
         this.CONFIRM.appendChild(this.CONFIRM_ICON);
@@ -98,7 +98,7 @@ export class Folder {
         }
     }
 
-    attachEventListeners() {
+    #attachEventListeners() {
         this.EDIT.addEventListener('click', () => {this.toggleEditableFolderName()});
         this.CONFIRM.addEventListener('click', () => {this.updateFolder()});
         this.CANCEL.addEventListener('click', () => {this.toggleEditableFolderName()});

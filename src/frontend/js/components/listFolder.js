@@ -13,17 +13,17 @@ export class ListFolder {
         this.HOST = CNode.create('div', {'class': 'list-view-folder droppable', 'id': this.id, 'draggable': 'true'});
         this.SPAN = CNode.create('span', {'textContent': this.name});
 
-        this.attachEventListeners();
-        return this.render();
+        this.#attachEventListeners();
+        return this.#render();
     }
 
-    render() {
+    #render() {
         // Assemble elements.
         this.HOST.appendChild(this.SPAN);
         return this.HOST;
     }
 
-    attachEventListeners() {
+    #attachEventListeners() {
         //Functionality
         this.HOST.addEventListener('drop', (event) => {this.dragAndDrop.drop(event)});
         this.HOST.addEventListener('dragover', (event) => {this.dragAndDrop.allowDrop(event)});
@@ -50,10 +50,10 @@ export class NoFolderMessage {
         this.HOST = CNode.create('div', {'class': 'list-view-no-folder'});
         this.SPAN = CNode.create('span', {'textContent': 'No folders'});
 
-        return this.render();
+        return this.#render();
     }
 
-    render() {
+    #render() {
         // Assemble elements.
         this.HOST.appendChild(this.SPAN);
         return this.HOST

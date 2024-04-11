@@ -10,16 +10,16 @@ export class ForgotSaveContainer {
         this.EXIT = CNode.create('button', {'class': 'exit-without-save-btn', 'textContent': 'Exit'});
         this.SAVE = CNode.create('button', {'class': 'exit-with-save-btn', 'textContent': 'Save'});
         
-        this.attachEventListeners();
-        return this.render();
+        this.#attachEventListeners();
+        return this.#render();
     }
 
-    attachEventListeners() {
+    #attachEventListeners() {
         this.EXIT.addEventListener('click', () => {this.view.exitNoSave()});
         this.SAVE.addEventListener('click', () => {this.view.exitBySave()});
     }
 
-    render() {
+    #render() {
         this.HOST.appendChild(this.H1);
         this.HOST.appendChild(this.P);
         this.HOST.appendChild(this.SAVE_OPTIONS);

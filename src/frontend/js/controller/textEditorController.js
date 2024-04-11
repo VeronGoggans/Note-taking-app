@@ -16,13 +16,10 @@ export class TextEditorController {
      * This method opens a note inside the text editor.
      * 
      * This method is called when a note card has been clicked.
-     * 
-     * @param {String} content 
-     * @param {String} name 
      */
-    openNoteInTextEditor(content, name, creation, lastEdit, noteId, bookmark) {
-        this.textEditorModel.storeNoteData(noteId, creation, lastEdit, bookmark);
-        this.textEditorView.open(content, name);
+    openNoteInTextEditor(content, name, creation, lastEdit, noteId, bookmark, color) {
+        this.textEditorModel.storeNoteData(noteId, creation, lastEdit, bookmark, name, color);
+        this.textEditorView.open(content, name, color);
     }
 
     /**
@@ -49,8 +46,8 @@ export class TextEditorController {
      * 
      * And clears the stored data from the model.
      */
-    storeNoteData(noteId, creation, lastEdit, bookmark) {
-        this.textEditorModel.storeNoteData(noteId, creation, lastEdit, bookmark);
+    storeNoteData(noteId, creation, lastEdit, bookmark, name, color) {
+        this.textEditorModel.storeNoteData(noteId, creation, lastEdit, bookmark, name, color);
     }
 
     /**
@@ -73,14 +70,19 @@ export class TextEditorController {
      * @param {String} name 
      * @param {Boolean} bookmark 
      */
-    save(content, name, bookmark) {
+    save(content, name, bookmark, color) {
         const NOTE_ID = this.textEditorModel.getStoredNoteId();
         if (NOTE_ID !== null) {
-            this.applicationController.changeNote(NOTE_ID, name, content, bookmark)
+            this.applicationController.changeNote(NOTE_ID, name, content, bookmark, color)
             this.clearStoredNoteData();
         } else {
             this.applicationController.addNote(content, name);
         }
+    }
+
+    async updateNoteColor(color) {
+        const NOTE_ID = this.textEditorModel.getStoredNoteId();
+        this.applicationController.updateNoteColor(NOTE_ID, color);
     }
 
     /**

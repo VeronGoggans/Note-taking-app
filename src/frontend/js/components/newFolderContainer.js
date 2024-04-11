@@ -12,18 +12,18 @@ export class NewFolderContainer {
         this.INPUT.spellcheck = false;
         this.BUTTON = CNode.create('button', {'textContent': 'Add'});
 
-        this.attachEventListeners();
-        return this.render();
+        this.#attachEventListeners();
+        return this.#render();
     }
 
-    attachEventListeners() {
+    #attachEventListeners() {
         this.BUTTON.addEventListener('click', () => {
             const NAME = this.INPUT.value || 'untitled';
             this.view.handleAddFolderButtonClick(NAME)
         });
     }
 
-    render() {
+    #render() {
         this.HOST.appendChild(this.H2);
         this.HOST.appendChild(this.INPUT);
         this.HOST.appendChild(this.BUTTON);

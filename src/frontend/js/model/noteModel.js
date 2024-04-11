@@ -55,12 +55,13 @@ export class NoteModel {
         }
     }
 
-    async updateNote(endpoint, noteId, name, content, bookmark) {
+    async updateNote(endpoint, noteId, name, content, bookmark, color) {
         const PUT_NOTE_OBJECT = {
             'note_id': noteId,
             'title': name,
             'content': content,
-            'bookmark': bookmark
+            'bookmark': bookmark,
+            'color': color
         }
         const OPTIONS = {
             method: 'PUT',
@@ -97,6 +98,26 @@ export class NoteModel {
         }
     }
 
+    async updateNoteColor(endpoint, noteId, color) {
+        const PUT_NOTE_COLOR_OBJECT = {
+            'note_id': noteId,
+            'color': color
+        }
+        const OPTIONS = {
+            method: 'PUT',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(PUT_NOTE_COLOR_OBJECT)
+        }
+        try {
+            const RESPONSE = await fetch(`${endpoint}`, OPTIONS);
+            if (!RESPONSE.ok) throw new Error(`HTTP error Status: ${RESPONSE.status}`);
+            return await RESPONSE.json();
+        } catch (error) {
+            console.error('Error fetching data: ', error.message);
+            throw error;
+        }
+    }
+
     async deleteNote(endpoint, noteId) {
         const DELETE_NOTE_OBJECT = {
             'note_id': noteId
@@ -115,23 +136,4 @@ export class NoteModel {
             throw error;
         }
     }
-
-    // async deleteFolderContent(endpoint, folderId) {
-    //     const DELETE_NOTES_OBJECT = {
-    //         'folderId': folderId
-    //     }
-    //     const OPTIONS = {
-    //         method: 'DELETE',
-    //         headers: {"Content-Type": "application/json"},
-    //         body: JSON.stringify(DELETE_NOTES_OBJECT)
-    //     }
-    //     try {
-    //         const RESPONSE = await fetch(`${endpoint}`, OPTIONS);
-    //         if (!RESPONSE.ok) throw new Error(`HTTP error Status: ${RESPONSE.status}`)
-    //         return await RESPONSE.json();
-    //     } catch (error) {
-    //         console.error('Error fetching data: ', error.message);
-    //         throw error;
-    //     }
-    // }
 }

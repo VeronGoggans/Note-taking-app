@@ -33,7 +33,7 @@
     border-radius: 10px;
     font-size: 16px;
     color: var(--text);
-    transition: .2s;
+    transition: 200ms;
   }
   
   .confirm-delete-folder-btn:hover,

@@ -32,8 +32,8 @@ export class NoteController {
         return await note
     }
 
-    async updateNote(noteId, name, content, bookmark) {
-        const RESPONSE = await this.noteModel.updateNote('/note', noteId, name, content, bookmark);
+    async updateNote(noteId, name, content, bookmark, color) {
+        const RESPONSE = await this.noteModel.updateNote('/note', noteId, name, content, bookmark, color);
         const NOTE = await RESPONSE.Note;
         this.noteView.renderNoteUpdate(NOTE);
         this.noteView.pushNotification('Updated');
@@ -46,6 +46,12 @@ export class NoteController {
         this.noteView.removeNote(NOTE, false);
     }
 
+    async updateNoteColor(noteId, color) {
+        const RESPONSE = await this.noteModel.updateNoteColor('/noteColor', noteId, color);
+        const NOTE = RESPONSE.Note;
+        this.noteView.update(NOTE);
+    }
+
     async deleteNote(noteId) {
         const RESPONSE = await this.noteModel.deleteNote('/note', noteId);
         const NOTE = await RESPONSE.Note;
@@ -56,13 +62,10 @@ export class NoteController {
     
     /**
      * This method opens up the text editor
-     * And puts the note the user clicked on, in the text editor.
-     * 
-     * @param {String} content is the content of the note.
-     * @param {String} name is the name/title of the note. 
+     * And puts the note the user clicked on, in the text editor. 
      */
-    handleNoteCardClick(content, name, creation, lastEdit, noteId, bookmark) {
-        this.applicationController.openNoteInTextEditor(content, name, creation, lastEdit, noteId, bookmark);
+    handleNoteCardClick(content, name, creation, lastEdit, noteId, bookmark, color) {
+        this.applicationController.openNoteInTextEditor(content, name, creation, lastEdit, noteId, bookmark, color);
     }
 
     /**

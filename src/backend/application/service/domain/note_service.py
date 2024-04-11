@@ -3,6 +3,7 @@ from src.backend.presentation.request_bodies.note.post_note_request import PostN
 from src.backend.presentation.request_bodies.note.put_note_request import PutNoteRequest
 from src.backend.presentation.request_bodies.note.del_note_request import DeleteNoteRequest
 from src.backend.presentation.request_bodies.note.move_note_request import MoveNoteRequest
+from src.backend.presentation.request_bodies.note.put_note_color_request import PutNoteColorRequest
 from src.backend.domain.note import Note
 from src.backend.domain.enums.responseMessages import Status
 from src.backend.data.file.json_manager import JsonManager
@@ -176,6 +177,18 @@ class NoteService:
     
 
 
+    def update_note_color(self, put_request: PutNoteColorRequest):
+        folder_structure = self.json_manager.load(self.folders_path)
+        folders = folder_structure['folders']
+        note = self.note_manager.update_note_color(folders, put_request.note_id, put_request.color)
+
+        if note:
+            self.json_manager.update(self.folders_path, folder_structure)
+            return note 
+        return Status.NOT_FOUND
+    
+
+
     def delete_note(self, delete_request: DeleteNoteRequest):
         """
         Delete an existing note within a specified folder.
@@ -207,7 +220,8 @@ class NoteService:
             note_id, 
             post_request.title, 
             post_request.content, 
-            post_request.bookmark, 
+            post_request.bookmark,
+            'white'
             )
     
     def __create_note_object(self, note_data: Note):
@@ -216,6 +230,7 @@ class NoteService:
             note_data['title'], 
             note_data['content'], 
             note_data['bookmark'], 
+            note_data['color'],
             note_data['last_edit'],
             note_data['creation']
             )

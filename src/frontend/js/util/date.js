@@ -8,13 +8,15 @@
      */
 export function dateFormat(date) {
     let dateParts = date.split('/');
-    const MONTH = dateParts[1];
     const DAY = dateParts[0];
+    const MONTH = dateParts[1];
+    
 
     // checking if the day of the month is before the 10th
     const DAY_PARTS = DAY.split('');
     if (DAY_PARTS[0] === '0') dateParts[0] = DAY_PARTS[1];
 
+    // giving the month number it's month name
     let monthFormatted = '';
     if (MONTH === '01') monthFormatted = 'Jan'
     if (MONTH === '02') monthFormatted = 'Feb'

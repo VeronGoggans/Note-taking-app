@@ -10,13 +10,21 @@ export class ApplicationModel {
         this.createNoteButtonContext();
     }
     
+    /** 
+     * Gets the current folder ID.
+     * @returns {String|undefined} The ID of the current folder, or undefined if no folder is set.
+     */
     getCurrentFolderID() {
-        if (this.folderIds.length > 0) {
-            return this.folderIds[this.folderIds.length - 1].id;
-        }
-        return undefined
+        const lastFolder = this.folderIds[this.folderIds.length - 1];
+        return lastFolder ? lastFolder.id : undefined;
     }
 
+    /**
+     * This method returns the current folder name
+     * The name of the folder the user is currently in.
+     * 
+     * @returns {String}
+     */
     getCurrentFolderName() {
         if (this.folderIds.length > 0) {
             return this.folderIds[this.folderIds.length - 1].name;

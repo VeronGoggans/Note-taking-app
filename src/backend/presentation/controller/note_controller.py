@@ -5,6 +5,7 @@ from src.backend.presentation.request_bodies.note.post_note_request import PostN
 from src.backend.presentation.request_bodies.note.put_note_request import PutNoteRequest
 from src.backend.presentation.request_bodies.note.del_note_request import DeleteNoteRequest
 from src.backend.presentation.request_bodies.note.move_note_request import MoveNoteRequest
+from src.backend.presentation.request_bodies.note.put_note_color_request import PutNoteColorRequest
 from src.backend.domain.enums.responseMessages import Status
 
 
@@ -21,6 +22,8 @@ class NoteRouter:
         self.route.add_api_route('/note', self.delete_note, methods=['DELETE'])
         self.route.add_api_route('/note', self.update_note, methods=['PUT'])
         self.route.add_api_route('/moveNote', self.move_note, methods=['PUT'])
+        self.route.add_api_route('/noteColor', self.update_note_color, methods=['PUT'])
+
 
     # This endpoint is for testing only.
     def cache(self):
@@ -73,6 +76,14 @@ class NoteRouter:
 
     def update_note(self, put_request: PutNoteRequest):
         response = self.note_service.update_note(put_request)
+
+        if response != Status.NOT_FOUND:
+            return {'Status_code': Status.OK, "Note": response}
+        return {'Status_code': Status.NOT_FOUND}
+    
+    
+    def update_note_color(self, put_request: PutNoteColorRequest):
+        response = self.note_service.update_note_color(put_request)
 
         if response != Status.NOT_FOUND:
             return {'Status_code': Status.OK, "Note": response}

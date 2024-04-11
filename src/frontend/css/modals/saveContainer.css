@@ -20,6 +20,7 @@
   .dont-forget-to-save-container p {
     position: relative;
     bottom: 20px;
+    font-weight: 600;
     font-size: 18px;
     color: var(--text);
   }

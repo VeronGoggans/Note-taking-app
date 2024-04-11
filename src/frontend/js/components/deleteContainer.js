@@ -8,16 +8,15 @@ export class DeleteContainer {
         this.MESSAGE = CNode.create('p', {'class': 'delete-warning', 'textContent': 'Press Confirm to delete'});
         this.FOLDER_NAME = CNode.create('strong', {'class': 'delete-folder-name', 'textContent': name});
         this.DELETE = CNode.create('button', {'class': 'confirm-delete-folder-btn', 'textContent': 'Confirm'});
-        console.log(id);
-        this.attachEventListeners();
-        return this.render();
+        this.#attachEventListeners();
+        return this.#render();
     }
 
-    attachEventListeners() {
+    #attachEventListeners() {
         this.DELETE.addEventListener('click', () => {this.view.handleConfirmButtonClick(this.id)})
     }
 
-    render() {
+    #render() {
         // Assemble elements.
         this.HOST.appendChild(this.MESSAGE);
         this.HOST.appendChild(this.FOLDER_NAME);

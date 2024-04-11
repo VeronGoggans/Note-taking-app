@@ -118,7 +118,31 @@ class NoteManager:
             return updated_note
         return None
     
-    
+
+
+    def update_note_color(self, folders, note_id: str, color: str):
+        """
+        Update the color of a note
+
+        Args:
+            folders (List[dict]): The list of folders to search within.
+            note_id (str): The unique identifier of the note to be updated.
+            color (str): The new color for the note.
+            
+        Returns:
+            dict or None: 
+            - If successful, it returns the updated note as a dictionary.
+            - If the note with the specified ID is not found, it returns None.
+        """
+        note = self.__find_note(folders, note_id)
+        if note:
+            note['color'] = color
+            note_object = self.__create_note_object(note)
+            note_object.set_content_text()
+            return note_object
+        return None
+
+
     
     def delete_note(self, folders, note_id: str, delete_txt_file = True):
         """
@@ -210,8 +234,9 @@ class NoteManager:
             note_data['title'], 
             note_data['content'], 
             note_data['bookmark'], 
+            note_data['color'],
             note_data['last_edit'],
-            note_data['creation']
+            note_data['creation'],
             )
     
 
@@ -226,10 +251,12 @@ class NoteManager:
         note.update_content(note.content, updated_note.content)
         note.content = updated_note.content
         note.bookmark = updated_note.bookmark
+        note.color = updated_note.color
         note.title = updated_note.title
         note.last_edit = DateService.datetime()
 
         current_note['title'] = updated_note.title
         current_note['bookmark'] = updated_note.bookmark
+        current_note['color'] = updated_note.color
         current_note['last_edit'] = DateService.datetime()
         return note

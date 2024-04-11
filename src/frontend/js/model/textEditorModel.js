@@ -1,48 +1,56 @@
 export class TextEditorModel {
     constructor() {
-        this.noteId = null;
-        this.creation = null;
-        this.lastEdit = null;
-        this.bookmark = null;
-        this.name = null;
+        this._noteId = null;
+        this._creation = null;
+        this._lastEdit = null;
+        this._bookmark = null;
+        this._name = null;
+        this._color = null;
     }
 
     /**
-     * This method stores some note data of the note that has been clicked on.
-     * 
-     * @param {String} noteId 
-     * @param {String} creation 
-     * @param {String} lastEdit 
+     * Stores note data of the note that has been clicked on.
+     * @param {String} noteId
+     * @param {Date} creation
+     * @param {Date} lastEdit
+     * @param {boolean} bookmark
+     * @param {String} name
+     * @param {String} color
      */
-    storeNoteData(noteId, creation, lastEdit, bookmark, name) {
-        this.noteId = noteId
-        this.creation = creation;
-        this.lastEdit = lastEdit;
-        this.bookmark = bookmark;
-        this.name = name;
+    storeNoteData(noteId, creation, lastEdit, bookmark, name, color) {
+        this._noteId = noteId
+        this._creation = creation;
+        this._lastEdit = lastEdit;
+        this._bookmark = bookmark;
+        this._name = name;
+        this._color = color;
     }
 
     /**
-     * @returns A list of stored note data
+     * Returns stored note data as an array.
+     * @returns {Array} A list of stored note data
      */
     getStoredNoteData() {
-        return [this.noteId, this.creation, this.lastEdit, this.bookmark];
+        return [this._noteId, this._creation, this._lastEdit, this._bookmark, this._color];
     }
 
-    /**     * 
-     * @returns The stored note id.
+    /**     
+     * Returns the stored note id.
+     * @returns {String} The stored note id.
      */
     getStoredNoteId() {
-        return this.noteId;
+        return this._noteId;
     }
 
     /**
      * This method removes the stored note data.
      */
     clear() {
-        this.noteId = null;
-        this.creation = null;
-        this.lastEdit = null;
-        this.bookmark = null;
+        this._noteId = null;
+        this._creation = null;
+        this._lastEdit = null;
+        this._bookmark = null;
+        this._name = null;
+        this._color = null;
     }
 }

@@ -1,106 +1,84 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
-        h2 {
-            font-family: Roboto;
-        }
-    </style>
-</head>
-<body>
-    <div class="export-container">
-        <h2>Export</h2>
-        
-    </div>
-    
-</body>
-</html> -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bounce In Bounce Out Animation</title>
+  <title>Document</title>
   <style>
-   body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100dvh;
-  margin: 0;
-}
+      @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+    body {
+      width: 100%;
+      height: 100dvh;
+      padding: 0;
+      margin: 0;
+      overflow: hidden;
+      font-family: Roboto;
+    }
 
-.modal {
-  position: fixed;
-  bottom: 0;
-  left: 50%;
-  transform: translate(-50%, 100%);
-  background-color: #ffffff;
-  border-radius: 5px;
-  padding: 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  animation: slideIn 0.2s forwards, bounce 0.25s ease-in-out 0.2s forwards;
-  opacity: 0;
-  z-index: 9999;
-}
+    .note-background-color-container {
+      width: fit-content;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #ced1e3;
+      border-radius: 15px;
+      align-items: center;
+    }
 
-.modal-content {
-  text-align: center;
-}
+    .note-background-colors-row1,
+    .note-background-colors-row2 {
+      display: flex;
+      margin: 20px 0;
+    }
 
-@keyframes slideIn {
-  0% {
-    transform: translate(-50%, 100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translate(-50%, -50%);
-    opacity: 1;
-  }
-}
+    .note-background-colors-row1 div,
+    .note-background-colors-row2 div {
+      width: 40px;
+      height: 60px;
+      cursor: pointer;
+    }
 
-@keyframes bounce {
-  0%, 100% {
-    transform: translate(-50%, -50%);
-  }
-  50% {
-    transform: translate(-50%, -45%);
-  }
-}
+    .note-background-colors-row1 > div:first-child,
+    .note-background-colors-row2 > div:first-child {
+      border-radius: 10px 0 0 10px;
+    }
 
+    .note-background-colors-row1 > div:last-child,
+    .note-background-colors-row2 > div:last-child {
+      border-radius: 0 10px 10px 0;
+    }
+
+    .save-note-background-color-btn {
+      cursor: pointer;
+      border: none;
+      font-size: 16px;
+      color: #3e3e3e;
+      background-color: #eff1f7;
+      padding: 10px 30px;
+      border-radius: 10px;
+    }
 
   </style>
 </head>
 <body>
-    <div class="modal" id="modal">
-        <div class="modal-content">
-          <h2>This is a modal</h2>
-          <p>Modal content goes here.</p>
-        </div>
-      </div>
-  <script>
-    document.addEventListener('keydown', function(event) {
-  if (event.key === 's') {
-    showModal();
-  } else if (event.key === 'd') {
-    hideModal();
-  }
-});
-    function showModal() {
-  const modal = document.getElementById('modal');
-  modal.style.display = 'block';
-}
-
-function hideModal() {
-  const modal = document.getElementById('modal');
-  modal.style.display = 'none';
-}
-
-
-  </script>
+  <div class="note-background-color-container">
+    <h2>Note Backgrounds</h2>
+    <section class="note-background-colors-row1">
+      <div style="background-color: #eaf4ff;"></div>
+      <div style="background-color: #bcd2e9;"></div>
+      <div style="background-color: #c2bce9;"></div>
+      <div style="background-color: #ffacac;"></div>
+      <div style="background-color: #ffd7e6;"></div>
+    </section>
+    <div class="note-background-colors-row2">
+      <div style="background-color: #efba94;"></div>
+      <div style="background-color: #fffba3;"></div>
+      <div style="background-color: #FEFDED;"></div>
+      <div style="background-color: #aee4cb;"></div>
+      <div style="background-color: #000;"></div>
+    </div>
+    <button class="save-note-background-color-btn">Save</button>
+  </div>
+  
 </body>
 </html>

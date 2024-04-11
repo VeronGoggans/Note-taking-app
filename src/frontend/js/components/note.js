@@ -8,6 +8,7 @@ export class Note {
         this.name = note.title;
         this.bookmark = note.bookmark;
         this.content = note.content;
+        this.color = note.color;
         this.created = dateFormat(note.creation);
         this.lastEdit = dateFormat(note.last_edit);
         this.view = view;
@@ -32,12 +33,12 @@ export class Note {
         this.DELETE = CNode.create('button', {'class': 'delete-note-btn'});
         this.DELETE_ICON = CNode.create('i', {'class': 'fa-solid fa-trash'});
 
-        this.attachEventListeners();
+        this.#attachEventListeners();
         this.applyBookmarkStyle(this.bookmark);
-        return this.render();
+        return this.#render();
     }
 
-    render() {
+    #render() {
         this.HOST.appendChild(this.NAME_BOX);
         this.NAME_BOX.appendChild(this.H4);
         this.CONFIRM.appendChild(this.CONFIRM_ICON);
@@ -57,7 +58,7 @@ export class Note {
         return this.HOST
     }
 
-    attachEventListeners() {
+    #attachEventListeners() {
         this.EDIT.addEventListener('click', () => {this.toggleEditableNoteName()});
         this.CONFIRM.addEventListener('click', () => {this.updateNoteName()});
         this.CANCEL.addEventListener('click', () => {this.toggleEditableNoteName()});
@@ -94,7 +95,7 @@ export class Note {
      */
     async updateNoteName() {
         // Sending an update request to the view
-        this.view.updateNote(this.id, this.H4.textContent, this.CONTENT.innerHTML, this.bookmark);
+        this.view.updateNote(this.id, this.H4.textContent, this.CONTENT.innerHTML, this.bookmark, this.color);
         this.toggleEditableNoteName();
     }
 
@@ -109,6 +110,6 @@ export class Note {
         // Give the note card the right background color
         this.toggleBookmarkStyle();
         // Sending an update request to the view
-        await this.view.updateNote(this.id, this.name, this.CONTENT.innerHTML, newBookmarkValue);
+        await this.view.updateNote(this.id, this.name, this.CONTENT.innerHTML, newBookmarkValue, this.color);
     }
 }

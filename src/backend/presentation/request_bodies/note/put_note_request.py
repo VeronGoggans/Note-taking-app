@@ -5,3 +5,4 @@ class PutNoteRequest(BaseModel):
     title: str
     content: str
     bookmark: bool
+    color: str

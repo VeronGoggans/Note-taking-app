@@ -25,28 +25,27 @@ export class NotificationHandler {
             'EMPTY': 'This folder is empty.<br>Start by making a note or subfolder.'
         }
     }
+
     /**
-     * type has to be one of the following 
-     * (saved, updated, deleted, new, empty).
-     * 
-     * noteName is optional and only nessecary for the 
-     * deleted type.
-     * 
-     * @param {String} type 
-     * @param {String} noteName
+     * Pushes a notification of the given type onto the screen.
+     * @param {String} type - One of the following: 'saved', 'updated', 'deleted', 'new', 'empty'.
+     * @param {String} [noteName='null'] - Optional note name, necessary only for 'deleted' type.
      */
     push(type, noteName = 'null') {
-        if (type === this.types.SAVED) {
-            this.screen.appendChild(new Notification(this.icons.SAVED, this.messages.SAVED, this.types.SAVED));
-        } else if (type === this.types.UPDATED) {
-            this.screen.appendChild(new Notification(this.icons.UPDATED,this.messages.UPDATED, this.types.UPDATED));
-        } else if (type === this.types.DELETED) {
-            this.screen.appendChild(new Notification(this.icons.DELETED, `${noteName} ${this.messages.DELETED}`, this.types.DELETED));
-        } else if (type === this.types.NEW) {
-            this.screen.appendChild(new Notification(this.icons.NEW, this.messages.NEW, this.types.NEW));
-        } else if (type === this.types.EMPTY) {
-            this.screen.appendChild(new Notification(this.icons.EMPTY, this.messages.EMPTY, this.types.EMPTY));
+        const notificationTypes = {
+            'saved': { icon: this.icons.SAVED, message: this.messages.SAVED, type: this.types.SAVED },
+            'updated': { icon: this.icons.UPDATED, message: this.messages.UPDATED, type: this.types.UPDATED },
+            'deleted': { icon: this.icons.DELETED, message: `${noteName} ${this.messages.DELETED}`, type: this.types.DELETED },
+            'new': { icon: this.icons.NEW, message: this.messages.NEW, type: this.types.NEW },
+            'empty': { icon: this.icons.EMPTY, message: this.messages.EMPTY, type: this.types.EMPTY }
+        };
+    
+        const data = notificationTypes[type.toLowerCase()]; // Convert to lowercase for case-insensitivity
+        if (!data) {
+            throw new Error(`Invalid notification type: ${type}`);
         }
+    
+        this.screen.appendChild(new Notification(data.icon, data.message, data.type));
     }
 }
 

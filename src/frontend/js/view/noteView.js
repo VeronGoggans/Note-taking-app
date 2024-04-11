@@ -46,6 +46,7 @@ export class NoteView {
         } else {
             this.noContentFeedbackHandler.noNotes(new NoNoteMessage());
         }
+        console.log(this.noteObjects);
     }
 
     /**
@@ -78,6 +79,7 @@ export class NoteView {
      * @param {dict} note
      */
     renderNoteUpdate(note) {
+        console.log(note);
         const NOTE_CARDS = new HTMLArray(this._content.children, 'note'); 
         const NOTE_LIST_CARDS = this._list.children;
 
@@ -143,7 +145,8 @@ export class NoteView {
         const NAME = NOTE.title;
         const CONTENT = NOTE.content;
         const BOOKMARK = NOTE.bookmark;
-        this.noteController.handleNoteCardClick(CONTENT, NAME, creation, LAST_EDIT, noteId, BOOKMARK);
+        const COLOR = NOTE.color;
+        this.noteController.handleNoteCardClick(CONTENT, NAME, creation, LAST_EDIT, noteId, BOOKMARK, COLOR);
     }
 
     /**
@@ -166,6 +169,15 @@ export class NoteView {
      */
     #listNote(note) {
         return new ListNote(note, this, this.dragAndDrop);
+    }
+
+    /**
+     * This method updates the stored object of a given note
+     * @param {Dict} note 
+     */
+    update(note) {
+        this.noteObjects.update(note);
+        console.log(this.noteObjects);
     }
 
    /**
@@ -202,8 +214,8 @@ export class NoteView {
      * @param {String} id 
      * @param {String} name
      */
-    async updateNote(id, name, content, bookmark) {
-        await this.noteController.updateNote(id, name, content, bookmark);
+    async updateNote(id, name, content, bookmark, color) {
+        await this.noteController.updateNote(id, name, content, bookmark, color);
     }
 
     /**

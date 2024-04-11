@@ -11,11 +11,6 @@
     opacity: 0;
     transform: translateY(90%);
     transition: opacity 1s ease, transform .4s ease;
-    /* box-shadow: 5px 5px 10px var(--card-shadow); */
-}
-
-.note:hover {
-    border-color: #5c7dff;
 }
 
 .bookmark {

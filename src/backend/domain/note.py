@@ -2,12 +2,14 @@ from src.backend.data.file.html_manager import HTMLManager
 from src.backend.application.service.util.date_service import DateService
 
 class Note:
-    def __init__(self, id: int, title: str, content: str, bookmark: bool, 
-                last_edit = DateService.datetime(), creation = DateService.date()):
+    def __init__(self, id: int, title: str, content: str, bookmark: bool, color: str, 
+                last_edit = DateService.datetime(), creation = DateService.date(),
+                ):
         self.id = id
         self.title = title
         self.content = content
         self.bookmark = bookmark
+        self.color = color
         self.last_edit = last_edit
         self.creation = creation
 
