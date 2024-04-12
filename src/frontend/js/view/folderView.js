@@ -1,6 +1,6 @@
 import { Folder } from '../components/folder.js';
 import { ListFolder } from '../components/listFolder.js';
-import { DeleteContainer } from '../components/deleteContainer.js';
+import { NoteDeleteModal } from '../components/modals/noteDeleteModal.js';
 import { AnimationHandler } from '../handlers/animation/animationHandler.js';
 
 export class FolderView {
@@ -115,7 +115,7 @@ export class FolderView {
      * @param {String} name
      */
     renderDeleteContainer(id, name) {
-        this.dialog.addChild(new DeleteContainer(id, name, this));
+        this.dialog.addChild(new NoteDeleteModal(id, name, this));
         this.dialog.show();
     }
 

@@ -95,7 +95,7 @@
     font-weight: 600;
 }
 
-.export-button {
+.export-note-button {
     position: absolute;
     right: 162px;
     border: none;
@@ -111,7 +111,7 @@
     font-family: Roboto;
 }
 
-.export-button:hover {
+.export-note-button:hover {
     color: #5c7dff;
 }
 

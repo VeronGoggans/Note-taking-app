@@ -1,0 +1,30 @@
+.note-export-modal {
+    background-color: white;
+    width: fit-content;
+    padding: 20px 40px;
+    border-radius: 15px;
+    font-family: Roboto;
+  }
+
+
+  .note-export-modal button {
+    cursor: pointer;
+    border: none;
+    background-color: #5c7dff;
+    border-radius: 15px;
+    padding: 10px 20px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 5px;
+    font-family: Roboto;
+    transition: 200ms;
+  }
+
+  .note-export-modal button:hover {
+    background-color: #4a6eff;
+  }
+
+  .note-export-modal button:active {
+    background-color: #3d64ff;
+  }

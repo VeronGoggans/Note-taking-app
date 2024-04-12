@@ -1,5 +1,5 @@
 import { Note } from "../components/note.js";
-import { DeleteContainer } from "../components/deleteContainer.js";
+import { NoteDeleteModal } from "../components/modals/noteDeleteModal.js";
 import { ListNote, NoNoteMessage } from "../components/listNote.js";
 import { HTMLArray, NoteObjectArray } from "../util/array.js";
 import { NoContentFeedbackHandler } from "../handlers/userFeedback/noContentFeedbackHandler.js";
@@ -201,7 +201,7 @@ export class NoteView {
      * @param {String} name
      */
     renderDeleteContainer(id, name) {
-        this.dialog.addChild(new DeleteContainer(id, name, this));
+        this.dialog.addChild(new NoteDeleteModal(id, name, this));
         this.dialog.show();
     }
 

@@ -6,79 +6,53 @@
   <title>Document</title>
   <style>
       @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
     body {
-      width: 100%;
-      height: 100dvh;
       padding: 0;
       margin: 0;
       overflow: hidden;
+      background-color: black;
+    }
+
+    .note-export-modal {
+      background-color: white;
+      width: fit-content;
+      padding: 20px 40px;
+      border-radius: 15px;
       font-family: Roboto;
     }
 
-    .note-background-color-container {
-      width: fit-content;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      border: 1px solid #ced1e3;
-      border-radius: 15px;
-      align-items: center;
-    }
 
-    .note-background-colors-row1,
-    .note-background-colors-row2 {
-      display: flex;
-      margin: 20px 0;
-    }
-
-    .note-background-colors-row1 div,
-    .note-background-colors-row2 div {
-      width: 40px;
-      height: 60px;
-      cursor: pointer;
-    }
-
-    .note-background-colors-row1 > div:first-child,
-    .note-background-colors-row2 > div:first-child {
-      border-radius: 10px 0 0 10px;
-    }
-
-    .note-background-colors-row1 > div:last-child,
-    .note-background-colors-row2 > div:last-child {
-      border-radius: 0 10px 10px 0;
-    }
-
-    .save-note-background-color-btn {
+    .note-export-modal button {
       cursor: pointer;
       border: none;
+      background-color: #5c7dff;
+      border-radius: 15px;
+      padding: 10px 20px;
+      color: white;
       font-size: 16px;
-      color: #3e3e3e;
-      background-color: #eff1f7;
-      padding: 10px 30px;
-      border-radius: 10px;
+      font-weight: 600;
+      margin: 5px;
+      font-family: Roboto;
+      transition: 200ms;
     }
+
+    .note-export-modal button:hover {
+      background-color: #4a6eff;
+    }
+
+    .note-export-modal button:active {
+      background-color: #3d64ff;
+    }
+
 
   </style>
 </head>
 <body>
-  <div class="note-background-color-container">
-    <h2>Note Backgrounds</h2>
-    <section class="note-background-colors-row1">
-      <div style="background-color: #eaf4ff;"></div>
-      <div style="background-color: #bcd2e9;"></div>
-      <div style="background-color: #c2bce9;"></div>
-      <div style="background-color: #ffacac;"></div>
-      <div style="background-color: #ffd7e6;"></div>
-    </section>
-    <div class="note-background-colors-row2">
-      <div style="background-color: #efba94;"></div>
-      <div style="background-color: #fffba3;"></div>
-      <div style="background-color: #FEFDED;"></div>
-      <div style="background-color: #aee4cb;"></div>
-      <div style="background-color: #000;"></div>
-    </div>
-    <button class="save-note-background-color-btn">Save</button>
+  <div class="note-export-modal">
+    <h2>Export</h2>
+    <button class="export-txt-btn">Export txt</button>
+    <button class="export-pdf-btn">Export pdf</button>
   </div>
-  
 </body>
 </html>

@@ -105,7 +105,8 @@ export class ApplicationController {
         const CREATION = await NOTE.creation;
         const LAST_EDIT = await NOTE.last_edit;
         const BOOKMARK = await NOTE.bookmark;
-        this.openNoteInTextEditor(CONTENT, NAME, CREATION, LAST_EDIT, noteId, BOOKMARK);
+        const COLOR =  await NOTE.color;
+        this.openNoteInTextEditor(CONTENT, NAME, CREATION, LAST_EDIT, noteId, BOOKMARK, COLOR);
     }
 
     /**

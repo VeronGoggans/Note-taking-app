@@ -1,4 +1,4 @@
-import { CNode } from "../util/CNode.js";
+import { CNode } from "../../util/CNode.js";
 
 export class ForgotSaveContainer {
     constructor(view) {

@@ -1,8 +1,9 @@
-import { NoteDetailContainer } from "../components/noteDetailContainer.js";
-import { DeleteContainer } from "../components/deleteContainer.js";
-import { ForgotSaveContainer } from "../components/forgotSaveContainer.js";
-import { NewFolderContainer } from "../components/newFolderContainer.js";
-import { NoteBackroundContainer } from "../components/noteBackgroundContainer.js";
+import { NoteDetailContainer } from "../components/modals/noteDetailModal.js";
+import { NoteDeleteModal } from "../components/modals/noteDeleteModal.js";
+import { ForgotSaveContainer } from "../components/modals/forgotSaveModal.js";
+import { NewFolderContainer } from "../components/modals/newFolderModal.js";
+import { NoteBackroundContainer } from "../components/modals/noteBackgroundModal.js";
+import { NoteExportModal } from "../components/modals/noteExportModal.js";
 
 // Improvements
 // Dependency injection
@@ -20,7 +21,8 @@ export class Dialog {
                 '.settings-container',
                 '.dont-forget-to-save-container',
                 '.note-background-color-container',
-                '.note-details-container'
+                '.note-details-container',
+                '.note-export-modal'
             ];
 
             // Check if the clicked target belongs to any excluded container
@@ -52,28 +54,33 @@ export class Dialog {
         this.dialog.appendChild(child);
     }
 
-    renderNoteDetails(noteInfo) {
+    renderNoteDetailsModal(noteInfo) {
         this.addChild(new NoteDetailContainer(noteInfo[1], noteInfo[2]))
         this.show();
     }
     
-    renderNoteDeleteContainer(id, name, view) {
-        this.addChild(new DeleteContainer(id, name, view))
+    renderNoteDeleteModal(id, name, view) {
+        this.addChild(new NoteDeleteModal(id, name, view))
         this.show();
     }
 
-    renderForgotSaveContainer(view) {
+    renderForgotSaveModal(view) {
         this.addChild(new ForgotSaveContainer(view));
         this.show();
     }
 
-    renderNewFolderContainer(view) {
+    renderNewFolderModal(view) {
         this.addChild(new NewFolderContainer(view));
         this.show();
     }
 
-    renderNoteBackgroundContainer(id, color, view) {
+    renderNoteBackgroundModal(id, color, view) {
         this.addChild(new NoteBackroundContainer(id, color, view));
+        this.show();
+    }
+
+    renderNoteExportModal(view) {
+        this.addChild(new NoteExportModal(view));
         this.show();
     }
 }

@@ -46,34 +46,16 @@
                     "bookmark": false,
                     "last_edit": "11/04/2024 18:21",
                     "creation": "22/03/2024",
-                    "color": "old-white"
+                    "color": "white"
                 },
                 {
                     "id": "n-505",
                     "title": "text file export",
                     "content": "storage/notes/note-n-505.txt",
                     "bookmark": false,
-                    "last_edit": "05/04/2024 13:39",
+                    "last_edit": "12/04/2024 14:03",
                     "creation": "04/04/2024",
-                    "color": "blue"
-                },
-                {
-                    "id": "n-510",
-                    "title": "color test",
-                    "content": "storage/notes/note-n-510.txt",
-                    "bookmark": false,
-                    "color": "red",
-                    "last_edit": "11/04/2024 12:07",
-                    "creation": "06/04/2024"
-                },
-                {
-                    "id": "n-513",
-                    "title": "To Do today",
-                    "content": "storage/notes/note-n-513.txt",
-                    "bookmark": false,
-                    "color": "white",
-                    "last_edit": "11/04/2024 14:01",
-                    "creation": "11/04/2024"
+                    "color": "white"
                 }
             ],
             "subfolders": []

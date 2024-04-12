@@ -1,6 +1,6 @@
-import { CNode } from "../util/CNode.js";
+import { CNode } from "../../util/CNode.js";
 
-export class DeleteContainer {
+export class NoteDeleteModal {
     constructor(id, name, view) {
         this.id = id;
         this.view = view;

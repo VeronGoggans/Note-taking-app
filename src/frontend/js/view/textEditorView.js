@@ -9,6 +9,7 @@ export class TextEditorView {
     this.noteNameInput = document.querySelector('.note-name-input');
     this.exitButton = document.querySelector('.exit-text-editor-btn');
     this.saveButton = document.querySelector('.save-note-btn');
+    this.exportButton = document.querySelector('.export-note-button');
 
     this.noteDropdown = document.querySelector('.file-dropdown');
     this.noteDropdownOptions = this.noteDropdown.querySelector('.options');
@@ -55,15 +56,16 @@ export class TextEditorView {
     this.headingDropdown.addEventListener('click', () => {this.#toggleVisibleDropdown(this.headingDropdownOptions)});
     this.fontDropdown.addEventListener('click', () => {this.#toggleVisibleDropdown(this.fontDropdownOptions)});
 
-    this.noteDetailsSpan.addEventListener('click', () => {this.dialog.renderNoteDetails(this.#getNoteData())});
-    this.deleteNoteSpan.addEventListener('click', () => {this.dialog.renderNoteDeleteContainer(this.#getNoteData()[0], this.noteNameInput.value, this)});
+    this.noteDetailsSpan.addEventListener('click', () => {this.dialog.renderNoteDetailsModal(this.#getNoteData())});
+    this.deleteNoteSpan.addEventListener('click', () => {this.dialog.renderNoteDeleteModal(this.#getNoteData()[0], this.noteNameInput.value, this)});
     this.saveNoteSpan.addEventListener('click', () => {this.save(false, false)});
     this.newNoteSpan.addEventListener('click', () => {this.new()});
-    this.noteBackgroundSpan.addEventListener('click', () => {this.dialog.renderNoteBackgroundContainer(this.#getNoteData()[0], this.#getNoteData()[4], this)});
+    this.noteBackgroundSpan.addEventListener('click', () => {this.dialog.renderNoteBackgroundModal(this.#getNoteData()[0], this.#getNoteData()[4], this)});
     this.editorPageStyleSpan.addEventListener('click', () => {this.updatePageStyle()});
   
     this.exitButton.addEventListener('click', () => {this.closeEditor()});
     this.saveButton.addEventListener('click', () => {this.save(true, false)});
+    this.exportButton.addEventListener('click', () => {this.dialog.renderNoteExportModal(this)});
 
     this.linkButton.addEventListener('click', () => {TextFormatter.addLink()});
     this.paragrapghButton.addEventListener('click', () => {TextFormatter.addParagraph()});
@@ -227,7 +229,7 @@ export class TextEditorView {
       } 
       else {
         // If changes have been made notify the user.
-        this.dialog.renderForgotSaveContainer(this);
+        this.dialog.renderForgotSaveModal(this);
       }
     } 
     else {

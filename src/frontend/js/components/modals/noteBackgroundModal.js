@@ -1,5 +1,5 @@
-import { CNode } from "../util/CNode.js";
-import { getNoteColor } from "../util/backgroundColor.js";
+import { CNode } from "../../util/CNode.js";
+import { getNoteColor } from "../../util/backgroundColor.js";
 
 export class NoteBackroundContainer {
     constructor(id, color, view) {

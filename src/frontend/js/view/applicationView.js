@@ -32,7 +32,7 @@ export class ApplicationView {
         this.backButton.addEventListener('click', () => {this.back()});
         this.homeButton.addEventListener('click', () => {this.home()});
         this.createNoteButton.addEventListener('click', () => {this.showTextEditor()});
-        this.createFolderButton.addEventListener('click', () => {this.dialog.renderNewFolderContainer(this)});
+        this.createFolderButton.addEventListener('click', () => {this.dialog.renderNewFolderModal(this)});
         this.settingsButton.addEventListener('click', () => {this.updateTheme()});
         this.searchBarInput.addEventListener('input', () => {this.handleSearchBarInput()});
         document.addEventListener("click", (event) => {

@@ -1,6 +1,6 @@
 import { Folder } from "../components/folder.js";
 import { ListFolder, NoFolderMessage } from "../components/listFolder.js";
-import { DeleteContainer } from '../components/deleteContainer.js';
+import { NoteDeleteModal } from '../components/modals/noteDeleteModal.js';
 import { SubfolderObjectArray } from "../util/array.js";
 import { NoContentFeedbackHandler } from "../handlers/userFeedback/noContentFeedbackHandler.js";
 import { AnimationHandler } from "../handlers/animation/animationHandler.js";
@@ -151,7 +151,7 @@ export class SubfolderView {
      * @param {String} name 
      */
     renderDeleteContainer(id, name) {
-        this.dialog.addChild(new DeleteContainer(id, name, this));
+        this.dialog.addChild(new NoteDeleteModal(id, name, this));
         this.dialog.show();
     }
 
