@@ -59,13 +59,10 @@
     border-radius: 0 10px 10px 0;
 }
 
-
-
 .update-folder-btns-container button:hover {
     background-color: var(--hover-toolbar-btns);
     color: var(--hover-text);
 }
-
 
 .folder-logo {
     position: relative;
@@ -145,7 +142,6 @@
     opacity: 0;
     visibility: hidden;
 }
-
 
 .folder-color-options-container div {
     width: 16px;

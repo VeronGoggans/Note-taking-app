@@ -15,7 +15,6 @@
     transition: 200ms ease-in-out;
 }
 
-
 .note-name-input::placeholder {
     color: var(--placeholder);
 }

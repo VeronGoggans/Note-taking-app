@@ -46,7 +46,6 @@ export class NoteView {
         } else {
             this.noContentFeedbackHandler.noNotes(new NoNoteMessage());
         }
-        console.log(this.noteObjects);
     }
 
     /**
@@ -79,7 +78,6 @@ export class NoteView {
      * @param {dict} note
      */
     renderNoteUpdate(note) {
-        console.log(note);
         const NOTE_CARDS = new HTMLArray(this._content.children, 'note'); 
         const NOTE_LIST_CARDS = this._list.children;
 
@@ -177,7 +175,6 @@ export class NoteView {
      */
     update(note) {
         this.noteObjects.update(note);
-        console.log(this.noteObjects);
     }
 
    /**

@@ -190,9 +190,6 @@ export class ApplicationView {
         this.currentFolderName.textContent = name;
     }
 
-    
-
-
     /**
      * This method handles the  event of a user 
      * searching for a note.
