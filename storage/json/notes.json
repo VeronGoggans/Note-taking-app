@@ -56,6 +56,15 @@
                     "last_edit": "12/04/2024 14:03",
                     "creation": "04/04/2024",
                     "color": "white"
+                },
+                {
+                    "id": "n-520",
+                    "title": "PUT still works!",
+                    "content": "storage/notes/note-n-520.txt",
+                    "bookmark": false,
+                    "color": "green",
+                    "last_edit": "13/04/2024 01:53",
+                    "creation": "13/04/2024"
                 }
             ],
             "subfolders": []

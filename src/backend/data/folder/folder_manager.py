@@ -1,10 +1,6 @@
 from src.backend.domain.folder import Folder
-import os
 
 class FolderManager:
-    def __init__(self):
-        self.notes_relative_path = os.getcwd() + '/storage/json/notes.json'
-
 
     def get_folders(self, folders) -> list:
         """

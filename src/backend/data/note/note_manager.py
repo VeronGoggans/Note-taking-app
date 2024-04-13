@@ -1,11 +1,10 @@
 from src.backend.domain.note import Note
 from src.backend.presentation.request_bodies.note.put_note_request import PutNoteRequest
 from src.backend.application.service.util.date_service import DateService
-import os
+from src.backend.domain.note_factory import NoteFactory
 
 class NoteManager:
     def __init__(self):
-        self.notes_relative_path = os.getcwd() + '/storage/json/notes.json'
         self.search_bar_note_objects = []
     
 
@@ -29,8 +28,6 @@ class NoteManager:
             return note
         return None
 
-        
-
     
     def get_notes(self, folders, folder_id: str):
         """
@@ -47,7 +44,7 @@ class NoteManager:
         """
         parent_folder = self.__find_folder_by_id(folders, folder_id)
         if parent_folder:
-            notes_list = self.__create_note_object_list(parent_folder['notes'])
+            notes_list = NoteFactory.create_note_list(parent_folder['notes'])
             return notes_list
         return None
 
@@ -68,7 +65,7 @@ class NoteManager:
         for folder in folders:
             for note in folder["notes"]:
                 if note.get("id") == note_id:
-                    note_object = self.__create_note_object(note)
+                    note_object = NoteFactory.create_existing_note(note)
                     note_object.set_content_text()
                     return note_object, folder['id']
             
@@ -91,11 +88,9 @@ class NoteManager:
         return self.search_bar_note_objects    
 
 
-
     def clear_search_options_list(self):
         self.search_bar_note_objects = []      
-
-                        
+               
 
     def update_note(self, folders, note_id: str, put_request: PutNoteRequest):
         """
@@ -119,7 +114,6 @@ class NoteManager:
         return None
     
 
-
     def update_note_color(self, folders, note_id: str, color: str):
         """
         Update the color of a note
@@ -137,13 +131,12 @@ class NoteManager:
         note = self.__find_note(folders, note_id)
         if note:
             note['color'] = color
-            note_object = self.__create_note_object(note)
+            note_object = NoteFactory.create_existing_note(note)
             note_object.set_content_text()
             return note_object
         return None
 
 
-    
     def delete_note(self, folders, note_id: str, delete_txt_file = True):
         """
         Delete a specific note from the notes structure by its unique identifier.
@@ -218,36 +211,15 @@ class NoteManager:
                 return subfolder
         return None
     
-    
-    def __create_note_object_list(self, notes: list):
-        note_objects = []
-        for note in notes:
-            note_obj = self.__create_note_object(note)
-            note_obj.set_content_text()
-            note_objects.append(note_obj)
-        return note_objects
-        
-    
-    def __create_note_object(self, note_data: Note):
-        return Note(
-            note_data['id'], 
-            note_data['title'], 
-            note_data['content'], 
-            note_data['bookmark'], 
-            note_data['color'],
-            note_data['last_edit'],
-            note_data['creation'],
-            )
-    
 
     def __delete_note_txt_file(self, note_data: Note):
         """This method will delete the htm file linked to the note object."""
-        note_object = self.__create_note_object(note_data)
+        note_object = NoteFactory.create_existing_note(note_data)
         note_object.delete_note_file(note_object.content)
 
     
     def __update_note(self, current_note: dict, updated_note: PutNoteRequest):
-        note = self.__create_note_object(current_note)
+        note = NoteFactory.create_existing_note(current_note)
         note.update_content(note.content, updated_note.content)
         note.content = updated_note.content
         note.bookmark = updated_note.bookmark

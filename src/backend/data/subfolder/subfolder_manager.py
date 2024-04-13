@@ -1,11 +1,6 @@
 from src.backend.domain.subfolder import Subfolder
-import os
 
 class SubfolderManager:
-    def __init__(self):
-        self.notes_relative_path = os.getcwd() + '/storage/json/notes.json'
-        self.DELETED = 'DELETED'
-
 
     def get_subfolders(self, folders, folder_id: str):
         """

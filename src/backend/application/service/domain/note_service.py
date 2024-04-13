@@ -4,7 +4,7 @@ from src.backend.presentation.request_bodies.note.put_note_request import PutNot
 from src.backend.presentation.request_bodies.note.del_note_request import DeleteNoteRequest
 from src.backend.presentation.request_bodies.note.move_note_request import MoveNoteRequest
 from src.backend.presentation.request_bodies.note.put_note_color_request import PutNoteColorRequest
-from src.backend.domain.note import Note
+from src.backend.domain.note_factory import NoteFactory
 from src.backend.domain.enums.responseMessages import Status
 from src.backend.data.file.json_manager import JsonManager
 import os 
@@ -17,26 +17,6 @@ class NoteService:
         self.BASE_URL = os.getcwd()
         self.folders_path = f'{self.BASE_URL}/storage/json/notes.json'
         self.id_path = f'{self.BASE_URL}/storage/json/id.json'
-
-
-    def get_cache(self):
-        try:
-            content = self.json_manager.load(self.folders_path)
-            return content
-        except OSError as e:
-            return Status.INTERAL_SERVER_ERROR
-        
-
-    def get_search_options(self):
-        folder_structure = self.json_manager.load(self.folders_path)
-        folders = folder_structure['folders']
-        notes = self.note_manager.get_note_name_id(folders)
-
-        if notes:
-            self.note_manager.clear_search_options_list()
-            return notes
-        return Status.INTERAL_SERVER_ERROR
-
 
 
     def get_notes(self, folder_id: int):
@@ -83,40 +63,6 @@ class NoteService:
         return Status.NOT_FOUND
     
 
-    def move_note(self, move_request: MoveNoteRequest):
-        """
-        Moves a note from it's current folder into 
-        another folder specified with it's ID.
-
-        Args:
-            move_request (MoveNoteRequest): 
-            - folder_id (str): The ID of the folder to which the note will be added to.
-            - title (str): The title of the note.
-
-        Returns:
-            dict or Status.NOT_FOUND: 
-            - If a note with the specified ID is found, returns the note as a dictionary.
-            - If the note is not found, returns Status.NOT_FOUND.
-        """
-        folder_structure = self.json_manager.load(self.folders_path)
-        folders = folder_structure['folders']
-        folders_copy = copy.deepcopy(folder_structure)
-
-        try:
-            deleted_note = self.note_manager.delete_note(folders, move_request.note_id, delete_txt_file=False)
-            deleted_note_object = self.__create_note_object(deleted_note)
-        except Exception as e:
-            return Status.NOT_FOUND
-        
-        new_note = self.note_manager.add_note(folders, move_request.folder_id, deleted_note_object)
-
-        if new_note:
-            self.json_manager.update(self.folders_path, folder_structure)
-            return new_note
-        self.json_manager.update(self.folders_path, folders_copy)
-        return Status.NOT_FOUND
-    
-
 
     def add_note(self, post_request: PostNoteRequest):
         """
@@ -135,8 +81,9 @@ class NoteService:
               returns a dictionary representing the new note.
             - If the folder is not found, returns Status.NOT_FOUND.
         """
-        note = self.__construct_note_object(post_request)
-        note.set_content_path()
+        note_id = self.json_manager.generateID(self.id_path, 'note')
+        note = NoteFactory.create_new_note(note_id, post_request)
+
         folder_structure = self.json_manager.load(self.folders_path)
         folders = folder_structure['folders']
         new_note = self.note_manager.add_note(folders, post_request.folder_id, note)
@@ -177,18 +124,6 @@ class NoteService:
     
 
 
-    def update_note_color(self, put_request: PutNoteColorRequest):
-        folder_structure = self.json_manager.load(self.folders_path)
-        folders = folder_structure['folders']
-        note = self.note_manager.update_note_color(folders, put_request.note_id, put_request.color)
-
-        if note:
-            self.json_manager.update(self.folders_path, folder_structure)
-            return note 
-        return Status.NOT_FOUND
-    
-
-
     def delete_note(self, delete_request: DeleteNoteRequest):
         """
         Delete an existing note within a specified folder.
@@ -214,23 +149,68 @@ class NoteService:
     
 
 
-    def __construct_note_object(self, post_request: PostNoteRequest):
-        note_id = self.json_manager.generateID(self.id_path, "note")
-        return Note(
-            note_id, 
-            post_request.title, 
-            post_request.content, 
-            post_request.bookmark,
-            'white'
-            )
+    def move_note(self, move_request: MoveNoteRequest):
+        """
+        Moves a note from it's current folder into 
+        another folder specified with it's ID.
+
+        Args:
+            move_request (MoveNoteRequest): 
+            - folder_id (str): The ID of the folder to which the note will be added to.
+            - title (str): The title of the note.
+
+        Returns:
+            dict or Status.NOT_FOUND: 
+            - If a note with the specified ID is found, returns the note as a dictionary.
+            - If the note is not found, returns Status.NOT_FOUND.
+        """
+        folder_structure = self.json_manager.load(self.folders_path)
+        folders = folder_structure['folders']
+        folders_copy = copy.deepcopy(folder_structure)
+
+        try:
+            deleted_note = self.note_manager.delete_note(folders, move_request.note_id, delete_txt_file=False)
+            deleted_note_object = NoteFactory.create_existing_note(deleted_note)
+        except Exception as e:
+            return Status.NOT_FOUND
+        
+        new_note = self.note_manager.add_note(folders, move_request.folder_id, deleted_note_object)
+
+        if new_note:
+            self.json_manager.update(self.folders_path, folder_structure)
+            return new_note
+        self.json_manager.update(self.folders_path, folders_copy)
+        return Status.NOT_FOUND
     
-    def __create_note_object(self, note_data: Note):
-        return Note(
-            note_data['id'], 
-            note_data['title'], 
-            note_data['content'], 
-            note_data['bookmark'], 
-            note_data['color'],
-            note_data['last_edit'],
-            note_data['creation']
-            )
+
+
+    def update_note_color(self, put_request: PutNoteColorRequest):
+        folder_structure = self.json_manager.load(self.folders_path)
+        folders = folder_structure['folders']
+        note = self.note_manager.update_note_color(folders, put_request.note_id, put_request.color)
+
+        if note:
+            self.json_manager.update(self.folders_path, folder_structure)
+            return note 
+        return Status.NOT_FOUND
+    
+
+
+    def get_cache(self):
+        try:
+            content = self.json_manager.load(self.folders_path)
+            return content
+        except OSError as e:
+            return Status.INTERAL_SERVER_ERROR
+        
+
+
+    def get_search_options(self):
+        folder_structure = self.json_manager.load(self.folders_path)
+        folders = folder_structure['folders']
+        notes = self.note_manager.get_note_name_id(folders)
+
+        if notes:
+            self.note_manager.clear_search_options_list()
+            return notes
+        return Status.INTERAL_SERVER_ERROR
