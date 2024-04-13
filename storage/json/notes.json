@@ -56,18 +56,41 @@
                     "last_edit": "12/04/2024 14:03",
                     "creation": "04/04/2024",
                     "color": "white"
-                },
-                {
-                    "id": "n-520",
-                    "title": "PUT still works!",
-                    "content": "storage/notes/note-n-520.txt",
-                    "bookmark": false,
-                    "color": "green",
-                    "last_edit": "13/04/2024 01:53",
-                    "creation": "13/04/2024"
                 }
             ],
             "subfolders": []
+        },
+        {
+            "id": "f-104",
+            "name": "Frontend",
+            "color": "#ffffff",
+            "notes": [],
+            "subfolders": [
+                {
+                    "id": "s-147",
+                    "name": "CSS\u00a0\ud83c\udfa8",
+                    "color": "#a9d7ff",
+                    "notes": [
+                        {
+                            "id": "n-523",
+                            "title": "CSS Quick Reference",
+                            "content": "storage/notes/note-n-523.txt",
+                            "bookmark": false,
+                            "color": "white",
+                            "last_edit": "13/04/2024 17:13",
+                            "creation": "13/04/2024"
+                        }
+                    ],
+                    "subfolders": []
+                },
+                {
+                    "id": "s-148",
+                    "name": "Javascript",
+                    "color": "#ffffff",
+                    "notes": [],
+                    "subfolders": []
+                }
+            ]
         }
     ]
 }

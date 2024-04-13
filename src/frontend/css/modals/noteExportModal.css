@@ -1,9 +1,13 @@
 .note-export-modal {
-    background-color: white;
+    background-color: var(--background);
     width: fit-content;
     padding: 20px 40px;
     border-radius: 15px;
     font-family: Roboto;
+  }
+
+  .note-export-modal h2 {
+    color: var(--important);
   }
 
 

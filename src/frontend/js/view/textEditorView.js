@@ -1,6 +1,6 @@
 import { KeyEventListener } from "../eventListeners/keyEventListener.js";
 import { TextFormatter } from "../textFormat/textFormatter.js"; 
-import { getNoteHexColor, getNoteColor } from "../util/backgroundColor.js";
+import { getNoteHexColor } from "../util/backgroundColor.js";
 
 export class TextEditorView {
   constructor(textEditorController, dialog) {
@@ -184,6 +184,7 @@ export class TextEditorView {
     this.noteContent = content;
     this.page.innerHTML = content;
     this.noteNameInput.value = name;
+    this.noteNameInput.focus()
     TextFormatter.listenForLinkClicks(this.page);
     this.setEditorColor(color);
     this.show();
