@@ -67,7 +67,7 @@ class NoteManager:
                 if note.get("id") == note_id:
                     note_object = NoteFactory.create_existing_note(note)
                     note_object.set_content_text()
-                    return note_object, folder['id']
+                    return note_object, folder['id'], folder['name']
             
             # If note is not found in current folder, search in subfolders recursively
             note_object = self.get_note_by_id(folder["subfolders"], note_id)

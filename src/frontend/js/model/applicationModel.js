@@ -44,6 +44,7 @@ export class ApplicationModel {
             this.folderIds.push({'id': ID, 'name': name});
             this.createNoteButtonContext();
         }
+        console.log(this.folderIds);
     }
 
     /**
@@ -57,6 +58,7 @@ export class ApplicationModel {
     removeFolderIdFromList() {
         this.folderIds.pop();
         this.createNoteButtonContext();
+        console.log(this.folderIds);
         return this.folderIds[this.folderIds.length - 1];
     }
 

@@ -92,8 +92,9 @@ export class ApplicationController {
      * This method retrieves a spicific note
      * 
      * This method retrieves the note that has been 
-     * clicked on in the search bar and then opens 
-     * the note in the text editor 
+     * clicked on in the search bar takes the user to the folder 
+     * the searched note is present in and finally opens 
+     * that note in the text editor     
      * 
      * @param {String} noteId 
      */
@@ -106,6 +107,7 @@ export class ApplicationController {
         const LAST_EDIT = await NOTE.last_edit;
         const BOOKMARK = await NOTE.bookmark;
         const COLOR =  await NOTE.color;
+        this.navigateIntoFolder(await RESPONSE[1], await RESPONSE[2]);
         this.openNoteInTextEditor(CONTENT, NAME, CREATION, LAST_EDIT, noteId, BOOKMARK, COLOR);
     }
 
@@ -163,7 +165,6 @@ export class ApplicationController {
      * And puts the note the user clicked on, in the text editor.
      */
     openNoteInTextEditor(content, name, creation, lastEdit, noteId, bookmark, color) {
-        console.log('recieved by app controller ', color);
         this.textEditorController.openNoteInTextEditor(content, name, creation, lastEdit, noteId, bookmark, color);
     }
 

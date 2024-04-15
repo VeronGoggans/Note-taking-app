@@ -17,8 +17,9 @@ export class NoteController {
     async getNoteById(noteId) {
         const RESPONSE = await this.noteModel.getNoteById('/noteById', noteId);
         const NOTE = await RESPONSE.Note;
-        const FOLDER_ID = await RESPONSE.Folder;
-        return [NOTE, FOLDER_ID]
+        const FOLDER_ID = await RESPONSE.Folder_id;
+        const FOLDER_NAME = await RESPONSE.Folder_name;
+        return [NOTE, FOLDER_ID, FOLDER_NAME]
     }
 
     async addNote(folderId, content, name) {

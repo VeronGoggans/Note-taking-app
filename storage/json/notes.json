@@ -74,17 +74,18 @@
                     "color": "white",
                     "last_edit": "15/04/2024 15:36",
                     "creation": "15/04/2024"
+                },
+                {
+                    "id": "n-529",
+                    "title": "untitled",
+                    "content": "storage/notes/note-n-529.txt",
+                    "bookmark": false,
+                    "color": "white",
+                    "last_edit": "15/04/2024 17:13",
+                    "creation": "15/04/2024"
                 }
             ],
-            "subfolders": [
-                {
-                    "id": "s-150",
-                    "name": "untitled",
-                    "color": "#ffffff",
-                    "notes": [],
-                    "subfolders": []
-                }
-            ]
+            "subfolders": []
         },
         {
             "id": "f-104",
@@ -110,23 +111,6 @@
                     "subfolders": []
                 }
             ]
-        },
-        {
-            "id": "f-111",
-            "name": "untitled",
-            "color": "#ffffff",
-            "notes": [
-                {
-                    "id": "n-528",
-                    "title": "long time",
-                    "content": "storage/notes/note-n-528.txt",
-                    "bookmark": false,
-                    "color": "white",
-                    "last_edit": "15/04/2024 15:36",
-                    "creation": "15/04/2024"
-                }
-            ],
-            "subfolders": []
         }
     ]
 }
