@@ -72,6 +72,8 @@ export class Dialog {
     renderNewFolderModal(view) {
         this.addChild(new NewFolderContainer(view));
         this.show();
+        const inputElement = this.dialog.querySelector('.new-folder-container input');
+        inputElement.focus();
     }
 
     renderNoteBackgroundModal(id, color, view) {

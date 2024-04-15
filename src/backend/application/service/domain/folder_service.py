@@ -87,7 +87,7 @@ class FolderService:
         Args:
             delete_request (DeleteFolderRequest): 
             Object containing the folder_id.
-            - folder_id (str): The ID of the folder whished to be deleted. 
+            - folder_id (str): The ID of the folder wished to be deleted.
 
         Returns:
             Status: 

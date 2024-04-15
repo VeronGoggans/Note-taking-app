@@ -7,9 +7,7 @@ export class NewFolderContainer {
         // Creating HTMl elements
         this.HOST = CNode.create('div', {'class': 'new-folder-container'});
         this.H2 = CNode.create('h2', {'textContent': 'New folder'});
-        this.INPUT = document.createElement('input');
-        this.INPUT.placeholder = 'Folder name';
-        this.INPUT.spellcheck = false;
+        this.INPUT = CNode.create('input', {'placeholder': 'Folder name', 'spellcheck': false});
         this.BUTTON = CNode.create('button', {'textContent': 'Add'});
 
         this.#attachEventListeners();
@@ -17,10 +15,12 @@ export class NewFolderContainer {
     }
 
     #attachEventListeners() {
-        this.BUTTON.addEventListener('click', () => {
-            const NAME = this.INPUT.value || 'untitled';
-            this.view.handleAddFolderButtonClick(NAME)
-        });
+        this.BUTTON.addEventListener('click', () => {this.#createNewFolder()});
+        this.INPUT.addEventListener('keydown', (event) => {
+            // if enter is pressed while the focus is on the input
+            // create a new folder and close the modal.
+            if (event.key === 'Enter') this.#createNewFolder();
+        })
     }
 
     #render() {
@@ -28,5 +28,10 @@ export class NewFolderContainer {
         this.HOST.appendChild(this.INPUT);
         this.HOST.appendChild(this.BUTTON);
         return this.HOST;
+    }
+
+    #createNewFolder() {
+        const NAME = this.INPUT.value || 'untitled';
+        this.view.handleAddFolderButtonClick(NAME);
     }
 }

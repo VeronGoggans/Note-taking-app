@@ -14,7 +14,6 @@ class SubfolderService:
         self.folders_path = os.getcwd() + '/storage/json/notes.json'
         self.id_path = os.getcwd() + "/storage/json/id.json"
 
-
     
     def get_subfolders(self, folder_id: int):
         """
@@ -116,5 +115,3 @@ class SubfolderService:
             self.json_manager.update(self.folders_path, folder_structure)
             return manager_response
         return Status.NOT_FOUND
-
-    

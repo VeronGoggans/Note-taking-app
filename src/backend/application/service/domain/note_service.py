@@ -19,7 +19,7 @@ class NoteService:
         self.id_path = f'{self.BASE_URL}/storage/json/id.json'
 
 
-    def get_notes(self, folder_id: int):
+    def get_notes(self, folder_id: str):
         """
         Retrieves notes of a specific type within the specified folder.
         Note types are standard, protected, bookmark or all.
@@ -34,8 +34,7 @@ class NoteService:
             - If the folder is not found or does not contain notes of the specified type,
               returns Status.NOT_FOUND.
         """
-        folder_structure = self.json_manager.load(self.folders_path)
-        folders = folder_structure['folders']
+        folders = self.json_manager.load(self.folders_path)['folders']
         notes = self.note_manager.get_notes(folders, folder_id)
 
         if notes is not None:
@@ -43,8 +42,7 @@ class NoteService:
         return Status.NOT_FOUND
 
 
-
-    def get_note_by_id(self, note_id: int):
+    def get_note_by_id(self, note_id: str):
         """
         Retrieves a note with the specified ID.
 
@@ -61,7 +59,6 @@ class NoteService:
         if note:
             return note
         return Status.NOT_FOUND
-    
 
 
     def add_note(self, post_request: PostNoteRequest):
@@ -73,7 +70,7 @@ class NoteService:
             - folder_id (str): The ID of the folder to which the note will be added to.
             - title (str): The title of the note.
             - content (str): The content of the note.
-            - bookmark (bool): A boolean indicating if the note is boomarked or not.
+            - bookmark (bool): A boolean indicating if the note is bookmarked or not.
 
         Returns:
             dict or Status.NOT_FOUND: 
@@ -92,8 +89,7 @@ class NoteService:
             self.json_manager.update(self.folders_path, folder_structure)
             return new_note
         return Status.NOT_FOUND
-    
-    
+
 
     def update_note(self, put_request: PutNoteRequest):
         """
@@ -121,7 +117,6 @@ class NoteService:
             self.json_manager.update(self.folders_path, folder_structure)
             return note 
         return Status.NOT_FOUND
-    
 
 
     def delete_note(self, delete_request: DeleteNoteRequest):
@@ -146,7 +141,6 @@ class NoteService:
             self.json_manager.update(self.folders_path, folder_structure)
             return deleted_note
         return Status.NOT_FOUND
-    
 
 
     def move_note(self, move_request: MoveNoteRequest):
@@ -181,7 +175,6 @@ class NoteService:
             return new_note
         self.json_manager.update(self.folders_path, folders_copy)
         return Status.NOT_FOUND
-    
 
 
     def update_note_color(self, put_request: PutNoteColorRequest):
@@ -195,19 +188,16 @@ class NoteService:
         return Status.NOT_FOUND
     
 
-
     def get_cache(self):
         try:
             content = self.json_manager.load(self.folders_path)
             return content
         except OSError as e:
             return Status.INTERAL_SERVER_ERROR
-        
 
 
     def get_search_options(self):
-        folder_structure = self.json_manager.load(self.folders_path)
-        folders = folder_structure['folders']
+        folders = self.json_manager.load(self.folders_path)['folders']
         notes = self.note_manager.get_note_name_id(folders)
 
         if notes:

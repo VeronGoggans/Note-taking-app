@@ -12,11 +12,6 @@ export class NoteModel {
         return this.#fetchData(`${endpoint}/${noteId}`, OPTIONS);
     }
 
-    async getSearchOptions(endpoint) {
-        const OPTIONS = RequestOptionsBuilder.buildGetOptions();
-        return this.#fetchData(`${endpoint}`, OPTIONS);
-    }
-
     async addNote(endpoint, folderId, content, name) {
         const OPTIONS = RequestOptionsBuilder.buildPostOptions({
             'folder_id': folderId,
@@ -38,6 +33,21 @@ export class NoteModel {
         return this.#fetchData(endpoint, OPTIONS)
     }
 
+    async deleteNote(endpoint, noteId) {
+        const OPTIONS = RequestOptionsBuilder.buildDeleteOptions({'note_id': noteId});
+        return this.#fetchData(endpoint, OPTIONS);
+    }
+
+    async exportNote(endpoint, format, name, content) {
+        const OPTIONS = RequestOptionsBuilder.buildPutOptions({'format': format, 'name': name, 'content': content});
+        return this.#fetchData(endpoint, OPTIONS)
+    }
+
+    async getSearchOptions(endpoint) {
+        const OPTIONS = RequestOptionsBuilder.buildGetOptions();
+        return this.#fetchData(`${endpoint}`, OPTIONS);
+    }
+
     async moveNote(endpoint, noteId, folderId) {
         const OPTIONS = RequestOptionsBuilder.buildPutOptions({'folder_id': folderId, 'note_id': noteId})
         return this.#fetchData(endpoint, OPTIONS)
@@ -46,11 +56,6 @@ export class NoteModel {
     async updateNoteColor(endpoint, noteId, color) {
         const OPTIONS = RequestOptionsBuilder.buildPutOptions({'note_id': noteId, 'color': color})
         return this.#fetchData(endpoint, OPTIONS)
-    }
-
-    async deleteNote(endpoint, noteId) {
-        const OPTIONS = RequestOptionsBuilder.buildDeleteOptions({'note_id': noteId});
-        return this.#fetchData(endpoint, OPTIONS);
     }
 
     async #fetchData(endpoint, options) {

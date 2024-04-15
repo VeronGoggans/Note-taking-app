@@ -18,13 +18,12 @@ export class NoteController {
         const RESPONSE = await this.noteModel.getNoteById('/noteById', noteId);
         const NOTE = await RESPONSE.Note;
         const FOLDER_ID = await RESPONSE.Folder;
-        return [NOTE, FOLDER_ID];
+        return [NOTE, FOLDER_ID]
     }
 
     async addNote(folderId, content, name) {
         const RESPONSE = await this.noteModel.addNote('/note', folderId, content, name);
         let note = await RESPONSE.Note;
-        // Swithing the path with the content
         note.content = content;
         this.noteView.renderNoteCard(note);
         this.noteView.pushNotification('Saved');
@@ -40,6 +39,20 @@ export class NoteController {
         this.updateSearchObject(noteId, name);
     }
 
+    async deleteNote(noteId) {
+        const RESPONSE = await this.noteModel.deleteNote('/note', noteId);
+        const NOTE = await RESPONSE.Note;
+        this.noteView.removeNote(NOTE);
+        this.noteView.pushNotification('Deleted', NOTE.title);
+        this.deleteSearchObject(noteId);
+    }
+
+    async exportNote(format, name, content) {
+        const RESPONSE = await this.noteModel.exportNote('/exportNote', format, name, content);
+        const STATUS = await RESPONSE.Download_status;
+        return await STATUS
+    }
+
     async moveNote(noteId, folderId) {
         const RESPONSE = await this.noteModel.moveNote('/moveNote', noteId, folderId);
         const NOTE = RESPONSE.Note;
@@ -50,14 +63,6 @@ export class NoteController {
         const RESPONSE = await this.noteModel.updateNoteColor('/noteColor', noteId, color);
         const NOTE = RESPONSE.Note;
         this.noteView.update(NOTE);
-    }
-
-    async deleteNote(noteId) {
-        const RESPONSE = await this.noteModel.deleteNote('/note', noteId);
-        const NOTE = await RESPONSE.Note;
-        this.noteView.removeNote(NOTE);
-        this.noteView.pushNotification('Deleted', NOTE.title);
-        this.deleteSearchObject(noteId);
     }
     
     /**
