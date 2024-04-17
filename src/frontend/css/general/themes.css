@@ -45,6 +45,8 @@
     --shadow: rgba(0, 0, 0, 0.1);
     --shadow-notification: #dcdee6;
     --card-shadow: #e0e2ec;
+    --code-snippit-background: #252539;
+    --code-snippet-color: #5c7dff;
 }
 
 .dark {
@@ -93,6 +95,8 @@
     --shadow: rgba(0, 0, 0, 0.1);
     --shadow-notification: #121216;
     --card-shadow: #1b1c22; /*16171c*/
+    --code-snippit-background: #252539;
+    --code-snippet-color: #5c7dff;
 }
 
 .light {
@@ -141,4 +145,6 @@
     --shadow: rgba(0, 0, 0, 0.1);
     --shadow-notification: #dcdee6;
     --card-shadow: #e0e2ec;
+    --code-snippit-background: #f5f5fa;
+    --code-snippet-color: #303030;
 }

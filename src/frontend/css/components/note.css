@@ -166,9 +166,9 @@
  }
 
 .note-content-box code {
-    background-color: #f5f5fa;
+    background-color: var(--code-snippit-background);
     border-radius: 3px;
-    color: #303030;
+    color: var(--code-snippet-color);
     font-family: courier, monospace;
     padding: 0 3px;
   }
