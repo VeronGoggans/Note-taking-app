@@ -10,7 +10,6 @@ export class TextFormatter {
       const CONTAINER = CNode.create('div', {'class': 'link-container'});
       const CANCEL_BTN = CNode.create('button', {'class': 'cancel-link-btn'});
       const ICON = CNode.create('i', {'class': 'fa-solid fa-xmark'});
-      const SAVE_BTN = CNode.create('button', {'class': 'save-link-btn', 'textContent': 'Save'});
       const ORIGINAL_LINK = CNode.create('input', {'class': 'original-link-input', 'type': 'text', 'placeholder': 'Paste link here...'});
       const CUSTOM_LINK = CNode.create('input', {'class': 'custom-link-input', 'type': 'text', 'placeholder': 'Custom text'});
 
@@ -19,76 +18,65 @@ export class TextFormatter {
       CONTAINER.appendChild(CANCEL_BTN);
       CONTAINER.appendChild(ORIGINAL_LINK);
       CONTAINER.appendChild(CUSTOM_LINK);
-      CONTAINER.appendChild(SAVE_BTN);
 
       CANCEL_BTN.addEventListener('click', () => {CONTAINER.remove()});
-      SAVE_BTN.addEventListener('click', () => {
-        // Delete the input
-        RANGE.deleteContents();
+      ORIGINAL_LINK.addEventListener('keydown', (event) => {insert(event)});
+      CUSTOM_LINK.addEventListener('keydown', (event) => {insert(event)});
 
-        // Create a link element
-        const LINK = document.createElement('a');
+      function insert(event) {
+        if (event.key === 'Enter') {
+          // Delete the input
+          RANGE.deleteContents();
 
-        LINK.addEventListener('click', () => {window.open(ORIGINAL_LINK.value)});
-        
-        // The selected text is equal to the link.
-        LINK.href = ORIGINAL_LINK.value;
+          // Create a link element
+          const LINK = document.createElement('a');
 
-        if (CUSTOM_LINK.value !== '') {
-          LINK.textContent = CUSTOM_LINK.value;
-        } else {
-          LINK.textContent = ORIGINAL_LINK.value;
+          LINK.addEventListener('click', () => {window.open(ORIGINAL_LINK.value)});
+          
+          // The selected text is equal to the link.
+          LINK.href = ORIGINAL_LINK.value;
+
+          if (CUSTOM_LINK.value !== '') {
+            LINK.textContent = CUSTOM_LINK.value;
+          } else {
+            LINK.textContent = ORIGINAL_LINK.value;
+          }
+
+          RANGE.insertNode(LINK);
         }
-
-        RANGE.insertNode(LINK);
-      });
+      }
       RANGE.insertNode(CONTAINER);
+      ORIGINAL_LINK.focus();
    }
 
 
-   static addParagraph() {
-      // Get the current selection 
-      const SELECTION = window.getSelection();
+   static addCodeBlock() {
+     // Get the selected text range
+     const selection = window.getSelection();
+     const range = selection.getRangeAt(0);
 
-      // Get the range of the selection
-      const RANGE = SELECTION.getRangeAt(0);
+     // Create a <code> element and set its text content to the selected text
+     const codeElement = document.createElement('code');
+     codeElement.textContent = range.toString();
 
-      const PARAGRAPH = document.createElement('div');
-      PARAGRAPH.classList.add('paragraph');
-
-      const P = document.createElement('p');
-      P.textContent = RANGE;
-
-      PARAGRAPH.appendChild(P);
-
-      // Creating a break element to put below the paragraph.
-      const BREAK = document.createElement('br');
-
-      RANGE.insertNode(BREAK);
-      RANGE.insertNode(PARAGRAPH);
-
-      // Collapse the range
-      RANGE.collapse(false);
+     // Replace the selected text range with the <code> element
+     range.deleteContents();
+     range.insertNode(codeElement);
   }
 
+  static removeFormatting() {
+    // Get the selected text range
+    const selection = window.getSelection();
+    if (selection.rangeCount > 0) {
+      const range = selection.getRangeAt(0);
 
-  static addLine() {
-      // Get the current selection 
-      const SELECTION = window.getSelection();
+      // Remove any inline styles from the selected range
+      range.deleteContents();
 
-      // Get the range of the selection
-      const RANGE = SELECTION.getRangeAt(0);
-
-      const HR = document.createElement('hr');
-
-      // Creating a break element
-      const BREAK = document.createElement('br');
-  
-      RANGE.insertNode(BREAK);
-      RANGE.insertNode(HR);
-
-      // Collapse the range
-      RANGE.collapse(false);
+      // Clear any formatting applied to the parent element
+      let parentElement = range.commonAncestorContainer;
+      parentElement.removeAttribute('style');
+    }
   }
 
 
@@ -157,5 +145,6 @@ export class TextFormatter {
       }
     })
     RANGE.insertNode(CONTAINER);
+    INPUT.focus();
   }
 }

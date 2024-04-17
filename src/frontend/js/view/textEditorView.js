@@ -30,8 +30,8 @@ export class TextEditorView {
     this.fontDropdownOptions = document.querySelector('.font-options');
     
     this.linkButton = document.querySelector('.link-btn');
-    this.paragrapghButton = document.querySelector('.paragraph-btn');
-    this.lineBreakButton = document.querySelector('.hr-btn');
+    this.codeBlockButton = document.querySelector('.code-block-btn');
+    this.removeFormattingButton = document.querySelector('.remove-formatting-btn');
     this.embedVideoButton = document.querySelector('.video-btn');
     this.foregroundColor = document.querySelector('.foreground-color-picker');
     this.backgroundColor = document.querySelector('.background-color-picker');
@@ -68,8 +68,8 @@ export class TextEditorView {
     this.exportButton.addEventListener('click', () => {this.dialog.renderNoteExportModal(this)});
 
     this.linkButton.addEventListener('click', () => {TextFormatter.addLink()});
-    this.paragrapghButton.addEventListener('click', () => {TextFormatter.addParagraph()});
-    this.lineBreakButton.addEventListener('click', () => {TextFormatter.addLine()});
+    this.codeBlockButton.addEventListener('click', () => {TextFormatter.addCodeBlock()});
+    this.removeFormattingButton.addEventListener('click', () => {TextFormatter.removeFormatting()});
     this.embedVideoButton.addEventListener('click', () => {TextFormatter.addEmbedVideo()});
     this.foregroundColor.addEventListener('click', () => {this.#toggleVisibleDropdown(this.foregroundPalette)});
     this.backgroundColor.addEventListener('click', () => {this.#toggleVisibleDropdown(this.backgroundPalette)});

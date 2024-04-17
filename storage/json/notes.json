@@ -45,24 +45,15 @@
         },
         {
             "id": "f-100",
-            "name": "Test folder",
+            "name": "Test folder\ud83d\ude04",
             "color": "#ffffff",
             "notes": [
-                {
-                    "id": "n-483",
-                    "title": "Features",
-                    "content": "storage/notes/note-n-483.txt",
-                    "bookmark": false,
-                    "last_edit": "11/04/2024 18:21",
-                    "creation": "22/03/2024",
-                    "color": "white"
-                },
                 {
                     "id": "n-505",
                     "title": "text file export",
                     "content": "storage/notes/note-n-505.txt",
                     "bookmark": false,
-                    "last_edit": "12/04/2024 14:03",
+                    "last_edit": "16/04/2024 20:24",
                     "creation": "04/04/2024",
                     "color": "white"
                 },
@@ -72,16 +63,7 @@
                     "content": "storage/notes/note-n-527.txt",
                     "bookmark": false,
                     "color": "white",
-                    "last_edit": "15/04/2024 15:36",
-                    "creation": "15/04/2024"
-                },
-                {
-                    "id": "n-529",
-                    "title": "untitled",
-                    "content": "storage/notes/note-n-529.txt",
-                    "bookmark": false,
-                    "color": "white",
-                    "last_edit": "15/04/2024 17:13",
+                    "last_edit": "17/04/2024 14:21",
                     "creation": "15/04/2024"
                 }
             ],
@@ -104,7 +86,7 @@
                             "content": "storage/notes/note-n-523.txt",
                             "bookmark": false,
                             "color": "white",
-                            "last_edit": "15/04/2024 15:46",
+                            "last_edit": "16/04/2024 19:56",
                             "creation": "13/04/2024"
                         }
                     ],

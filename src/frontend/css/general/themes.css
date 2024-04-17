@@ -39,7 +39,8 @@
     --selection: #b1daff;
     --dialog: rgba(0, 3, 24, 0.30);
     --paragraph: rgba(239, 241, 250, .4);
-    --editor-container: #1f2129;
+    --editor-container: #252831;
+    --editor-container-shadow: #272933;
     --editor-container-input: #f6f7ff;
     --shadow: rgba(0, 0, 0, 0.1);
     --shadow-notification: #dcdee6;
@@ -86,7 +87,8 @@
     --selection: #314682;
     --dialog: rgba(58, 64, 106, 0.15);
     --paragraph: #252831;
-    --editor-container: #1f2129;
+    --editor-container: #23252e;
+    --editor-container-shadow: #272933;
     --editor-container-input: #16171c;
     --shadow: rgba(0, 0, 0, 0.1);
     --shadow-notification: #121216;
@@ -134,6 +136,7 @@
     --dialog: rgba(58, 64, 106, 0.15);
     --paragraph: rgba(239, 241, 250, .4);
     --editor-container: #ffffff;
+    --editor-container-shadow: #dcdeee;
     --editor-container-input: #f6f7ff;
     --shadow: rgba(0, 0, 0, 0.1);
     --shadow-notification: #dcdee6;

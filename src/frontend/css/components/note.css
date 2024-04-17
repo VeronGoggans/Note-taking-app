@@ -165,9 +165,13 @@
     color: var(--important);
  }
 
- .note-content-box hr {
-    border: 1px solid rgb(145 150 167);
- }
+.note-content-box code {
+    background-color: #f5f5fa;
+    border-radius: 3px;
+    color: #303030;
+    font-family: courier, monospace;
+    padding: 0 3px;
+  }
 
  .note-content-box a {
     color: rgb(67, 142, 255);

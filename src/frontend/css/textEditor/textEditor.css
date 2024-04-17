@@ -101,9 +101,9 @@
 .embed-container {
    position: relative;
    background-color: var(--editor-container);
-   border-radius: 10px;
-   border: 1px solid var(--editor-border);
+   border-radius: 15px;
    padding: 15px;
+   box-shadow: 0 0 10px var(--editor-container-shadow);
    width: fit-content;
 }
 
@@ -112,11 +112,10 @@
    outline: none;
    border: none;
    border-bottom: 2px solid var(--editor-border);
-   border-radius: 5px;
    padding: 5px;
    margin: 10px 0;
    padding-left: 25px;
-   background-color: var(--editor-container-input);
+   background-color: transparent;
    color: var(--text);
    font-size: 16px;
    transition: .3s;
@@ -146,9 +145,9 @@
    flex-direction: column;
    position: relative;
    background-color: var(--editor-container);
-   border-radius: 10px;
-   border: 1px solid var(--editor-border);
+   border-radius: 15px;
    padding: 15px;
+   box-shadow: 0 0 10px var(--editor-container-shadow);
    width: fit-content;
 }
 
@@ -159,11 +158,10 @@
    outline: none;
    border: none;
    border-bottom: 2px solid var(--editor-border);
-   border-radius: 5px;
    padding: 5px;
    margin: 10px 0;
    padding-left: 25px;
-   background-color: var(--editor-container-input);
+   background-color: transparent;
    color: var(--text);
    font-size: 16px;
    transition: .3s;
@@ -205,10 +203,6 @@
    color: var(--placeholder);
 }
 
- .editor hr {
-    border: 1px solid var(--editor-border);
- }
-
  .editor img {
     border-radius: 10px;
     cursor: pointer;
@@ -236,3 +230,12 @@
  .editor a {
    color: rgb(67, 142, 255);
  }
+
+ .editor code {
+   background-color: #f5f5fa;
+   border-radius: 3px;
+   color: #303030;
+   font-family: courier, monospace;
+   padding: 0 3px;
+ }
+ 
