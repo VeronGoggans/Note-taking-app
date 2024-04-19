@@ -107,5 +107,5 @@ class NoteRouter:
         response = exporter.export(export_request)
 
         if response != ExportStatus.DOWNLOAD_FAILED:
-            return {'Status_code': Status.OK, "Download_status": response}
-        return {'Status_code': Status.BAD_REQUEST, 'Download_status': response}
+            return {'Status_code': Status.OK}
+        return {'Status_code': Status.BAD_REQUEST}

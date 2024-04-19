@@ -8,6 +8,7 @@ export class NoteExportModal {
         this.TXT_BTN = CNode.create('button', {'textContent': 'Txt format'});
         this.PDF_BTN = CNode.create('button', {'textContent': 'Pdf format'});
 
+        this.#attachEventListeners();
         return this.#render()
     }
 
@@ -16,5 +17,9 @@ export class NoteExportModal {
         this.HOST.appendChild(this.TXT_BTN);
         this.HOST.appendChild(this.PDF_BTN);
         return this.HOST
+    }
+
+    #attachEventListeners() {
+        this.TXT_BTN.addEventListener('click', () => {this.view.exportNote('txt')});
     }
 }

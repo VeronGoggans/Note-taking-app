@@ -3,21 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <style>
-    blockquote {
-  border-left: 4px solid #ccc; /* Left border */
-  background-color: #f9f9f9; /* Background color */
-  padding: 10px; /* Padding */
-  margin: 0; /* Reset margin */
-  font-style: italic; /* Font style */
-}
-
-  </style>
+  <title>Animated Pop-up</title>
+  <link rel="stylesheet" href="./test.css">
 </head>
 <body>
-  H<sub>2</sub>O (water) and x<sup>2</sup> (x squared)
-  
-  
+  <button id="openButton">Open Pop-up</button>
+  <div class="popup-container" id="popupContainer">
+    <div class="popup-content" id="popupContent">
+      <span class="close" id="closeButton">&times;</span>
+      <p>This is the content of the pop-up.</p>
+    </div>
+  </div>
+
+  <script>
+    const openButton = document.getElementById('openButton');
+const popupContainer = document.getElementById('popupContainer');
+const closeButton = document.getElementById('closeButton');
+
+openButton.addEventListener('click', () => {
+  popupContainer.style.display = 'block';
+  setTimeout(() => {
+    popupContainer.style.transform = 'translate(-50%, -50%) scale(1)';
+    popupContainer.style.opacity = '1'
+  }, 10);
+});
+
+closeButton.addEventListener('click', () => {
+  popupContainer.style.transform = 'translate(-50%, -50%) scale(0)';
+  setTimeout(() => {
+    popupContainer.style.display = 'none';
+    popupContainer.style.opacity = '1'
+  }, 500);
+});
+
+  </script>
 </body>
 </html>

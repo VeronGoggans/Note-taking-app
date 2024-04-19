@@ -8,6 +8,6 @@
     width: 100dvw;
     height: 100dvh;
     background-color: var(--dialog);
-    z-index: 2;
+    z-index: 3;
     font-family: Roboto;
 }

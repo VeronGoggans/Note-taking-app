@@ -10,9 +10,8 @@
     border: 1px solid var(--border-card);
     height: 70px;
     width: fit-content;
-    padding: 0 15px;
-    border-radius: 7px;
-    box-shadow: 7px 5px 5px var(--shadow-notification);
+    padding: 5px 15px;
+    border-radius: 0px;
     transition: 300ms;
     z-index: 5;
 }
@@ -27,7 +26,7 @@
 }
 
 #notification-icon {
-    color: #ffffff;
+    color: var(--background);
     font-size: 20px;
     background-color: #a9baff;
     width: 35px;
@@ -35,7 +34,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 15px 10px 15px 10px;
+    border-radius: 50%;
     margin-right: 10px;
 }
 

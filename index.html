@@ -88,7 +88,7 @@
       <div class="toolbar">
         <div class="toolbar-top">
           <button class="exit-text-editor-btn"><i class="fa-solid fa-arrow-left"></i></button>
-          <div class="file-dropdown">
+          <div class="file-dropdown" id="dropdown-1">
             <button class="dropdown-title"><i class="fa-solid fa-ellipsis"></i></button>
             <div class="options">
               <button class="new-note-span"><i class="fa-solid fa-plus"></i>New</button>
@@ -108,7 +108,7 @@
               <button onclick="executeCommand('undo')"><i class="fa-solid fa-rotate-left"></i></button>
               <button onclick="executeCommand('redo')"><i class="fa-solid fa-rotate-right"></i></button>
             </div>
-            <div class="heading-dropdown">
+            <div class="heading-dropdown" id="dropdown-2">
               <button class="heading-button">Headings</button>
               <div class="options">
                 <button class="heading-1" onclick="executeCommand('formatBlock', 'h1')">Heading 1</button>
@@ -119,7 +119,7 @@
                 <button class="heading-6" onclick="executeCommand('formatBlock', 'h6')">Heading 6</button>
               </div>
             </div>
-            <div class="font-dropdown">
+            <div class="font-dropdown" id="dropdown-3">
               <button class="font-button">Fonts</button>
               <div class="font-options">
                 <button class="font-ariel" onclick="executeCommand('fontName', 'Arial')">Ariel</button>
@@ -146,11 +146,12 @@
     
                 <button onclick="executeCommand('insertUnorderedList')"><i class="fa-solid fa-list-ul"></i></button>
                 <button onclick="executeCommand('insertOrderedList')"><i class="fa-solid fa-list-ol"></i></button>
-                <button class="code-block-btn"><i class="fa-solid fa-code"></i></button>
                 <button class="video-btn"><i class="fa-solid fa-clapperboard"></i></button>
+                <button class="code-block-btn"><i class="fa-solid fa-code"></i></button>
+                
               </div>
               <div class="color-picker">
-                <button class="foreground-color-picker"><i class="fa-solid fa-palette"></i></button>
+                <button class="foreground-color-picker" id="dropdown-4"><i class="fa-solid fa-palette"></i></button>
                 <div class="foreground-color-palette">
                   <h3>Colors</h3>
                   <div class="nature-colors">
@@ -188,7 +189,7 @@
                 </div>
               </div>
               <div class="color-picker">
-                <button class="background-color-picker"><i class="fa-solid fa-highlighter"></i></button>
+                <button class="background-color-picker" id="dropdown-5"><i class="fa-solid fa-highlighter"></i></button>
                 <div class="background-color-palette">
                   <h3>Markers</h3>
                   <div class="nature-colors">
@@ -226,7 +227,9 @@
                 </div>
               </div>
               <div class="btn-container">
-                <button class="remove-formatting-btn"><i class="fa-solid fa-text-slash"></i></button>
+                <button onclick="executeCommand('superScript')" class="super-text-btn"><i class="fa-solid fa-superscript"></i></button>
+                <button onclick="executeCommand('subScript')" class="sub-text-btn"><i class="fa-solid fa-subscript"></i></button>
+                <button onclick="executeCommand('removeFormat')" class="remove-formatting-btn"><i class="fa-solid fa-text-slash"></i></button>
               </div>
           </div>
         </div>

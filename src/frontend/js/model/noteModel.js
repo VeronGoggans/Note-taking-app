@@ -39,7 +39,7 @@ export class NoteModel {
     }
 
     async exportNote(endpoint, format, name, content) {
-        const OPTIONS = RequestOptionsBuilder.buildPutOptions({'format': format, 'name': name, 'content': content});
+        const OPTIONS = RequestOptionsBuilder.buildPostOptions({'format': format, 'title': name, 'content': content});
         return this.#fetchData(endpoint, OPTIONS)
     }
 

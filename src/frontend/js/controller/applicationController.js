@@ -253,6 +253,10 @@ export class ApplicationController {
     async deleteNote(noteId) {
         await this.noteController.deleteNote(noteId);
     }
+
+    async exportNote(format, name, content) {
+        await this.noteController.exportNote(format, name, content);
+    }
     
     async setTheme(init) {
         const THEME = await this.settingController.getTheme();

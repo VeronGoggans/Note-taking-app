@@ -95,6 +95,7 @@
 }
 
 .export-note-button {
+    display: none;
     position: absolute;
     right: 162px;
     border: none;

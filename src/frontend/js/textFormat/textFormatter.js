@@ -64,21 +64,6 @@ export class TextFormatter {
      range.insertNode(codeElement);
   }
 
-  static removeFormatting() {
-    // Get the selected text range
-    const selection = window.getSelection();
-    if (selection.rangeCount > 0) {
-      const range = selection.getRangeAt(0);
-
-      // Remove any inline styles from the selected range
-      range.deleteContents();
-
-      // Clear any formatting applied to the parent element
-      let parentElement = range.commonAncestorContainer;
-      parentElement.removeAttribute('style');
-    }
-  }
-
 
   static addColor(color, command) {
       // Use document.execCommand to change text color

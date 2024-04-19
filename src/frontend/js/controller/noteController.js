@@ -1,3 +1,4 @@
+import { FolderModel } from "../model/folderModel.js";
 import { NoteModel } from "../model/noteModel.js";
 import { NoteView } from "../view/noteView.js";
 
@@ -49,9 +50,10 @@ export class NoteController {
     }
 
     async exportNote(format, name, content) {
+        console.log(format, name, content);
         const RESPONSE = await this.noteModel.exportNote('/exportNote', format, name, content);
-        const STATUS = await RESPONSE.Download_status;
-        return await STATUS
+        const STATUS = await RESPONSE.Status_code;
+        if (STATUS === 200) this.noteView.pushNotification('Export');
     }
 
     async moveNote(noteId, folderId) {

@@ -24,23 +24,8 @@ export class ApplicationView {
         this._listViewNotes = document.querySelector('.list-content-notes');
         this._searchNoteObjects = [];
 
-        this.attachEventListeners();
+        this.#attachEventListeners();
 
-    }
-
-    attachEventListeners() {
-        this.backButton.addEventListener('click', () => {this.back()});
-        this.homeButton.addEventListener('click', () => {this.home()});
-        this.createNoteButton.addEventListener('click', () => {this.showTextEditor()});
-        this.createFolderButton.addEventListener('click', () => {this.dialog.renderNewFolderModal(this)});
-        this.settingsButton.addEventListener('click', () => {this.updateTheme()});
-        this.searchBarInput.addEventListener('input', () => {this.handleSearchBarInput()});
-        document.addEventListener("click", (event) => {
-            if (!event.target.closest(".search-container")) {
-                this.noteOptionsList.innerHTML = "";
-                this.noteOptionsList.style.visibility = 'hidden';
-            }
-        });
     }
 
     /**
@@ -221,5 +206,20 @@ export class ApplicationView {
 
     async updateEditorPageStyle() {
         await this.applicationController.updateEditorPageStyle()
+    }
+    
+    #attachEventListeners() {
+        this.backButton.addEventListener('click', () => {this.back()});
+        this.homeButton.addEventListener('click', () => {this.home()});
+        this.createNoteButton.addEventListener('click', () => {this.showTextEditor()});
+        this.createFolderButton.addEventListener('click', () => {this.dialog.renderNewFolderModal(this)});
+        this.settingsButton.addEventListener('click', () => {this.updateTheme()});
+        this.searchBarInput.addEventListener('input', () => {this.handleSearchBarInput()});
+        document.addEventListener("click", (event) => {
+            if (!event.target.closest(".search-container")) {
+                this.noteOptionsList.innerHTML = "";
+                this.noteOptionsList.style.visibility = 'hidden';
+            }
+        });
     }
 }

@@ -37,43 +37,8 @@
                     "content": "storage/notes/note-n-525.txt",
                     "bookmark": false,
                     "color": "white",
-                    "last_edit": "15/04/2024 11:25",
+                    "last_edit": "19/04/2024 15:44",
                     "creation": "15/04/2024"
-                }
-            ],
-            "subfolders": []
-        },
-        {
-            "id": "f-100",
-            "name": "Test folder\ud83d\ude04",
-            "color": "#ffffff",
-            "notes": [
-                {
-                    "id": "n-505",
-                    "title": "text file export",
-                    "content": "storage/notes/note-n-505.txt",
-                    "bookmark": false,
-                    "last_edit": "16/04/2024 20:24",
-                    "creation": "04/04/2024",
-                    "color": "white"
-                },
-                {
-                    "id": "n-527",
-                    "title": "untitled",
-                    "content": "storage/notes/note-n-527.txt",
-                    "bookmark": false,
-                    "color": "white",
-                    "last_edit": "17/04/2024 17:58",
-                    "creation": "15/04/2024"
-                },
-                {
-                    "id": "n-534",
-                    "title": "Todo app",
-                    "content": "storage/notes/note-n-534.txt",
-                    "bookmark": false,
-                    "color": "white",
-                    "last_edit": "17/04/2024 17:48",
-                    "creation": "17/04/2024"
                 }
             ],
             "subfolders": []
@@ -82,26 +47,18 @@
             "id": "f-104",
             "name": "Frontend",
             "color": "#ffffff",
-            "notes": [],
-            "subfolders": [
+            "notes": [
                 {
-                    "id": "s-147",
-                    "name": "CSS\u00a0\ud83c\udfa8",
-                    "color": "#a9d7ff",
-                    "notes": [
-                        {
-                            "id": "n-523",
-                            "title": "CSS Quick Reference",
-                            "content": "storage/notes/note-n-523.txt",
-                            "bookmark": false,
-                            "color": "white",
-                            "last_edit": "16/04/2024 19:56",
-                            "creation": "13/04/2024"
-                        }
-                    ],
-                    "subfolders": []
+                    "id": "n-539",
+                    "title": "CSS Quick Reference",
+                    "content": "storage/notes/note-n-539.txt",
+                    "bookmark": false,
+                    "color": "white",
+                    "last_edit": "19/04/2024 15:24",
+                    "creation": "19/04/2024"
                 }
-            ]
+            ],
+            "subfolders": []
         }
     ]
 }

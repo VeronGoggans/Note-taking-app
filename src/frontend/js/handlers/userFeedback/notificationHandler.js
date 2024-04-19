@@ -8,21 +8,24 @@ export class NotificationHandler {
             'UPDATED': 'Updated',
             'DELETED': 'Deleted',
             'NEW': 'New',
-            'EMPTY': 'Empty'
+            'EMPTY': 'Empty',
+            'EXPORT': 'Export'
         }
         this.icons = {
             'SAVED': 'fa-solid fa-check',
             'UPDATED': 'fa-solid fa-pen',
             'DELETED': 'fa-regular fa-trash-can',
             'NEW': 'fa-solid fa-plus',
-            'EMPTY': 'fa-regular fa-bell'
+            'EMPTY': 'fa-regular fa-bell',
+            'EXPORT': 'fa-solid fa-download'
         }
         this.messages = {
             'SAVED': 'Note successfully created.',
             'UPDATED': 'Your changes have been saved.',
             'DELETED': 'has been deleted.',
             'NEW': 'Changes saved.\nCreating a new note.',
-            'EMPTY': 'This folder is empty.<br>Start by making a note or subfolder.'
+            'EMPTY': 'This folder is empty.<br>Start by making a note or subfolder.',
+            'EXPORT': 'Export successful'
         }
     }
 
@@ -33,11 +36,12 @@ export class NotificationHandler {
      */
     push(type, noteName = 'null') {
         const notificationTypes = {
-            'saved': { icon: this.icons.SAVED, message: this.messages.SAVED, type: this.types.SAVED },
-            'updated': { icon: this.icons.UPDATED, message: this.messages.UPDATED, type: this.types.UPDATED },
-            'deleted': { icon: this.icons.DELETED, message: `${noteName} ${this.messages.DELETED}`, type: this.types.DELETED },
-            'new': { icon: this.icons.NEW, message: this.messages.NEW, type: this.types.NEW },
-            'empty': { icon: this.icons.EMPTY, message: this.messages.EMPTY, type: this.types.EMPTY }
+            'saved': { icon: this.icons.SAVED, message: this.messages.SAVED, type: this.types.SAVED},
+            'updated': { icon: this.icons.UPDATED, message: this.messages.UPDATED, type: this.types.UPDATED},
+            'deleted': { icon: this.icons.DELETED, message: `${noteName} ${this.messages.DELETED}`, type: this.types.DELETED},
+            'new': { icon: this.icons.NEW, message: this.messages.NEW, type: this.types.NEW},
+            'empty': { icon: this.icons.EMPTY, message: this.messages.EMPTY, type: this.types.EMPTY},
+            'export': {icon: this.icons.EXPORT, message: this.messages.EXPORT, type: this.types.EXPORT}
         };
     
         const data = notificationTypes[type.toLowerCase()]; // Convert to lowercase for case-insensitivity

@@ -23,12 +23,7 @@ export class TextEditorController {
     }
 
     /**
-     * This method returns a list of note data
-     * 1. noteId
-     * 2. creation date
-     * 3. lastEdit date
-     * 4. bookmark
-     * 
+     * This method returns a list of note data 
      * And clears the stored data from the model.
      * 
      * @returns This method returns a list of stored note data.
@@ -38,21 +33,14 @@ export class TextEditorController {
     }
 
     /**
-     * This method stores the following note data
-     * 1. noteId
-     * 2. creation date
-     * 3. lastEdit date
-     * 4. bookmark
-     * 
+     * This method stores the following note data 
      * And clears the stored data from the model.
      */
     storeNoteData(noteId, creation, lastEdit, bookmark, name, color) {
         this.textEditorModel.storeNoteData(noteId, creation, lastEdit, bookmark, name, color);
     }
 
-    /**
-     * This method turns all stored note values to null
-     */
+
     clearStoredNoteData() {
         this.textEditorModel.clear();
     }
@@ -74,7 +62,6 @@ export class TextEditorController {
         const NOTE_ID = this.textEditorModel.getStoredNoteId();
         if (NOTE_ID !== null) {
             this.applicationController.changeNote(NOTE_ID, name, content, bookmark, color)
-            this.clearStoredNoteData();
         } else {
             this.applicationController.addNote(content, name);
         }
@@ -84,6 +71,10 @@ export class TextEditorController {
         const NOTE_ID = this.textEditorModel.getStoredNoteId();
         this.textEditorModel.storeNoteColor(color);
         this.applicationController.updateNoteColor(NOTE_ID, color);
+    }
+
+    async exportNote(format, name, content) {
+        await this.applicationController.exportNote(format, name, content);
     }
 
     /**

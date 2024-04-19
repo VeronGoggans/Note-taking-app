@@ -13,10 +13,10 @@
   .note-export-modal button {
     cursor: pointer;
     border: none;
-    background-color: #5c7dff;
+    background-color: var(--toolbar);
     border-radius: 15px;
     padding: 10px 20px;
-    color: white;
+    color: var(--text);
     font-size: 16px;
     font-weight: 600;
     margin: 5px;
@@ -25,9 +25,5 @@
   }
 
   .note-export-modal button:hover {
-    background-color: #4a6eff;
-  }
-
-  .note-export-modal button:active {
-    background-color: #3d64ff;
+    color: #5c7dff;
   }
