@@ -5,7 +5,6 @@ export class ApplicationView {
 
         this._initializeDomElements();
         this._attachEventListeners();
-
     }
 
     /**
@@ -28,7 +27,26 @@ export class ApplicationView {
             });
         }
     }
-    
+
+    /**
+     * This method handles input in the searchbar
+     * 
+     * This method takes the current value of the searchbar 
+     * and looks if that string takes place in any of the 
+     * note names.
+     * 
+     * Then it rerenders the remaining notes
+     * by calling the renderSearchOptions method
+     */
+    handleSearchBarInput() {
+        this.noteOptionsList.style.visibility = 'visible';
+        const INPUT_VALUE = this.searchBarInput.value.toLowerCase();
+        const FILTERED_OPTIONS = this._searchNoteObjects.filter(suggestion =>
+          suggestion.name.toLowerCase().includes(INPUT_VALUE)
+        );
+        this.renderSearchOptions(FILTERED_OPTIONS);
+    }
+
     /**
      * This method renders all the note names 
      * in the search options container
@@ -61,25 +79,6 @@ export class ApplicationView {
         while (this._listViewFolders.firstChild) this._listViewFolders.removeChild(this._listViewFolders.firstChild);
         while (this._listViewNotes.firstChild) this._listViewNotes.removeChild(this._listViewNotes.firstChild);
     }
-
-    /**
-     * This method handles input in the searchbar
-     * 
-     * This method takes the current value of the searchbar 
-     * and looks if that string takes place in any of the 
-     * note names.
-     * 
-     * Then it rerenders the remaining notes
-     * by calling the renderSearchOptions method
-     */
-    handleSearchBarInput() {
-        this.noteOptionsList.style.visibility = 'visible';
-        const INPUT_VALUE = this.searchBarInput.value.toLowerCase();
-        const FILTERED_OPTIONS = this._searchNoteObjects.filter(suggestion =>
-          suggestion.name.toLowerCase().includes(INPUT_VALUE)
-        );
-        this.renderSearchOptions(FILTERED_OPTIONS);
-      }
 
     /**
      * This method is called when the home button is clicked
@@ -215,6 +214,7 @@ export class ApplicationView {
         this.createFolderButton.addEventListener('click', () => {this.dialog.renderNewFolderModal(this)});
         this.settingsButton.addEventListener('click', () => {this.updateTheme()});
         this.searchBarInput.addEventListener('input', () => {this.handleSearchBarInput()});
+        this.searchBarInput.addEventListener('keydown', (event) => {});
         document.addEventListener("click", (event) => {
             if (!event.target.closest(".search-container")) {
                 this.noteOptionsList.innerHTML = "";

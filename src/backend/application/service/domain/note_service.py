@@ -200,7 +200,7 @@ class NoteService:
         folders = self.json_manager.load(self.folders_path)['folders']
         notes = self.note_manager.get_note_name_id(folders)
 
-        if notes:
+        if len(notes) >= 0:
             self.note_manager.clear_search_options_list()
             return notes
         return Status.INTERAL_SERVER_ERROR

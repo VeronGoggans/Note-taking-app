@@ -126,7 +126,7 @@ export class NoteObjectArray {
 }
 
 
-export class SubfolderObjectArray {
+export class FolderObjectArray {
     constructor() {
         this.objects = [];
     }

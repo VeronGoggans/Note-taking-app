@@ -15,11 +15,12 @@ class FolderManager:
         """
         folder_list = []
         for folder in folders:
-            folder_list.append({
-                'id': folder['id'], 
-                'name': folder['name'],
-                'color': folder['color']
-                })
+            if folder['id'] != 'f-1':
+                folder_list.append({
+                    'id': folder['id'], 
+                    'name': folder['name'],
+                    'color': folder['color']
+                    })
         return folder_list
 
 

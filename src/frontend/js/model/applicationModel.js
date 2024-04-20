@@ -2,21 +2,19 @@ export class ApplicationModel {
     constructor() {
         this.folderIds = [];
         this.createNoteButton = document.querySelector('.create-note-btn');
-        this.createNoteButtonContext();
     }
 
     clearFolderIdlist() {
         this.folderIds = [];
-        this.createNoteButtonContext();
     }
     
     /** 
      * Gets the current folder ID.
-     * @returns {String|undefined} The ID of the current folder, or undefined if no folder is set.
+     * @returns {String} The ID of the current folder, or the home folder id if no folder is set.
      */
     getCurrentFolderID() {
         const lastFolder = this.folderIds[this.folderIds.length - 1];
-        return lastFolder ? lastFolder.id : undefined;
+        return lastFolder ? lastFolder.id : 'f-1';
     }
 
     /**
@@ -32,17 +30,14 @@ export class ApplicationModel {
         return undefined
     }
 
-
     addFolderIdToList(ID, name) {
         if (this.folderIds.length > 0) {
             // if the id is not already in the last index of the array, push.
             if (ID !== this.folderIds[this.folderIds.length - 1].id) {
                 this.folderIds.push({'id': ID, 'name': name});
-                this.createNoteButtonContext();
             }
         } else {
             this.folderIds.push({'id': ID, 'name': name});
-            this.createNoteButtonContext();
         }
         console.log(this.folderIds);
     }
@@ -57,25 +52,10 @@ export class ApplicationModel {
      */
     removeFolderIdFromList() {
         this.folderIds.pop();
-        this.createNoteButtonContext();
         console.log(this.folderIds);
-        return this.folderIds[this.folderIds.length - 1];
+        const lastFolder = this.folderIds[this.folderIds.length - 1];
+        return lastFolder ? lastFolder: 'f-1';
     }
-
-    /**
-     * This method checks if the create note button 
-     * should be disabled or enabled.
-     */
-    createNoteButtonContext() {
-        if (this.folderIds.length > 0) {
-            if (this.createNoteButton.disabled) {
-                this.createNoteButton.removeAttribute('disabled');
-            }
-        } else {
-            this.createNoteButton.setAttribute('disabled', 'true');
-        }
-    }
-
     
     async getSearchOptions(endpoint) {
         try {

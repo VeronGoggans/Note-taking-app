@@ -10,6 +10,7 @@ import { NotificationHandler } from "../handlers/userFeedback/notificationHandle
  
 export class ApplicationController {
     constructor() {
+        this.homeFolderId = 'f-1';
         this.dialog = new Dialog();
         this.notificationHandler = new NotificationHandler();
         this.applicationView = new ApplicationView(this, this.dialog);
@@ -31,6 +32,7 @@ export class ApplicationController {
         await this.setTheme(true);
         await this.setEditorPageStyle(true);
         await this.folderController.getFolders();
+        await this.noteController.getNotes(this.homeFolderId);
         const RESPONSE = await this.applicationModel.getSearchOptions('/noteSearchObjects');
         this.applicationView.giveSearchOptions(RESPONSE.Notes);
         this.applicationView.renderSearchOptions(RESPONSE.Notes);
@@ -42,8 +44,9 @@ export class ApplicationController {
      * 
      * This method is called when the homescreen button is clicked.
      */
-    navigateToHomescreen() {
-        this.folderController.getFolders();
+    async navigateToHomescreen() {
+        await this.folderController.getFolders();
+        await this.noteController.getNotes(this.homeFolderId);
         this.applicationModel.clearFolderIdlist();
         this.applicationView.displayFolderName('Home');
     }
@@ -58,18 +61,19 @@ export class ApplicationController {
      */
     async handleAddFolder(name) {
         const CURRENT_FOLDER = this.applicationModel.getCurrentFolderID();
-        if (CURRENT_FOLDER === undefined) await this.addFolder(name);
+        console.log(CURRENT_FOLDER);
+        if (CURRENT_FOLDER === 'f-1') await this.addFolder(name);
         else await this.addSubfolder(name, CURRENT_FOLDER);
     }
 
     
-    navigateOutofFolder() {
+    async navigateOutofFolder() {
         const PARENT = this.applicationModel.removeFolderIdFromList();
-        if (PARENT === undefined) {
-            this.navigateToHomescreen();
+        if (PARENT === this.homeFolderId) {
+            await this.navigateToHomescreen();
         }
         else {
-            this.navigateIntoFolder(PARENT.id, PARENT.name);
+            await this.navigateIntoFolder(PARENT.id, PARENT.name);
         }
     }
 
@@ -107,8 +111,11 @@ export class ApplicationController {
         const LAST_EDIT = await NOTE.last_edit;
         const BOOKMARK = await NOTE.bookmark;
         const COLOR =  await NOTE.color;
-        this.navigateIntoFolder(await RESPONSE[1], await RESPONSE[2]);
         this.openNoteInTextEditor(CONTENT, NAME, CREATION, LAST_EDIT, noteId, BOOKMARK, COLOR);
+        if (RESPONSE[1] !== this.homeFolderId) {
+            this.navigateIntoFolder(await RESPONSE[1], await RESPONSE[2]);
+            console.log('Travel to folder');
+        }
     }
 
     /**

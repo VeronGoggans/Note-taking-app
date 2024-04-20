@@ -1,5 +1,7 @@
 import { Folder } from '../components/folder.js';
-import { ListFolder } from '../components/listFolder.js';
+import { ListFolder, NoFolderMessage } from '../components/listFolder.js';
+import { FolderObjectArray } from '../util/array.js';
+import { NoContentFeedbackHandler } from "../handlers/userFeedback/noContentFeedbackHandler.js";
 import { NoteDeleteModal } from '../components/modals/noteDeleteModal.js';
 import { AnimationHandler } from '../handlers/animation/animationHandler.js';
 
@@ -9,6 +11,8 @@ export class FolderView {
         this.dialog = dialog;
         this.notificationHandler = notificationHandler;
 
+        this.noContentFeedbackHandler = new NoContentFeedbackHandler();
+        this.folderObjects = new FolderObjectArray();
         this._initializeDomElements();
     }
 
@@ -19,15 +23,21 @@ export class FolderView {
      * @param {Array} folders is an array of folders.
      */
     renderFolders(folders) {
-        for (let i = 0; i < folders.length; i++) {
-            const FOLDER = folders[i];
-            const LIST_FOLDER_CARD = this._listFolder(FOLDER);
-            const FOLDER_CARD = this._folder(FOLDER);
-
-            this._content.appendChild(FOLDER_CARD);
-            this._list.appendChild(LIST_FOLDER_CARD);
-            AnimationHandler.fadeInFromBottom(FOLDER_CARD);
-            AnimationHandler.fadeInFromSide(LIST_FOLDER_CARD);
+        this.folderObjects.clear();
+        if (folders.length > 0) {
+            for (let i = 0; i < folders.length; i++) {
+                const FOLDER = folders[i];
+                const LIST_FOLDER_CARD = this._listFolder(FOLDER);
+                const FOLDER_CARD = this._folder(FOLDER);
+    
+                this._content.appendChild(FOLDER_CARD);
+                this._list.appendChild(LIST_FOLDER_CARD);
+                AnimationHandler.fadeInFromBottom(FOLDER_CARD);
+                AnimationHandler.fadeInFromSide(LIST_FOLDER_CARD);
+            }
+        } else {
+            // give user feedback that this folder is empty
+            this.noContentFeedbackHandler.noFolders(new NoFolderMessage());
         }
     }
 
@@ -37,11 +47,15 @@ export class FolderView {
      * @param {Object} folder
      */
     renderFolder(folder) {
+        // Checking if the list-view html element currently says "no folders"
+        if (this.folderObjects.size() === 0) {
+            this.noContentFeedbackHandler.removeNoFoldersMessage();
+        }
         const LIST_FOLDER_CARD = this._listFolder(folder);
         const FOLDER_CARD = this._folder(folder);
 
-        this._content.appendChild(FOLDER_CARD);
-        this._list.appendChild(LIST_FOLDER_CARD);
+        this._content.insertBefore(FOLDER_CARD, this._content.firstChild);
+        this._list.insertBefore(LIST_FOLDER_CARD, this._list.firstChild);
         AnimationHandler.fadeInFromBottom(FOLDER_CARD);
         AnimationHandler.fadeInFromSide(LIST_FOLDER_CARD);
         this.dialog.hide();
@@ -83,6 +97,11 @@ export class FolderView {
                     this._content.removeChild(ALL_FOLDERS[i]);
                     this._list.removeChild(ALL_LIST_FOLDERS[i]);
                 }, 700);
+                this.folderObjects.remove(folder);
+                // Checking if there are no subfolder cards inside the list-view html element
+                if (this.folderObjects.size() === 0) {
+                    this.noContentFeedbackHandler.noFolders(new NoFolderMessage());
+                }
             }
         }
         this.dialog.hide();
@@ -106,6 +125,7 @@ export class FolderView {
      * @returns {ListFolder} 
      */
     _listFolder(folder) {
+        this.folderObjects.add(folder)
         return new ListFolder(folder, this);
     }
 

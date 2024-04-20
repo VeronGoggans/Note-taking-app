@@ -1,7 +1,7 @@
 import { Folder } from "../components/folder.js";
 import { ListFolder, NoFolderMessage } from "../components/listFolder.js";
 import { NoteDeleteModal } from '../components/modals/noteDeleteModal.js';
-import { SubfolderObjectArray } from "../util/array.js";
+import { FolderObjectArray } from "../util/array.js";
 import { NoContentFeedbackHandler } from "../handlers/userFeedback/noContentFeedbackHandler.js";
 import { AnimationHandler } from "../handlers/animation/animationHandler.js";
 import { DragAndDrop } from "../handlers/drag&drop/dragAndDropHandler.js";
@@ -12,7 +12,7 @@ export class SubfolderView {
         this.dialog = dialog;
         this.notificationHandler = notificationHandler;
         this.noContentFeedbackHandler = new NoContentFeedbackHandler();
-        this.subfoldersObjects = new SubfolderObjectArray();
+        this.subfolderObjects = new FolderObjectArray();
         this.dragAndDrop = new DragAndDrop(this);
 
         this._initializeDomElements();
@@ -24,7 +24,7 @@ export class SubfolderView {
      * @param {Array} subfolders
      */
     renderSubfolders(subfolders) {
-        this.subfoldersObjects.clear();
+        this.subfolderObjects.clear();
         if (subfolders.length > 0) {
             for (let i = 0; i < subfolders.length; i++) {
                 const SUBFOLDER = subfolders[i];
@@ -49,7 +49,7 @@ export class SubfolderView {
      */
     renderSubfolder(subfolder) {
         // Checking if the list-view html element currently says "no folders"
-        if (this.subfoldersObjects.size() === 0) {
+        if (this.subfolderObjects.size() === 0) {
             this.noContentFeedbackHandler.removeNoFoldersMessage();
         }
         // Creating the html for the subfolder
@@ -98,9 +98,9 @@ export class SubfolderView {
                     this._content.removeChild(ALL_SUBFOLDERS[i]);
                     this._list.removeChild(ALL_LIST_SUBFOLDERS[i]);
                 }, 700);
-                this.subfoldersObjects.remove(subfolder);
+                this.subfolderObjects.remove(subfolder);
                 // Checking if there are no subfolder cards inside the list-view html element
-                if (this.subfoldersObjects.size() === 0) {
+                if (this.subfolderObjects.size() === 0) {
                     this.noContentFeedbackHandler.noFolders(new NoFolderMessage());
                 }
             }
@@ -150,7 +150,7 @@ export class SubfolderView {
      * @returns {Folder}
      */
     _subfolder(subfolder) {
-        this.subfoldersObjects.add(subfolder);
+        this.subfolderObjects.add(subfolder);
         return new Folder(subfolder, this);
     }
 
