@@ -14,20 +14,17 @@ export class SubfolderController {
         this.subfolderView.renderSubfolders(SUBFOLDERS);
     }
 
-
     async addSubfolder(name, folderId) {
         const RESPONSE = await this.subfolderModel.addSubfolder('/subfolder', name, folderId);
         const SUBFOLDER = RESPONSE.Subfolder;
         this.subfolderView.renderSubfolder(SUBFOLDER);
     }
 
-
     async updateSubfolder(subfolderId, newName, color) {
         const RESPONSE = await this.subfolderModel.updateSubfolder('/subfolder', subfolderId, newName, color);
         const FOLDER = RESPONSE.Subfolder;
         this.subfolderView.renderSubfolderUpdate(FOLDER);
     }
-
 
     async deleteSubfolder(subfolderId) {
         const PARENT_ID = this.applicationController.getCurrentFolderID();

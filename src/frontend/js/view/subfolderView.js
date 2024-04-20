@@ -9,14 +9,13 @@ import { DragAndDrop } from "../handlers/drag&drop/dragAndDropHandler.js";
 export class SubfolderView {
     constructor(controller, dialog, notificationHandler) {
         this.subfolderController = controller;
-        this.noContentFeedbackHandler = new NoContentFeedbackHandler();
-        this._content = document.querySelector('.content-view');
-        this._list = document.querySelector('.list-content-folders');
-        this.subfoldersObjects = new SubfolderObjectArray();
-        this.dragAndDrop = new DragAndDrop(this);
-        
         this.dialog = dialog;
         this.notificationHandler = notificationHandler;
+        this.noContentFeedbackHandler = new NoContentFeedbackHandler();
+        this.subfoldersObjects = new SubfolderObjectArray();
+        this.dragAndDrop = new DragAndDrop(this);
+
+        this._initializeDomElements();
     }
     /** 
      * This method renders a array of subfolders and adds them to the UI.
@@ -29,8 +28,8 @@ export class SubfolderView {
         if (subfolders.length > 0) {
             for (let i = 0; i < subfolders.length; i++) {
                 const SUBFOLDER = subfolders[i];
-                const SUBFOLDER_LIST_CARD = this.#listSubfolder(SUBFOLDER);
-                const SUBFOLDER_CARD = this.#subfolder(SUBFOLDER);
+                const SUBFOLDER_LIST_CARD = this._listSubfolder(SUBFOLDER);
+                const SUBFOLDER_CARD = this._subfolder(SUBFOLDER);
 
                 this._content.appendChild(SUBFOLDER_CARD);
                 this._list.appendChild(SUBFOLDER_LIST_CARD);
@@ -54,8 +53,8 @@ export class SubfolderView {
             this.noContentFeedbackHandler.removeNoFoldersMessage();
         }
         // Creating the html for the subfolder
-        const SUBFOLDER_CARD = this.#subfolder(subfolder);
-        const SUBFOLDER_LIST_CARD = this.#listSubfolder(subfolder);
+        const SUBFOLDER_CARD = this._subfolder(subfolder);
+        const SUBFOLDER_LIST_CARD = this._listSubfolder(subfolder);
 
         // Adding the note html cards to the screen
         this._content.insertBefore(SUBFOLDER_CARD, this._content.firstChild);
@@ -124,12 +123,23 @@ export class SubfolderView {
     }
 
     /**
+     * This method renders a confirmation container telling the user if they want to delete the subfolder.
+     * 
+     * @param {String} id 
+     * @param {String} name 
+     */
+    renderDeleteContainer(id, name) {
+        this.dialog.addChild(new NoteDeleteModal(id, name, this));
+        this.dialog.show();
+    }
+
+    /**
      * This method creates a ListFolder component and returns it.
      * 
      * @param {Dict} subfolder
      * @returns {ListFolder}
      */
-    #listSubfolder(subfolder) {
+    _listSubfolder(subfolder) {
         return new ListFolder(subfolder, this, this.dragAndDrop);
     }
 
@@ -139,20 +149,14 @@ export class SubfolderView {
      * @param {Dict} subfolder
      * @returns {Folder}
      */
-    #subfolder(subfolder) {
+    _subfolder(subfolder) {
         this.subfoldersObjects.add(subfolder);
         return new Folder(subfolder, this);
     }
 
-    /**
-     * This method renders a confirmation container telling the user if they want to delete the subfolder.
-     * 
-     * @param {String} id 
-     * @param {String} name 
-     */
-    renderDeleteContainer(id, name) {
-        this.dialog.addChild(new NoteDeleteModal(id, name, this));
-        this.dialog.show();
+    _initializeDomElements() {
+        this._content = document.querySelector('.content-view');
+        this._list = document.querySelector('.list-content-folders');
     }
 
     /**
@@ -183,7 +187,6 @@ export class SubfolderView {
     async handleNoteDrop(noteId, folderId) {
         await this.subfolderController.moveNote(noteId, folderId)
     }
-
 
     /**
      * Takes the user into a folder and displays the notes inside it.

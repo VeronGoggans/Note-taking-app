@@ -12,7 +12,7 @@ export class ApplicationController {
     constructor() {
         this.dialog = new Dialog();
         this.notificationHandler = new NotificationHandler();
-        this.applicationView = new ApplicationView(this);
+        this.applicationView = new ApplicationView(this, this.dialog);
         this.applicationModel = new ApplicationModel();
         this.folderController = new FolderController(this, this.dialog, this.notificationHandler);
         this.subfolderController = new SubfolderController(this, this.dialog, this.notificationHandler);

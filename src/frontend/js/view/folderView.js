@@ -6,10 +6,10 @@ import { AnimationHandler } from '../handlers/animation/animationHandler.js';
 export class FolderView {
     constructor(folderController, dialog, notificationHandler) {
         this.folderController = folderController;
-        this._content = document.querySelector('.content-view');
-        this._list = document.querySelector('.list-content-folders');
         this.dialog = dialog;
         this.notificationHandler = notificationHandler;
+
+        this._initializeDomElements();
     }
 
     /** 
@@ -21,8 +21,8 @@ export class FolderView {
     renderFolders(folders) {
         for (let i = 0; i < folders.length; i++) {
             const FOLDER = folders[i];
-            const LIST_FOLDER_CARD = this.#listFolder(FOLDER);
-            const FOLDER_CARD = this.#folder(FOLDER);
+            const LIST_FOLDER_CARD = this._listFolder(FOLDER);
+            const FOLDER_CARD = this._folder(FOLDER);
 
             this._content.appendChild(FOLDER_CARD);
             this._list.appendChild(LIST_FOLDER_CARD);
@@ -37,8 +37,8 @@ export class FolderView {
      * @param {Object} folder
      */
     renderFolder(folder) {
-        const LIST_FOLDER_CARD = this.#listFolder(folder);
-        const FOLDER_CARD = this.#folder(folder);
+        const LIST_FOLDER_CARD = this._listFolder(folder);
+        const FOLDER_CARD = this._folder(folder);
 
         this._content.appendChild(FOLDER_CARD);
         this._list.appendChild(LIST_FOLDER_CARD);
@@ -89,12 +89,23 @@ export class FolderView {
     }
 
     /**
+     * This method renders a confirmation container telling the user if they want to delete the folder.
+     * 
+     * @param {String} id 
+     * @param {String} name
+     */
+    renderDeleteContainer(id, name) {
+        this.dialog.addChild(new NoteDeleteModal(id, name, this));
+        this.dialog.show();
+    }
+
+    /**
      * This method creates a ListFolder component and returns it.
      * 
      * @param {Object} folder
      * @returns {ListFolder} 
      */
-    #listFolder(folder) {
+    _listFolder(folder) {
         return new ListFolder(folder, this);
     }
 
@@ -104,19 +115,13 @@ export class FolderView {
      * @param {Object} folder
      * @returns {Folder}
      */
-    #folder(folder) {
+    _folder(folder) {
         return new Folder(folder, this);
     }
 
-    /**
-     * This method renders a confirmation container telling the user if they want to delete the folder.
-     * 
-     * @param {String} id 
-     * @param {String} name
-     */
-    renderDeleteContainer(id, name) {
-        this.dialog.addChild(new NoteDeleteModal(id, name, this));
-        this.dialog.show();
+    _initializeDomElements() {
+        this._content = document.querySelector('.content-view');
+        this._list = document.querySelector('.list-content-folders');
     }
 
     /**

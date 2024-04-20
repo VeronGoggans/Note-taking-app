@@ -7,7 +7,6 @@ from src.backend.presentation.request_bodies.note.del_note_request import Delete
 from src.backend.presentation.request_bodies.note.move_note_request import MoveNoteRequest
 from src.backend.presentation.request_bodies.note.put_note_color_request import PutNoteColorRequest
 from src.backend.presentation.request_bodies.note.export_note_request import ExportNoteRequest
-from src.backend.domain.document_exporter import DocumentExporter
 from src.backend.domain.enums.exportStatus import ExportStatus
 from src.backend.domain.enums.responseMessages import Status
 
@@ -21,7 +20,6 @@ class NoteRouter:
         self.route.add_api_route('/noteById/{note_id}', self.note_by_id, methods=['GET'])
         self.route.add_api_route('/noteSearchObjects', self.note_name_id, methods=['GET'])
         self.route.add_api_route('/cache', self.cache, methods=['GET'])
-        self.route.add_api_route('/exportNote', self.export_note, methods=['POST'])
         self.route.add_api_route('/note', self.create_note, methods=['POST'])
         self.route.add_api_route('/note', self.delete_note, methods=['DELETE'])
         self.route.add_api_route('/note', self.update_note, methods=['PUT'])
@@ -100,12 +98,3 @@ class NoteRouter:
         if response != Status.NOT_FOUND:
             return {'Status_code': Status.OK, "Note": response}
         return {'Status_code': Status.NOT_FOUND}
-    
-
-    def export_note(self, export_request: ExportNoteRequest):
-        exporter = DocumentExporter() # Skip call (skipping the service layer here for simplicity)
-        response = exporter.export(export_request)
-
-        if response != ExportStatus.DOWNLOAD_FAILED:
-            return {'Status_code': Status.OK}
-        return {'Status_code': Status.BAD_REQUEST}

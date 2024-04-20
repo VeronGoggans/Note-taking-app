@@ -12,13 +12,13 @@ import { DragAndDrop } from "../handlers/drag&drop/dragAndDropHandler.js";
 export class NoteView {
     constructor(noteController, dialog, notificationHandler) {
         this.noteController = noteController;
-        this._content = document.querySelector('.content-view');
-        this._list = document.querySelector('.list-content-notes');
-        this.noContentFeedbackHandler = new NoContentFeedbackHandler(this);
+        this.notificationHandler = notificationHandler;
         this.dialog = dialog;
+        this.noContentFeedbackHandler = new NoContentFeedbackHandler(this);
         this.noteObjects = new NoteObjectArray();
         this.dragAndDrop = new DragAndDrop(this);
-        this.notificationHandler = notificationHandler;
+
+        this._initializeDomElements();
     }
 
     /** 
@@ -35,8 +35,8 @@ export class NoteView {
         this.noteObjects.clear();
         if (notes.length > 0) {
             for (let i = 0; i < notes.length; i++) {
-                const LIST_NOTE_CARD = this.#listNote(notes[i]);
-                const NOTE_CARD = this.#note(notes[i]);
+                const LIST_NOTE_CARD = this._listNote(notes[i]);
+                const NOTE_CARD = this._note(notes[i]);
 
                 this._content.appendChild(NOTE_CARD);
                 this._list.appendChild(LIST_NOTE_CARD);
@@ -62,8 +62,8 @@ export class NoteView {
         if (this.noteObjects.size() === 0) {
             this.noContentFeedbackHandler.removeNoNotesMessage();
         }
-        const LIST_NOTE_CARD = this.#listNote(note);
-        const NOTE_CARD = this.#note(note);
+        const LIST_NOTE_CARD = this._listNote(note);
+        const NOTE_CARD = this._note(note);
 
         this._content.appendChild(NOTE_CARD);
         this._list.appendChild(LIST_NOTE_CARD);
@@ -148,28 +148,6 @@ export class NoteView {
     }
 
     /**
-     * This method creates a note card component 
-     * And adds a note object to the noteObjects array. 
-     * 
-     * @param {Dict} note 
-     * @returns A note card component.
-     */
-    #note(note) {
-        this.noteObjects.add(note);
-        return new Note(note, this);
-    }
-
-    /**
-     * This method creates a ListNote component and returns it
-     * 
-     * @param {Dict} note
-     * @returns {ListNote} 
-     */
-    #listNote(note) {
-        return new ListNote(note, this, this.dragAndDrop);
-    }
-
-    /**
      * This method updates the stored object of a given note
      * @param {Dict} note 
      */
@@ -200,6 +178,33 @@ export class NoteView {
     renderDeleteContainer(id, name) {
         this.dialog.addChild(new NoteDeleteModal(id, name, this));
         this.dialog.show();
+    }
+
+    /**
+     * This method creates a note card component 
+     * And adds a note object to the noteObjects array. 
+     * 
+     * @param {Dict} note 
+     * @returns A note card component.
+     */
+    _note(note) {
+        this.noteObjects.add(note);
+        return new Note(note, this);
+    }
+
+    /**
+     * This method creates a ListNote component and returns it
+     * 
+     * @param {Dict} note
+     * @returns {ListNote} 
+     */
+    _listNote(note) {
+        return new ListNote(note, this, this.dragAndDrop);
+    }
+
+    _initializeDomElements() {
+        this._content = document.querySelector('.content-view');
+        this._list = document.querySelector('.list-content-notes');
     }
 
     /**

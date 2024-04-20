@@ -1,30 +1,10 @@
-import { Dialog } from '../util/dialog.js';
-
-
 export class ApplicationView {
-    constructor(applicationController) {
+    constructor(applicationController, dialog) {
         this.applicationController = applicationController;
-        this.dialog = new Dialog();
-        
-        // <main-top> 
-        this.createFolderButton = document.querySelector('.create-folder-btn');
-        this.currentFolderName = document.querySelector('.current-folder-name');
-        this.searchBarInput = document.querySelector('.searchbar-input');
-        this.noteOptionsList = document.querySelector('.note-suggestions-list');
+        this.dialog = dialog;
 
-        // <sidebar-content>
-        this.createNoteButton = document.querySelector('.create-note-btn');
-        this.backButton = document.querySelector('.exit-folder-btn');
-        this.homeButton = document.querySelector('.home-screen-btn');
-        this.settingsButton = document.querySelector('.settings-btn');
-
-        // other
-        this._content = document.querySelector('.content-view');
-        this._listViewFolders = document.querySelector('.list-content-folders');
-        this._listViewNotes = document.querySelector('.list-content-notes');
-        this._searchNoteObjects = [];
-
-        this.#attachEventListeners();
+        this._initializeDomElements();
+        this._attachEventListeners();
 
     }
 
@@ -207,8 +187,28 @@ export class ApplicationView {
     async updateEditorPageStyle() {
         await this.applicationController.updateEditorPageStyle()
     }
+
+    _initializeDomElements() {
+        // <main-top> 
+        this.createFolderButton = document.querySelector('.create-folder-btn');
+        this.currentFolderName = document.querySelector('.current-folder-name');
+        this.searchBarInput = document.querySelector('.searchbar-input');
+        this.noteOptionsList = document.querySelector('.note-suggestions-list');
+
+        // <sidebar-content>
+        this.createNoteButton = document.querySelector('.create-note-btn');
+        this.backButton = document.querySelector('.exit-folder-btn');
+        this.homeButton = document.querySelector('.home-screen-btn');
+        this.settingsButton = document.querySelector('.settings-btn');
+
+        // other
+        this._content = document.querySelector('.content-view');
+        this._listViewFolders = document.querySelector('.list-content-folders');
+        this._listViewNotes = document.querySelector('.list-content-notes');
+        this._searchNoteObjects = [];
+    }
     
-    #attachEventListeners() {
+    _attachEventListeners() {
         this.backButton.addEventListener('click', () => {this.back()});
         this.homeButton.addEventListener('click', () => {this.home()});
         this.createNoteButton.addEventListener('click', () => {this.showTextEditor()});
