@@ -46,7 +46,7 @@
         {
             "id": "f-104",
             "name": "Frontend",
-            "color": "#ffffff",
+            "color": "#dfc1ff",
             "notes": [
                 {
                     "id": "n-539",
@@ -56,18 +56,17 @@
                     "color": "white",
                     "last_edit": "19/04/2024 15:24",
                     "creation": "19/04/2024"
-                },
-                {
-                    "id": "n-540",
-                    "title": "untitled",
-                    "content": "storage/notes/note-n-540.txt",
-                    "bookmark": false,
-                    "color": "white",
-                    "last_edit": "20/04/2024 18:20",
-                    "creation": "20/04/2024"
                 }
             ],
-            "subfolders": []
+            "subfolders": [
+                {
+                    "id": "s-164",
+                    "name": "untitled",
+                    "color": "#ffffff",
+                    "notes": [],
+                    "subfolders": []
+                }
+            ]
         },
         {
             "id": "f-1",

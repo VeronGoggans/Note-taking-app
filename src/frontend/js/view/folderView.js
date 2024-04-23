@@ -10,9 +10,9 @@ export class FolderView {
         this.folderController = folderController;
         this.dialog = dialog;
         this.notificationHandler = notificationHandler;
-
         this.noContentFeedbackHandler = new NoContentFeedbackHandler();
         this.folderObjects = new FolderObjectArray();
+
         this._initializeDomElements();
     }
 
@@ -125,7 +125,7 @@ export class FolderView {
      * @returns {ListFolder} 
      */
     _listFolder(folder) {
-        this.folderObjects.add(folder)
+        this.folderObjects.add(folder, this, this.dragAndDrop)
         return new ListFolder(folder, this);
     }
 
@@ -167,6 +167,10 @@ export class FolderView {
      */
     async handleConfirmButtonClick(id) {
         await this.folderController.deleteFolder(id);
+    }
+
+    async handleNoteDrop(noteId, folderId) {
+        await this.folderController.moveNote(noteId, folderId)
     }
 
     /**
