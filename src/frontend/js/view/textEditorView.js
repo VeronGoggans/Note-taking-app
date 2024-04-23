@@ -226,6 +226,7 @@ export class TextEditorView {
    */
   _toggleVisibleDropdown(dropdownOptions) {
     dropdownOptions.style.visibility = dropdownOptions.style.visibility === 'visible' ? 'hidden' : 'visible';
+    dropdownOptions.style.opacity = dropdownOptions.style.opacity === '1' ? '0' : '1';
   }
 
   _toggleEditorStyleSpanName() {
@@ -236,6 +237,7 @@ export class TextEditorView {
   _closeDropdowns() {
     this.dropdowns.forEach((dropdown) => {
       dropdown.style.visibility = 'hidden';
+      dropdown.style.opacity = '0';
     })
   }
 
@@ -298,6 +300,7 @@ export class TextEditorView {
     this.exitButton.addEventListener('click', () => {this.closeEditor()});
     this.saveButton.addEventListener('click', () => {this.save(true, false)});
     this.exportButton.addEventListener('click', () => {this.dialog.renderNoteExportModal(this)});
+    this.page.addEventListener('click', () => {this._closeDropdowns()});
 
     this.linkButton.addEventListener('click', () => {TextFormatter.addLink()});
     this.codeBlockButton.addEventListener('click', () => {TextFormatter.addCodeBlock()});

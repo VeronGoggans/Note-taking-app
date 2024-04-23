@@ -21,6 +21,7 @@
 .foreground-color-palette,
 .background-color-palette {
     position: absolute;
+    opacity: 0;
     visibility: hidden;
     padding: 25px;
     top: 55px;
@@ -28,6 +29,7 @@
     border-radius: 10px;
     background-color: var(--card);
     box-shadow: 0 5px 20px var(--shadow);
+    transition: 100ms;
 }
 
 .background-color-palette {
