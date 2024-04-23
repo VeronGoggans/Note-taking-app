@@ -5,12 +5,9 @@ I created this app with two things I thought this app should have.
 1. The app should be easy on the eye. This prevents the user from losing track of where they are or what they have to click on in order to do what they want to do. To accomplish this I chose for a simplistic design.
 2. The app should be simple and easy to use. Providing as little obstacles for the user, so they can take notes without a complex series of buttons to press and menu's to open.
 
-## Note!
-This app is completly local. This app does not save your notes in the cloud, but instead saves them localy in the form of .txt files.
+> **Important** This app is completly local. This app does not save your notes in the cloud, but instead saves them localy in the form of .txt files..
 
 ## Features
-> **Note:** this app is designed to be simple and will not have fancy features..
-
 **App features:**
 - The user can create notes
 - The user can create Folders/subfolders
