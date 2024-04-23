@@ -22,6 +22,7 @@ word count, date of it's creation and the last time it was edited.
 - The user can drag and drop folders/notes into other folders.
 
 The following features will be for within the text editor
+
 **Editor Features:**
 - bold, italic, underline, strikethrough
 - Links (These can be given a custom text)
