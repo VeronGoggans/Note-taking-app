@@ -4,6 +4,7 @@
     --editor: #ffffff;
     --editor-background: #fafbff;
     --editor-border: #ced1e3;
+    --toolbar-border: #16171c;
     --list-view: #ffffff; /*f4f5f7*/
     --list-view-icon: #ced2ea;
     --sidebar: #f4f5f9; /*fafbff*/ 
@@ -52,9 +53,10 @@
 .dark {
     --background: #1b1c22;
     --notification: #16171c;
-    --editor: #16171c;
+    --editor: #1f2129;
     --editor-background: #1f2129;
-    --editor-border: #34363e;
+    --editor-border: #1b1c22;
+    --toolbar-border: #16171c;
     --list-view: #1b1c22;
     --list-view-icon: #d6d8e5;
     --sidebar: #16171c; 
@@ -67,7 +69,7 @@
     --icon: #bbbed2;
     --icon-hover: #5c7dff;
     --important: #d6d8e5;
-    --toolbar: #252831;
+    --toolbar: #16171c;
     --toolbar-btn-text: #bbbed2;
     --editor-text: #d5d9e0;
     --editor-text-top: #d5d9e0;
@@ -105,6 +107,7 @@
     --editor: #ffffff;
     --editor-background: #fafbff;
     --editor-border: #ced1e3;
+    --toolbar-border: #eff1f7;
     --list-view: #ffffff;
     --list-view-icon: #ced2ea;
     --searchbar: #ffffff;

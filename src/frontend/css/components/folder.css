@@ -1,6 +1,7 @@
 .folder {
     cursor: pointer;
-    height: 280px;
+    min-height: 280px;
+    max-height: 280px;
     border-radius: 15px;
     background-color: var(--card);
     color: var(--icon);
@@ -10,8 +11,8 @@
     overflow: visible;
     border: 1px solid var(--border-card);
     opacity: 0;
-    transform: translateY(90%);
-    transition: opacity .7s ease, transform .4s ease;
+    transform: translateY(30%);
+    transition: opacity .7s ease, transform .35s ease;
 }
 
 .folder-name-box {

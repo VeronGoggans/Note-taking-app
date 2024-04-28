@@ -3,39 +3,57 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Animated Pop-up</title>
-  <link rel="stylesheet" href="./test.css">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+      @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
+    
+    .linked-note-container {
+      font-family: Roboto;
+      background-color: white;
+      padding: 10px 15px;
+      margin: 20px 0;
+      width: fit-content;
+      border-radius: 5px;
+      cursor: pointer;
+      position: relative;
+      box-shadow: 0 0 10px #dcdeee;
+    }
+
+    .linked-note-name {
+      font-weight: 600;
+      font-size: 18px;
+      transition: 150ms;
+    } 
+
+    .linked-note-name:hover {
+      color: #5c7dff;
+    }
+
+    .linked-note-container .fa-regular {
+      font-size: 20px;
+      background-color: #f2f2f2;
+      color: #444863;
+      padding: 7px 10px;
+      border-radius: 5px;
+    }
+
+    .linked-note-container .fa-solid {
+      position: absolute;
+      top: -15px;
+      padding: 10px;
+      background-color: #5c7dff;
+      color: white;
+      border-radius: 50%;
+    }
+  </style>
 </head>
 <body>
-  <button id="openButton">Open Pop-up</button>
-  <div class="popup-container" id="popupContainer">
-    <div class="popup-content" id="popupContent">
-      <span class="close" id="closeButton">&times;</span>
-      <p>This is the content of the pop-up.</p>
-    </div>
+  <div class="linked-note-container">
+    <i class="fa-regular fa-file-lines"></i>
+    <span class="linked-note-name" contenteditable="false">CSS Quick Reference</span>
+    <i class="fa-solid fa-paperclip"></i>
   </div>
-
-  <script>
-    const openButton = document.getElementById('openButton');
-const popupContainer = document.getElementById('popupContainer');
-const closeButton = document.getElementById('closeButton');
-
-openButton.addEventListener('click', () => {
-  popupContainer.style.display = 'block';
-  setTimeout(() => {
-    popupContainer.style.transform = 'translate(-50%, -50%) scale(1)';
-    popupContainer.style.opacity = '1'
-  }, 10);
-});
-
-closeButton.addEventListener('click', () => {
-  popupContainer.style.transform = 'translate(-50%, -50%) scale(0)';
-  setTimeout(() => {
-    popupContainer.style.display = 'none';
-    popupContainer.style.opacity = '1'
-  }, 500);
-});
-
-  </script>
 </body>
 </html>

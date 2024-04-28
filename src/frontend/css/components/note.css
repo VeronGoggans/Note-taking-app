@@ -1,6 +1,7 @@
 .note {
     cursor: pointer;
-    height: 280px;
+    min-height: 280px;
+    max-height: 280px;
     border-radius: 15px;
     background-color: var(--card);
     display: grid;
@@ -9,8 +10,8 @@
     overflow: visible;
     border: 1px solid var(--border-card);
     opacity: 0;
-    transform: translateY(90%);
-    transition: opacity 1s ease, transform .4s ease;
+    transform: translateY(30%);
+    transition: opacity .7s ease, transform .35s ease;
 }
 
 .bookmark {
@@ -171,8 +172,12 @@
     color: var(--code-snippet-color);
     font-family: courier, monospace;
     padding: 0 3px;
-  }
+}
 
- .note-content-box a {
+.note-content-box .linked-note-container {
+    visibility: hidden;
+}
+
+.note-content-box a {
     color: rgb(67, 142, 255);
- }
+}

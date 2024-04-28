@@ -41,7 +41,7 @@ export class NoteView {
                 this._content.appendChild(NOTE_CARD);
                 this._list.appendChild(LIST_NOTE_CARD);
                 AnimationHandler.fadeInFromBottom(NOTE_CARD);
-                AnimationHandler.fadeInFromSide(LIST_NOTE_CARD);
+                AnimationHandler.fadeInFromBottom(LIST_NOTE_CARD);
             }
         } else {
             this.noContentFeedbackHandler.noNotes(new NoNoteMessage());

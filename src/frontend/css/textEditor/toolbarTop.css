@@ -6,7 +6,7 @@
     background-color: transparent;
     border-bottom: 2px solid transparent;
     min-width: 200px;
-    width: 400px;
+    width: 250px;
     height: 25px;
     padding: 5px 10px;
     font-weight: 600;
@@ -27,7 +27,7 @@
     transition: .2s;
     cursor: pointer;
     padding: 7px;
-    margin: 7px 10px 7px 0px;
+    margin: 7px 15px 7px 0px;
     border-radius: 15px;
     color: var(--important);
     background-color: var(--toolbar);
@@ -125,7 +125,7 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    margin: 7px 10px 7px 0px;
+    margin: 7px 15px 7px 0px;
     width: 90px;
     height: 35px;
     background-color: #5c7dff; 
@@ -144,7 +144,7 @@
 .exit-text-editor-btn {
     cursor: pointer;
     padding: 5px 0;
-    margin-left: 10px;
+    margin-left: 15px;
     border: none;
     width: 40px;
     height: 40px;

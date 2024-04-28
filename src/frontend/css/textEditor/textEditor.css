@@ -3,7 +3,7 @@
     top: 100%;
     visibility: hidden;
     display: grid;
-    grid-template-rows: 110px 1fr;
+    grid-template-rows: 120px 1fr;
     height: 100dvh;
     width: 100dvw;
     background-color: var(--editor);
@@ -14,34 +14,39 @@
    display: flex;
    justify-content: center;
    background-color: var(--editor-background);
-   max-height: calc(100dvh - 110px);
+   max-height: calc(100dvh - 120px);
+   overflow-y: scroll;
 }
 
 .editor-paper {
    position: relative;
    width: 50%;
-   height: calc(100% - 120px);
-   min-width: 400px;
+   height: fit-content; /*calc(100% - 120px)*/
+   margin: 15px 0;
+   min-height: 600px;
+   min-width: 600px;
    max-width: 650px;
    outline: none;
    cursor: text;
    padding: 60px 70px;
-   overflow-y: scroll;
+   overflow-x: hidden;
    font-family: sans-serif;
-   border-left: 1px solid var(--editor-border);
-   border-right: 1px solid var(--editor-border);
+   border: 1px solid var(--editor-border);
    background-color: var(--background);
    color: var(--editor-text);
 }
 
-.editor-paper::-webkit-scrollbar {
+.editor::-webkit-scrollbar {
     background-color: transparent;
-    width: 5px;
+    width: 10px;
 }
 
-.editor-paper::-webkit-scrollbar-thumb {
-    background-color: #e7e9f3;
-    border-radius: 3px;
+.editor::-webkit-scrollbar-thumb {
+    background-color: #cfd2e3;
+}
+
+.editor::-webkit-scrollbar-thumb:active {
+   background-color: #bbbed4;
 }
 
 .toolbar {
@@ -60,9 +65,11 @@
     background-color: var(--toolbar); 
     display: flex;
     align-items: center;
+    border-radius: 25px;
     padding: 0px 10px;
+    margin: 0px 15px;
     overflow: visible;
-    border-bottom: 1px solid var(--editor-border);
+    border-bottom: 1px solid var(--toolbar-border);
     z-index: 1;
 }
 
@@ -202,6 +209,46 @@
 .embed-container input::placeholder {
    color: var(--placeholder);
 }
+
+.linked-note-container {
+   font-family: Roboto;
+   background-color: var(--editor-container);
+   padding: 10px 15px;
+   margin: 20px 0;
+   width: fit-content;
+   border-radius: 5px;
+   cursor: pointer;
+   position: relative;
+   box-shadow: 0 0 10px var(--editor-container-shadow);
+ }
+
+ .linked-note-name {
+   font-weight: 600;
+   font-size: 18px;
+   transition: 150ms;
+   color: var(--text);
+ } 
+
+ .linked-note-name:hover {
+   color: #5c7dff;
+ }
+
+ .linked-note-container .fa-regular {
+   font-size: 20px;
+   background-color: #f0f2ff;
+   color: #444863;
+   padding: 7px 10px;
+   border-radius: 5px;
+ }
+
+ .linked-note-container .fa-solid {
+   position: absolute;
+   top: -15px;
+   padding: 10px;
+   background-color: #5c7dff;
+   color: white;
+   border-radius: 50%;
+ }
 
  .editor img {
     border-radius: 10px;

@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="stylesheet" href="../css/modals/newFolderContainer.css">
   <style>
       @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
 
@@ -12,47 +13,50 @@
       margin: 0;
       overflow: hidden;
       background-color: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100dvh;
+      flex-direction: column;
     }
 
-    .note-export-modal {
-      background-color: white;
-      width: fit-content;
-      padding: 20px 40px;
-      border-radius: 15px;
-      font-family: Roboto;
+    
+
+    .show-modal {
+      opacity: 1;
+      width: 300px;
+      height: 200px;
     }
 
-
-    .note-export-modal button {
+    button {
       cursor: pointer;
-      border: none;
-      background-color: #5c7dff;
-      border-radius: 15px;
-      padding: 10px 20px;
-      color: white;
-      font-size: 16px;
-      font-weight: 600;
-      margin: 5px;
-      font-family: Roboto;
-      transition: 200ms;
+      margin: 20px;
     }
-
-    .note-export-modal button:hover {
-      background-color: #4a6eff;
-    }
-
-    .note-export-modal button:active {
-      background-color: #3d64ff;
-    }
-
-
   </style>
 </head>
 <body>
-  <div class="note-export-modal">
-    <h2>Export</h2>
-    <button class="export-txt-btn">Export txt</button>
-    <button class="export-pdf-btn">Export pdf</button>
+  <div class="new-folder-container">
+    <h2>New folder</h2>
+    <input type="text" placeholder="Folder name">
+    <button>Add</button>
   </div>
+
+  <button class="show-btn">Show</button>
+  <button class="hide-btn">Hide</button>
+  <script>
+    const MODAL = document.querySelector('.new-folder-container');
+    const BUTTON1 = document.querySelector('.show-btn');
+    const BUTTON2 = document.querySelector('.hide-btn');
+    
+
+    BUTTON1.addEventListener('click', () => {
+      MODAL.classList.add('show-modal');
+    })
+
+    BUTTON2.addEventListener('click', () => {
+      MODAL.classList.remove('show-modal');
+    })
+
+  </script>
 </body>
 </html>

@@ -40,4 +40,6 @@ export class AnimationHandler {
     static fadeOutCard(card) { 
         card.classList.add('fadeOut');
     }
+
+    
 }

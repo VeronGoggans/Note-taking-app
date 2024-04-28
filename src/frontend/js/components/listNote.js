@@ -13,17 +13,17 @@ export class ListNote {
         this.HOST = CNode.create('div', {'class': 'list-view-note', 'id': this.id, 'draggable': 'true'});
         this.SPAN = CNode.create('span', {'textContent': formatName(this.name)});
 
-        this.#attachEventListeners();
-        return this.#render();
+        this._attachEventListeners();
+        return this._render();
     }
 
-    #render() {
+    _render() {
         // Assemble elements.
         this.HOST.appendChild(this.SPAN);
         return this.HOST;
     }
 
-    #attachEventListeners() {
+    _attachEventListeners() {
         //Functionality
         this.HOST.addEventListener('click', () => {this.view.handleNoteCardClick(this.id, this.creation)});
         this.HOST.addEventListener('dragstart', (event) => {this.dragAndDrop.drag(event)});
@@ -39,10 +39,10 @@ export class NoNoteMessage {
         this.HOST = CNode.create('div', {'class': 'list-view-no-note'});
         this.SPAN = CNode.create('span', {'textContent': 'No notes'});
 
-        return this.#render();
+        return this._render();
     }
 
-    #render() {
+    _render() {
         // Assemble elements.
         this.HOST.appendChild(this.SPAN);
         return this.HOST

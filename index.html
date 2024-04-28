@@ -94,6 +94,7 @@
               <button class="new-note-span"><i class="fa-solid fa-plus"></i>New</button>
               <button class="save-note-span"><i class="fa-regular fa-floppy-disk"></i>Save</button>
               <button class="delete-note-span"><i class="fa-regular fa-trash-can"></i>Delete</button>
+              <button class="link-note-span"><i class="fa-solid fa-paperclip"></i>Link note</button>
               <button class="background-note-span"><i class="fa-solid fa-fill"></i>Background</button>
               <button class="note-details-span"><i class="fa-solid fa-info"></i>Details</button>
               <button class="editor-page-style-span"><i class="fa-solid fa-pen"></i>Original</button>
@@ -138,18 +139,19 @@
                 <button onclick="executeCommand('italic')" id="italicBtn"><i class="fa-solid fa-italic"></i></button>
                 <button onclick="executeCommand('underline')" id="underlineBtn"><i class="fa-solid fa-underline"></i></button>
                 <button onclick="executeCommand('strikeThrough')" id="strikeBtn"><i class="fa-solid fa-strikethrough"></i></button>
-                <button class="link-btn"><i class="fa-solid fa-link"></i></button>            
-    
+                <button class="link-btn"><i class="fa-solid fa-link"></i></button>
+              </div>
+              <div class="btn-container">
                 <button onclick="executeCommand('justifyLeft')"><i class="fa-solid fa-align-left"></i></button>
                 <button onclick="executeCommand('justifyCenter')" id="centerAlignBtn"><i class="fa-solid fa-align-center"></i></button>
                 <button onclick="executeCommand('justifyRight')" id="rightAlignBtn"><i class="fa-solid fa-align-right"></i></button>
-    
+              </div> 
+              <div class="btn-container">
                 <button onclick="executeCommand('insertUnorderedList')"><i class="fa-solid fa-list-ul"></i></button>
                 <button onclick="executeCommand('insertOrderedList')"><i class="fa-solid fa-list-ol"></i></button>
                 <button class="video-btn"><i class="fa-solid fa-clapperboard"></i></button>
                 <button class="code-block-btn"><i class="fa-solid fa-code"></i></button>
-                
-              </div>
+              </div>           
               <div class="color-picker">
                 <button class="foreground-color-picker" id="dropdown-4"><i class="fa-solid fa-palette"></i></button>
                 <div class="foreground-color-palette">

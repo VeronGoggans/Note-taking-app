@@ -33,7 +33,7 @@ export class FolderView {
                 this._content.appendChild(FOLDER_CARD);
                 this._list.appendChild(LIST_FOLDER_CARD);
                 AnimationHandler.fadeInFromBottom(FOLDER_CARD);
-                AnimationHandler.fadeInFromSide(LIST_FOLDER_CARD);
+                AnimationHandler.fadeInFromBottom(LIST_FOLDER_CARD);
             }
         } else {
             // give user feedback that this folder is empty

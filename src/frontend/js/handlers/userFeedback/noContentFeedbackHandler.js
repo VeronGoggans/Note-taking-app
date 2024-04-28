@@ -1,3 +1,4 @@
+import { AnimationHandler } from "../animation/animationHandler.js";
 
 export class NoContentFeedbackHandler {
     constructor(view) {
@@ -12,6 +13,7 @@ export class NoContentFeedbackHandler {
      */
     noFolders(message) {
         this._folderList.appendChild(message);
+        AnimationHandler.fadeInFromBottom(message);
     }
 
     /**
@@ -20,6 +22,7 @@ export class NoContentFeedbackHandler {
      */
     noNotes(message) {
         this._noteList.appendChild(message);
+        AnimationHandler.fadeInFromBottom(message);
         this.emptyNotification();
     }
 
@@ -37,7 +40,9 @@ export class NoContentFeedbackHandler {
      * Removes the "no notes" message from the note list.
      */
     removeNoNotesMessage() {
-        this._noteList.removeChild(this._noteList.firstChild);
+        const MESSAGE = this._noteList.firstChild;
+        this._noteList.removeChild(MESSAGE);
+
     }
 
     /**
