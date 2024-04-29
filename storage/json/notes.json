@@ -80,16 +80,16 @@
                     "content": "storage/notes/note-n-563.txt",
                     "bookmark": false,
                     "color": "white",
-                    "last_edit": "29/04/2024 14:32",
+                    "last_edit": "29/04/2024 14:57",
                     "creation": "26/04/2024"
                 },
                 {
                     "id": "n-564",
-                    "title": "hello world",
+                    "title": "Hello World",
                     "content": "storage/notes/note-n-564.txt",
-                    "bookmark": false,
+                    "bookmark": true,
                     "color": "white",
-                    "last_edit": "29/04/2024 14:36",
+                    "last_edit": "29/04/2024 14:57",
                     "creation": "26/04/2024"
                 }
             ],

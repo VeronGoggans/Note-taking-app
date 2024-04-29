@@ -11,7 +11,7 @@ export class NoteController {
 
     async getNotes(folderId) {
         const RESPONSE = await this.noteModel.getNotes('/notes', folderId);
-        const NOTES = await RESPONSE.Object;
+        const NOTES = await RESPONSE.Note;
         this.noteView.renderNoteCards(NOTES);
     }
 

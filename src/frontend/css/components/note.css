@@ -76,6 +76,11 @@
     color: var(--icon-hover);  
 }
 
+.bookmark .bookmark-note-btn {
+    background-color: var(--hover);
+    color: var(--hover-text);
+}
+
 .note .last-edit-text {
     position: absolute;
     bottom: 50px;

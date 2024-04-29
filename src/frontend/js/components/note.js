@@ -33,12 +33,12 @@ export class Note {
         this.DELETE = CNode.create('button', {'class': 'delete-note-btn'});
         this.DELETE_ICON = CNode.create('i', {'class': 'fa-solid fa-trash'});
 
-        this.#attachEventListeners();
+        this._attachEventListeners();
         this.applyBookmarkStyle(this.bookmark);
-        return this.#render();
+        return this._render();
     }
 
-    #render() {
+    _render() {
         this.HOST.appendChild(this.NAME_BOX);
         this.NAME_BOX.appendChild(this.H4);
         this.CONFIRM.appendChild(this.CONFIRM_ICON);
@@ -58,9 +58,10 @@ export class Note {
         return this.HOST
     }
 
-    #attachEventListeners() {
+    _attachEventListeners() {
         this.EDIT.addEventListener('click', () => {this.toggleEditableNoteName()});
         this.CONFIRM.addEventListener('click', () => {this.updateNoteName()});
+        this.H4.addEventListener('keydown', (event) => {if (event.key === 'Enter') this.updateNoteName()});
         this.CANCEL.addEventListener('click', () => {this.toggleEditableNoteName()});
         this.DELETE.addEventListener('click', () => {this.view.renderDeleteContainer(this.id, this.name)});
         this.CONTENT_BOX.addEventListener('click', () => {this.view.handleNoteCardClick(this.id, this.created)});
