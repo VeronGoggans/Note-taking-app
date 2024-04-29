@@ -27,10 +27,13 @@ class NoteFactory:
             note_data['creation']
         )
     
+
     @staticmethod
     def create_note_list(notes: list) -> list[Note]:
+        sorted_list = sorted(notes, key=lambda note: not note.get("bookmark", False))
+
         note_objects = []
-        for n in notes:
+        for n in sorted_list:
             note = NoteFactory.create_existing_note(n)
             note.set_content_text()
             note_objects.append(note)

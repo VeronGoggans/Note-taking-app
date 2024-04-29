@@ -33,7 +33,7 @@ export class NoteView {
     renderNoteCards(notes) {
         // clear the array everytime this method gets called.
         this.noteObjects.clear();
-        if (notes.length > 0) {
+        if (notes.length > 0) { 
             for (let i = 0; i < notes.length; i++) {
                 const LIST_NOTE_CARD = this._listNote(notes[i]);
                 const NOTE_CARD = this._note(notes[i]);
