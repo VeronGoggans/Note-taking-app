@@ -76,9 +76,10 @@
     color: var(--icon-hover);  
 }
 
-.bookmark .bookmark-note-btn {
-    background-color: var(--hover);
-    color: var(--hover-text);
+.bookmark .bookmark-note-btn,
+.bookmark .note-util-bar button:hover {
+    background-color: var(--hover-bookmark-icon-if-bookmarked);
+    color: var(--icon-hover);
 }
 
 .note .last-edit-text {

@@ -134,6 +134,7 @@ body {
     color: var(--editor-text);
     border-radius: 10px;
     font-weight: 600;
+    transition: background-color 150ms ease
 }
 
 .note-suggestions-list li:hover {
