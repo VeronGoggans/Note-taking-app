@@ -23,7 +23,7 @@
    width: 50%;
    height: fit-content; /*calc(100% - 120px)*/
    margin: 15px 0;
-   min-height: 600px;
+   min-height: 800px;
    min-width: 600px;
    max-width: 650px;
    outline: none;

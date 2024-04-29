@@ -95,14 +95,24 @@ class SidebarView {
 
     toggleSidebar() {
         if (this._sidebar.offsetWidth === 220) {
+            this._wrapper.style.transition = '150ms'
             this._wrapper.style.gridTemplateColumns = '70px 1fr';
-            this._sidebar.dataset.width = 'small'; // Update the sidebar width state
+            this._sidebar.dataset.width = 'small'; 
+            this._removeTransition();
             this.collapseButtons();
         } else {
+            this._wrapper.style.transition = '150ms'
             this._wrapper.style.gridTemplateColumns = '220px 1fr';
-            this._sidebar.dataset.width = 'large'; // Update the sidebar width state
+            this._sidebar.dataset.width = 'large';
+            this._removeTransition();
             this.openButtons();
         }
+    }
+
+    _removeTransition() {
+        setTimeout(() => {
+            this._wrapper.style.transition = '0ms'
+        }, 160);
     }
 
     /**
