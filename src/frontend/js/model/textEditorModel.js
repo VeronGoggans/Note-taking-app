@@ -24,6 +24,7 @@ export class TextEditorModel {
         this._bookmark = bookmark;
         this._name = name;
         this._color = color;
+        console.log(noteId);
     }
 
     storeNoteColor(color) {
@@ -56,5 +57,6 @@ export class TextEditorModel {
         this._bookmark = null;
         this._name = null;
         this._color = null;
+        console.log(this._noteId);
     }
 }

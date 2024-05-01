@@ -184,7 +184,7 @@ export class NoteView {
      * This method creates a note card component 
      * And adds a note object to the noteObjects array. 
      * 
-     * @param {Dict} note 
+     * @param {Object} note 
      * @returns A note card component.
      */
     _note(note) {
@@ -195,7 +195,7 @@ export class NoteView {
     /**
      * This method creates a ListNote component and returns it
      * 
-     * @param {Dict} note
+     * @param {Object} note
      * @returns {ListNote} 
      */
     _listNote(note) {

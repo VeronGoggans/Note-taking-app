@@ -40,7 +40,6 @@ export class TextEditorController {
         this.textEditorModel.storeNoteData(noteId, creation, lastEdit, bookmark, name, color);
     }
 
-
     clearStoredNoteData() {
         this.textEditorModel.clear();
     }
@@ -58,12 +57,12 @@ export class TextEditorController {
      * @param {String} name 
      * @param {Boolean} bookmark 
      */
-    save(content, name, bookmark, color) {
+    async save(content, name, bookmark, color) {
         const NOTE_ID = this.textEditorModel.getStoredNoteId();
         if (NOTE_ID !== null) {
-            this.applicationController.changeNote(NOTE_ID, name, content, bookmark, color)
+            await this.applicationController.changeNote(NOTE_ID, name, content, bookmark, color)
         } else {
-            this.applicationController.addNote(content, name);
+            await this.applicationController.addNote(content, name);
         }
     }
 

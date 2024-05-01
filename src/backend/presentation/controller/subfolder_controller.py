@@ -22,7 +22,7 @@ class SubfolderRouter:
         response = self.subfolder_service.get_subfolders(folder_id)
 
         if response != Status.NOT_FOUND:
-            return {'Status_code': Status.OK, "Subfolders": response}
+            return {'Status_code': Status.OK, "Folders": response}
         return {'Status_code': Status.NOT_FOUND}
 
 
@@ -30,7 +30,7 @@ class SubfolderRouter:
         response = self.subfolder_service.add_subfolder(subfolder)
 
         if response != Status.NOT_FOUND:
-            return {'Status_code': Status.OK, "Subfolder": response}
+            return {'Status_code': Status.OK, "Folder": response}
         return {'Status_code': Status.NOT_FOUND}
 
 
@@ -38,7 +38,7 @@ class SubfolderRouter:
         response = self.subfolder_service.update_subfolder(update_request)
 
         if response != Status.NOT_FOUND:
-            return {'Status_code': Status.OK, "Subfolder": response}
+            return {'Status_code': Status.OK, "Folder": response}
         return {'Status_code': Status.NOT_FOUND}
     
     
@@ -46,5 +46,5 @@ class SubfolderRouter:
         response = self.subfolder_service.delete_subfolder(delete_request)
 
         if response != Status.NOT_FOUND:
-            return {'Status_code': Status.OK, 'Subfolder': response}
+            return {'Status_code': Status.OK, 'Folder': response}
         return {'Status_code': Status.NOT_FOUND}

@@ -38,10 +38,10 @@ export class TextEditorView {
    * @param {boolean} closeEditor - Indicates if the editor should be closed or not.
    * @param {boolean} checkForChanges - Indicates if changes should be checked.
    */
-  save(closeEditor = true, checkForChanges = true) {
+  async save(closeEditor = true, checkForChanges = true) {
     const noteData = this._collectNoteData();
     const { content, name, bookmark, color } = noteData;    
-    this.textEditorController.save(content, name, bookmark, color);
+    await this.textEditorController.save(content, name, bookmark, color);
     if (closeEditor) {
       this.closeEditor(checkForChanges);
     }
@@ -292,13 +292,13 @@ export class TextEditorView {
 
     this.noteDetailsSpan.addEventListener('click', () => {this.dialog.renderNoteDetailsModal(this._getNoteData())});
     this.deleteNoteSpan.addEventListener('click', () => {this.dialog.renderNoteDeleteModal(this._getNoteData()[0], this.noteNameInput.value, this)});
-    this.saveNoteSpan.addEventListener('click', () => {this.save(false, false)});
+    this.saveNoteSpan.addEventListener('click', async () => {await this.save(false, false)});
     this.newNoteSpan.addEventListener('click', () => {this.new()});
     this.noteBackgroundSpan.addEventListener('click', () => {this.dialog.renderNoteBackgroundModal(this._getNoteData()[0], this._getNoteData()[4], this)});
     this.editorPageStyleSpan.addEventListener('click', () => {this.updatePageStyle()});
   
     this.exitButton.addEventListener('click', () => {this.closeEditor()});
-    this.saveButton.addEventListener('click', () => {this.save(true, false)});
+    this.saveButton.addEventListener('click', async () => { await this.save(true, false)});
     this.exportButton.addEventListener('click', () => {this.dialog.renderNoteExportModal(this)});
     this.page.addEventListener('click', () => {this._closeDropdowns()});
 

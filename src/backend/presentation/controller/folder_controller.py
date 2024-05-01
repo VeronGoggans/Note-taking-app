@@ -19,14 +19,14 @@ class FolderRouter:
     
     def folders(self):
         response = self.folder_service.get_folders()
-        return {"Status_code": Status.OK, "folders": response}
+        return {"Status_code": Status.OK, "Folders": response}
     
 
     def create_folder(self, folder: PostFolderRequest):
         response = self.folder_service.add_folder(folder)
 
         if response != Status.INTERAL_SERVER_ERROR:
-            return {'Status_code': Status.OK, "Object": response}
+            return {'Status_code': Status.OK, "Folder": response}
         return {'Status_code': Status.INTERAL_SERVER_ERROR}
     
 
@@ -42,5 +42,5 @@ class FolderRouter:
         response = self.folder_service.delete_folder(folder)
 
         if response != Status.NOT_FOUND:
-            return {'Status_code': Status.OK, "Object": response}
+            return {'Status_code': Status.OK, "Folder": response}
         return {'Status_code': Status.NOT_FOUND}

@@ -4,6 +4,7 @@ import { FolderObjectArray } from '../util/array.js';
 import { NoContentFeedbackHandler } from "../handlers/userFeedback/noContentFeedbackHandler.js";
 import { NoteDeleteModal } from '../components/modals/noteDeleteModal.js';
 import { AnimationHandler } from '../handlers/animation/animationHandler.js';
+import { DragAndDrop } from '../handlers/drag&drop/dragAndDropHandler.js';
 
 export class FolderView {
     constructor(folderController, dialog, notificationHandler) {
@@ -12,6 +13,7 @@ export class FolderView {
         this.notificationHandler = notificationHandler;
         this.noContentFeedbackHandler = new NoContentFeedbackHandler();
         this.folderObjects = new FolderObjectArray();
+        this.dragAndDrop = new DragAndDrop(this);
 
         this._initializeDomElements();
     }
@@ -89,6 +91,7 @@ export class FolderView {
     removeFolder(folder) {
         const ALL_FOLDERS = this._content.children;
         const ALL_LIST_FOLDERS = this._list.children;
+        
         for (let i = 0; i < ALL_FOLDERS.length; i++) {
             if (ALL_FOLDERS[i].id === folder.id) {
                 AnimationHandler.fadeOutCard(ALL_FOLDERS[i]);
@@ -105,6 +108,20 @@ export class FolderView {
             }
         }
         this.dialog.hide();
+    }
+
+    /**
+    * type has to be one of the following 
+    * (saved, deleted, new, empty).
+    * 
+    * noteName is optional and only nessecary for the 
+    * deleted type.
+    * 
+    * @param {String} type 
+    * @param {String} noteName 
+    */
+    pushNotification(type, noteName = null) {
+        this.notificationHandler.push(type, noteName);
     }
 
     /**
@@ -125,8 +142,7 @@ export class FolderView {
      * @returns {ListFolder} 
      */
     _listFolder(folder) {
-        this.folderObjects.add(folder, this, this.dragAndDrop)
-        return new ListFolder(folder, this);
+        return new ListFolder(folder, this, this.dragAndDrop);
     }
 
     /**
@@ -136,6 +152,7 @@ export class FolderView {
      * @returns {Folder}
      */
     _folder(folder) {
+        this.folderObjects.add(folder)
         return new Folder(folder, this);
     }
 
@@ -171,6 +188,10 @@ export class FolderView {
 
     async handleNoteDrop(noteId, folderId) {
         await this.folderController.moveNote(noteId, folderId)
+    }
+
+    async handleFolderDrop(droppedFolderId, parentFolderId) {
+
     }
 
     /**

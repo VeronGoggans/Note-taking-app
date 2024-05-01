@@ -1,6 +1,5 @@
 import { ApplicationModel } from "../model/applicationModel.js";
 import { FolderController } from "./folderController.js";
-import { SubfolderController } from "./subfolderController.js";
 import { NoteController } from "./noteController.js";
 import { ApplicationView } from "../view/applicationView.js";
 import { TextEditorController } from "./textEditorController.js"
@@ -16,7 +15,6 @@ export class ApplicationController {
         this.applicationView = new ApplicationView(this, this.dialog);
         this.applicationModel = new ApplicationModel();
         this.folderController = new FolderController(this, this.dialog, this.notificationHandler);
-        this.subfolderController = new SubfolderController(this, this.dialog, this.notificationHandler);
         this.noteController = new NoteController(this, this.dialog, this.notificationHandler);
         this.textEditorController = new TextEditorController(this, this.dialog);
         this.settingController = new SettingController();
@@ -61,7 +59,6 @@ export class ApplicationController {
      */
     async handleAddFolder(name) {
         const CURRENT_FOLDER = this.applicationModel.getCurrentFolderID();
-        console.log(CURRENT_FOLDER);
         if (CURRENT_FOLDER === 'f-1') await this.addFolder(name);
         else await this.addSubfolder(name, CURRENT_FOLDER);
     }
@@ -82,7 +79,7 @@ export class ApplicationController {
         this.applicationView.removeContent();
         this.applicationView.displayFolderName(name);
         // rendering the subfolders and notes
-        await this.subfolderController.getSubFolders(folderId);
+        await this.folderController.getFolders(folderId);
         await this.noteController.getNotes(folderId);
         // adding the folder id and name to the folders hierarchy array
         this.applicationModel.addFolderIdToList(folderId, name);
@@ -191,6 +188,21 @@ export class ApplicationController {
     }
 
     /**
+     * This method updates a note.
+     * 
+     * This method is called when the save button inside the text editor
+     * is clicked for an existing note 
+     * 
+     * @param {String} noteId 
+     * @param {String} name 
+     * @param {String} content 
+     * @param {String} bookmark 
+     */
+    async changeNote(noteId, name, content, bookmark, color) {
+        await this.noteController.updateNote(noteId, name, content, bookmark, color);
+    }
+
+    /**
      * This method moves a given note from it;s current folder into 
      * the given new folder.
      * 
@@ -218,7 +230,7 @@ export class ApplicationController {
      * @param {String} parentID 
      */
     async addSubfolder(name, parentID) {
-        await this.subfolderController.addSubfolder(name, parentID);
+        await this.folderController.addFolder(name, parentID);
     }
 
     /**
@@ -231,21 +243,6 @@ export class ApplicationController {
      */
     async addFolder(name) {
         await this.folderController.addFolder(name);
-    }
-
-    /**
-     * This method updates a note.
-     * 
-     * This method is called when the save button inside the text editor
-     * is clicked for an existing note 
-     * 
-     * @param {String} noteId 
-     * @param {String} name 
-     * @param {String} content 
-     * @param {String} bookmark 
-     */
-    async changeNote(noteId, name, content, bookmark, color) {
-        await this.noteController.updateNote(noteId, name, content, bookmark, color);
     }
 
     /**

@@ -66,15 +66,6 @@
             "color": "#ffffff",
             "notes": [
                 {
-                    "id": "n-559",
-                    "title": "Repository",
-                    "content": "storage/notes/note-n-559.txt",
-                    "bookmark": false,
-                    "color": "white",
-                    "last_edit": "29/04/2024 19:19",
-                    "creation": "23/04/2024"
-                },
-                {
                     "id": "n-564",
                     "title": "Hello World",
                     "content": "storage/notes/note-n-564.txt",

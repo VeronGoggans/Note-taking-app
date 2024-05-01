@@ -39,7 +39,6 @@ export class ApplicationModel {
         } else {
             this.folderIds.push({'id': ID, 'name': name});
         }
-        console.log(this.folderIds);
     }
 
     /**
@@ -52,7 +51,6 @@ export class ApplicationModel {
      */
     removeFolderIdFromList() {
         this.folderIds.pop();
-        console.log(this.folderIds);
         const lastFolder = this.folderIds[this.folderIds.length - 1];
         return lastFolder ? lastFolder: 'f-1';
     }

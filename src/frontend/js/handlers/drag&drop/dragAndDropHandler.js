@@ -15,10 +15,16 @@ export class DragAndDrop {
         event.preventDefault();
         const data = event.dataTransfer.getData("text");
         const draggedCard = document.getElementById(data);
-        const folder = event.target;
+        const folder = event.target.parentNode;
+        this._folderOrNoteDrop(folder, draggedCard);
+    }
 
-        if (folder.classList.contains("droppable")) {
-            this.view.handleNoteDrop(draggedCard.id, folder.id)
+    _folderOrNoteDrop(folder, draggedCard) {
+        const componentId = draggedCard.id;
+        if (componentId.startsWith('n') && folder.classList.contains("droppable")) {
+            this.view.handleNoteDrop(draggedCard.id, folder.id);
+        } else {
+            this.view.handleFolderDrop(draggedCard.id, folder.id);
         }
     }
 }
