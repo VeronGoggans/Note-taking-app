@@ -7,9 +7,6 @@
  * @returns 
  */
 export function formatName(name) {
-    if (name.length <= 25) {
-        return name;
-    } else {
-        return name.slice(0, 22) + '...';
-    }
+    if (name.length <= 25) return name;
+    else return name.slice(0, 22) + '...';
 }

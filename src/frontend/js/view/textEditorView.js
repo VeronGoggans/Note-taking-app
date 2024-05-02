@@ -1,5 +1,4 @@
 import { KeyEventListener } from "../eventListeners/keyEventListener.js";
-import { DropdownHelper } from "../helpers/dropdownHelper.js";
 import { TextFormatter } from "../textFormat/textFormatter.js"; 
 import { getNoteHexColor } from "../util/backgroundColor.js";
 
@@ -10,7 +9,6 @@ export class TextEditorView {
     this.noteContent = '';
     this.dialog = dialog;
     this.keyEventListener = new KeyEventListener(this);
-    this.dropdownHelper = new DropdownHelper();
 
     this._initializeDOMElements();
     this._attachEventListeners();
@@ -31,6 +29,7 @@ export class TextEditorView {
     this.setEditorColor(color);
     this.show();
     this.page.focus();
+    this.editor.scrollTop = 0;
   }
 
   /**
@@ -304,7 +303,6 @@ export class TextEditorView {
 
     this.linkButton.addEventListener('click', () => {TextFormatter.addLink()});
     this.codeBlockButton.addEventListener('click', () => {TextFormatter.addCodeBlock()});
-    this.removeFormattingButton.addEventListener('click', () => {TextFormatter.removeFormatting()});
     this.embedVideoButton.addEventListener('click', () => {TextFormatter.addEmbedVideo()});
     this.foregroundColor.addEventListener('click', () => {this._toggleVisibleDropdown(this.foregroundPalette)});
     this.backgroundColor.addEventListener('click', () => {this._toggleVisibleDropdown(this.backgroundPalette)});

@@ -34,11 +34,11 @@ export class Folder {
         this.DELETE_ICON = CNode.create('i', {'class': 'fa-solid fa-trash'});
 
         this.applyColor(this.color);
-        this.#attachEventListeners();
-        return this.#render();
+        this._attachEventListeners();
+        return this._render();
     }
 
-    #render() {
+    _render() {
         this.HOST.appendChild(this.NAME_BOX);
         this.NAME_BOX.appendChild(this.H4);
         this.CONFIRM.appendChild(this.CONFIRM_ICON);
@@ -77,12 +77,9 @@ export class Folder {
      */
     applyColor(color) {
         const CARD_CLASSES = {
-            '#ffffff': null,
-            '#a9d7ff': 'card-style-blue',
-            '#ffe09e': 'card-style-orange',
-            '#9ffb95': 'card-style-green',
-            '#dfc1ff': 'card-style-purple',
-            '#ffa3a3': 'card-style-red'
+            '#ffffff': null,'#a9d7ff': 'card-style-blue',
+            '#ffe09e': 'card-style-orange','#9ffb95': 'card-style-green',
+            '#dfc1ff': 'card-style-purple','#ffa3a3': 'card-style-red'
         }
         const CARD_CLASS = CARD_CLASSES[color];
         const CURRENT_CLASSES = Array.from(this.HOST.classList);
@@ -98,12 +95,12 @@ export class Folder {
         }
     }
 
-    #attachEventListeners() {
-        this.EDIT.addEventListener('click', () => {this.toggleEditableFolderName()});
+    _attachEventListeners() {
+        this.EDIT.addEventListener('click', () => {this._toggleEditableFolderName()});
         this.CONFIRM.addEventListener('click', () => {this.updateFolder()});
-        this.CANCEL.addEventListener('click', () => {this.toggleEditableFolderName()});
+        this.CANCEL.addEventListener('click', () => {this._toggleEditableFolderName()});
         this.DELETE.addEventListener('click', () => {this.view.renderDeleteContainer(this.id, this.name)});
-        this.COLOR.addEventListener('click', () => {this.togglePalette()});
+        this.COLOR.addEventListener('click', () => {this._togglePalette()});
         this.LOGO.addEventListener('click', () => { this.view.handleFolderCardClick(this.id, this.H4.textContent)});
         this.BLUE.addEventListener('click', () => {this.updateFolder('#a9d7ff', false)});
         this.ORANGE.addEventListener('click', () => {this.updateFolder('#ffe09e', false)});
@@ -113,27 +110,24 @@ export class Folder {
         this.WHITE.addEventListener('click', () => {this.updateFolder('#ffffff', false)});
     }
 
-    togglePalette() {
+    _togglePalette() {
         this.COLOR_CONTAINER.style.visibility = this.COLOR_CONTAINER.style.visibility === 'visible' ? 'hidden' : 'visible';
         this.COLOR_CONTAINER.style.opacity = this.COLOR_CONTAINER.style.opacity === '100' ? '0' : '100';
     }
 
-    toggleEditableFolderName() {
-        // Toggle contentEditable
+    _toggleEditableFolderName() {
         this.H4.contentEditable = this.H4.contentEditable === 'true' ? 'false' : 'true';
         this.H4.style.borderColor = this.H4.style.borderColor === 'rgb(116, 122, 160)' ? 'transparent' : '#747aa0';
-
-        // Toggle visibility
         this.BTN_CONTAINER.style.visibility = this.BTN_CONTAINER.style.visibility === 'visible' ? 'hidden' : 'visible';
     }
 
     async updateFolder(color = this.color, toggle = true) {
         this.view.updateFolder(this.id, this.H4.textContent, color);
         if (toggle) {
-            this.toggleEditableFolderName();
+            this._toggleEditableFolderName();
         } else {
             this.applyColor(color);
-            this.togglePalette();
+            this._togglePalette();
         }
     }
 }

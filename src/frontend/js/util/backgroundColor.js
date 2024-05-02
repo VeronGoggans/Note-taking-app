@@ -25,15 +25,9 @@ export function getNoteHexColor(color) {
  */
 export function getNoteColor(hexColor) {
     const colorMap = {
-      '#ffffff': 'white',
-      '#bcd2e9': 'blue',
-      '#c2bce9': 'purple',
-      '#ffacac': 'red',
-      '#ffd7e6': 'pink',
-      '#efba94': 'orange',
-      '#fffba3': 'yellow',
-      '#fefded': 'old-white',
-      '#aee4cb': 'green',
+      '#ffffff': 'white','#bcd2e9': 'blue','#c2bce9': 'purple',
+      '#ffacac': 'red','#ffd7e6': 'pink','#efba94': 'orange',
+      '#fffba3': 'yellow','#fefded': 'old-white','#aee4cb': 'green',
       '#000000': 'black'
     };
     return colorMap[hexColor] || null; // Return the color from map or null if not found

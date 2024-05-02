@@ -34,7 +34,7 @@ export class Note {
         this.DELETE_ICON = CNode.create('i', {'class': 'fa-solid fa-trash'});
 
         this._attachEventListeners();
-        this.applyBookmarkStyle(this.bookmark);
+        this._applyBookmarkStyle(this.bookmark);
         return this._render();
     }
 
@@ -59,35 +59,30 @@ export class Note {
     }
 
     _attachEventListeners() {
-        this.EDIT.addEventListener('click', () => {this.toggleEditableNoteName()});
+        this.EDIT.addEventListener('click', () => {this._toggleEditableNoteName()});
         this.CONFIRM.addEventListener('click', () => {this.updateNoteName()});
         this.H4.addEventListener('keydown', (event) => {if (event.key === 'Enter') this.updateNoteName()});
-        this.CANCEL.addEventListener('click', () => {this.toggleEditableNoteName()});
+        this.CANCEL.addEventListener('click', () => {this._toggleEditableNoteName()});
         this.DELETE.addEventListener('click', () => {this.view.renderDeleteContainer(this.id, this.name)});
         this.CONTENT_BOX.addEventListener('click', () => {this.view.handleNoteCardClick(this.id, this.created)});
         this.BOOKMARK.addEventListener('click', () => {this.updateNoteBookmark()});
     }
 
-    applyBookmarkStyle(bookmarkValue) {
+    _applyBookmarkStyle(bookmarkValue) {
         if (bookmarkValue) this.HOST.classList.add('bookmark');
     }
 
 
-    toggleBookmarkStyle() {
-        if (this.HOST.classList.contains('bookmark')) {
-            this.HOST.classList.remove('bookmark');
-        } else {
-            this.HOST.classList.add('bookmark');
-        }
+    _toggleBookmarkStyle() {
+        this.HOST.classList.contains('bookmark') ? 
+        this.HOST.classList.remove('bookmark') :
+        this.HOST.classList.add('bookmark');
     }
 
 
-    toggleEditableNoteName() {
-        // Toggle contentEditable
+    _toggleEditableNoteName() {
         this.H4.contentEditable = this.H4.contentEditable === 'true' ? 'false' : 'true';
         this.H4.style.borderColor = this.H4.style.borderColor === 'rgb(116, 122, 160)' ? 'transparent' : '#747aa0';
-
-        // Toggle visibility
         this.BTN_CONTAINER.style.visibility = this.BTN_CONTAINER.style.visibility === 'visible' ? 'hidden' : 'visible';
     }
 
@@ -95,22 +90,17 @@ export class Note {
      * This method updates the name of a note
      */
     async updateNoteName() {
-        // Sending an update request to the view
         this.view.updateNote(this.id, this.H4.textContent, this.CONTENT.innerHTML, this.bookmark, this.color);
-        this.toggleEditableNoteName();
+        this._toggleEditableNoteName();
     }
-
 
     /**
      * This method updates the bookmark value of a note
      */
     async updateNoteBookmark() {
         // Reverting the bookmark value
-        let newBookmarkValue = !this.bookmark;
-        this.bookmark = newBookmarkValue;
-        // Give the note card the right background color
-        this.toggleBookmarkStyle();
-        // Sending an update request to the view
-        await this.view.updateNote(this.id, this.name, this.CONTENT.innerHTML, newBookmarkValue, this.color);
+        this.bookmark = !this.bookmark;;
+        this._toggleBookmarkStyle();
+        await this.view.updateNote(this.id, this.name, this.CONTENT.innerHTML, this.bookmark, this.color);
     }
 }
