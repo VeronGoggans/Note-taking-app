@@ -224,7 +224,7 @@
 
  .linked-note-name {
    font-weight: 600;
-   font-size: 18px;
+   font-size: 16px;
    transition: 150ms;
    color: var(--text);
  } 
@@ -235,8 +235,7 @@
 
  .linked-note-container .fa-regular {
    font-size: 20px;
-   background-color: #f0f2ff;
-   color: #444863;
+   color: var(--text);
    padding: 7px 10px;
    border-radius: 5px;
  }

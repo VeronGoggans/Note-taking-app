@@ -34,14 +34,15 @@
     font-weight: 600;
     font-size: 16px;
     font-family: Roboto;
-    overflow: visible;
 }
 
-.file-dropdown .dropdown-title {
+.file-dropdown .dropdown-title,
+.insert-dropdown .dropdown-title {
     color: var(--important);
 }
 
-.file-dropdown .dropdown-title:hover {
+.file-dropdown .dropdown-title:hover,
+.insert-dropdown .dropdown-title:hover {
     color: #5c7dff;
 }
 
@@ -164,3 +165,64 @@
 .note-name-input:focus {
     border-color: #5c7dff;
 }
+
+.insert-dropdown {
+    position: relative;
+    border-radius: 10px;
+    background-color: var(--toolbar);
+    cursor: pointer;
+    padding: 7px;
+    color: var(--important);
+    overflow: visible;
+    font-weight: 600;
+    font-size: 16px;
+    font-family: Roboto;
+    transition: 200ms
+}
+
+.insert-dropdown .dropdown-title {
+    background-color: transparent;
+    font-family: Roboto;
+    font-size: 16px;
+}
+
+.insert-dropdown .options {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    background-color: var(--card);
+    display: flex;
+    flex-direction: column;
+    top: 45px;
+    left: 0px;
+    border-radius: 7px;
+    padding: 10px;
+    width: 150px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    transition: 100ms;
+    z-index: 2;
+}
+
+.insert-dropdown .options button {
+    font-family: Roboto;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    margin: 5px 0;
+    padding: 5px 2px;
+    border-radius: 15px;
+    font-weight: 600;
+    color: var(--editor-text);
+    width: 100%;
+    height: auto;
+    text-align: start;
+}
+
+.insert-dropdown .options button i {
+    margin: 0 5px;
+}
+
+.insert-dropdown .options button:hover {
+    background-color: var(--hover);
+}
+

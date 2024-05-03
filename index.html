@@ -101,6 +101,14 @@
             </div>
           </div>
           <input type="text" class="note-name-input" placeholder="untitled" spellcheck="false">
+          <div class="insert-dropdown">
+            <button class="dropdown-title">Insert</button>
+            <div class="options">
+                <button onclick="executeCommand('superScript')" class="super-text-btn"><i class="fa-solid fa-superscript"></i> Super script</button>
+                <button onclick="executeCommand('subScript')" class="sub-text-btn"><i class="fa-solid fa-subscript"></i> Sub script</button>
+                <button class="code-block-btn"><i class="fa-solid fa-code"></i> Code block</button>
+            </div>
+          </div>
           <button class="export-note-button"><i class="fa-solid fa-download"></i></button>
           <button class="save-note-btn">Save</button>
           </div>
@@ -150,7 +158,6 @@
                 <button onclick="executeCommand('insertUnorderedList')"><i class="fa-solid fa-list-ul"></i></button>
                 <button onclick="executeCommand('insertOrderedList')"><i class="fa-solid fa-list-ol"></i></button>
                 <button class="video-btn"><i class="fa-solid fa-clapperboard"></i></button>
-                <button class="code-block-btn"><i class="fa-solid fa-code"></i></button>
               </div>           
               <div class="color-picker">
                 <button class="foreground-color-picker" id="dropdown-4"><i class="fa-solid fa-a"></i></button>
@@ -229,8 +236,6 @@
                 </div>
               </div>
               <div class="btn-container">
-                <button onclick="executeCommand('superScript')" class="super-text-btn"><i class="fa-solid fa-superscript"></i></button>
-                <button onclick="executeCommand('subScript')" class="sub-text-btn"><i class="fa-solid fa-subscript"></i></button>
                 <button onclick="executeCommand('removeFormat')" class="remove-formatting-btn"><i class="fa-solid fa-text-slash"></i></button>
               </div>
           </div>

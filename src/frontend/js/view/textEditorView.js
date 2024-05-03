@@ -256,6 +256,9 @@ export class TextEditorView {
     this.noteBackgroundSpan = document.querySelector('.background-note-span');
     this.editorPageStyleSpan = document.querySelector('.editor-page-style-span');
 
+    this.insertDropdown = document.querySelector('.insert-dropdown');
+    this.insertDropdownOptions = this.insertDropdown.querySelector('.options');
+
     // toolbar bottom
     this.headingButton = document.querySelector('.heading-button');
     this.headingDropdown = document.querySelector('.heading-dropdown');
@@ -280,7 +283,7 @@ export class TextEditorView {
     this.textEditor = document.querySelector('.editor-wrapper');
     this.editor = document.querySelector('.editor');
     this.page = document.querySelector('.editor-paper');
-    this.dropdowns = [this.noteDropdownOptions, this.headingDropdownOptions, this.fontDropdownOptions, this.foregroundPalette, this.backgroundPalette]
+    this.dropdowns = [this.noteDropdownOptions, this.headingDropdownOptions, this.fontDropdownOptions, this.insertDropdownOptions, this.foregroundPalette, this.backgroundPalette]
   }
 
 
@@ -288,6 +291,7 @@ export class TextEditorView {
     this.noteDropdown.addEventListener('click', () => {this._toggleVisibleDropdown(this.noteDropdownOptions)});
     this.headingDropdown.addEventListener('click', () => {this._toggleVisibleDropdown(this.headingDropdownOptions)});
     this.fontDropdown.addEventListener('click', () => {this._toggleVisibleDropdown(this.fontDropdownOptions)});
+    this.insertDropdown.addEventListener('click', () => {this._toggleVisibleDropdown(this.insertDropdownOptions)});
 
     this.noteDetailsSpan.addEventListener('click', () => {this.dialog.renderNoteDetailsModal(this._getNoteData())});
     this.deleteNoteSpan.addEventListener('click', () => {this.dialog.renderNoteDeleteModal(this._getNoteData()[0], this.noteNameInput.value, this)});

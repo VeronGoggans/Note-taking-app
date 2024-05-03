@@ -37,7 +37,7 @@
                     "content": "storage/notes/note-n-525.txt",
                     "bookmark": false,
                     "color": "white",
-                    "last_edit": "28/04/2024 23:08",
+                    "last_edit": "02/05/2024 20:32",
                     "creation": "15/04/2024"
                 }
             ],
@@ -69,19 +69,10 @@
                     "id": "n-564",
                     "title": "Hello World",
                     "content": "storage/notes/note-n-564.txt",
-                    "bookmark": true,
-                    "color": "white",
-                    "last_edit": "02/05/2024 14:22",
-                    "creation": "26/04/2024"
-                },
-                {
-                    "id": "n-581",
-                    "title": "untitled",
-                    "content": "storage/notes/note-n-581.txt",
                     "bookmark": false,
                     "color": "white",
-                    "last_edit": "02/05/2024 14:22",
-                    "creation": "02/05/2024"
+                    "last_edit": "02/05/2024 20:32",
+                    "creation": "26/04/2024"
                 }
             ],
             "subfolders": []
