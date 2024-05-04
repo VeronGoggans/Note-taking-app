@@ -168,7 +168,7 @@
 
 .insert-dropdown {
     position: relative;
-    border-radius: 10px;
+    border-radius: 12px;
     background-color: var(--toolbar);
     cursor: pointer;
     padding: 7px;

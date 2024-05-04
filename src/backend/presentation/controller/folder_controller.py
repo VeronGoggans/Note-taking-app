@@ -4,7 +4,7 @@ from src.backend.presentation.request_bodies.folder.del_folder_request import De
 from src.backend.presentation.request_bodies.folder.post_folder_request import PostFolderRequest
 from src.backend.presentation.request_bodies.folder.put_folder_request import PutFolderRequest
 from src.backend.domain.enums.responseMessages import Status
-from src.backend.application.service.domain.folder_service import FolderService
+from src.backend.application.service.folder_service import FolderService
 
 class FolderRouter:
     def __init__(self, json_manager):
@@ -44,3 +44,5 @@ class FolderRouter:
         if response != Status.NOT_FOUND:
             return {'Status_code': Status.OK, "Folder": response}
         return {'Status_code': Status.NOT_FOUND}
+    
+    

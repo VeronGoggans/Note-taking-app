@@ -1,9 +1,9 @@
 from src.backend.data.file.html_manager import HTMLManager
-from src.backend.application.service.util.date_service import DateService
+from src.backend.util.calendar import Calendar
 
 class Note:
     def __init__(self, id: int, title: str, content: str, bookmark: bool, color = 'white', 
-                last_edit = DateService.datetime(), creation = DateService.date(),
+                last_edit = Calendar.datetime(), creation = Calendar.date(),
                 ):
         self.id = id
         self.title = title

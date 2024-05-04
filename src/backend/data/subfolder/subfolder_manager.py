@@ -1,4 +1,5 @@
 from src.backend.domain.subfolder import Subfolder
+from src.backend.util.folder_finder import FolderFinder
 
 class SubfolderManager:
 
@@ -15,7 +16,7 @@ class SubfolderManager:
             - If successful, it returns a list of subfolders names.
             - If the parent folder is not found, it returns None.
         """
-        target_folder = self.__find_folder_by_id(folders, folder_id)
+        target_folder = FolderFinder.find_folder_by_id(folders, folder_id)
     
         if target_folder:
             subfolders = target_folder.get('subfolders', [])
@@ -38,7 +39,7 @@ class SubfolderManager:
             - If successful, it returns the subfolder.
             - If the parent folder is not found, it returns None.
         """
-        parent_folder = self.__find_folder_by_id(folders, folder_id)
+        parent_folder = FolderFinder.find_folder_by_id(folders, folder_id)
         if parent_folder:
             parent_folder['subfolders'].append(subfolder.__dict__)
             return subfolder
@@ -59,7 +60,7 @@ class SubfolderManager:
             - If successful, it returns this object {'name': 'some_name'} .
             - If the subfolder is not found, it returns None.
         """
-        subfolder = self.__find_folder_by_id(folders, subfolder_id)
+        subfolder = FolderFinder.find_folder_by_id(folders, subfolder_id)
         if subfolder:
             subfolder['name'] = subfolder_name
             subfolder['color'] = subfolder_color
@@ -81,7 +82,7 @@ class SubfolderManager:
             - If successful, it returns the string 'DELETED'.
             - If the folder is not found, it returns None.
         """
-        parent_folder = self.__find_folder_by_id(folders, parent_id)
+        parent_folder = FolderFinder.find_folder_by_id(folders, parent_id)
         if parent_folder:
             for subfolder in parent_folder['subfolders']:
                 if subfolder.get('id') == folder_id:
@@ -89,26 +90,3 @@ class SubfolderManager:
                     return subfolder
             return None
         return None 
-    
-
-    def __find_folder_by_id(self, folders, target_id: str):
-        """
-        Recursively searches for a folder within the nested folder structure by its ID.
-
-        Args:
-            folders (List[dict]): The list of folders to search within.
-            target_id (str): The ID of the folder to find.
-
-        Returns:
-            dict or None: 
-            - If a folder with the specified ID is found, returns the corresponding dictionary.
-            - If not found, returns None.
-        """
-        for folder in folders:
-            if folder.get("id") == target_id:
-                return folder
-            
-            subfolder = self.__find_folder_by_id(folder["subfolders"], target_id)
-            if subfolder:
-                return subfolder
-        return None

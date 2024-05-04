@@ -19,11 +19,11 @@ class JsonManager:
         json_data = self.cache.get(file_path)
         if json_data:
             return json_data
-        else:
-            with open(file_path, 'r') as file:
-                json_data = json.load(file)
-                self.cache.add(file_path, json_data)
-                return json_data
+        
+        with open(file_path, 'r') as file:
+            json_data = json.load(file)
+            self.cache.add(file_path, json_data)
+            return json_data
     
 
     def update(self, file_path, updated_data) -> None:

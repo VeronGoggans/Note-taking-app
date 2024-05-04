@@ -1,7 +1,8 @@
 from src.backend.domain.note import Note
 from src.backend.presentation.request_bodies.note.put_note_request import PutNoteRequest
-from src.backend.application.service.util.date_service import DateService
+from src.backend.util.calendar import Calendar
 from src.backend.domain.note_factory import NoteFactory
+from src.backend.util.folder_finder import FolderFinder
 
 class NoteManager:
     def __init__(self):
@@ -22,7 +23,7 @@ class NoteManager:
             - If successful, it returns the note.
             - If the folder is not found, it returns None.
         """
-        parent_folder = self.__find_folder_by_id(folders, folder_id)
+        parent_folder = FolderFinder.find_folder_by_id(folders, folder_id)
         if parent_folder:
             parent_folder['notes'].append(note.__dict__)
             return note
@@ -42,7 +43,7 @@ class NoteManager:
             - If successful, it returns a list of notes as dictionaries.
             - If the folder is not found, it returns None.
         """
-        parent_folder = self.__find_folder_by_id(folders, folder_id)
+        parent_folder = FolderFinder.find_folder_by_id(folders, folder_id)
         if parent_folder:
             notes_list = NoteFactory.create_note_list(parent_folder['notes'])
             return notes_list
@@ -189,29 +190,6 @@ class NoteManager:
         return None
     
 
-    def __find_folder_by_id(self, folders, target_id: str):
-        """
-        Recursively search for a folder with the specified ID within the folder structure.
-
-        Args:
-            folders (List[dict]): The list of folders to search within.
-            target_id (str): The ID of the folder to be found.
-
-        Returns:
-            dict or None: 
-            - If the folder is found, it returns the folder's dictionary.
-            - If the specified folder is not found, it returns None.
-        """
-        for folder in folders:
-            if folder.get("id") == target_id:
-                return folder
-            
-            subfolder = self.__find_folder_by_id(folder["subfolders"], target_id)
-            if subfolder:
-                return subfolder
-        return None
-    
-
     def __delete_note_txt_file(self, note_data: Note):
         """This method will delete the htm file linked to the note object."""
         note_object = NoteFactory.create_existing_note(note_data)
@@ -225,10 +203,10 @@ class NoteManager:
         note.bookmark = updated_note.bookmark
         note.color = updated_note.color
         note.title = updated_note.title
-        note.last_edit = DateService.datetime()
+        note.last_edit = Calendar.datetime()
 
         current_note['title'] = updated_note.title
         current_note['bookmark'] = updated_note.bookmark
         current_note['color'] = updated_note.color
-        current_note['last_edit'] = DateService.datetime()
+        current_note['last_edit'] = Calendar.datetime()
         return note

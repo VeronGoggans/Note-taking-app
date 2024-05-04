@@ -46,7 +46,7 @@ class FolderService:
         folder_structure = self.json_manager.load(self.folders_path)
         folders = folder_structure['folders']
         id = self.json_manager.generateID(self.id_path, 'folder')
-        folder: Folder = Folder(id, post_request.name, post_request.color)
+        folder = Folder(id, post_request.name, post_request.color)
 
         new_folder = self.folder_manager.add_folder(folders, folder)
         if new_folder:
