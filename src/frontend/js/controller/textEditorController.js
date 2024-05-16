@@ -4,7 +4,7 @@ import { TextEditorModel } from "../model/textEditorModel.js";
 export class TextEditorController {
     constructor(applicationController, dialog) {
         this.applicationController = applicationController;
-        this.textEditorView = new TextEditorView(this, dialog);
+        this.textEditorView = new TextEditorView(this, applicationController, dialog);
         this.textEditorModel = new TextEditorModel();
     }
 
@@ -87,9 +87,5 @@ export class TextEditorController {
      */
     async handleConfirmButtonClick(noteId) {
         await this.applicationController.deleteNote(noteId);
-    }
-
-    async changeEditorPageStyle(init) {
-        await this.applicationController.setEditorPageStyle(init);
     }
 }

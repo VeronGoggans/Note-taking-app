@@ -4,6 +4,7 @@ import { ForgotSaveContainer } from "../components/modals/forgotSaveModal.js";
 import { NewFolderContainer } from "../components/modals/newFolderModal.js";
 import { NoteBackroundContainer } from "../components/modals/noteBackgroundModal.js";
 import { NoteExportModal } from "../components/modals/noteExportModal.js";
+import { NoteLinkModal } from "../components/modals/linkNoteModal.js";
 
 // Improvements
 // Dependency injection
@@ -22,7 +23,8 @@ export class Dialog {
                 '.dont-forget-to-save-container',
                 '.note-background-color-container',
                 '.note-details-container',
-                '.note-export-modal'
+                '.note-export-modal',
+                '.note-link-modal'
             ];
 
             // Check if the clicked target belongs to any excluded container
@@ -83,6 +85,11 @@ export class Dialog {
 
     renderNoteExportModal(view) {
         this.addChild(new NoteExportModal(view));
+        this.show();
+    }
+
+    renderNoteLinkModal(view, notes, page, controller) {
+        this.addChild(new NoteLinkModal(view, notes, page, controller));
         this.show();
     }
 }

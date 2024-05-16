@@ -10,7 +10,7 @@
                     "title": "Github cheatsheet",
                     "content": "storage/notes/note-n-216.txt",
                     "bookmark": false,
-                    "last_edit": "24/04/2024 12:40",
+                    "last_edit": "08/05/2024 10:30",
                     "creation": "09/01/2024",
                     "color": "white"
                 }
@@ -21,27 +21,96 @@
             "id": "f-99",
             "name": "School \ud83d\udcd6\u270f\ufe0f",
             "color": "#a9d7ff",
-            "notes": [
+            "notes": [],
+            "subfolders": [
                 {
-                    "id": "n-466",
-                    "title": "CICQ1 exam summary",
-                    "content": "storage/notes/note-n-466.txt",
-                    "bookmark": false,
-                    "last_edit": "15/04/2024 09:21",
-                    "creation": "20/03/2024",
-                    "color": "white"
+                    "id": "s-181",
+                    "name": "Software Architecture",
+                    "color": "#ffffff",
+                    "notes": [
+                        {
+                            "id": "n-589",
+                            "title": "Compliance checking",
+                            "content": "storage/notes/note-n-589.txt",
+                            "bookmark": false,
+                            "color": "white",
+                            "last_edit": "16/05/2024 17:57",
+                            "creation": "14/05/2024"
+                        },
+                        {
+                            "id": "n-586",
+                            "title": "Sarch exam summary",
+                            "content": "storage/notes/note-n-586.txt",
+                            "bookmark": false,
+                            "color": "white",
+                            "last_edit": "16/05/2024 18:30",
+                            "creation": "07/05/2024"
+                        },
+                        {
+                            "id": "n-590",
+                            "title": "Compliant engineering",
+                            "content": "storage/notes/note-n-590.txt",
+                            "bookmark": false,
+                            "color": "white",
+                            "last_edit": "14/05/2024 12:51",
+                            "creation": "14/05/2024"
+                        }
+                    ],
+                    "subfolders": []
                 },
                 {
-                    "id": "n-525",
-                    "title": "CICQ2 exam summary",
-                    "content": "storage/notes/note-n-525.txt",
-                    "bookmark": false,
-                    "color": "white",
-                    "last_edit": "02/05/2024 20:32",
-                    "creation": "15/04/2024"
+                    "id": "s-183",
+                    "name": "CISQ1",
+                    "color": "#ffffff",
+                    "notes": [
+                        {
+                            "id": "n-466",
+                            "title": "CICQ1 exam summary",
+                            "content": "storage/notes/note-n-466.txt",
+                            "bookmark": false,
+                            "color": "white",
+                            "last_edit": "16/05/2024 18:32",
+                            "creation": "20/03/2024"
+                        }
+                    ],
+                    "subfolders": []
+                },
+                {
+                    "id": "s-182",
+                    "name": "CICQ2",
+                    "color": "#ffffff",
+                    "notes": [
+                        {
+                            "id": "n-525",
+                            "title": "CICQ2 exam summary",
+                            "content": "storage/notes/note-n-525.txt",
+                            "bookmark": false,
+                            "color": "white",
+                            "last_edit": "16/05/2024 18:33",
+                            "creation": "15/04/2024"
+                        },
+                        {
+                            "id": "n-593",
+                            "title": "Authentication & Authorization",
+                            "content": "storage/notes/note-n-593.txt",
+                            "bookmark": false,
+                            "color": "white",
+                            "last_edit": "16/05/2024 15:27",
+                            "creation": "16/05/2024"
+                        },
+                        {
+                            "id": "n-594",
+                            "title": "Websecurity",
+                            "content": "storage/notes/note-n-594.txt",
+                            "bookmark": false,
+                            "color": "white",
+                            "last_edit": "16/05/2024 17:08",
+                            "creation": "16/05/2024"
+                        }
+                    ],
+                    "subfolders": []
                 }
-            ],
-            "subfolders": []
+            ]
         },
         {
             "id": "f-104",
@@ -54,7 +123,7 @@
                     "content": "storage/notes/note-n-539.txt",
                     "bookmark": false,
                     "color": "white",
-                    "last_edit": "02/05/2024 14:04",
+                    "last_edit": "13/05/2024 18:00",
                     "creation": "19/04/2024"
                 }
             ],
@@ -66,13 +135,22 @@
             "color": "#ffffff",
             "notes": [
                 {
-                    "id": "n-564",
-                    "title": "Hello World",
-                    "content": "storage/notes/note-n-564.txt",
+                    "id": "n-585",
+                    "title": "Mogelijke bijbaan",
+                    "content": "storage/notes/note-n-585.txt",
                     "bookmark": false,
                     "color": "white",
-                    "last_edit": "02/05/2024 20:32",
-                    "creation": "26/04/2024"
+                    "last_edit": "17/05/2024 00:20",
+                    "creation": "04/05/2024"
+                },
+                {
+                    "id": "n-592",
+                    "title": "ToDo Neutron",
+                    "content": "storage/notes/note-n-592.txt",
+                    "bookmark": false,
+                    "color": "white",
+                    "last_edit": "17/05/2024 00:45",
+                    "creation": "15/05/2024"
                 }
             ],
             "subfolders": []

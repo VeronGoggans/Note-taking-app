@@ -152,16 +152,15 @@
     transition: .4s;
 }
 
-.note-content-box .paragraph {
-    border-radius: 10px;
-    border: 1px solid var(--editor-border);
-    background-color: transparent;
-    padding: 20px;
-}
-
 .note-content-box iframe {
     visibility: hidden;
 }
+
+.note-content-box hr {
+    border-style: none;
+    border-radius: 5px;
+    border: 1px solid var(--editor-text);
+  }
 
 .note-content-box .paragraph p {
     margin: 3px;
@@ -170,6 +169,14 @@
  .note-content-box h1,
  .note-content-box h2 {
     color: var(--important);
+ }
+
+ .note-content-box h1 {
+    font-size: 14px;
+ }
+
+ .note-content-box h2 {
+    font-size: 12px;
  }
 
 .note-content-box code {

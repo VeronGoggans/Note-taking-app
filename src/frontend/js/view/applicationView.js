@@ -169,6 +169,14 @@ export class ApplicationView {
     }
 
     /**
+     * 
+     * @param {String} noteId 
+     */
+    async handleLinkedNoteContainerClick(noteId) {
+
+    }
+
+    /**
      * This method handle the add folder button click 
      * 
      * This method is called from with in the new folder container

@@ -6,16 +6,6 @@
     overflow-x: hidden;
 }
 
-.content-list-view::-webkit-scrollbar {
-    background-color: transparent;
-    width: 5px;
-}
-
-.content-list-view::-webkit-scrollbar-thumb {
-    background-color: #e7e9f3;
-    border-radius: 5px;
-}
-
 .content-list-view-title {
     padding: 5px;
     color: var(--important);

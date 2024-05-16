@@ -90,7 +90,7 @@ class SidebarView {
         this._themeButton.style.justifyContent = 'normal';
 
         document.querySelector('.logo-container').style.justifyContent = 'normal'
-        document.querySelector('.logo-text').textContent = 'ote';
+        document.querySelector('.logo-text').textContent = 'eutron';
     }
 
     toggleSidebar() {

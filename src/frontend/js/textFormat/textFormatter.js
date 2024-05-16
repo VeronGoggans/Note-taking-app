@@ -1,53 +1,13 @@
 import {CNode} from "../util/CNode.js"
 
 export class TextFormatter {
-    static addLink() {
-      const SELECTION = window.getSelection();
-
-      // Get the range of the selection
-      const RANGE = SELECTION.getRangeAt(0);
-
-      const CONTAINER = CNode.create('div', {'class': 'link-container'});
-      const CANCEL_BTN = CNode.create('button', {'class': 'cancel-link-btn'});
-      const ICON = CNode.create('i', {'class': 'fa-solid fa-xmark'});
-      const ORIGINAL_LINK = CNode.create('input', {'class': 'original-link-input', 'type': 'text', 'placeholder': 'Paste link here...'});
-      const CUSTOM_LINK = CNode.create('input', {'class': 'custom-link-input', 'type': 'text', 'placeholder': 'Custom text'});
-
-      // Putting the UI together 
-      CANCEL_BTN.appendChild(ICON);
-      CONTAINER.appendChild(CANCEL_BTN);
-      CONTAINER.appendChild(ORIGINAL_LINK);
-      CONTAINER.appendChild(CUSTOM_LINK);
-
-      CANCEL_BTN.addEventListener('click', () => {CONTAINER.remove()});
-      ORIGINAL_LINK.addEventListener('keydown', (event) => {insert(event)});
-      CUSTOM_LINK.addEventListener('keydown', (event) => {insert(event)});
-
-      function insert(event) {
-        if (event.key === 'Enter') {
-          // Delete the input
-          RANGE.deleteContents();
-
-          // Create a link element
-          const LINK = document.createElement('a');
-
-          LINK.addEventListener('click', () => {window.open(ORIGINAL_LINK.value)});
-          
-          // The selected text is equal to the link.
-          LINK.href = ORIGINAL_LINK.value;
-
-          if (CUSTOM_LINK.value !== '') {
-            LINK.textContent = CUSTOM_LINK.value;
-          } else {
-            LINK.textContent = ORIGINAL_LINK.value;
-          }
-
-          RANGE.insertNode(LINK);
-        }
-      }
-      RANGE.insertNode(CONTAINER);
-      ORIGINAL_LINK.focus();
-   }
+  static addHorizontalRule() {
+    // Get the current selection 
+    const SELECTION = window.getSelection();
+    const RANGE = SELECTION.getRangeAt(0);
+    const horizontalRule = document.createElement('hr');
+    RANGE.insertNode(horizontalRule);
+  }
 
 
    static addCodeBlock() {
@@ -64,6 +24,23 @@ export class TextFormatter {
      range.insertNode(codeElement);
   }
 
+  static async addNoteLink(noteId, noteName) {
+     // Get the selected text range
+     const selection = window.getSelection();
+     const range = selection.getRangeAt(0);
+
+     const LINK_CONTAINER = CNode.create('div', {'class': 'linked-note-container', 'id': noteId, 'contentEditable': 'false'});
+     const LINK_ICON = CNode.create('i', {'class': 'fa-solid fa-paperclip'});
+     const NOTE_NAME = CNode.create('span', {'textContent': noteName, 'class': 'linked-note-name'});
+     const FILE_ICON = CNode.create('i', {'class': 'fa-regular fa-file-lines'});
+
+     LINK_CONTAINER.appendChild(FILE_ICON);
+     LINK_CONTAINER.appendChild(NOTE_NAME);
+     LINK_CONTAINER.appendChild(LINK_ICON);
+
+     range.insertNode(LINK_CONTAINER);
+  }
+
 
   static addColor(color, command) {
       // Use document.execCommand to change text color
@@ -75,16 +52,78 @@ export class TextFormatter {
   /**
    * This method listens for link clicks.
    * 
-   * This method is usefull for when a note has link element in them.
-   * Because the link element tags dont have eventlisteners on them when loaded in.
-   * This method creates that event listener.
+   * When links are loaded in they don't have eventlisteners on them by default.
+   * This method creates those event listener for each link.
    */
   static listenForLinkClicks(page) {
       const LINKS = page.querySelectorAll('a');
-      LINKS.forEach(function(LINK) {
-        LINK.addEventListener('click', () => {window.open(LINK.href)})
+      LINKS.forEach(function(link) {
+        link.addEventListener('click', () => {window.open(link.href)})
     });
   }
+
+
+  /**
+   * This method listens for linked note container clicks.
+   * 
+   * When note link containers are loaded in they don't have eventlisteners on them by default.
+   * This method creates those event listener for each link container.
+   */
+  static listenForNoteLinkClicks(page, controller) {
+    const LINKS = page.querySelectorAll('.linked-note-container');
+    LINKS.forEach(function(link) {
+      link.addEventListener('click', () => {controller.getSearchedNote(link.id)});
+    });
+  }
+
+
+  static addLink() {
+    const SELECTION = window.getSelection();
+
+    // Get the range of the selection
+    const RANGE = SELECTION.getRangeAt(0);
+
+    const CONTAINER = CNode.create('div', {'class': 'link-container'});
+    const CANCEL_BTN = CNode.create('button', {'class': 'cancel-link-btn'});
+    const ICON = CNode.create('i', {'class': 'fa-solid fa-xmark'});
+    const ORIGINAL_LINK = CNode.create('input', {'class': 'original-link-input', 'type': 'text', 'placeholder': 'Paste link here...'});
+    const CUSTOM_LINK = CNode.create('input', {'class': 'custom-link-input', 'type': 'text', 'placeholder': 'Custom text'});
+
+    // Putting the UI together 
+    CANCEL_BTN.appendChild(ICON);
+    CONTAINER.appendChild(CANCEL_BTN);
+    CONTAINER.appendChild(ORIGINAL_LINK);
+    CONTAINER.appendChild(CUSTOM_LINK);
+
+    CANCEL_BTN.addEventListener('click', () => {CONTAINER.remove()});
+    ORIGINAL_LINK.addEventListener('keydown', (event) => {insert(event)});
+    CUSTOM_LINK.addEventListener('keydown', (event) => {insert(event)});
+
+    function insert(event) {
+      if (event.key === 'Enter') {
+        // Delete the input
+        RANGE.deleteContents();
+
+        // Create a link element
+        const LINK = document.createElement('a');
+
+        LINK.addEventListener('click', () => {window.open(ORIGINAL_LINK.value)});
+        
+        // The selected text is equal to the link.
+        LINK.href = ORIGINAL_LINK.value;
+
+        if (CUSTOM_LINK.value !== '') {
+          LINK.textContent = CUSTOM_LINK.value;
+        } else {
+          LINK.textContent = ORIGINAL_LINK.value;
+        }
+
+        RANGE.insertNode(LINK);
+      }
+    }
+    RANGE.insertNode(CONTAINER);
+    ORIGINAL_LINK.focus();
+ }
 
 
   static addEmbedVideo() {

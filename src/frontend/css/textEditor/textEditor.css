@@ -36,19 +36,6 @@
    color: var(--editor-text);
 }
 
-.editor::-webkit-scrollbar {
-    background-color: transparent;
-    width: 10px;
-}
-
-.editor::-webkit-scrollbar-thumb {
-    background-color: #cfd2e3;
-}
-
-.editor::-webkit-scrollbar-thumb:active {
-   background-color: #bbbed4;
-}
-
 .toolbar {
     display: grid;
     grid-template-rows: 1fr 50px;
@@ -215,10 +202,13 @@
    background-color: var(--editor-container);
    padding: 10px 15px;
    margin: 20px 0;
-   width: fit-content;
-   border-radius: 5px;
+   max-width: 175px;
+   height: 200px;
+   border-radius: 10px;
    cursor: pointer;
    position: relative;
+   display: grid;
+   grid-template-rows: 1fr 35px;
    box-shadow: 0 0 10px var(--editor-container-shadow);
  }
 
@@ -229,29 +219,33 @@
    color: var(--text);
  } 
 
- .linked-note-name:hover {
-   color: #5c7dff;
- }
-
  .linked-note-container .fa-regular {
-   font-size: 20px;
+   font-size: 60px;
    color: var(--text);
    padding: 7px 10px;
-   border-radius: 5px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
  }
 
  .linked-note-container .fa-solid {
    position: absolute;
    top: -15px;
+   right: -15px;
    padding: 10px;
    background-color: #5c7dff;
    color: white;
    border-radius: 50%;
  }
 
+ .editor hr {
+   border-style: none;
+   border-radius: 5px;
+   border: 1px solid var(--editor-text);
+ }
+
  .editor img {
     border-radius: 10px;
-    cursor: pointer;
     margin: 10px 0;
     max-width: 600px;
  }
@@ -284,4 +278,7 @@
    font-family: courier, monospace;
    padding: 0 3px;
  }
- 
+
+ .no-pointer {
+   pointer-events: none;
+}

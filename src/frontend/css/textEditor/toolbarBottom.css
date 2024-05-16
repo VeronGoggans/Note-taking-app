@@ -75,16 +75,6 @@
     overflow-y: scroll;
 }
 
-.font-options::-webkit-scrollbar {
-    background-color: transparent;
-    width: 3px;
-}
-
-.font-options::-webkit-scrollbar-thumb {
-    border-radius: 5px;
-    background-color: #e7e9f3;
-}
-
 .heading-dropdown .options button {
     font-family: Roboto;
     border: none;

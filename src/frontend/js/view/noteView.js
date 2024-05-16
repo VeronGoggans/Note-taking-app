@@ -10,8 +10,9 @@ import { DragAndDrop } from "../handlers/drag&drop/dragAndDropHandler.js";
 
 
 export class NoteView {
-    constructor(noteController, dialog, notificationHandler) {
+    constructor(noteController, applicationController, dialog, notificationHandler) {
         this.noteController = noteController;
+        this.applicationController = applicationController;
         this.notificationHandler = notificationHandler;
         this.dialog = dialog;
         this.noContentFeedbackHandler = new NoContentFeedbackHandler(this);
@@ -43,6 +44,7 @@ export class NoteView {
                 AnimationHandler.fadeInFromBottom(NOTE_CARD);
                 AnimationHandler.fadeInFromBottom(LIST_NOTE_CARD);
             }
+            console.log(this.noteObjects);
         } else {
             this.noContentFeedbackHandler.noNotes(new NoNoteMessage());
         }
@@ -83,10 +85,6 @@ export class NoteView {
 
         for (let i = 0; i < NOTE_CARDS.length; i++) {
             if (NOTE_CARDS[i].id === note.id) {
-                // updating the h4 element inside the note card.
-                const H4 = NOTE_CARDS[i].querySelector('h4');
-                H4.textContent = formatName(note.title);
-
                 // updating the p element inside the note card.
                 const P_ELEMENT = NOTE_CARDS[i].querySelector('p');
                 P_ELEMENT.innerHTML = note.content;
@@ -144,7 +142,7 @@ export class NoteView {
         const CONTENT = NOTE.content;
         const BOOKMARK = NOTE.bookmark;
         const COLOR = NOTE.color;
-        this.noteController.handleNoteCardClick(CONTENT, NAME, creation, LAST_EDIT, noteId, BOOKMARK, COLOR);
+        this.applicationController.openNoteInTextEditor(CONTENT, NAME, creation, LAST_EDIT, noteId, BOOKMARK, COLOR);
     }
 
     /**
@@ -153,6 +151,10 @@ export class NoteView {
      */
     update(note) {
         this.noteObjects.update(note);
+    }
+
+    getNoteObject(noteId) {
+        return this.noteObjects.get(noteId);
     }
 
    /**

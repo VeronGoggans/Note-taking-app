@@ -23,10 +23,11 @@
     <link rel="stylesheet" href="src/frontend/css/modals/deleteContainer.css">
     <link rel="stylesheet" href="src/frontend/css/modals/noteDetailsModal.css">
     <link rel="stylesheet" href="src/frontend/css/modals/noteBackgroundModal.css">
-    <link rel="stylesheet" href="src/frontend/css/modals/noteExportModal.css">
+    <link rel="stylesheet" href="src/frontend/css/modals/linkNoteModal.css">
+    <link rel="stylesheet" href="src/frontend/css/general/scrollbar.css">
     <!-- CDN for the icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Note</title>
+    <title>Neutron</title>
 </head>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
@@ -39,7 +40,7 @@
                     <div class="logo">
                         <span>N</span>
                     </div>
-                    <div class="logo-text">ote</div>
+                    <div class="logo-text">eutron</div>
                 </div>
             </div>
             <div class="sidebar-content">
@@ -94,7 +95,6 @@
               <button class="new-note-span"><i class="fa-solid fa-plus"></i>New</button>
               <button class="save-note-span"><i class="fa-regular fa-floppy-disk"></i>Save</button>
               <button class="delete-note-span"><i class="fa-regular fa-trash-can"></i>Delete</button>
-              <button class="link-note-span"><i class="fa-solid fa-paperclip"></i>Link note</button>
               <button class="background-note-span"><i class="fa-solid fa-fill"></i>Background</button>
               <button class="note-details-span"><i class="fa-solid fa-info"></i>Details</button>
               <button class="editor-page-style-span"><i class="fa-solid fa-pen"></i>Original</button>
@@ -107,6 +107,8 @@
                 <button onclick="executeCommand('superScript')" class="super-text-btn"><i class="fa-solid fa-superscript"></i> Super script</button>
                 <button onclick="executeCommand('subScript')" class="sub-text-btn"><i class="fa-solid fa-subscript"></i> Sub script</button>
                 <button class="code-block-btn"><i class="fa-solid fa-code"></i> Code block</button>
+                <button class="hr-btn"><i class="fa-solid fa-ruler-horizontal"></i> Horizontal rule</button>
+                <button class="link-note-btn"><i class="fa-solid fa-paperclip"></i> Link note</button>
             </div>
           </div>
           <button class="export-note-button"><i class="fa-solid fa-download"></i></button>

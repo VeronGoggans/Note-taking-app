@@ -4,7 +4,7 @@ import { FolderModel } from '../model/folderModel.js';
 export class FolderController {
     constructor(applicationController, dialog, notificationHandler) {
         this.applicationController = applicationController;
-        this.folderView = new FolderView(this, dialog, notificationHandler);
+        this.folderView = new FolderView(this, applicationController, dialog, notificationHandler);
         this.folderModel = new FolderModel();
     }
 
@@ -31,17 +31,5 @@ export class FolderController {
         const RESPONSE = await this.folderModel.deleteFolder(folderId, PARENT_ID);
         const FOLDER = RESPONSE.Folder;
         this.folderView.removeFolder(FOLDER);
-    }
-
-    async navigateToHomescreen() {
-        this.applicationController.navigateToHomescreen();
-    }
-
-    async navigateIntoFolder(folderId, name) {
-        this.applicationController.navigateIntoFolder(folderId, name);
-    }
-
-    async moveNote(noteId, folderId) {
-        await this.applicationController.moveNote(noteId, folderId);
     }
 }

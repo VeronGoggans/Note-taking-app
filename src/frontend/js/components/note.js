@@ -84,6 +84,13 @@ export class Note {
         this.H4.contentEditable = this.H4.contentEditable === 'true' ? 'false' : 'true';
         this.H4.style.borderColor = this.H4.style.borderColor === 'rgb(116, 122, 160)' ? 'transparent' : '#747aa0';
         this.BTN_CONTAINER.style.visibility = this.BTN_CONTAINER.style.visibility === 'visible' ? 'hidden' : 'visible';
+        const NOTE_OBJECT = this.view.getNoteObject(this.id);
+
+        if (this.BTN_CONTAINER.style.visibility === 'visible') {
+            this.H4.textContent = NOTE_OBJECT.title;
+        } else {
+            this.H4.textContent = formatName(this.H4.textContent);
+        }
     }
 
     /**

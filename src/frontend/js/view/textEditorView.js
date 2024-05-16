@@ -3,8 +3,9 @@ import { TextFormatter } from "../textFormat/textFormatter.js";
 import { getNoteHexColor } from "../util/backgroundColor.js";
 
 export class TextEditorView {
-  constructor(textEditorController, dialog) {
+  constructor(textEditorController, applicationController, dialog) {
     this.textEditorController = textEditorController;
+    this.applicationController = applicationController;
     
     this.noteContent = '';
     this.dialog = dialog;
@@ -26,10 +27,10 @@ export class TextEditorView {
     this.page.innerHTML = content;
     this.noteNameInput.value = name;
     TextFormatter.listenForLinkClicks(this.page);
+    TextFormatter.listenForNoteLinkClicks(this.page, this.applicationController);
     this.setEditorColor(color);
     this.show();
     this.page.focus();
-    this.editor.scrollTop = 0;
   }
 
   /**
@@ -63,6 +64,13 @@ export class TextEditorView {
     }
   } 
 
+  async getSearchableNotes() {
+    return await this.applicationController.getSearchObjects(); 
+  }
+
+
+
+
   /**
    * This method will exit out of the editor 
    * without saving the user's prrogress
@@ -92,7 +100,7 @@ export class TextEditorView {
    * This method shows the text editor
    */
   show() {
-    // Turn text editor visible
+    this.editor.scrollTop = 0;
     this.textEditor.style.visibility = 'visible';
     this.textEditor.style.top = '0%';
   }
@@ -102,7 +110,6 @@ export class TextEditorView {
    * and clears the editor for a new note
    */
   new() {
-    this.textEditorController.clearStoredNoteData();
     this._clear();
   }
 
@@ -152,21 +159,10 @@ export class TextEditorView {
    * from Original to Simple
    */
   async updatePageStyle() {
-    await this.textEditorController.changeEditorPageStyle(false);
+    await this.applicationController.setEditorPageStyle(false);
     this._toggleEditorStyleSpanName();
   }
 
-  async exportNote(format) {
-    const NAME = this.noteNameInput.value;
-    let content = null;
-    if (format === 'txt') {
-      content = this.page.innerText;
-    } else {
-      content = this.page.innerHTML;
-    }
-    await this.textEditorController.exportNote(format, NAME, content);
-    this.dialog.hide();
-  }
 
   /**
    * @returns a list of note data stored in the text editor model
@@ -200,6 +196,7 @@ export class TextEditorView {
     this.noteContent = '';
     this.page.innerHTML = '';
     this.noteNameInput.value = '';
+    this.textEditorController.clearStoredNoteData();
   }
 
   _resetEditorColor() {
@@ -216,7 +213,6 @@ export class TextEditorView {
     this._closeDropdowns();
     this._clear();
     this._resetEditorColor();
-    this.textEditorController.clearStoredNoteData();
   }
 
   /**
@@ -270,6 +266,8 @@ export class TextEditorView {
     
     this.linkButton = document.querySelector('.link-btn');
     this.codeBlockButton = document.querySelector('.code-block-btn');
+    this.horizontalRuleButton = document.querySelector('.hr-btn');
+    this.linkNoteButton = document.querySelector('.link-note-btn');
     this.removeFormattingButton = document.querySelector('.remove-formatting-btn');
     this.embedVideoButton = document.querySelector('.video-btn');
     this.foregroundColor = document.querySelector('.foreground-color-picker');
@@ -307,6 +305,8 @@ export class TextEditorView {
 
     this.linkButton.addEventListener('click', () => {TextFormatter.addLink()});
     this.codeBlockButton.addEventListener('click', () => {TextFormatter.addCodeBlock()});
+    this.horizontalRuleButton.addEventListener('click', () => (TextFormatter.addHorizontalRule()));
+    this.linkNoteButton.addEventListener('click', async () => {this.dialog.renderNoteLinkModal(this, await this.getSearchableNotes(), this.page, this.applicationController)});
     this.embedVideoButton.addEventListener('click', () => {TextFormatter.addEmbedVideo()});
     this.foregroundColor.addEventListener('click', () => {this._toggleVisibleDropdown(this.foregroundPalette)});
     this.backgroundColor.addEventListener('click', () => {this._toggleVisibleDropdown(this.backgroundPalette)});

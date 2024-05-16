@@ -1,62 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="../css/modals/newFolderContainer.css">
-  <style>
-      @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
-
-    body {
-      padding: 0;
-      margin: 0;
-      overflow: hidden;
-      background-color: black;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100dvh;
-      flex-direction: column;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Right Click Position</title>
+<style>
+    #parentDiv {
+        position: relative;
+        width: 400px;
+        height: 300px;
+        background-color: lightgrey;
+        border: 2px solid black;
     }
 
-    
-
-    .show-modal {
-      opacity: 1;
-      width: 300px;
-      height: 200px;
+    #customDiv {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        background-color: lightblue;
     }
-
-    button {
-      cursor: pointer;
-      margin: 20px;
-    }
-  </style>
+</style>
 </head>
 <body>
-  <div class="new-folder-container">
-    <h2>New folder</h2>
-    <input type="text" placeholder="Folder name">
-    <button>Add</button>
-  </div>
 
-  <button class="show-btn">Show</button>
-  <button class="hide-btn">Hide</button>
-  <script>
-    const MODAL = document.querySelector('.new-folder-container');
-    const BUTTON1 = document.querySelector('.show-btn');
-    const BUTTON2 = document.querySelector('.hide-btn');
-    
+<!-- Parent div -->
+<div id="parentDiv">
+    <!-- Your content -->
+    <div id="customDiv"></div>
+</div>
 
-    BUTTON1.addEventListener('click', () => {
-      MODAL.classList.add('show-modal');
-    })
+<script>
+document.getElementById('parentDiv').addEventListener('contextmenu', function(event) {
+    event.preventDefault(); // Prevent the default context menu from appearing
 
-    BUTTON2.addEventListener('click', () => {
-      MODAL.classList.remove('show-modal');
-    })
+    // Get the mouse coordinates relative to the parent div
+    const parentDivRect = event.target.getBoundingClientRect();
+    const mouseX = event.clientX - parentDivRect.left;
+    const mouseY = event.clientY - parentDivRect.top;
 
-  </script>
+    // Check if the right-click event occurred within the parent div
+    if (mouseX >= 0 && mouseY >= 0 && mouseX <= parentDivRect.width && mouseY <= parentDivRect.height) {
+        // Create or move the div to the mouse position
+        const customDiv = document.getElementById('customDiv');
+        customDiv.style.left = mouseX + 'px';
+        customDiv.style.top = mouseY + 'px';
+
+        // Make the div visible
+        customDiv.style.display = 'block';
+    }
+});
+
+document.addEventListener('click', function(event) {
+    const customDiv = document.getElementById('customDiv');
+    const parentDiv = document.getElementById('parentDiv');
+
+    // Hide the div when a left click occurs outside the parent div or custom div
+    if (event.button === 0 && event.target !== customDiv && event.target !== parentDiv) { 
+        customDiv.style.display = 'none';
+    }
+});
+</script>
+
 </body>
 </html>

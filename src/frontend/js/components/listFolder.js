@@ -1,4 +1,5 @@
 import { CNode } from "../util/CNode.js";
+import { formatName } from "../util/formatters.js";
 
 export class ListFolder {
     constructor(folder, view, dragAndDrop) {
@@ -9,8 +10,8 @@ export class ListFolder {
 
 
         // Creating HTML elements.
-        this.HOST = CNode.create('div', {'class': 'list-view-folder droppable', 'id': this.id, 'draggable': 'true'});
-        this.SPAN = CNode.create('span', {'textContent': this.name});
+        this.HOST = CNode.create('div', {'class': 'list-view-folder droppable', 'id': this.id});
+        this.SPAN = CNode.create('span', {'textContent': formatName(this.name)});
 
         this._attachEventListeners();
         return this._render();

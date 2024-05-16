@@ -1,11 +1,10 @@
-import { FolderModel } from "../model/folderModel.js";
 import { NoteModel } from "../model/noteModel.js";
 import { NoteView } from "../view/noteView.js";
 
 export class NoteController {
     constructor(applicationController, dialog, notificationHandler) {
         this.applicationController = applicationController;
-        this.noteView = new NoteView(this, dialog, notificationHandler);
+        this.noteView = new NoteView(this, applicationController, dialog, notificationHandler);
         this.noteModel = new NoteModel();
     }
 
@@ -29,7 +28,7 @@ export class NoteController {
         note.content = content;
         this.noteView.renderNoteCard(note);
         this.noteView.pushNotification('Saved');
-        this.addSearchObject(note.id, note.title);
+        this.applicationController.addSearchObject(note.id, note.title);
         return await note
     }
 
@@ -38,7 +37,7 @@ export class NoteController {
         const NOTE = await RESPONSE.Note;
         this.noteView.renderNoteUpdate(NOTE);
         this.noteView.pushNotification('Updated');
-        this.updateSearchObject(noteId, name);
+        this.applicationController.updateSearchObject(noteId, name);
     }
 
     async deleteNote(noteId) {
@@ -46,7 +45,7 @@ export class NoteController {
         const NOTE = await RESPONSE.Note;
         this.noteView.removeNote(NOTE);
         this.noteView.pushNotification('Deleted', NOTE.title);
-        this.deleteSearchObject(noteId);
+        this.applicationController.deleteSearchObject(noteId);
     }
 
     async exportNote(format, name, content) {
@@ -66,50 +65,5 @@ export class NoteController {
         const RESPONSE = await this.noteModel.updateNoteColor('/noteColor', noteId, color);
         const NOTE = RESPONSE.Note;
         this.noteView.update(NOTE);
-    }
-    
-    /**
-     * This method opens up the text editor
-     * And puts the note the user clicked on, in the text editor. 
-     */
-    handleNoteCardClick(content, name, creation, lastEdit, noteId, bookmark, color) {
-        this.applicationController.openNoteInTextEditor(content, name, creation, lastEdit, noteId, bookmark, color);
-    }
-
-    /**
-     * This method will add a new note to the search bar's options
-     * 
-     * This method is called everytime a new note is created
-     * 
-     * @param {String} noteId 
-     * @param {String} name 
-     */
-    addSearchObject(noteId, name) {
-        this.applicationController.addSearchObject(noteId, name)
-    }
-
-    /**
-     * This method will remove a search object from 
-     * the search bar options
-     * 
-     * This method is called everytime a note gets deleted.
-     * 
-     * @param {String} noteId 
-     */
-    deleteSearchObject(noteId) {
-        this.applicationController.deleteSearchObject(noteId);
-    }
-
-    /**
-     * This method will update a search object from 
-     * the search bar options
-     * 
-     * This method is called everytime a note gets updated.
-     * 
-     * @param {String} noteId 
-     * @param {String} name 
-     */
-    updateSearchObject(noteId, name) {
-        this.applicationController.updateSearchObject(noteId, name);
     }
 }

@@ -1,77 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-
-        body {
-            height: 100dvh;
-            background-color: rgb(99, 99, 255);
-        }
-        .range {
-            height: 80px;
-            width: 380px;
-            background-color: #fff;
-            border-radius: 10px;
-            padding: 10px;
-        }
-
-        .range .field {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
-        }
-
-        .range .sliderValue {
-            position: relative;
-            width: 100%;
-        }
-
-        .range .sliderValue span {
-            position: absolute;
-            width: 35px;
-            height: 45px;
-            background-color: rgb(99, 99, 255);
-            color: #fff;
-            font-weight: 500;
-            top: -40px;
-            transform: translate(-50%);
-        }
-
-        .range .field .value {
-            margin: 5px;
-            font-size: 18px;
-            font-weight: 600;
-            color: #91929e;
-        }
-
-        .range .field input {
-            -webkit-appearance: none;
-            height: 3px;
-            width: 100%;
-            background-color: #ddd;
-            border-radius: 5px;
-            outline: none;
-            border: none;
-        }
-
-
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get Last Cursor Position</title>
 </head>
 <body>
-    <div class="range">
-        <div class="sliderValue">
-            <span>100</span>
-        </div>
-        <div class="field">
-            <div class="value left">0</div>
-            <input type="range" min="0" max="200" step="1">
-            <div class="value right">200</div>
-        </div>
-    </div>
+
+<div id="editableDiv" contenteditable="true">
+    This is an editable div. Click here and type something to see the last cursor position.
+</div>
+
+<script>
+document.getElementById("editableDiv").addEventListener("input", function() {
+    var selection = window.getSelection();
+    var range = selection.getRangeAt(selection.rangeCount - 1);
+    var lastCursorPosition = range.endOffset;
+    console.log("Last cursor position: " + lastCursorPosition);
+});
+</script>
+
 </body>
 </html>

@@ -47,10 +47,10 @@ export class HTMLArray {
      * @returns 
      */
     constructor(array, type) {
-        return this.#createHtmlArray(array, type);
+        return this._createHtmlArray(array, type);
     }
 
-    #createHtmlArray(array, type) {
+    _createHtmlArray(array, type) {
         if (type === 'note') {
             return ArrayUtil.filterNotes(array);
         } else {
@@ -136,8 +136,8 @@ export class FolderObjectArray {
      * 
      * @param {Dict} subfolder 
      */
-    add(subfolder) {
-        this.objects.push(subfolder);
+    add(folder) {
+        this.objects.push(folder);
     }
 
     /**
@@ -145,8 +145,8 @@ export class FolderObjectArray {
      * 
      * @param {Dict} subfolder 
      */
-    remove(subfolder) {
-        const ID = subfolder.id;
+    remove(folder) {
+        const ID = folder.id;
 
         for (let i = 0; i < this.objects.length; i++) {
             if (this.objects[i].id === ID) {
@@ -160,10 +160,10 @@ export class FolderObjectArray {
      * 
      * @param {Dict} subfolder 
      */
-    update(subfolder) {
+    update(folder) {
         for (let i = 0; i < this.objects.length; i++) {
-            if (this.objects[i].id === subfolder.id) {
-                this.objects[i].name = subfolder.name;
+            if (this.objects[i].id === folder.id) {
+                this.objects[i].name = folder.name;
             }
         }
     }
@@ -174,8 +174,8 @@ export class FolderObjectArray {
      * @param {String} subfolderId 
      * @returns a subfolder dictionary
      */
-    get(subfolderId) {
-        return this.objects.find(obj => obj.id === subfolderId)
+    get(folderId) {
+        return this.objects.find(obj => obj.id === folderId)
     }
 
     clear() {

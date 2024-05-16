@@ -35,6 +35,8 @@ export class ApplicationModel {
             // if the id is not already in the last index of the array, push.
             if (ID !== this.folderIds[this.folderIds.length - 1].id) {
                 this.folderIds.push({'id': ID, 'name': name});
+            } else {
+                console.log('Skipped id addition due to diplication');
             }
         } else {
             this.folderIds.push({'id': ID, 'name': name});

@@ -31,7 +31,7 @@ export class ApplicationController {
         await this.setEditorPageStyle(true);
         await this.folderController.getFolders();
         await this.noteController.getNotes(this.homeFolderId);
-        const RESPONSE = await this.applicationModel.getSearchOptions('/noteSearchObjects');
+        const RESPONSE = await this.getSearchObjects();
         this.applicationView.giveSearchOptions(RESPONSE.Notes);
         this.applicationView.renderSearchOptions(RESPONSE.Notes);
     }
@@ -107,11 +107,10 @@ export class ApplicationController {
         const CREATION = await NOTE.creation;
         const LAST_EDIT = await NOTE.last_edit;
         const BOOKMARK = await NOTE.bookmark;
-        const COLOR =  await NOTE.color;
+        const COLOR = await NOTE.color;
         this.openNoteInTextEditor(CONTENT, NAME, CREATION, LAST_EDIT, noteId, BOOKMARK, COLOR);
         if (RESPONSE[1] !== this.homeFolderId) {
             this.navigateIntoFolder(await RESPONSE[1], await RESPONSE[2]);
-            console.log('Travel to folder');
         }
     }
 
@@ -127,6 +126,10 @@ export class ApplicationController {
         return this.applicationModel.getCurrentFolderID();
     }
 
+    async getSearchObjects() {
+        return await this.applicationModel.getSearchOptions('/noteSearchObjects');
+    }
+    
     /**
      * This method will add a new note to the search bar's options
      * 

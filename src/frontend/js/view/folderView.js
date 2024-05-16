@@ -5,10 +5,12 @@ import { NoContentFeedbackHandler } from "../handlers/userFeedback/noContentFeed
 import { NoteDeleteModal } from '../components/modals/noteDeleteModal.js';
 import { AnimationHandler } from '../handlers/animation/animationHandler.js';
 import { DragAndDrop } from '../handlers/drag&drop/dragAndDropHandler.js';
+import { formatName } from "../util/formatters.js";
 
 export class FolderView {
-    constructor(folderController, dialog, notificationHandler) {
+    constructor(folderController, applicationController, dialog, notificationHandler) {
         this.folderController = folderController;
+        this.applicationController = applicationController;
         this.dialog = dialog;
         this.notificationHandler = notificationHandler;
         this.noContentFeedbackHandler = new NoContentFeedbackHandler();
@@ -76,7 +78,8 @@ export class FolderView {
         for (let i = 0; i < FOLDER_LIST_CARDS.length; i++) {
             if (FOLDER_LIST_CARDS[i].id === folder.id) {
                 const SPAN = FOLDER_LIST_CARDS[i].querySelector('span');
-                SPAN.textContent = folder.name;
+                SPAN.textContent = formatName(folder.name);
+                this.folderObjects.update(folder);
             }
         }
     }
@@ -187,7 +190,7 @@ export class FolderView {
     }
 
     async handleNoteDrop(noteId, folderId) {
-        await this.folderController.moveNote(noteId, folderId)
+        await this.applicationController.moveNote(noteId, folderId)
     }
 
     async handleFolderDrop(droppedFolderId, parentFolderId) {
@@ -204,6 +207,10 @@ export class FolderView {
      * @param {string} id - The ID of the folder to navigate into.
      */
     handleFolderCardClick(id, name) {
-        this.folderController.navigateIntoFolder(id, name);
+        this.applicationController.navigateIntoFolder(id, name);
+    }
+
+    getFolderObject(folderId) {
+        return this.folderObjects.get(folderId);
     }
 }

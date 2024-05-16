@@ -5,6 +5,7 @@ import webview
 import requests
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
+import os
 from src.backend.presentation.controller.note_controller import NoteRouter
 from src.backend.presentation.controller.folder_controller import FolderRouter
 from src.backend.presentation.controller.subfolder_controller import SubfolderRouter
@@ -24,8 +25,7 @@ app.include_router(note_router.route)
 app.include_router(theme_router.route)
 
 # Setting up a FRONT-END page for the API
-app.mount("/", StaticFiles(directory=".", html=True), name="static")
-
+app.mount("/", StaticFiles(directory=f"{os.getcwd()}.", html=True), name="static")
 # Find an available port dynamically
 def find_available_port():
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:

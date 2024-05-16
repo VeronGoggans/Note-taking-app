@@ -5,54 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="../css/modals/linkNoteModal.css">
+  <link rel="stylesheet" href="../css/general/themes.css">
+  <link rel="stylesheet" href="../css/general/main.css">
   <style>
       @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
-
-    
-    .linked-note-container {
-      font-family: Roboto;
-      background-color: white;
-      padding: 10px 15px;
-      margin: 20px 0;
-      width: fit-content;
-      border-radius: 5px;
-      cursor: pointer;
-      position: relative;
-      box-shadow: 0 0 10px #dcdeee;
-    }
-
-    .linked-note-name {
-      font-weight: 600;
-      font-size: 16px;
-      transition: 150ms;
-    } 
-
-    .linked-note-name:hover {
-      color: #5c7dff;
-    }
-
-    .linked-note-container .fa-regular {
-      font-size: 20px;
-      color: #444863;
-      padding: 7px 10px;
-      border-radius: 5px;
-    }
-
-    .linked-note-container .fa-solid {
-      position: absolute;
-      top: -15px;
-      padding: 10px;
-      background-color: #5c7dff;
-      color: white;
-      border-radius: 50%;
-    }
+  
+      body {
+        background-color: black;
+      }
   </style>
 </head>
 <body>
-  <div class="linked-note-container">
-    <i class="fa-regular fa-file-lines"></i>
-    <span class="linked-note-name" contenteditable="false">CSS Quick Reference</span>
-    <i class="fa-solid fa-paperclip"></i>
+  <div class="link-note-modal">
+    <h2>Note link</h2>
+    <i id="link-icon" class="fa-solid fa-paperclip"></i>
+    <div class="search-notes-container">
+      <input type="text" spellcheck="false" placeholder="Search for notes" class="searchbar-input">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <ul class="note-link-suggestions-list"></ul>
+    </div>
+    <button class="insert-note-link-btn" onclick="">Insert</button>
   </div>
+
 </body>
 </html>
