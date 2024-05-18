@@ -9,6 +9,9 @@ class SidebarView {
         this._wrapper = document.querySelector('.wrapper');
         this._createNoteButton = document.querySelector('.create-note-btn');
         this._createNoteSpan = this._createNoteButton.querySelector('span');
+        this._favoritesButton = document.querySelector('.favorites-btn');
+        this._favoritesSpan = this._favoritesButton.querySelector('span');
+        this._favoritesIcon = this._favoritesButton.querySelector('i');
         this._plusIcon = this._createNoteButton.querySelector('i');
         this._backButton = document.querySelector('.exit-folder-btn');
         this._backSpan = this._backButton.querySelector('span');
@@ -21,6 +24,10 @@ class SidebarView {
         this._themeIcon = this._themeButton.querySelector('i');
         this._collapsed = false;
         this._size = 'standard';
+        this._sidebarButtons = [this._homeButton, this._backButton, this._createNoteButton, this._favoritesButton, this._themeButton]
+        this._sidebarSpans = [this._homeSpan, this._backSpan, this._createNoteSpan, this._favoritesSpan, this._themeSpan]
+        this._sidebarIcons = [this._homeIcon, this._backIcon, this._plusIcon, this._favoritesIcon, this._themeIcon]
+        
     }
 
     /**
@@ -28,31 +35,16 @@ class SidebarView {
      * becomes smaller then 700 pixels
      */
     collapseButtons() {
-        this._createNoteSpan.style.position = 'absolute'
-        this._backSpan.style.position = 'absolute'
-        this._homeSpan.style.position = 'absolute'
-        this._themeSpan.style.position = 'absolute'
+        for (let i = 0; i < 5; i++) {
+            this._sidebarSpans[i].style.position = 'absolute';
+            this._sidebarSpans[i].textContent = '';
 
-        this._createNoteSpan.textContent = ''
-        this._backSpan.textContent = ''
-        this._homeSpan.textContent = ''
-        this._themeSpan.textContent = ''
+            this._sidebarIcons[i].style.position = 'relative';
+            this._sidebarIcons[i].style.left = 0;
 
-        // positioning the buttons
-        this._homeIcon.style.position = 'relative';
-        this._backIcon.style.position = 'relative';
-        this._plusIcon.style.position = 'relative';
-        this._themeIcon.style.position = 'relative';
+            this._sidebarButtons[i].style.justifyContent = 'center';
+        }
 
-        this._homeIcon.style.left = '0';
-        this._backIcon.style.left = '0';
-        this._plusIcon.style.left = '0';
-        this._themeIcon.style.left = '0';
-
-        this._homeButton.style.justifyContent = 'center';
-        this._backButton.style.justifyContent = 'center';
-        this._createNoteButton.style.justifyContent = 'center';
-        this._themeButton.style.justifyContent = 'center';
         document.querySelector('.logo-container').style.justifyContent = 'center'
         document.querySelector('.logo-text').textContent = '';
     }
@@ -62,32 +54,17 @@ class SidebarView {
      * becomes bigger then 700 pixels
      */
     openButtons() {
-        let currentTheme = document.body.classList.toString();
-        this._createNoteSpan.style.position = 'relative'
-        this._backSpan.style.position = 'relative'
-        this._homeSpan.style.position = 'relative'
-        this._themeSpan.style.position = 'relative'
+        let currentTheme = document.body.classList.toString().charAt(0).toUpperCase() + document.body.classList.toString().slice(1);
+        const buttonText = ['Home', 'Back', 'Note', 'Favorites', currentTheme]
+        for (let i = 0; i < 5; i++) {
+            this._sidebarSpans[i].style.position = 'relative';
+            this._sidebarSpans[i].textContent = buttonText[i];
 
-        this._createNoteSpan.textContent = 'Note'
-        this._backSpan.textContent = 'Back'
-        this._homeSpan.textContent = 'Home'
-        this._themeSpan.textContent = currentTheme.toString().charAt(0).toUpperCase() + currentTheme.slice(1);
-        
-        // positioning the buttons
-        this._homeIcon.style.position = 'absolute';
-        this._backIcon.style.position = 'absolute';
-        this._plusIcon.style.position = 'absolute';
-        this._themeIcon.style.position = 'absolute';
+            this._sidebarIcons[i].style.position = 'absolute';
+            this._sidebarIcons[i].style.left = '5px';
 
-        this._homeIcon.style.left = '5px';
-        this._backIcon.style.left = '5px';
-        this._plusIcon.style.left = '5px';
-        this._themeIcon.style.left = '5px';
-
-        this._homeButton.style.justifyContent = 'normal';
-        this._backButton.style.justifyContent = 'normal';
-        this._createNoteButton.style.justifyContent = 'normal';
-        this._themeButton.style.justifyContent = 'normal';
+            this._sidebarButtons[i].style.justifyContent = 'normal';
+        }
 
         document.querySelector('.logo-container').style.justifyContent = 'normal'
         document.querySelector('.logo-text').textContent = 'eutron';

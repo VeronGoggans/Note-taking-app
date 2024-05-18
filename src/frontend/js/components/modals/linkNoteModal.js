@@ -3,11 +3,12 @@ import { TextFormatter } from "../../textFormat/textFormatter.js";
 
 
 export class NoteLinkModal {
-    constructor(view, noteSearchOptions, page, controller) {
+    constructor(view, noteSearchOptions, page, controller, dialog) {
         this.view = view;
         this.noteSearchOptions = noteSearchOptions.Notes;
         this.page = page;
         this.controller = controller;
+        this.dialog = dialog;
         
         this.MODAL = CNode.create('div', {'class': 'note-link-modal'});
         this.H2 = CNode.create('h2', {'textContent': 'Note link'});
@@ -28,6 +29,7 @@ export class NoteLinkModal {
         this.INSERT_BUTTON.addEventListener('click', () => {
             TextFormatter.addNoteLink(this.INPUT.getAttribute('data-note-id'), this.INPUT.value);
             TextFormatter.listenForNoteLinkClicks(this.page, this.controller);
+            this.dialog.hide();
         });
     }
 

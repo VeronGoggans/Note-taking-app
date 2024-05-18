@@ -102,7 +102,10 @@
     opacity: 1;
 }
 
-.folder-util-bar button {
+.folder-util-bar i {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
     outline: none;
     border: none;
@@ -114,7 +117,7 @@
     transition: .3s;
 }
 
-.folder-util-bar button:hover {
+.folder-util-bar i:hover {
     background-color: var(--hover);
     color: var(--icon-hover);
 }
@@ -220,30 +223,30 @@
     color: #ff7676;
 }
 
-.card-style-blue .folder-util-bar button,
-.card-style-orange .folder-util-bar button,
-.card-style-green .folder-util-bar button,
-.card-style-purple .folder-util-bar button,
-.card-style-red .folder-util-bar button {
+.card-style-blue .folder-util-bar i,
+.card-style-orange .folder-util-bar i,
+.card-style-green .folder-util-bar i,
+.card-style-purple .folder-util-bar i,
+.card-style-red .folder-util-bar i {
     color: #444863;
 }
 
-.card-style-blue .folder-util-bar button:hover {
+.card-style-blue .folder-util-bar i:hover {
     background-color: #87c6ff;
 }
 
-.card-style-orange .folder-util-bar button:hover {
+.card-style-orange .folder-util-bar i:hover {
     background-color: #ffd06b;
 }
 
-.card-style-green .folder-util-bar button:hover {
+.card-style-green .folder-util-bar i:hover {
     background-color: #6ae25e;
 }
 
-.card-style-purple .folder-util-bar button:hover {
+.card-style-purple .folder-util-bar i:hover {
     background-color: #d2a8ff;
 }
 
-.card-style-red .folder-util-bar button:hover {
+.card-style-red .folder-util-bar i:hover {
     background-color: #ff8d8d;
 }

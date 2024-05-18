@@ -43,7 +43,7 @@
                             "content": "storage/notes/note-n-586.txt",
                             "bookmark": false,
                             "color": "white",
-                            "last_edit": "16/05/2024 18:30",
+                            "last_edit": "18/05/2024 19:03",
                             "creation": "07/05/2024"
                         },
                         {
@@ -52,7 +52,7 @@
                             "content": "storage/notes/note-n-590.txt",
                             "bookmark": false,
                             "color": "white",
-                            "last_edit": "14/05/2024 12:51",
+                            "last_edit": "17/05/2024 16:26",
                             "creation": "14/05/2024"
                         }
                     ],
@@ -135,15 +135,6 @@
             "color": "#ffffff",
             "notes": [
                 {
-                    "id": "n-585",
-                    "title": "Mogelijke bijbaan",
-                    "content": "storage/notes/note-n-585.txt",
-                    "bookmark": false,
-                    "color": "white",
-                    "last_edit": "17/05/2024 00:20",
-                    "creation": "04/05/2024"
-                },
-                {
                     "id": "n-592",
                     "title": "ToDo Neutron",
                     "content": "storage/notes/note-n-592.txt",
@@ -151,6 +142,23 @@
                     "color": "white",
                     "last_edit": "17/05/2024 00:45",
                     "creation": "15/05/2024"
+                }
+            ],
+            "subfolders": []
+        },
+        {
+            "id": "f-125",
+            "name": "Random stuff",
+            "color": "#ffffff",
+            "notes": [
+                {
+                    "id": "n-585",
+                    "title": "Mogelijke bijbaan",
+                    "content": "storage/notes/note-n-585.txt",
+                    "bookmark": false,
+                    "color": "white",
+                    "last_edit": "17/05/2024 00:20",
+                    "creation": "04/05/2024"
                 }
             ],
             "subfolders": []

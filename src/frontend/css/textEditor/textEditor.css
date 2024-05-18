@@ -272,6 +272,7 @@
  }
 
  .editor code {
+   cursor: pointer;
    background-color: var(--code-snippit-background);
    border-radius: 3px;
    color: var(--code-snippet-color);

@@ -27,11 +27,8 @@ export class Folder {
         this.RED = CNode.create('div', {'style': 'background-color: #ffa3a3;'});
         this.WHITE = CNode.create('div', {'style': 'background-color: #ffffff;'});
         this.UTIL_BAR = CNode.create('div', {'class': 'folder-util-bar'});
-        this.COLOR = CNode.create('button', {'class': 'color-folder-btn'});
         this.COLOR_ICON = CNode.create('i', {'class': 'fa-solid fa-palette'});
-        this.EDIT = CNode.create('button', {'id': 'edit-folder-btn'});
         this.EDIT_ICON = CNode.create('i', {'class': 'fa-solid fa-pen'});
-        this.DELETE = CNode.create('button', {'id': 'delete-folder-btn'});
         this.DELETE_ICON = CNode.create('i', {'class': 'fa-solid fa-trash'});
 
         this.applyColor(this.color);
@@ -57,12 +54,9 @@ export class Folder {
         this.COLOR_CONTAINER.appendChild(this.RED);
         this.COLOR_CONTAINER.appendChild(this.WHITE);
         this.HOST.appendChild(this.UTIL_BAR);
-        this.UTIL_BAR.appendChild(this.COLOR);
-        this.COLOR.appendChild(this.COLOR_ICON);
-        this.UTIL_BAR.appendChild(this.EDIT);
-        this.EDIT.appendChild(this.EDIT_ICON);
-        this.UTIL_BAR.appendChild(this.DELETE);
-        this.DELETE.appendChild(this.DELETE_ICON); 
+        this.UTIL_BAR.appendChild(this.COLOR_ICON);
+        this.UTIL_BAR.appendChild(this.EDIT_ICON);
+        this.UTIL_BAR.appendChild(this.DELETE_ICON);
         return this.HOST;
     }
 
@@ -97,11 +91,11 @@ export class Folder {
     }
 
     _attachEventListeners() {
-        this.EDIT.addEventListener('click', () => {this._toggleEditableFolderName()});
+        this.EDIT_ICON.addEventListener('click', () => {this._toggleEditableFolderName()});
         this.CONFIRM.addEventListener('click', () => {this.updateFolder()});
         this.CANCEL.addEventListener('click', () => {this._toggleEditableFolderName()});
-        this.DELETE.addEventListener('click', () => {this.view.renderDeleteContainer(this.id, this.name)});
-        this.COLOR.addEventListener('click', () => {this._togglePalette()});
+        this.DELETE_ICON.addEventListener('click', () => {this.view.renderDeleteContainer(this.id, this.name)});
+        this.COLOR_ICON.addEventListener('click', () => {this._togglePalette()});
         this.LOGO.addEventListener('click', () => { this.view.handleFolderCardClick(this.id, this.H4.textContent)});
         this.BLUE.addEventListener('click', () => {this.updateFolder('#a9d7ff', false)});
         this.ORANGE.addEventListener('click', () => {this.updateFolder('#ffe09e', false)});
@@ -121,7 +115,6 @@ export class Folder {
         this.H4.style.borderColor = this.H4.style.borderColor === 'rgb(116, 122, 160)' ? 'transparent' : '#747aa0';
         this.BTN_CONTAINER.style.visibility = this.BTN_CONTAINER.style.visibility === 'visible' ? 'hidden' : 'visible';
         const FOLDER_OBJECT = this.view.getFolderObject(this.id);
-        console.log(FOLDER_OBJECT);
 
         if (this.BTN_CONTAINER.style.visibility === 'visible') {
             this.H4.textContent = FOLDER_OBJECT.name;

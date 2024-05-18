@@ -37,12 +37,14 @@
 }
 
 .file-dropdown .dropdown-title,
-.insert-dropdown .dropdown-title {
+.insert-dropdown .dropdown-title,
+.style-dropdown .dropdown-title {
     color: var(--important);
 }
 
 .file-dropdown .dropdown-title:hover,
-.insert-dropdown .dropdown-title:hover {
+.insert-dropdown .dropdown-title:hover,
+.style-dropdown .dropdown-title:hover {
     color: #5c7dff;
 }
 
@@ -97,27 +99,6 @@
     font-weight: 600;
 }
 
-.export-note-button {
-    display: none;
-    position: absolute;
-    right: 162px;
-    border: none;
-    transition: .2s;
-    cursor: pointer;
-    padding: 7px 15px;
-    margin: 7px 10px 7px 0px;
-    border-radius: 15px;
-    color: var(--important);
-    background-color: var(--toolbar);
-    font-weight: 600;
-    font-size: 16px;
-    font-family: Roboto;
-}
-
-.export-note-button:hover {
-    color: #5c7dff;
-}
-
 .save-note-btn {
     position: absolute;
     right: 55px;
@@ -166,13 +147,13 @@
     border-color: #5c7dff;
 }
 
-.insert-dropdown {
+.insert-dropdown,
+.style-dropdown {
     position: relative;
     border-radius: 12px;
     background-color: var(--toolbar);
     cursor: pointer;
     padding: 7px;
-    color: var(--important);
     overflow: visible;
     font-weight: 600;
     font-size: 16px;
@@ -180,13 +161,8 @@
     transition: 200ms
 }
 
-.insert-dropdown .dropdown-title {
-    background-color: transparent;
-    font-family: Roboto;
-    font-size: 16px;
-}
-
-.insert-dropdown .options {
+.insert-dropdown .options,
+.style-dropdown .options {
     visibility: hidden;
     opacity: 0;
     position: absolute;
@@ -203,7 +179,8 @@
     z-index: 2;
 }
 
-.insert-dropdown .options button {
+.insert-dropdown .options button,
+.style-dropdown .options button {
     font-family: Roboto;
     border: none;
     background-color: transparent;
@@ -218,11 +195,13 @@
     text-align: start;
 }
 
-.insert-dropdown .options button i {
+.insert-dropdown .options button i,
+.style-dropdown .options button i {
     margin: 0 5px;
 }
 
-.insert-dropdown .options button:hover {
+.insert-dropdown .options button:hover,
+.style-dropdown .options button:hover {
     background-color: var(--hover);
 }
 

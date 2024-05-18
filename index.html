@@ -48,6 +48,7 @@
                 <button class="home-screen-btn"><i class="fa-solid fa-house"></i><span>Home</span></button>
                 <button class="exit-folder-btn"><i class="fa-solid fa-arrow-left"></i><span>Back</span></button>
                 <button class="create-note-btn"><i class="fa-solid fa-plus"></i><span>Note</span></button>
+                <button class="favorites-btn"><i class="fa-solid fa-star"></i><span>Favorites</span></button>
               </div>
               <div class="sidebar-content-lower">
                 <button class="settings-btn"><i id="current-theme-icon" class="fa-regular fa-sun"></i><span class="current-theme-text">Light</span></button>
@@ -95,9 +96,7 @@
               <button class="new-note-span"><i class="fa-solid fa-plus"></i>New</button>
               <button class="save-note-span"><i class="fa-regular fa-floppy-disk"></i>Save</button>
               <button class="delete-note-span"><i class="fa-regular fa-trash-can"></i>Delete</button>
-              <button class="background-note-span"><i class="fa-solid fa-fill"></i>Background</button>
               <button class="note-details-span"><i class="fa-solid fa-info"></i>Details</button>
-              <button class="editor-page-style-span"><i class="fa-solid fa-pen"></i>Original</button>
             </div>
           </div>
           <input type="text" class="note-name-input" placeholder="untitled" spellcheck="false">
@@ -111,7 +110,13 @@
                 <button class="link-note-btn"><i class="fa-solid fa-paperclip"></i> Link note</button>
             </div>
           </div>
-          <button class="export-note-button"><i class="fa-solid fa-download"></i></button>
+          <div class="style-dropdown">
+            <button class="dropdown-title">Style</button>
+            <div class="options">
+              <button class="background-note-span"><i class="fa-solid fa-fill"></i>Background</button>
+              <button class="editor-page-style-span"><i class="fa-solid fa-pen"></i>Original</button>
+            </div>
+          </div>
           <button class="save-note-btn">Save</button>
           </div>
           <div class="toolbar-bottom">

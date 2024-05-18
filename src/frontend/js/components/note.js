@@ -26,11 +26,9 @@ export class Note {
         this.CONTENT_BOX = CNode.create('div', {'class': 'note-content-box'});
         this.CONTENT = CNode.create('p', {'innerHTML': this.content});
         this.UTIL_BAR = CNode.create('div', {'class': 'note-util-bar'});
-        this.BOOKMARK = CNode.create('button', {'class': 'bookmark-note-btn'});
-        this.BOOKMARK_ICON = CNode.create('i', {'class': 'fa-solid fa-bookmark'});
-        this.EDIT = CNode.create('button', {'class': 'edit-note-btn'});
+        this.FAVORITE_ICON = CNode.create('i', {'class': 'fa-solid fa-star'});
+        this.BOOKMARK_ICON = CNode.create('i', {'class': 'fa-solid fa-bookmark', 'id': 'bookmark-note-btn'});
         this.EDIT_ICON = CNode.create('i', {'class': 'fa-solid fa-pen'});
-        this.DELETE = CNode.create('button', {'class': 'delete-note-btn'});
         this.DELETE_ICON = CNode.create('i', {'class': 'fa-solid fa-trash'});
 
         this._attachEventListeners();
@@ -48,24 +46,22 @@ export class Note {
         this.NAME_BOX.appendChild(this.BTN_CONTAINER);
         this.CONTENT_BOX.appendChild(this.CONTENT);
         this.HOST.appendChild(this.CONTENT_BOX);
-        this.UTIL_BAR.appendChild(this.BOOKMARK);
-        this.BOOKMARK.appendChild(this.BOOKMARK_ICON);
-        this.UTIL_BAR.appendChild(this.EDIT);
-        this.EDIT.appendChild(this.EDIT_ICON);
-        this.UTIL_BAR.appendChild(this.DELETE);
-        this.DELETE.appendChild(this.DELETE_ICON);
+        this.UTIL_BAR.appendChild(this.FAVORITE_ICON);
+        this.UTIL_BAR.appendChild(this.BOOKMARK_ICON);
+        this.UTIL_BAR.appendChild(this.EDIT_ICON);
+        this.UTIL_BAR.appendChild(this.DELETE_ICON);
         this.HOST.appendChild(this.UTIL_BAR);
         return this.HOST
     }
 
     _attachEventListeners() {
-        this.EDIT.addEventListener('click', () => {this._toggleEditableNoteName()});
+        this.EDIT_ICON.addEventListener('click', () => {this._toggleEditableNoteName()});
         this.CONFIRM.addEventListener('click', () => {this.updateNoteName()});
         this.H4.addEventListener('keydown', (event) => {if (event.key === 'Enter') this.updateNoteName()});
         this.CANCEL.addEventListener('click', () => {this._toggleEditableNoteName()});
-        this.DELETE.addEventListener('click', () => {this.view.renderDeleteContainer(this.id, this.name)});
+        this.DELETE_ICON.addEventListener('click', () => {this.view.renderDeleteContainer(this.id, this.name)});
         this.CONTENT_BOX.addEventListener('click', () => {this.view.handleNoteCardClick(this.id, this.created)});
-        this.BOOKMARK.addEventListener('click', () => {this.updateNoteBookmark()});
+        this.BOOKMARK_ICON.addEventListener('click', () => {this.updateNoteBookmark()});
     }
 
     _applyBookmarkStyle(bookmarkValue) {

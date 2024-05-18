@@ -230,7 +230,7 @@ export class TextEditorView {
   }
 
   _closeDropdowns() {
-    this.dropdowns.forEach((dropdown) => {
+    this.dropdownOptions.forEach((dropdown) => {
       dropdown.style.visibility = 'hidden';
       dropdown.style.opacity = '0';
     })
@@ -254,6 +254,9 @@ export class TextEditorView {
 
     this.insertDropdown = document.querySelector('.insert-dropdown');
     this.insertDropdownOptions = this.insertDropdown.querySelector('.options');
+
+    this.styleDropdown = document.querySelector('.style-dropdown');
+    this.styleDropdownOptions = this.styleDropdown.querySelector('.options');
 
     // toolbar bottom
     this.headingButton = document.querySelector('.heading-button');
@@ -281,15 +284,15 @@ export class TextEditorView {
     this.textEditor = document.querySelector('.editor-wrapper');
     this.editor = document.querySelector('.editor');
     this.page = document.querySelector('.editor-paper');
-    this.dropdowns = [this.noteDropdownOptions, this.headingDropdownOptions, this.fontDropdownOptions, this.insertDropdownOptions, this.foregroundPalette, this.backgroundPalette]
+    this.dropdowns = [this.noteDropdown, this.headingDropdown, this.fontDropdown, this.insertDropdown, this.styleDropdown, this.foregroundColor, this.backgroundColor]
+    this.dropdownOptions = [this.noteDropdownOptions, this.headingDropdownOptions, this.fontDropdownOptions, this.insertDropdownOptions, this.styleDropdownOptions, this.foregroundPalette, this.backgroundPalette]
   }
 
 
   _attachEventListeners() {
-    this.noteDropdown.addEventListener('click', () => {this._toggleVisibleDropdown(this.noteDropdownOptions)});
-    this.headingDropdown.addEventListener('click', () => {this._toggleVisibleDropdown(this.headingDropdownOptions)});
-    this.fontDropdown.addEventListener('click', () => {this._toggleVisibleDropdown(this.fontDropdownOptions)});
-    this.insertDropdown.addEventListener('click', () => {this._toggleVisibleDropdown(this.insertDropdownOptions)});
+    for (let i = 0; i < this.dropdowns.length; i++) {
+      this.dropdowns[i].addEventListener('click', () => {this._toggleVisibleDropdown(this.dropdownOptions[i])});
+    }
 
     this.noteDetailsSpan.addEventListener('click', () => {this.dialog.renderNoteDetailsModal(this._getNoteData())});
     this.deleteNoteSpan.addEventListener('click', () => {this.dialog.renderNoteDeleteModal(this._getNoteData()[0], this.noteNameInput.value, this)});
@@ -300,16 +303,14 @@ export class TextEditorView {
   
     this.exitButton.addEventListener('click', () => {this.closeEditor()});
     this.saveButton.addEventListener('click', async () => { await this.save(true, false)});
-    this.exportButton.addEventListener('click', () => {this.dialog.renderNoteExportModal(this)});
     this.page.addEventListener('click', () => {this._closeDropdowns()});
 
     this.linkButton.addEventListener('click', () => {TextFormatter.addLink()});
     this.codeBlockButton.addEventListener('click', () => {TextFormatter.addCodeBlock()});
     this.horizontalRuleButton.addEventListener('click', () => (TextFormatter.addHorizontalRule()));
-    this.linkNoteButton.addEventListener('click', async () => {this.dialog.renderNoteLinkModal(this, await this.getSearchableNotes(), this.page, this.applicationController)});
+    this.linkNoteButton.addEventListener('click', async () => {this.dialog.renderNoteLinkModal(this, await this.getSearchableNotes(), this.page, this.applicationController, this.dialog)});
     this.embedVideoButton.addEventListener('click', () => {TextFormatter.addEmbedVideo()});
-    this.foregroundColor.addEventListener('click', () => {this._toggleVisibleDropdown(this.foregroundPalette)});
-    this.backgroundColor.addEventListener('click', () => {this._toggleVisibleDropdown(this.backgroundPalette)});
+    
     this.foregroundPaletteColors.forEach(button => {
       button.addEventListener('click', () => {
           const COLOR = button.getAttribute('data-color');

@@ -59,7 +59,10 @@
     opacity: 1;
 }
 
-.note-util-bar button {
+.note-util-bar i {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
     outline: none;
     border: none;
@@ -71,13 +74,13 @@
     transition: .3s;
 }
 
-.note-util-bar button:hover {
+.note-util-bar i:hover {
     background-color: var(--hover);
     color: var(--icon-hover);  
 }
 
-.bookmark .bookmark-note-btn,
-.bookmark .note-util-bar button:hover {
+.bookmark #bookmark-note-btn,
+.bookmark .note-util-bar i:hover {
     background-color: var(--hover-bookmark-icon-if-bookmarked);
     color: var(--icon-hover);
 }

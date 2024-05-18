@@ -3,7 +3,6 @@ import { NoteDeleteModal } from "../components/modals/noteDeleteModal.js";
 import { ForgotSaveContainer } from "../components/modals/forgotSaveModal.js";
 import { NewFolderContainer } from "../components/modals/newFolderModal.js";
 import { NoteBackroundContainer } from "../components/modals/noteBackgroundModal.js";
-import { NoteExportModal } from "../components/modals/noteExportModal.js";
 import { NoteLinkModal } from "../components/modals/linkNoteModal.js";
 
 // Improvements
@@ -83,13 +82,9 @@ export class Dialog {
         this.show();
     }
 
-    renderNoteExportModal(view) {
-        this.addChild(new NoteExportModal(view));
-        this.show();
-    }
 
-    renderNoteLinkModal(view, notes, page, controller) {
-        this.addChild(new NoteLinkModal(view, notes, page, controller));
+    renderNoteLinkModal(view, notes, page, controller, dialog) {
+        this.addChild(new NoteLinkModal(view, notes, page, controller, dialog));
         this.show();
     }
 }
