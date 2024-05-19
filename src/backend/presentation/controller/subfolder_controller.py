@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from src.backend.application.service.subfolder_service import SubfolderService
+from src.backend.application.subfolder_service import SubfolderService
 from src.backend.data.subfolder.subfolder_manager import SubfolderManager
 from src.backend.presentation.request_bodies.subfolder.post_subfolder_request import PostSubfolderRequest
 from src.backend.presentation.request_bodies.subfolder.put_subfolder_request import PutSubfolderRequest

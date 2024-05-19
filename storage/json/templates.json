@@ -1,0 +1,9 @@
+{
+    "templates": [
+        {
+            "id": "t-1",
+            "name": "Hello world template",
+            "content": "storage/templates/template-t-1.txt"
+        }
+    ]
+}

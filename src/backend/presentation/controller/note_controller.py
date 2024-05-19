@@ -1,13 +1,11 @@
 from fastapi import APIRouter
-from src.backend.application.service.note_service import NoteService
+from src.backend.application.note_service import NoteService
 from src.backend.data.note.note_manager import NoteManager
 from src.backend.presentation.request_bodies.note.post_note_request import PostNoteRequest
 from src.backend.presentation.request_bodies.note.put_note_request import PutNoteRequest
 from src.backend.presentation.request_bodies.note.del_note_request import DeleteNoteRequest
 from src.backend.presentation.request_bodies.note.move_note_request import MoveNoteRequest
 from src.backend.presentation.request_bodies.note.put_note_color_request import PutNoteColorRequest
-from src.backend.presentation.request_bodies.note.export_note_request import ExportNoteRequest
-from src.backend.domain.enums.exportStatus import ExportStatus
 from src.backend.domain.enums.responseMessages import Status
 
 

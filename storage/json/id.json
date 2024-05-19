@@ -11,6 +11,10 @@
         {
             "entity": "note",
             "id": "n-600"
+        },
+        {
+            "entity": "template",
+            "id": "1"
         }
     ]
 }

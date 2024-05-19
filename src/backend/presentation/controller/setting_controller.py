@@ -2,7 +2,7 @@ from fastapi import APIRouter
 from src.backend.presentation.request_bodies.settings.put_theme_request import PutThemeRequest
 from src.backend.presentation.request_bodies.settings.put_editor_page_style_request import PutEditorPageStyleRequest
 from src.backend.domain.enums.responseMessages import Status
-from src.backend.application.service.setting_service import SettingService
+from src.backend.application.setting_service import SettingService
 
 class SettingRouter:
     def __init__(self, json_manager):
