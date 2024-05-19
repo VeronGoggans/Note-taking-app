@@ -35,7 +35,9 @@ The following features will be for within the text editor
 - Move selected text by dragging it to a desired place
 - Undo/redo
 - Headings 1 through 6 
-- Fonts 
+- Fonts
+- Insert horizontal line
+- Link notes
 - The user can change the style of the editor to **original** or **simple**. 
 - The user will be able to create new notes or delete the current note from within the editor.
 
