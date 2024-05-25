@@ -44,7 +44,6 @@ export class NoteView {
                 AnimationHandler.fadeInFromBottom(NOTE_CARD);
                 AnimationHandler.fadeInFromBottom(LIST_NOTE_CARD);
             }
-            console.log(this.noteObjects);
         } else {
             this.noContentFeedbackHandler.noNotes(new NoNoteMessage());
         }

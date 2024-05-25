@@ -1,9 +1,5 @@
-const MONTHS = {
-    '01': 'Jan', '02': 'Feb', '03': 'Mar', '04': 'Apr',
-    '05': 'Mei', '06': 'Jun', '07': 'Jul', '08': 'Aug',
-    '09': 'Sep', '10': 'Okt', '11': 'Nov', '12': 'Dec', 
-}
-    
+import { months } from "../constants/constants.js"
+     
     /**
      * This method formats a date string given from the backend.
      * 01/01/2024 turns into 1 Jan 2024
@@ -22,7 +18,7 @@ export function dateFormat(date) {
     if (dayParts[0] === '0') dateParts[0] = dayParts[1];
 
     // giving the month number it's month name
-    const formattedMonth = MONTHS[month] || null
+    const formattedMonth = months[month] || null
     dateParts[1] = formattedMonth;
     return dateParts.join(' ');
 }

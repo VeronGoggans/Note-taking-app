@@ -1,4 +1,5 @@
 import { KeyEventListener } from "../eventListeners/keyEventListener.js";
+import { TextEditorEventListener } from "../eventListeners/textEditorEventListener.js";
 import { TextFormatter } from "../textFormat/textFormatter.js"; 
 import { getNoteHexColor } from "../util/backgroundColor.js";
 
@@ -9,10 +10,11 @@ export class TextEditorView {
     
     this.noteContent = '';
     this.dialog = dialog;
-    this.keyEventListener = new KeyEventListener(this);
-
     this._initializeDOMElements();
     this._attachEventListeners();
+
+    this.keyEventListener = new KeyEventListener(this);
+    this.textEditorEventListener = new TextEditorEventListener(this.page, this.headingButton);
   }
 
   /**
@@ -67,8 +69,6 @@ export class TextEditorView {
   async getSearchableNotes() {
     return await this.applicationController.getSearchObjects(); 
   }
-
-
 
 
   /**
@@ -178,8 +178,8 @@ export class TextEditorView {
       name: this.noteNameInput.value || 'untitled',
       bookmark: storedNoteData[3],
       color: storedNoteData[4]
-  };
-  }
+    };
+  }  
 
   /**
    * This method closes the editor
@@ -196,6 +196,7 @@ export class TextEditorView {
     this.noteContent = '';
     this.page.innerHTML = '';
     this.noteNameInput.value = '';
+    this.headingButton.textContent = 'Headings';
     this.textEditorController.clearStoredNoteData();
   }
 
@@ -258,6 +259,9 @@ export class TextEditorView {
     this.styleDropdown = document.querySelector('.style-dropdown');
     this.styleDropdownOptions = this.styleDropdown.querySelector('.options');
 
+    this.editDropdown = document.querySelector('.edit-dropdown');
+    this.editDropdownOptions = this.editDropdown.querySelector('.options');
+
     // toolbar bottom
     this.headingButton = document.querySelector('.heading-button');
     this.headingDropdown = document.querySelector('.heading-dropdown');
@@ -284,8 +288,8 @@ export class TextEditorView {
     this.textEditor = document.querySelector('.editor-wrapper');
     this.editor = document.querySelector('.editor');
     this.page = document.querySelector('.editor-paper');
-    this.dropdowns = [this.noteDropdown, this.headingDropdown, this.fontDropdown, this.insertDropdown, this.styleDropdown, this.foregroundColor, this.backgroundColor]
-    this.dropdownOptions = [this.noteDropdownOptions, this.headingDropdownOptions, this.fontDropdownOptions, this.insertDropdownOptions, this.styleDropdownOptions, this.foregroundPalette, this.backgroundPalette]
+    this.dropdowns = [this.noteDropdown, this.headingDropdown, this.fontDropdown, this.insertDropdown, this.styleDropdown, this.foregroundColor, this.backgroundColor, this.editDropdown]
+    this.dropdownOptions = [this.noteDropdownOptions, this.headingDropdownOptions, this.fontDropdownOptions, this.insertDropdownOptions, this.styleDropdownOptions, this.foregroundPalette, this.backgroundPalette, this.editDropdownOptions]
   }
 
 

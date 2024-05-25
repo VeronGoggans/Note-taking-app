@@ -11,7 +11,7 @@
     height: 30px;
     margin: 3px 1px;
     border-radius: 10px;
-    transition: .2s;
+    transition: 100ms;
     font-family: Roboto;
 }
 
@@ -45,6 +45,10 @@
     font-size: 17px;
     font-weight: 600;
     transition: .2s;
+}
+
+.heading-dropdown .heading-button {
+    width: 90px;
 }
 
 .heading-dropdown .heading-button:hover,
@@ -87,6 +91,7 @@
     color: var(--editor-text);
     width: 100%;
     height: auto;
+    transition: background-color 100ms ease;
     text-align: start;
 }
 
@@ -100,6 +105,7 @@
     color: var(--editor-text);
     width: 100%;
     height: auto;
+    transition: background-color 100ms ease;
     text-align: start;
 }
     

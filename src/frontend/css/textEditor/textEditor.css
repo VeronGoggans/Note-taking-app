@@ -30,6 +30,7 @@
    cursor: text;
    padding: 60px 70px;
    overflow-x: hidden;
+   font-size: 11pt;
    font-family: sans-serif;
    border: 1px solid var(--editor-border);
    background-color: var(--background);
@@ -37,27 +38,29 @@
 }
 
 .toolbar {
-    display: grid;
-    grid-template-rows: 1fr 50px;
+   display: grid;
+   grid-template-rows: 1fr 50px;
 }
 
 .toolbar-top {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+   position: relative;
+   display: flex;
+   align-items: center;
+   gap: 10px;
+   user-select: none;
 }
 
 .toolbar-bottom {
-    background-color: var(--toolbar); 
-    display: flex;
-    align-items: center;
-    border-radius: 25px;
-    padding: 0px 10px;
-    margin: 0px 15px;
-    overflow: visible;
-    border-bottom: 1px solid var(--toolbar-border);
-    z-index: 1;
+   user-select: none;
+   background-color: var(--toolbar); 
+   display: flex;
+   align-items: center;
+   border-radius: 25px;
+   padding: 0px 10px;
+   margin: 0px 15px;
+   overflow: visible;
+   border-bottom: 1px solid var(--toolbar-border);
+   z-index: 1;
 }
 
 

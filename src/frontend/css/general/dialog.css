@@ -1,4 +1,5 @@
 .dialog {
+    user-select: none;
     position: absolute;
     visibility: hidden;
     display: flex;

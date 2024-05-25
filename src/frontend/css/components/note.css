@@ -1,4 +1,5 @@
 .note {
+    user-select: none;
     cursor: pointer;
     min-height: 280px;
     max-height: 280px;

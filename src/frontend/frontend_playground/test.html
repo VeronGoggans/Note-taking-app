@@ -1,32 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="../css/modals/linkNoteModal.css">
-  <link rel="stylesheet" href="../css/general/themes.css">
-  <link rel="stylesheet" href="../css/general/main.css">
-  <style>
-      @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
-  
-      body {
-        background-color: black;
-      }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disable Text Cursor</title>
+    <style>
+        /* Prevent text selection */
+        .no-cursor {
+            user-select: none; /* For modern browsers */
+            -moz-user-select: none; /* For Firefox */
+            -webkit-user-select: none; /* For Safari */
+            -ms-user-select: none; /* For older versions of IE */
+        }
+    </style>
 </head>
 <body>
-  <div class="link-note-modal">
-    <h2>Note link</h2>
-    <i id="link-icon" class="fa-solid fa-paperclip"></i>
-    <div class="search-notes-container">
-      <input type="text" spellcheck="false" placeholder="Search for notes" class="searchbar-input">
-      <i class="fa-solid fa-magnifying-glass"></i>
-      <ul class="note-link-suggestions-list"></ul>
+    <div class="no-cursor" tabindex="-1">
+        This text cannot be selected or focused.
     </div>
-    <button class="insert-note-link-btn" onclick="">Insert</button>
-  </div>
 
+    <script>
+        // Prevent focus on the element
+        document.querySelector('.no-cursor').addEventListener('focus', function(event) {
+            event.preventDefault();
+            this.blur();
+        });
+    </script>
 </body>
 </html>

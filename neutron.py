@@ -57,7 +57,7 @@ webview.create_window(
     f"http://127.0.0.1:{port}", 
     width=1200, 
     height=750,
-    min_size=(650, 400),
+    min_size=(780, 400),
 )
 
 # Run the pywebview event loop

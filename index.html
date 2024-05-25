@@ -100,6 +100,17 @@
             </div>
           </div>
           <input type="text" class="note-name-input" placeholder="untitled" spellcheck="false">
+          <div class="edit-dropdown">
+            <button class="dropdown-title">Edit</button>
+            <div class="options">
+              <button onclick="executeCommand('undo')"><i class="fa-solid fa-rotate-left"></i> Undo</button>
+              <button onclick="executeCommand('redo')"><i class="fa-solid fa-rotate-right"></i> Redo</button>
+              <button onclick="executeCommand('cut')"><i class="fa-solid fa-scissors"></i> Cut</button>
+              <button onclick="executeCommand('copy')"><i class="fa-regular fa-copy"></i> Copy</button>
+              <button onclick="executeCommand('paste')"><i class="fa-regular fa-paste"></i> Paste</button>
+              <button class="find-btn"><i class="fa-solid fa-magnifying-glass"></i> Find</button>
+            </div>
+          </div>
           <div class="insert-dropdown">
             <button class="dropdown-title">Insert</button>
             <div class="options">
@@ -270,6 +281,8 @@
             const centerAlignButton = document.getElementById('centerAlignBtn');
             const rightAlignButton = document.getElementById('rightAlignBtn');
 
+
+            
             italicButton.classList.toggle('active-toolbar-btn', document.queryCommandState('italic'));
             boldButton.classList.toggle('active-toolbar-btn', document.queryCommandState('bold'));
             underlineButton.classList.toggle('active-toolbar-btn', document.queryCommandState('underline'));

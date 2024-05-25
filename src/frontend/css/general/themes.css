@@ -18,7 +18,7 @@
     --searchbar-icon: #ced2ea;
     --icon-hover: #444863;
     --important: #444863;
-    --toolbar: #eff1f7;
+    --toolbar: #f1f5ff;/*eff1f7*/
     --toolbar-btn-text: #4f578f; /*747aa0*/
     --editor-text: #383838;
     --editor-text-top: #383838;
@@ -122,7 +122,7 @@
     --icon: #747aa0;
     --icon-hover: #444863;
     --important: #444863;
-    --toolbar: #eff1f7;
+    --toolbar: #f1f5ff;
     --toolbar-btn-text: #4f578f;
     --editor-text: #383838;
     --editor-text-top: #383838;
