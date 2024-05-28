@@ -19,7 +19,7 @@ export class NoteView {
         this.noteObjects = new NoteObjectArray();
         this.dragAndDrop = new DragAndDrop(this);
 
-        this._initializeDomElements();
+        this.#initializeDomElements();
     }
 
     /** 
@@ -32,12 +32,11 @@ export class NoteView {
      * @param {Array} notes 
      */
     renderNoteCards(notes) {
-        // clear the array everytime this method gets called.
         this.noteObjects.clear();
         if (notes.length > 0) { 
             for (let i = 0; i < notes.length; i++) {
-                const LIST_NOTE_CARD = this._listNote(notes[i]);
-                const NOTE_CARD = this._note(notes[i]);
+                const LIST_NOTE_CARD = this.#listNote(notes[i]);
+                const NOTE_CARD = this.#note(notes[i]);
 
                 this._content.appendChild(NOTE_CARD);
                 this._list.appendChild(LIST_NOTE_CARD);
@@ -63,8 +62,8 @@ export class NoteView {
         if (this.noteObjects.size() === 0) {
             this.noContentFeedbackHandler.removeNoNotesMessage();
         }
-        const LIST_NOTE_CARD = this._listNote(note);
-        const NOTE_CARD = this._note(note);
+        const LIST_NOTE_CARD = this.#listNote(note);
+        const NOTE_CARD = this.#note(note);
 
         this._content.appendChild(NOTE_CARD);
         this._list.appendChild(LIST_NOTE_CARD);
@@ -92,6 +91,10 @@ export class NoteView {
                 const SPAN = NOTE_LIST_CARDS[i].querySelector('span');
                 SPAN.textContent = formatName(note.title);
 
+                // updating the h4 element inside the note card.
+                const H4 = NOTE_CARDS[i].querySelector('h4');
+                H4.textContent = formatName(note.title);
+
                 NOTE_CARDS[i].setAttribute("data-info", `${dateFormat(note.creation)}--${dateFormat(note.last_edit)}`);
 
                 // updating the note object 
@@ -112,13 +115,11 @@ export class NoteView {
         for (let i = 0; i < ALL_NOTES.length; i++) {
             if (ALL_NOTES[i].id === note.id) {
                 AnimationHandler.fadeOutCard(ALL_NOTES[i]);
-                AnimationHandler.fadeOutCard(ALL_LIST_NOTES[i]);
                 setTimeout(() => {
                     this._content.removeChild(ALL_NOTES[i]);
                     this._list.removeChild(ALL_LIST_NOTES[i]);
                 }, 700);
                 this.noteObjects.remove(note);
-                // Checking if the note object array is empty
                 if (this.noteObjects.size() === 0) {
                     this.noContentFeedbackHandler.noNotes(new NoNoteMessage());
                 }
@@ -188,7 +189,7 @@ export class NoteView {
      * @param {Object} note 
      * @returns A note card component.
      */
-    _note(note) {
+    #note(note) {
         this.noteObjects.add(note);
         return new Note(note, this);
     }
@@ -199,11 +200,11 @@ export class NoteView {
      * @param {Object} note
      * @returns {ListNote} 
      */
-    _listNote(note) {
+    #listNote(note) {
         return new ListNote(note, this, this.dragAndDrop);
     }
 
-    _initializeDomElements() {
+    #initializeDomElements() {
         this._content = document.querySelector('.content-view');
         this._list = document.querySelector('.list-content-notes');
     }

@@ -140,17 +140,8 @@
                     "content": "storage/notes/note-n-592.txt",
                     "bookmark": true,
                     "color": "white",
-                    "last_edit": "26/05/2024 00:33",
+                    "last_edit": "26/05/2024 01:29",
                     "creation": "15/05/2024"
-                },
-                {
-                    "id": "n-605",
-                    "title": "untitled",
-                    "content": "storage/notes/note-n-605.txt",
-                    "bookmark": false,
-                    "color": "white",
-                    "last_edit": "26/05/2024 00:32",
-                    "creation": "25/05/2024"
                 }
             ],
             "subfolders": []
@@ -171,11 +162,11 @@
                 },
                 {
                     "id": "n-604",
-                    "title": "untitled",
+                    "title": "App colors",
                     "content": "storage/notes/note-n-604.txt",
                     "bookmark": false,
                     "color": "white",
-                    "last_edit": "25/05/2024 12:51",
+                    "last_edit": "28/05/2024 15:38",
                     "creation": "25/05/2024"
                 }
             ],

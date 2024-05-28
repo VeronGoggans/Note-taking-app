@@ -49,6 +49,9 @@
     --card-shadow: #e0e2ec;
     --code-snippit-background: #252539;
     --code-snippet-color: #5c7dff;
+    --editor-dropdown: #ffffff;
+    --editor-dropdown-hover: rgba(92, 125, 255, .3);
+    --editor-dropdown-hover-color: #383838;
 }
 
 .dark {
@@ -63,7 +66,7 @@
     --sidebar: #16171c; 
     --searchbar: #252831;
     --sidebar-text: #d6d8e5;
-    --sidebar-text-hover: #ffffff; 
+    --sidebar-text-hover: #5c7dff; 
     --sidebar-icon: #d6d8e5;
     --card: #252831;
     --text: #bbbed2;
@@ -86,7 +89,7 @@
     --hover-text: #5c7dff;
     --hover-text-list-view: #5c7dff;
     --hover-toolbar-btns: #383d4c;
-    --hover-sidebar: #5c7dff;
+    --hover-sidebar: #16171c;
     --bookmark: #373d56;
     --no-content: #757789;
     --placeholder: #9093a2;
@@ -101,6 +104,9 @@
     --card-shadow: #1b1c22; /*16171c*/
     --code-snippit-background: #252539;
     --code-snippet-color: #5c7dff;
+    --editor-dropdown: #242630;
+    --editor-dropdown-hover: #191a20;
+    --editor-dropdown-hover-color: #5c7dff;
 }
 
 .light {
@@ -153,4 +159,7 @@
     --card-shadow: #e0e2ec;
     --code-snippit-background: #f5f5fa;
     --code-snippet-color: #303030;
+    --editor-dropdown: #ffffff;
+    --editor-dropdown-hover: rgba(92, 125, 255, .3);
+    --editor-dropdown-hover-color: #383838;
 }

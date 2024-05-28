@@ -55,7 +55,7 @@
     visibility: hidden;
     opacity: 0;
     position: absolute;
-    background-color: var(--card);
+    background-color: var(--editor-dropdown);
     display: flex;
     flex-direction: column;
     width: 140px;
@@ -84,7 +84,8 @@
 }
 
 .file-dropdown .options button:hover {
-    background-color: var(--hover);
+    background-color: var(--editor-dropdown-hover);
+    color: var(--editor-dropdown-hover-color);
 }
 
 .file-dropdown .options i {
@@ -176,7 +177,7 @@
     visibility: hidden;
     opacity: 0;
     position: absolute;
-    background-color: var(--card);
+    background-color: var(--editor-dropdown);
     display: flex;
     flex-direction: column;
     top: 40px;
@@ -203,7 +204,7 @@
     color: var(--editor-text);
     width: 100%;
     height: auto;
-    transition: background-color 100ms ease;
+    transition: background-color 150ms ease;
     text-align: start;
 }
 
@@ -216,5 +217,6 @@
 .insert-dropdown .options button:hover,
 .style-dropdown .options button:hover,
 .edit-dropdown .options button:hover {
-    background-color: var(--hover);
+    background-color: var(--editor-dropdown-hover);
+    color: var(--editor-dropdown-hover-color);
 }

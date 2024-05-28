@@ -31,12 +31,12 @@ export class Note {
         this.EDIT_ICON = CNode.create('i', {'class': 'fa-solid fa-pen'});
         this.DELETE_ICON = CNode.create('i', {'class': 'fa-solid fa-trash'});
 
-        this._attachEventListeners();
-        this._applyBookmarkStyle(this.bookmark);
-        return this._render();
+        this.#attachEventListeners();
+        this.#applyBookmarkStyle(this.bookmark);
+        return this.#render();
     }
 
-    _render() {
+    #render() {
         this.HOST.appendChild(this.NAME_BOX);
         this.NAME_BOX.appendChild(this.H4);
         this.CONFIRM.appendChild(this.CONFIRM_ICON);
@@ -54,29 +54,29 @@ export class Note {
         return this.HOST
     }
 
-    _attachEventListeners() {
-        this.EDIT_ICON.addEventListener('click', () => {this._toggleEditableNoteName()});
+    #attachEventListeners() {
+        this.EDIT_ICON.addEventListener('click', () => {this.#toggleEditableNoteName()});
         this.CONFIRM.addEventListener('click', () => {this.updateNoteName()});
         this.H4.addEventListener('keydown', (event) => {if (event.key === 'Enter') this.updateNoteName()});
-        this.CANCEL.addEventListener('click', () => {this._toggleEditableNoteName()});
+        this.CANCEL.addEventListener('click', () => {this.#toggleEditableNoteName()});
         this.DELETE_ICON.addEventListener('click', () => {this.view.renderDeleteContainer(this.id, this.name)});
         this.CONTENT_BOX.addEventListener('click', () => {this.view.handleNoteCardClick(this.id, this.created)});
         this.BOOKMARK_ICON.addEventListener('click', () => {this.updateNoteBookmark()});
     }
 
-    _applyBookmarkStyle(bookmarkValue) {
+    #applyBookmarkStyle(bookmarkValue) {
         if (bookmarkValue) this.HOST.classList.add('bookmark');
     }
 
 
-    _toggleBookmarkStyle() {
+    #toggleBookmarkStyle() {
         this.HOST.classList.contains('bookmark') ? 
         this.HOST.classList.remove('bookmark') :
         this.HOST.classList.add('bookmark');
     }
 
 
-    _toggleEditableNoteName() {
+    #toggleEditableNoteName() {
         this.H4.contentEditable = this.H4.contentEditable === 'true' ? 'false' : 'true';
         this.H4.style.borderColor = this.H4.style.borderColor === 'rgb(116, 122, 160)' ? 'transparent' : '#747aa0';
         this.BTN_CONTAINER.style.visibility = this.BTN_CONTAINER.style.visibility === 'visible' ? 'hidden' : 'visible';
@@ -94,7 +94,7 @@ export class Note {
      */
     async updateNoteName() {
         this.view.updateNote(this.id, this.H4.textContent, this.CONTENT.innerHTML, this.bookmark, this.color);
-        this._toggleEditableNoteName();
+        this.#toggleEditableNoteName();
     }
 
     /**
@@ -103,7 +103,7 @@ export class Note {
     async updateNoteBookmark() {
         // Reverting the bookmark value
         this.bookmark = !this.bookmark;;
-        this._toggleBookmarkStyle();
+        this.#toggleBookmarkStyle();
         await this.view.updateNote(this.id, this.name, this.CONTENT.innerHTML, this.bookmark, this.color);
     }
 }

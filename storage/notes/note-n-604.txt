@@ -1,1 +1,1 @@
-new toolbar color #f1f5ff
+<h2>Possible colors</h2><div>toolbar border bottom: #b1c5ff</div><div><br></div><div><br></div><div><br><div><a href="https://www.youtube.com/watch?v=5jdR-28L8yc&amp;list=PLAuGQNR28pW56GigraPdiI0oKwcs8gglW&amp;index=7">http server part 7</a><br></div></div>

@@ -62,7 +62,7 @@
     visibility: hidden;
     opacity: 0;
     position: absolute;
-    background-color: var(--card);
+    background-color: var(--editor-dropdown);
     display: flex;
     flex-direction: column;
     top: 45px;
@@ -105,14 +105,15 @@
     color: var(--editor-text);
     width: 100%;
     height: auto;
-    transition: background-color 100ms ease;
+    transition: background-color 150ms ease;
     text-align: start;
 }
     
 
 .heading-dropdown .options button:hover,
 .font-dropdown .font-options button:hover {
-    background-color: var(--hover);
+    background-color: var(--editor-dropdown-hover);
+    color: var(--editor-dropdown-hover-color);
 }
 
 .heading-dropdown .options .heading-1 {font-size: 32px}

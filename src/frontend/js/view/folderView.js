@@ -17,7 +17,7 @@ export class FolderView {
         this.folderObjects = new FolderObjectArray();
         this.dragAndDrop = new DragAndDrop(this);
 
-        this._initializeDomElements();
+        this.#initializeDomElements();
     }
 
     /** 
@@ -31,8 +31,8 @@ export class FolderView {
         if (folders.length > 0) {
             for (let i = 0; i < folders.length; i++) {
                 const FOLDER = folders[i];
-                const LIST_FOLDER_CARD = this._listFolder(FOLDER);
-                const FOLDER_CARD = this._folder(FOLDER);
+                const LIST_FOLDER_CARD = this.#listFolder(FOLDER);
+                const FOLDER_CARD = this.#folder(FOLDER);
     
                 this._content.appendChild(FOLDER_CARD);
                 this._list.appendChild(LIST_FOLDER_CARD);
@@ -55,8 +55,8 @@ export class FolderView {
         if (this.folderObjects.size() === 0) {
             this.noContentFeedbackHandler.removeNoFoldersMessage();
         }
-        const LIST_FOLDER_CARD = this._listFolder(folder);
-        const FOLDER_CARD = this._folder(folder);
+        const LIST_FOLDER_CARD = this.#listFolder(folder);
+        const FOLDER_CARD = this.#folder(folder);
 
         this._content.insertBefore(FOLDER_CARD, this._content.firstChild);
         this._list.insertBefore(LIST_FOLDER_CARD, this._list.firstChild);
@@ -104,7 +104,6 @@ export class FolderView {
                     this._list.removeChild(ALL_LIST_FOLDERS[i]);
                 }, 700);
                 this.folderObjects.remove(folder);
-                // Checking if there are no subfolder cards inside the list-view html element
                 if (this.folderObjects.size() === 0) {
                     this.noContentFeedbackHandler.noFolders(new NoFolderMessage());
                 }
@@ -144,7 +143,7 @@ export class FolderView {
      * @param {Object} folder
      * @returns {ListFolder} 
      */
-    _listFolder(folder) {
+    #listFolder(folder) {
         return new ListFolder(folder, this, this.dragAndDrop);
     }
 
@@ -154,12 +153,12 @@ export class FolderView {
      * @param {Object} folder
      * @returns {Folder}
      */
-    _folder(folder) {
+    #folder(folder) {
         this.folderObjects.add(folder)
         return new Folder(folder, this);
     }
 
-    _initializeDomElements() {
+    #initializeDomElements() {
         this._content = document.querySelector('.content-view');
         this._list = document.querySelector('.list-content-folders');
     }

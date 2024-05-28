@@ -221,19 +221,24 @@ export class TextEditorView {
    * by toggling the visibility style property.
    */
   _toggleVisibleDropdown(dropdownOptions) {
+    this._closeDropdowns(dropdownOptions);
     dropdownOptions.style.visibility = dropdownOptions.style.visibility === 'visible' ? 'hidden' : 'visible';
     dropdownOptions.style.opacity = dropdownOptions.style.opacity === '1' ? '0' : '1';
   }
 
   _toggleEditorStyleSpanName() {
     let currentStyle = this.editorPageStyleSpan.innerHTML;
-    this.editorPageStyleSpan.innerHTML = currentStyle === '<i class="fa-solid fa-pencil"></i>Original' ? '<i class="fa-solid fa-pencil"></i>Simple' : '<i class="fa-solid fa-pencil"></i>Original';
+    this.editorPageStyleSpan.innerHTML = currentStyle === '<i class="fa-solid fa-pencil"></i>Original' ? 
+    '<i class="fa-solid fa-pencil"></i>Simple' : 
+    '<i class="fa-solid fa-pencil"></i>Original';
   }
 
-  _closeDropdowns() {
+  _closeDropdowns(target) {
     this.dropdownOptions.forEach((dropdown) => {
-      dropdown.style.visibility = 'hidden';
-      dropdown.style.opacity = '0';
+      if (dropdown !== target) {
+        dropdown.style.visibility = 'hidden';
+        dropdown.style.opacity = '0';
+      }
     })
   }
 
