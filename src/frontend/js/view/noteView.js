@@ -4,7 +4,7 @@ import { ListNote, NoNoteMessage } from "../components/listNote.js";
 import { HTMLArray, NoteObjectArray } from "../util/array.js";
 import { NoContentFeedbackHandler } from "../handlers/userFeedback/noContentFeedbackHandler.js";
 import { dateFormat } from "../util/date.js";
-import { formatName } from "../util/formatters.js";
+import { formatName, filterNotePreview } from "../util/formatters.js";
 import {AnimationHandler} from "../handlers/animation/animationHandler.js";
 import { DragAndDrop } from "../handlers/drag&drop/dragAndDropHandler.js";
 
@@ -32,20 +32,28 @@ export class NoteView {
      * @param {Array} notes 
      */
     renderNoteCards(notes) {
+        const startTime = performance.now();
         this.noteObjects.clear();
         if (notes.length > 0) { 
-            for (let i = 0; i < notes.length; i++) {
-                const LIST_NOTE_CARD = this.#listNote(notes[i]);
-                const NOTE_CARD = this.#note(notes[i]);
+            const contentFragment = document.createDocumentFragment();
+            const listFragment = document.createDocumentFragment();
 
-                this._content.appendChild(NOTE_CARD);
-                this._list.appendChild(LIST_NOTE_CARD);
+            for (let i = 0; i < notes.length; i++) {
+                const NOTE_CARD = this.#note(notes[i]);
+                const LIST_NOTE_CARD = this.#listNote(notes[i]);
+
+                contentFragment.appendChild(NOTE_CARD);
+                listFragment.appendChild(LIST_NOTE_CARD);
                 AnimationHandler.fadeInFromBottom(NOTE_CARD);
                 AnimationHandler.fadeInFromBottom(LIST_NOTE_CARD);
             }
+            this._content.appendChild(contentFragment);
+            this._list.appendChild(listFragment);
         } else {
             this.noContentFeedbackHandler.noNotes(new NoNoteMessage());
         }
+        const endTime = performance.now(); // End time
+        console.log(`renderNoteCards execution time: ${endTime - startTime} milliseconds`);
     }
 
     /**
@@ -85,7 +93,7 @@ export class NoteView {
             if (NOTE_CARDS[i].id === note.id) {
                 // updating the p element inside the note card.
                 const P_ELEMENT = NOTE_CARDS[i].querySelector('p');
-                P_ELEMENT.innerHTML = note.content;
+                P_ELEMENT.innerHTML = filterNotePreview(note.content);
 
                 // updating the span element inside the note list card
                 const SPAN = NOTE_LIST_CARDS[i].querySelector('span');

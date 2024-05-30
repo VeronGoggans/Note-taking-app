@@ -11,7 +11,7 @@ export class AnimationHandler {
     static fadeInFromBottom(card) {
         setTimeout(() => {
             card.classList.add('fadeInFromBottom');
-        }, 50);
+        }, 30);
     }
 
     /**
@@ -25,7 +25,7 @@ export class AnimationHandler {
     static fadeInFromSide(card) {
         setTimeout(() => {
             card.classList.add('fadeInFromSide');
-        }, 50);
+        }, 30);
     }
 
     /**

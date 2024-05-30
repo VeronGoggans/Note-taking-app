@@ -10,3 +10,14 @@ export function formatName(name) {
     if (name.length <= 25) return name;
     else return name.slice(0, 22) + '...';
 }
+
+export function filterNotePreview(content) {
+    let segments = content.split("<div>");
+
+    if (segments.length > 10) {
+        segments = segments.slice(0, 10);
+        return segments.join("<div>");
+    } else {
+        return segments.join("<div>");
+    }
+}

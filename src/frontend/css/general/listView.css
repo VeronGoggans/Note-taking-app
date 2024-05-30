@@ -44,7 +44,7 @@
     border-radius: 20px;
     opacity: 0;
     transform: translateY(100%);
-    transition: opacity .7s ease, transform .4s ease, background-color 0.2s ease;
+    transition: opacity .7s ease, transform .25s ease, background-color 0.2s ease;
 }
 
 .list-view-no-note,
@@ -59,7 +59,7 @@
     color: var(--no-content);
     font-weight: 600;
     transform: translateY(100%);
-    transition: opacity .7s ease, transform .4s ease, background-color 0.2s ease;
+    transition: opacity .7s ease, transform .25s ease, background-color 0.2s ease;
 }
 
 .list-view-note span,

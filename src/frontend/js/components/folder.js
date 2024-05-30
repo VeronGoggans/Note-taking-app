@@ -8,6 +8,13 @@ export class Folder {
         this.color = folder.color;
         this.view = view;
 
+        this.#initializeElements();
+        this.applyColor(this.color);
+        this.#attachEventListeners();
+        return this.#render();
+    }
+
+    #initializeElements() {
         // creating HTML elements.
         this.HOST = CNode.create('div', {'class': 'folder', 'id': this.id});
         this.NAME_BOX = CNode.create('div', {'class': 'folder-name-box'});
@@ -30,33 +37,18 @@ export class Folder {
         this.COLOR_ICON = CNode.create('i', {'class': 'fa-solid fa-palette'});
         this.EDIT_ICON = CNode.create('i', {'class': 'fa-solid fa-pen'});
         this.DELETE_ICON = CNode.create('i', {'class': 'fa-solid fa-trash'});
-
-        this.applyColor(this.color);
-        this._attachEventListeners();
-        return this._render();
     }
 
-    _render() {
-        this.HOST.appendChild(this.NAME_BOX);
-        this.NAME_BOX.appendChild(this.H4);
+    #render() {
         this.CONFIRM.appendChild(this.CONFIRM_ICON);
-        this.BTN_CONTAINER.appendChild(this.CONFIRM);
         this.CANCEL.appendChild(this.CANCEL_ICON);
-        this.BTN_CONTAINER.appendChild(this.CANCEL);
-        this.NAME_BOX.appendChild(this.BTN_CONTAINER);
-        this.HOST.appendChild(this.LOGO);
+        this.BTN_CONTAINER.append(this.CONFIRM, this.CANCEL);
+        this.NAME_BOX.append(this.H4, this.BTN_CONTAINER);
         this.LOGO.appendChild(this.ICON);
         this.UTIL_BAR.appendChild(this.COLOR_CONTAINER);
-        this.COLOR_CONTAINER.appendChild(this.BLUE);
-        this.COLOR_CONTAINER.appendChild(this.ORANGE);
-        this.COLOR_CONTAINER.appendChild(this.GREEN);
-        this.COLOR_CONTAINER.appendChild(this.PURPLE);
-        this.COLOR_CONTAINER.appendChild(this.RED);
-        this.COLOR_CONTAINER.appendChild(this.WHITE);
-        this.HOST.appendChild(this.UTIL_BAR);
-        this.UTIL_BAR.appendChild(this.COLOR_ICON);
-        this.UTIL_BAR.appendChild(this.EDIT_ICON);
-        this.UTIL_BAR.appendChild(this.DELETE_ICON);
+        this.COLOR_CONTAINER.append(this.BLUE, this.ORANGE, this.GREEN, this.PURPLE, this.RED, this.WHITE);
+        this.UTIL_BAR.append(this.COLOR_CONTAINER, this.COLOR_ICON, this.EDIT_ICON, this.DELETE_ICON);
+        this.HOST.append(this.NAME_BOX, this.LOGO, this.UTIL_BAR);
         return this.HOST;
     }
 
@@ -90,7 +82,7 @@ export class Folder {
         }
     }
 
-    _attachEventListeners() {
+    #attachEventListeners() {
         this.EDIT_ICON.addEventListener('click', () => {this._toggleEditableFolderName()});
         this.CONFIRM.addEventListener('click', () => {this.updateFolder()});
         this.CANCEL.addEventListener('click', () => {this._toggleEditableFolderName()});
