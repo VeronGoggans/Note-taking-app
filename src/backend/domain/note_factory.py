@@ -30,7 +30,17 @@ class NoteFactory:
 
     @staticmethod
     def create_note_list(notes: list) -> list[Note]:
-        sorted_list = sorted(notes, key=lambda note: not note.get("bookmark", False))
+        bookmarked_notes = []
+        non_bookmarked_notes = []
+
+        for note in notes:
+            if note.get("bookmark", True):
+                bookmarked_notes.append(note)
+            else:
+                non_bookmarked_notes.append(note)
+
+        # Combine the lists, with bookmarked notes first
+        sorted_list = bookmarked_notes + non_bookmarked_notes
 
         note_objects = []
         for n in sorted_list:
