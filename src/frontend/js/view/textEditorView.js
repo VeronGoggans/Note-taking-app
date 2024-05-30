@@ -110,6 +110,7 @@ export class TextEditorView {
    * and clears the editor for a new note
    */
   new() {
+    this.save(false, true)
     this._clear();
   }
 

@@ -1,77 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Draggable Divs</title>
-<style>
-    .draggable {
-        width: 100px;
-        height: 100px;
-        background-color: lightblue;
-        margin: 10px;
-        cursor: pointer;
-    }
-
-    .droppable {
-        border: 2px dashed black;
-        height: 120px;
-        width: 120px;
-        display: inline-block;
-        margin: 10px;
-        padding: 10px;
-    }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/general/themes.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
 </head>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100dvh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .search-function-modal {
+        display: flex;
+        align-items: center;
+        padding: 0px 10px;
+        background-color: var(--background);
+        height: 50px;
+        width: 400px;
+        border-radius: 3px;
+        box-shadow: 0 0 10px var(--shadow);
+    }
+
+    .search-function-modal input {
+        outline: none;
+        border: 1px solid var(--border-card);
+        padding: 5px 10px;
+        border-radius: 2px;
+    }
+
+</style>
 <body>
+    <div class="search-function-modal">
+        <input type="text" placeholder="Find">
+        <button class="clear-search-input-btn"><i class="fa-solid fa-xmark"></i></button>
+        <button class="previous-occurence-btn"><i class="fa-solid fa-chevron-up"></i></button>
+        <button class="next-occurence-btn"><i class="fa-solid fa-angle-up"></i></button>
+        <button class="close-search-function-modal-btn"><i class="fa-solid fa-xmark"></i></button>
 
-<div id="container">
-    <div class="draggable" id="div1" draggable="true">Div 1</div>
-    <div class="draggable" id="div2" draggable="true">Div 2</div>
-    <div class="draggable" id="div3" draggable="true">Div 3</div>
-    <div class="draggable" id="div4" draggable="true">Div 4</div>
-</div>
+    </div>
 
-<div class="droppable" ondrop="drop(event)" ondragover="allowDrop(event)">Drop Here</div>
 
-<button onclick="createNewDiv()">Create New Div</button>
-
-<script>
-    function allowDrop(ev) {
-        ev.preventDefault();
-    }
-
-    function drag(ev) {
-        ev.dataTransfer.setData("text", ev.target.id);
-    }
-
-    function drop(ev) {
-        ev.preventDefault();
-        var data = ev.dataTransfer.getData("text");
-        var draggedDiv = document.getElementById(data);
-        var dropZone = ev.target;
-
-        if (dropZone.classList.contains("droppable")) {
-            console.log("Removed div with ID:", data);
-            draggedDiv.remove();
-        }
-    }
-
-    function createNewDiv() {
-        var container = document.getElementById("container");
-        var newDiv = document.createElement("div");
-        newDiv.classList.add("draggable");
-        newDiv.setAttribute("draggable", "true");
-        newDiv.innerHTML = "New Div";
-        var id = "div" + (container.childElementCount + 1);
-        newDiv.id = id;
-
-        // Add drag event listener to the new div
-        newDiv.addEventListener("dragstart", drag);
-
-        container.appendChild(newDiv);
-    }
-</script>
-
+    
 </body>
 </html>
