@@ -6,6 +6,7 @@ export class NoteBackroundContainer {
         this.id = id;
         this.view = view;
         this.activeColor = color;
+        console.log(color);
         this.HOST = CNode.create('div', {'class': 'note-background-color-container'});
         this.H2 = CNode.create('h2', {'textContent': 'Background colors'});
         this.ROW1 = CNode.create('section', {'class': 'note-background-colors-row-one'});
@@ -51,19 +52,9 @@ export class NoteBackroundContainer {
     }
 
     #render() {
-        this.HOST.appendChild(this.H2);
-        this.HOST.appendChild(this.ROW1);
-        this.HOST.appendChild(this.ROW2);
-        this.ROW1.appendChild(this.ORIGINAL);
-        this.ROW1.appendChild(this.BLUE);
-        this.ROW1.appendChild(this.PURPLE);
-        this.ROW1.appendChild(this.RED);
-        this.ROW1.appendChild(this.PINK);
-        this.ROW2.appendChild(this.ORANGE);
-        this.ROW2.appendChild(this.YELLOW);
-        this.ROW2.appendChild(this.OLDWHITE);
-        this.ROW2.appendChild(this.GREEN);
-        this.ROW2.appendChild(this.BLACK);
+        this.HOST.append(this.H2, this.ROW1, this.ROW2);
+        this.ROW1.append(this.ORIGINAL, this.BLUE, this.PURPLE, this.RED, this.PINK);
+        this.ROW2.append(this.ORANGE, this.YELLOW, this.OLDWHITE, this.GREEN, this.BLACK);
         return this.HOST;
     }
 

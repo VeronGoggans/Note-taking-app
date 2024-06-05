@@ -42,8 +42,8 @@ export class TextEditorView {
    */
   async save(closeEditor = true, checkForChanges = true) {
     const noteData = this._collectNoteData();
-    const { content, name, bookmark, color } = noteData;    
-    await this.textEditorController.save(content, name, bookmark, color);
+    const { content, name, bookmark, favorite, color } = noteData;    
+    await this.textEditorController.save(content, name, bookmark, favorite, color);
     if (closeEditor) {
       this.closeEditor(checkForChanges);
     }
@@ -164,6 +164,9 @@ export class TextEditorView {
     this._toggleEditorStyleSpanName();
   }
 
+  renderSearchModal() {
+    this.dialog.renderSearchModal()
+  }
 
   /**
    * @returns a list of note data stored in the text editor model
@@ -178,7 +181,8 @@ export class TextEditorView {
       content: this.page.innerHTML,
       name: this.noteNameInput.value || 'untitled',
       bookmark: storedNoteData[3],
-      color: storedNoteData[4]
+      favorite: storedNoteData[4],
+      color: storedNoteData[5]
     };
   }  
 
@@ -229,7 +233,8 @@ export class TextEditorView {
 
   _toggleEditorStyleSpanName() {
     let currentStyle = this.editorPageStyleSpan.innerHTML;
-    this.editorPageStyleSpan.innerHTML = currentStyle === '<i class="fa-solid fa-pencil"></i>Original' ? 
+    this.editorPageStyleSpan.innerHTML = currentStyle === 
+    '<i class="fa-solid fa-pencil"></i>Original' ? 
     '<i class="fa-solid fa-pencil"></i>Simple' : 
     '<i class="fa-solid fa-pencil"></i>Original';
   }
@@ -248,7 +253,6 @@ export class TextEditorView {
     this.noteNameInput = document.querySelector('.note-name-input');
     this.exitButton = document.querySelector('.exit-text-editor-btn');
     this.saveButton = document.querySelector('.save-note-btn');
-    this.exportButton = document.querySelector('.export-note-button');
 
     this.noteDropdown = document.querySelector('.file-dropdown');
     this.noteDropdownOptions = this.noteDropdown.querySelector('.options');
@@ -277,6 +281,7 @@ export class TextEditorView {
     this.fontDropdown = document.querySelector('.font-dropdown');
     this.fontDropdownOptions = document.querySelector('.font-options');
     
+    this.findButton = document.querySelector('.find-btn');
     this.linkButton = document.querySelector('.link-btn');
     this.codeBlockButton = document.querySelector('.code-block-btn');
     this.horizontalRuleButton = document.querySelector('.hr-btn');
@@ -308,13 +313,14 @@ export class TextEditorView {
     this.deleteNoteSpan.addEventListener('click', () => {this.dialog.renderNoteDeleteModal(this._getNoteData()[0], this.noteNameInput.value, this)});
     this.saveNoteSpan.addEventListener('click', async () => {await this.save(false, false)});
     this.newNoteSpan.addEventListener('click', () => {this.new()});
-    this.noteBackgroundSpan.addEventListener('click', () => {this.dialog.renderNoteBackgroundModal(this._getNoteData()[0], this._getNoteData()[4], this)});
+    this.noteBackgroundSpan.addEventListener('click', () => {this.dialog.renderNoteBackgroundModal(this._getNoteData()[0], this._getNoteData()[5], this)});
     this.editorPageStyleSpan.addEventListener('click', () => {this.updatePageStyle()});
   
     this.exitButton.addEventListener('click', () => {this.closeEditor()});
     this.saveButton.addEventListener('click', async () => { await this.save(true, false)});
     this.page.addEventListener('click', () => {this._closeDropdowns()});
 
+    this.findButton.addEventListener('click', () => {this.renderSearchModal()});
     this.linkButton.addEventListener('click', () => {TextFormatter.addLink()});
     this.codeBlockButton.addEventListener('click', () => {TextFormatter.addCodeBlock()});
     this.horizontalRuleButton.addEventListener('click', () => (TextFormatter.addHorizontalRule()));

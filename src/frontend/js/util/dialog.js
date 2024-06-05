@@ -4,12 +4,12 @@ import { ForgotSaveContainer } from "../components/modals/forgotSaveModal.js";
 import { NewFolderContainer } from "../components/modals/newFolderModal.js";
 import { NoteBackroundContainer } from "../components/modals/noteBackgroundModal.js";
 import { NoteLinkModal } from "../components/modals/linkNoteModal.js";
+import { SearchModal } from "../components/modals/searchModal.js";
 
-// Improvements
-// Dependency injection
 export class Dialog {
     constructor() {
         this.dialog = document.querySelector('.dialog');
+        this.toolbar = document.querySelector('.toolbar');
         this.attachEventlistener();
     }
 
@@ -82,9 +82,12 @@ export class Dialog {
         this.show();
     }
 
-
     renderNoteLinkModal(view, notes, page, controller, dialog) {
         this.addChild(new NoteLinkModal(view, notes, page, controller, dialog));
         this.show();
+    }
+
+    renderSearchModal() {
+        this.toolbar.appendChild(new SearchModal());
     }
 }

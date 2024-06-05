@@ -18,16 +18,10 @@ export class NoteDetailContainer {
     }
 
     #render() {
-        this.HOST.appendChild(this.H2);
-        this.HOST.appendChild(this.DETAILS)
-        this.DETAILS.appendChild(this.DETAILS_LEFT);
-        this.DETAILS_LEFT.appendChild(this.P1);
-        this.DETAILS_LEFT.appendChild(this.P2);
-        this.DETAILS_LEFT.appendChild(this.P3);
-        this.DETAILS.appendChild(this.DETAILS_RIGHT);
-        this.DETAILS_RIGHT.appendChild(this.P_WORD_COUNT);
-        this.DETAILS_RIGHT.appendChild(this.P_CREATED);
-        this.DETAILS_RIGHT.appendChild(this.P_EDIT);
+        this.DETAILS_LEFT.append(this.P1, this.P2, this.P3);
+        this.DETAILS_RIGHT.append(this.P_WORD_COUNT, this.P_CREATED, this.P_EDIT);
+        this.DETAILS.append(this.DETAILS_LEFT, this.DETAILS_RIGHT);
+        this.HOST.append(this.H2, this.DETAILS);
         return this.HOST
     }
 
@@ -36,19 +30,11 @@ export class NoteDetailContainer {
      * 
      * A null value is expected when a user is in the proces of creating a new note
      * within the editor.
-     * 
-     * @param {String} date A date string. Could be both the creation date or last edit date.
-     * @returns A message indicating that the data involving dates is unavailable.
      */
     #checkDateForNull(date) {
         return date === null ? 'Not available' : date;
     }
 
-    /**
-     * This method returns the number of words a note has.
-     * 
-     * @returns The number of words in the note
-     */
     #getWordCount() {
         let text = this.editor.innerText;
         return text.split(/[ \n]+/).length;

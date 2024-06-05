@@ -24,9 +24,7 @@ export class NewFolderContainer {
     }
 
     #render() {
-        this.HOST.appendChild(this.H2);
-        this.HOST.appendChild(this.INPUT);
-        this.HOST.appendChild(this.BUTTON);
+        this.HOST.append(this.H2, this.INPUT, this.BUTTON);
         return this.HOST;
     }
 

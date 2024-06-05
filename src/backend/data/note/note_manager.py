@@ -7,6 +7,7 @@ from src.backend.util.folder_finder import FolderFinder
 class NoteManager:
     def __init__(self):
         self.search_bar_note_objects = []
+        self.favorites = []
     
 
     def add_note(self, folders, folder_id: str, note: Note):
@@ -83,17 +84,28 @@ class NoteManager:
         
         for folder in folders:
             for note in folder['notes']:
-                self.search_bar_note_objects.append({'id': note['id'], 'name': note['title']})
-
+                self.search_bar_note_objects.append(
+                    {
+                        'id': note['id'],
+                        'name': note['title'],
+                        'folder_name': folder['name']
+                    }
+                )
             self.get_note_name_id(folder['subfolders'])
-        return self.search_bar_note_objects    
+        return self.search_bar_note_objects     
+    
 
+    def get_favorites(self, folders):
+        for folder in folders:
+            for note in folder['notes']:
+                if note.get('favorite') == True:
+                    self.favorites.append(note)
 
-    def clear_search_options_list(self):
-        self.search_bar_note_objects = []      
+            self.get_favorites(folder['subfolders'])
+        return NoteFactory.create_note_list(self.favorites)
                
 
-    def update_note(self, folders, note_id: str, put_request: PutNoteRequest):
+    def update_note(self, folders, put_request: PutNoteRequest):
         """
         Update a note with the provided note data.
 
@@ -107,7 +119,7 @@ class NoteManager:
             - If successful, it returns the updated note as a dictionary.
             - If the note with the specified ID is not found, it returns None.
         """
-
+        note_id = put_request.note_id
         current_note = self.__find_note(folders, note_id)
         if current_note:
             updated_note = self.__update_note(current_note, put_request)
@@ -163,7 +175,13 @@ class NoteManager:
             note_in_subfolder = self.delete_note(folder['subfolders'], note_id)
             if note_in_subfolder:
                 return note_in_subfolder
-        return None    
+        return None   
+
+    def clear_search_options_list(self):
+        self.search_bar_note_objects = []    
+
+    def clear_favorites_list(self):
+        self.favorites = []
     
 
     def __find_note(self, folders, note_id: str):
@@ -198,15 +216,17 @@ class NoteManager:
     
     def __update_note(self, current_note: dict, updated_note: PutNoteRequest):
         note = NoteFactory.create_existing_note(current_note)
-        note.update_content(note.content, updated_note.content)
+        note.update_content(note_path=note.content, updated_html_content=updated_note.content)
         note.content = updated_note.content
         note.bookmark = updated_note.bookmark
+        note.favorite = updated_note.favorite
         note.color = updated_note.color
         note.title = updated_note.title
         note.last_edit = Calendar.datetime()
 
         current_note['title'] = updated_note.title
         current_note['bookmark'] = updated_note.bookmark
+        current_note['favorite'] = updated_note.favorite
         current_note['color'] = updated_note.color
         current_note['last_edit'] = Calendar.datetime()
         return note

@@ -9,31 +9,38 @@ export class NoteController {
     }
 
     async getNotes(folderId) {
-        const RESPONSE = await this.noteModel.getNotes('/notes', folderId);
-        const NOTES = await RESPONSE.Note;
-        this.noteView.renderNoteCards(NOTES);
+        const response = await this.noteModel.getNotes('/notes', folderId);
+        const notes = await response.Note;
+        this.noteView.renderNoteCards(notes);
     }
 
     async getNoteById(noteId) {
-        const RESPONSE = await this.noteModel.getNoteById('/noteById', noteId);
-        const NOTE = await RESPONSE.Note;
-        const FOLDER_ID = await RESPONSE.Folder_id;
-        const FOLDER_NAME = await RESPONSE.Folder_name;
-        return [NOTE, FOLDER_ID, FOLDER_NAME]
+        const response = await this.noteModel.getNoteById('/noteById', noteId);
+        const note = await response.Note;
+        const folderId = await response.Folder_id;
+        const folderName = await response.Folder_name;
+        return [note, folderId, folderName]
+    }
+
+    async getFavoriteNotes() {
+        const response = await this.noteModel.getFavoriteNotes('/favorites');
+        const notes = await response.Notes;
+        this.noteView.renderNoteCards(notes)
     }
 
     async addNote(folderId, content, name) {
         const RESPONSE = await this.noteModel.addNote('/note', folderId, content, name);
         let note = await RESPONSE.Note;
+        const folderName = await RESPONSE.folder_name
         note.content = content;
         this.noteView.renderNoteCard(note);
         this.noteView.pushNotification('Saved');
-        this.applicationController.addSearchObject(note.id, note.title);
+        this.applicationController.addSearchObject(note.id, note.title, folderName);
         return await note
     }
 
-    async updateNote(noteId, name, content, bookmark, color) {
-        const RESPONSE = await this.noteModel.updateNote('/note', noteId, name, content, bookmark, color);
+    async updateNote(noteId, name, content, bookmark, favorite, color) {
+        const RESPONSE = await this.noteModel.updateNote('/note', noteId, name, content, bookmark, favorite, color);
         const NOTE = await RESPONSE.Note;
         this.noteView.renderNoteUpdate(NOTE);
         this.noteView.pushNotification('Updated');
@@ -46,13 +53,6 @@ export class NoteController {
         this.noteView.removeNote(NOTE);
         this.noteView.pushNotification('Deleted', NOTE.title);
         this.applicationController.deleteSearchObject(noteId);
-    }
-
-    async exportNote(format, name, content) {
-        console.log(format, name, content);
-        const RESPONSE = await this.noteModel.exportNote('/exportNote', format, name, content);
-        const STATUS = await RESPONSE.Status_code;
-        if (STATUS === 200) this.noteView.pushNotification('Export');
     }
 
     async moveNote(noteId, folderId) {

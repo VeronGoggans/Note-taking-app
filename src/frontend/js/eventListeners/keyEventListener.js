@@ -5,9 +5,11 @@ export class KeyEventListener {
         this.eKeyCode = 69;
         this.nKeyCode = 78;
         this.sKeyCode = 83;
+        this.fKeyCode = 70;
         this.saveKeyEvent();
         this.newKeyEvent();
         this.exitEditorKeyEvent();
+        this.searchKeyEvent();
     }
 
     saveKeyEvent() {
@@ -40,6 +42,16 @@ export class KeyEventListener {
                 event.preventDefault();
 
                 this.view.closeEditor();
+            }
+        })
+    }
+
+    searchKeyEvent() {
+        this.editorWrapper.addEventListener("keydown", (event) => {
+            if (event.ctrlKey && (event.key === "f" || event.keyCode === this.fKeyCode)) {
+                event.preventDefault();
+
+                this.view.renderSearchModal();
             }
         })
     }

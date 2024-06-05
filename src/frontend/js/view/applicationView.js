@@ -18,13 +18,16 @@ export class ApplicationView {
      * when the user gives input.
      */
     listenForSearchClicks() {
-        const SEARCHBAR_VALUES = this.noteOptionsList.children;
-        for (let i = 0; i < SEARCHBAR_VALUES.length; i++) {
-            const ID = SEARCHBAR_VALUES[i].id;
-            SEARCHBAR_VALUES[i].addEventListener('click', () => {
-                this.handleSearch(ID);
-                this.searchBarInput.value = '';
-            });
+        const searchBarValues = this.noteOptionsList.children;
+        for (let i = 0; i < searchBarValues.length; i++) {
+            const id = searchBarValues[i].id;
+            const child = searchBarValues[i];
+            if (child.nodeName === 'LI') {
+                searchBarValues[i].addEventListener('click', () => {
+                    this.handleSearch(id);
+                    this.searchBarInput.value = '';
+                });
+            }
         }
     }
 
@@ -56,8 +59,16 @@ export class ApplicationView {
      * @param {Array} options 
      */
     renderSearchOptions(options) { 
-        const HTML = options.map(option => `<li id=${option.id}>${option.name}</li>`).join("");
-        this.noteOptionsList.innerHTML = HTML;
+        let html = ''
+        let currentFolderName = '';
+        options.forEach(option => {
+            if (currentFolderName !== option.folder_name) {
+                currentFolderName = option.folder_name;
+                html += `<p><i class="fa-solid fa-folder"></i>${currentFolderName}</p>`;
+            }
+            html += `<li id=${option.id}>${option.name}</li>`
+        })
+        this.noteOptionsList.innerHTML = html;
         this.listenForSearchClicks();
     }
 
@@ -99,6 +110,12 @@ export class ApplicationView {
         this.applicationController.navigateOutofFolder();
     }
 
+    favorites() {
+        this.removeContent();
+        this.applicationController.getFavoriteNotes()
+        this.displayFolderName('Favorites⭐');
+    }
+
     /**
      * This method is called when the note button is clicked
      */
@@ -115,9 +132,11 @@ export class ApplicationView {
      * @param {String} id 
      * @param {String} name 
      */
-    addSearchObject(id, name) {
-        const SEARCH_OBJECT = {'id': id, 'name': name};
-        this._searchNoteObjects.push(SEARCH_OBJECT);
+    addSearchObject(id, name, folderName) {
+        this._searchNoteObjects.push(
+            {'id': id, 'name': name, 'folder_name': folderName}
+        );
+        console.log(folderName);
     }
 
     /**
@@ -169,14 +188,6 @@ export class ApplicationView {
     }
 
     /**
-     * 
-     * @param {String} noteId 
-     */
-    async handleLinkedNoteContainerClick(noteId) {
-
-    }
-
-    /**
      * This method handle the add folder button click 
      * 
      * This method is called from with in the new folder container
@@ -206,6 +217,7 @@ export class ApplicationView {
         this.createNoteButton = document.querySelector('.create-note-btn');
         this.backButton = document.querySelector('.exit-folder-btn');
         this.homeButton = document.querySelector('.home-screen-btn');
+        this.favoritesButton = document.querySelector('.favorites-btn');
         this.settingsButton = document.querySelector('.settings-btn');
 
         // other
@@ -219,6 +231,7 @@ export class ApplicationView {
         this.backButton.addEventListener('click', () => {this.back()});
         this.homeButton.addEventListener('click', () => {this.home()});
         this.createNoteButton.addEventListener('click', () => {this.showTextEditor()});
+        this.favoritesButton.addEventListener('click', () => {this.favorites()});
         this.createFolderButton.addEventListener('click', () => {this.dialog.renderNewFolderModal(this)});
         this.settingsButton.addEventListener('click', () => {this.updateTheme()});
         this.searchBarInput.addEventListener('input', () => {this.handleSearchBarInput()});

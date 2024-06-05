@@ -38,6 +38,7 @@
 }
 
 .toolbar {
+   position: relative;
    display: grid;
    grid-template-rows: 1fr 50px;
 }
@@ -254,15 +255,15 @@
  }
 
  .editor h2 {
-    margin: 20px 0 7px 0;
+    margin: 30px 0 7px 0;
  }
 
  .editor h3 {
-    margin: 5px 0;
+    margin: 20px 0 7px 0;
  }
 
  .editor h4 {
-    margin: 5px 0;
+    margin: 10px 0 7px 0;
  }
 
  .editor h5,

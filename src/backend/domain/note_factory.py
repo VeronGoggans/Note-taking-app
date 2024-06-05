@@ -9,7 +9,6 @@ class NoteFactory:
             id,
             post_request.title,
             post_request.content,
-            post_request.bookmark,
         )
         note.set_content_path()
         return note
@@ -22,6 +21,7 @@ class NoteFactory:
             note_data['title'], 
             note_data['content'], 
             note_data['bookmark'], 
+            note_data['favorite'],
             note_data['color'],
             note_data['last_edit'],
             note_data['creation']

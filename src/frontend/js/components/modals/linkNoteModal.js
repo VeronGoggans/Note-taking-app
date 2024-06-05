@@ -18,11 +18,11 @@ export class NoteLinkModal {
         this.SEARCH_ICON = CNode.create('i', {'class': 'fa-solid fa-magnifying-glass'});
         this.NOTES_LIST = CNode.create('ul', {'class': 'linkable-notes-list'});
         this.INSERT_BUTTON = CNode.create('button', {'textContent': 'Insert'});
-        this._attachEventListeners()
-        return this._render()
+        this.#attachEventListeners()
+        return this.#render()
     }
 
-    _attachEventListeners() {
+    #attachEventListeners() {
         this.INPUT.addEventListener('input', () => {
             this.handleSearchBarInput()
         });
@@ -88,15 +88,9 @@ export class NoteLinkModal {
         }
     }
 
-
-    _render() {
-        this.MODAL.appendChild(this.H2);
-        this.MODAL.appendChild(this.LINK_ICON);
-        this.MODAL.appendChild(this.SEARCH_CONTAINER);
-        this.SEARCH_CONTAINER.appendChild(this.INPUT);
-        this.SEARCH_CONTAINER.appendChild(this.SEARCH_ICON);
-        this.SEARCH_CONTAINER.appendChild(this.NOTES_LIST);
-        this.SEARCH_CONTAINER.appendChild(this.INSERT_BUTTON);
+    #render() {
+        this.MODAL.append(this.H2, this.LINK_ICON, this.SEARCH_CONTAINER);
+        this.SEARCH_CONTAINER.append(this.INPUT, this.SEARCH_ICON, this.NOTES_LIST, this.INSERT_BUTTON);
         this.renderSearchOptions(this.noteSearchOptions);
         return this.MODAL;
     }

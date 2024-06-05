@@ -7,6 +7,7 @@ export class Note {
         this.id = note.id;
         this.name = note.title;
         this.bookmark = note.bookmark;
+        this.favorite = note.favorite;
         this.content = note.content;
         this.color = note.color;
         this.created = dateFormat(note.creation);
@@ -16,6 +17,7 @@ export class Note {
         this.#initializeElements();
         this.#attachEventListeners();
         this.#applyBookmarkStyle(this.bookmark);
+        this.#applyFavoriteStyle(this.favorite);
         return this.#render();
     }
 
@@ -32,7 +34,7 @@ export class Note {
         this.CONTENT_BOX = CNode.create('div', { 'class': 'note-content-box' });
         this.CONTENT = CNode.create('p', { 'innerHTML': filterNotePreview(this.content) });
         this.UTIL_BAR = CNode.create('div', { 'class': 'note-util-bar' });
-        this.FAVORITE_ICON = CNode.create('i', { 'class': 'fa-solid fa-star' });
+        this.FAVORITE_ICON = CNode.create('i', { 'class': 'fa-solid fa-star', 'id': 'favorite-note-btn'});
         this.BOOKMARK_ICON = CNode.create('i', { 'class': 'fa-solid fa-bookmark', 'id': 'bookmark-note-btn' });
         this.EDIT_ICON = CNode.create('i', { 'class': 'fa-solid fa-pen' });
         this.DELETE_ICON = CNode.create('i', { 'class': 'fa-solid fa-trash' });
@@ -57,16 +59,27 @@ export class Note {
         this.DELETE_ICON.addEventListener('click', () => {this.view.renderDeleteContainer(this.id, this.name)});
         this.CONTENT_BOX.addEventListener('click', () => {this.view.handleNoteCardClick(this.id, this.created)});
         this.BOOKMARK_ICON.addEventListener('click', () => {this.updateNoteBookmark()});
+        this.FAVORITE_ICON.addEventListener('click', () => {this.updateNoteFavorite()});
     }
 
     #applyBookmarkStyle(bookmarkValue) {
         if (bookmarkValue) this.HOST.classList.add('bookmark');
     }
 
+    #applyFavoriteStyle(favoriteValue) {
+        if (favoriteValue) this.HOST.classList.add('favorite');
+    }
+
     #toggleBookmarkStyle() {
         this.HOST.classList.contains('bookmark') ? 
         this.HOST.classList.remove('bookmark') :
         this.HOST.classList.add('bookmark');
+    }
+
+    #toggleFavoriteStyle() {
+        this.HOST.classList.contains('favorite') ? 
+        this.HOST.classList.remove('favorite') :
+        this.HOST.classList.add('favorite');
     }
 
     #toggleEditableNoteName() {
@@ -89,8 +102,17 @@ export class Note {
 
     async updateNoteBookmark() {
         // Reverting the bookmark value
-        this.bookmark = !this.bookmark;;
+        this.bookmark = !this.bookmark;
         this.#toggleBookmarkStyle();
-        await this.view.updateNote(this.id, this.name, this.CONTENT.innerHTML, this.bookmark, this.color);
+        const content = this.view.getNoteObject(this.id)['content'];
+        await this.view.updateNote(this.id, this.name, content, this.bookmark, this.favorite, this.color);
+    }
+
+    async updateNoteFavorite() {
+        // Reverting the bookmark value
+        this.favorite = !this.favorite;
+        this.#toggleFavoriteStyle();
+        const content = this.view.getNoteObject(this.id)['content'];
+        await this.view.updateNote(this.id, this.name, content, this.bookmark, this.favorite, this.color);
     }
 }

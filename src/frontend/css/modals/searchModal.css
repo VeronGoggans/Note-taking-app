@@ -1,0 +1,64 @@
+.search-function-modal {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    display: flex;
+    align-items: center;
+    padding: 0px 10px;
+    background-color: var(--background);
+    height: 50px;
+    width: 400px;
+    border-radius: 3px;
+    box-shadow: 0 0 10px var(--shadow);
+    z-index: 2;
+}
+
+.search-function-modal input {
+    font-family: Roboto;
+    font-weight: 600;
+    background-color: transparent;
+    color: var(--text);
+    outline: none;
+    border: 1px solid var(--border-card);
+    padding: 5px 70px 5px 15px;
+    width: 250px;
+    border-radius: 15px;
+}
+
+.search-function-modal input::placeholder {
+    color: var(--placeholder);
+}
+
+.search-function-modal button {
+    background-color: transparent;
+    color: var(--toolbar-btn-text);
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: 150ms;
+}
+
+.search-function-modal button:hover {
+    background-color: var(--toolbar);
+    color: #5c7dff;
+}
+
+.search-function-modal p {
+    font-family: Roboto;
+    font-weight: 600;
+    position: absolute;
+    left: 235px;
+    color: var(--placeholder);
+    font-size: 14px;
+}
+
+.highlight {
+    background-color: #c8d1ff;
+}
+
+.dark .highlight {
+    background-color: #5c7dff;
+}

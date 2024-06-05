@@ -5,78 +5,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Note-Taking App</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
 
-body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100vh;
-    background-color: #f4f4f4;
-    margin: 0;
-}
+        .search-bar {
+            width: 80%;
+            max-width: 600px;
+            display: flex;
+            margin: 20px 0;
+        }
 
-.search-bar {
-    width: 80%;
-    max-width: 600px;
-    display: flex;
-    margin: 20px 0;
-}
+        #searchInput {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
 
-#searchInput {
-    flex-grow: 1;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
+        #scrollButton, #clearButton {
+            padding: 10px;
+            margin-left: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
 
-#scrollButton {
-    padding: 10px;
-    margin-left: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
-}
+        #scrollButton:hover, #clearButton:hover {
+            background-color: #0056b3;
+        }
 
-#scrollButton:hover {
-    background-color: #0056b3;
-}
+        .container {
+            width: 80%;
+            max-width: 600px;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: auto; /* Enable scrolling */
+            max-height: 80vh; /* Limit height for scrolling */
+        }
 
-.container {
-    width: 80%;
-    max-width: 600px;
-    background: white;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    overflow: auto; /* Enable scrolling */
-    max-height: 80vh; /* Limit height for scrolling */
-}
+        #note {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            min-height: 200px;
+            white-space: pre-wrap;
+        }
 
-#note {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    min-height: 200px;
-    white-space: pre-wrap;
-}
-
-.highlight {
-    background-color: yellow;
-}
-
-
-
+        .highlight {
+            background-color: yellow;
+        }
     </style>
 </head>
-<body><button id="scrollButton">Go to First Occurrence</button>
+<body>
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search...">
+        <button id="scrollButton">Go to Next Occurrence</button>
+        <button id="clearButton">Clear Search</button>
+    </div>
     <div class="container">
-        <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Search...">
-            
-        </div>
         <div id="note" contenteditable="true">
             <h1>Sample Note</h1>
             <p>This is a <strong>sample</strong> note. Feel free to edit this note and use the <em>search</em> feature to highlight text.</p>
@@ -85,85 +82,93 @@ body {
     </div>
     <script>
         let currentHighlightIndex = -1;
-let highlights = [];
+        let highlights = [];
 
-document.getElementById('searchInput').addEventListener('input', function() {
-    const searchValue = this.value;
-    const noteDiv = document.getElementById('note');
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const searchValue = this.value;
+            const noteDiv = document.getElementById('note');
 
-    // Remove previous highlights
-    removeHighlights(noteDiv);
+            // Remove previous highlights
+            removeHighlights(noteDiv);
 
-    if (searchValue) {
-        highlightText(noteDiv, searchValue);
-    }
+            if (searchValue) {
+                highlightText(noteDiv, searchValue);
+            }
 
-    // Reset highlights tracking
-    currentHighlightIndex = -1;
-    highlights = Array.from(document.querySelectorAll('.highlight'));
-});
+            // Reset highlights tracking
+            currentHighlightIndex = -1;
+            highlights = Array.from(document.querySelectorAll('.highlight'));
+        });
 
-document.getElementById('scrollButton').addEventListener('click', function() {
-    if (highlights.length > 0) {
-        currentHighlightIndex = (currentHighlightIndex + 1) % highlights.length;
-        const nextHighlight = highlights[currentHighlightIndex];
-        nextHighlight.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-});
+        document.getElementById('scrollButton').addEventListener('click', function() {
+            if (highlights.length > 0) {
+                currentHighlightIndex = (currentHighlightIndex + 1) % highlights.length;
+                const nextHighlight = highlights[currentHighlightIndex];
+                nextHighlight.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        });
 
-function removeHighlights(element) {
-    const spans = element.querySelectorAll('span.highlight');
-    spans.forEach(span => {
-        const parent = span.parentNode;
-        while (span.firstChild) {
-            parent.insertBefore(span.firstChild, span);
-        }
-        parent.removeChild(span);
-        parent.normalize();
-    });
-}
+        document.getElementById('clearButton').addEventListener('click', function() {
+            document.getElementById('searchInput').value = '';
+            const noteDiv = document.getElementById('note');
+            removeHighlights(noteDiv);
+            highlights = [];
+        });
 
-function highlightText(element, searchValue) {
-    const textNodes = getTextNodes(element);
-    const searchRegExp = new RegExp(searchValue, 'gi');
+        document.getElementById('searchInput').addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                document.getElementById('scrollButton').click();
+            }
+        });
 
-    textNodes.forEach(node => {
-        let match;
-        let nodeValue = node.nodeValue;
-        const fragment = document.createDocumentFragment();
-
-        while ((match = searchRegExp.exec(nodeValue)) !== null) {
-            const highlightSpan = document.createElement('span');
-            highlightSpan.className = 'highlight';
-            highlightSpan.textContent = match[0];
-
-            const before = document.createTextNode(nodeValue.slice(0, match.index));
-            fragment.appendChild(before);
-            fragment.appendChild(highlightSpan);
-
-            nodeValue = nodeValue.slice(match.index + match[0].length);
-            searchRegExp.lastIndex = 0; // Reset regex index
+        function removeHighlights(element) {
+            const spans = element.querySelectorAll('span.highlight');
+            spans.forEach(span => {
+                const parent = span.parentNode;
+                while (span.firstChild) {
+                    parent.insertBefore(span.firstChild, span);
+                }
+                parent.removeChild(span);
+                parent.normalize();
+            });
         }
 
-        fragment.appendChild(document.createTextNode(nodeValue));
-        node.parentNode.replaceChild(fragment, node);
-    });
-}
+        function highlightText(element, searchValue) {
+            const textNodes = getTextNodes(element);
+            const searchRegExp = new RegExp(searchValue, 'gi');
 
-function getTextNodes(element) {
-    const textNodes = [];
-    const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, null, false);
+            textNodes.forEach(node => {
+                const fragment = document.createDocumentFragment();
+                let nodeValue = node.nodeValue;
+                let lastIndex = 0;
 
-    let node;
-    while (node = walker.nextNode()) {
-        textNodes.push(node);
-    }
+                nodeValue.replace(searchRegExp, (match, offset) => {
+                    const before = document.createTextNode(nodeValue.slice(lastIndex, offset));
+                    const highlightSpan = document.createElement('span');
+                    highlightSpan.className = 'highlight';
+                    highlightSpan.textContent = match;
+                    fragment.appendChild(before);
+                    fragment.appendChild(highlightSpan);
+                    lastIndex = offset + match.length;
+                });
 
-    return textNodes;
-}
+                fragment.appendChild(document.createTextNode(nodeValue.slice(lastIndex)));
+                node.parentNode.replaceChild(fragment, node);
+            });
+        }
 
+        function getTextNodes(element) {
+            const textNodes = [];
+            const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, null, false);
 
+            let node;
+            while (node = walker.nextNode()) {
+                textNodes.push(node);
+            }
 
+            return textNodes;
+        }
     </script>
 </body>
 </html>

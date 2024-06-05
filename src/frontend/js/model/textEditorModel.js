@@ -4,6 +4,7 @@ export class TextEditorModel {
         this._creation = null;
         this._lastEdit = null;
         this._bookmark = null;
+        this._favorite = null;
         this._name = null;
         this._color = null;
     }
@@ -17,11 +18,12 @@ export class TextEditorModel {
      * @param {String} name
      * @param {String} color
      */
-    storeNoteData(noteId, creation, lastEdit, bookmark, name, color) {
+    storeNoteData(noteId, creation, lastEdit, bookmark, favorite, name, color) {
         this._noteId = noteId
         this._creation = creation;
         this._lastEdit = lastEdit;
         this._bookmark = bookmark;
+        this._favorite = favorite;
         this._name = name;
         this._color = color;
     }
@@ -35,7 +37,14 @@ export class TextEditorModel {
      * @returns {Array} A list of stored note data
      */
     getStoredNoteData() {
-        return [this._noteId, this._creation, this._lastEdit, this._bookmark, this._color];
+        return [
+            this._noteId, 
+            this._creation, 
+            this._lastEdit, 
+            this._bookmark, 
+            this._favorite, 
+            this._color
+        ]
     }
 
     /**     
@@ -54,6 +63,7 @@ export class TextEditorModel {
         this._creation = null;
         this._lastEdit = null;
         this._bookmark = null;
+        this._favorite = null;
         this._name = null;
         this._color = null;
     }

@@ -67,10 +67,7 @@ class NoteService:
 
         Args:
             post_request (PostNoteRequest): 
-            - folder_id (str): The ID of the folder to which the note will be added to.
-            - title (str): The title of the note.
-            - content (str): The content of the note.
-            - bookmark (bool): A boolean indicating if the note is bookmarked or not.
+            Object containing the folder_id, title and content fields for a new note.
 
         Returns:
             dict or Status.NOT_FOUND: 
@@ -97,11 +94,8 @@ class NoteService:
 
         Args:
             put_request (PutNoteRequest): 
-            Object containing the note_id, title, content and bookmark fields for a new note.
-            - note_id (str): The ID of the note that will be updated.
-            - title (str): The title of the note.
-            - content (str): The content of the note.
-            - bookmrk (bool): A boolean indicating if the note is boomarked or not.
+            Object containing the note_id, title, content, bookmark, 
+            favorite and color fields of a note.
 
         Returns:
             dict or Status.NOT_FOUND: 
@@ -111,7 +105,7 @@ class NoteService:
         """
         folder_structure = self.json_manager.load(self.folders_path)
         folders = folder_structure['folders']
-        note = self.note_manager.update_note(folders, put_request.note_id, put_request)
+        note = self.note_manager.update_note(folders, put_request)
 
         if note:
             self.json_manager.update(self.folders_path, folder_structure)
@@ -200,7 +194,17 @@ class NoteService:
         folders = self.json_manager.load(self.folders_path)['folders']
         notes = self.note_manager.get_note_name_id(folders)
 
-        if len(notes) >= 0:
+        if len(notes) > 0:
             self.note_manager.clear_search_options_list()
             return notes
         return Status.INTERAL_SERVER_ERROR
+    
+
+    def get_favorite_notes(self):
+        folders = self.json_manager.load(self.folders_path)['folders']
+        notes = self.note_manager.get_favorites(folders)
+
+        if len(notes) > 0:
+            self.note_manager.clear_favorites_list()
+            return notes
+        return Status.NO_CONTENT

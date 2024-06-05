@@ -17,10 +17,7 @@ export class NoteDeleteModal {
     }
 
     #render() {
-        // Assemble elements.
-        this.HOST.appendChild(this.MESSAGE);
-        this.HOST.appendChild(this.FOLDER_NAME);
-        this.HOST.appendChild(this.DELETE);
+        this.HOST.append(this.MESSAGE, this.FOLDER_NAME, this.DELETE);
         return this.HOST;
     }
 }

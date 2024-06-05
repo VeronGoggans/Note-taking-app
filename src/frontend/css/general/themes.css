@@ -29,6 +29,7 @@
     --border-search-bar: #ffffff; /*d4d4d4*/
     --hover: rgba(92, 125, 255, .3); 
     --hover-bookmark-icon-if-bookmarked: rgba(92, 125, 255, .3);
+    --hover-favorite-icon-if-favorited: rgba(255, 224, 54, .4);
     --hover-list-view-buttons: #f4f5f7;
     --hover-searchbar-options: #f4f5f7;
     --hover-text: #444863;
@@ -36,6 +37,7 @@
     --hover-toolbar-btns: rgba(185, 198, 250, 0.5);
     --hover-sidebar: rgba(92, 125, 255, .3);
     --bookmark: #f3f4ff;
+    --favorite: #fffbe9;
     --no-content: #aaabb4;
     --placeholder: #9093a2;
     --selection: #b1daff;
@@ -84,13 +86,15 @@
     --border-search-bar: #1b1c22;
     --hover: #3c4361; 
     --hover-bookmark-icon-if-bookmarked: #434c71;
+    --hover-favorite-icon-if-favorited: rgba(142, 223, 204, .3);
     --hover-list-view-buttons: #252831;
     --hover-searchbar-options: #1a1b21;
     --hover-text: #5c7dff;
     --hover-text-list-view: #5c7dff;
     --hover-toolbar-btns: #383d4c;
     --hover-sidebar: #16171c;
-    --bookmark: #373d56;
+    --bookmark: #5063b1;
+    --favorite: #38958f;
     --no-content: #757789;
     --placeholder: #9093a2;
     --selection: #314682;
@@ -139,6 +143,7 @@
     --border-search-bar: #ffffff;
     --hover: rgba(92, 125, 255, .3);
     --hover-bookmark-icon-if-bookmarked: rgba(92, 125, 255, .3);
+    --hover-favorite-icon-if-favorited: rgba(255, 224, 54, .4);
     --hover-list-view-buttons: #f4f5f7;
     --hover-searchbar-options: #f4f5f7;
     --hover-text: #444863;
@@ -146,6 +151,7 @@
     --hover-toolbar-btns: rgba(185, 198, 250, 0.5);
     --hover-sidebar: rgba(92, 125, 255, .3);
     --bookmark: #f3f4ff;
+    --favorite: #fffbe9;
     --no-content: #aaabb4;
     --placeholder: #9093a2;
     --selection: #b1daff;

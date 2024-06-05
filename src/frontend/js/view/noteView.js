@@ -32,7 +32,6 @@ export class NoteView {
      * @param {Array} notes 
      */
     renderNoteCards(notes) {
-        const startTime = performance.now();
         this.noteObjects.clear();
         if (notes.length > 0) { 
             const contentFragment = document.createDocumentFragment();
@@ -49,11 +48,10 @@ export class NoteView {
             }
             this._content.appendChild(contentFragment);
             this._list.appendChild(listFragment);
+            console.log(this.noteObjects);
         } else {
             this.noContentFeedbackHandler.noNotes(new NoNoteMessage());
         }
-        const endTime = performance.now(); // End time
-        console.log(`renderNoteCards execution time: ${endTime - startTime} milliseconds`);
     }
 
     /**
@@ -149,8 +147,9 @@ export class NoteView {
         const NAME = NOTE.title;
         const CONTENT = NOTE.content;
         const BOOKMARK = NOTE.bookmark;
+        const FAVORITE = NOTE.favorite;
         const COLOR = NOTE.color;
-        this.applicationController.openNoteInTextEditor(CONTENT, NAME, creation, LAST_EDIT, noteId, BOOKMARK, COLOR);
+        this.applicationController.openNoteInTextEditor(CONTENT, NAME, creation, LAST_EDIT, noteId, BOOKMARK, FAVORITE, COLOR);
     }
 
     /**
@@ -226,8 +225,8 @@ export class NoteView {
      * @param {String} id 
      * @param {String} name
      */
-    async updateNote(id, name, content, bookmark, color) {
-        await this.noteController.updateNote(id, name, content, bookmark, color);
+    async updateNote(id, name, content, bookmark, favorite, color) {
+        await this.noteController.updateNote(id, name, content, bookmark, favorite, color);
     }
 
     /**

@@ -19,6 +19,10 @@
     background-color: var(--bookmark);
 }
 
+.favorite {
+    background-color: var(--favorite);
+}
+
 .note-name-box {
     cursor: auto;
     display: flex;
@@ -86,11 +90,10 @@
     color: var(--icon-hover);
 }
 
-.note .last-edit-text {
-    position: absolute;
-    bottom: 50px;
-    left: 40px;
-    color: var(--placeholder);
+.favorite #favorite-note-btn,
+.favorite .note-util-bar i:hover {
+    background-color: var(--hover-favorite-icon-if-favorited);
+    color: var(--icon-hover);
 }
 
 .update-note-btns-container {
@@ -165,10 +168,6 @@
     border-radius: 5px;
     border: 1px solid var(--editor-text);
   }
-
-.note-content-box .paragraph p {
-    margin: 3px;
- }
 
  .note-content-box h1,
  .note-content-box h2 {

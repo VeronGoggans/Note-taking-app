@@ -2,8 +2,23 @@
     "templates": [
         {
             "id": "t-1",
-            "name": "Hello world template",
-            "content": "storage/templates/template-t-1.txt"
+            "title": "Features list ",
+            "content": "storage/templates/note-n-606.txt",
+            "bookmark": false,
+            "favorite": false,
+            "color": "white",
+            "last_edit": "29/05/2024 12:26",
+            "creation": "29/05/2024"
+        },
+        {
+            "id": "t-2",
+            "title": "Todo list",
+            "content": "storage/templates/note-n-607.txt",
+            "bookmark": false,
+            "favorite": false,
+            "color": "white",
+            "last_edit": "29/05/2024 13:11",
+            "creation": "29/05/2024"
         }
     ]
 }

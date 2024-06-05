@@ -14,11 +14,12 @@ class NoteRouter:
         self.route = APIRouter()
         self.note_service = NoteService(NoteManager(), json_manager)
 
-        self.route.add_api_route('/notes/{folder_id}', self.notes, methods=['GET'])
-        self.route.add_api_route('/noteById/{note_id}', self.note_by_id, methods=['GET'])
-        self.route.add_api_route('/noteSearchObjects', self.note_name_id, methods=['GET'])
+        self.route.add_api_route('/notes/{folder_id}', self.get_notes, methods=['GET'])
+        self.route.add_api_route('/noteById/{note_id}', self.get_note_by_id, methods=['GET'])
+        self.route.add_api_route('/noteSearchObjects', self.get_note_name_id, methods=['GET'])
+        self.route.add_api_route('/favorites', self.get_favorite_notes, methods=['GET'])
         self.route.add_api_route('/cache', self.cache, methods=['GET'])
-        self.route.add_api_route('/note', self.create_note, methods=['POST'])
+        self.route.add_api_route('/note', self.add_note, methods=['POST'])
         self.route.add_api_route('/note', self.delete_note, methods=['DELETE'])
         self.route.add_api_route('/note', self.update_note, methods=['PUT'])
         self.route.add_api_route('/moveNote', self.move_note, methods=['PUT'])
@@ -34,7 +35,7 @@ class NoteRouter:
         return {'Status_code': response}
 
 
-    def notes(self, folder_id: str):
+    def get_notes(self, folder_id: str):
         response = self.note_service.get_notes(folder_id)
 
         if response != Status.NOT_FOUND:
@@ -42,7 +43,7 @@ class NoteRouter:
         return {'Status_code': response}
 
 
-    def note_by_id(self, note_id: str):
+    def get_note_by_id(self, note_id: str):
         response = self.note_service.get_note_by_id(note_id)
 
         if response != Status.NOT_FOUND:
@@ -50,15 +51,23 @@ class NoteRouter:
         return {'Status_code': Status.NOT_FOUND}
     
 
-    def note_name_id(self):
+    def get_note_name_id(self):
         response = self.note_service.get_search_options()
 
         if response != Status.INTERAL_SERVER_ERROR:
             return {'Status_code': Status.OK, 'Notes': response}
         return {'Status_code': Status.INTERAL_SERVER_ERROR}
+    
+
+    def get_favorite_notes(self):
+        favorites = self.note_service.get_favorite_notes()
+
+        if favorites != Status.NO_CONTENT:
+            return {'Status_code': Status.OK, 'Notes': favorites}
+        return {'Status_code': Status.NO_CONTENT, 'Notes': []}
 
 
-    def create_note(self, post_request: PostNoteRequest):
+    def add_note(self, post_request: PostNoteRequest):
         response = self.note_service.add_note(post_request)
 
         if response != Status.NOT_FOUND:

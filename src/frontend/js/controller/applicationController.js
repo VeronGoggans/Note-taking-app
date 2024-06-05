@@ -107,8 +107,9 @@ export class ApplicationController {
         const CREATION = await NOTE.creation;
         const LAST_EDIT = await NOTE.last_edit;
         const BOOKMARK = await NOTE.bookmark;
+        const FAVORITE = await NOTE.favorite;
         const COLOR = await NOTE.color;
-        this.openNoteInTextEditor(CONTENT, NAME, CREATION, LAST_EDIT, noteId, BOOKMARK, COLOR);
+        this.openNoteInTextEditor(CONTENT, NAME, CREATION, LAST_EDIT, noteId, BOOKMARK, FAVORITE, COLOR);
         if (RESPONSE[1] !== this.homeFolderId) {
             this.navigateIntoFolder(await RESPONSE[1], await RESPONSE[2]);
         }
@@ -129,6 +130,10 @@ export class ApplicationController {
     async getSearchObjects() {
         return await this.applicationModel.getSearchOptions('/noteSearchObjects');
     }
+
+    async getFavoriteNotes() {
+        return await this.noteController.getFavoriteNotes();
+    }
     
     /**
      * This method will add a new note to the search bar's options
@@ -138,8 +143,8 @@ export class ApplicationController {
      * @param {String} noteId 
      * @param {String} name 
      */
-    addSearchObject(noteId, name) {
-        this.applicationView.addSearchObject(noteId, name);
+    addSearchObject(noteId, name, folderName) {
+        this.applicationView.addSearchObject(noteId, name, folderName);
     }
 
     /**
@@ -171,8 +176,8 @@ export class ApplicationController {
      * This method opens up the text editor
      * And puts the note the user clicked on, in the text editor.
      */
-    openNoteInTextEditor(content, name, creation, lastEdit, noteId, bookmark, color) {
-        this.textEditorController.openNoteInTextEditor(content, name, creation, lastEdit, noteId, bookmark, color);
+    openNoteInTextEditor(content, name, creation, lastEdit, noteId, bookmark, favorite, color) {
+        this.textEditorController.openNoteInTextEditor(content, name, creation, lastEdit, noteId, bookmark, favorite, color);
     }
 
     /**
@@ -201,8 +206,8 @@ export class ApplicationController {
      * @param {String} content 
      * @param {String} bookmark 
      */
-    async changeNote(noteId, name, content, bookmark, color) {
-        await this.noteController.updateNote(noteId, name, content, bookmark, color);
+    async changeNote(noteId, name, content, bookmark, favorite, color) {
+        await this.noteController.updateNote(noteId, name, content, bookmark, favorite, color);
     }
 
     /**

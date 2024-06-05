@@ -8,16 +8,20 @@
     <title>Document</title>
 </head>
 <style>
+      @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
     body {
+        position: relative;
         margin: 0;
         padding: 0;
         height: 100dvh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        background-color: #5c7dff;
     }
 
     .search-function-modal {
+        position: absolute;
+        top: 50px;
+        left: 50px;
         display: flex;
         align-items: center;
         padding: 0px 10px;
@@ -29,24 +33,48 @@
     }
 
     .search-function-modal input {
+        font-family: Roboto;
+        font-weight: 600;
         outline: none;
         border: 1px solid var(--border-card);
-        padding: 5px 10px;
-        border-radius: 2px;
+        padding: 5px 70px 5px 15px;
+        width: 250px;
+        border-radius: 15px;
+    }
+
+    .search-function-modal button {
+        background-color: transparent;
+        border: none;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        margin: 0 5px;
+        cursor: pointer;
+        transition: 150ms;
+    }
+
+    .search-function-modal button:hover {
+        background-color: var(--toolbar);
+        color: #5c7dff;
+    }
+
+    .search-function-modal p {
+        font-family: Roboto;
+        font-weight: 600;
+        position: absolute;
+        left: 235px;
+        color: var(--placeholder);
+        font-size: 14px;
     }
 
 </style>
 <body>
     <div class="search-function-modal">
         <input type="text" placeholder="Find">
-        <button class="clear-search-input-btn"><i class="fa-solid fa-xmark"></i></button>
+        <p>0 of 0</p>
         <button class="previous-occurence-btn"><i class="fa-solid fa-chevron-up"></i></button>
-        <button class="next-occurence-btn"><i class="fa-solid fa-angle-up"></i></button>
+        <button class="next-occurence-btn"><i class="fa-solid fa-chevron-down"></i></button>
         <button class="close-search-function-modal-btn"><i class="fa-solid fa-xmark"></i></button>
-
     </div>
-
-
-    
 </body>
 </html>
