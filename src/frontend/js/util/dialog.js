@@ -5,6 +5,7 @@ import { NewFolderContainer } from "../components/modals/newFolderModal.js";
 import { NoteBackroundContainer } from "../components/modals/noteBackgroundModal.js";
 import { NoteLinkModal } from "../components/modals/linkNoteModal.js";
 import { SearchModal } from "../components/modals/searchModal.js";
+import { EditFolderModal } from "../components/modals/editFolderModal.js";
 
 export class Dialog {
     constructor() {
@@ -23,7 +24,8 @@ export class Dialog {
                 '.note-background-color-container',
                 '.note-details-container',
                 '.note-export-modal',
-                '.note-link-modal'
+                '.note-link-modal',
+                '.edit-folder-modal'
             ];
 
             // Check if the clicked target belongs to any excluded container
@@ -89,5 +91,10 @@ export class Dialog {
 
     renderSearchModal() {
         this.toolbar.appendChild(new SearchModal());
+    }
+
+    renderEditFolderModal(folder, view) {
+        this.addChild(new EditFolderModal(folder, view, this))
+        this.show();
     }
 }

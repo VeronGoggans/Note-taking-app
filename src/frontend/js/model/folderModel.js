@@ -12,7 +12,7 @@ export class FolderModel {
         return this._fetchData(ENDPOINT, OPTIONS)
     }
 
-    async addFolder(name, parentId = undefined, color='#ffffff') {
+    async addFolder(name, parentId = undefined, color='rgb(255, 255, 255)') {
         const OPTIONS = parentId !== undefined ?
             RequestOptionsBuilder.buildPostOptions({'folder_id': parentId, 'name': name, 'color': color}) :
             RequestOptionsBuilder.buildPostOptions({'name': name, 'color': color});

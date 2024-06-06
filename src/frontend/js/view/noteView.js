@@ -48,7 +48,6 @@ export class NoteView {
             }
             this._content.appendChild(contentFragment);
             this._list.appendChild(listFragment);
-            console.log(this.noteObjects);
         } else {
             this.noContentFeedbackHandler.noNotes(new NoNoteMessage());
         }

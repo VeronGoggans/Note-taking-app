@@ -26,6 +26,34 @@ export const hexcodeToColorMap = {
 }
 
 
+export const folderColorNames = {
+    'rgb(255, 255, 255)': 'White',
+    'rgb(169, 215, 255)': 'Light Sky Blue',
+    'rgb(223, 193, 255)': 'Lavender',
+    'rgb(159, 251, 149)': 'Light Green',
+    'rgb(255, 224, 158)': 'Peach',
+    'rgb(225, 175, 209)': 'Pink Lavender',
+    'rgb(142, 122, 181)': 'Blue Violet',
+    'rgb(238, 165, 166)': 'Salmon Pink',
+    'rgb(158, 213, 197)': 'Turquoise',
+    'rgb(255, 191, 169)': 'Sunset Orange'
+}
+
+
+export const folderColorClasses = {
+    'rgb(255, 255, 255)': 'color-original',
+    'rgb(169, 215, 255)': 'color-light-sky-blue',
+    'rgb(255, 224, 158)': 'color-peach',
+    'rgb(159, 251, 149)': 'color-light-green',
+    'rgb(223, 193, 255)': 'color-lavender',
+    'rgb(225, 175, 209)': 'color-pink-lavender',
+    'rgb(238, 165, 166)': 'color-salmon-pink',
+    'rgb(142, 122, 181)': 'color-blue-violet',
+    'rgb(158, 213, 197)': 'color-turquoise',
+    'rgb(255, 191, 169)': 'color-sunset-orange',
+}
+
+
 export const headingsMap = {
     'H1': 'Heading 1',
     'H2': 'Heading 2',

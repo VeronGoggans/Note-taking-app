@@ -24,48 +24,6 @@
     overflow: visible;
 }
 
-.update-folder-btns-container {
-    position: absolute;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    margin-left: auto;
-    background-color: var(--card);
-    color: var(--text);
-    box-shadow: 0 0 20px var(--shadow); 
-    width: 70px;
-    height: 40px;
-    border-radius: 10px;
-    right: -20px;
-    top: -30px;
-    visibility: hidden;
-}
-
-.update-folder-btns-container button {
-    cursor: pointer;
-    outline: none;
-    border: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--text);
-    width: 100%;
-    margin: 0;
-    background-color: transparent;
-}
-
-.update-folder-btns-container .confirm-folder-update-btn {
-    border-radius: 10px 0 0 10px;
-}
-
-.update-folder-btns-container .cancel-folder-update-btn {
-    border-radius: 0 10px 10px 0;
-}
-
-.update-folder-btns-container button:hover {
-    background-color: var(--hover-toolbar-btns);
-    color: var(--hover-text);
-}
-
 .folder-logo {
     position: relative;
     height: 100%;
@@ -95,7 +53,7 @@
     padding-right: 10px;
     gap: 10px;
     opacity: 0;
-    transition: .2s;
+    transition: 200ms;
     cursor: auto;
 }
 
@@ -115,7 +73,7 @@
     border-radius: 10px;
     background-color: transparent;
     color: var(--icon);
-    transition: .3s;
+    transition: 200ms;
 }
 
 .folder-util-bar i:hover {
@@ -131,29 +89,7 @@
     margin-right: 10px;
     color: var(--important);
     border-bottom: 2px solid transparent;
-    transition: .2s;
-}
-
-.folder-color-options-container {
-    position: absolute;
-    display: flex;
-    right: 5px;
-    bottom: 50px;
-    width: fit-content;
-    transition: .2s;
-    background-color: #444863;
-    padding: 3px;
-    border-radius: 10px;
-    opacity: 0;
-    visibility: hidden;
-}
-
-.folder-color-options-container div {
-    width: 16px;
-    height: 16px;
-    margin: 0 5px;
-    border-radius: 50%;
-    cursor: pointer;
+    transition: 200ms;
 }
 
 .list-view-folder {
@@ -167,87 +103,126 @@
     color: var(--text);
     font-weight: 600;
     border-radius: 15px;
-    transition: .2s;
+    transition: 200ms;
 }
-
 .list-view-folder:hover {
     background-color: rgba(92, 125, 255, .3);
 }
 
-.card-style-blue {
-    background-color: #a9d7ff; 
-    border-color: #a9d7ff;
+
+.color-light-sky-blue {
+    background-color: rgb(169, 215, 255); 
+    border-color: rgb(169, 215, 255);
+}
+.color-peach {
+    background-color: rgb(255, 224, 158);
+    border-color: rgb(255, 224, 158);
+}
+.color-light-green {
+    background-color: rgb(159, 251, 149);
+    border-color: rgb(159, 251, 149);
+}
+.color-lavender {
+    background-color: rgb(223, 193, 255);
+    border-color: rgb(223, 193, 255);
+}
+.color-pink-lavender {
+    background-color: rgb(225, 175, 209);
+    border-color: rgb(225, 175, 209);
+}
+.color-salmon-pink {
+    background-color: rgb(255, 163, 163);
+    border-color: rgb(255, 163, 163);
+}
+.color-sunset-orange {
+    background-color: rgb(255, 191, 169);
+    border-color: rgb(255, 191, 169);
+}
+.color-turquoise {
+    background-color: rgb(158 213 197);
+    border-color: rgb(158 213 197);
+}
+.color-blue-violet {
+    background-color: rgb(142, 122, 181);
+    border-color: rgb(142, 122, 181);
 }
 
-.card-style-orange {
-    background-color: #ffe09e;
-    border-color: #ffe09e;
-}
-
-.card-style-green {
-    background-color: #9ffb95;
-    border-color: #9ffb95;
-}
-
-.card-style-purple {
-    background-color: #dfc1ff;
-    border-color: #dfc1ff;
-}
-
-.card-style-red {
-    background-color: #ffa3a3;
-    border-color: #ffa3a3;
-}
-
-.card-style-blue h4,
-.card-style-orange h4,
-.card-style-green h4,
-.card-style-purple h4,
-.card-style-red h4 {
+.color-light-sky-blue h4,
+.color-peach h4,
+.color-light-green h4,
+.color-lavender h4,
+.color-salmon-pink h4,
+.color-pink-lavender h4,
+.color-sunset-orange h4,
+.color-turquoise h4,
+.color-blue-violet h4 {
     color: #1b1c22;
 }
 
-.card-style-blue .folder-logo i {
-    color: #6eb7f9;
+.color-light-sky-blue .folder-logo i {
+    color: rgb(110, 183, 249);
 }
-.card-style-green .folder-logo i {
-    color: #58cc4c;
+.color-light-green .folder-logo i {
+    color: rgb(88, 204, 76);
 }
-.card-style-orange .folder-logo i {
-    color: #ffc954;
+.color-peach .folder-logo i {
+    color: rgb(255, 201, 84);
 }
-.card-style-purple .folder-logo i {
-    color: #c997ff;
+.color-lavender .folder-logo i {
+    color: rgb(201, 151, 255);
+}
+.color-salmon-pink .folder-logo i {
+    color: rgb(255, 118, 118);
+}
+.color-pink-lavender .folder-logo i {
+    color: rgb(169, 115, 151);
+}
+.color-sunset-orange .folder-logo i {
+    color: rgb(215 147 124);
+}
+.color-turquoise .folder-logo i {
+    color: rgb(116 183 164);
+}
+.color-blue-violet .folder-logo i {
+    color: rgb(115 92 159);
 }
 
-.card-style-red .folder-logo i {
-    color: #ff7676;
-}
-
-.card-style-blue .folder-util-bar i,
-.card-style-orange .folder-util-bar i,
-.card-style-green .folder-util-bar i,
-.card-style-purple .folder-util-bar i,
-.card-style-red .folder-util-bar i {
+.color-light-sky-blue .folder-util-bar i,
+.color-peach .folder-util-bar i,
+.color-light-green .folder-util-bar i,
+.color-lavender .folder-util-bar i,
+.color-pink-lavender .folder-util-bar i,
+.color-salmon-pink .folder-util-bar i,
+.color-sunset-orange .folder-util-bar i,
+.color-turquoise .folder-util-bar i,
+.color-blue-violet .folder-util-bar i {
     color: #444863;
 }
 
-.card-style-blue .folder-util-bar i:hover {
-    background-color: #87c6ff;
+.color-light-sky-blue .folder-util-bar i:hover {
+    background-color: rgb(135, 198, 255);
 }
-
-.card-style-orange .folder-util-bar i:hover {
-    background-color: #ffd06b;
+.color-peach .folder-util-bar i:hover {
+    background-color: rgb(255, 208, 107);
 }
-
-.card-style-green .folder-util-bar i:hover {
-    background-color: #6ae25e;
+.color-light-green .folder-util-bar i:hover {
+    background-color: rgb(106, 226, 94);
 }
-
-.card-style-purple .folder-util-bar i:hover {
-    background-color: #d2a8ff;
+.color-lavender .folder-util-bar i:hover {
+    background-color: rgb(210, 168, 255);
 }
-
-.card-style-red .folder-util-bar i:hover {
-    background-color: #ff8d8d;
+.color-pink-lavender .folder-util-bar i:hover {
+    background-color: rgb(214, 150, 192);
+}
+.color-salmon-pink .folder-util-bar i:hover {
+    background-color: rgb(255, 141, 141);
+}
+.color-sunset-orange .folder-util-bar i:hover {
+    background-color: rgb(246 170 145);
+}
+.color-turquoise .folder-util-bar i:hover {
+    background-color: rgb(112 198 173);
+}
+.color-blue-violet .folder-util-bar i:hover {
+    background-color: rgb(131 104 182);
 }

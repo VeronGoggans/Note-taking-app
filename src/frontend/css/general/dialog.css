@@ -11,4 +11,5 @@
     background-color: var(--dialog);
     z-index: 3;
     font-family: Roboto;
+    backdrop-filter: blur(5px);
 }

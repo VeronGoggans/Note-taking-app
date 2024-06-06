@@ -1,0 +1,135 @@
+.edit-folder-modal {
+    background-color: var(--background);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 400px;
+    padding: 30px 40px;
+    border-radius: 13px;
+    justify-content: center;
+    font-family: Roboto;
+    box-shadow: 0 10px 20px var(--shadow);
+}
+
+.edit-folder-modal hr {
+    border-style: none;
+    width: 100%;
+    border: 1px solid var(--toolbar);
+}
+
+.edit-folder-modal h2 {
+    color: var(--important);
+    font-family: sans-serif;
+    font-weight: 500;
+}
+
+.folder-settings {
+    display: flex;
+    flex-direction: column;
+}
+
+.folder-settings #title {
+    font-family: sans-serif;
+    font-size: 17px;
+    color: var(--important);
+    font-weight: 600;
+    margin: 0;
+    margin-top: 20px;
+}
+
+.folder-settings p {
+    font-family: sans-serif;
+    margin: 0;
+    color: #9b9bb5;
+    margin-bottom: 5px;
+}
+
+.edit-folder-modal input {
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    background-color: transparent;
+    border: 1px solid #ced1e3;
+    padding: 5px 10px;
+    height: 25px;
+    margin-bottom: 10px;
+    color: var(--text);
+    font-size: 16px;
+    width: 300px;
+    transition: 200ms;
+}
+
+.edit-folder-modal input:hover,
+.edit-folder-modal input:focus {
+    border-color: #5c7dff;
+}
+
+.cancel-folder-customization-btn {
+    cursor: pointer;
+    border-radius: 5px;
+    width: 80px;
+    transition: 200ms;
+    height: 30px;
+    border: none;
+    background-color: var(--toolbar);
+    font-size: 14px;
+    color: var(--text);
+}
+
+.save-folder-customisations-btn {
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    background-color: #5c7dff;
+    color: #fff;
+    font-size: 14px;
+    height: 30px;
+    width: 140px;
+    transition: 200ms;
+}
+
+.cancel-folder-customization-btn:hover {
+    color: #5c7dff;
+}
+
+.folder-color-options div {
+    width: 25px;
+    height: 25px;
+    margin: 0 5px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 50ms;
+    border: 2px solid transparent;
+}
+
+.folder-color-options .original-folder-color {
+    width: 25px;
+    height: 25px;
+    margin: 0 5px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 50ms;
+    background-color: var(--card);
+    border: 2px solid var(--toolbar);
+}
+.buttons-container {
+    border-top: 2px solid var(--toolbar);
+    display: flex;
+    gap: 15px;
+    padding-top: 10px;
+    justify-content: end;
+}
+
+.selected-folder-color {
+    width: 30px !important;
+    height: 30px !important;
+    border-color: #5c7dff !important;
+}
+
+.folder-color-options {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    padding-top: 5px;
+    padding-bottom: 20px;
+}   

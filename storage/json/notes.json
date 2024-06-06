@@ -3,7 +3,7 @@
         {
             "id": "f-1",
             "name": "Home",
-            "color": "#ffffff",
+            "color": "rgb(255, 255, 255)",
             "notes": [
                 {
                     "id": "n-592",
@@ -21,7 +21,7 @@
         {
             "id": "f-49",
             "name": "Github\ud83d\ude0e",
-            "color": "#ffffff",
+            "color": "rgb(255, 255, 255)",
             "notes": [
                 {
                     "id": "n-216",
@@ -39,13 +39,13 @@
         {
             "id": "f-99",
             "name": "School \ud83d\udcd6\u270f\ufe0f",
-            "color": "#a9d7ff",
+            "color": "rgb(169, 215, 255)",
             "notes": [],
             "subfolders": [
                 {
                     "id": "s-181",
                     "name": "Software Architecture",
-                    "color": "#ffffff",
+                    "color": "rgb(255, 255, 255)",
                     "notes": [
                         {
                             "id": "n-589",
@@ -124,7 +124,7 @@
                             "bookmark": false,
                             "favorite": false,
                             "color": "white",
-                            "last_edit": "05/06/2024 00:10",
+                            "last_edit": "05/06/2024 15:13",
                             "creation": "03/06/2024"
                         },
                         {
@@ -143,7 +143,7 @@
                 {
                     "id": "s-183",
                     "name": "CISQ1",
-                    "color": "#ffffff",
+                    "color": "rgb(255, 255, 255)",
                     "notes": [
                         {
                             "id": "n-466",
@@ -161,7 +161,7 @@
                 {
                     "id": "s-182",
                     "name": "CICQ2",
-                    "color": "#ffffff",
+                    "color": "rgb(255, 255, 255)",
                     "notes": [
                         {
                             "id": "n-609",
@@ -231,7 +231,7 @@
         {
             "id": "f-104",
             "name": "Frontend",
-            "color": "#ffffff",
+            "color": "rgb(255, 255, 255)",
             "notes": [
                 {
                     "id": "n-539",
@@ -248,17 +248,17 @@
         },
         {
             "id": "f-125",
-            "name": "Random stuff",
-            "color": "#ffffff",
+            "name": "Random \ud83e\udd2a",
+            "color": "rgb(158, 213, 197)",
             "notes": [
                 {
                     "id": "n-585",
                     "title": "Mogelijke bijbaan",
                     "content": "storage/notes/note-n-585.txt",
                     "bookmark": false,
-                    "favorite": false,
+                    "favorite": true,
                     "color": "white",
-                    "last_edit": "05/06/2024 14:29",
+                    "last_edit": "06/06/2024 20:23",
                     "creation": "04/05/2024"
                 },
                 {
@@ -280,16 +280,6 @@
                     "color": "white",
                     "last_edit": "29/05/2024 13:11",
                     "creation": "29/05/2024"
-                },
-                {
-                    "id": "n-636",
-                    "title": "untitled",
-                    "content": "storage/notes/note-n-636.txt",
-                    "bookmark": false,
-                    "favorite": false,
-                    "color": "white",
-                    "last_edit": "05/06/2024 14:32",
-                    "creation": "05/06/2024"
                 }
             ],
             "subfolders": []

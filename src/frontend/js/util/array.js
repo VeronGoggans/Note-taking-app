@@ -23,12 +23,14 @@ class ArrayUtil {
      * 
      * @param {Array} array 
      */
-    static filterSubfolders(array) {
+    static filterFolders(array) {
         // The string part s is part of all subfolder ID's (s-10)
-        const SUBFOLDER_ID = 's';
+        const folderIdSignature = 'f';
+        const subfolderIdSignature = 's';
         let folderArray = [];
         for(let i = 0; i < array.length; i++) {
-            if (array[i].id.includes(SUBFOLDER_ID)){
+            const cardId = array[i].id;
+            if (cardId.includes(folderIdSignature) || cardId.includes(subfolderIdSignature)){
                 folderArray.push(array[i]);
             }
         }
@@ -54,7 +56,7 @@ export class HTMLArray {
         if (type === 'note') {
             return ArrayUtil.filterNotes(array);
         } else {
-            return ArrayUtil.filterSubfolders(array);
+            return ArrayUtil.filterFolders(array);
         }
     }
 }
@@ -165,6 +167,7 @@ export class FolderObjectArray {
         for (let i = 0; i < this.objects.length; i++) {
             if (this.objects[i].id === folder.id) {
                 this.objects[i].name = folder.name;
+                this.objects[i].color = folder.color;
             }
         }
     }

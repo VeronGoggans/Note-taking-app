@@ -1,11 +1,12 @@
 import { Folder } from '../components/folder.js';
 import { ListFolder, NoFolderMessage } from '../components/listFolder.js';
-import { FolderObjectArray } from '../util/array.js';
+import { FolderObjectArray, HTMLArray } from '../util/array.js';
 import { NoContentFeedbackHandler } from "../handlers/userFeedback/noContentFeedbackHandler.js";
 import { NoteDeleteModal } from '../components/modals/noteDeleteModal.js';
 import { AnimationHandler } from '../handlers/animation/animationHandler.js';
 import { DragAndDrop } from '../handlers/drag&drop/dragAndDropHandler.js';
 import { formatName } from "../util/formatters.js";
+import { folderColorClasses } from '../constants/constants.js';
 
 export class FolderView {
     constructor(folderController, applicationController, dialog, notificationHandler) {
@@ -74,11 +75,19 @@ export class FolderView {
      * @param {Object} folder
      */
     renderFolderUpdate(folder) {
-        const FOLDER_LIST_CARDS = this._list.children;
-        for (let i = 0; i < FOLDER_LIST_CARDS.length; i++) {
-            if (FOLDER_LIST_CARDS[i].id === folder.id) {
-                const SPAN = FOLDER_LIST_CARDS[i].querySelector('span');
-                SPAN.textContent = formatName(folder.name);
+        const folderCards = new HTMLArray(this._content.children, 'folder'); 
+        console.log(folderCards);
+        const folderListCards = this._list.children;
+
+        for (let i = 0; i < folderCards.length; i++) {
+            if (folderCards[i].id === folder.id) {
+                const h4 = folderCards[i].querySelector('h4');
+                h4.textContent = formatName(folder.name);
+
+                const span = folderListCards[i].querySelector('span');
+                span.textContent = formatName(folder.name);
+
+                this.#applyFolderColor(folderCards[i], folder.color);
                 this.folderObjects.update(folder);
             }
         }
@@ -137,6 +146,11 @@ export class FolderView {
         this.dialog.show();
     }
 
+    renderEditFolderModal(id) {
+        const folder = this.getFolderObject(id);
+        this.dialog.renderEditFolderModal(folder, this);
+    }
+
     /**
      * This method creates a ListFolder component and returns it.
      * 
@@ -161,6 +175,20 @@ export class FolderView {
     #initializeDomElements() {
         this._content = document.querySelector('.content-view');
         this._list = document.querySelector('.list-content-folders');
+    }
+
+    #applyFolderColor(folderCard, color) {
+        console.log(folderCard);
+        const folderColorClass = folderColorClasses[color];
+        const folderClasses = Array.from(folderCard.classList);
+
+        for (const cls of folderClasses) {
+            if (cls.includes('color')) {
+                folderCard.classList.remove(cls);
+            }
+        }
+
+        folderCard.classList.add(folderColorClass);
     }
 
     /**

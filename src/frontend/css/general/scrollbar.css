@@ -8,13 +8,17 @@
     width: 5px;
 }
 
-.content-list-view::-webkit-scrollbar-thumb,
+
 .note-suggestions-list::-webkit-scrollbar-thumb,
-.linkable-notes-list::-webkit-scrollbar-thumb,
 .font-options::-webkit-scrollbar-thumb,
 .linkable-notes-list::-webkit-scrollbar-thumb {
     background-color: #e7e9f3;
-    border-radius: 5px;
+    border-radius: 10px;
+}
+
+.content-list-view::-webkit-scrollbar-thumb {
+    background-color: #f7f8fc;
+    border-radius: 10px;
 }
 
 .content-view-notification-layer::-webkit-scrollbar-thumb {

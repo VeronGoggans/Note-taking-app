@@ -5,87 +5,163 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Document</title>
+    <link rel="stylesheet" href="../css/general/themes.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
-        .edit-folder-container {
+        body {
+            background-color: #1f2024;
+        }
+        
+        .edit-folder-modal {
             background-color: white;
             display: flex;
             flex-direction: column;
             gap: 10px;
             width: 400px;
-            padding: 20px;
-            border: 1px solid #ced1e3;
-            border-radius: 10px;
+            padding: 30px 40px;
+            border-radius: 13px;
             justify-content: center;
             font-family: Roboto;
         }
 
-        .edit-folder-container i {
-            color: #747aa0;
-            font-size: 25px;
-            margin-right: 10px;
+        .edit-folder-modal hr {
+            border-style: none;
+            width: 100%;
+            border: 1px solid var(--toolbar);
         }
-        .edit-folder-container span {
+
+        .edit-folder-modal h2 {
+            font-family: sans-serif;
+            font-weight: 500;
+        }
+
+        .folder-settings {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .folder-settings span {
+            font-family: sans-serif;
+            font-size: 17px;
+            color: #292a35;
             font-weight: 600;
-            font-size: 18px;
+            margin: 0;
+            margin-top: 20px;
+        }
+
+        .folder-settings p {
+            font-family: sans-serif;
+            margin: 0;
+            color: #9b9bb5;
+            margin-bottom: 5px;
         }
 
         .edit-folder-name-input {
             outline: none;
-            border: 1px solid #ced1e3;
+            border: none;
             border-radius: 5px;
+            background-color: transparent;
+            border: 1px solid #ced1e3;
             padding: 5px 10px;
-            height: 30px;
-            color: #747aa0;
+            height: 25px;
+            margin-bottom: 10px;
+            color: var(--text);
             font-size: 16px;
             width: 300px;
+            transition: 200ms;
+        }
+
+        .edit-folder-name-input:hover,
+        .edit-folder-name-input:focus {
+            border-color: #5c7dff;
         }
         
+        .cancel-folder-customization-btn {
+            cursor: pointer;
+            border-radius: 5px;
+            width: 80px;
+            transition: 200ms;
+            height: 30px;
+            border: none;
+            background-color: var(--toolbar);
+            font-size: 14px;
+            color: var(--text);
+        }
 
         .save-folder-customisations-btn {
             cursor: pointer;
-            border-radius: 20px;
+            border-radius: 5px;
             border: none;
             background-color: #5c7dff;
-            color: white;
-            font-size: 16px;
+            color: #fff;
+            font-size: 14px;
             height: 30px;
-            width: 200px;
+            width: 140px;
+            transition: 200ms;
         }
 
-        .edit-folder-container-header {
-            display: flex;
-            align-items: center;
+        .cancel-folder-customization-btn:hover {
+            color: #5c7dff;
         }
 
         .folder-color-options div {
-            width: 30px;
-            height: 30px;
+            width: 20px;
+            height: 20px;
+            margin: 0 5px;
+            border-radius: 50%;
             cursor: pointer;
+        }
+        .buttons-container {
+            border-top: 2px solid var(--toolbar);
+            display: flex;
+            gap: 15px;
+            padding-top: 10px;
+            justify-content: end;
+
+        }
+
+        .selected-folder-color {
+            width: 25px !important;
+            height: 25px !important;
+            border: 2px solid #5c7dff;
         }
 
         .folder-color-options {
             display: flex;
+            align-items: center;
+            height: 40px;
+            padding-top: 5px;
+            padding-bottom: 20px;
         }                
     </style>
 </head>
 <body>
-    <div class="edit-folder-container">
-        <div class="edit-folder-container-header">
-            <i class="fa-solid fa-pen"></i>
-            <h2>Edit folder</h2>
+    <div class="edit-folder-modal">
+        <h2>Folder settings</h2>
+        <div class="folder-settings">
+            <span>Folder name</span>
+            <p>You can change the name of your folder below.</p>
+            <input class="edit-folder-name-input" type="text" placeholder="Untitled">
+            <hr>
+            <span>Folder color</span>
+            <p>Select your folder background color (soft green)</p>
+            <div class="folder-color-options">
+                <div style="background-color: #a9d7ff;"></div>
+                <div style="background-color: #ffa3a3;"></div>
+                <div style="background-color: #dfc1ff;"></div>
+                <div style="background-color: #9ffb95;"></div>
+                <div style="background-color: #ffe09e;"></div>
+                <div style="background-color: #E1AFD1;"></div>
+                <div style="background-color: #8E7AB5;"></div>
+                <div style="background-color: #EEA5A6;"></div>
+                <div class="selected-folder-color" style="background-color: #9ED5C5;"></div>
+                <div style="background-color: #FFBFA9;"></div>
+            </div>
         </div>
-        <input class="edit-folder-name-input" type="text" placeholder="Folder name">
-        <span>Color</span>
-        <div class="folder-color-options">
-            <div style="background-color: #a9d7ff;"></div>
-            <div style="background-color: #ffa3a3;"></div>
-            <div style="background-color: #dfc1ff;"></div>
-            <div style="background-color: #9ffb95;"></div>
-            <div style="background-color: #ffe09e;"></div>
+        <div class="buttons-container">
+            <button class="cancel-folder-customization-btn">Cancel</button>
+            <button class="save-folder-customisations-btn">Save preferences</button>
         </div>
-        <button class="save-folder-customisations-btn">Save</button>
-
     </div>
     
 </body>
