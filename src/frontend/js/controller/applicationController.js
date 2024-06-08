@@ -36,54 +36,44 @@ export class ApplicationController {
         this.applicationView.renderSearchOptions(RESPONSE.Notes);
     }
 
-    /**
-     * This method returns the user to the homescreen, by fetching the root folders again.
-     * This method also removes the folder id list.
-     * 
-     * This method is called when the homescreen button is clicked.
-     */
+
+    async handleAddFolder(name) {
+        const currentFolderId = this.applicationModel.getCurrentFolderID();
+        if (currentFolderId === 'f-1') {
+            await this.addFolder(name);
+        } else {
+            await this.addSubfolder(name, currentFolderId);
+        } 
+    }
+
     async navigateToHomescreen() {
+        this.applicationView.removeContent();
         await this.folderController.getFolders();
         await this.noteController.getNotes(this.homeFolderId);
         this.applicationModel.clearFolderIdlist();
         this.applicationView.displayFolderName('Home');
     }
-
-    /**
-     * This method handle the create folder button click
-     * 
-     * This method is called when the add button inside the 
-     * create new folder container is clicked. 
-     * 
-     * @param {String} name 
-     */
-    async handleAddFolder(name) {
-        const CURRENT_FOLDER = this.applicationModel.getCurrentFolderID();
-        if (CURRENT_FOLDER === 'f-1') await this.addFolder(name);
-        else await this.addSubfolder(name, CURRENT_FOLDER);
-    }
-
     
     async navigateOutofFolder() {
-        const PARENT = this.applicationModel.removeFolderIdFromList();
-        if (PARENT === this.homeFolderId) {
+        const parentFolder = this.applicationModel.removeFolderIdFromList();
+        if (parentFolder === this.homeFolderId) {
             await this.navigateToHomescreen();
         }
         else {
-            await this.navigateIntoFolder(PARENT.id, PARENT.name);
+            await this.navigateIntoFolder(parentFolder.id, parentFolder.name);
         }
     }
 
     async navigateIntoFolder(folderId, name) {
-        // removing the content from the folder the user is moving out of 
         this.applicationView.removeContent();
         this.applicationView.displayFolderName(name);
-        // rendering the subfolders and notes
+
         await this.folderController.getFolders(folderId);
         await this.noteController.getNotes(folderId);
-        // adding the folder id and name to the folders hierarchy array
+
         this.applicationModel.addFolderIdToList(folderId, name);
     }
+
 
     showTextEditor() {
         this.textEditorController.showTextEditor();
@@ -129,10 +119,6 @@ export class ApplicationController {
 
     async getSearchObjects() {
         return await this.applicationModel.getSearchOptions('/noteSearchObjects');
-    }
-
-    async getFavoriteNotes() {
-        return await this.noteController.getFavoriteNotes();
     }
     
     /**

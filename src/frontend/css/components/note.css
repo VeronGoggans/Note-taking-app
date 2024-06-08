@@ -21,6 +21,7 @@
 
 .favorite {
     background-color: var(--favorite);
+    border-color: var(--favorite);
 }
 
 .note-name-box {

@@ -1,7 +1,7 @@
 .content-list-view::-webkit-scrollbar,
 .note-suggestions-list::-webkit-scrollbar,
 .linkable-notes-list::-webkit-scrollbar,
-.content-view-notification-layer::-webkit-scrollbar,
+.content-view-folder-name-section::-webkit-scrollbar,
 .font-options::-webkit-scrollbar,
 .linkable-notes-list::-webkit-scrollbar {
     background-color: transparent;
@@ -12,17 +12,17 @@
 .note-suggestions-list::-webkit-scrollbar-thumb,
 .font-options::-webkit-scrollbar-thumb,
 .linkable-notes-list::-webkit-scrollbar-thumb {
-    background-color: #e7e9f3;
+    background-color: var(--scrollbar-content-view);
     border-radius: 10px;
 }
 
 .content-list-view::-webkit-scrollbar-thumb {
-    background-color: #f7f8fc;
+    background-color: var(--scrollbar-list-view);
     border-radius: 10px;
 }
 
-.content-view-notification-layer::-webkit-scrollbar-thumb {
-    background-color: #e7e9f3;
+.content-view-folder-name-section::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-content-view);
     border-radius: 10px;
 }
 

@@ -12,7 +12,7 @@
                     "bookmark": false,
                     "favorite": false,
                     "color": "white",
-                    "last_edit": "04/06/2024 18:38",
+                    "last_edit": "07/06/2024 15:24",
                     "creation": "15/05/2024"
                 }
             ],
@@ -44,7 +44,7 @@
             "subfolders": [
                 {
                     "id": "s-181",
-                    "name": "Software Architecture",
+                    "name": "Software Architecture\ud83c\udf31",
                     "color": "rgb(255, 255, 255)",
                     "notes": [
                         {
@@ -124,7 +124,7 @@
                             "bookmark": false,
                             "favorite": false,
                             "color": "white",
-                            "last_edit": "05/06/2024 15:13",
+                            "last_edit": "07/06/2024 16:33",
                             "creation": "03/06/2024"
                         },
                         {
@@ -180,7 +180,7 @@
                             "bookmark": false,
                             "favorite": false,
                             "color": "white",
-                            "last_edit": "03/06/2024 12:23",
+                            "last_edit": "08/06/2024 14:29",
                             "creation": "30/05/2024"
                         },
                         {
@@ -231,7 +231,7 @@
         {
             "id": "f-104",
             "name": "Frontend",
-            "color": "rgb(255, 255, 255)",
+            "color": "rgb(225, 175, 209)",
             "notes": [
                 {
                     "id": "n-539",

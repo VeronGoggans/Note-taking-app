@@ -4,7 +4,7 @@
     width: fit-content;
     padding: 0 40px;
     border-radius: 5px;
-    background-color: var(--background);
+    background-color: var(--modal);
     font-family: Roboto;
 }
 

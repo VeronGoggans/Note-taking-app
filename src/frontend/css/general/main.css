@@ -92,6 +92,8 @@ body {
     color: var(--text);
     padding: 2px 5px;
     font-size: 16px;
+    font-family: Roboto;
+    font-weight: 600;
 }
 
 .search-container input::placeholder,
@@ -126,6 +128,7 @@ body {
 .note-suggestions-list li,
 .note-link-suggestions-list li {
     cursor: pointer;
+    font-size: 14px;
     margin: 10px 0 10px 10px;
     padding: 5px;
     color: var(--editor-text);
@@ -142,14 +145,17 @@ body {
 
 .note-suggestions-list i {
     margin-right: 5px;
-    color: var(--icon);
+    color: var(--placeholder);
 }
 
 .note-suggestions-list p {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     font-weight: 600;
-    color: var(--important);
-    font-size: 18px;
-    margin: 20px 0;
+    color: var(--placeholder);
+    font-size: 14px;
+    margin: 20px 15px;
 }
 
 .create-folder-btn:hover {
@@ -162,7 +168,7 @@ body {
     max-height: calc(100dvh - 50px);
 }
 
-.content-view-notification-layer {
+.content-view-folder-name-section {
     overflow-y: scroll;
     position: relative;
     background-color: var(--background);

@@ -206,17 +206,19 @@
    background-color: var(--editor-container);
    padding: 10px 15px;
    margin: 20px 0;
-   max-width: 175px;
-   height: 200px;
+   max-width: 275px;
    border-radius: 10px;
    cursor: pointer;
    position: relative;
    display: grid;
-   grid-template-rows: 1fr 35px;
+   grid-template-columns: 35px 1fr;
    box-shadow: 0 0 10px var(--editor-container-shadow);
  }
 
  .linked-note-name {
+   display: flex;
+   align-items: center;
+   margin-left: 5px;
    font-weight: 600;
    font-size: 16px;
    transition: 150ms;
@@ -224,7 +226,7 @@
  } 
 
  .linked-note-container .fa-regular {
-   font-size: 60px;
+   font-size: 30px;
    color: var(--text);
    padding: 7px 10px;
    display: flex;

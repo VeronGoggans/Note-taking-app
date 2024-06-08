@@ -329,7 +329,7 @@ export class TextEditorView {
     
     this.foregroundPaletteColors.forEach(button => {
       button.addEventListener('click', () => {
-          const COLOR = button.getAttribute('data-color');
+          const COLOR = button.style.backgroundColor;
           TextFormatter.addColor(COLOR, 'forecolor');
           this._toggleVisibleDropdown(this.foregroundPalette);
       });
@@ -338,7 +338,7 @@ export class TextEditorView {
     this.backgroundPaletteColors.forEach(button => {
       button.addEventListener('click', () => {
           // Get the data-color attribute of the clicked div
-          let color = button.getAttribute('data-color');
+          let color = button.style.backgroundColor;
           if (color === '#ffffff') {
               color = 'transparent';
           }

@@ -36,7 +36,11 @@ class NoteRouter:
 
 
     def get_notes(self, folder_id: str):
-        response = self.note_service.get_notes(folder_id)
+        response = None
+        if folder_id == 'f-2':
+            response = self.note_service.get_favorite_notes()
+        else:
+            response = self.note_service.get_notes(folder_id)
 
         if response != Status.NOT_FOUND:
             return {'Status_code': Status.OK, "Note": response}

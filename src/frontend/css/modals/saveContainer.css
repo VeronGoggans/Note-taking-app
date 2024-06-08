@@ -7,7 +7,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: var(--editor);
+    background-color: var(--modal);
   }
   
   .dont-forget-to-save-container h1 {

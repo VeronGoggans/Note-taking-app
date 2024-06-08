@@ -23,7 +23,7 @@ class SubfolderRouter:
 
         if response != Status.NOT_FOUND:
             return {'Status_code': Status.OK, "Folders": response}
-        return {'Status_code': Status.NOT_FOUND}
+        return {'Status_code': Status.NOT_FOUND, "Folders": []}
 
 
     def create_subfolder(self, subfolder: PostSubfolderRequest):

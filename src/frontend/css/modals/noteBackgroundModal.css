@@ -5,7 +5,7 @@
     flex-direction: column;
     border-radius: 15px;
     align-items: center;
-    background-color: var(--background);
+    background-color: var(--modal);
   }
 
   .note-background-color-container h2 {

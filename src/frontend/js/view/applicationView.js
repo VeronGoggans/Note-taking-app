@@ -64,7 +64,7 @@ export class ApplicationView {
         options.forEach(option => {
             if (currentFolderName !== option.folder_name) {
                 currentFolderName = option.folder_name;
-                html += `<p><i class="fa-solid fa-folder"></i>${currentFolderName}</p>`;
+                html += `<p>${currentFolderName}<i class="fa-solid fa-folder"></i></p>`;
             }
             html += `<li id=${option.id}>${option.name}</li>`
         })
@@ -96,7 +96,6 @@ export class ApplicationView {
      * The home button takes the user to the home screen
      */
     home() {
-        this.removeContent();
         this.displayFolderName('Home');
         this.applicationController.navigateToHomescreen();
     }
@@ -106,14 +105,11 @@ export class ApplicationView {
      * The back button takes the user to the previous folder
      */
     back() {
-        this.removeContent();
         this.applicationController.navigateOutofFolder();
     }
 
     favorites() {
-        this.removeContent();
-        this.applicationController.getFavoriteNotes()
-        this.displayFolderName('Favorites⭐');
+        this.applicationController.navigateIntoFolder('f-2', 'Favorites')
     }
 
     /**

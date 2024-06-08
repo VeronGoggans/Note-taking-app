@@ -29,7 +29,7 @@
     --border-search-bar: #ffffff; /*d4d4d4*/
     --hover: rgba(92, 125, 255, .3); 
     --hover-bookmark-icon-if-bookmarked: rgba(92, 125, 255, .3);
-    --hover-favorite-icon-if-favorited: rgba(255, 224, 54, .4);
+    --hover-favorite-icon-if-favorited: rgb(255, 224, 54);
     --hover-list-view-buttons: #f4f5f7;
     --hover-searchbar-options: #f4f5f7;
     --hover-text: #444863;
@@ -37,8 +37,8 @@
     --hover-toolbar-btns: rgba(185, 198, 250, 0.5);
     --hover-sidebar: rgba(92, 125, 255, .3);
     --bookmark: #f3f4ff;
-    --favorite: #fffbe9;
-    --no-content: #aaabb4;
+    --favorite: #fff2b7;
+    --no-content: #aaabb4;      
     --placeholder: #9093a2;
     --selection: #b1daff;
     --dialog: rgba(0, 3, 24, 0.30);
@@ -54,6 +54,10 @@
     --editor-dropdown: #ffffff;
     --editor-dropdown-hover: rgba(92, 125, 255, .3);
     --editor-dropdown-hover-color: #383838;
+    --folder-name-input: #ced1e3;
+    --modal: #ffffff;
+    --scrollbar-content-view: #e7e9f3;
+    --scrollbar-list-view: #f7f8fc;
 }
 
 .dark {
@@ -98,10 +102,10 @@
     --no-content: #757789;
     --placeholder: #9093a2;
     --selection: #314682;
-    --dialog: rgba(58, 64, 106, 0.15);
+    --dialog: rgba(15, 23, 79, .15);
     --paragraph: #252831;
     --editor-container: #23252e;
-    --editor-container-shadow: #272933;
+    --editor-container-shadow: transparent;
     --editor-container-input: #16171c;
     --shadow: rgba(0, 0, 0, 0.1);
     --shadow-notification: #121216;
@@ -111,6 +115,11 @@
     --editor-dropdown: #242630;
     --editor-dropdown-hover: #191a20;
     --editor-dropdown-hover-color: #5c7dff;
+    --folder-name-input: #5c7dff;
+    --modal: #1f2129;
+    --scrollbar-content-view: #3f4045;
+    --scrollbar-list-view: #1b1c22;
+
 }
 
 .light {
@@ -143,7 +152,7 @@
     --border-search-bar: #ffffff;
     --hover: rgba(92, 125, 255, .3);
     --hover-bookmark-icon-if-bookmarked: rgba(92, 125, 255, .3);
-    --hover-favorite-icon-if-favorited: rgba(255, 224, 54, .4);
+    --hover-favorite-icon-if-favorited: rgb(255, 224, 54);
     --hover-list-view-buttons: #f4f5f7;
     --hover-searchbar-options: #f4f5f7;
     --hover-text: #444863;
@@ -151,7 +160,7 @@
     --hover-toolbar-btns: rgba(185, 198, 250, 0.5);
     --hover-sidebar: rgba(92, 125, 255, .3);
     --bookmark: #f3f4ff;
-    --favorite: #fffbe9;
+    --favorite: #fff2b7;
     --no-content: #aaabb4;
     --placeholder: #9093a2;
     --selection: #b1daff;
@@ -168,4 +177,9 @@
     --editor-dropdown: #ffffff;
     --editor-dropdown-hover: rgba(92, 125, 255, .3);
     --editor-dropdown-hover-color: #383838;
+    --folder-name-input: #ced1e3;
+    --modal: #ffffff;
+    --scrollbar-content-view: #e7e9f3;
+    --scrollbar-list-view: #ffffff; /*f7f8fc*/
+
 }

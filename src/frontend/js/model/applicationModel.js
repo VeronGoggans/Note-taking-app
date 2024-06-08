@@ -30,16 +30,16 @@ export class ApplicationModel {
         return undefined
     }
 
-    addFolderIdToList(ID, name) {
+    addFolderIdToList(id, name) {
         if (this.folderIds.length > 0) {
             // if the id is not already in the last index of the array, push.
-            if (ID !== this.folderIds[this.folderIds.length - 1].id) {
-                this.folderIds.push({'id': ID, 'name': name});
+            if (id !== this.folderIds[this.folderIds.length - 1].id) {
+                this.folderIds.push({'id': id, 'name': name});
             } else {
                 console.log('Skipped id addition due to diplication');
             }
         } else {
-            this.folderIds.push({'id': ID, 'name': name});
+            this.folderIds.push({'id': id, 'name': name});
         }
     }
 

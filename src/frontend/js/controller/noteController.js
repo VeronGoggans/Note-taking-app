@@ -22,12 +22,6 @@ export class NoteController {
         return [note, folderId, folderName]
     }
 
-    async getFavoriteNotes() {
-        const response = await this.noteModel.getFavoriteNotes('/favorites');
-        const notes = await response.Notes;
-        this.noteView.renderNoteCards(notes)
-    }
-
     async addNote(folderId, content, name) {
         const RESPONSE = await this.noteModel.addNote('/note', folderId, content, name);
         let note = await RESPONSE.Note;

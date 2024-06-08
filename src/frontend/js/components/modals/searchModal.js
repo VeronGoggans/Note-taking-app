@@ -5,6 +5,7 @@ export class SearchModal {
 
         this.currentHighlightIndex = -1;
         this.highlights = [];
+        this.editorPaper = document.querySelector('.editor-paper')
 
         this.#initializeElements();
         this.#attachEventListeners();
@@ -12,13 +13,13 @@ export class SearchModal {
     }
 
     #attachEventListeners() {
-        this.CLOSE_BUTTON.addEventListener('click', () => {this.HOST.remove()});
+        this.CLOSE_BUTTON.addEventListener('click', () => {this.#removeModal()});
         this.INPUT.addEventListener('input', () => {this.handleInput()});
         this.NEXT_BUTTON.addEventListener('click', () => {this.scrollToHighlight()})
     }
 
     #initializeElements() {
-        this.HOST = CNode.create('div', {'class': 'search-function-modal'});
+        this.MODAL = CNode.create('div', {'class': 'search-function-modal'});
         this.INPUT = CNode.create('input', {'placeholder': 'Find', 'spellcheck': false});
         this.PARAGRAPH = CNode.create('p', {'textContent': '0 of 0'});
         // BUTTONS
@@ -35,19 +36,23 @@ export class SearchModal {
         this.PREVIOUS_BUTTON.appendChild(this.PREVIOUS_ICON);
         this.NEXT_BUTTON.appendChild(this.NEXT_ICON);
         this.CLOSE_BUTTON.appendChild(this.CLOSE_ICON);
-        this.HOST.append(this.INPUT, this.PARAGRAPH, this.PREVIOUS_BUTTON, this.NEXT_BUTTON, this.CLOSE_BUTTON);
-        return this.HOST
+        this.MODAL.append(this.INPUT, this.PARAGRAPH, this.PREVIOUS_BUTTON, this.NEXT_BUTTON, this.CLOSE_BUTTON);
+        return this.MODAL
+    }
+
+    #removeModal() {
+        this.removeHighlights();
+        this.MODAL.remove();
     }
 
     handleInput() {
         const searchValue = this.INPUT.value;
-        const noteDiv = document.querySelector('.editor-paper'); // Assuming your note div has the id 'note'
 
         // Remove previous highlights
-        this.removeHighlights(noteDiv);
+        this.removeHighlights();
 
         if (searchValue) {
-            this.highlightText(noteDiv, searchValue);
+            this.highlightText(searchValue);
         }
 
         // Reset highlights tracking
@@ -64,8 +69,8 @@ export class SearchModal {
         }
     }
 
-    removeHighlights(element) {
-        const spans = element.querySelectorAll('span.highlight');
+    removeHighlights() {
+        const spans = this.editorPaper.querySelectorAll('span.highlight');
         spans.forEach(span => {
             const parent = span.parentNode;
             while (span.firstChild) {
@@ -76,8 +81,8 @@ export class SearchModal {
         });
     }
 
-    highlightText(element, searchValue) {
-        const textNodes = this.getTextNodes(element);
+    highlightText(searchValue) {
+        const textNodes = this.getTextNodes();
         const searchRegExp = new RegExp(searchValue, 'gi');
 
         textNodes.forEach(node => {
@@ -100,9 +105,9 @@ export class SearchModal {
         });
     }
 
-    getTextNodes(element) {
+    getTextNodes() {
         const textNodes = [];
-        const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, null, false);
+        const walker = document.createTreeWalker(this.editorPaper, NodeFilter.SHOW_TEXT, null, false);
 
         let node;
         while (node = walker.nextNode()) {

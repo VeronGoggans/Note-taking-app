@@ -12,11 +12,6 @@ export class NoteModel {
         return this.#fetchData(`${endpoint}/${noteId}`, options);
     }
 
-    async getFavoriteNotes(endpoint) {
-        const options = RequestOptionsBuilder.buildGetOptions();
-        return this.#fetchData(endpoint, options)
-    }
-
     async addNote(endpoint, folderId, content, name) {
         const options = RequestOptionsBuilder.buildPostOptions({
             'folder_id': folderId,
