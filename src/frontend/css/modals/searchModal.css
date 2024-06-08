@@ -19,11 +19,18 @@
     background-color: transparent;
     color: var(--text);
     outline: none;
-    border: 1px solid var(--border-card);
+    border: none;
+    border-bottom: 2px solid var(--border-card);
     padding: 5px 70px 5px 15px;
     width: 250px;
-    border-radius: 15px;
+    transition: 100ms;
 }
+
+.search-function-modal input:hover,
+.search-function-modal input:focus {
+    border-color: #5c7dff;
+}
+
 
 .search-function-modal input::placeholder {
     color: var(--placeholder);
