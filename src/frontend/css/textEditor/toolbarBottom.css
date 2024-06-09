@@ -69,7 +69,7 @@
     border-radius: 7px;
     padding: 10px;
     width: 150px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 20px var(--shadow);
     transition: 100ms;
     z-index: 2;
 }

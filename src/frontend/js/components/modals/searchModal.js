@@ -5,6 +5,7 @@ export class SearchModal {
 
         this.currentHighlightIndex = -1;
         this.highlights = [];
+        this.editor = document.querySelector('.editor');
         this.editorPaper = document.querySelector('.editor-paper')
 
         this.#initializeElements();
@@ -15,13 +16,14 @@ export class SearchModal {
     #attachEventListeners() {
         this.CLOSE_BUTTON.addEventListener('click', () => {this.#removeModal()});
         this.INPUT.addEventListener('input', () => {this.handleInput()});
-        this.NEXT_BUTTON.addEventListener('click', () => {this.scrollToHighlight()})
+        this.NEXT_BUTTON.addEventListener('click', () => {this.scrollToHighlight(true)})
+        this.PREVIOUS_BUTTON.addEventListener('click', () => {this.scrollToHighlight(false)});
     }
 
     #initializeElements() {
         this.MODAL = CNode.create('div', {'class': 'search-function-modal'});
         this.INPUT = CNode.create('input', {'placeholder': 'Find', 'spellcheck': false});
-        this.PARAGRAPH = CNode.create('p', {'textContent': '0 of 0'});
+        this.PARAGRAPH = CNode.create('p', {'textContent': '0/0'});
         // BUTTONS
         this.PREVIOUS_BUTTON = CNode.create('button', {});
         this.NEXT_BUTTON = CNode.create('button', {});
@@ -59,15 +61,41 @@ export class SearchModal {
         this.currentHighlightIndex = -1;
         this.highlights = Array.from(document.querySelectorAll('.highlight'));
         this.PARAGRAPH.textContent = `${this.highlights.length} found`;
+
+        // Updating the paragraph element telling the user how many 
+        // occurences were found
+        this.PARAGRAPH.textContent = `0/${this.highlights.length}`;
     }
 
-    scrollToHighlight() {
+    scrollToHighlight(scrollToNextHighlight) {
         if (this.highlights.length > 0) {
-            this.currentHighlightIndex = (this.currentHighlightIndex + 1) % this.highlights.length;
+            if (scrollToNextHighlight) {
+                this.currentHighlightIndex = (this.currentHighlightIndex + 1) % this.highlights.length;
+            } 
+            else {
+                this.currentHighlightIndex = (this.currentHighlightIndex - 1 + this.highlights.length) % this.highlights.length;
+            }
+
             const nextHighlight = this.highlights[this.currentHighlightIndex];
-            nextHighlight.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            // Updating the paragraph element telling the user at which 
+            // occurence they are on.
+            this.PARAGRAPH.textContent = `${this.currentHighlightIndex + 1}/${this.highlights.length}`;
+
+            const scrollableContainer = this.editor;
+    
+            // Calculate the top position relative to the scrollable container
+            const scrollableContainerRect = scrollableContainer.getBoundingClientRect();
+            const nextHighlightRect = nextHighlight.getBoundingClientRect();
+    
+            // Calculate offset needed to scroll nextHighlight into view
+            const offset = nextHighlightRect.top - scrollableContainerRect.top - (scrollableContainer.clientHeight / 2) + (nextHighlight.clientHeight / 2);
+    
+            // Scroll the container smoothly
+            scrollableContainer.scrollBy({ top: offset, behavior: 'smooth' });
         }
     }
+
 
     removeHighlights() {
         const spans = this.editorPaper.querySelectorAll('span.highlight');
@@ -80,6 +108,7 @@ export class SearchModal {
             parent.normalize();
         });
     }
+
 
     highlightText(searchValue) {
         const textNodes = this.getTextNodes();
@@ -116,6 +145,4 @@ export class SearchModal {
 
         return textNodes;
     }
-
-    
 }

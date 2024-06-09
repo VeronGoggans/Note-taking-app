@@ -46,7 +46,7 @@
     --editor-container: #252831;
     --editor-container-shadow: #272933;
     --editor-container-input: #f6f7ff;
-    --shadow: rgba(0, 0, 0, 0.1);
+    --shadow: rgba(92, 98, 157, .1);
     --shadow-notification: #dcdee6;
     --card-shadow: #e0e2ec;
     --code-snippit-background: #252539;
@@ -169,7 +169,7 @@
     --editor-container: #ffffff;
     --editor-container-shadow: #dcdeee;
     --editor-container-input: #f6f7ff;
-    --shadow: rgba(0, 0, 0, 0.1);
+    --shadow: rgba(92, 98, 157, .1);
     --shadow-notification: #dcdee6;
     --card-shadow: #e0e2ec;
     --code-snippit-background: #f5f5fa;

@@ -10,6 +10,9 @@
     width: 400px;
     border-radius: 3px;
     box-shadow: 0 0 10px var(--shadow);
+    transition: 200ms;
+    transform: translateY(-50px);
+    opacity: 0;
     z-index: 2;
 }
 
