@@ -10,7 +10,7 @@
     --sidebar: #f4f5f9; /*fafbff*/ 
     --searchbar: #ffffff;
     --sidebar-text: #4c4c4c; /*4c4c4c*/
-    --sidebar-text-hover: #414141; /*414141*/
+    --sidebar-text-hover: #5c7dff; /*414141*/
     --sidebar-icon: #747aa0;
     --card: #ffffff; /*f4f5f7*/
     --text: #444863;
@@ -134,7 +134,7 @@
     --searchbar: #ffffff;
     --sidebar: #f4f5f9;
     --sidebar-text: #4c4c4c;
-    --sidebar-text-hover: #414141;
+    --sidebar-text-hover: #5c7dff;
     --sidebar-icon: #747aa0;
     --card: #ffffff;
     --text: #444863;
