@@ -60,6 +60,7 @@ body {
 }
 
 .current-folder-name-container h2 {
+    display: contents;
     font-size: 40px;
     height: 50px;
     max-height: 50px;
