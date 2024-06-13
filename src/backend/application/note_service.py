@@ -1,7 +1,6 @@
 from src.backend.data.note.note_manager import NoteManager
 from src.backend.presentation.request_bodies.note.post_note_request import PostNoteRequest
 from src.backend.presentation.request_bodies.note.put_note_request import PutNoteRequest
-from src.backend.presentation.request_bodies.note.del_note_request import DeleteNoteRequest
 from src.backend.presentation.request_bodies.note.move_note_request import MoveNoteRequest
 from src.backend.presentation.request_bodies.note.put_note_color_request import PutNoteColorRequest
 from src.backend.domain.note_factory import NoteFactory
@@ -21,21 +20,24 @@ class NoteService:
 
     def get_notes(self, folder_id: str):
         """
-        Retrieves notes of a specific type within the specified folder.
-        Note types are standard, protected, bookmark or all.
+        Retrieves notes from the specified folder.
 
         Args:
-            folder_id (int): The ID of the folder from which to retrieve notes.
+            folder_id (int): The id of the folder from which to retrieve notes.
 
         Returns:
             list(dict) or Status.NOT_FOUND: 
-            - If the folder with the specified ID is found and contains notes of the specified type,
-              returns a list of notes.
-            - If the folder is not found or does not contain notes of the specified type,
-              returns Status.NOT_FOUND.
+            - A list of notes if the folder with the specified id is found 
+            - Status.NOT_FOUND if the folder is not found returns .
         """
         folders = self.json_manager.load(self.folders_path)['folders']
-        notes = self.note_manager.get_notes(folders, folder_id)
+        notes = None
+
+        if folder_id == 'f-2':
+            notes = self.note_manager.get_favorites(folders)
+            self.note_manager.clear_favorites_list()
+        else:
+            notes = self.note_manager.get_notes(folders, folder_id)
 
         if notes is not None:
             return notes
@@ -44,14 +46,14 @@ class NoteService:
 
     def get_note_by_id(self, note_id: str):
         """
-        Retrieves a note with the specified ID.
+        Retrieves a note with the specified id.
 
         Args:
-            note_id (int): The ID of the note to retrieve.
+            note_id (int): The id of the note to retrieve.
 
         Returns:
             dict or Status.NOT_FOUND: 
-            - If a note with the specified ID is found, returns the note as a dictionary.
+            - If a note with the specified id is found, returns the note as a dictionary.
             - If the note is not found, returns Status.NOT_FOUND.
         """
         folders = self.json_manager.load(self.folders_path)['folders']
@@ -113,23 +115,20 @@ class NoteService:
         return Status.NOT_FOUND
 
 
-    def delete_note(self, delete_request: DeleteNoteRequest):
+    def delete_note(self, note_id: str):
         """
         Delete an existing note within a specified folder.
 
         Args:
-            delete_request (DeleteNoteRequest): 
-            Object containing the folder_id and note_id.
             - note_id (str): The ID of the note whished to be deleted.
 
         Returns:
-            Status: 
-            - If the note is successfully deleted, it returns 'OK'.
+            - If the note is successfully deleted, it returns the note.
             - If the specified folder or note is not found, it returns 'NOT_FOUND'.
         """
         folder_structure = self.json_manager.load(self.folders_path)
         folders = folder_structure['folders']
-        deleted_note = self.note_manager.delete_note(folders, delete_request.note_id)
+        deleted_note = self.note_manager.delete_note(folders, note_id)
 
         if deleted_note:
             self.json_manager.update(self.folders_path, folder_structure)
@@ -198,13 +197,3 @@ class NoteService:
             self.note_manager.clear_search_options_list()
             return notes
         return Status.INTERAL_SERVER_ERROR
-    
-
-    def get_favorite_notes(self):
-        folders = self.json_manager.load(self.folders_path)['folders']
-        notes = self.note_manager.get_favorites(folders)
-
-        if len(notes) > 0:
-            self.note_manager.clear_favorites_list()
-            return notes
-        return Status.NO_CONTENT

@@ -3,7 +3,6 @@ from src.backend.application.note_service import NoteService
 from src.backend.data.note.note_manager import NoteManager
 from src.backend.presentation.request_bodies.note.post_note_request import PostNoteRequest
 from src.backend.presentation.request_bodies.note.put_note_request import PutNoteRequest
-from src.backend.presentation.request_bodies.note.del_note_request import DeleteNoteRequest
 from src.backend.presentation.request_bodies.note.move_note_request import MoveNoteRequest
 from src.backend.presentation.request_bodies.note.put_note_color_request import PutNoteColorRequest
 from src.backend.domain.enums.responseMessages import Status
@@ -20,7 +19,7 @@ class NoteRouter:
         self.route.add_api_route('/favorites', self.get_favorite_notes, methods=['GET'])
         self.route.add_api_route('/cache', self.cache, methods=['GET'])
         self.route.add_api_route('/note', self.add_note, methods=['POST'])
-        self.route.add_api_route('/note', self.delete_note, methods=['DELETE'])
+        self.route.add_api_route('/note/{note_id}', self.delete_note, methods=['DELETE'])
         self.route.add_api_route('/note', self.update_note, methods=['PUT'])
         self.route.add_api_route('/moveNote', self.move_note, methods=['PUT'])
         self.route.add_api_route('/noteColor', self.update_note_color, methods=['PUT'])
@@ -36,11 +35,7 @@ class NoteRouter:
 
 
     def get_notes(self, folder_id: str):
-        response = None
-        if folder_id == 'f-2':
-            response = self.note_service.get_favorite_notes()
-        else:
-            response = self.note_service.get_notes(folder_id)
+        response = self.note_service.get_notes(folder_id)
 
         if response != Status.NOT_FOUND:
             return {'Status_code': Status.OK, "Note": response}
@@ -79,8 +74,8 @@ class NoteRouter:
         return {'Status_code': response}
 
 
-    def delete_note(self, delete_request: DeleteNoteRequest):
-        response = self.note_service.delete_note(delete_request)
+    def delete_note(self, note_id: str):
+        response = self.note_service.delete_note(note_id)
 
         if response != Status.NOT_FOUND:
             return {'Status_code': Status.OK, 'Note': response}

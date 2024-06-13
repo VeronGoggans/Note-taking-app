@@ -34,7 +34,7 @@ export class Note {
         this.CONTENT_BOX = CNode.create('div', { 'class': 'note-content-box' });
         this.CONTENT = CNode.create('p', { 'innerHTML': filterNotePreview(this.content) });
         this.UTIL_BAR = CNode.create('div', { 'class': 'note-util-bar' });
-        this.FAVORITE_ICON = CNode.create('i', { 'class': 'fa-solid fa-star', 'id': 'favorite-note-btn'});
+        this.FAVORITE_ICON = CNode.create('i', { 'class': 'fa-solid fa-heart', 'id': 'favorite-note-btn'});
         this.BOOKMARK_ICON = CNode.create('i', { 'class': 'fa-solid fa-bookmark', 'id': 'bookmark-note-btn' });
         this.EDIT_ICON = CNode.create('i', { 'class': 'fa-solid fa-pen' });
         this.DELETE_ICON = CNode.create('i', { 'class': 'fa-solid fa-trash' });
