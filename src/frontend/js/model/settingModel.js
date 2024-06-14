@@ -8,8 +8,8 @@ export class SettingModel {
     }
 
     async updateTheme(endpoint, theme) {
-        const OPTIONS = RequestOptionsBuilder.buildPutOptions({'theme': theme});
-        return this.#fetchData(endpoint, OPTIONS)
+        const OPTIONS = RequestOptionsBuilder.buildPutOptions();
+        return this.#fetchData(`${endpoint}/${theme}`, OPTIONS)
     }
 
     async getEditorPageStyle(endpoint) {
@@ -18,8 +18,8 @@ export class SettingModel {
     }
 
     async updateEditorPageStyle(endpoint, style) {
-        const OPTIONS = RequestOptionsBuilder.buildPutOptions({'style': style});
-        this.#fetchData(endpoint, OPTIONS)
+        const OPTIONS = RequestOptionsBuilder.buildPutOptions();
+        this.#fetchData(`${endpoint}/${style}`, OPTIONS)
     }
 
     async #fetchData(endpoint, options) {

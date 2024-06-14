@@ -25,7 +25,7 @@ export class FolderView {
      * This method renders a array of folders and adds them to the UI.
      * If the array is empty this method does nothing.
      * 
-     * @param {Array} folders is an array of folders.
+     * @param {Array} folders 
      */
     renderFolders(folders) {
         this.folderObjects.clear();
@@ -76,7 +76,6 @@ export class FolderView {
      */
     renderFolderUpdate(folder) {
         const folderCards = new HTMLArray(this._content.children, 'folder'); 
-        console.log(folderCards);
         const folderListCards = this._list.children;
 
         for (let i = 0; i < folderCards.length; i++) {
@@ -178,7 +177,6 @@ export class FolderView {
     }
 
     #applyFolderColor(folderCard, color) {
-        console.log(folderCard);
         const folderColorClass = folderColorClasses[color];
         const folderClasses = Array.from(folderCard.classList);
 

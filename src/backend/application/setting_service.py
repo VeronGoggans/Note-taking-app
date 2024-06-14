@@ -1,6 +1,4 @@
 from src.backend.data.file.json_manager import JsonManager
-from src.backend.presentation.request_bodies.settings.put_theme_request import PutThemeRequest
-from src.backend.presentation.request_bodies.settings.put_editor_page_style_request import PutEditorPageStyleRequest
 import os 
 
 
@@ -15,12 +13,11 @@ class SettingService():
         return current_theme
     
 
-    def update_theme(self, new_theme: PutThemeRequest):
-        new_theme = new_theme.theme
+    def update_theme(self, theme: str):
         theme_object = self.json_manager.load(self.settings_path)
-        theme_object['theme'] = new_theme
+        theme_object['theme'] = theme
         self.json_manager.update(self.settings_path, theme_object)
-        return new_theme
+        return theme
     
 
     def get_editor_page_style(self):
@@ -29,9 +26,8 @@ class SettingService():
         return current_style
     
     
-    def update_editor_page_style(self, new_style: PutEditorPageStyleRequest):
-        new_style = new_style.style
+    def update_editor_page_style(self, style: str):
         settings_object = self.json_manager.load(self.settings_path)
-        settings_object['editor-page-style'] = new_style
+        settings_object['editor-page-style'] = style
         self.json_manager.update(self.settings_path, settings_object)
-        return new_style
+        return style

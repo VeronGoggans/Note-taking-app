@@ -31,8 +31,8 @@ export class FolderModel {
     async deleteFolder(folderId, parentId) {
         const OPTIONS = parentId !== 'f-1' ?
             RequestOptionsBuilder.buildDeleteOptions({'folder_id': parentId, 'subfolder_id': folderId}) :
-            RequestOptionsBuilder.buildDeleteOptions({'folder_id': folderId})
-        const ENDPOINT = parentId !== 'f-1' ? '/subfolder': '/folder'
+            RequestOptionsBuilder.buildDeleteOptions()
+        const ENDPOINT = parentId !== 'f-1' ? '/subfolder': `/folder/${folderId}`
         return this._fetchData(ENDPOINT, OPTIONS);
     }
 
