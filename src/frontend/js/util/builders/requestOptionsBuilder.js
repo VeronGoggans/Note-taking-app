@@ -21,11 +21,10 @@ export class RequestOptionsBuilder {
         };
     }
 
-    static buildDeleteOptions(bodyData) {
+    static buildDeleteOptions() {
         return {
             method: 'DELETE',
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(bodyData)
         };
     }
 }

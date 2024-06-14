@@ -34,8 +34,8 @@ export class NoteModel {
     }
 
     async deleteNote(endpoint, noteId) {
-        const options = RequestOptionsBuilder.buildDeleteOptions({'note_id': noteId});
-        return this.#fetchData(endpoint, options);
+        const options = RequestOptionsBuilder.buildDeleteOptions();
+        return this.#fetchData(`${endpoint}/${noteId}`, options);
     }
 
     async exportNote(endpoint, format, name, content) {
