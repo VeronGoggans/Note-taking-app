@@ -17,8 +17,8 @@ class Note:
     def set_content_path(self):
         """
         This method takes the html content and id from the note and gives it to 
-        the HTMLOperations class that will create a html file and return its path.
-        The path returned from the HTMLOperations class will be set as the note content.
+        the HTMLManager class that will create a txt file and return it's path.
+        The path returned from the HTMLManager class will be set as the note content.
         """
         self.content = HTMLManager.save(self.content, self.id)
 
@@ -39,3 +39,17 @@ class Note:
     def delete_note_file(self, note_path: str):
         """This method uses the note path do delete the file."""
         HTMLManager.delete(note_path)
+
+
+    @classmethod
+    def from_json(self, json_note):
+        return Note(
+            json_note['id'], 
+            json_note['title'], 
+            json_note['content'], 
+            json_note['bookmark'], 
+            json_note['favorite'],
+            json_note['color'],
+            json_note['last_edit'],
+            json_note['creation']
+        )

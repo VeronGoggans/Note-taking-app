@@ -1,11 +1,11 @@
 from src.backend.data.file.json_manager import JsonManager
-import os 
+from os import getcwd
 
 
 class SettingService():
     def __init__(self, json_manager: JsonManager) -> None:
         self.json_manager = json_manager
-        self.settings_path = os.getcwd() + '/storage/json/settings.json'
+        self.settings_path = getcwd() + '/storage/json/settings.json'
 
     def get_theme(self):
         theme_object = self.json_manager.load(self.settings_path)

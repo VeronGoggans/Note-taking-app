@@ -3,17 +3,17 @@ from src.backend.presentation.request_bodies.note.post_note_request import PostN
 from src.backend.presentation.request_bodies.note.put_note_request import PutNoteRequest
 from src.backend.presentation.request_bodies.note.move_note_request import MoveNoteRequest
 from src.backend.presentation.request_bodies.note.put_note_color_request import PutNoteColorRequest
-from src.backend.domain.note_factory import NoteFactory
+from src.backend.domain.note import Note
 from src.backend.domain.enums.responseMessages import Status
 from src.backend.data.file.json_manager import JsonManager
-import os 
+from os import getcwd 
 import copy
 
 class NoteService:
     def __init__(self, note_manager: NoteManager, json_manager: JsonManager):
         self.note_manager = note_manager
         self.json_manager = json_manager
-        self.BASE_URL = os.getcwd()
+        self.BASE_URL = getcwd()
         self.folders_path = f'{self.BASE_URL}/storage/json/notes.json'
         self.id_path = f'{self.BASE_URL}/storage/json/id.json'
 
@@ -78,7 +78,8 @@ class NoteService:
             - If the folder is not found, returns Status.NOT_FOUND.
         """
         note_id = self.json_manager.generateID(self.id_path, 'note')
-        note = NoteFactory.create_new_note(note_id, post_request)
+        note = Note(note_id, post_request.title, post_request.content)
+        note.set_content_path()
 
         folder_structure = self.json_manager.load(self.folders_path)
         folders = folder_structure['folders']
@@ -157,7 +158,7 @@ class NoteService:
 
         try:
             deleted_note = self.note_manager.delete_note(folders, move_request.note_id, delete_txt_file=False)
-            deleted_note_object = NoteFactory.create_existing_note(deleted_note)
+            deleted_note_object = Note.from_json(deleted_note)
         except Exception as e:
             return Status.NOT_FOUND
         

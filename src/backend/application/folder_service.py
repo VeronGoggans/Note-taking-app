@@ -4,14 +4,15 @@ from src.backend.presentation.request_bodies.folder.put_folder_request import Pu
 from src.backend.domain.folder import Folder
 from src.backend.data.file.json_manager import JsonManager
 from src.backend.domain.enums.responseMessages import Status
-import os
+from os import getcwd
+
 
 class FolderService:
     def __init__(self, folder_manager: FolderManager, json_manager: JsonManager):
         self.folder_manager = folder_manager
         self.json_manager = json_manager
-        self.folders_path = os.getcwd() + '/storage/json/notes.json'
-        self.id_path = os.getcwd() + '/storage/json/id.json'
+        self.folders_path = getcwd() + '/storage/json/notes.json'
+        self.id_path = getcwd() + '/storage/json/id.json'
 
 
     def get_folders(self):

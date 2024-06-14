@@ -1,7 +1,7 @@
 from src.backend.domain.note import Note
 from src.backend.presentation.request_bodies.note.put_note_request import PutNoteRequest
 from src.backend.util.calendar import Calendar
-from src.backend.domain.note_factory import NoteFactory
+from src.backend.domain.factory import Factory
 from src.backend.util.folder_finder import FolderFinder
 
 class NoteManager:
@@ -46,7 +46,7 @@ class NoteManager:
         """
         parent_folder = FolderFinder.find_folder_by_id(folders, folder_id)
         if parent_folder:
-            notes_list = NoteFactory.create_note_list(parent_folder['notes'])
+            notes_list = Factory.create_note_list(parent_folder['notes'])
             return notes_list
         return None
 
@@ -67,7 +67,7 @@ class NoteManager:
         for folder in folders:
             for note in folder["notes"]:
                 if note.get("id") == note_id:
-                    note_object = NoteFactory.create_existing_note(note)
+                    note_object = Note.from_json(note)
                     note_object.set_content_text()
                     return note_object, folder['id'], folder['name']
             
@@ -102,7 +102,7 @@ class NoteManager:
                     self.favorites.append(note)
 
             self.get_favorites(folder['subfolders'])
-        return NoteFactory.create_note_list(self.favorites)
+        return Factory.create_note_list(self.favorites)
                
 
     def update_note(self, folders, put_request: PutNoteRequest):
@@ -144,7 +144,7 @@ class NoteManager:
         note = self.__find_note(folders, note_id)
         if note:
             note['color'] = color
-            note_object = NoteFactory.create_existing_note(note)
+            note_object = Note.from_json(note)
             note_object.set_content_text()
             return note_object
         return None
@@ -210,12 +210,12 @@ class NoteManager:
 
     def __delete_note_txt_file(self, note_data: Note):
         """This method will delete the htm file linked to the note object."""
-        note_object = NoteFactory.create_existing_note(note_data)
+        note_object = Note.from_json(note_data)
         note_object.delete_note_file(note_object.content)
 
     
     def __update_note(self, current_note: dict, updated_note: PutNoteRequest):
-        note = NoteFactory.create_existing_note(current_note)
+        note = Note.from_json(current_note)
         note.update_content(note_path=note.content, updated_html_content=updated_note.content)
         note.content = updated_note.content
         note.bookmark = updated_note.bookmark

@@ -93,10 +93,21 @@
 #         looping = False
 
 
-fruits = ['cranberry', 'peach', 'watermelon', 'strawberry', 'banana']
+class Person:
+    def __init__(self, id: str, firstName: str, lastName: str, year = '2004'):
+        self.id = id
+        self.firstName = firstName
+        self.lastName = lastName
+        self.year = year
 
-for fruit in fruits:
-    if fruit == 'strawberry':
-        print('favorite')
-        continue
-    print('Good')
+    @classmethod
+    def from_json(self, person_json):
+        return Person(person_json['id'], person_json['firstName'], person_json['lastName'], person_json['year'])
+    
+
+veron = Person('1', 'Veron', 'Goggans')
+json_person = {'id': '2', 'firstName': 'Ferrand', 'lastName': 'Herbonette', 'year': '2005'}
+
+ferrand = Person.from_json(json_person)
+
+print(veron.year, ferrand.year)

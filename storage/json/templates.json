@@ -2,21 +2,15 @@
     "templates": [
         {
             "id": "t-1",
-            "title": "Features list ",
+            "name": "Features list ",
             "content": "storage/templates/note-n-606.txt",
-            "bookmark": false,
-            "favorite": false,
-            "color": "white",
             "last_edit": "29/05/2024 12:26",
             "creation": "29/05/2024"
         },
         {
-            "id": "t-2",
-            "title": "Todo list",
+            "id": "t-3",
+            "name": "Todo list",
             "content": "storage/templates/note-n-607.txt",
-            "bookmark": false,
-            "favorite": false,
-            "color": "white",
             "last_edit": "29/05/2024 13:11",
             "creation": "29/05/2024"
         }

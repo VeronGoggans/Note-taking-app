@@ -2,7 +2,7 @@ import os
 
 class HTMLManager:  
     @staticmethod
-    def save(html_content: str, note_id: int):
+    def save(html_content: str, entity_id: int):
         """
         Save HTML content to a new Text file.
 
@@ -14,9 +14,20 @@ class HTMLManager:
             str: The file path where the HTML content is saved.
         """
         BASE_URL = os.getcwd()
-        notes_folder = 'storage/notes'
-        file_name = f'note-{note_id}.txt'
-        file_path = f'{notes_folder}/{file_name}'
+        entity_folder = None 
+        file_name = None 
+
+        if 'fcb' in entity_id:
+            entity_folder = 'storage/flashcard_bundles'
+            file_name = f'flashcard_bundle-{entity_id}.txt'
+        elif 'n' in entity_id:
+            entity_folder = 'storage/notes'
+            file_name = f'note-{entity_id}.txt'
+        elif 't' in entity_id:
+            entity_folder = 'storage/templates'
+            file_name = f'template-{entity_id}.txt'
+        
+        file_path = f'{entity_folder}/{file_name}'
 
         try:
             with open(f'{BASE_URL}/{file_path}', 'w', encoding='utf-8') as file:
