@@ -9,13 +9,13 @@ export class NoteController {
     }
 
     async getNotes(folderId) {
-        const response = await this.noteModel.getNotes('/notes', folderId);
+        const response = await this.noteModel.get('/notes', folderId);
         const notes = await response.Note;
         this.noteView.renderNoteCards(notes);
     }
 
     async getNoteById(noteId) {
-        const response = await this.noteModel.getNoteById('/noteById', noteId);
+        const response = await this.noteModel.getById('/noteById', noteId);
         const note = await response.Note;
         const folderId = await response.Folder_id;
         const folderName = await response.Folder_name;
@@ -23,7 +23,7 @@ export class NoteController {
     }
 
     async addNote(folderId, content, name) {
-        const RESPONSE = await this.noteModel.addNote('/note', folderId, content, name);
+        const RESPONSE = await this.noteModel.add('/note', folderId, content, name);
         let note = await RESPONSE.Note;
         const folderName = await RESPONSE.folder_name
         note.content = content;
@@ -34,7 +34,7 @@ export class NoteController {
     }
 
     async updateNote(noteId, name, content, bookmark, favorite, color) {
-        const RESPONSE = await this.noteModel.updateNote('/note', noteId, name, content, bookmark, favorite, color);
+        const RESPONSE = await this.noteModel.update('/note', noteId, name, content, bookmark, favorite, color);
         const NOTE = await RESPONSE.Note;
         this.noteView.renderNoteUpdate(NOTE);
         this.noteView.pushNotification('Updated');
@@ -42,7 +42,7 @@ export class NoteController {
     }
 
     async deleteNote(noteId) {
-        const RESPONSE = await this.noteModel.deleteNote('/note', noteId);
+        const RESPONSE = await this.noteModel.delete('/note', noteId);
         const NOTE = await RESPONSE.Note;
         this.noteView.removeNote(NOTE);
         this.noteView.pushNotification('Deleted', NOTE.title);
@@ -50,13 +50,13 @@ export class NoteController {
     }
 
     async moveNote(noteId, folderId) {
-        const RESPONSE = await this.noteModel.moveNote('/moveNote', noteId, folderId);
+        const RESPONSE = await this.noteModel.move('/moveNote', noteId, folderId);
         const NOTE = RESPONSE.Note;
         this.noteView.removeNote(NOTE, false);
     }
 
     async updateNoteColor(noteId, color) {
-        const RESPONSE = await this.noteModel.updateNoteColor('/noteColor', noteId, color);
+        const RESPONSE = await this.noteModel.updateColor('/noteColor', noteId, color);
         const NOTE = RESPONSE.Note;
         this.noteView.update(NOTE);
     }

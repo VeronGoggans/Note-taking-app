@@ -1,27 +1,28 @@
-import { RequestOptionsBuilder } from "../util/builders/requestOptionsBuilder.js"
+import { RequestOptionsBuilder } from "../util/builders/requestOptionsBuilder.js";
+import { fetchData } from "../util/request/request.js";
 
 export class NoteModel {
     
-    async getNotes(endpoint, folderId) {
+    async get(endpoint, folderId) {
         const options = RequestOptionsBuilder.buildGetOptions();
-        return this.#fetchData(`${endpoint}/${folderId}`, options);
+        return fetchData(`${endpoint}/${folderId}`, options);
     }
 
-    async getNoteById(endpoint, noteId) {
+    async getById(endpoint, noteId) {
         const options = RequestOptionsBuilder.buildGetOptions();
-        return this.#fetchData(`${endpoint}/${noteId}`, options);
+        return fetchData(`${endpoint}/${noteId}`, options);
     }
 
-    async addNote(endpoint, folderId, content, name) {
+    async add(endpoint, folderId, content, name) {
         const options = RequestOptionsBuilder.buildPostOptions({
             'folder_id': folderId,
             'title': name,
             'content': content
         })
-        return this.#fetchData(endpoint, options)
+        return fetchData(endpoint, options)
     }
 
-    async updateNote(endpoint, noteId, name, content, bookmark, favorite, color) {
+    async update(endpoint, noteId, name, content, bookmark, favorite, color) {
         const options = RequestOptionsBuilder.buildPutOptions({
             'note_id': noteId,
             'title': name,
@@ -30,42 +31,26 @@ export class NoteModel {
             'favorite': favorite,
             'color': color
         })
-        return this.#fetchData(endpoint, options)
+        return fetchData(endpoint, options)
     }
 
-    async deleteNote(endpoint, noteId) {
+    async delete(endpoint, noteId) {
         const options = RequestOptionsBuilder.buildDeleteOptions();
-        return this.#fetchData(`${endpoint}/${noteId}`, options);
-    }
-
-    async exportNote(endpoint, format, name, content) {
-        const options = RequestOptionsBuilder.buildPostOptions({'format': format, 'title': name, 'content': content});
-        return this.#fetchData(endpoint, options)
+        return fetchData(`${endpoint}/${noteId}`, options);
     }
 
     async getSearchOptions(endpoint) {
         const options = RequestOptionsBuilder.buildGetOptions();
-        return this.#fetchData(`${endpoint}`, options);
+        return fetchData(`${endpoint}`, options);
     }
 
-    async moveNote(endpoint, noteId, folderId) {
+    async move(endpoint, noteId, folderId) {
         const options = RequestOptionsBuilder.buildPutOptions({'folder_id': folderId, 'note_id': noteId})
-        return this.#fetchData(endpoint, options)
+        return fetchData(endpoint, options)
     }
 
-    async updateNoteColor(endpoint, noteId, color) {
+    async updateColor(endpoint, noteId, color) {
         const options = RequestOptionsBuilder.buildPutOptions({'note_id': noteId, 'color': color})
-        return this.#fetchData(endpoint, options)
-    }
-
-    async #fetchData(endpoint, options) {
-        try {
-            const response = await fetch(`${endpoint}`, options);
-            if (!response.ok) throw new Error(`HTTP error Status: ${response.status}`)
-            return await response.json();
-        } catch (error) {
-            console.error('Error fetching data: ', error.message);
-            throw error;
-        }
+        return fetchData(endpoint, options)
     }
 }

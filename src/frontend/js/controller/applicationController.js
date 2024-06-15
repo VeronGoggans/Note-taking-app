@@ -1,6 +1,7 @@
 import { ApplicationModel } from "../model/applicationModel.js";
 import { FolderController } from "./folderController.js";
 import { NoteController } from "./noteController.js";
+import { TemplateController } from "./templateController.js";
 import { ApplicationView } from "../view/applicationView.js";
 import { TextEditorController } from "./textEditorController.js"
 import { SettingController } from "./settingController.js";
@@ -16,6 +17,7 @@ export class ApplicationController {
         this.applicationModel = new ApplicationModel();
         this.folderController = new FolderController(this, this.dialog, this.notificationHandler);
         this.noteController = new NoteController(this, this.dialog, this.notificationHandler);
+        this.templateController = new TemplateController(this, this.dialog, this.notificationHandler);
         this.textEditorController = new TextEditorController(this, this.dialog);
         this.settingController = new SettingController();
     }
