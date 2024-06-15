@@ -168,6 +168,10 @@ export class ApplicationController {
         this.textEditorController.openNoteInTextEditor(content, name, creation, lastEdit, noteId, bookmark, favorite, color);
     }
 
+    getTemplates() {
+        this.templateController.getTemplates();
+    }
+
     /**
      * This method adds a note to the backend.
      * 

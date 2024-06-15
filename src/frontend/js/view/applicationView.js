@@ -86,9 +86,8 @@ export class ApplicationView {
      * This method removes all the creatable components from the UI
      */
     removeContent() {
-        while (this._content.firstChild) this._content.removeChild(this._content.firstChild);
-        while (this._listViewFolders.firstChild) this._listViewFolders.removeChild(this._listViewFolders.firstChild);
-        while (this._listViewNotes.firstChild) this._listViewNotes.removeChild(this._listViewNotes.firstChild);
+        while (this._content.firstChild) 
+            this._content.removeChild(this._content.firstChild);
     }
 
     /**
@@ -110,6 +109,12 @@ export class ApplicationView {
 
     favorites() {
         this.applicationController.navigateIntoFolder('f-2', 'Favorites')
+    }
+
+    templates() {
+        this.removeContent()
+        this.displayFolderName('Templates')
+        this.applicationController.getTemplates();
     }
 
     /**
@@ -213,6 +218,7 @@ export class ApplicationView {
         this.createNoteButton = document.querySelector('.create-note-btn');
         this.backButton = document.querySelector('.exit-folder-btn');
         this.homeButton = document.querySelector('.home-screen-btn');
+        this.templatesButton = document.querySelector('.templates-btn');
         this.favoritesButton = document.querySelector('.favorites-btn');
         this.settingsButton = document.querySelector('.settings-btn');
 
@@ -228,6 +234,7 @@ export class ApplicationView {
         this.homeButton.addEventListener('click', () => {this.home()});
         this.createNoteButton.addEventListener('click', () => {this.showTextEditor()});
         this.favoritesButton.addEventListener('click', () => {this.favorites()});
+        this.templatesButton.addEventListener('click', () => {this.templates()});
         this.createFolderButton.addEventListener('click', () => {this.dialog.renderNewFolderModal(this)});
         this.settingsButton.addEventListener('click', () => {this.updateTheme()});
         this.searchBarInput.addEventListener('input', () => {this.handleSearchBarInput()});

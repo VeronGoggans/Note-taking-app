@@ -1,8 +1,6 @@
 import { Note } from "../components/note.js";
 import { NoteDeleteModal } from "../components/modals/noteDeleteModal.js";
-import { ListNote, NoNoteMessage } from "../components/listNote.js";
 import { HTMLArray, NoteObjectArray } from "../util/array.js";
-import { NoContentFeedbackHandler } from "../handlers/userFeedback/noContentFeedbackHandler.js";
 import { dateFormat } from "../util/date.js";
 import { formatName, filterNotePreview } from "../util/formatters.js";
 import {AnimationHandler} from "../handlers/animation/animationHandler.js";
@@ -15,7 +13,6 @@ export class NoteView {
         this.applicationController = applicationController;
         this.notificationHandler = notificationHandler;
         this.dialog = dialog;
-        this.noContentFeedbackHandler = new NoContentFeedbackHandler(this);
         this.noteObjects = new NoteObjectArray();
         this.dragAndDrop = new DragAndDrop(this);
 
@@ -35,21 +32,16 @@ export class NoteView {
         this.noteObjects.clear();
         if (notes.length > 0) { 
             const contentFragment = document.createDocumentFragment();
-            const listFragment = document.createDocumentFragment();
 
             for (let i = 0; i < notes.length; i++) {
                 const NOTE_CARD = this.#note(notes[i]);
-                const LIST_NOTE_CARD = this.#listNote(notes[i]);
 
                 contentFragment.appendChild(NOTE_CARD);
-                listFragment.appendChild(LIST_NOTE_CARD);
                 AnimationHandler.fadeInFromBottom(NOTE_CARD);
-                AnimationHandler.fadeInFromBottom(LIST_NOTE_CARD);
             }
             this._content.appendChild(contentFragment);
-            this._list.appendChild(listFragment);
         } else {
-            this.noContentFeedbackHandler.noNotes(new NoNoteMessage());
+            this.pushNotification('empty');
         }
     }
 
@@ -63,11 +55,6 @@ export class NoteView {
      * @param {Dict} note 
      */
     renderNoteCard(note) {
-        // Checking if the list-view html element currently says "no notes"
-        if (this.noteObjects.size() === 0) {
-            this.noContentFeedbackHandler.removeNoNotesMessage();
-        }
-        const LIST_NOTE_CARD = this.#listNote(note);
         const NOTE_CARD = this.#note(note);
 
         this._content.appendChild(NOTE_CARD);
@@ -84,17 +71,12 @@ export class NoteView {
      */
     renderNoteUpdate(note) {
         const NOTE_CARDS = new HTMLArray(this._content.children, 'note'); 
-        const NOTE_LIST_CARDS = this._list.children;
 
         for (let i = 0; i < NOTE_CARDS.length; i++) {
             if (NOTE_CARDS[i].id === note.id) {
                 // updating the p element inside the note card.
                 const P_ELEMENT = NOTE_CARDS[i].querySelector('p');
                 P_ELEMENT.innerHTML = filterNotePreview(note.content);
-
-                // updating the span element inside the note list card
-                const SPAN = NOTE_LIST_CARDS[i].querySelector('span');
-                SPAN.textContent = formatName(note.title);
 
                 // updating the h4 element inside the note card.
                 const H4 = NOTE_CARDS[i].querySelector('h4');
@@ -115,19 +97,14 @@ export class NoteView {
      */
     removeNote(note, closeDialog = true) {
         const ALL_NOTES = new HTMLArray(this._content.children, 'note');
-        const ALL_LIST_NOTES = this._list.children;
 
         for (let i = 0; i < ALL_NOTES.length; i++) {
             if (ALL_NOTES[i].id === note.id) {
                 AnimationHandler.fadeOutCard(ALL_NOTES[i]);
                 setTimeout(() => {
                     this._content.removeChild(ALL_NOTES[i]);
-                    this._list.removeChild(ALL_LIST_NOTES[i]);
                 }, 700);
                 this.noteObjects.remove(note);
-                if (this.noteObjects.size() === 0) {
-                    this.noContentFeedbackHandler.noNotes(new NoNoteMessage());
-                }
             }
         }
         if (closeDialog) this.dialog.hide();
@@ -174,7 +151,12 @@ export class NoteView {
     * @param {String} noteName 
     */
     pushNotification(type, noteName = null) {
-        this.notificationHandler.push(type, noteName);
+        if (type === 'empty' && this._content.children.length === 0) {
+            this.notificationHandler.push(type, noteName);
+        } 
+        if (type !== 'empty') {
+            this.notificationHandler.push(type, noteName);
+        }
     }
 
     /**
@@ -200,19 +182,8 @@ export class NoteView {
         return new Note(note, this);
     }
 
-    /**
-     * This method creates a ListNote component and returns it
-     * 
-     * @param {Object} note
-     * @returns {ListNote} 
-     */
-    #listNote(note) {
-        return new ListNote(note, this, this.dragAndDrop);
-    }
-
     #initializeDomElements() {
         this._content = document.querySelector('.content-view');
-        this._list = document.querySelector('.list-content-notes');
     }
 
     /**

@@ -9,12 +9,12 @@
     --list-view-icon: #ced2ea;
     --sidebar: #f4f5f9; /*fafbff*/ 
     --searchbar: #ffffff;
-    --sidebar-text: #4c4c4c; /*4c4c4c*/
+    --sidebar-text: #444452; /*4c4c4c*/
     --sidebar-text-hover: #5c7dff; /*414141*/
     --sidebar-icon: #747aa0;
     --card: #ffffff; /*f4f5f7*/
     --text: #444863;
-    --icon: #747aa0; /*495080*/
+    --icon: #646485; /*495080*/
     --searchbar-icon: #ced2ea;
     --icon-hover: #444863;
     --important: #444863;
@@ -133,12 +133,12 @@
     --list-view-icon: #ced2ea;
     --searchbar: #ffffff;
     --sidebar: #f4f5f9;
-    --sidebar-text: #4c4c4c;
+    --sidebar-text: #444452;
     --sidebar-text-hover: #5c7dff;
     --sidebar-icon: #747aa0;
     --card: #ffffff;
     --text: #444863;
-    --icon: #747aa0;
+    --icon: #646485;
     --icon-hover: #444863;
     --important: #444863;
     --toolbar: #f1f5ff;

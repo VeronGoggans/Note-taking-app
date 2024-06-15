@@ -7,11 +7,7 @@ class SidebarView {
         this._icon = document.querySelector('.logo');
         this._icon.addEventListener('click', () => {this.toggleSidebar()});
         this._wrapper = document.querySelector('.wrapper');
-        this._buttonCount = 7;
-
-        this._createNoteButton = document.querySelector('.create-note-btn');
-        this._createNoteSpan = this._createNoteButton.querySelector('span');
-        this._plusIcon = this._createNoteButton.querySelector('i');
+        this._buttonCount = 6 ;
 
         this._templatesButton = document.querySelector('.templates-btn');
         this._templatesSpan = this._templatesButton.querySelector('span');
@@ -39,9 +35,9 @@ class SidebarView {
 
         this._collapsed = false;
         this._size = 'standard';
-        this._sidebarButtons = [this._homeButton, this._backButton, this._createNoteButton,this._flashCardButton, this._templatesButton, this._favoritesButton, this._themeButton]
-        this._sidebarSpans = [this._homeSpan, this._backSpan, this._createNoteSpan,this._flashCardSpan, this._templatesSpan, this._favoritesSpan, this._themeSpan]
-        this._sidebarIcons = [this._homeIcon, this._backIcon, this._plusIcon,this._flashCardIcon, this._templateIcon, this._favoritesIcon, this._themeIcon]
+        this._sidebarButtons = [this._homeButton, this._backButton,this._flashCardButton, this._templatesButton, this._favoritesButton, this._themeButton]
+        this._sidebarSpans = [this._homeSpan, this._backSpan,this._flashCardSpan, this._templatesSpan, this._favoritesSpan, this._themeSpan]
+        this._sidebarIcons = [this._homeIcon, this._backIcon,this._flashCardIcon, this._templateIcon, this._favoritesIcon, this._themeIcon]
         
     }
 
@@ -70,7 +66,7 @@ class SidebarView {
      */
     openButtons() {
         let currentTheme = document.body.classList.toString().charAt(0).toUpperCase() + document.body.classList.toString().slice(1);
-        const buttonText = ['Home', 'Back', 'Document', 'Flash cards', 'Templates', 'Favorites', currentTheme]
+        const buttonText = ['Home', 'Back', 'Flash cards', 'Templates', 'Favorites', currentTheme]
         for (let i = 0; i < this._buttonCount; i++) {
             this._sidebarSpans[i].style.position = 'relative';
             this._sidebarSpans[i].textContent = buttonText[i];

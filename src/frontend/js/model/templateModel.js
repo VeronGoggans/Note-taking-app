@@ -7,6 +7,4 @@ export class TemplateModel {
         const options = RequestOptionsBuilder.buildGetOptions();
         return fetchData(endpoint, options);
     }
-
-    
 }

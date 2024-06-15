@@ -39,7 +39,7 @@
         {
             "id": "f-99",
             "name": "School \ud83d\udcd6\u270f\ufe0f",
-            "color": "rgb(169, 215, 255)",
+            "color": "rgb(255, 255, 255)",
             "notes": [],
             "subfolders": [
                 {
@@ -221,7 +221,7 @@
         {
             "id": "f-104",
             "name": "Frontend",
-            "color": "rgb(225, 175, 209)",
+            "color": "rgb(255, 255, 255)",
             "notes": [
                 {
                     "id": "n-539",

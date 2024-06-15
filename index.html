@@ -48,7 +48,7 @@
               <div class="sidebar-content-upper">
                 <button class="home-screen-btn"><i class="fa-solid fa-house"></i><span>Home</span></button>
                 <button class="exit-folder-btn"><i class="fa-solid fa-arrow-left"></i><span>Back</span></button>
-                <button class="create-note-btn"><i class="fa-solid fa-plus"></i><span>Document</span></button>
+                <!-- <button class="create-note-btn"><i class="fa-solid fa-plus"></i><span>Document</span></button> -->
                 <!-- <button class="calendar-btn"><i class="fa-solid fa-calendar-days"></i><span>Calendar</span></button> -->
                 <button class="flash-cards-btn"><i class="fa-solid fa-repeat"></i><span>Flash cards</span></button>
                 <button class="templates-btn"><i class="fa-solid fa-layer-group"></i><span>Templates</span></button>
@@ -71,16 +71,13 @@
 
             </div>
             <div class="main-bottom">
-                <div class="content-list-view">
-                    <span class="content-list-view-title"><i class="fa-solid fa-folder"></i>Folders</span>
-                    <div class="list-content-folders"></div>
-                    <span class="content-list-view-title"><i class="fa-solid fa-pencil"></i>Notes</span>
-                    <div class="list-content-notes"></div>
-                </div>
                 <div class="content-folder-view">
                   <div class="current-folder-name-container">
                     <h2 class="current-folder-name">Home</h2>
-                    <button class="create-folder-btn"><i class="fa-solid fa-plus"></i> Add subfolder</button>
+                    <div>
+                      <button class="create-folder-btn">Add subfolder</button>
+                      <button class="create-note-btn">Add document</button>
+                    </div>
                   </div>
                   <div class="content-view"></div>
                 </div>

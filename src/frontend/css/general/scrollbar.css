@@ -1,7 +1,7 @@
 .content-list-view::-webkit-scrollbar,
 .note-suggestions-list::-webkit-scrollbar,
 .linkable-notes-list::-webkit-scrollbar,
-.content-folder-view::-webkit-scrollbar,
+.content-view::-webkit-scrollbar,
 .font-options::-webkit-scrollbar,
 .linkable-notes-list::-webkit-scrollbar {
     background-color: transparent;
@@ -16,12 +16,7 @@
     border-radius: 10px;
 }
 
-.content-list-view::-webkit-scrollbar-thumb {
-    background-color: var(--scrollbar-list-view);
-    border-radius: 10px;
-}
-
-.content-folder-view::-webkit-scrollbar-thumb {
+.content-view::-webkit-scrollbar-thumb {
     background-color: var(--scrollbar-content-view);
     border-radius: 10px;
 }
