@@ -1,5 +1,5 @@
 import { Folder } from '../components/folder.js';
-import { FolderObjectArray, HTMLArray } from '../util/array.js';
+import { FolderObjectArray } from '../util/array.js';
 import { NoteDeleteModal } from '../components/modals/noteDeleteModal.js';
 import { AnimationHandler } from '../handlers/animation/animationHandler.js';
 import { DragAndDrop } from '../handlers/drag&drop/dragAndDropHandler.js';
@@ -18,49 +18,29 @@ export class FolderView {
         this.#initializeDomElements();
     }
 
-    /** 
-     * This method renders a array of folders and adds them to the UI.
-     * If the array is empty this method does nothing.
-     * 
-     * @param {Array} folders 
-     */
+
     renderFolders(folders) {
         this.folderObjects.clear();
-        if (folders.length > 0) {
-            for (let i = 0; i < folders.length; i++) {
-                const FOLDER_CARD = this.#folder(folders[i]);
-    
-                this._content.appendChild(FOLDER_CARD);
-                AnimationHandler.fadeInFromBottom(FOLDER_CARD);
-            }
-        } else {
-            console.log('no folders');
+        for (let i = 0; i < folders.length; i++) {
+            const FOLDER_CARD = this.#folder(folders[i]);
+
+            this._content.appendChild(FOLDER_CARD);
+            AnimationHandler.fadeInFromBottom(FOLDER_CARD);
         }
     }
+    
 
-    /**
-     * This method adds a single folder to the UI.
-     * 
-     * @param {Object} folder
-     */
     renderFolder(folder) {
-        const FOLDER_CARD = this.#folder(folder);
+        const folderCard = this.#folder(folder);
 
-        this._content.insertBefore(FOLDER_CARD, this._content.firstChild);
-        AnimationHandler.fadeInFromBottom(FOLDER_CARD);
+        this._content.insertBefore(folderCard, this._content.firstChild);
+        AnimationHandler.fadeInFromBottom(folderCard);
         this.dialog.hide();
     }
 
-    /**
-     * This method updates the folder card inside the list div.
-     * 
-     * This method is called when a 
-     * folder's name has been changed
-     * 
-     * @param {Object} folder
-     */
+
     renderFolderUpdate(folder) {
-        const folderCards = new HTMLArray(this._content.children, 'folder'); 
+        const folderCards = this._content.children; 
 
         for (let i = 0; i < folderCards.length; i++) {
             if (folderCards[i].id === folder.id) {
@@ -73,21 +53,15 @@ export class FolderView {
         }
     }
 
-    /**
-     * Removes a specific folder from the UI.
-     * The folder is removed from both the content view and the list view,
-     * After the animation for removing a folder is done
-     *
-     * @param {Object} folder 
-     */
+    
     removeFolder(folder) {
-        const ALL_FOLDERS = this._content.children;
+        const cards = this._content.children;
         
-        for (let i = 0; i < ALL_FOLDERS.length; i++) {
-            if (ALL_FOLDERS[i].id === folder.id) {
-                AnimationHandler.fadeOutCard(ALL_FOLDERS[i]);
+        for (let i = 0; i < cards.length; i++) {
+            if (cards[i].id === folder.id) {
+                AnimationHandler.fadeOutCard(cards[i]);
                 setTimeout(() => {
-                    this._content.removeChild(ALL_FOLDERS[i]);
+                    this._content.removeChild(cards[i]);
                 }, 700);
                 this.folderObjects.remove(folder);
             }
@@ -109,12 +83,7 @@ export class FolderView {
         this.notificationHandler.push(type, noteName);
     }
 
-    /**
-     * This method renders a confirmation container telling the user if they want to delete the folder.
-     * 
-     * @param {String} id 
-     * @param {String} name
-     */
+
     renderDeleteContainer(id, name) {
         this.dialog.addChild(new NoteDeleteModal(id, name, this));
         this.dialog.show();

@@ -22,7 +22,7 @@ export class Note {
     }
 
     #initializeElements() {
-        this.HOST = CNode.create('div', { 'class': 'note', 'id': this.id});
+        this.HOST = CNode.create('div', { 'class': 'note', 'id': this.id, 'draggable': 'true'});
         this.HOST.dataset.info = `${this.created}--${this.lastEdit}`;
         this.NAME_BOX = CNode.create('div', { 'class': 'note-name-box' });
         this.H4 = CNode.create('h4', { 'contentEditable': 'false', 'textContent': formatName(this.name), 'spellCheck': false });

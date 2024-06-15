@@ -168,6 +168,10 @@ export class ApplicationController {
         this.textEditorController.openNoteInTextEditor(content, name, creation, lastEdit, noteId, bookmark, favorite, color);
     }
 
+    openTemplateInTextEditor(content, name, creationDate, lastEditDate, templateId) {
+        this.textEditorController.openTemplateInTextEditor(content, name, creationDate, lastEditDate, templateId)
+    }
+
     getTemplates() {
         this.templateController.getTemplates();
     }

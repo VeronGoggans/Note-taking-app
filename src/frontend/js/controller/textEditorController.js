@@ -22,6 +22,11 @@ export class TextEditorController {
         this.textEditorView.open(content, name, color);
     }
 
+    openTemplateInTextEditor(content, name, creationDate, lastEditDate, templateId) {
+        this.storeNoteData(templateId, creationDate, lastEditDate, null, null, name, null)
+        this.textEditorView.open(content, name)
+    }
+
     /**
      * This method returns a list of note data 
      * And clears the stored data from the model.

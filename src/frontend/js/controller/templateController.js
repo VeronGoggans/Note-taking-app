@@ -6,7 +6,7 @@ export class TemplateController {
     constructor(applicationController, dialog, notificationHandler) {
         this.applicationController = applicationController;
         this.templateModel = new TemplateModel();
-        this.templateView = new TemplateView()
+        this.templateView = new TemplateView(this, applicationController, dialog, notificationHandler)
     }
 
     async getTemplates() {

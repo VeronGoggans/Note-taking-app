@@ -11,12 +11,6 @@ export class TextEditorModel {
 
     /**
      * Stores note data of the note that has been clicked on.
-     * @param {String} noteId
-     * @param {Date} creation
-     * @param {Date} lastEdit
-     * @param {boolean} bookmark
-     * @param {String} name
-     * @param {String} color
      */
     storeNoteData(noteId, creation, lastEdit, bookmark, favorite, name, color) {
         this._noteId = noteId

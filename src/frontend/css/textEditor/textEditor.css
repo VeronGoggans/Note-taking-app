@@ -253,6 +253,7 @@
  .editor img {
     margin: 10px 0;
     max-width: 600px;
+    border-radius: 10px;
  }
 
  .editor h2 {

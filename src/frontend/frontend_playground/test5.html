@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/general/themes.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+          @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+          body {
+            padding: 0;
+            margin: 0;
+            overflow-y: hidden;
+            height: 100dvh;
+          }
+
+          .editor-wrapper {
+            height: 100dvh;
+            display: grid;
+            grid-template-rows: 70px 60px 1fr;
+          }
+
+          .note-name-container {
+            display: flex;
+            padding: 0 50px;
+          }
+
+          .note-name-container input {
+            width: 100%;
+            outline: none;
+            border: none;
+            font-size: 35px;
+            padding-left: 20px;
+          }
+
+          .editor-util-bar {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            align-items: center;
+          }
+
+          .editor-util-bar i {
+            cursor: pointer;
+          }
+
+          .editor {
+            outline: none;
+          }
+
+          .button-container {
+            display: flex;
+            align-items: center;
+            column-gap: 15px;
+          }
+
+          .save-document-btn {
+            cursor: pointer;
+            border: none;
+            color: white;
+            padding: 6px 25px;
+            border-radius: 20px;
+            font-size: 15px;
+            background-color: rgb(101, 101, 255);
+          }
+
+          #exit-editor-btn, 
+          #editor-options-btn {
+            cursor: pointer;
+            border: none;
+            width: 40px;
+            height: 40px;
+            background-color: var(--toolbar);
+            color: var(--important);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 15px;
+            transition: 200ms;
+          }
+
+
+    </style>
+</head>
+<body>
+    <div class="editor-wrapper">
+        <div class="editor-util-bar">
+            <i id="exit-editor-btn" class="fa-solid fa-arrow-left"></i>
+            <div class="button-container">
+                <button class="save-document-btn">Save</button>
+                <i id="editor-options-btn" class="fa-solid fa-ellipsis"></i>
+            </div>
+        </div>
+        <div class="note-name-container">
+            <input type="text" placeholder="Untitled">
+        </div>
+        <div class="editor" contenteditable="true">
+            
+        </div>
+    </div>
+
+    
+</body>
+</html>

@@ -1,9 +1,20 @@
 import { Template } from "../components/template.js"; 
-import {AnimationHandler} from "../handlers/animation/animationHandler.js";
+import { AnimationHandler } from "../handlers/animation/animationHandler.js";
+import { TemplateObjectArray } from "../util/array.js";
+import { dateFormat } from "../util/date.js";
+import { formatName, filterNotePreview } from "../util/formatters.js";
+
+
+
 
 
 export class TemplateView {
-    constructor() {
+    constructor(templateController, applicationController, dialog, notificationHandler) {
+        this.templateController = templateController;
+        this.applicationController = applicationController;
+        this.notificationHandler = notificationHandler;
+        this.dialog = dialog;
+        this.templateObjects = new TemplateObjectArray();
         this.#initializeDomElements();
     }
 
@@ -21,7 +32,17 @@ export class TemplateView {
     }
 
 
+    handleNoteCardClick(templateId, creationDate) {
+        const template = this.templateObjects.get(templateId);
+        const lastEditDate = dateFormat(template.last_edit);
+        const name = template.name;
+        const content = template.content;
+        this.applicationController.openTemplateInTextEditor(content, name, creationDate, lastEditDate, templateId);
+    }
+
+
     #template(template) {
+        this.templateObjects.add(template);
         return new Template(template, this)
     }
 

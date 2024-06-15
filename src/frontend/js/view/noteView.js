@@ -1,6 +1,6 @@
 import { Note } from "../components/note.js";
 import { NoteDeleteModal } from "../components/modals/noteDeleteModal.js";
-import { HTMLArray, NoteObjectArray } from "../util/array.js";
+import { NoteObjectArray } from "../util/array.js";
 import { dateFormat } from "../util/date.js";
 import { formatName, filterNotePreview } from "../util/formatters.js";
 import {AnimationHandler} from "../handlers/animation/animationHandler.js";
@@ -19,15 +19,7 @@ export class NoteView {
         this.#initializeDomElements();
     }
 
-    /** 
-     * This method renders an array of note objects to the UI
-     * and adds a note object to the noteObjects array for each note.
-     * 
-     * This method is called by the noteController 
-     * when a user clicks on a folder card. 
-     * 
-     * @param {Array} notes 
-     */
+    
     renderNoteCards(notes) {
         this.noteObjects.clear();
         if (notes.length > 0) { 
@@ -45,44 +37,28 @@ export class NoteView {
         }
     }
 
-    /**
-     * This method renders a single note card to the UI
-     * and adds a note object to the noteObjects array.
-     * 
-     * This method is called by the noteController 
-     * when a note has been made.
-     * 
-     * @param {Dict} note 
-     */
+    
     renderNoteCard(note) {
-        const NOTE_CARD = this.#note(note);
-
-        this._content.appendChild(NOTE_CARD);
-        this._list.appendChild(LIST_NOTE_CARD);
-        AnimationHandler.fadeInFromBottom(NOTE_CARD);
-        AnimationHandler.fadeInFromSide(LIST_NOTE_CARD);
+        const noteCard = this.#note(note);
+        this._content.appendChild(noteCard);
+        AnimationHandler.fadeInFromBottom(noteCard);
     }
 
-    /** 
-     * This method updates a note card and the linked note object
-     * in the noteObjects array.
-     * 
-     * @param {dict} note
-     */
-    renderNoteUpdate(note) {
-        const NOTE_CARDS = new HTMLArray(this._content.children, 'note'); 
 
-        for (let i = 0; i < NOTE_CARDS.length; i++) {
-            if (NOTE_CARDS[i].id === note.id) {
+    renderNoteUpdate(note) {
+        const cards = this._content.children 
+
+        for (let i = 0; i < cards.length; i++) {
+            if (cards[i].id === note.id) {
                 // updating the p element inside the note card.
-                const P_ELEMENT = NOTE_CARDS[i].querySelector('p');
+                const P_ELEMENT = cards[i].querySelector('p');
                 P_ELEMENT.innerHTML = filterNotePreview(note.content);
 
                 // updating the h4 element inside the note card.
-                const H4 = NOTE_CARDS[i].querySelector('h4');
+                const H4 = cards[i].querySelector('h4');
                 H4.textContent = formatName(note.title);
 
-                NOTE_CARDS[i].setAttribute("data-info", `${dateFormat(note.creation)}--${dateFormat(note.last_edit)}`);
+                cards[i].setAttribute("data-info", `${dateFormat(note.creation)}--${dateFormat(note.last_edit)}`);
 
                 // updating the note object 
                 this.noteObjects.update(note);
@@ -90,19 +66,15 @@ export class NoteView {
         }
     }
 
-    /**
-     * Removes a specific note from the UI.
-     * 
-     * @param {String} id
-     */
+    
     removeNote(note, closeDialog = true) {
-        const ALL_NOTES = new HTMLArray(this._content.children, 'note');
+        const cards = this._content.children;
 
-        for (let i = 0; i < ALL_NOTES.length; i++) {
-            if (ALL_NOTES[i].id === note.id) {
-                AnimationHandler.fadeOutCard(ALL_NOTES[i]);
+        for (let i = 0; i < cards.length; i++) {
+            if (cards[i].id === note.id) {
+                AnimationHandler.fadeOutCard(cards[i]);
                 setTimeout(() => {
-                    this._content.removeChild(ALL_NOTES[i]);
+                    this._content.removeChild(cards[i]);
                 }, 700);
                 this.noteObjects.remove(note);
             }
