@@ -8,7 +8,7 @@ class HTMLManager:
 
         Args:
             html_content (str): The HTML content to save.
-            note_id (int): The unique identifier of the note.
+            entity_id (str): The unique identifier of the entity.
 
         Returns:
             str: The file path where the HTML content is saved.
@@ -18,12 +18,13 @@ class HTMLManager:
         file_name = None 
 
         if 'fcb' in entity_id:
-            entity_folder = 'storage/flashcard_bundles'
-            file_name = f'flashcard_bundle-{entity_id}.txt'
+            entity_folder = 'storage/flashcards'
+            file_name = f'flashcard-set-{entity_id}.txt'
         elif 'n' in entity_id:
             entity_folder = 'storage/notes'
             file_name = f'note-{entity_id}.txt'
         elif 't' in entity_id:
+            print('chose template path')
             entity_folder = 'storage/templates'
             file_name = f'template-{entity_id}.txt'
         
@@ -34,6 +35,7 @@ class HTMLManager:
                 content_bytes = html_content.encode("utf-8")
                 content_str = content_bytes.decode("utf-8")
                 file.write(content_str)
+                print('Content has been writtin')
                 return file_path
         except Exception as e:
             print(f"UnicodeEncodeError occurred: {e}")

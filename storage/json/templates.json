@@ -1,11 +1,16 @@
-{
-    "templates": [
-        {
-            "id": "t-3",
-            "name": "Todo list",
-            "content": "storage/templates/template-t-3.txt",
-            "last_edit": "29/05/2024 13:11",
-            "creation": "29/05/2024"
-        }
-    ]
-}
+[
+    {
+        "id": "t-3",
+        "name": "Todo list",
+        "content": "storage/templates/template-t-3.txt",
+        "last_edit": "29/05/2024 13:11",
+        "creation": "29/05/2024"
+    },
+    {
+        "id": "t-10",
+        "name": "Postman template",
+        "content": "storage/templates/template-t-10.txt",
+        "last_edit": "19/06/2024 17:20",
+        "creation": "18/06/2024"
+    }
+]

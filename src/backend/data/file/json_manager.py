@@ -48,7 +48,7 @@ class JsonManager:
                 json.dump(backup, file, indent=4)
 
 
-    def generateID(self, file_path, entity_name):
+    def generateID(self, file_path, entity_name) -> str:
         """
         Generate a unique identifier for a specified entity type.
         Entity types [note, folder, subfolder]. 

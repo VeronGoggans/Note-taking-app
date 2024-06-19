@@ -14,6 +14,16 @@
                     "color": "white",
                     "last_edit": "11/06/2024 13:55",
                     "creation": "15/05/2024"
+                },
+                {
+                    "id": "n-652",
+                    "title": "Editor CSS",
+                    "content": "storage/notes/note-n-652.txt",
+                    "bookmark": false,
+                    "favorite": false,
+                    "color": "white",
+                    "last_edit": "18/06/2024 15:48",
+                    "creation": "17/06/2024"
                 }
             ],
             "subfolders": []
@@ -39,7 +49,7 @@
         {
             "id": "f-99",
             "name": "School \ud83d\udcd6\u270f\ufe0f",
-            "color": "rgb(255, 255, 255)",
+            "color": "rgb(158, 213, 197)",
             "notes": [],
             "subfolders": [
                 {
@@ -49,12 +59,12 @@
                     "notes": [
                         {
                             "id": "n-589",
-                            "title": "Compliance checking",
+                            "title": "Compliance Checking",
                             "content": "storage/notes/note-n-589.txt",
                             "bookmark": false,
                             "favorite": false,
                             "color": "white",
-                            "last_edit": "04/06/2024 10:34",
+                            "last_edit": "18/06/2024 16:00",
                             "creation": "14/05/2024"
                         },
                         {
@@ -114,7 +124,7 @@
                             "bookmark": false,
                             "favorite": false,
                             "color": "white",
-                            "last_edit": "07/06/2024 16:33",
+                            "last_edit": "18/06/2024 15:13",
                             "creation": "03/06/2024"
                         },
                         {
@@ -188,9 +198,9 @@
                             "title": "Authentication & Authorization",
                             "content": "storage/notes/note-n-612.txt",
                             "bookmark": false,
-                            "favorite": false,
+                            "favorite": true,
                             "color": "white",
-                            "last_edit": "03/06/2024 12:32",
+                            "last_edit": "19/06/2024 15:20",
                             "creation": "30/05/2024"
                         },
                         {

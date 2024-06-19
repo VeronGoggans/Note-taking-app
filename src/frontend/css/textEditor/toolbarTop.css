@@ -108,19 +108,15 @@
     right: 55px;
     cursor: pointer;
     border: none;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
     margin: 7px 15px 7px 0px;
     width: 90px;
     height: 35px;
     background-color: #5c7dff; 
     color: #ffffff;
-    font-weight: 600;
     font-size: 16px;
-    font-family: Roboto;
+    font-family: sans-serif;
     border-radius: 35px;
-    transition: .2s;
+    transition: 200ms;
 }
 
 .save-note-btn:hover {

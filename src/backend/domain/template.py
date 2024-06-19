@@ -19,6 +19,25 @@ class Template:
         """
         self.content = HTMLManager.get(self.content)
 
+
+    def set_content_path(self):
+        """
+        This method takes the html content and id from the template and gives it to 
+        the HTMLManager class that will create a txt file and return it's path.
+        The path returned from the HTMLManager class will be set as the template content.
+        """
+        self.content = HTMLManager.save(self.content, self.id)
+
+
+    def update_content(self, template_path: str, updated_html_content: str):
+        """This method will update the content of a template's html file."""
+        HTMLManager.update(template_path, updated_html_content)
+
+
+    def delete_template_file(self, template_path: str):
+        """This method uses the template path do delete the file."""
+        HTMLManager.delete(template_path)
+
     @classmethod
     def from_json(self, json_template):
         return Template(

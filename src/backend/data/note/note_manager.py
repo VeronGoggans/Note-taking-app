@@ -111,7 +111,6 @@ class NoteManager:
 
         Args:
             folders (List[dict]): The list of folders to search within.
-            note_id (str): The unique identifier of the note to be updated.
             put_request (PutNoteRequest): The data to update the note.
 
         Returns:
@@ -122,7 +121,7 @@ class NoteManager:
         note_id = put_request.note_id
         current_note = self.__find_note(folders, note_id)
         if current_note:
-            updated_note = self.__update_note(current_note, put_request)
+            updated_note = self.__update_entity(current_note, put_request)
             return updated_note
         return None
     
@@ -214,7 +213,7 @@ class NoteManager:
         note_object.delete_note_file(note_object.content)
 
     
-    def __update_note(self, current_note: dict, updated_note: PutNoteRequest):
+    def __update_entity(self, current_note: dict, updated_note: PutNoteRequest):
         note = Note.from_json(current_note)
         note.update_content(note_path=note.content, updated_html_content=updated_note.content)
         note.content = updated_note.content

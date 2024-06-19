@@ -1,40 +1,40 @@
-# import json
-# import time
+import json
+import time
 
-# # Example JSON data
-# data = {
-#     "folders": [
-#         {
-#             "id": f"f-{i}",
-#             "name": f"Folder {i}",
-#             "color": "#ffffff",
-#             "notes": [
-#                 {
-#                     "id": f"n-{j}",
-#                     "title": f"Note {j}",
-#                     "content": f"storage/notes/note-n-{j}.txt",
-#                     "bookmark": False,
-#                     "last_edit": "08/05/2024 10:30",
-#                     "creation": "09/01/2024",
-#                     "color": "white"
-#                 } for j in range(10)  # 10 notes per folder
-#             ],
-#             "subfolders": []
-#         } for i in range(100)  # 1000 folders
-#     ]
-# }
+# Example JSON data
+data = {
+    "folders": [
+        {
+            "id": f"f-{i}",
+            "name": f"Folder {i}",
+            "color": "#ffffff",
+            "notes": [
+                {
+                    "id": f"n-{j}",
+                    "title": f"Note {j}",
+                    "content": f"storage/notes/note-n-{j}.txt",
+                    "bookmark": False,
+                    "last_edit": "08/05/2024 10:30",
+                    "creation": "09/01/2024",
+                    "color": "white"
+                } for j in range(10)  # 10 notes per folder
+            ],
+            "subfolders": []
+        } for i in range(50)  # 1000 folders
+    ]
+}
 
-# # Serialization benchmark
-# start_time = time.time()
-# json_string = json.dumps(data)
-# end_time = time.time()
-# print(f"Serialization took {end_time - start_time:.5f} seconds")
+# Serialization benchmark
+start_time = time.time()
+json_string = json.dumps(data)
+end_time = time.time()
+print(f"Serialization took {end_time - start_time:.10f} seconds")
 
-# # Deserialization benchmark
-# start_time = time.time()
-# loaded_data = json.loads(json_string)
-# end_time = time.time()
-# print(f"Deserialization took {end_time - start_time:.5f} seconds")
+# Deserialization benchmark
+start_time = time.time()
+loaded_data = json.loads(json_string)
+end_time = time.time()
+print(f"Deserialization took {end_time - start_time:.10f} seconds")
 # import string
 # import os
 # import secrets
@@ -91,23 +91,3 @@
 #             print(colorize_string('To weak, insert a number higher then 8.', 167))
 #     else:
 #         looping = False
-
-
-class Person:
-    def __init__(self, id: str, firstName: str, lastName: str, year = '2004'):
-        self.id = id
-        self.firstName = firstName
-        self.lastName = lastName
-        self.year = year
-
-    @classmethod
-    def from_json(self, person_json):
-        return Person(person_json['id'], person_json['firstName'], person_json['lastName'], person_json['year'])
-    
-
-veron = Person('1', 'Veron', 'Goggans')
-json_person = {'id': '2', 'firstName': 'Ferrand', 'lastName': 'Herbonette', 'year': '2005'}
-
-ferrand = Person.from_json(json_person)
-
-print(veron.year, ferrand.year)
