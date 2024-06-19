@@ -94,24 +94,6 @@
     transition: 200ms;
 }
 
-.list-view-folder {
-    cursor: pointer;
-    margin-left: 10px;
-    margin-bottom: 10px;
-    padding: 10px 5px;
-    display: inline-block;
-    width: calc(100% - 30px);
-    background-color: transparent;
-    color: var(--text);
-    font-weight: 600;
-    border-radius: 15px;
-    transition: 200ms;
-}
-.list-view-folder:hover {
-    background-color: rgba(92, 125, 255, .3);
-}
-
-
 .color-light-sky-blue {
     background-color: rgb(169, 215, 255); 
     border-color: rgb(169, 215, 255);

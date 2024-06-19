@@ -65,7 +65,6 @@
 }
 
 .cancel-folder-customization-btn {
-    cursor: pointer;
     border-radius: 5px;
     width: 80px;
     transition: 200ms;
@@ -77,7 +76,6 @@
 }
 
 .save-folder-customisations-btn {
-    cursor: pointer;
     border-radius: 5px;
     border: none;
     background-color: #5c7dff;

@@ -131,7 +131,6 @@
    position: absolute;
    top: -10px;
    left: -10px;
-   cursor: pointer;
    background-color: #5c7dff;
    color: rgb(255, 255, 255);
    border: none;
@@ -182,7 +181,6 @@
 .save-link-btn {
    background-color: #5c7dff;
    border: none;
-   cursor: pointer;
    color: white;
    border-radius: 7px;
    height: 30px;

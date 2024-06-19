@@ -6,6 +6,10 @@ body {
     overflow: hidden;
 }
 
+button {
+    cursor: pointer;
+}
+
 ::selection {
     background-color: var(--selection);
 }
@@ -29,13 +33,10 @@ body {
 .main-top {
     display: flex;
     justify-content: right;
-    border-bottom: 1px solid var(--border-main-top);
     gap: 10px;
-    background-color: var(--background);
 }
 
 .create-folder-btn {
-    cursor: pointer;
     border: none;
     padding: 7px 20px;
     border-radius: 20px;  
@@ -46,7 +47,6 @@ body {
 
 .create-note-btn {
     border: none;
-    cursor: pointer;
     background-color: rgb(232, 234, 241);
     padding: 7px 20px;
     border-radius: 20px; 

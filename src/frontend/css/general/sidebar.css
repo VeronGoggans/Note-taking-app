@@ -8,8 +8,6 @@
 }
 
 .sidebar-logo {
-    position: relative;
-    display: block;
     padding: 5px 10px;
 }
 
@@ -38,35 +36,13 @@
     font-weight: 600;
 }
 
-.collapse-sidebar-btn {
-    cursor: pointer;
-    position: absolute;
-    top: 15px;
-    right: -10px;
-    border: none;
-    background-color:#5c7dff;
-    color: #ffff;
-    border-radius: 50%;
-    display: flex;
-    width: 20px;
-    height: 20px;
-    justify-content: center;
-    align-items: center;
-}
-
 .sidebar-content {
     display: grid;
     grid-template-rows: 1fr 50px;
     padding: 10px;
 }
 
-.sidebar-content-upper,
-.sidebar-content-lower {
-    display: block;
-}
-
 .sidebar-content button {
-    cursor: pointer;
     position: relative;
     border: none;
     display: flex;

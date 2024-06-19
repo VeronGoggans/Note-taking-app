@@ -3,7 +3,6 @@
 }
 
 .toolbar-bottom .btn-container button {
-    cursor: pointer;
     background-color: transparent;
     border: none;
     color: var(--toolbar-btn-text);
@@ -34,8 +33,6 @@
 .heading-dropdown .heading-button,
 .font-dropdown .font-button {
     font-family: Roboto;
-    cursor: pointer;
-    outline: none;
     border: none;
     color: var(--toolbar-btn-text);
     width: 80px;
@@ -98,7 +95,6 @@
 .font-dropdown .font-options button {
     border: none;
     background-color: transparent;
-    cursor: pointer;
     margin: 5px 0;
     padding: 5px 7px;
     border-radius: 15px;
