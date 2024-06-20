@@ -1,25 +1,15 @@
 export class TextEditorModel {
     constructor() {
-        this._noteId = null;
-        this._creation = null;
-        this._lastEdit = null;
-        this._bookmark = null;
-        this._favorite = null;
-        this._name = null;
-        this._color = null;
+        this.noteObject = null
+        this.templateObject = null
     }
 
-    /**
-     * Stores note data of the note that has been clicked on.
-     */
-    storeNoteData(noteId, creation, lastEdit, bookmark, favorite, name, color) {
-        this._noteId = noteId
-        this._creation = creation;
-        this._lastEdit = lastEdit;
-        this._bookmark = bookmark;
-        this._favorite = favorite;
-        this._name = name;
-        this._color = color;
+    storeNoteData(note) {
+        this.noteObject = note;
+    }
+
+    storeTemplateData(template) {
+        this.templateObject = template;
     }
 
     storeNoteColor(color) {
@@ -41,24 +31,16 @@ export class TextEditorModel {
         ]
     }
 
-    /**     
-     * Returns the stored note id.
-     * @returns {String} The stored note id.
-     */
     getStoredNoteId() {
-        return this._noteId;
+        return this.noteObject.id;
     }
 
-    /**
-     * This method removes the stored note data.
-     */
+    getStoredTemplateId() {
+        return this.templateObject.id
+    }
+
     clear() {
-        this._noteId = null;
-        this._creation = null;
-        this._lastEdit = null;
-        this._bookmark = null;
-        this._favorite = null;
-        this._name = null;
-        this._color = null;
+        this.noteObject = null;
+        this.templateObject = null;
     }
 }

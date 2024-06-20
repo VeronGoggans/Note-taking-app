@@ -17,14 +17,14 @@ export class TextEditorController {
      * 
      * This method is called when a note card has been clicked.
      */
-    openNoteInTextEditor(content, name, creation, lastEdit, noteId, bookmark, favorite, color) {
-        this.textEditorModel.storeNoteData(noteId, creation, lastEdit, bookmark, favorite, name, color);
-        this.textEditorView.open(content, name, color);
+    openNoteInTextEditor(note) {
+        this.textEditorModel.storeNoteData(note);
+        this.textEditorView.open(note);
     }
 
-    openTemplateInTextEditor(content, name, creationDate, lastEditDate, templateId) {
-        this.storeNoteData(templateId, creationDate, lastEditDate, null, null, name, null)
-        this.textEditorView.open(content, name)
+    openTemplateInTextEditor(template) {
+        this.storeNoteData(template)
+        this.textEditorView.open(template)
     }
 
     /**

@@ -34,7 +34,7 @@ export class NoteObjectArray extends ObjectArray {
     update(note) {
         for (let i = 0; i < this.objects.length; i++) {
             if (this.objects[i].id === note.id) {
-                this.objects[i].title = note.title;
+                this.objects[i].name = note.name;
                 this.objects[i].content = note.content;
                 this.objects[i].bookmark = note.bookmark;
                 this.objects[i].favorite = note.favorite;

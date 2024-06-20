@@ -73,7 +73,6 @@ export class EditFolderModal {
     }
 
     #showActiveFolderColor(color) {
-        console.log(color);
         for (let i = 0; i < this.colorsArray.length; i++) {
             const colorDiv = this.colorsArray[i];
             if (this.colorsArray[i].style.backgroundColor !== color) {

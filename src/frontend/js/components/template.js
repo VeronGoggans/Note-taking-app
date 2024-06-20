@@ -16,6 +16,7 @@ export class Template {
         return this.#render();
     }
 
+
     #initializeElements() {
         this.HOST = CNode.create('div', { 'class': 'note', 'id': this.id});
         this.HOST.dataset.info = `${this.created}--${this.lastEdit}`;
@@ -33,6 +34,7 @@ export class Template {
         this.DELETE_ICON = CNode.create('i', { 'class': 'fa-solid fa-trash' });
     }
 
+
     #render() {
         this.CONFIRM.appendChild(this.CONFIRM_ICON);
         this.CANCEL.appendChild(this.CANCEL_ICON);
@@ -44,13 +46,14 @@ export class Template {
         return this.HOST
     }
 
+
     #attachEventListeners() {
         this.EDIT_ICON.addEventListener('click', () => {this.#toggleEditableNoteName()});
         this.CONFIRM.addEventListener('click', () => {this.updateName()});
         this.H4.addEventListener('keydown', (event) => {if (event.key === 'Enter') this.updateName()});
         this.CANCEL.addEventListener('click', () => {this.#toggleEditableNoteName()});
         this.DELETE_ICON.addEventListener('click', () => {this.view.renderDeleteContainer(this.id, this.name)});
-        this.CONTENT_BOX.addEventListener('click', () => {this.view.handleNoteCardClick(this.id, this.created)});
+        this.CONTENT_BOX.addEventListener('click', () => {this.view.handleTemplateCardClick(this.id)});
     }
 
 
@@ -58,14 +61,12 @@ export class Template {
         this.H4.contentEditable = this.H4.contentEditable === 'true' ? 'false' : 'true';
         this.H4.style.borderColor = this.H4.style.borderColor === 'rgb(116, 122, 160)' ? 'transparent' : '#747aa0';
         this.BTN_CONTAINER.style.visibility = this.BTN_CONTAINER.style.visibility === 'visible' ? 'hidden' : 'visible';
-        const NOTE_OBJECT = this.view.getNoteObject(this.id);
+        const templateObject = this.view.getTemplateObject(this.id);
 
-        if (this.BTN_CONTAINER.style.visibility === 'visible') {
-            this.H4.textContent = NOTE_OBJECT.title;
-        } else {
-            this.H4.textContent = formatName(this.H4.textContent);
-        }
+        if (this.BTN_CONTAINER.style.visibility === 'visible') this.H4.textContent = templateObject.name;
+        else this.H4.textContent = formatName(this.H4.textContent);
     }
+
 
     async updateName() {
         this.view.updateNote(this.id, this.H4.textContent, this.CONTENT.innerHTML, this.bookmark, this.color);

@@ -5,7 +5,7 @@ import { formatName, filterNotePreview } from "../util/formatters.js";
 export class Note {
     constructor(note, view) {
         this.id = note.id;
-        this.name = note.title;
+        this.name = note.name;
         this.bookmark = note.bookmark;
         this.favorite = note.favorite;
         this.content = note.content;
@@ -16,8 +16,9 @@ export class Note {
 
         this.#initializeElements();
         this.#attachEventListeners();
-        this.#applyBookmarkStyle(this.bookmark);
-        this.#applyFavoriteStyle(this.favorite);
+        
+        if (this.bookmark) this.HOST.classList.add('bookmark');
+        if (this.favorite) this.HOST.classList.add('favorite');
         return this.#render();
     }
 
@@ -57,17 +58,9 @@ export class Note {
         this.H4.addEventListener('keydown', (event) => {if (event.key === 'Enter') this.updateNoteName()});
         this.CANCEL.addEventListener('click', () => {this.#toggleEditableNoteName()});
         this.DELETE_ICON.addEventListener('click', () => {this.view.renderDeleteContainer(this.id, this.name)});
-        this.CONTENT_BOX.addEventListener('click', () => {this.view.handleNoteCardClick(this.id, this.created)});
+        this.CONTENT_BOX.addEventListener('click', () => {this.view.handleNoteCardClick(this.id)});
         this.BOOKMARK_ICON.addEventListener('click', () => {this.updateNoteBookmark()});
         this.FAVORITE_ICON.addEventListener('click', () => {this.updateNoteFavorite()});
-    }
-
-    #applyBookmarkStyle(bookmarkValue) {
-        if (bookmarkValue) this.HOST.classList.add('bookmark');
-    }
-
-    #applyFavoriteStyle(favoriteValue) {
-        if (favoriteValue) this.HOST.classList.add('favorite');
     }
 
     #toggleBookmarkStyle() {
@@ -86,10 +79,10 @@ export class Note {
         this.H4.contentEditable = this.H4.contentEditable === 'true' ? 'false' : 'true';
         this.H4.style.borderColor = this.H4.style.borderColor === 'rgb(116, 122, 160)' ? 'transparent' : '#747aa0';
         this.BTN_CONTAINER.style.visibility = this.BTN_CONTAINER.style.visibility === 'visible' ? 'hidden' : 'visible';
-        const NOTE_OBJECT = this.view.getNoteObject(this.id);
+        const noteObject = this.view.getNoteObject(this.id);
 
         if (this.BTN_CONTAINER.style.visibility === 'visible') {
-            this.H4.textContent = NOTE_OBJECT.title;
+            this.H4.textContent = noteObject.name;
         } else {
             this.H4.textContent = formatName(this.H4.textContent);
         }

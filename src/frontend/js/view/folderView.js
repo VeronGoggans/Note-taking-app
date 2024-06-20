@@ -1,6 +1,6 @@
 import { Folder } from '../components/folder.js';
 import { FolderObjectArray } from '../util/array.js';
-import { NoteDeleteModal } from '../components/modals/noteDeleteModal.js';
+import { DeleteModal } from '../components/modals/deleteModal.js';
 import { AnimationHandler } from '../handlers/animation/animationHandler.js';
 import { DragAndDrop } from '../handlers/drag&drop/dragAndDropHandler.js';
 import { formatName } from "../util/formatters.js";
@@ -19,27 +19,25 @@ export class FolderView {
     }
 
 
-    renderFolders(folders) {
+    renderAll(folders) {
         this.folderObjects.clear();
         for (let i = 0; i < folders.length; i++) {
-            const FOLDER_CARD = this.#folder(folders[i]);
-
-            this._content.appendChild(FOLDER_CARD);
-            AnimationHandler.fadeInFromBottom(FOLDER_CARD);
+            const folderCard = this.#folder(folders[i]);
+            this._content.appendChild(folderCard);
+            AnimationHandler.fadeInFromBottom(folderCard);
         }
     }
     
 
-    renderFolder(folder) {
+    renderOne(folder) {
         const folderCard = this.#folder(folder);
-
         this._content.insertBefore(folderCard, this._content.firstChild);
         AnimationHandler.fadeInFromBottom(folderCard);
         this.dialog.hide();
     }
 
 
-    renderFolderUpdate(folder) {
+    renderUpdate(folder) {
         const folderCards = this._content.children; 
 
         for (let i = 0; i < folderCards.length; i++) {
@@ -54,15 +52,12 @@ export class FolderView {
     }
 
     
-    removeFolder(folder) {
+    renderDelete(folder) {
         const cards = this._content.children;
         
         for (let i = 0; i < cards.length; i++) {
             if (cards[i].id === folder.id) {
-                AnimationHandler.fadeOutCard(cards[i]);
-                setTimeout(() => {
-                    this._content.removeChild(cards[i]);
-                }, 700);
+                AnimationHandler.fadeOutCard(cards[i], this._content);
                 this.folderObjects.remove(folder);
             }
         }
@@ -85,7 +80,7 @@ export class FolderView {
 
 
     renderDeleteContainer(id, name) {
-        this.dialog.addChild(new NoteDeleteModal(id, name, this));
+        this.dialog.addChild(new DeleteModal(id, name, this));
         this.dialog.show();
     }
 
@@ -122,34 +117,21 @@ export class FolderView {
         folderCard.classList.add(folderColorClass);
     }
 
-    /**
-     * This method updates a folder
-     * 
-     * This method will communicate to the folder controller 
-     * to update a folder.
-     * 
-     * @param {String} id The ID of the folder wished to be updated.
-     * @param {String} name The new name for the folder.
-     */
+    
     async updateFolder(id, name, color) {
         await this.folderController.updateFolder(id, name, color);
     }
 
-    /**
-     * This method deletes a folder.
-     * 
-     * This method communicates with the folder controller
-     * to delete the specified folder.
-     * 
-     * @param {String} id The ID of the folder wished to be deleted
-     */
-    async handleConfirmButtonClick(id) {
+
+    async handleDeleteButtonClick(id) {
         await this.folderController.deleteFolder(id);
     }
+
 
     async handleNoteDrop(noteId, folderId) {
         await this.applicationController.moveNote(noteId, folderId)
     }
+
 
     async handleFolderDrop(droppedFolderId, parentFolderId) {
 

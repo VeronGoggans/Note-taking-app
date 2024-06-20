@@ -7,17 +7,17 @@
             "notes": [
                 {
                     "id": "n-592",
-                    "title": "ToDo Neutron",
+                    "name": "ToDo Neutron",
                     "content": "storage/notes/note-n-592.txt",
                     "bookmark": false,
                     "favorite": false,
                     "color": "white",
-                    "last_edit": "11/06/2024 13:55",
+                    "last_edit": "19/06/2024 18:55",
                     "creation": "15/05/2024"
                 },
                 {
                     "id": "n-652",
-                    "title": "Editor CSS",
+                    "name": "Editor CSS",
                     "content": "storage/notes/note-n-652.txt",
                     "bookmark": false,
                     "favorite": false,
@@ -35,7 +35,7 @@
             "notes": [
                 {
                     "id": "n-216",
-                    "title": "Github cheatsheet",
+                    "name": "Github cheatsheet",
                     "content": "storage/notes/note-n-216.txt",
                     "bookmark": false,
                     "favorite": false,
@@ -59,7 +59,7 @@
                     "notes": [
                         {
                             "id": "n-589",
-                            "title": "Compliance Checking",
+                            "name": "Compliance Checking",
                             "content": "storage/notes/note-n-589.txt",
                             "bookmark": false,
                             "favorite": false,
@@ -69,7 +69,7 @@
                         },
                         {
                             "id": "n-590",
-                            "title": "Compliant engineering",
+                            "name": "Compliant engineering",
                             "content": "storage/notes/note-n-590.txt",
                             "bookmark": false,
                             "favorite": false,
@@ -79,7 +79,7 @@
                         },
                         {
                             "id": "n-625",
-                            "title": "Intro to Software Architecture",
+                            "name": "Intro to Software Architecture",
                             "content": "storage/notes/note-n-625.txt",
                             "bookmark": false,
                             "favorite": false,
@@ -89,7 +89,7 @@
                         },
                         {
                             "id": "n-626",
-                            "title": "Packages and Dependencies",
+                            "name": "Packages and Dependencies",
                             "content": "storage/notes/note-n-626.txt",
                             "bookmark": false,
                             "favorite": false,
@@ -99,7 +99,7 @@
                         },
                         {
                             "id": "n-627",
-                            "title": "Logical Components",
+                            "name": "Logical Components",
                             "content": "storage/notes/note-n-627.txt",
                             "bookmark": false,
                             "favorite": false,
@@ -109,7 +109,7 @@
                         },
                         {
                             "id": "n-628",
-                            "title": "Logical Layers",
+                            "name": "Logical Layers",
                             "content": "storage/notes/note-n-628.txt",
                             "bookmark": false,
                             "favorite": false,
@@ -119,7 +119,7 @@
                         },
                         {
                             "id": "n-629",
-                            "title": "Software Architecture Reconstruction",
+                            "name": "Software Architecture Reconstruction",
                             "content": "storage/notes/note-n-629.txt",
                             "bookmark": false,
                             "favorite": false,
@@ -129,7 +129,7 @@
                         },
                         {
                             "id": "n-630",
-                            "title": "Architecture Activities",
+                            "name": "Architecture Activities",
                             "content": "storage/notes/note-n-630.txt",
                             "bookmark": false,
                             "favorite": false,
@@ -147,7 +147,7 @@
                     "notes": [
                         {
                             "id": "n-466",
-                            "title": "CICQ1 exam summary",
+                            "name": "CICQ1 exam summary",
                             "content": "storage/notes/note-n-466.txt",
                             "bookmark": false,
                             "favorite": false,
@@ -165,7 +165,7 @@
                     "notes": [
                         {
                             "id": "n-609",
-                            "title": "Maintainability",
+                            "name": "Maintainability",
                             "content": "storage/notes/note-n-609.txt",
                             "bookmark": false,
                             "favorite": false,
@@ -175,7 +175,7 @@
                         },
                         {
                             "id": "n-610",
-                            "title": "Static analysis en metrics",
+                            "name": "Static analysis en metrics",
                             "content": "storage/notes/note-n-610.txt",
                             "bookmark": false,
                             "favorite": false,
@@ -185,7 +185,7 @@
                         },
                         {
                             "id": "n-611",
-                            "title": "Declarative Code",
+                            "name": "Declarative Code",
                             "content": "storage/notes/note-n-611.txt",
                             "bookmark": false,
                             "favorite": false,
@@ -195,17 +195,17 @@
                         },
                         {
                             "id": "n-612",
-                            "title": "Authentication & Authorization",
+                            "name": "Authentication & Authorization",
                             "content": "storage/notes/note-n-612.txt",
                             "bookmark": false,
-                            "favorite": true,
+                            "favorite": false,
                             "color": "white",
-                            "last_edit": "19/06/2024 15:20",
+                            "last_edit": "20/06/2024 01:07",
                             "creation": "30/05/2024"
                         },
                         {
                             "id": "n-613",
-                            "title": "Websecurity & Web Performance",
+                            "name": "Websecurity & Web Performance",
                             "content": "storage/notes/note-n-613.txt",
                             "bookmark": false,
                             "favorite": false,
@@ -215,7 +215,7 @@
                         },
                         {
                             "id": "n-615",
-                            "title": "Operations",
+                            "name": "Operations",
                             "content": "storage/notes/note-n-615.txt",
                             "bookmark": false,
                             "favorite": false,
@@ -235,7 +235,7 @@
             "notes": [
                 {
                     "id": "n-539",
-                    "title": "CSS Quick Reference",
+                    "name": "CSS Quick Reference",
                     "content": "storage/notes/note-n-539.txt",
                     "bookmark": false,
                     "favorite": false,
@@ -253,13 +253,31 @@
             "notes": [
                 {
                     "id": "n-585",
-                    "title": "Mogelijke bijbaan",
+                    "name": "Mogelijke bijbaan",
                     "content": "storage/notes/note-n-585.txt",
                     "bookmark": false,
                     "favorite": false,
                     "color": "white",
                     "last_edit": "14/06/2024 13:33",
                     "creation": "04/05/2024"
+                }
+            ],
+            "subfolders": []
+        },
+        {
+            "id": "f-132",
+            "name": "untitled",
+            "color": "rgb(255, 255, 255)",
+            "notes": [
+                {
+                    "id": "n-656",
+                    "name": "untitled",
+                    "content": "storage/notes/note-n-656.txt",
+                    "bookmark": false,
+                    "favorite": false,
+                    "color": "white",
+                    "last_edit": "20/06/2024 00:27",
+                    "creation": "20/06/2024"
                 }
             ],
             "subfolders": []

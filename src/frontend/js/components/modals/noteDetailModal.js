@@ -25,12 +25,6 @@ export class NoteDetailContainer {
         return this.HOST
     }
 
-    /**
-     * This method checks if the date given is null.
-     * 
-     * A null value is expected when a user is in the proces of creating a new note
-     * within the editor.
-     */
     #checkDateForNull(date) {
         return date === null ? 'Not available' : date;
     }

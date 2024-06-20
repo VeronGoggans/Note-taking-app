@@ -1,6 +1,6 @@
 import { CNode } from "../../util/CNode.js";
 
-export class NoteDeleteModal {
+export class DeleteModal {
     constructor(id, name, view) {
         this.id = id;
         this.view = view;
@@ -13,7 +13,7 @@ export class NoteDeleteModal {
     }
 
     #attachEventListeners() {
-        this.DELETE.addEventListener('click', () => {this.view.handleConfirmButtonClick(this.id)})
+        this.DELETE.addEventListener('click', () => {this.view.handleDeleteButtonClick(this.id)})
     }
 
     #render() {

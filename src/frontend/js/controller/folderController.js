@@ -4,32 +4,32 @@ import { FolderModel } from '../model/folderModel.js';
 export class FolderController {
     constructor(applicationController, dialog, notificationHandler) {
         this.applicationController = applicationController;
-        this.folderView = new FolderView(this, applicationController, dialog, notificationHandler);
-        this.folderModel = new FolderModel();
+        this.view = new FolderView(this, applicationController, dialog, notificationHandler);
+        this.model = new FolderModel();
     }
 
     async getFolders(parentId = undefined) {
-        const RESPONSE = await this.folderModel.get(parentId);
-        const FOLDERS = RESPONSE.Folders;
-        this.folderView.renderFolders(FOLDERS);
+        const response = await this.model.get(parentId);
+        const folders = response.Folders;
+        this.view.renderAll(folders);
     }
 
     async addFolder(name, parentId = undefined) {
-        const RESPONSE = await this.folderModel.add(name, parentId);
-        const FOLDER = RESPONSE.Folder;
-        this.folderView.renderFolder(FOLDER);
+        const response = await this.model.add(name, parentId);
+        const folder = response.Folder;
+        this.view.renderOne(folder);
     }
 
     async updateFolder(folderId, newName, color) {
-        const RESPONSE = await this.folderModel.update(folderId, newName, color);
-        const FOLDER = RESPONSE.Folder;
-        this.folderView.renderFolderUpdate(FOLDER);
+        const response = await this.model.update(folderId, newName, color);
+        const folder = response.Folder;
+        this.view.renderUpdate(folder);
     }
 
     async deleteFolder(folderId) {
-        const PARENT_ID = this.applicationController.getCurrentFolderID();
-        const RESPONSE = await this.folderModel.delete(folderId, PARENT_ID);
-        const FOLDER = RESPONSE.Folder;
-        this.folderView.removeFolder(FOLDER);
+        const parentId = this.applicationController.getCurrentFolderID();
+        const response = await this.model.delete(folderId, parentId);
+        const folder = response.Folder;
+        this.view.renderDelete(folder);
     }
 }

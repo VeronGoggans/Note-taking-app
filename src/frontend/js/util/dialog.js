@@ -1,5 +1,5 @@
 import { NoteDetailContainer } from "../components/modals/noteDetailModal.js";
-import { NoteDeleteModal } from "../components/modals/noteDeleteModal.js";
+import { DeleteModal } from "../components/modals/deleteModal.js";
 import { ForgotSaveContainer } from "../components/modals/forgotSaveModal.js";
 import { NewFolderContainer } from "../components/modals/newFolderModal.js";
 import { NoteBackroundContainer } from "../components/modals/noteBackgroundModal.js";
@@ -62,8 +62,8 @@ export class Dialog {
         this.show();
     }
     
-    renderNoteDeleteModal(id, name, view) {
-        this.addChild(new NoteDeleteModal(id, name, view))
+    renderDeleteModal(id, name, view) {
+        this.addChild(new DeleteModal(id, name, view))
         this.show();
     }
 

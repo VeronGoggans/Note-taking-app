@@ -5,9 +5,6 @@ import { dateFormat } from "../util/date.js";
 import { formatName, filterNotePreview } from "../util/formatters.js";
 
 
-
-
-
 export class TemplateView {
     constructor(templateController, applicationController, dialog, notificationHandler) {
         this.templateController = templateController;
@@ -18,7 +15,9 @@ export class TemplateView {
         this.#initializeDomElements();
     }
 
-    renderTemplatesCards(templates) {
+
+    renderAll(templates) {
+        this.templateObjects.clear()
         if (templates.length > 0) {
             const contentFragment = document.createDocumentFragment();
 
@@ -32,12 +31,55 @@ export class TemplateView {
     }
 
 
-    handleNoteCardClick(templateId, creationDate) {
+    renderOne(template) {
+        const templateCard = this.#template(template);
+        this._content.appendChild(templateCard);
+        AnimationHandler.fadeInFromBottom(templateCard);
+    }
+
+
+    renderUpdate(template) {
+        const templates = this._content.children 
+
+        for (let i = 0; i < cards.length; i++) {
+            if (templates[i].id === template.id) {
+
+                const templatePreview = templates[i].querySelector('p');
+                templatePreview.innerHTML = filterNotePreview(template.content);
+
+                const templateName = templates[i].querySelector('h4');
+                templateName.textContent = formatName(template.name);
+
+                templates[i].setAttribute("data-info", `${dateFormat(template.creation)}--${dateFormat(template.last_edit)}`);
+
+                this.templateObjects.update(template);
+            }
+        }
+    }
+
+    
+    renderDelete(template, closeDialog = true) {
+        const templates = this._content.children;
+
+        for (let i = 0; i < templates.length; i++) {
+            if (templates[i].id === template.id) {
+                AnimationHandler.fadeOutCard(templates[i], this._content);
+                this.templateObjects.remove(template);
+            }
+        }
+        if (closeDialog) this.dialog.hide();
+    }
+
+
+    handleTemplateCardClick(templateId) {
         const template = this.templateObjects.get(templateId);
-        const lastEditDate = dateFormat(template.last_edit);
-        const name = template.name;
-        const content = template.content;
-        this.applicationController.openTemplateInTextEditor(content, name, creationDate, lastEditDate, templateId);
+        template.last_edit = dateFormat(template.last_edit);
+        this.applicationController.openTemplateInTextEditor(template);
+    }
+
+
+    getTemplateObject(templateId) {
+        return this.templateObjects.get(templateId);
     }
 
 
@@ -48,6 +90,5 @@ export class TemplateView {
 
     #initializeDomElements() {
         this._content = document.querySelector('.content-view');
-        this._list = document.querySelector('.list-content-notes');
     }
 }

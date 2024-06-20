@@ -16,7 +16,7 @@ export class NoteModel {
     async add(endpoint, folderId, content, name) {
         const options = RequestOptionsBuilder.buildPostOptions({
             'folder_id': folderId,
-            'title': name,
+            'name': name,
             'content': content
         })
         return fetchData(endpoint, options)
@@ -25,7 +25,7 @@ export class NoteModel {
     async update(endpoint, noteId, name, content, bookmark, favorite, color) {
         const options = RequestOptionsBuilder.buildPutOptions({
             'note_id': noteId,
-            'title': name,
+            'name': name,
             'content': content,
             'bookmark': bookmark,
             'favorite': favorite,

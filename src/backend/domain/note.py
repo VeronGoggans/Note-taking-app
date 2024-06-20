@@ -2,10 +2,10 @@ from src.backend.data.file.html_manager import HTMLManager
 from src.backend.util.calendar import Calendar
 
 class Note:
-    def __init__(self, id: int, title: str, content: str, bookmark = False, favorite = False, color = 'white', 
+    def __init__(self, id: int, name: str, content: str, bookmark = False, favorite = False, color = 'white', 
                 last_edit = Calendar.datetime(), creation = Calendar.date()):
         self.id = id
-        self.title = title
+        self.name = name
         self.content = content
         self.bookmark = bookmark
         self.favorite = favorite
@@ -45,7 +45,7 @@ class Note:
     def from_json(self, json_note):
         return Note(
             json_note['id'], 
-            json_note['title'], 
+            json_note['name'], 
             json_note['content'], 
             json_note['bookmark'], 
             json_note['favorite'],

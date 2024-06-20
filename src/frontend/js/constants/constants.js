@@ -63,9 +63,40 @@ export const headingsMap = {
     'H6': 'Heading 6'
 }
 
+
 export const arrowKeys = new Set([
     'ArrowUp', 
     'ArrowDown', 
     'ArrowLeft', 
     'ArrowRight'
 ]);
+
+
+export const notificationTypes = {
+    'SAVED': 'Saved',
+    'UPDATED': 'Updated',
+    'DELETED': 'Deleted',
+    'NEW': 'New',
+    'EMPTY': 'Empty',
+    'EXPORT': 'Export'
+}
+
+
+export const notificationIcons = {
+    'SAVED': 'fa-solid fa-check',
+    'UPDATED': 'fa-solid fa-pen',
+    'DELETED': 'fa-regular fa-trash-can',
+    'NEW': 'fa-solid fa-plus',
+    'EMPTY': 'fa-regular fa-bell',
+    'EXPORT': 'fa-solid fa-download'
+}
+
+
+export const notificationMessages = {
+    'SAVED': 'Note successfully created.',
+    'UPDATED': 'Your changes have been saved.',
+    'DELETED': 'has been deleted.',
+    'NEW': 'Changes saved.\nCreating a new note.',
+    'EMPTY': 'This folder is empty.<br>Start by making a note or subfolder.',
+    'EXPORT': 'Export successful'
+}

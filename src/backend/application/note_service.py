@@ -69,7 +69,7 @@ class NoteService:
 
         Args:
             post_request (PostNoteRequest): 
-            Object containing the folder_id, title and content fields for a new note.
+            Object containing the folder_id, name and content fields for a new note.
 
         Returns:
             dict or Status.NOT_FOUND: 
@@ -78,7 +78,7 @@ class NoteService:
             - If the folder is not found, returns Status.NOT_FOUND.
         """
         note_id = self.json_manager.generateID(self.id_path, 'note')
-        note = Note(note_id, post_request.title, post_request.content)
+        note = Note(note_id, post_request.name, post_request.content)
         note.set_content_path()
 
         folder_structure = self.json_manager.load(self.folders_path)
@@ -97,7 +97,7 @@ class NoteService:
 
         Args:
             put_request (PutNoteRequest): 
-            Object containing the note_id, title, content, bookmark, 
+            Object containing the note_id, name, content, bookmark, 
             favorite and color fields of a note.
 
         Returns:
@@ -145,7 +145,7 @@ class NoteService:
         Args:
             move_request (MoveNoteRequest): 
             - folder_id (str): The ID of the folder to which the note will be added to.
-            - title (str): The title of the note.
+            - name (str): The name of the note.
 
         Returns:
             dict or Status.NOT_FOUND: 

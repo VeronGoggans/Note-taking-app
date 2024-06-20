@@ -1,32 +1,12 @@
-import { CNode } from "../../util/CNode.js"
+import { CNode } from "../../util/CNode.js";
+import { notificationTypes, notificationIcons, notificationMessages } from "../../constants/constants.js";
 
 export class NotificationHandler {
     constructor() {
         this.screen = document.querySelector('.main');
-        this.types = {
-            'SAVED': 'Saved',
-            'UPDATED': 'Updated',
-            'DELETED': 'Deleted',
-            'NEW': 'New',
-            'EMPTY': 'Empty',
-            'EXPORT': 'Export'
-        }
-        this.icons = {
-            'SAVED': 'fa-solid fa-check',
-            'UPDATED': 'fa-solid fa-pen',
-            'DELETED': 'fa-regular fa-trash-can',
-            'NEW': 'fa-solid fa-plus',
-            'EMPTY': 'fa-regular fa-bell',
-            'EXPORT': 'fa-solid fa-download'
-        }
-        this.messages = {
-            'SAVED': 'Note successfully created.',
-            'UPDATED': 'Your changes have been saved.',
-            'DELETED': 'has been deleted.',
-            'NEW': 'Changes saved.\nCreating a new note.',
-            'EMPTY': 'This folder is empty.<br>Start by making a note or subfolder.',
-            'EXPORT': 'Export successful'
-        }
+        this.types = notificationTypes;
+        this.icons = notificationIcons;
+        this.messages = notificationMessages;
     }
 
     /**

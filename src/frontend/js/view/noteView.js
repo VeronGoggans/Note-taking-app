@@ -1,5 +1,5 @@
 import { Note } from "../components/note.js";
-import { NoteDeleteModal } from "../components/modals/noteDeleteModal.js";
+import { DeleteModal } from "../components/modals/deleteModal.js";
 import { NoteObjectArray } from "../util/array.js";
 import { dateFormat } from "../util/date.js";
 import { formatName, filterNotePreview } from "../util/formatters.js";
@@ -20,7 +20,7 @@ export class NoteView {
     }
 
     
-    renderNoteCards(notes) {
+    renderAll(notes) {
         this.noteObjects.clear();
         if (notes.length > 0) { 
             const contentFragment = document.createDocumentFragment();
@@ -38,66 +38,50 @@ export class NoteView {
     }
 
     
-    renderNoteCard(note) {
+    renderOne(note) {
         const noteCard = this.#note(note);
         this._content.appendChild(noteCard);
         AnimationHandler.fadeInFromBottom(noteCard);
     }
 
 
-    renderNoteUpdate(note) {
+    renderUpdate(note) {
         const cards = this._content.children 
 
         for (let i = 0; i < cards.length; i++) {
             if (cards[i].id === note.id) {
-                // updating the p element inside the note card.
-                const P_ELEMENT = cards[i].querySelector('p');
-                P_ELEMENT.innerHTML = filterNotePreview(note.content);
 
-                // updating the h4 element inside the note card.
-                const H4 = cards[i].querySelector('h4');
-                H4.textContent = formatName(note.title);
+                const notePreview = cards[i].querySelector('p');
+                notePreview.innerHTML = filterNotePreview(note.content);
+
+                const noteName = cards[i].querySelector('h4');
+                noteName.textContent = formatName(note.name);
 
                 cards[i].setAttribute("data-info", `${dateFormat(note.creation)}--${dateFormat(note.last_edit)}`);
 
-                // updating the note object 
                 this.noteObjects.update(note);
             }
         }
     }
 
     
-    removeNote(note, closeDialog = true) {
+    renderDelete(note, closeDialog = true) {
         const cards = this._content.children;
 
         for (let i = 0; i < cards.length; i++) {
             if (cards[i].id === note.id) {
-                AnimationHandler.fadeOutCard(cards[i]);
-                setTimeout(() => {
-                    this._content.removeChild(cards[i]);
-                }, 700);
+                AnimationHandler.fadeOutCard(cards[i], this._content);
                 this.noteObjects.remove(note);
             }
         }
         if (closeDialog) this.dialog.hide();
     }
 
-    /**
-     * This method opens up the text editor
-     * And puts the note the user clicked on, in the text editor.
-     * 
-     * @param {String} content
-     * @param {String} name
-     */
-    handleNoteCardClick(noteId, creation) {
-        const NOTE = this.noteObjects.get(noteId);
-        const LAST_EDIT = dateFormat(NOTE.last_edit);
-        const NAME = NOTE.title;
-        const CONTENT = NOTE.content;
-        const BOOKMARK = NOTE.bookmark;
-        const FAVORITE = NOTE.favorite;
-        const COLOR = NOTE.color;
-        this.applicationController.openNoteInTextEditor(CONTENT, NAME, creation, LAST_EDIT, noteId, BOOKMARK, FAVORITE, COLOR);
+    
+    handleNoteCardClick(noteId) {
+        const note = this.noteObjects.get(noteId);
+        note.last_edit = dateFormat(note.last_edit)
+        this.applicationController.openNoteInTextEditor(note);
     }
 
     /**
@@ -132,13 +116,14 @@ export class NoteView {
     }
 
     /**
-     * This method renders a confirmation container telling the user if they want to delete the note.
+     * This method renders a confirmation container 
+     * telling the user if they want to delete the note.
      * 
      * @param {String} id 
      * @param {String} name
      */
     renderDeleteContainer(id, name) {
-        this.dialog.addChild(new NoteDeleteModal(id, name, this));
+        this.dialog.addChild(new DeleteModal(id, name, this));
         this.dialog.show();
     }
 
@@ -158,28 +143,11 @@ export class NoteView {
         this._content = document.querySelector('.content-view');
     }
 
-    /**
-     * This method updates a note
-     * 
-     * This method will communicate with the note controller 
-     * to update a note
-     * 
-     * @param {String} id 
-     * @param {String} name
-     */
     async updateNote(id, name, content, bookmark, favorite, color) {
         await this.noteController.updateNote(id, name, content, bookmark, favorite, color);
     }
 
-    /**
-     * This method deletes a note.
-     * 
-     * This method communicates with the note controller
-     * to delete the specified note.
-     * 
-     * @param {String} id
-     */
-    async handleConfirmButtonClick(id) {
+    async handleDeleteButtonClick(id) {
         await this.noteController.deleteNote(id);
     }
 }

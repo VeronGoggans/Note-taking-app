@@ -37,13 +37,10 @@ export class Folder {
     }
 
     /**
-     * This method will apply a specified color to the folder.
      * 
      * This method is called when the folder gets rendered,
      * to check if the folder already has a custom color.
-     * 
-     * This method is called when the user changes the folder color. 
-     * 
+     *  
      * @param {String} color 
      */
     applyColor(color) {

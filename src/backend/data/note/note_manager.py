@@ -87,7 +87,7 @@ class NoteManager:
                 self.search_bar_note_objects.append(
                     {
                         'id': note['id'],
-                        'name': note['title'],
+                        'name': note['name'],
                         'folder_name': folder['name']
                     }
                 )
@@ -220,10 +220,10 @@ class NoteManager:
         note.bookmark = updated_note.bookmark
         note.favorite = updated_note.favorite
         note.color = updated_note.color
-        note.title = updated_note.title
+        note.name = updated_note.name
         note.last_edit = Calendar.datetime()
 
-        current_note['title'] = updated_note.title
+        current_note['name'] = updated_note.name
         current_note['bookmark'] = updated_note.bookmark
         current_note['favorite'] = updated_note.favorite
         current_note['color'] = updated_note.color

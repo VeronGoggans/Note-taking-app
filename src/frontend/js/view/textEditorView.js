@@ -18,19 +18,18 @@ export class TextEditorView {
   }
 
   /**
-   * This method opens a note inside the editor.
+   * This method opens a note or template 
+   * inside the editor.
    * 
-   * @param {String} content - The content of the note 
-   * @param {String} name - The name of the note
-   * @param {String} color - the background colo of the note
+   * @param {Object} object - could be a Note or Template object
    */
-  open(content, name, color) {
-    this.noteContent = content;
-    this.page.innerHTML = content;
-    this.noteNameInput.value = name;
+  open(object) {
+    this.content = object.content;
+    this.page.innerHTML = object.content;
+    this.noteNameInput.value = object.name;
     TextFormatter.listenForLinkClicks(this.page);
     TextFormatter.listenForNoteLinkClicks(this.page, this.applicationController);
-    this.setEditorColor(color);
+    this.setEditorColor(object.color);
     this.show();
     this.page.focus();
   }
@@ -310,7 +309,7 @@ export class TextEditorView {
     }
 
     this.noteDetailsSpan.addEventListener('click', () => {this.dialog.renderNoteDetailsModal(this._getNoteData())});
-    this.deleteNoteSpan.addEventListener('click', () => {this.dialog.renderNoteDeleteModal(this._getNoteData()[0], this.noteNameInput.value, this)});
+    this.deleteNoteSpan.addEventListener('click', () => {this.dialog.renderDeleteModal(this._getNoteData()[0], this.noteNameInput.value, this)});
     this.saveNoteSpan.addEventListener('click', async () => {await this.save(false, false)});
     this.newNoteSpan.addEventListener('click', () => {this.new()});
     this.noteBackgroundSpan.addEventListener('click', () => {this.dialog.renderNoteBackgroundModal(this._getNoteData()[0], this._getNoteData()[5], this)});

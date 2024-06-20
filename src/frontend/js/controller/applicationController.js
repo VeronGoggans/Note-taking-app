@@ -95,7 +95,7 @@ export class ApplicationController {
         const RESPONSE = await this.noteController.getNoteById(noteId);
         const NOTE = await RESPONSE[0];
         const CONTENT = await NOTE.content;
-        const NAME = await NOTE.title;
+        const NAME = await NOTE.name;
         const CREATION = await NOTE.creation;
         const LAST_EDIT = await NOTE.last_edit;
         const BOOKMARK = await NOTE.bookmark;
@@ -164,12 +164,12 @@ export class ApplicationController {
      * This method opens up the text editor
      * And puts the note the user clicked on, in the text editor.
      */
-    openNoteInTextEditor(content, name, creation, lastEdit, noteId, bookmark, favorite, color) {
-        this.textEditorController.openNoteInTextEditor(content, name, creation, lastEdit, noteId, bookmark, favorite, color);
+    openNoteInTextEditor(note) {
+        this.textEditorController.openNoteInTextEditor(note);
     }
 
-    openTemplateInTextEditor(content, name, creationDate, lastEditDate, templateId) {
-        this.textEditorController.openTemplateInTextEditor(content, name, creationDate, lastEditDate, templateId)
+    openTemplateInTextEditor(template) {
+        this.textEditorController.openTemplateInTextEditor(template)
     }
 
     getTemplates() {
@@ -188,7 +188,7 @@ export class ApplicationController {
     async addNote(content, name) {
         const CURRENT_FOLDER_ID = this.applicationModel.getCurrentFolderID();
         const NOTE = await this.noteController.addNote(CURRENT_FOLDER_ID, content, name);
-        this.textEditorController.storeNoteData(NOTE.id, NOTE.creation, NOTE.last_edit, NOTE.bookmark, NOTE.title, NOTE.color)
+        this.textEditorController.storeNoteData(NOTE.id, NOTE.creation, NOTE.last_edit, NOTE.bookmark, NOTE.name, NOTE.color)
     }
 
     /**

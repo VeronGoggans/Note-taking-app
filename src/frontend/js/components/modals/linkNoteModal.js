@@ -34,8 +34,6 @@ export class NoteLinkModal {
     }
 
     /**
-     * This method handles input in the searchbar
-     * 
      * This method takes the current value of the searchbar 
      * and looks if that string takes place in any of the 
      * note names.
@@ -67,9 +65,6 @@ export class NoteLinkModal {
     }
 
     /**
-     * This method listens for li element clicks 
-     * within the noteOptionsList ul element
-     * 
      * This method is called everytime the suggested 
      * notes are updated.
      * 
