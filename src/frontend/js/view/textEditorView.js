@@ -24,7 +24,7 @@ export class TextEditorView {
    * @param {Object} object - could be a Note or Template object
    */
   open(object) {
-    this.content = object.content;
+    this.noteContent = object.content;
     this.page.innerHTML = object.content;
     this.noteNameInput.value = object.name;
     TextFormatter.listenForLinkClicks(this.page);
@@ -40,14 +40,15 @@ export class TextEditorView {
    * @param {boolean} checkForChanges - Indicates if changes should be checked.
    */
   async save(closeEditor = true, checkForChanges = true) {
-    const noteData = this._collectNoteData();
-    const { content, name, bookmark, favorite, color } = noteData;    
-    await this.textEditorController.save(content, name, bookmark, favorite, color);
+    const name = this.noteNameInput.value || 'untitled';
+    const content = this.page.innerHTML;
+    await this.textEditorController.save(name, content);
+
     if (closeEditor) {
       this.closeEditor(checkForChanges);
     }
     else {
-      this.noteContent = this.page.innerHTML;
+      this.noteContent = content;
     }
   }
 
@@ -104,10 +105,7 @@ export class TextEditorView {
     this.textEditor.style.top = '0%';
   }
 
-  /**
-   * This method clears data from the current note 
-   * and clears the editor for a new note
-   */
+  
   new() {
     this.save(false, true)
     this._clear();
@@ -148,9 +146,8 @@ export class TextEditorView {
    * 
    * @param {String} noteId 
    */
-  async handleConfirmButtonClick(noteId) {
-    await this.textEditorController.clearStoredNoteData();
-    await this.textEditorController.handleConfirmButtonClick(noteId);
+  async handleDeleteButtonClick(noteId) {
+    await this.textEditorController.handleDeleteButtonClick(noteId);
     this._clear();
   }
 
@@ -167,27 +164,10 @@ export class TextEditorView {
     this.dialog.renderSearchModal()
   }
 
-  /**
-   * @returns a list of note data stored in the text editor model
-   */
-  _getNoteData() {
+  _getStoredNoteData() {
     return this.textEditorController.getStoredNoteData();
   }
 
-  _collectNoteData() {
-    const storedNoteData = this._getNoteData();
-    return {
-      content: this.page.innerHTML,
-      name: this.noteNameInput.value || 'untitled',
-      bookmark: storedNoteData[3],
-      favorite: storedNoteData[4],
-      color: storedNoteData[5]
-    };
-  }  
-
-  /**
-   * This method closes the editor
-   */
   _close() {
     this.textEditor.style.top = '100%';
     this.textEditor.style.visibility = 'hidden';
@@ -210,9 +190,6 @@ export class TextEditorView {
     this.page.style.cssText = "";
   }
 
-  /**
-   * This method closes the editor and clears all the data 
-   */
   _closeEditorAndClearStoredData() {
     this._close();
     this._closeDropdowns();
@@ -220,10 +197,6 @@ export class TextEditorView {
     this._resetEditorColor();
   }
 
-  /**
-   * This method toggles the visibility of a specified dropdown,
-   * by toggling the visibility style property.
-   */
   _toggleVisibleDropdown(dropdownOptions) {
     this._closeDropdowns(dropdownOptions);
     dropdownOptions.style.visibility = dropdownOptions.style.visibility === 'visible' ? 'hidden' : 'visible';
@@ -308,11 +281,11 @@ export class TextEditorView {
       this.dropdowns[i].addEventListener('click', () => {this._toggleVisibleDropdown(this.dropdownOptions[i])});
     }
 
-    this.noteDetailsSpan.addEventListener('click', () => {this.dialog.renderNoteDetailsModal(this._getNoteData())});
-    this.deleteNoteSpan.addEventListener('click', () => {this.dialog.renderDeleteModal(this._getNoteData()[0], this.noteNameInput.value, this)});
+    this.noteDetailsSpan.addEventListener('click', () => {this.dialog.renderNoteDetailsModal(this._getStoredNoteData())});
+    this.deleteNoteSpan.addEventListener('click', () => {this.dialog.renderDeleteModal(this._getStoredNoteData(), this.noteNameInput.value, this)});
     this.saveNoteSpan.addEventListener('click', async () => {await this.save(false, false)});
     this.newNoteSpan.addEventListener('click', () => {this.new()});
-    this.noteBackgroundSpan.addEventListener('click', () => {this.dialog.renderNoteBackgroundModal(this._getNoteData()[0], this._getNoteData()[5], this)});
+    this.noteBackgroundSpan.addEventListener('click', () => {this.dialog.renderNoteBackgroundModal(this._getStoredNoteData(), this)});
     this.editorPageStyleSpan.addEventListener('click', () => {this.updatePageStyle()});
   
     this.exitButton.addEventListener('click', () => {this.closeEditor()});

@@ -22,8 +22,8 @@ export class NoteController {
         return [note, folderId, folderName]
     }
 
-    async addNote(folderId, content, name) {
-        const response = await this.model.add('/note', folderId, content, name);
+    async addNote(folderId, name, content) {
+        const response = await this.model.add('/note', folderId, name, content);
         let note = await response.Note;
         const folderName = await response.folder_name
         note.content = content;

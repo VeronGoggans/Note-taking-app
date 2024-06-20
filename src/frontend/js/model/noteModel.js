@@ -13,7 +13,7 @@ export class NoteModel {
         return fetchData(`${endpoint}/${noteId}`, options);
     }
 
-    async add(endpoint, folderId, content, name) {
+    async add(endpoint, folderId, name, content) {
         const options = RequestOptionsBuilder.buildPostOptions({
             'folder_id': folderId,
             'name': name,

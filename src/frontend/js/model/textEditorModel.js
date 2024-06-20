@@ -6,6 +6,7 @@ export class TextEditorModel {
 
     storeNoteData(note) {
         this.noteObject = note;
+        console.log(note);
     }
 
     storeTemplateData(template) {
@@ -16,19 +17,12 @@ export class TextEditorModel {
         this._color = color;
     }
 
-    /**
-     * Returns stored note data as an array.
-     * @returns {Array} A list of stored note data
-     */
     getStoredNoteData() {
-        return [
-            this._noteId, 
-            this._creation, 
-            this._lastEdit, 
-            this._bookmark, 
-            this._favorite, 
-            this._color
-        ]
+        return this.noteObject
+    }
+
+    getStoredTemplateData() {
+        return this.templateObject
     }
 
     getStoredNoteId() {
@@ -42,5 +36,6 @@ export class TextEditorModel {
     clear() {
         this.noteObject = null;
         this.templateObject = null;
+        console.log(`removed Note: ${this.noteObject}`);
     }
 }

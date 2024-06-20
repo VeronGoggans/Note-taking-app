@@ -13,7 +13,6 @@ export class TextEditorController {
     }
 
     /**
-     * This method opens a note inside the text editor.
      * 
      * This method is called when a note card has been clicked.
      */
@@ -22,8 +21,12 @@ export class TextEditorController {
         this.textEditorView.open(note);
     }
 
+    /**
+     * 
+     * This method is called when a template card has been clicked.
+     */
     openTemplateInTextEditor(template) {
-        this.storeNoteData(template)
+        this.textEditorModel.storeTemplateData(template)
         this.textEditorView.open(template)
     }
 
@@ -41,34 +44,32 @@ export class TextEditorController {
      * This method stores the following note data 
      * And clears the stored data from the model.
      */
-    storeNoteData(noteId, creation, lastEdit, bookmark, favorite, name, color) {
-        this.textEditorModel.storeNoteData(noteId, creation, lastEdit, bookmark, favorite, name, color);
+    storeNoteData(note) {
+        this.textEditorModel.storeNoteData(note);
     }
 
     clearStoredNoteData() {
         this.textEditorModel.clear();
     }
 
-    /** 
-     * This method decides if the save button click 
-     * was for an existing note or a new note.
-     * 
-     * If for an existing note, the changeNote method is called
-     * If for a new note, the addNote method is called.
+    /**
+     * Save changes to a new or existing note
      */
-    async save(content, name, bookmark, favorite, color) {
-        const NOTE_ID = this.textEditorModel.getStoredNoteId();
-        if (NOTE_ID !== null) {
-            await this.applicationController.changeNote(NOTE_ID, name, content, bookmark, favorite, color)
+    async save(name, content) {
+        const note = this.textEditorModel.getStoredNoteData();
+        const noteId = note?.id || null;
+
+        if (noteId !== null) {
+            await this.applicationController.changeNote(noteId, name, content, note.bookmark, note.favorite, note.color)
         } else {
-            await this.applicationController.addNote(content, name);
+            await this.applicationController.addNote(name, content);
         }
     }
 
     async updateNoteColor(color) {
-        const NOTE_ID = this.textEditorModel.getStoredNoteId();
+        const noteId = this.textEditorModel.getStoredNoteId();
         this.textEditorModel.storeNoteColor(color);
-        this.applicationController.updateNoteColor(NOTE_ID, color);
+        this.applicationController.updateNoteColor(noteId, color);
     }
 
     /**
@@ -80,7 +81,8 @@ export class TextEditorController {
      * 
      * @param {String} noteId 
      */
-    async handleConfirmButtonClick(noteId) {
+    async handleDeleteButtonClick(noteId) {
+        this.clearStoredNoteData();
         await this.applicationController.deleteNote(noteId);
     }
 }
