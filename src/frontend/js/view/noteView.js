@@ -3,7 +3,7 @@ import { DeleteModal } from "../components/modals/deleteModal.js";
 import { NoteObjectArray } from "../util/array.js";
 import { dateFormat } from "../util/date.js";
 import { formatName, filterNotePreview } from "../util/formatters.js";
-import {AnimationHandler} from "../handlers/animation/animationHandler.js";
+import { AnimationHandler } from "../handlers/animation/animationHandler.js";
 import { DragAndDrop } from "../handlers/drag&drop/dragAndDropHandler.js";
 
 
@@ -33,7 +33,7 @@ export class NoteView {
             }
             this._content.appendChild(contentFragment);
         } else {
-            this.pushNotification('empty');
+            this.notificationHandler.push('Empty');
         }
     }
 
@@ -42,6 +42,7 @@ export class NoteView {
         const noteCard = this.#note(note);
         this._content.appendChild(noteCard);
         AnimationHandler.fadeInFromBottom(noteCard);
+        this.notificationHandler.push('Saved');
     }
 
 
@@ -60,6 +61,7 @@ export class NoteView {
                 cards[i].setAttribute("data-info", `${dateFormat(note.creation)}--${dateFormat(note.last_edit)}`);
 
                 this.noteObjects.update(note);
+                this.notificationHandler.push('Updated');
             }
         }
     }
@@ -72,6 +74,7 @@ export class NoteView {
             if (cards[i].id === note.id) {
                 AnimationHandler.fadeOutCard(cards[i], this._content);
                 this.noteObjects.remove(note);
+                this.notificationHandler.push('Deleted', note.name);
             }
         }
         if (closeDialog) this.dialog.hide();
@@ -94,25 +97,6 @@ export class NoteView {
 
     getNoteObject(noteId) {
         return this.noteObjects.get(noteId);
-    }
-
-   /**
-    * type has to be one of the following 
-    * (saved, deleted, new, empty).
-    * 
-    * noteName is optional and only nessecary for the 
-    * deleted type.
-    * 
-    * @param {String} type 
-    * @param {String} noteName 
-    */
-    pushNotification(type, noteName = null) {
-        if (type === 'empty' && this._content.children.length === 0) {
-            this.notificationHandler.push(type, noteName);
-        } 
-        if (type !== 'empty') {
-            this.notificationHandler.push(type, noteName);
-        }
     }
 
     /**

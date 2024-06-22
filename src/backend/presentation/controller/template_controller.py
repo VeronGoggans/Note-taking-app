@@ -48,5 +48,5 @@ class TemplateRouter:
         response = self.service.delete_template(template_id)
 
         if response != Status.NOT_FOUND:
-            return {'Status_code': Status.OK, "Folder": response}
+            return {'Status_code': Status.OK, "Template": response}
         return {'Status_code': Status.NOT_FOUND}

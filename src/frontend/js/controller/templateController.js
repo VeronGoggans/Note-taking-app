@@ -17,18 +17,22 @@ export class TemplateController {
 
     async addTemplate(name, content) {
         const response = await this.model.add('/template', name, content)
-        const template = await response.Template;
+        let template = await response.Template;
+        template.content = content;
         this.view.renderOne(template);
+        return template
     }
 
-    async updateTemplate(name, content) {
-        const response = await this.model.update('/template', name, content)
+    async updateTemplate(id, name, content) {
+        const response = await this.model.update(`/template/${id}`, name, content)
         const template = await response.Template;
-        this.view.rend(template);
+        this.view.renderUpdate(template);
     }
 
-    async deleteTemplate() {
-
+    async deleteTemplate(id) {
+        const response = await this.model.delete('/template', id)
+        const template = await response.Template;
+        this.view.renderDelete(template);
     }
 
 }

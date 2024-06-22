@@ -1,28 +1,22 @@
 export class ApplicationModel {
     constructor() {
         this.folderIds = [];
-        this.createNoteButton = document.querySelector('.create-note-btn');
     }
 
     clearFolderIdlist() {
         this.folderIds = [];
     }
-    
+
     /** 
-     * Gets the current folder ID.
-     * @returns {String} The ID of the current folder, or the home folder id if no folder is set.
+     * @returns {String} The ID of the current folder, 
+     * or the home folder id if the stack is empty.
      */
     getCurrentFolderID() {
         const lastFolder = this.folderIds[this.folderIds.length - 1];
         return lastFolder ? lastFolder.id : 'f-1';
     }
 
-    /**
-     * This method returns the current folder name
-     * The name of the folder the user is currently in.
-     * 
-     * @returns {String}
-     */
+    
     getCurrentFolderName() {
         if (this.folderIds.length > 0) {
             return this.folderIds[this.folderIds.length - 1].name;
@@ -30,13 +24,15 @@ export class ApplicationModel {
         return undefined
     }
 
+
     addFolderIdToList(id, name) {
         if (this.folderIds.length > 0) {
             // if the id is not already in the last index of the array, push.
             if (id !== this.folderIds[this.folderIds.length - 1].id) {
                 this.folderIds.push({'id': id, 'name': name});
+                console.log({'id': id, 'name': name});
             } else {
-                console.log('Skipped id addition due to diplication');
+                console.log('Push rejected: ID already present in the list!');
             }
         } else {
             this.folderIds.push({'id': id, 'name': name});
@@ -57,6 +53,8 @@ export class ApplicationModel {
         return lastFolder ? lastFolder: 'f-1';
     }
     
+
+
     async getSearchOptions(endpoint) {
         try {
             const RESPONSE = await fetch(`${endpoint}`);

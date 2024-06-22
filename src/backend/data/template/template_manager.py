@@ -48,10 +48,13 @@ class TemplateManager:
 
         template = Template.from_json(old_template)
         template.update_content(template.content, new_template_data.content)
+        template.name = new_template_data.name
+        template.content = new_template_data.content
         template.last_edit = current_time
 
         old_template['name'] = new_template_data.name
         old_template['last_edit'] = current_time
+        print(template.content)
 
         return template
     

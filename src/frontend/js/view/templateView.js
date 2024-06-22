@@ -3,6 +3,8 @@ import { AnimationHandler } from "../handlers/animation/animationHandler.js";
 import { TemplateObjectArray } from "../util/array.js";
 import { dateFormat } from "../util/date.js";
 import { formatName, filterNotePreview } from "../util/formatters.js";
+import { DeleteModal } from "../components/modals/deleteModal.js";
+
 
 
 export class TemplateView {
@@ -27,6 +29,8 @@ export class TemplateView {
                 AnimationHandler.fadeInFromBottom(templateCard);
             } 
             this._content.appendChild(contentFragment)
+        } else {
+            this.notificationHandler.push('empty')
         }
     }
 
@@ -35,13 +39,14 @@ export class TemplateView {
         const templateCard = this.#template(template);
         this._content.appendChild(templateCard);
         AnimationHandler.fadeInFromBottom(templateCard);
+        this.notificationHandler.push('saved');
     }
 
 
     renderUpdate(template) {
         const templates = this._content.children 
 
-        for (let i = 0; i < cards.length; i++) {
+        for (let i = 0; i < templates.length; i++) {
             if (templates[i].id === template.id) {
 
                 const templatePreview = templates[i].querySelector('p');
@@ -53,6 +58,7 @@ export class TemplateView {
                 templates[i].setAttribute("data-info", `${dateFormat(template.creation)}--${dateFormat(template.last_edit)}`);
 
                 this.templateObjects.update(template);
+                this.notificationHandler.push('updated');
             }
         }
     }
@@ -65,10 +71,24 @@ export class TemplateView {
             if (templates[i].id === template.id) {
                 AnimationHandler.fadeOutCard(templates[i], this._content);
                 this.templateObjects.remove(template);
+                this.notificationHandler.push('deleted', template.name);
             }
         }
         if (closeDialog) this.dialog.hide();
     }
+
+    /**
+     * This method renders a confirmation container 
+     * telling the user if they want to delete the note.
+     * 
+     * @param {String} id 
+     * @param {String} name
+     */
+    renderDeleteContainer(id, name) {
+        this.dialog.addChild(new DeleteModal(id, name, this));
+        this.dialog.show();
+    }
+
 
 
     handleTemplateCardClick(templateId) {
@@ -80,6 +100,10 @@ export class TemplateView {
 
     getTemplateObject(templateId) {
         return this.templateObjects.get(templateId);
+    }
+
+    async handleDeleteButtonClick(id) {
+        await this.templateController.deleteTemplate(id);
     }
 
 

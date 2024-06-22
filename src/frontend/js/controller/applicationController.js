@@ -11,6 +11,8 @@ import { NotificationHandler } from "../handlers/userFeedback/notificationHandle
 export class ApplicationController {
     constructor() {
         this.homeFolderId = 'f-1';
+        this.favoriteFolderId = 'f-2';
+        this.templateFolderId = 'f-3';
         this.dialog = new Dialog();
         this.notificationHandler = new NotificationHandler();
         this.applicationView = new ApplicationView(this, this.dialog);
@@ -69,11 +71,15 @@ export class ApplicationController {
     async navigateIntoFolder(folderId, name) {
         this.applicationView.removeContent();
         this.applicationView.displayFolderName(name);
-
-        await this.folderController.getFolders(folderId);
-        await this.noteController.getNotes(folderId);
-
         this.applicationModel.addFolderIdToList(folderId, name);
+
+        if (folderId === this.templateFolderId) {
+            await this.templateController.getTemplates();
+        }
+        else {
+            await this.folderController.getFolders(folderId);
+            await this.noteController.getNotes(folderId);
+        }
     }
 
 
@@ -124,37 +130,21 @@ export class ApplicationController {
     }
     
     /**
-     * This method will add a new note to the search bar's options
-     * 
      * This method is called everytime a new note is created.
-     * 
-     * @param {String} noteId 
-     * @param {String} name 
      */
     addSearchObject(noteId, name, folderName) {
         this.applicationView.addSearchObject(noteId, name, folderName);
     }
 
     /**
-     * This method will remove a search object from 
-     * the search bar options
-     * 
      * This method is called everytime a note gets deleted.
-     * 
-     * @param {String} noteId 
      */
     deleteSearchObject(noteId) {
         this.applicationView.deleteSearchObject(noteId);
     }
 
     /**
-     * This method will update a search object from 
-     * the search bar options
-     * 
      * This method is called everytime a note gets updated.
-     * 
-     * @param {String} noteId 
-     * @param {String} name 
      */
     updateSearchObject(noteId, name) {
         this.applicationView.updateSearchObject(noteId, name);
@@ -176,46 +166,25 @@ export class ApplicationController {
         this.templateController.getTemplates();
     }
 
-    /**
-     * This method adds a note to the backend.
-     * 
-     * This method is called when the save button inside the text editor 
-     * is clicked for a new note.
-     * 
-     * @param {String} content 
-     * @param {String} name 
-     */
     async addNote(name, content) {
         const currentFolderId = this.applicationModel.getCurrentFolderID();
         const note = await this.noteController.addNote(currentFolderId, name, content);
         this.textEditorController.storeNoteData(note)
     }
 
-    /**
-     * This method updates a note.
-     * 
-     * This method is called when the save button inside the text editor
-     * is clicked for an existing note 
-     * 
-     * @param {String} noteId 
-     * @param {String} name 
-     * @param {String} content 
-     * @param {String} bookmark 
-     */
     async changeNote(noteId, name, content, bookmark, favorite, color) {
         await this.noteController.updateNote(noteId, name, content, bookmark, favorite, color);
     }
 
-    /**
-     * This method moves a given note from it;s current folder into 
-     * the given new folder.
-     * 
-     * This method is called when the user drops a list note into 
-     * a list folder. 
-     * 
-     * @param {String} noteId 
-     * @param {String} folderId 
-     */
+    async addTemplate(name, content) {
+        const template = await this.templateController.addTemplate(name, content);
+        this.textEditorController.storeTemplateData(template);
+    }
+
+    async changeTemplate(templateId, name, content) {
+        await this.templateController.updateTemplate(templateId, name, content);
+    }
+
     async moveNote(noteId, folderId) {
         await this.noteController.moveNote(noteId, folderId);
     }
@@ -224,46 +193,16 @@ export class ApplicationController {
         await this.noteController.updateNoteColor(noteId, color);
     }
 
-    /**
-     * This method adds a subfolder to the backend.
-     * 
-     * This method is called when the add button inside the 
-     * create new folder container is clicked, while being inside a parent folder. 
-     * 
-     * @param {String} name 
-     * @param {String} parentID 
-     */
     async addSubfolder(name, parentID) {
         await this.folderController.addFolder(name, parentID);
     }
 
-    /**
-     * This method adds a folder to the backend.
-     * 
-     * This method is called when the add button inside the 
-     * create new folder container is clicked.
-     * 
-     * @param {String} name 
-     */
     async addFolder(name) {
         await this.folderController.addFolder(name);
     }
 
-    /**
-     * This method deletes a specific note from withing 
-     * the text editor
-     * 
-     * This method is called when the confirm button 
-     * inside the noteDeleteContainer is clicked.
-     * 
-     * @param {String} noteId 
-     */
     async deleteNote(noteId) {
         await this.noteController.deleteNote(noteId);
-    }
-
-    async exportNote(format, name, content) {
-        await this.noteController.exportNote(format, name, content);
     }
     
     async setTheme(init) {

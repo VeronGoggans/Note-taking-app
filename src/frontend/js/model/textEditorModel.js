@@ -2,15 +2,16 @@ export class TextEditorModel {
     constructor() {
         this.noteObject = null
         this.templateObject = null
+        this.currentlyHandledEntity = '';
     }
 
     storeNoteData(note) {
         this.noteObject = note;
-        console.log(note);
     }
 
     storeTemplateData(template) {
         this.templateObject = template;
+        console.log(template);
     }
 
     storeNoteColor(color) {

@@ -89,7 +89,6 @@
     margin-right: 10px;
     color: var(--important);
     border-bottom: 2px solid transparent;
-    font-family: sans-serif;
     font-size: 15px;
     transition: 200ms;
 }

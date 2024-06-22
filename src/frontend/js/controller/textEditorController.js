@@ -8,8 +8,38 @@ export class TextEditorController {
         this.textEditorModel = new TextEditorModel();
     }
 
-    showTextEditor() {
-        this.textEditorView.show();
+    /**
+     * Save changes to a new or existing note
+     */
+    async save(name, content) {
+        const folderId = this.applicationController.getCurrentFolderID();
+        let entityObject = undefined;
+
+        if (folderId !== 'f-3') {
+            entityObject = this.textEditorModel.getStoredNoteData();
+        }
+        if (folderId === 'f-3') {
+            entityObject = this.textEditorModel.getStoredTemplateData();
+        }
+
+
+        const entityId = entityObject?.id || null;
+
+        if (entityId === null && folderId !== 'f-3') {
+            await this.applicationController.addNote(name, content); 
+        } 
+        if (entityId !== null && folderId !== 'f-3') {
+            await this.applicationController.changeNote(entityId, name, content, 
+                entityObject.bookmark, entityObject.favorite, entityObject.color)
+        }
+            
+
+        if (entityId === null && folderId === 'f-3') {
+            await this.applicationController.addTemplate(name, content);
+        }
+        if (entityId !== null && folderId === 'f-3') {
+            await this.applicationController.changeTemplate(entityId, name, content);
+        } 
     }
 
     /**
@@ -48,22 +78,16 @@ export class TextEditorController {
         this.textEditorModel.storeNoteData(note);
     }
 
+    storeTemplateData(template) {
+        this.textEditorModel.storeTemplateData(template)
+    }
+
     clearStoredNoteData() {
         this.textEditorModel.clear();
     }
 
-    /**
-     * Save changes to a new or existing note
-     */
-    async save(name, content) {
-        const note = this.textEditorModel.getStoredNoteData();
-        const noteId = note?.id || null;
-
-        if (noteId !== null) {
-            await this.applicationController.changeNote(noteId, name, content, note.bookmark, note.favorite, note.color)
-        } else {
-            await this.applicationController.addNote(name, content);
-        }
+    showTextEditor() {
+        this.textEditorView.show();
     }
 
     async updateNoteColor(color) {

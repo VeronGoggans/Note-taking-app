@@ -282,7 +282,7 @@ export class TextEditorView {
     }
 
     this.noteDetailsSpan.addEventListener('click', () => {this.dialog.renderNoteDetailsModal(this._getStoredNoteData())});
-    this.deleteNoteSpan.addEventListener('click', () => {this.dialog.renderDeleteModal(this._getStoredNoteData(), this.noteNameInput.value, this)});
+    this.deleteNoteSpan.addEventListener('click', () => {this.dialog.renderDeleteModal(this._getStoredNoteData().id, this.noteNameInput.value, this)});
     this.saveNoteSpan.addEventListener('click', async () => {await this.save(false, false)});
     this.newNoteSpan.addEventListener('click', () => {this.new()});
     this.noteBackgroundSpan.addEventListener('click', () => {this.dialog.renderNoteBackgroundModal(this._getStoredNoteData(), this)});

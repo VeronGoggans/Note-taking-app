@@ -112,9 +112,7 @@ export class ApplicationView {
     }
 
     templates() {
-        this.removeContent()
-        this.displayFolderName('Templates')
-        this.applicationController.getTemplates();
+        this.applicationController.navigateIntoFolder('f-3', 'Templates')
     }
 
     /**

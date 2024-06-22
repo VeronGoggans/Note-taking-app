@@ -28,7 +28,6 @@ export class NoteController {
         const folderName = await response.folder_name
         note.content = content;
         this.view.renderOne(note);
-        this.view.pushNotification('Saved');
         this.applicationController.addSearchObject(note.id, note.name, folderName);
         return await note
     }
@@ -37,7 +36,6 @@ export class NoteController {
         const response = await this.model.update('/note', noteId, name, content, bookmark, favorite, color);
         const note = await response.Note;
         this.view.renderUpdate(note);
-        this.view.pushNotification('Updated');
         this.applicationController.updateSearchObject(noteId, name);
     }
 
@@ -45,7 +43,6 @@ export class NoteController {
         const response = await this.model.delete('/note', noteId);
         const note = await response.Note;
         this.view.renderDelete(note);
-        this.view.pushNotification('Deleted', note.name);
         this.applicationController.deleteSearchObject(noteId);
     }
 
