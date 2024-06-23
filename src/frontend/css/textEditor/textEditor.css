@@ -45,6 +45,7 @@
 }
 
 .toolbar-top {
+   padding: 0 15px;
    position: relative;
    display: flex;
    align-items: center;

@@ -43,7 +43,7 @@
     background-color: transparent;
     color: var(--toolbar-btn-text);
     border: none;
-    width: 30px;
+    min-width: 30px;
     height: 30px;
     border-radius: 50%;
     margin: 0 5px;
@@ -52,7 +52,7 @@
 }
 
 .search-function-modal button:hover {
-    background-color: var(--toolbar);
+    background-color: var(--hover-toolbar-btns);
     color: #5c7dff;
 }
 

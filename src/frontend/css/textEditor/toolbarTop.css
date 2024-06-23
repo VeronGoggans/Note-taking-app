@@ -1,3 +1,29 @@
+.toolbar-top-right {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    justify-content: end;
+}
+
+.toolbar-top-right i {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--important);
+    transition: 200ms;
+}
+
+.toolbar-top-right i:hover {
+    color: #5c7dff;
+    background-color: var(--hover-toolbar-btns);
+}
+
 .note-name-input {
     position: relative;
     font-family: Roboto;
@@ -20,33 +46,19 @@
 }
 
 .file-dropdown {
-    position: absolute;
     overflow: visible;
-    right: 0px;
-    width: fit-content;
-    transition: .2s;
-    cursor: pointer;
-    padding: 7px;
-    margin: 7px 15px 7px 0px;
-    border-radius: 15px;
-    color: var(--important);
-    background-color: var(--toolbar);
-    font-weight: 600;
-    font-size: 16px;
-    font-family: Roboto;
+    transition: 200ms;
 }
 
 .file-dropdown .dropdown-title,
 .insert-dropdown .dropdown-title,
-.style-dropdown .dropdown-title,
-.edit-dropdown .dropdown-title {
+.style-dropdown .dropdown-title {
     color: var(--important);
 } 
 
 .file-dropdown .dropdown-title:hover,
 .insert-dropdown .dropdown-title:hover,
-.style-dropdown .dropdown-title:hover,
-.edit-dropdown .dropdown-title:hover {
+.style-dropdown .dropdown-title:hover {
     color: #5c7dff;
 }
 
@@ -59,8 +71,7 @@
     display: flex;
     flex-direction: column;
     width: 140px;
-    top: 45px;
-    left: -120px;
+    right: 120px;
     border-radius: 7px;
     padding: 10px;
     font-size: 14px;
@@ -71,6 +82,9 @@
 
 .file-dropdown .options button {
     font-family: Roboto;
+    display: flex;
+    align-items: center;
+    height: 30px;
     margin: 5px 0;
     padding: 5px 2px;
     border-radius: 15px;
@@ -80,11 +94,6 @@
     border: none;
     transition: background-color 100ms ease;
     text-align: start;
-}
-
-.file-dropdown .options button:hover {
-    background-color: var(--editor-dropdown-hover);
-    color: var(--editor-dropdown-hover-color);
 }
 
 .file-dropdown .options i {
@@ -103,17 +112,14 @@
 }
 
 .save-note-btn {
-    position: absolute;
-    right: 55px;
     border: none;
-    margin: 7px 15px 7px 0px;
     width: 90px;
     height: 35px;
     background-color: #5c7dff; 
     color: #ffffff;
     font-size: 16px;
     font-family: sans-serif;
-    border-radius: 35px;
+    border-radius: 10px;
     transition: 200ms;
 }
 
@@ -121,23 +127,21 @@
     background-color: #4a6eff;
 }
 
-.exit-text-editor-btn {
-    padding: 5px 0;
-    margin-left: 15px;
-    border: none;
-    width: 40px;
+#exit-text-editor-btn {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 40px;
     height: 40px;
-    background-color: var(--toolbar);
     color: var(--important);
-    font-weight: 600;
-    font-size: 16px;
-    font-family: Roboto;
     border-radius: 15px;
-    transition: .2s;
+    transition: 100ms;
 }
 
-.exit-text-editor-btn:hover {
+#exit-text-editor-btn:hover {
     color: #5c7dff;
+    background-color: var(--hover-toolbar-btns);
 }
 .note-name-input:hover,
 .note-name-input:focus {
@@ -145,8 +149,7 @@
 }
 
 .insert-dropdown,
-.style-dropdown,
-.edit-dropdown {
+.style-dropdown {
     position: relative;
     border-radius: 7px;
     cursor: pointer;
@@ -159,14 +162,12 @@
 }
 
 .insert-dropdown:hover,
-.style-dropdown:hover,
-.edit-dropdown:hover {
+.style-dropdown:hover {
     background-color: var(--toolbar);
 }
 
 .insert-dropdown .options,
-.style-dropdown .options,
-.edit-dropdown .options {
+.style-dropdown .options {
     visibility: hidden;
     opacity: 0;
     position: absolute;
@@ -185,7 +186,7 @@
 
 .insert-dropdown .options button,
 .style-dropdown .options button,
-.edit-dropdown .options button {
+.file-dropdown .options button {
     font-family: Roboto;
     border: none;
     background-color: transparent;
@@ -195,20 +196,20 @@
     font-weight: 600;
     color: var(--editor-text);
     width: 100%;
-    height: auto;
+    height: 30px;
     transition: background-color 150ms ease;
     text-align: start;
 }
 
 .insert-dropdown .options button i,
 .style-dropdown .options button i,
-.edit-dropdown .options button i {
+.file-dropdown .options button i {
     margin: 0 5px;
 }
 
 .insert-dropdown .options button:hover,
 .style-dropdown .options button:hover,
-.edit-dropdown .options button:hover {
+.file-dropdown .options button:hover {
     background-color: var(--editor-dropdown-hover);
     color: var(--editor-dropdown-hover-color);
 }

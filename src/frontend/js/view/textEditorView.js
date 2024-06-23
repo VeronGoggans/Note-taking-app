@@ -223,8 +223,9 @@ export class TextEditorView {
   _initializeDOMElements() {
     // toolbar top
     this.noteNameInput = document.querySelector('.note-name-input');
-    this.exitButton = document.querySelector('.exit-text-editor-btn');
+    this.exitButton = document.querySelector('#exit-text-editor-btn');
     this.saveButton = document.querySelector('.save-note-btn');
+    this.findButton = document.querySelector('#editor-search-icon');
 
     this.noteDropdown = document.querySelector('.file-dropdown');
     this.noteDropdownOptions = this.noteDropdown.querySelector('.options');
@@ -241,9 +242,6 @@ export class TextEditorView {
     this.styleDropdown = document.querySelector('.style-dropdown');
     this.styleDropdownOptions = this.styleDropdown.querySelector('.options');
 
-    this.editDropdown = document.querySelector('.edit-dropdown');
-    this.editDropdownOptions = this.editDropdown.querySelector('.options');
-
     // toolbar bottom
     this.headingButton = document.querySelector('.heading-button');
     this.headingDropdown = document.querySelector('.heading-dropdown');
@@ -253,7 +251,6 @@ export class TextEditorView {
     this.fontDropdown = document.querySelector('.font-dropdown');
     this.fontDropdownOptions = document.querySelector('.font-options');
     
-    this.findButton = document.querySelector('.find-btn');
     this.linkButton = document.querySelector('.link-btn');
     this.codeBlockButton = document.querySelector('.code-block-btn');
     this.horizontalRuleButton = document.querySelector('.hr-btn');
@@ -271,8 +268,8 @@ export class TextEditorView {
     this.textEditor = document.querySelector('.editor-wrapper');
     this.editor = document.querySelector('.editor');
     this.page = document.querySelector('.editor-paper');
-    this.dropdowns = [this.noteDropdown, this.headingDropdown, this.fontDropdown, this.insertDropdown, this.styleDropdown, this.foregroundColor, this.backgroundColor, this.editDropdown]
-    this.dropdownOptions = [this.noteDropdownOptions, this.headingDropdownOptions, this.fontDropdownOptions, this.insertDropdownOptions, this.styleDropdownOptions, this.foregroundPalette, this.backgroundPalette, this.editDropdownOptions]
+    this.dropdowns = [this.noteDropdown, this.headingDropdown, this.fontDropdown, this.insertDropdown, this.styleDropdown, this.foregroundColor, this.backgroundColor]
+    this.dropdownOptions = [this.noteDropdownOptions, this.headingDropdownOptions, this.fontDropdownOptions, this.insertDropdownOptions, this.styleDropdownOptions, this.foregroundPalette, this.backgroundPalette]
   }
 
 

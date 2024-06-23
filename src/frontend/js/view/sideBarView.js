@@ -66,7 +66,7 @@ class SidebarView {
      */
     openButtons() {
         let currentTheme = document.body.classList.toString().charAt(0).toUpperCase() + document.body.classList.toString().slice(1);
-        const buttonText = ['Home', 'Back', 'Flash cards', 'Templates', 'Favorites', currentTheme]
+        const buttonText = ['Home', 'Back', 'Flashcards', 'Templates', 'Favorites', currentTheme]
         for (let i = 0; i < this._buttonCount; i++) {
             this._sidebarSpans[i].style.position = 'relative';
             this._sidebarSpans[i].textContent = buttonText[i];

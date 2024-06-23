@@ -1,16 +1,9 @@
 [
     {
         "id": "t-3",
-        "name": "Todo List",
+        "name": "Software Project planning",
         "content": "storage/templates/template-t-3.txt",
-        "last_edit": "23/06/2024 00:39",
+        "last_edit": "23/06/2024 12:21",
         "creation": "29/05/2024"
-    },
-    {
-        "id": "t-10",
-        "name": "Postman template",
-        "content": "storage/templates/template-t-10.txt",
-        "last_edit": "23/06/2024 00:41",
-        "creation": "18/06/2024"
     }
 ]

@@ -48,7 +48,7 @@
                 <button class="home-screen-btn"><i class="fa-solid fa-house"></i><span>Home</span></button>
                 <button class="exit-folder-btn"><i class="fa-solid fa-arrow-left"></i><span>Back</span></button>
                 <!-- <button class="calendar-btn"><i class="fa-solid fa-calendar-days"></i><span>Calendar</span></button> -->
-                <button class="flash-cards-btn"><i class="fa-solid fa-circle-check"></i><span>Flash cards</span></button>
+                <button class="flash-cards-btn"><i class="fa-solid fa-circle-check"></i><span>Flashcards</span></button>
                 <button class="templates-btn"><i class="fa-solid fa-layer-group"></i><span>Templates</span></button>
                 <button class="favorites-btn"><i class="fa-solid fa-heart"></i><span>Favorites</span></button>
               </div>
@@ -87,29 +87,8 @@
     <div class="editor-wrapper">
       <div class="toolbar">
         <div class="toolbar-top">
-          <button class="exit-text-editor-btn"><i class="fa-solid fa-arrow-left"></i></button>
-          <div class="file-dropdown" id="dropdown-1">
-            <button class="dropdown-title"><i class="fa-solid fa-ellipsis"></i></button>
-            <div class="options">
-              <button class="new-note-span"><i class="fa-solid fa-plus"></i>New</button>
-              <button class="save-note-span"><i class="fa-regular fa-floppy-disk"></i>Save</button>
-              <button class="delete-note-span"><i class="fa-regular fa-trash-can"></i>Delete</button>
-              <button class="note-details-span"><i class="fa-solid fa-info"></i>Details</button>
-              <button class="templates-span"><i class="fa-solid fa-layer-group"></i>Templates</button>
-            </div>
-          </div>
+          <i class="fa-solid fa-arrow-left" id="exit-text-editor-btn"></i>
           <input type="text" class="note-name-input" placeholder="untitled" spellcheck="false">
-          <div class="edit-dropdown">
-            <button class="dropdown-title">Edit</button>
-            <div class="options">
-              <button onclick="executeCommand('undo')"><i class="fa-solid fa-rotate-left"></i> Undo</button>
-              <button onclick="executeCommand('redo')"><i class="fa-solid fa-rotate-right"></i> Redo</button>
-              <button onclick="executeCommand('cut')"><i class="fa-solid fa-scissors"></i> Cut</button>
-              <button onclick="executeCommand('copy')"><i class="fa-regular fa-copy"></i> Copy</button>
-              <button onclick="executeCommand('paste')"><i class="fa-regular fa-paste"></i> Paste</button>
-              <button class="find-btn"><i class="fa-solid fa-magnifying-glass"></i> Find</button>
-            </div>
-          </div>
           <div class="insert-dropdown">
             <button class="dropdown-title">Insert</button>
             <div class="options">
@@ -127,7 +106,21 @@
               <button class="editor-page-style-span"><i class="fa-solid fa-pen"></i>Original</button>
             </div>
           </div>
-          <button class="save-note-btn">Save</button>
+          <div class="toolbar-top-right">
+            <i class="fa-solid fa-layer-group"></i>
+            <i id="editor-search-icon" class="fa-solid fa-magnifying-glass"></i>
+            <div class="file-dropdown" id="dropdown-1">
+              <i class="fa-solid fa-ellipsis"></i>
+              <div class="options">
+                <button class="new-note-span"><i class="fa-solid fa-plus"></i>New</button>
+                <button class="save-note-span"><i class="fa-regular fa-floppy-disk"></i>Save</button>
+                <button class="delete-note-span"><i class="fa-regular fa-trash-can"></i>Delete</button>
+                <button class="note-details-span"><i class="fa-solid fa-info"></i>Details</button>
+              </div>
+            </div>
+            <button class="save-note-btn">Save</button>
+          </div>
+          
           </div>
           <div class="toolbar-bottom">
             <div class="btn-container">
