@@ -2,6 +2,7 @@ import { KeyEventListener } from "../eventListeners/keyEventListener.js";
 import { TextEditorEventListener } from "../eventListeners/textEditorEventListener.js";
 import { TextFormatter } from "../textFormat/textFormatter.js"; 
 import { getNoteHexColor } from "../util/backgroundColor.js";
+import { formatDocumentLocation } from "../util/formatters.js";
 
 export class TextEditorView {
   constructor(textEditorController, applicationController, dialog) {
@@ -14,7 +15,7 @@ export class TextEditorView {
     this._attachEventListeners();
 
     this.keyEventListener = new KeyEventListener(this);
-    this.textEditorEventListener = new TextEditorEventListener(this.page, this.headingButton);
+    this.textEditorEventListener = new TextEditorEventListener(this.page, this.editor);
   }
 
   /**
@@ -23,15 +24,17 @@ export class TextEditorView {
    * 
    * @param {Object} object - could be a Note or Template object
    */
-  open(object) {
+  open(object, allFolderNames, allTemplateNames) {
     this.noteContent = object.content;
     this.page.innerHTML = object.content;
     this.noteNameInput.value = object.name;
+    formatDocumentLocation(allFolderNames, this.documentLocation)
     TextFormatter.listenForLinkClicks(this.page);
     TextFormatter.listenForNoteLinkClicks(this.page, this.applicationController);
     this.setEditorColor(object.color);
     this.show();
     this.page.focus();
+    this._renderTemplatesOptions(allTemplateNames);
   }
 
   /**
@@ -99,10 +102,11 @@ export class TextEditorView {
   /**
    * This method shows the text editor
    */
-  show() {
+  show(allTemplateNames) {
     this.editor.scrollTop = 0;
     this.textEditor.style.visibility = 'visible';
     this.textEditor.style.top = '0%';
+    this._renderTemplatesOptions(allTemplateNames);
   }
 
   
@@ -164,6 +168,15 @@ export class TextEditorView {
     this.dialog.renderSearchModal()
   }
 
+  _renderTemplatesOptions(allTemplateNames) {
+    console.log("nigga");
+    let html = '';
+    allTemplateNames.forEach(element => {
+      html += `<li id=${element.id}>${element.name}</li>`;
+    });
+    this.templates.innerHTML = html;
+  }
+
   _getStoredNoteData() {
     return this.textEditorController.getStoredNoteData();
   }
@@ -180,7 +193,6 @@ export class TextEditorView {
     this.noteContent = '';
     this.page.innerHTML = '';
     this.noteNameInput.value = '';
-    this.headingButton.textContent = 'Headings';
     this.textEditorController.clearStoredNoteData();
   }
 
@@ -222,34 +234,39 @@ export class TextEditorView {
 
   _initializeDOMElements() {
     // toolbar top
+    this.documentLocation = document.querySelector('.document-location');
     this.noteNameInput = document.querySelector('.note-name-input');
-    this.exitButton = document.querySelector('#exit-text-editor-btn');
+    this.exitButton = document.querySelector('#exit-editor-btn');
     this.saveButton = document.querySelector('.save-note-btn');
-    this.findButton = document.querySelector('#editor-search-icon');
+    this.findButton = document.querySelector('#editor-search-btn');
 
-    this.noteDropdown = document.querySelector('.file-dropdown');
-    this.noteDropdownOptions = this.noteDropdown.querySelector('.options');
+    this.editorDropdown = document.querySelector('.editor-options-dropdown');
+    this.editorDropdownOptions = this.editorDropdown.querySelector('.options');
     this.noteDetailsSpan = document.querySelector('.note-details-span');
     this.deleteNoteSpan = document.querySelector('.delete-note-span');
     this.saveNoteSpan = document.querySelector('.save-note-span');
     this.newNoteSpan = document.querySelector('.new-note-span');
-    this.noteBackgroundSpan = document.querySelector('.background-note-span');
-    this.editorPageStyleSpan = document.querySelector('.editor-page-style-span');
 
-    this.insertDropdown = document.querySelector('.insert-dropdown');
-    this.insertDropdownOptions = this.insertDropdown.querySelector('.options');
+    this.templateDropdown = document.querySelector('.templates-dropdown');
+    this.templateDropdownOptions = this.templateDropdown.querySelector('.options');
+    this.templates = document.querySelector('.templates-container');
+    // this.noteBackgroundSpan = document.querySelector('.background-note-span');
+    // this.editorPageStyleSpan = document.querySelector('.editor-page-style-span');
 
-    this.styleDropdown = document.querySelector('.style-dropdown');
-    this.styleDropdownOptions = this.styleDropdown.querySelector('.options');
+    // this.insertDropdown = document.querySelector('.insert-dropdown');
+    // this.insertDropdownOptions = this.insertDropdown.querySelector('.options');
+
+    // this.styleDropdown = document.querySelector('.style-dropdown');
+    // this.styleDropdownOptions = this.styleDropdown.querySelector('.options');
 
     // toolbar bottom
-    this.headingButton = document.querySelector('.heading-button');
-    this.headingDropdown = document.querySelector('.heading-dropdown');
-    this.headingDropdownOptions = this.headingDropdown.querySelector('.options');
+    // this.headingButton = document.querySelector('.heading-button');
+    // this.headingDropdown = document.querySelector('.heading-dropdown');
+    // this.headingDropdownOptions = this.headingDropdown.querySelector('.options');
 
-    this.fontButton = document.querySelector('.font-button');
-    this.fontDropdown = document.querySelector('.font-dropdown');
-    this.fontDropdownOptions = document.querySelector('.font-options');
+    // this.fontButton = document.querySelector('.font-button');
+    // this.fontDropdown = document.querySelector('.font-dropdown');
+    // this.fontDropdownOptions = document.querySelector('.font-options');
     
     this.linkButton = document.querySelector('.link-btn');
     this.codeBlockButton = document.querySelector('.code-block-btn');
@@ -259,17 +276,17 @@ export class TextEditorView {
     this.embedVideoButton = document.querySelector('.video-btn');
     this.foregroundColor = document.querySelector('.foreground-color-picker');
     this.backgroundColor = document.querySelector('.background-color-picker');
-    this.foregroundPalette = document.querySelector('.foreground-color-palette');
-    this.foregroundPaletteColors = this.foregroundPalette.querySelectorAll('.nature-colors button, .sunset-colors button, .neon-colors button, .text-colors button');
-    this.backgroundPalette = document.querySelector('.background-color-palette');
-    this.backgroundPaletteColors = this.backgroundPalette.querySelectorAll('.nature-colors button, .sunset-colors button, .neon-colors button, .text-colors button');
+    // this.foregroundPalette = document.querySelector('.foreground-color-palette');
+    // this.foregroundPaletteColors = this.foregroundPalette.querySelectorAll('.nature-colors button, .sunset-colors button, .neon-colors button, .text-colors button');
+    // this.backgroundPalette = document.querySelector('.background-color-palette');
+    // this.backgroundPaletteColors = this.backgroundPalette.querySelectorAll('.nature-colors button, .sunset-colors button, .neon-colors button, .text-colors button');
 
     // other
     this.textEditor = document.querySelector('.editor-wrapper');
     this.editor = document.querySelector('.editor');
     this.page = document.querySelector('.editor-paper');
-    this.dropdowns = [this.noteDropdown, this.headingDropdown, this.fontDropdown, this.insertDropdown, this.styleDropdown, this.foregroundColor, this.backgroundColor]
-    this.dropdownOptions = [this.noteDropdownOptions, this.headingDropdownOptions, this.fontDropdownOptions, this.insertDropdownOptions, this.styleDropdownOptions, this.foregroundPalette, this.backgroundPalette]
+    this.dropdowns = [this.editorDropdown, this.templateDropdown]
+    this.dropdownOptions = [this.editorDropdownOptions, this.templateDropdownOptions]
   }
 
 
@@ -282,38 +299,38 @@ export class TextEditorView {
     this.deleteNoteSpan.addEventListener('click', () => {this.dialog.renderDeleteModal(this._getStoredNoteData().id, this.noteNameInput.value, this)});
     this.saveNoteSpan.addEventListener('click', async () => {await this.save(false, false)});
     this.newNoteSpan.addEventListener('click', () => {this.new()});
-    this.noteBackgroundSpan.addEventListener('click', () => {this.dialog.renderNoteBackgroundModal(this._getStoredNoteData(), this)});
-    this.editorPageStyleSpan.addEventListener('click', () => {this.updatePageStyle()});
+    // this.noteBackgroundSpan.addEventListener('click', () => {this.dialog.renderNoteBackgroundModal(this._getStoredNoteData(), this)});
+    // this.editorPageStyleSpan.addEventListener('click', () => {this.updatePageStyle()});
   
     this.exitButton.addEventListener('click', () => {this.closeEditor()});
     this.saveButton.addEventListener('click', async () => { await this.save(true, false)});
     this.page.addEventListener('click', () => {this._closeDropdowns()});
 
     this.findButton.addEventListener('click', () => {this.renderSearchModal()});
-    this.linkButton.addEventListener('click', () => {TextFormatter.addLink()});
-    this.codeBlockButton.addEventListener('click', () => {TextFormatter.addCodeBlock()});
-    this.horizontalRuleButton.addEventListener('click', () => (TextFormatter.addHorizontalRule()));
-    this.linkNoteButton.addEventListener('click', async () => {this.dialog.renderNoteLinkModal(this, await this.getSearchableNotes(), this.page, this.applicationController, this.dialog)});
-    this.embedVideoButton.addEventListener('click', () => {TextFormatter.addEmbedVideo()});
+    // this.linkButton.addEventListener('click', () => {TextFormatter.addLink()});
+    // this.codeBlockButton.addEventListener('click', () => {TextFormatter.addCodeBlock()});
+    // this.horizontalRuleButton.addEventListener('click', () => (TextFormatter.addHorizontalRule()));
+    // this.linkNoteButton.addEventListener('click', async () => {this.dialog.renderNoteLinkModal(this, await this.getSearchableNotes(), this.page, this.applicationController, this.dialog)});
+    // this.embedVideoButton.addEventListener('click', () => {TextFormatter.addEmbedVideo()});
     
-    this.foregroundPaletteColors.forEach(button => {
-      button.addEventListener('click', () => {
-          const COLOR = button.style.backgroundColor;
-          TextFormatter.addColor(COLOR, 'forecolor');
-          this._toggleVisibleDropdown(this.foregroundPalette);
-      });
-    });
+    // this.foregroundPaletteColors.forEach(button => {
+    //   button.addEventListener('click', () => {
+    //       const COLOR = button.style.backgroundColor;
+    //       TextFormatter.addColor(COLOR, 'forecolor');
+    //       this._toggleVisibleDropdown(this.foregroundPalette);
+    //   });
+    // });
 
-    this.backgroundPaletteColors.forEach(button => {
-      button.addEventListener('click', () => {
-          // Get the data-color attribute of the clicked div
-          let color = button.style.backgroundColor;
-          if (color === '#ffffff') {
-              color = 'transparent';
-          }
-          TextFormatter.addColor(color, 'BackColor');
-          this._toggleVisibleDropdown(this.backgroundPalette);
-      });
-    });    
+    // this.backgroundPaletteColors.forEach(button => {
+    //   button.addEventListener('click', () => {
+    //       // Get the data-color attribute of the clicked div
+    //       let color = button.style.backgroundColor;
+    //       if (color === '#ffffff') {
+    //           color = 'transparent';
+    //       }
+    //       TextFormatter.addColor(color, 'BackColor');
+    //       this._toggleVisibleDropdown(this.backgroundPalette);
+    //   });
+    // });    
   }
 }

@@ -11,6 +11,8 @@ class TemplateRouter:
 
         self.route.add_api_route('/templates', self.get_templates, methods=['GET'])
         self.route.add_api_route('/template/{id}', self.get_template_by_id, methods=['GET'])
+        self.route.add_api_route('/templateNames', self.get_template_names, methods=['GET'])
+
         self.route.add_api_route('/template', self.add_template, methods=['POST'])
         self.route.add_api_route('/template/{id}', self.update_template, methods=['PUT'])
         self.route.add_api_route('/template/{template_id}', self.delete_template, methods=['DELETE'])
@@ -26,6 +28,11 @@ class TemplateRouter:
         if response != Status.NOT_FOUND:
             return {"Status_code": Status.OK, "Template": response}
         return {"Status_code": Status.NOT_FOUND, "Template": None}
+    
+
+    def get_template_names(self):
+        response = self.service.get_template_names()
+        return {"Status_code": Status.OK, "Templates": response}
     
 
     def add_template(self, template: TemplateRequest):

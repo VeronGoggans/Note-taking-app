@@ -1,0 +1,40 @@
+.rich-text-option-container {
+    position: absolute;
+    bottom: -80px;
+    display: flex;
+    width: fit-content;
+    height: fit-content;
+    background-color: var(--background);
+    padding: 10px 15px;
+    border: 1px solid var(--editor-border);
+    border-radius: 10px;
+}
+
+.btn-group {
+    display: flex;
+    padding: 0px 10px;
+}
+
+.btn-group button {
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    transition: 150ms;
+    color: var(--editor-text);
+}
+
+.btn-group button:hover {
+    color: #5c7dff;
+    background-color: var(--hover-toolbar-btns);
+}
+
+.active-text-format {
+    background-color: var(--hover-toolbar-btns);
+    color: #5c7dff;
+}

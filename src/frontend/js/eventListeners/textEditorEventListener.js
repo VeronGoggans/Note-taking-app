@@ -2,37 +2,30 @@ import { headingsMap, arrowKeys } from "../constants/constants.js";
 
 
 export class TextEditorEventListener {
-    constructor(editor, headingButton) {
-        this.editor = editor;
-        this.headingButton = headingButton
-        this.editor.addEventListener('keyup', (event) => {this._updateHeadingStatusOnKeyUp(event)});
-        this.editor.addEventListener('mouseup', () => {this._updateHeadingStatus()});
+    constructor(editorPage, editor) {
+        this.editorPage = editorPage;
+        editor.addEventListener('mouseup', () => {this.showToolbar()})
+        this.editorPage.addEventListener('mouseup',  () => {this.showToolbar()});
+        this.editorPage.addEventListener('keyup', () => {this.showToolbar()})
+        document.querySelector('.editor').addEventListener('scroll', (e) => {this.removeToolbar(e)})
     }
 
-    _updateHeadingStatus() {
-        console.log('I am triggerd');
+    showToolbar() {
         const selection = window.getSelection();
-        if (selection.rangeCount > 0) {
+          const container = document.querySelector('.rich-text-option-container');
+          if (!selection.isCollapsed) {
             const range = selection.getRangeAt(0);
-            let node = range.startContainer;
-
-            // Traverse up the DOM tree to find the relevant tag
-            while (node && node !== this.editor) {
-                if (node.nodeType === Node.ELEMENT_NODE) {
-                    if (headingsMap[node.tagName]) {
-                        this.headingButton.textContent = headingsMap[node.tagName];
-                        return;
-                    }
-                }
-                node = node.parentNode;
-            }
-        } 
-        if (this.headingButton.textContent !== 'Headings') {
-            this.headingButton.textContent = 'Headings';
-        }
-    }
-
-    _updateHeadingStatusOnKeyUp(event) {
-        if (arrowKeys.has(event.key)) this._updateHeadingStatus();
-    }
+            const rect = range.getBoundingClientRect();
+            container.style.top = `${rect.bottom + window.scrollY}px`;
+            container.style.left = `${rect.left + window.scrollX}px`;
+            container.style.display = 'flex';
+          } else {
+              container.style.display = 'none';
+          }
+      }
+  
+      removeToolbar() {
+        const container = document.querySelector('.rich-text-option-container');
+        container.style.display = 'none';
+      }
 }

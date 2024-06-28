@@ -3,9 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../css/general/themes.css">
     <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+        .foreward-slash-command-container {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--editor-border);
+            border-radius: 10px;
+            width: fit-content;
+            padding: 20px;
+            row-gap: 10px;
+            overflow-y: scroll;
+            max-height: 200px;
+        }
+
+        .foreward-slash-command-container::-webkit-scrollbar {
+            background-color: transparent;
+            width: 5px;
+        }
+
+        .foreward-slash-command-container::-webkit-scrollbar-thumb {
+            background-color: #cfd2e3;
+            border-radius: 10px;
+        }
+
+        .foreward-slash-command-container::-webkit-scrollbar-thumb:active {
+          background-color: #bbbed4;
+        }
+
+        .foreward-slash-command-container div {
+            cursor: pointer;
+            align-items: center;
+            height: 30px;
+            border-radius: 5px;
+            padding: 5px 10px;
+            display: grid;
+            grid-template-columns: 40px 1fr;
+            color: var(--editor-text);
+            font-family: sans-serif;
+            transition: 50ms;
+        }
+
+        .foreward-slash-command-container div:hover {
+            background-color: #f3f4f8;
+        }
+
+        .foreward-slash-command-container i {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 30px;
+            margin-right: 10px;
+            border-radius: 5px;
+            background-color: var(--hover-toolbar-btns);
+            color: var(--important);
+        }
+
+
+        .rich-text-option-container {
+            display: flex;
+            width: fit-content;
+            height: 30px;
+            padding: 10px 15px;
+            border: 1px solid var(--editor-border);
+            border-radius: 10px;
+        }
+
+        .btn-group {
+            display: flex;
+            background-color: rgb(255, 255, 255);
+            padding: 0px 10px;
+            border-radius: 20px;
+        }
+
+        .btn-group i {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            width: 30px;
+            height: 30px;
+            transition: 150ms;
+            color: var(--editor-text);
+        }
+
+        .btn-group i:hover {
+            color: #5c7dff;
+            background-color: var(--hover-toolbar-btns);
+        }
+    </style>
 </head>
 <body>
+    <div class="rich-text-option-container">
+        <div class="btn-group">
+            <i class="fa-solid fa-bold"></i>
+            <i class="fa-solid fa-italic"></i>
+            <i class="fa-solid fa-underline"></i>
+            <i class="fa-solid fa-strikethrough"></i>
+            <i class="fa-solid fa-link"></i>
+        </div>
+        <div class="btn-group">
+            <i class="fa-solid fa-align-left"></i>
+            <i class="fa-solid fa-align-justify"></i>
+            <i class="fa-solid fa-align-right"></i>
+        </div>
+        <div class="btn-group">
+            <i class="fa-solid fa-list-ul"></i>
+            <i class="fa-solid fa-list-ol"></i>
+            <i class="fa-solid fa-list-check"></i>
+        </div>
+        <div class="btn-group">
+            <i class="fa-solid fa-text-slash"></i>
+        </div>
+    </div>
+
+    <div class="foreward-slash-command-container">
+        <div class="note-link-option"><i class="fa-solid fa-file"></i>Link another document</div>
+        <div class="link-option"><i class="fa-solid fa-link"></i>Add a URL link</div>
+        <div class="embed-video-option"><i class="fa-solid fa-play"></i>Add a video</div>
+        <div class="horizontal-line-option"><i class="fa-solid fa-ruler-horizontal"></i>Add a horizontal line</div>
+        <div class="heading-1"><i class="fa-solid fa-h"></i>Add heading 1</div>
+        <div class="heading-2"><i class="fa-solid fa-h"></i>Add heading 2</div>
+        <div class="heading-3"><i class="fa-solid fa-h"></i>Add heading 3</div>
+        <div class="heading-4"><i class="fa-solid fa-h"></i>Add heading 4</div>
+        <div class="heading-5"><i class="fa-solid fa-h"></i>Add heading 5</div>
+        <div class="heading-6"><i class="fa-solid fa-h"></i>Add heading 6</div>
+    </div>
     
     
 </body>

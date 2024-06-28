@@ -1,10 +1,10 @@
 export class ApplicationModel {
     constructor() {
-        this.folderIds = [];
+        this.folderObjects = [];
     }
 
     clearFolderIdlist() {
-        this.folderIds = [];
+        this.folderObjects = [];
     }
 
     /** 
@@ -12,30 +12,37 @@ export class ApplicationModel {
      * or the home folder id if the stack is empty.
      */
     getCurrentFolderID() {
-        const lastFolder = this.folderIds[this.folderIds.length - 1];
+        const lastFolder = this.folderObjects[this.folderObjects.length - 1];
         return lastFolder ? lastFolder.id : 'f-1';
     }
 
     
     getCurrentFolderName() {
-        if (this.folderIds.length > 0) {
-            return this.folderIds[this.folderIds.length - 1].name;
+        if (this.folderObjects.length > 0) {
+            return this.folderObjects[this.folderObjects.length - 1].name;
         }
         return undefined
     }
 
+    getAllFolderNames() {
+        let folderNames = []
+        this.folderObjects.forEach(folderObject => {
+            folderNames.push(folderObject.name)
+        })
+        return folderNames
+    }
+
 
     addFolderIdToList(id, name) {
-        if (this.folderIds.length > 0) {
+        if (this.folderObjects.length > 0) {
             // if the id is not already in the last index of the array, push.
-            if (id !== this.folderIds[this.folderIds.length - 1].id) {
-                this.folderIds.push({'id': id, 'name': name});
-                console.log({'id': id, 'name': name});
+            if (id !== this.folderObjects[this.folderObjects.length - 1].id) {
+                this.folderObjects.push({'id': id, 'name': name});
             } else {
                 console.log('Push rejected: ID already present in the list!');
             }
         } else {
-            this.folderIds.push({'id': id, 'name': name});
+            this.folderObjects.push({'id': id, 'name': name});
         }
     }
 
@@ -48,8 +55,8 @@ export class ApplicationModel {
      * @returns {String} parent folder ID
      */
     removeFolderIdFromList() {
-        this.folderIds.pop();
-        const lastFolder = this.folderIds[this.folderIds.length - 1];
+        this.folderObjects.pop();
+        const lastFolder = this.folderObjects[this.folderObjects.length - 1];
         return lastFolder ? lastFolder: 'f-1';
     }
     

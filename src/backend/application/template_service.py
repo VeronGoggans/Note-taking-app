@@ -28,6 +28,12 @@ class TemplateService:
         return Status.NOT_FOUND
     
 
+    def get_template_names(self):
+        template_structure = self.json_manager.load(self.templates_path)
+        templates = self.manager.get_all_names(template_structure)
+        return templates
+    
+
     def add_template(self, template_data: TemplateRequest):
         template_id = self.json_manager.generateID(self.id_path, 'template')
         template_structure = self.json_manager.load(self.templates_path)

@@ -1,13 +1,17 @@
-.content-list-view::-webkit-scrollbar,
 .note-suggestions-list::-webkit-scrollbar,
 .linkable-notes-list::-webkit-scrollbar,
 .content-view::-webkit-scrollbar,
 .font-options::-webkit-scrollbar,
-.linkable-notes-list::-webkit-scrollbar {
+.linkable-notes-list::-webkit-scrollbar,
+.templates-container::-webkit-scrollbar {
     background-color: transparent;
     width: 5px;
 }
 
+.templates-container::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #cfd2e3;
+} 
 
 .note-suggestions-list::-webkit-scrollbar-thumb,
 .font-options::-webkit-scrollbar-thumb,

@@ -46,18 +46,18 @@ export class TextEditorController {
      * 
      * This method is called when a note card has been clicked.
      */
-    openNoteInTextEditor(note) {
+    openNoteInTextEditor(note, allFolderNames, allTemplateNames) {
         this.textEditorModel.storeNoteData(note);
-        this.textEditorView.open(note);
+        this.textEditorView.open(note, allFolderNames, allTemplateNames);
     }
 
     /**
      * 
      * This method is called when a template card has been clicked.
      */
-    openTemplateInTextEditor(template) {
+    openTemplateInTextEditor(template, allFolderNames, allTemplateNames) {
         this.textEditorModel.storeTemplateData(template)
-        this.textEditorView.open(template)
+        this.textEditorView.open(template, allFolderNames, allTemplateNames)
     }
 
     /**
@@ -86,8 +86,8 @@ export class TextEditorController {
         this.textEditorModel.clear();
     }
 
-    showTextEditor() {
-        this.textEditorView.show();
+    showTextEditor(allTemplateNames) {
+        this.textEditorView.show(allTemplateNames);
     }
 
     async updateNoteColor(color) {

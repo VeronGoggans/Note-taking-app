@@ -83,8 +83,9 @@ export class ApplicationController {
     }
 
 
-    showTextEditor() {
-        this.textEditorController.showTextEditor();
+    async showTextEditor() {
+        const allTemplateNames = await this.templateController.getTemplateNames();
+        this.textEditorController.showTextEditor(allTemplateNames);
     }
 
     /**
@@ -154,12 +155,16 @@ export class ApplicationController {
      * This method opens up the text editor
      * And puts the note the user clicked on, in the text editor.
      */
-    openNoteInTextEditor(note) {
-        this.textEditorController.openNoteInTextEditor(note);
+    async openNoteInTextEditor(note) {
+        const allFolderNames = this.applicationModel.getAllFolderNames();
+        const allTemplateNames = await this.templateController.getTemplateNames();
+        this.textEditorController.openNoteInTextEditor(note, allFolderNames, allTemplateNames);
     }
 
-    openTemplateInTextEditor(template) {
-        this.textEditorController.openTemplateInTextEditor(template)
+    async openTemplateInTextEditor(template) {
+        const allFolderNames = this.applicationModel.getAllFolderNames();
+        const allTemplateNames = await this.templateController.getTemplateNames();
+        this.textEditorController.openTemplateInTextEditor(template, allFolderNames, allTemplateNames)
     }
 
     getTemplates() {

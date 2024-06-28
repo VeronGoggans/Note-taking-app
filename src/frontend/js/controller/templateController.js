@@ -15,6 +15,18 @@ export class TemplateController {
         this.view.renderAll(templates);
     }
 
+    async getTemplateById(id) {
+        const response = await this.model.getById('/templates', id);
+        const template = await response.Template;
+        return template
+    }
+
+    async getTemplateNames() {
+        const response = await this.model.get('/templateNames');
+        const templates = await response.Templates;
+        return templates
+    }
+
     async addTemplate(name, content) {
         const response = await this.model.add('/template', name, content)
         let template = await response.Template;

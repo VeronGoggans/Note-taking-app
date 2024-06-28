@@ -1,19 +1,19 @@
 .editor-wrapper {
-    position: absolute;
-    top: 100%;
-    visibility: hidden;
-    display: grid;
-    grid-template-rows: 120px 1fr;
-    height: 100dvh;
-    width: 100dvw;
-    background-color: var(--editor);
+   user-select: none;
+   position: absolute;
+   display: grid;
+   grid-template-rows: 120px 1fr;
+   height: 100dvh;
+   width: 100dvw;
+   background-color: var(--editor);
+   top: 100%;
+   visibility: hidden;
 }
 
 .editor {
    position: relative;
    display: flex;
    justify-content: center;
-   background-color: var(--editor-background);
    max-height: calc(100dvh - 120px);
    overflow-y: scroll;
 }
@@ -23,48 +23,33 @@
    position: relative;
    width: 50%;
    height: fit-content; /*calc(100% - 120px)*/
-   margin: 15px 0;
    min-height: 800px;
    min-width: 600px;
    max-width: 650px;
    outline: none;
    cursor: text;
-   padding: 60px 70px;
    overflow-x: hidden;
    font-size: 11pt;
    font-family: sans-serif;
-   border: 1px solid var(--editor-border);
    background-color: var(--background);
    color: var(--editor-text);
 }
 
 .toolbar {
-   position: relative;
    display: grid;
-   grid-template-rows: 1fr 50px;
+   grid-template-rows: 30px 1fr;
+   padding: 10px;
 }
 
 .toolbar-top {
-   padding: 0 15px;
-   position: relative;
    display: flex;
    align-items: center;
-   gap: 10px;
-   user-select: none;
+   position: relative;
 }
 
 .toolbar-bottom {
-   user-select: none;
-   background-color: var(--toolbar); 
    display: flex;
    justify-content: center;
-   align-items: center;
-   border-radius: 0px; /*It was 25px*/
-   padding: 0px 10px;
-   margin: 0px 15px;
-   overflow: visible;
-   border-bottom: 1px solid var(--toolbar-border);
-   z-index: 1;
 }
 
 
@@ -73,18 +58,6 @@
  .editor a {
     cursor: pointer;
     color: rgb(92, 125, 255);
- }
-
- .editor .paragraph {
-    border-radius: 10px;
-    border: 1px solid var(--editor-border);
-    background-color: transparent;
-    padding: 20px;
-    transition: .2s;
- }
-
- .editor .paragraph:hover {
-    border-color: #a3b5ff;
  }
 
  .editor iframe {

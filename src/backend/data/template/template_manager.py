@@ -21,6 +21,17 @@ class TemplateManager:
         return None
     
 
+    def get_all_names(self, templates: list):
+        template_objects = []
+
+        for template in templates:
+            template_objects.append({
+                'id': template['id'],
+                'name': template['name']
+            })
+        return template_objects
+
+
     def add(self, templates: list, new_template: Template):
         templates.append(new_template.__dict__)
         return new_template

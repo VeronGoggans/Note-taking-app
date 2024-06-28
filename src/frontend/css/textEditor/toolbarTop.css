@@ -1,68 +1,69 @@
-.toolbar-top-right {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-    justify-content: end;
-}
-
-.toolbar-top-right i {
+.toolbar-top i  {
     cursor: pointer;
-    width: 40px;
-    height: 40px;
-    border-radius: 15px;
     display: flex;
+    width: 30px;
+    height: 30px;
     justify-content: center;
     align-items: center;
-    color: var(--important);
-    transition: 200ms;
-}
-
-.toolbar-top-right i:hover {
-    color: #5c7dff;
-    background-color: var(--hover-toolbar-btns);
-}
-
-.note-name-input {
-    position: relative;
-    font-family: Roboto;
-    outline: none;
-    border: none;
-    background-color: transparent;
-    border-bottom: 2px solid transparent;
-    min-width: 200px;
-    width: 250px;
-    height: 25px;
-    padding: 5px 10px;
-    font-weight: 600;
-    font-size: 18px;
-    color: var(--editor-text-top);
-    transition: 200ms ease-in-out;
-}
-
-.note-name-input::placeholder {
-    color: var(--placeholder);
-}
-
-.file-dropdown {
-    overflow: visible;
-    transition: 200ms;
-}
-
-.file-dropdown .dropdown-title,
-.insert-dropdown .dropdown-title,
-.style-dropdown .dropdown-title {
-    color: var(--important);
+    border-radius: 10px;
 } 
 
-.file-dropdown .dropdown-title:hover,
-.insert-dropdown .dropdown-title:hover,
-.style-dropdown .dropdown-title:hover {
-    color: #5c7dff;
+.document-location {
+    margin-left: 30px;
+    color: var(--editor-text);
+    font-family: sans-serif;
+    font-size: 14px;
 }
 
-.file-dropdown .options {
+.save-note-btn {
+    cursor: pointer;
+    position: absolute;
+    right: 50px;
+    top: 3px;
+    color: var(--editor-text);
+    font-family: sans-serif;
+    padding: 5px 10px;
+    border-radius: 7px;
+    transition: 150ms;
+}
+
+#editor-search-btn {
+    position: absolute;
+    right: 10px;
+    top: 45px;
+    color: var(--placeholder);
+    transition: 150ms;
+}
+
+#editor-search-btn:hover {
+    background-color: #a0b3ffa1;
+    color: #819aff;
+}
+
+#editor-template-btn {
+    position: absolute;
+    right: 10px;
+    top: 80px;
+    color: var(--placeholder);
+    transition: 150ms;
+}
+
+#editor-template-btn:hover {
+    background-color: #ffd17d8a;
+    color: #ffc14f;
+}
+
+.editor-options-dropdown {
+    overflow: visible;
+    transition: 200ms;
+    position: absolute;
+    right: 10px;
+    top: 3px;
+    cursor: pointer;
+    transition: 150ms;
+}
+
+.editor-options-dropdown .options {
     font-family: Roboto;
     visibility: hidden;
     opacity: 0;
@@ -71,7 +72,7 @@
     display: flex;
     flex-direction: column;
     width: 140px;
-    right: 120px;
+    right: 10px;
     border-radius: 7px;
     padding: 10px;
     font-size: 14px;
@@ -80,7 +81,7 @@
     z-index: 2;
 }
 
-.file-dropdown .options button {
+.editor-options-dropdown .options button {
     font-family: Roboto;
     display: flex;
     align-items: center;
@@ -96,120 +97,85 @@
     text-align: start;
 }
 
-.file-dropdown .options i {
+.editor-options-dropdown .options i {
     margin: 0 5px;
 }
 
-.dropdown-title {
-    font-family: Roboto;
-    cursor: pointer;
-    outline: none;
-    border: none;
-    background-color: transparent;
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: 600;
-}
-
-.save-note-btn {
-    border: none;
-    width: 90px;
-    height: 35px;
-    background-color: #5c7dff; 
-    color: #ffffff;
-    font-size: 16px;
-    font-family: sans-serif;
-    border-radius: 10px;
-    transition: 200ms;
-}
-
-.save-note-btn:hover {
-    background-color: #4a6eff;
-}
-
-#exit-text-editor-btn {
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-width: 40px;
-    height: 40px;
-    color: var(--important);
-    border-radius: 15px;
-    transition: 100ms;
-}
-
-#exit-text-editor-btn:hover {
+.editor-options-dropdown button:hover {
+    background-color: var(--hover);
     color: #5c7dff;
-    background-color: var(--hover-toolbar-btns);
-}
-.note-name-input:hover,
-.note-name-input:focus {
-    border-color: #5c7dff;
 }
 
-.insert-dropdown,
-.style-dropdown {
-    position: relative;
-    border-radius: 7px;
-    cursor: pointer;
-    padding: 5px 7px;
-    overflow: visible;
-    font-weight: 600;
-    font-size: 16px;
-    font-family: Roboto;
-    transition: 200ms
-}
-
-.insert-dropdown:hover,
-.style-dropdown:hover {
-    background-color: var(--toolbar);
-}
-
-.insert-dropdown .options,
-.style-dropdown .options {
-    visibility: hidden;
-    opacity: 0;
+.templates-dropdown .options {
     position: absolute;
-    background-color: var(--editor-dropdown);
+    background-color: var(--background);
+    border-radius: 10px;
+    box-shadow: 0 0 10px var(--shadow);
+    width: 250px;
+    max-height: 350px;
+    padding: 30px 20px;
     display: flex;
     flex-direction: column;
-    top: 40px;
-    left: 0px;
-    border-radius: 7px;
-    padding: 10px;
-    width: 150px;
-    box-shadow: 0 5px 20px var(--shadow);
-    transition: 100ms;
     z-index: 2;
+    top: 90px;
+    right: 50px;
+    visibility: hidden;
+    opacity: 0;
 }
 
-.insert-dropdown .options button,
-.style-dropdown .options button,
-.file-dropdown .options button {
-    font-family: Roboto;
-    border: none;
-    background-color: transparent;
-    margin: 5px 0;
-    padding: 5px 2px;
-    border-radius: 15px;
+.templates-dropdown .options span {
+    font-family: sans-serif;
     font-weight: 600;
-    color: var(--editor-text);
-    width: 100%;
-    height: 30px;
-    transition: background-color 150ms ease;
-    text-align: start;
+    font-size: 18px;
+    color: var(--important);
+    margin-bottom: 10px;
 }
 
-.insert-dropdown .options button i,
-.style-dropdown .options button i,
-.file-dropdown .options button i {
-    margin: 0 5px;
+.templates-container {
+    list-style-type: circle;;
+    overflow-y: scroll;
+    border-left: 2px solid #5c7fdd;
+    list-style: circle;
 }
 
-.insert-dropdown .options button:hover,
-.style-dropdown .options button:hover,
-.file-dropdown .options button:hover {
-    background-color: var(--editor-dropdown-hover);
-    color: var(--editor-dropdown-hover-color);
+.templates-container li {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-family: Roboto;
+    font-weight: 600;
+    margin: 10px;
+    border-radius: 5px;
+    padding: 10px 7px;
+    color: var(--text);
+    transition: 150ms;
 }
+
+.templates-container li:hover {
+    background-color: var(--hover);
+    color: #5c7fdd;
+}
+
+.save-note-btn:hover,
+#editor-options-btn:hover,
+#exit-editor-btn:hover {
+    background-color: var(--hover-toolbar-btns);
+    color: #5c7dff;
+}
+
+.note-name-input {
+    outline: none;
+    border: none;
+    padding: 0 10px;
+    height: 100%;
+    min-width: 700px;
+    font-weight: 600;
+    font-size: 25px;
+    background-color: var(--background);
+    color: var(--important);
+    }
+
+.note-name-input::placeholder {
+    color: var(--placeholder);
+}
+
