@@ -2,6 +2,7 @@ export class ApplicationView {
     constructor(applicationController, dialog) {
         this.applicationController = applicationController;
         this.dialog = dialog;
+        
 
         this._initializeDomElements();
         this._attachEventListeners();
@@ -135,7 +136,6 @@ export class ApplicationView {
         this._searchNoteObjects.push(
             {'id': id, 'name': name, 'folder_name': folderName}
         );
-        console.log(folderName);
     }
 
     /**
@@ -172,6 +172,10 @@ export class ApplicationView {
         this.currentFolderName.textContent = name;
     }
 
+    displayCreateButtonText(btnText) {
+        this.createNoteButton.textContent = btnText;
+    }
+
     /**
      * This method handles the  event of a user 
      * searching for a note.
@@ -186,9 +190,7 @@ export class ApplicationView {
         await this.applicationController.getSearchedNote(noteId);
     }
 
-    /**
-     * This method handle the add folder button click 
-     * 
+    /** 
      * This method is called from with in the new folder container
      *  
      * @param {String} name 
@@ -199,10 +201,6 @@ export class ApplicationView {
 
     async updateTheme() {
         await this.applicationController.setTheme(false)
-    }
-
-    async updateEditorPageStyle() {
-        await this.applicationController.updateEditorPageStyle()
     }
 
     _initializeDomElements() {

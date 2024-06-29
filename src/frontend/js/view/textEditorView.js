@@ -32,9 +32,7 @@ export class TextEditorView {
     TextFormatter.listenForLinkClicks(this.page);
     TextFormatter.listenForNoteLinkClicks(this.page, this.applicationController);
     this.setEditorColor(object.color);
-    this.show();
-    this.page.focus();
-    this._renderTemplatesOptions(allTemplateNames);
+    this.show(allFolderNames, allTemplateNames);
   }
 
   /**
@@ -69,30 +67,31 @@ export class TextEditorView {
     }
   } 
 
+  async loadInTemplate(templateId) {
+    const templateContent = await this.applicationController.getTemplateById(templateId);
+    this.page.innerHTML = this.page.innerHTML += await templateContent.content;
+  }
+
+
+  listenForTemplateOptionClicks() {
+    const templateOptions = this.templates.children;
+    for(let i = 0; i < templateOptions.length; i++) {
+      const option = templateOptions[i];
+      option.addEventListener('click', async () => {
+        this.loadInTemplate(option.id);
+      })
+    }
+  }
+
   async getSearchableNotes() {
     return await this.applicationController.getSearchObjects(); 
   }
 
-
-  /**
-   * This method will exit out of the editor 
-   * without saving the user's prrogress
-   * 
-   * This method is called when the user has clicked 
-   * on the exit button inside the 'You forgot to save warning modal'
-   */
   exitNoSave() {
     this._closeEditorAndClearStoredData();
     this.dialog.hide();
   }
 
-  /**
-   * This method will exit ot of the editor 
-   * after saving the the user's progres
-   * 
-   * This method is called when the user has clicked 
-   * on the save button inside the 'You forgot to save warning modal'
-   */
   exitBySave() {
     this.noteContent = this.page.innerHTML;
     this.dialog.hide();
@@ -102,11 +101,13 @@ export class TextEditorView {
   /**
    * This method shows the text editor
    */
-  show(allTemplateNames) {
+  show(allFolderNames, allTemplateNames) {
+    formatDocumentLocation(allFolderNames, this.documentLocation);
+    this._renderTemplatesOptions(allTemplateNames);
     this.editor.scrollTop = 0;
     this.textEditor.style.visibility = 'visible';
     this.textEditor.style.top = '0%';
-    this._renderTemplatesOptions(allTemplateNames);
+    this.page.focus();
   }
 
   
@@ -155,26 +156,17 @@ export class TextEditorView {
     this._clear();
   }
 
-  /**
-   * This method will toggle the page style.
-   * from Original to Simple
-   */
-  async updatePageStyle() {
-    await this.applicationController.setEditorPageStyle(false);
-    this._toggleEditorStyleSpanName();
-  }
-
   renderSearchModal() {
     this.dialog.renderSearchModal()
   }
 
   _renderTemplatesOptions(allTemplateNames) {
-    console.log("nigga");
     let html = '';
     allTemplateNames.forEach(element => {
       html += `<li id=${element.id}>${element.name}</li>`;
     });
     this.templates.innerHTML = html;
+    this.listenForTemplateOptionClicks();
   }
 
   _getStoredNoteData() {
@@ -207,20 +199,13 @@ export class TextEditorView {
     this._closeDropdowns();
     this._clear();
     this._resetEditorColor();
+    this.textEditorEventListener.removeToolbar();
   }
 
   _toggleVisibleDropdown(dropdownOptions) {
     this._closeDropdowns(dropdownOptions);
     dropdownOptions.style.visibility = dropdownOptions.style.visibility === 'visible' ? 'hidden' : 'visible';
     dropdownOptions.style.opacity = dropdownOptions.style.opacity === '1' ? '0' : '1';
-  }
-
-  _toggleEditorStyleSpanName() {
-    let currentStyle = this.editorPageStyleSpan.innerHTML;
-    this.editorPageStyleSpan.innerHTML = currentStyle === 
-    '<i class="fa-solid fa-pencil"></i>Original' ? 
-    '<i class="fa-solid fa-pencil"></i>Simple' : 
-    '<i class="fa-solid fa-pencil"></i>Original';
   }
 
   _closeDropdowns(target) {

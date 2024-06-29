@@ -28,7 +28,7 @@
 #notification-icon {
     color: var(--background);
     font-size: 20px;
-    background-color: #a9baff;
+    background-color: var(--placeholder);
     width: 35px;
     height: 35px;
     display: flex;

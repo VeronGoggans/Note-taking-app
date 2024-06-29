@@ -1,7 +1,8 @@
 import { CNode } from "../../util/CNode.js";
+import { dateFormat } from "../../util/date.js";
 
 export class NoteDetailContainer {
-    constructor(created, lastEdit) {
+    constructor(noteInfo) {
         this.editor = document.querySelector('.editor');
         this.HOST = CNode.create('div', {'class': 'note-details-container'});
         this.H2 = CNode.create('h2', {'textContent': 'Note details'});
@@ -12,8 +13,8 @@ export class NoteDetailContainer {
         this.P3 = CNode.create('p', {'textContent': 'Edit'});
         this.DETAILS_RIGHT = CNode.create('div', {'class': 'details-right'});
         this.P_WORD_COUNT = CNode.create('p', {'textContent': this.#getWordCount()});
-        this.P_CREATED = CNode.create('p', {'textContent': this.#checkDateForNull(created)});
-        this.P_EDIT = CNode.create('p', {'textContent': this.#checkDateForNull(lastEdit)});
+        this.P_CREATED = CNode.create('p', {'textContent': this.#checkDateForNull(noteInfo.creation)});
+        this.P_EDIT = CNode.create('p', {'textContent': this.#checkDateForNull(noteInfo.last_edit)});
         return this.#render();
     }
 
@@ -26,7 +27,7 @@ export class NoteDetailContainer {
     }
 
     #checkDateForNull(date) {
-        return date === null ? 'Not available' : date;
+        return date === null ? 'Not available' : dateFormat(date);
     }
 
     #getWordCount() {

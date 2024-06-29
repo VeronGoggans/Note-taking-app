@@ -9,8 +9,6 @@ class SettingRouter:
 
         self.route.add_api_route('/settings/theme', self.theme, methods=['GET'])
         self.route.add_api_route('/settings/theme/{theme}', self.update_theme, methods=['PUT'])
-        self.route.add_api_route('/settings/editor-page-style', self.editor_page_style, methods=['GET'])
-        self.route.add_api_route('/settings/editor-page-style/{style}', self.update_editor_page_style, methods=['PUT'])
         
     
     def theme(self):
@@ -21,13 +19,3 @@ class SettingRouter:
     def update_theme(self, theme: str):
         response = self.setting_service.update_theme(theme)
         return {'Status_code': Status.OK, "theme": response}
-        
-
-    def editor_page_style(self):
-        response = self.setting_service.get_editor_page_style()
-        return {"status_code": Status.OK, "editor_page_style": response}
-    
-
-    def update_editor_page_style(self, style: str):
-        response = self.setting_service.update_editor_page_style(style)
-        return {'status_code': Status.OK, "editor_page_style": response}

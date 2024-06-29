@@ -6,7 +6,6 @@ export class NoteBackroundContainer {
         this.id = id;
         this.view = view;
         this.activeColor = color;
-        console.log(color);
         this.HOST = CNode.create('div', {'class': 'note-background-color-container'});
         this.H2 = CNode.create('h2', {'textContent': 'Background colors'});
         this.ROW1 = CNode.create('section', {'class': 'note-background-colors-row-one'});

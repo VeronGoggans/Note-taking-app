@@ -16,7 +16,7 @@ export class TemplateController {
     }
 
     async getTemplateById(id) {
-        const response = await this.model.getById('/templates', id);
+        const response = await this.model.getById('/template', id);
         const template = await response.Template;
         return template
     }

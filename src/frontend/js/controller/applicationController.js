@@ -32,12 +32,11 @@ export class ApplicationController {
      */
     async start() {
         await this.setTheme(true);
-        await this.setEditorPageStyle(true);
         await this.folderController.getFolders();
         await this.noteController.getNotes(this.homeFolderId);
-        const RESPONSE = await this.getSearchObjects();
-        this.applicationView.giveSearchOptions(RESPONSE.Notes);
-        this.applicationView.renderSearchOptions(RESPONSE.Notes);
+        const response = await this.getSearchObjects();
+        this.applicationView.giveSearchOptions(response.Notes);
+        this.applicationView.renderSearchOptions(response.Notes);
     }
 
 
@@ -56,6 +55,7 @@ export class ApplicationController {
         await this.noteController.getNotes(this.homeFolderId);
         this.applicationModel.clearFolderIdlist();
         this.applicationView.displayFolderName('Home');
+        this.applicationView.displayCreateButtonText('Add document')
     }
     
     async navigateOutofFolder() {
@@ -75,17 +75,20 @@ export class ApplicationController {
 
         if (folderId === this.templateFolderId) {
             await this.templateController.getTemplates();
+            this.applicationView.displayCreateButtonText('Add template')
         }
         else {
             await this.folderController.getFolders(folderId);
             await this.noteController.getNotes(folderId);
+            this.applicationView.displayCreateButtonText('Add document')
         }
     }
 
 
     async showTextEditor() {
+        const allFolderNames = this.applicationModel.getAllFolderNames();
         const allTemplateNames = await this.templateController.getTemplateNames();
-        this.textEditorController.showTextEditor(allTemplateNames);
+        this.textEditorController.showTextEditor(allFolderNames, allTemplateNames);
     }
 
     /**
@@ -99,18 +102,11 @@ export class ApplicationController {
      * @param {String} noteId 
      */
     async getSearchedNote(noteId) {
-        const RESPONSE = await this.noteController.getNoteById(noteId);
-        const NOTE = await RESPONSE[0];
-        const CONTENT = await NOTE.content;
-        const NAME = await NOTE.name;
-        const CREATION = await NOTE.creation;
-        const LAST_EDIT = await NOTE.last_edit;
-        const BOOKMARK = await NOTE.bookmark;
-        const FAVORITE = await NOTE.favorite;
-        const COLOR = await NOTE.color;
-        this.openNoteInTextEditor(CONTENT, NAME, CREATION, LAST_EDIT, noteId, BOOKMARK, FAVORITE, COLOR);
-        if (RESPONSE[1] !== this.homeFolderId) {
-            this.navigateIntoFolder(await RESPONSE[1], await RESPONSE[2]);
+        const response = await this.noteController.getNoteById(noteId);
+        const note = await response[0];
+        this.openNoteInTextEditor(note);
+        if (response[1] !== this.homeFolderId) {
+            this.navigateIntoFolder(await response[1], await response[2]);
         }
     }
 
@@ -215,8 +211,7 @@ export class ApplicationController {
         this.settingController.setTheme(init, THEME);
     }
 
-    async setEditorPageStyle(init) {
-        const STYLE = await this.settingController.getEditorPageStyle();
-        this.settingController.setEditorPageStyle(init, STYLE);
+    async getTemplateById(templateId) {
+        return await this.templateController.getTemplateById(templateId)
     }
 }

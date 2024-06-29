@@ -19,7 +19,6 @@ export function filterNotePreview(content) {
 export function formatDocumentLocation(folderNames, documentLocationTag) {
     let formattedDocumentLocation = ' ';
     const filteredNames = filterFolderNames(folderNames);
-    console.log(filteredNames);
     filteredNames.forEach(name => {
         formattedDocumentLocation += `${name} / `;
     });

@@ -32,7 +32,8 @@ export class NoteView {
                 AnimationHandler.fadeInFromBottom(NOTE_CARD);
             }
             this._content.appendChild(contentFragment);
-        } else {
+        } 
+        if (this._content.children.length === 0) {
             this.notificationHandler.push('Empty');
         }
     }
@@ -58,8 +59,6 @@ export class NoteView {
                 const noteName = cards[i].querySelector('h4');
                 noteName.textContent = formatName(note.name);
 
-                cards[i].setAttribute("data-info", `${dateFormat(note.creation)}--${dateFormat(note.last_edit)}`);
-
                 this.noteObjects.update(note);
                 this.notificationHandler.push('Updated');
             }
@@ -83,7 +82,6 @@ export class NoteView {
     
     handleNoteCardClick(noteId) {
         const note = this.noteObjects.get(noteId);
-        note.last_edit = dateFormat(note.last_edit)
         this.applicationController.openNoteInTextEditor(note);
     }
 

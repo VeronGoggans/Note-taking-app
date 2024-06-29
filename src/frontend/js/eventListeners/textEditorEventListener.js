@@ -1,6 +1,3 @@
-import { headingsMap, arrowKeys } from "../constants/constants.js";
-
-
 export class TextEditorEventListener {
     constructor(editorPage, editor) {
         this.editorPage = editorPage;

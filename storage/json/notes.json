@@ -6,14 +6,14 @@
             "color": "rgb(255, 255, 255)",
             "notes": [
                 {
-                    "id": "n-592",
-                    "name": "ToDo Neutron",
-                    "content": "storage/notes/note-n-592.txt",
-                    "bookmark": true,
+                    "id": "n-665",
+                    "name": "Neutron document",
+                    "content": "storage/notes/note-n-665.txt",
+                    "bookmark": false,
                     "favorite": false,
                     "color": "white",
-                    "last_edit": "26/06/2024 18:12",
-                    "creation": "15/05/2024"
+                    "last_edit": "29/06/2024 18:29",
+                    "creation": "29/06/2024"
                 }
             ],
             "subfolders": []
@@ -215,6 +215,13 @@
                         }
                     ],
                     "subfolders": []
+                },
+                {
+                    "id": "s-185",
+                    "name": "untitled",
+                    "color": "rgb(255, 255, 255)",
+                    "notes": [],
+                    "subfolders": []
                 }
             ]
         },
@@ -239,7 +246,7 @@
         {
             "id": "f-125",
             "name": "Random",
-            "color": "rgb(255, 255, 255)",
+            "color": "rgb(255, 224, 158)",
             "notes": [
                 {
                     "id": "n-585",
@@ -248,7 +255,7 @@
                     "bookmark": false,
                     "favorite": false,
                     "color": "white",
-                    "last_edit": "14/06/2024 13:33",
+                    "last_edit": "29/06/2024 19:05",
                     "creation": "04/05/2024"
                 }
             ],

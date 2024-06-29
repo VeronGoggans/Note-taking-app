@@ -58,7 +58,7 @@ export class Dialog {
     }
 
     renderNoteDetailsModal(noteInfo) {
-        this.addChild(new NoteDetailContainer(noteInfo[1], noteInfo[2]))
+        this.addChild(new NoteDetailContainer(noteInfo))
         this.show();
     }
     

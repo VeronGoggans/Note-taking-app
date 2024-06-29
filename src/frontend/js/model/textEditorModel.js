@@ -11,7 +11,6 @@ export class TextEditorModel {
 
     storeTemplateData(template) {
         this.templateObject = template;
-        console.log(template);
     }
 
     storeNoteColor(color) {
@@ -19,6 +18,7 @@ export class TextEditorModel {
     }
 
     getStoredNoteData() {
+        console.log(this.noteObject);
         return this.noteObject
     }
 
@@ -37,6 +37,5 @@ export class TextEditorModel {
     clear() {
         this.noteObject = null;
         this.templateObject = null;
-        console.log(`removed Note: ${this.noteObject}`);
     }
 }

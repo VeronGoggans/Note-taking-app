@@ -86,8 +86,8 @@ export class TextEditorController {
         this.textEditorModel.clear();
     }
 
-    showTextEditor(allTemplateNames) {
-        this.textEditorView.show(allTemplateNames);
+    showTextEditor(allFolderNames, allTemplateNames) {
+        this.textEditorView.show(allFolderNames, allTemplateNames);
     }
 
     async updateNoteColor(color) {
