@@ -41,9 +41,6 @@
 }
 
 #editor-template-btn {
-    position: absolute;
-    right: 10px;
-    top: 80px;
     color: var(--placeholder);
     transition: 150ms;
 }
@@ -106,6 +103,12 @@
     color: #5c7dff;
 }
 
+.templates-dropdown {
+    position: absolute;
+    top: 85px;
+    right: 10px;
+}
+
 .templates-dropdown .options {
     position: absolute;
     background-color: var(--background);
@@ -117,8 +120,8 @@
     display: flex;
     flex-direction: column;
     z-index: 2;
-    top: 90px;
-    right: 50px;
+    top: 0px;
+    right: 40px;
     visibility: hidden;
     opacity: 0;
 }

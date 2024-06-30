@@ -1,5 +1,6 @@
 import { KeyEventListener } from "../eventListeners/keyEventListener.js";
 import { TextEditorEventListener } from "../eventListeners/textEditorEventListener.js";
+import { DropdownHelper } from "../helpers/dropdownHelper.js";
 import { TextFormatter } from "../textFormat/textFormatter.js"; 
 import { getNoteHexColor } from "../util/backgroundColor.js";
 import { formatDocumentLocation } from "../util/formatters.js";
@@ -14,6 +15,7 @@ export class TextEditorView {
     this._initializeDOMElements();
     this._attachEventListeners();
 
+    this.dropdownHelper = new DropdownHelper(this);
     this.keyEventListener = new KeyEventListener(this);
     this.textEditorEventListener = new TextEditorEventListener(this.page, this.editor);
   }
@@ -53,6 +55,7 @@ export class TextEditorView {
     }
   }
 
+
   /**
    * This method will check for changes before closing the editor.
    * If changes have been found they will be saved. If no changes have been 
@@ -67,21 +70,25 @@ export class TextEditorView {
     }
   } 
 
+
+  /**
+   * This method shows the text editor
+   */
+  show(allFolderNames, allTemplateNames) {
+    formatDocumentLocation(allFolderNames, this.documentLocation);
+    this.dropdownHelper.renderTemplatesDropdown(allTemplateNames);
+    this.editor.scrollTop = 0;
+    this.textEditor.style.visibility = 'visible';
+    this.textEditor.style.top = '0%';
+    this.page.focus();
+  }
+
+
   async loadInTemplate(templateId) {
     const templateContent = await this.applicationController.getTemplateById(templateId);
     this.page.innerHTML = this.page.innerHTML += await templateContent.content;
   }
 
-
-  listenForTemplateOptionClicks() {
-    const templateOptions = this.templates.children;
-    for(let i = 0; i < templateOptions.length; i++) {
-      const option = templateOptions[i];
-      option.addEventListener('click', async () => {
-        this.loadInTemplate(option.id);
-      })
-    }
-  }
 
   async getSearchableNotes() {
     return await this.applicationController.getSearchObjects(); 
@@ -96,18 +103,6 @@ export class TextEditorView {
     this.noteContent = this.page.innerHTML;
     this.dialog.hide();
     this.save(true, false);
-  }
-
-  /**
-   * This method shows the text editor
-   */
-  show(allFolderNames, allTemplateNames) {
-    formatDocumentLocation(allFolderNames, this.documentLocation);
-    this._renderTemplatesOptions(allTemplateNames);
-    this.editor.scrollTop = 0;
-    this.textEditor.style.visibility = 'visible';
-    this.textEditor.style.top = '0%';
-    this.page.focus();
   }
 
   
@@ -160,14 +155,7 @@ export class TextEditorView {
     this.dialog.renderSearchModal()
   }
 
-  _renderTemplatesOptions(allTemplateNames) {
-    let html = '';
-    allTemplateNames.forEach(element => {
-      html += `<li id=${element.id}>${element.name}</li>`;
-    });
-    this.templates.innerHTML = html;
-    this.listenForTemplateOptionClicks();
-  }
+  
 
   _getStoredNoteData() {
     return this.textEditorController.getStoredNoteData();
@@ -196,26 +184,13 @@ export class TextEditorView {
 
   _closeEditorAndClearStoredData() {
     this._close();
-    this._closeDropdowns();
+    this.dropdownHelper.closeDropdowns();
     this._clear();
     this._resetEditorColor();
     this.textEditorEventListener.removeToolbar();
   }
 
-  _toggleVisibleDropdown(dropdownOptions) {
-    this._closeDropdowns(dropdownOptions);
-    dropdownOptions.style.visibility = dropdownOptions.style.visibility === 'visible' ? 'hidden' : 'visible';
-    dropdownOptions.style.opacity = dropdownOptions.style.opacity === '1' ? '0' : '1';
-  }
 
-  _closeDropdowns(target) {
-    this.dropdownOptions.forEach((dropdown) => {
-      if (dropdown !== target) {
-        dropdown.style.visibility = 'hidden';
-        dropdown.style.opacity = '0';
-      }
-    })
-  }
 
   _initializeDOMElements() {
     // toolbar top
@@ -225,16 +200,10 @@ export class TextEditorView {
     this.saveButton = document.querySelector('.save-note-btn');
     this.findButton = document.querySelector('#editor-search-btn');
 
-    this.editorDropdown = document.querySelector('.editor-options-dropdown');
-    this.editorDropdownOptions = this.editorDropdown.querySelector('.options');
     this.noteDetailsSpan = document.querySelector('.note-details-span');
     this.deleteNoteSpan = document.querySelector('.delete-note-span');
     this.saveNoteSpan = document.querySelector('.save-note-span');
     this.newNoteSpan = document.querySelector('.new-note-span');
-
-    this.templateDropdown = document.querySelector('.templates-dropdown');
-    this.templateDropdownOptions = this.templateDropdown.querySelector('.options');
-    this.templates = document.querySelector('.templates-container');
     // this.noteBackgroundSpan = document.querySelector('.background-note-span');
     // this.editorPageStyleSpan = document.querySelector('.editor-page-style-span');
 
@@ -270,16 +239,10 @@ export class TextEditorView {
     this.textEditor = document.querySelector('.editor-wrapper');
     this.editor = document.querySelector('.editor');
     this.page = document.querySelector('.editor-paper');
-    this.dropdowns = [this.editorDropdown, this.templateDropdown]
-    this.dropdownOptions = [this.editorDropdownOptions, this.templateDropdownOptions]
   }
 
 
   _attachEventListeners() {
-    for (let i = 0; i < this.dropdowns.length; i++) {
-      this.dropdowns[i].addEventListener('click', () => {this._toggleVisibleDropdown(this.dropdownOptions[i])});
-    }
-
     this.noteDetailsSpan.addEventListener('click', () => {this.dialog.renderNoteDetailsModal(this._getStoredNoteData())});
     this.deleteNoteSpan.addEventListener('click', () => {this.dialog.renderDeleteModal(this._getStoredNoteData().id, this.noteNameInput.value, this)});
     this.saveNoteSpan.addEventListener('click', async () => {await this.save(false, false)});
@@ -289,7 +252,7 @@ export class TextEditorView {
   
     this.exitButton.addEventListener('click', () => {this.closeEditor()});
     this.saveButton.addEventListener('click', async () => { await this.save(true, false)});
-    this.page.addEventListener('click', () => {this._closeDropdowns()});
+    this.page.addEventListener('click', () => {this.dropdownHelper.closeDropdowns()});
 
     this.findButton.addEventListener('click', () => {this.renderSearchModal()});
     // this.linkButton.addEventListener('click', () => {TextFormatter.addLink()});

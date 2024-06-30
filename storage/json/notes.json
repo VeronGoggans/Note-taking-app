@@ -215,13 +215,6 @@
                         }
                     ],
                     "subfolders": []
-                },
-                {
-                    "id": "s-185",
-                    "name": "untitled",
-                    "color": "rgb(255, 255, 255)",
-                    "notes": [],
-                    "subfolders": []
                 }
             ]
         },
@@ -246,7 +239,7 @@
         {
             "id": "f-125",
             "name": "Random",
-            "color": "rgb(255, 224, 158)",
+            "color": "rgb(142, 122, 181)",
             "notes": [
                 {
                     "id": "n-585",
