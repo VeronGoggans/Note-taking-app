@@ -20,20 +20,9 @@
         },
         {
             "id": "f-49",
-            "name": "Github\ud83d\ude0e",
+            "name": "Github",
             "color": "rgb(255, 255, 255)",
-            "notes": [
-                {
-                    "id": "n-216",
-                    "name": "Github cheatsheet",
-                    "content": "storage/notes/note-n-216.txt",
-                    "bookmark": false,
-                    "favorite": false,
-                    "last_edit": "05/06/2024 14:29",
-                    "creation": "09/01/2024",
-                    "color": "white"
-                }
-            ],
+            "notes": [],
             "subfolders": []
         },
         {
@@ -150,7 +139,7 @@
                 },
                 {
                     "id": "s-182",
-                    "name": "CICQ2",
+                    "name": "CISQ2",
                     "color": "rgb(255, 255, 255)",
                     "notes": [
                         {
@@ -160,7 +149,7 @@
                             "bookmark": false,
                             "favorite": false,
                             "color": "white",
-                            "last_edit": "04/06/2024 12:19",
+                            "last_edit": "30/06/2024 16:24",
                             "creation": "30/05/2024"
                         },
                         {
@@ -170,7 +159,7 @@
                             "bookmark": false,
                             "favorite": false,
                             "color": "white",
-                            "last_edit": "28/06/2024 01:22",
+                            "last_edit": "30/06/2024 19:50",
                             "creation": "30/05/2024"
                         },
                         {
@@ -180,7 +169,7 @@
                             "bookmark": false,
                             "favorite": false,
                             "color": "white",
-                            "last_edit": "14/06/2024 13:02",
+                            "last_edit": "30/06/2024 16:23",
                             "creation": "30/05/2024"
                         },
                         {
@@ -190,7 +179,7 @@
                             "bookmark": false,
                             "favorite": false,
                             "color": "white",
-                            "last_edit": "20/06/2024 01:07",
+                            "last_edit": "30/06/2024 16:24",
                             "creation": "30/05/2024"
                         },
                         {
@@ -200,7 +189,7 @@
                             "bookmark": false,
                             "favorite": false,
                             "color": "white",
-                            "last_edit": "11/06/2024 18:47",
+                            "last_edit": "30/06/2024 16:24",
                             "creation": "30/05/2024"
                         },
                         {
@@ -219,27 +208,9 @@
             ]
         },
         {
-            "id": "f-104",
-            "name": "Frontend",
-            "color": "rgb(169, 215, 255)",
-            "notes": [
-                {
-                    "id": "n-539",
-                    "name": "CSS Quick Reference",
-                    "content": "storage/notes/note-n-539.txt",
-                    "bookmark": false,
-                    "favorite": false,
-                    "color": "white",
-                    "last_edit": "31/05/2024 02:19",
-                    "creation": "19/04/2024"
-                }
-            ],
-            "subfolders": []
-        },
-        {
             "id": "f-125",
             "name": "Random",
-            "color": "rgb(142, 122, 181)",
+            "color": "rgb(169, 215, 255)",
             "notes": [
                 {
                     "id": "n-585",

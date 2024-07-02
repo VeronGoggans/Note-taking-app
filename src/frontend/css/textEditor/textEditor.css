@@ -33,6 +33,7 @@
    font-family: sans-serif;
    background-color: var(--background);
    color: var(--editor-text);
+   padding-bottom: 40px;
 }
 
 .toolbar {

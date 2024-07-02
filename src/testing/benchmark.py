@@ -25,7 +25,6 @@ flashcard_blocks = [block.strip() for block in flashcard_blocks if block.strip()
 
 for block in flashcard_blocks:
     lines = block.strip().split('\n')
-    id_line = lines[0]
     id = int(lines[0])
     name = lines[1]
     answer = ' '.join(lines[2:-1])

@@ -8,3 +8,11 @@ class Flashcard:
         self.rating = rating
 
     
+    @classmethod
+    def from_json(self, json_flashcard):
+        return Flashcard(
+            json_flashcard['id'],
+            json_flashcard['name'],
+            json_flashcard['answer'],
+            json_flashcard['rating']
+        )

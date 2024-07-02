@@ -1,4 +1,7 @@
-.toolbar-top i  {
+.toolbar-top i,
+#editor-search-btn,
+#editor-template-btn,
+#editor-flashcard-set-btn {
     cursor: pointer;
     display: flex;
     width: 30px;
@@ -29,7 +32,7 @@
 
 #editor-search-btn {
     position: absolute;
-    right: 10px;
+    right: 20px;
     top: 45px;
     color: var(--placeholder);
     transition: 150ms;
@@ -48,6 +51,19 @@
 #editor-template-btn:hover {
     background-color: #ffd17d8a;
     color: #ffc14f;
+}
+
+#editor-flashcard-set-btn {
+    position: absolute;     
+    top: 125px;
+    right: 20px;
+    color: var(--placeholder);
+    transition: 150ms;
+}
+
+#editor-flashcard-set-btn:hover {
+    background-color: #ffbebe;
+    color: #ff7d8d ;
 }
 
 .editor-options-dropdown {
@@ -106,7 +122,7 @@
 .templates-dropdown {
     position: absolute;
     top: 85px;
-    right: 10px;
+    right: 20px;
 }
 
 .templates-dropdown .options {

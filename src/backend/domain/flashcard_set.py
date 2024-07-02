@@ -14,6 +14,10 @@ class FlashcardSet:
         self.flashcards.append(flashcard)
 
 
+    def fill_set_with_cards(self, flashcards: list) -> None:
+        self.flashcards = flashcards        
+
+
     def calculate_progress(self) -> list[int]:
         correct = 0
         wrong = 0 
@@ -22,3 +26,11 @@ class FlashcardSet:
                 correct += 1
             elif card.rating == FlashcardRating.WRONG.value:
                 wrong += 1
+
+    
+    @classmethod
+    def from_json(self, json_set):
+        return FlashcardSet(
+            json_set['id'],
+            json_set['name']
+        )

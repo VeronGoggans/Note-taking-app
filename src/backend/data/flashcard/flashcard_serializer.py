@@ -2,10 +2,9 @@ from src.backend.domain.flashcard import Flashcard
 from src.backend.domain.enums.flashcard_rating import FlashcardRating
 
 class FlashcardSerializer:
-    def __init__(self) -> None:
-        pass
-
-    def deserialize(self, flashcards_text: str) -> list[Flashcard]:
+    
+    @staticmethod
+    def deserialize(flashcards_text: str) -> list[Flashcard]:
         flashcards = []
         flashcard_blocks = flashcards_text.strip().split('# flashcard ')
         # Remove empty indexes e.g (['', 'first index is empty'])
@@ -14,7 +13,6 @@ class FlashcardSerializer:
         # Deserializing process
         for block in flashcard_blocks:
             lines = block.strip().split('\n')
-            id_line = lines[0]
             id = int(lines[0])
             name = lines[1]
             answer = ' '.join(lines[2:-1])

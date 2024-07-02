@@ -7,6 +7,7 @@ import { TextEditorController } from "./textEditorController.js"
 import { SettingController } from "./settingController.js";
 import { Dialog } from "../util/dialog.js";
 import { NotificationHandler } from "../handlers/userFeedback/notificationHandler.js";
+import { FlashcardController } from "./flashcardController.js";
  
 export class ApplicationController {
     constructor() {
@@ -20,6 +21,7 @@ export class ApplicationController {
         this.folderController = new FolderController(this, this.dialog, this.notificationHandler);
         this.noteController = new NoteController(this, this.dialog, this.notificationHandler);
         this.templateController = new TemplateController(this, this.dialog, this.notificationHandler);
+        this.flashcardCOntroller = new FlashcardController(this, this.dialog, this.notificationHandler);
         this.textEditorController = new TextEditorController(this, this.dialog);
         this.settingController = new SettingController();
     }

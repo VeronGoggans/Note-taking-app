@@ -1,7 +1,6 @@
 import { Note } from "../components/note.js";
 import { DeleteModal } from "../components/modals/deleteModal.js";
 import { NoteObjectArray } from "../util/array.js";
-import { dateFormat } from "../util/date.js";
 import { formatName, filterNotePreview } from "../util/formatters.js";
 import { AnimationHandler } from "../handlers/animation/animationHandler.js";
 import { DragAndDrop } from "../handlers/drag&drop/dragAndDropHandler.js";

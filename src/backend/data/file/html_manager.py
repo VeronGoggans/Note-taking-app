@@ -17,7 +17,7 @@ class HTMLManager:
         entity_folder = None 
         file_name = None 
 
-        if 'fcb' in entity_id:
+        if 'fcs' in entity_id:
             entity_folder = 'storage/flashcards'
             file_name = f'flashcard-set-{entity_id}.txt'
         elif 'n' in entity_id:

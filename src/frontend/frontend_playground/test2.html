@@ -3,79 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Content Editable Command</title>
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <link rel="stylesheet" href="../css/general/themes.css">
     <style>
-         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
-        .templates-dropdown {
-            background-color: var(--background);
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+        .flashcard-modal {
+            position: relative;
+            width: 550px;
+            padding: 5px 20px;
             border-radius: 10px;
-            box-shadow: 0 0 10px var(--shadow);
-            width: 250px;
-            max-height: 350px;
-            padding: 30px 20px;
-            display: flex;
-            flex-direction: column;
+            height: 400px;
+            background-color: #ffffff;
+            border: 1px solid var(--border-card);
         }
 
-        .templates-dropdown span {
+        .flashcard-modal h3 {
             font-family: sans-serif;
-            font-weight: 600;
-            font-size: 18px;
             color: var(--important);
-            margin-bottom: 10px;
         }
 
-        .templates-container {
-            list-style-type: circle;;
-            overflow-y: scroll;
-            border-left: 2px solid #5c7fdd;
-            list-style: circle;
-        }
-
-        .templates-container::-webkit-scrollbar {
-            background-color: transparent;
-            width: 5px;
-        }
-
-        .templates-container::-webkit-scrollbar-thumb {
-            border-radius: 5px;
-            background-color: #d5d9e4;
-        }
-
-
-
-        .templates-container li {
-            cursor: pointer;
-            display: flex;
-            align-items: center;
+        .flashcard-modal span {
+            position: absolute;
+            top: 40px;
+            right: 25px;
             font-family: Roboto;
             font-weight: 600;
-            margin: 10px;
-            border-radius: 30px;
-            padding: 10px 7px;
-            color: var(--text);
-            transition: 150ms;
+            font-size: 15px;
         }
 
-        .templates-container li:hover {
-            background-color: var(--hover);
-            color: #5c7fdd;
+        .flashcard {
+            cursor: pointer;
+            height: 65%;
+            border-radius: 7px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 10px #e6eaf3;
+        }
+
+        .flashcard p {
+            font-family: Roboto;
+            font-weight: 600;
+        }
+
+
+        .progress {
+            margin-top: 10px;
+            margin: 10px 40px 0 40px;
+            position: relative;
+            height: 5px;
+            background-color: #e6eaff;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress__fill {
+            width: 90%;
+            height: 100%;
+            background-color: #5d7cff;
+        }
+
+        .button-bar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 50px;
+            margin: 10px 0;
+            gap: 20px;
+        }
+
+        .button-bar i {
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     </style>
 </head>
 <body>
-    <div class="templates-dropdown">
-
-        <span>Templates</span>
-        <ul class="templates-container">
-            <li>Software project planning</li>
-            <li>Basic Document</li>
-            <li>First template</li>
-            <li>Software project</li>
-            <li>Basic Document😅</li>
-        </ul>
-        
+    <div class="flashcard-modal">
+        <h3 class="title">Owasp Top 10</h3>
+        <span class="card-count">9/10</span>
+        <div class="flashcard">
+            <p class="flashcard-content">Broken authentication</p>
+        </div>
+        <div class="progress">
+            <div class="progress__fill"></div>
+        </div>
+        <div class="button-bar">
+            <i id="restart-btn" class="fa-solid fa-repeat"></i>
+            <i id="forward-backward-btn" class="fa-solid fa-arrows-rotate"></i>
+            <i id="wrong-btn" class="fa-solid fa-xmark"></i>
+            <i id="right-btn" class="fa-solid fa-check"></i>
+        </div>
     </div>
 </body>
 </html>
