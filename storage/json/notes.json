@@ -28,7 +28,7 @@
         {
             "id": "f-99",
             "name": "School \ud83d\udcd6\u270f\ufe0f",
-            "color": "rgb(255, 255, 255)",
+            "color": "rgb(169, 215, 255)",
             "notes": [],
             "subfolders": [
                 {
@@ -210,7 +210,7 @@
         {
             "id": "f-125",
             "name": "Random",
-            "color": "rgb(169, 215, 255)",
+            "color": "rgb(255, 255, 255)",
             "notes": [
                 {
                     "id": "n-585",
