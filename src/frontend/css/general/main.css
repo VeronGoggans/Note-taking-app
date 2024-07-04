@@ -79,7 +79,7 @@ button {
 .search-container,
 .search-notes-container {
     position: relative;
-    margin: 7px 10px 7px 0px;
+    margin: 7px 65px 7px 0px;
     display: flex;
     background-color: var(--searchbar);
     border-radius: 20px;

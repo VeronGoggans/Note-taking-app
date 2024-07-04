@@ -1,3 +1,5 @@
+/*Rich Text Options Container*/
+
 .rich-text-option-container {
     position: absolute;
     bottom: -80px;
@@ -37,4 +39,66 @@
 .active-text-format {
     background-color: var(--hover-toolbar-btns);
     color: #5c7dff;
+}
+
+
+
+
+/*Forward Slash Command Container*/
+
+.foreward-slash-command-container {
+    position: absolute;
+    bottom: -242px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--editor-border);
+    border-radius: 10px;
+    width: fit-content;
+    padding: 20px;
+    row-gap: 10px;
+    overflow-y: scroll;
+    max-height: 200px;
+    background-color: var(--background);
+}
+
+.foreward-slash-command-container::-webkit-scrollbar {
+    background-color: transparent;
+    width: 5px;
+}
+
+.foreward-slash-command-container::-webkit-scrollbar-thumb {
+    background-color: #cfd2e3;
+    border-radius: 10px;
+}
+
+.foreward-slash-command-container::-webkit-scrollbar-thumb:active {
+  background-color: #bbbed4;
+}
+
+.foreward-slash-command-container div {
+    cursor: pointer;
+    align-items: center;
+    height: 30px;
+    border-radius: 5px;
+    padding: 5px 10px;
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    color: var(--editor-text);
+    font-family: sans-serif;
+    transition: 50ms;
+}
+
+.foreward-slash-command-container div:hover {
+    background-color: #f3f4f8;
+}
+
+.foreward-slash-command-container i {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 30px;
+    margin-right: 10px;
+    border-radius: 5px;
+    background-color: var(--hover-toolbar-btns);
+    color: #8fa5ff;
 }

@@ -33,25 +33,6 @@ export class SettingView {
         }
     }
 
-    async setEditorPageStyle(init = false, style) {
-        if (init) {
-            if (style === 'simplist') {
-                this.editor.classList.add('simplist-e');
-                this.editorPage.classList.add('simplist-ep');
-            }
-        } else {
-            if (style === 'original') {
-                this.editor.classList.add('simplist-e');
-                this.editorPage.classList.add('simplist-ep');
-                await this.settingController.updateEditorPageStyle('simplist');
-            }
-            if (style === 'simplist') {
-                this.editor.classList.remove('simplist-e');
-                this.editorPage.classList.remove('simplist-ep');
-                await this.settingController.updateEditorPageStyle('original');
-            }
-        }
-    }
 
     async #lightMode() {
         document.body.classList.remove('dark')
@@ -63,6 +44,7 @@ export class SettingView {
         await this.settingController.updateTheme('light')
     }
 
+    
     async #darkmode() {
         document.body.classList.remove('light')
         document.body.classList.add('dark');
