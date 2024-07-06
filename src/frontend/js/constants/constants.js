@@ -100,3 +100,19 @@ export const notificationMessages = {
     'EMPTY': 'This folder is empty.<br>Start by making a note or subfolder.',
     'EXPORT': 'Export successful'
 }
+
+export const commands = {
+    'note': '',
+    'link': '',
+    'video': '',
+    'line': '',
+    'quote': '',
+    'important': '',
+    'copy': '',
+    'h1': '',
+    'h2': '',
+    'h3': '',
+    'time': '',
+    'date': '',
+
+}

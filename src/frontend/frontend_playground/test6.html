@@ -4,41 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../css/general/themes.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
 
         body {
-            overflow: hidden;
-            padding: 20px;
-            margin: 0;
             height: 100dvh;
-            width: 100dvw;
+        }
+        .copyable-block {
+            padding: 10px 20px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            width: fit-content;
+            font-family: sans-serif;
+            background-color: #f4f4f4;
+            border-radius: 5px;
+            color: var(--important);
+            cursor: pointer;
+            transition: 100ms;
         }
 
-        .flashcard-set {
-            position: relative;
-            width: 220px;
-            height: 300px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+        .copyable-block:hover {
+            color: #5c7fdd;
         }
 
-        .flashcard-set .card-1 {
-            background-color: rgba(255, 255, 255, 0.382);
-            height: 20px;
-            width: 200px;
-            position: absolute;
-            top: 290px;
-            left: 10px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
+        .copyable-block i {
+            background-color: #dde0ec;
+            color: var(--important);
+            min-width: 30px;
+            min-height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;  
         }
+
+
     </style>
 </head>
 <body>
-    <div class="flashcard-set">
-        <div class="card-1"></div>
-        <div class="card-2"></div>
+    <div class="copyable-block">
+        <i class="fa-regular fa-paste"></i>
+        Click on me to copy my content 
     </div>
+    
+    
     
 </body>
 </html>

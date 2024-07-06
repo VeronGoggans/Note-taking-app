@@ -53,6 +53,16 @@
     --folder-name-input: #ced1e3;
     --modal: #ffffff;
     --scrollbar-content-view: #e7e9f3;
+
+    --important-background-color: #f4f4f4;
+    --important-text-color: #444863;
+    --important-icon-color: #dde0ec;
+
+    --copy-background-color: #393742;
+    --copy-text-color: #edeffd;
+    --copy-icon-color: #1e1e28;
+    --copy-icon-text-color: #edeffd;
+    --copy-text-color-hover: #5c7fdd;
 }
 
 .dark {
@@ -110,6 +120,16 @@
     --modal: #1f2129;
     --scrollbar-content-view: #3f4045;
 
+    --important-background-color: #ffefb3;
+    --important-text-color: #101118;
+    --important-icon-color: #ffe547;
+
+    --copy-background-color: #8791c2;
+    --copy-text-color: #0d0e13;
+    --copy-icon-color: #535a6d;
+    --copy-icon-text-color: #e2e5ff;
+    --copy-text-color-hover: #edeffd;
+
 }
 
 .light {
@@ -166,4 +186,14 @@
     --folder-name-input: #ced1e3;
     --modal: #ffffff;
     --scrollbar-content-view: #e7e9f3;
+
+    --important-background-color: #f4f4f4;
+    --important-text-color: #444863;
+    --important-icon-color: #dde0ec;
+
+    --copy-background-color: #393742;
+    --copy-text-color: #edeffd;
+    --copy-text-color-hover: #5c7fdd;
+    --copy-icon-color: #1e1e28;
+    --copy-icon-text-color: #edeffd;
 }

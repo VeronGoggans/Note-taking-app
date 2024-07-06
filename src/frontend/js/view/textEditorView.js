@@ -4,6 +4,7 @@ import { DropdownHelper } from "../helpers/dropdownHelper.js";
 import { TextFormatter } from "../textFormat/textFormatter.js"; 
 import { getNoteHexColor } from "../util/backgroundColor.js";
 import { formatDocumentLocation } from "../util/formatters.js";
+import { TextBlockHandler } from "../textFormat/textBlockHandler.js";
 
 export class TextEditorView {
   constructor(textEditorController, applicationController, dialog) {
@@ -15,6 +16,7 @@ export class TextEditorView {
     this._initializeDOMElements();
     this._attachEventListeners();
 
+    this.textBlockParser = new TextBlockHandler(this.page);
     this.dropdownHelper = new DropdownHelper(this);
     this.keyEventListener = new KeyEventListener(this);
     this.textEditorEventListener = new TextEditorEventListener(this.page, this.editor);
@@ -33,6 +35,7 @@ export class TextEditorView {
     formatDocumentLocation(allFolderNames, this.documentLocation)
     TextFormatter.listenForLinkClicks(this.page);
     TextFormatter.listenForNoteLinkClicks(this.page, this.applicationController);
+    this.textBlockParser.parse();
     this.setEditorColor(object.color);
     this.show(allFolderNames, allTemplateNames);
   }
@@ -204,19 +207,8 @@ export class TextEditorView {
     this.deleteNoteSpan = document.querySelector('.delete-note-span');
     this.saveNoteSpan = document.querySelector('.save-note-span');
     this.newNoteSpan = document.querySelector('.new-note-span');
-    // this.noteBackgroundSpan = document.querySelector('.background-note-span');
-    // this.editorPageStyleSpan = document.querySelector('.editor-page-style-span');
-
-    // this.insertDropdown = document.querySelector('.insert-dropdown');
-    // this.insertDropdownOptions = this.insertDropdown.querySelector('.options');
-
-    // this.styleDropdown = document.querySelector('.style-dropdown');
-    // this.styleDropdownOptions = this.styleDropdown.querySelector('.options');
-
     // toolbar bottom
-    // this.headingButton = document.querySelector('.heading-button');
-    // this.headingDropdown = document.querySelector('.heading-dropdown');
-    // this.headingDropdownOptions = this.headingDropdown.querySelector('.options');
+  
 
     // this.fontButton = document.querySelector('.font-button');
     // this.fontDropdown = document.querySelector('.font-dropdown');
@@ -247,8 +239,6 @@ export class TextEditorView {
     this.deleteNoteSpan.addEventListener('click', () => {this.dialog.renderDeleteModal(this._getStoredNoteData().id, this.noteNameInput.value, this)});
     this.saveNoteSpan.addEventListener('click', async () => {await this.save(false, false)});
     this.newNoteSpan.addEventListener('click', () => {this.new()});
-    // this.noteBackgroundSpan.addEventListener('click', () => {this.dialog.renderNoteBackgroundModal(this._getStoredNoteData(), this)});
-    // this.editorPageStyleSpan.addEventListener('click', () => {this.updatePageStyle()});
   
     this.exitButton.addEventListener('click', () => {this.closeEditor()});
     this.saveButton.addEventListener('click', async () => { await this.save(true, false)});

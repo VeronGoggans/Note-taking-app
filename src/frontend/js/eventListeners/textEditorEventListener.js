@@ -66,11 +66,16 @@ export class TextEditorEventListener {
       this.editorPage.addEventListener('mouseup',  () => {this.showToolbar()});
       this.editorPage.addEventListener('keyup', () => {this.showToolbar()});
       this.editorPage.addEventListener('keyup', (event) => {this.checkForForwardSlash(event)});
+      this.editorPage.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+          document.execCommand('insertLineBreak')
+          event.preventDefault();
+        }
+      })
 
       this.editorPage.addEventListener('click', () => {
         if (this.forwardSlashCommandContainer.style.display === 'flex') {
           this.removeForwardSlashCommandContainer();
-          console.log('Remove');
         }
       })
     }
