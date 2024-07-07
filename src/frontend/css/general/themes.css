@@ -19,16 +19,11 @@
     --toolbar: #ffffff;/* Light grey eff1f7, Light blue #f1f5ff*/
     --toolbar-btn-text: #4f578f; /*747aa0*/
     --editor-text: #383838;
-    --editor-text-top: #383838;
     --border-card: #dee1ef;
     --border-sidebar-right: #f4f5f9; /*dee1ef*/
-    --border-sidebar-top: #f4f5f9; 
-    --border-main-top: #ffffff; /*f4f5f7*/
-    --border-search-bar: #ffffff; /*d4d4d4*/
     --hover: rgba(92, 125, 255, .3); 
     --hover-bookmark-icon-if-bookmarked: rgba(92, 125, 255, .3);
     --hover-favorite-icon-if-favorited: rgb(255 141 141);
-    --hover-list-view-buttons: #f4f5f7;
     --hover-searchbar-options: #f4f5f7;
     --hover-text: #444863;
     --hover-toolbar-btns: rgba(185, 198, 250, 0.5);
@@ -52,7 +47,10 @@
     --editor-dropdown-hover-color: #383838;
     --folder-name-input: #ced1e3;
     --modal: #ffffff;
+    --dropdown: #ffffff;
     --scrollbar-content-view: #e7e9f3;
+
+    --hover-slash-command: #f3f4f8;
 
     --important-background-color: #f4f4f4;
     --important-text-color: #444863;
@@ -85,16 +83,11 @@
     --toolbar: #1b1c23;
     --toolbar-btn-text: #bbbed2;
     --editor-text: #d5d9e0;
-    --editor-text-top: #d5d9e0;
     --border-card: #1f2129;
     --border-sidebar-right: #16171c;
-    --border-sidebar-top: #16171c;
-    --border-main-top: #1b1c22;
-    --border-search-bar: #1b1c22;
     --hover: #3c4361; 
     --hover-bookmark-icon-if-bookmarked: #434c71;
     --hover-favorite-icon-if-favorited: rgba(142, 223, 204, .3);
-    --hover-list-view-buttons: #252831;
     --hover-searchbar-options: #1a1b21;
     --hover-text: #5c7dff;
     --hover-toolbar-btns: #383d4c;
@@ -118,7 +111,10 @@
     --editor-dropdown-hover-color: #5c7dff;
     --folder-name-input: #5c7dff;
     --modal: #1f2129;
+    --dropdown: #1f2129;
     --scrollbar-content-view: #3f4045;
+
+    --hover-slash-command: #16171c;
 
     --important-background-color: #ffefb3;
     --important-text-color: #101118;
@@ -152,16 +148,11 @@
     --toolbar: #ffffff;
     --toolbar-btn-text: #4f578f;
     --editor-text: #383838;
-    --editor-text-top: #383838;
     --border-card: #dee1ef;
     --border-sidebar-right: #f4f5f9;
-    --border-sidebar-top: #f4f5f9;
-    --border-main-top: #ffffff;
-    --border-search-bar: #ffffff;
     --hover: rgba(92, 125, 255, .3);
     --hover-bookmark-icon-if-bookmarked: rgba(92, 125, 255, .3);
     --hover-favorite-icon-if-favorited: rgb(255 141 141);
-    --hover-list-view-buttons: #f4f5f7;
     --hover-searchbar-options: #f4f5f7;
     --hover-text: #444863;
     --hover-toolbar-btns: rgba(185, 198, 250, 0.5);
@@ -185,7 +176,10 @@
     --editor-dropdown-hover-color: #383838;
     --folder-name-input: #ced1e3;
     --modal: #ffffff;
+    --dropdown: #ffffff;
     --scrollbar-content-view: #e7e9f3;
+
+    --hover-slash-command: #f3f4f8;
 
     --important-background-color: #f4f4f4;
     --important-text-color: #444863;

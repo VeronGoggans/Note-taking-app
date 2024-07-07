@@ -6,7 +6,7 @@
     display: flex;
     width: fit-content;
     height: fit-content;
-    background-color: var(--background);
+    background-color: var(--dropdown);
     padding: 10px 15px;
     border: 1px solid var(--editor-border);
     border-radius: 10px;
@@ -58,7 +58,7 @@
     row-gap: 10px;
     overflow-y: scroll;
     max-height: 200px;
-    background-color: var(--background);
+    background-color: var(--dropdown);
 }
 
 .foreward-slash-command-container::-webkit-scrollbar {
@@ -89,7 +89,7 @@
 }
 
 .foreward-slash-command-container div:hover {
-    background-color: #f3f4f8;
+    background-color: var(--hover-slash-command);
 }
 
 .foreward-slash-command-container i {

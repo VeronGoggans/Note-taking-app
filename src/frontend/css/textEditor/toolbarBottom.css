@@ -19,115 +19,11 @@
     background-color: var(--hover-toolbar-btns) !important;
 }
 
-.toolbar-bottom .btn-container button:hover {
-    color: rgba(92, 125, 255);
-    background-color: var(--hover-toolbar-btns);
-}
 
-.heading-dropdown,
-.font-dropdown {
-    position: relative;
-    overflow: visible;
-}
 
-.heading-dropdown .heading-button,
-.font-dropdown .font-button {
-    font-family: Roboto;
-    border: none;
-    color: var(--toolbar-btn-text);
-    width: 80px;
-    height: 30px;
-    background-color: transparent;
-    border-radius: 10px;
-    font-size: 17px;
-    font-weight: 600;
-    transition: .2s;
-}
 
-.heading-dropdown .heading-button {
-    width: 90px;
-}
 
-.heading-dropdown .heading-button:hover,
-.font-dropdown .font-button:hover {
-    background-color: var(--hover-toolbar-btns);
-    color: rgba(92, 125, 255);
-}
-
-.heading-dropdown .options,
-.font-dropdown .font-options {
-    visibility: hidden;
-    opacity: 0;
-    position: absolute;
-    background-color: var(--editor-dropdown);
-    display: flex;
-    flex-direction: column;
-    top: 45px;
-    border-radius: 7px;
-    padding: 10px;
-    width: 150px;
-    box-shadow: 0 5px 20px var(--shadow);
-    transition: 100ms;
-    z-index: 2;
-}
-
-.font-options {
-    max-height: 270px;
-    overflow-y: scroll;
-}
-
-.heading-dropdown .options button {
-    font-family: Roboto;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    margin: 5px 0;
-    padding: 5px 2px;
-    border-radius: 15px;
-    font-weight: 600;
-    color: var(--editor-text);
-    width: 100%;
-    height: auto;
-    transition: background-color 100ms ease;
-    text-align: start;
-}
-
-.font-dropdown .font-options button {
-    border: none;
-    background-color: transparent;
-    margin: 5px 0;
-    padding: 5px 7px;
-    border-radius: 15px;
-    color: var(--editor-text);
-    width: 100%;
-    height: auto;
-    transition: background-color 150ms ease;
-    text-align: start;
-}
     
-
-.heading-dropdown .options button:hover,
-.font-dropdown .font-options button:hover {
-    background-color: var(--editor-dropdown-hover);
-    color: var(--editor-dropdown-hover-color);
-}
-
-.heading-dropdown .options .heading-1 {font-size: 32px}
-.heading-dropdown .options .heading-2 {font-size: 24px}
-.heading-dropdown .options .heading-3 {font-size: 18.72px}
-.heading-dropdown .options .heading-4 {font-size: 16px}
-.heading-dropdown .options .heading-5 {font-size: 13.28px}
-.heading-dropdown .options .heading-6 {font-size: 10.72px}
-
-.font-dropdown .font-options .font-ariel {font-family: Ariel;}
-.font-dropdown .font-options .font-helvetica {font-family: Helvetica;}
-.font-dropdown .font-options .font-verdana {font-family: Verdana;}
-.font-dropdown .font-options .font-comic-sans-mf {font-family: 'Comic Sans MS', cursive;}
-.font-dropdown .font-options .font-lucida-console {font-family: Lucida Console;}
-.font-dropdown .font-options .font-courier-new {font-family: Courier New;}
-.font-dropdown .font-options .font-times-new-roman {font-family: Times New Roman;}
-.font-dropdown .font-options .font-ariel-black {font-family: 'Arial Black';}
-.font-dropdown .font-options .font-impact {font-family: Impact;}
 
 /*Fore ground color picker*/
 
