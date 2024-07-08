@@ -2,14 +2,13 @@ from src.backend.data.file.html_manager import HTMLManager
 from src.backend.util.calendar import Calendar
 
 class Note:
-    def __init__(self, id: int, name: str, content: str, bookmark = False, favorite = False, color = 'white', 
+    def __init__(self, id: int, name: str, content: str, bookmark = False, favorite = False, 
                 last_edit = Calendar.datetime(), creation = Calendar.date()):
         self.id = id
         self.name = name
         self.content = content
         self.bookmark = bookmark
         self.favorite = favorite
-        self.color = color
         self.last_edit = last_edit
         self.creation = creation
 
