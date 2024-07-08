@@ -48,9 +48,4 @@ export class NoteModel {
         const options = RequestOptionsBuilder.buildPutOptions({'folder_id': folderId, 'note_id': noteId})
         return fetchData(endpoint, options)
     }
-
-    async updateColor(endpoint, noteId, color) {
-        const options = RequestOptionsBuilder.buildPutOptions({'note_id': noteId, 'color': color})
-        return fetchData(endpoint, options)
-    }
 }

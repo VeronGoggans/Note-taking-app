@@ -5,27 +5,6 @@ export const months = {
 }
 
 
-export const colorToHexcodeMap = {
-    'blue': {'paper': '#bcd2e9', 'editor': '#cfdae6'},
-    'purple': {'paper': '#c2bce9', 'editor': '#d6cfe6'},
-    'red': {'paper': '#ffacac', 'editor': '#ffcaca'},
-    'pink': {'paper': '#ffd7e6', 'editor': '#ffe6ef'},
-    'orange': {'paper': '#efba94', 'editor': '#e9cebb'},
-    'yellow': {'paper': '#fffba3', 'editor': '#fffcd3'},
-    'old-white': {'paper': '#fefded', 'editor': '#e4dfcf'},
-    'green': {'paper': '#aee4cb', 'editor': '#cfe6dc'},
-    'black': {'paper': '#000000', 'editor': '#535353'}
-}
-
-
-export const hexcodeToColorMap = {
-    '#ffffff': 'white','#bcd2e9': 'blue','#c2bce9': 'purple',
-    '#ffacac': 'red','#ffd7e6': 'pink','#efba94': 'orange',
-    '#fffba3': 'yellow','#fefded': 'old-white','#aee4cb': 'green',
-    '#000000': 'black'
-}
-
-
 export const folderColorNames = {
     'rgb(255, 255, 255)': 'White',
     'rgb(169, 215, 255)': 'Light Sky Blue',

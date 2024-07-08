@@ -51,10 +51,4 @@ export class NoteController {
         const note = response.Note;
         this.view.removeNote(note, false);
     }
-
-    async updateNoteColor(noteId, color) {
-        const response = await this.model.updateColor('/noteColor', noteId, color);
-        const note = response.Note;
-        this.view.update(note);
-    }
 }

@@ -169,17 +169,6 @@ class NoteService:
             return new_note
         self.json_manager.update(self.folders_path, folders_copy)
         return Status.NOT_FOUND
-
-
-    def update_note_color(self, put_request: PutNoteColorRequest):
-        folder_structure = self.json_manager.load(self.folders_path)
-        folders = folder_structure['folders']
-        note = self.note_manager.update_note_color(folders, put_request.note_id, put_request.color)
-
-        if note:
-            self.json_manager.update(self.folders_path, folder_structure)
-            return note 
-        return Status.NOT_FOUND
     
 
     def get_cache(self):

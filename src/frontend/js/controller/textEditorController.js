@@ -90,12 +90,6 @@ export class TextEditorController {
         this.textEditorView.show(allFolderNames, allTemplateNames);
     }
 
-    async updateNoteColor(color) {
-        const noteId = this.textEditorModel.getStoredNoteId();
-        this.textEditorModel.storeNoteColor(color);
-        this.applicationController.updateNoteColor(noteId, color);
-    }
-
     /**
      * This method deletes a specific note from withing 
      * the text editor

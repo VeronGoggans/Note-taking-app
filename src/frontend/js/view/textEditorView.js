@@ -2,7 +2,6 @@ import { KeyEventListener } from "../eventListeners/keyEventListener.js";
 import { TextEditorEventListener } from "../eventListeners/textEditorEventListener.js";
 import { DropdownHelper } from "../helpers/dropdownHelper.js";
 import { TextFormatter } from "../textFormat/textFormatter.js"; 
-import { getNoteHexColor } from "../util/backgroundColor.js";
 import { formatDocumentLocation } from "../util/formatters.js";
 import { TextBlockHandler } from "../textFormat/textBlockHandler.js";
 
@@ -36,7 +35,6 @@ export class TextEditorView {
     TextFormatter.listenForLinkClicks(this.page);
     TextFormatter.listenForNoteLinkClicks(this.page, this.applicationController);
     this.textBlockParser.parse();
-    this.setEditorColor(object.color);
     this.show(allFolderNames, allTemplateNames);
   }
 
@@ -114,32 +112,6 @@ export class TextEditorView {
     this._clear();
   }
 
-  setEditorColor(color) {
-    const colorObject = getNoteHexColor(color);
-    if (colorObject !== null) {
-      this.editor.style.backgroundColor = colorObject.editor;
-      this.page.style.backgroundColor = colorObject.paper;
-      this.page.style.borderColor = colorObject.paper;
-      this.page.style.color = '#383838';
-    } else {
-      this._resetEditorColor();
-    }
-  }
-
-  /**
-   * This method will update the background color 
-   * of the note currently in the editor.
-   * 
-   * The color is provided by the 'note background modal'
-   * after a user clicks on a color.
-   * 
-   * @param {String} color 
-   */
-  async updateNoteColor(color) {
-    this.setEditorColor(color);
-    await this.textEditorController.updateNoteColor(color);
-  }
-
   /**
    * This method deletes a specific note from withing 
    * the text editor
@@ -157,8 +129,6 @@ export class TextEditorView {
   renderSearchModal() {
     this.dialog.renderSearchModal()
   }
-
-  
 
   _getStoredNoteData() {
     return this.textEditorController.getStoredNoteData();
@@ -179,17 +149,11 @@ export class TextEditorView {
     this.textEditorController.clearStoredNoteData();
   }
 
-  _resetEditorColor() {
-    this.editor.style.cssText = "";
-    this.page.style.cssText = "";
-    this.page.style.cssText = "";
-  }
 
   _closeEditorAndClearStoredData() {
     this._close();
     this.dropdownHelper.closeDropdowns();
     this._clear();
-    this._resetEditorColor();
     this.textEditorEventListener.removeToolbar();
   }
 

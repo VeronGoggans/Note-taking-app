@@ -192,10 +192,6 @@ export class ApplicationController {
         await this.noteController.moveNote(noteId, folderId);
     }
 
-    async updateNoteColor(noteId, color) {
-        await this.noteController.updateNoteColor(noteId, color);
-    }
-
     async addSubfolder(name, parentID) {
         await this.folderController.addFolder(name, parentID);
     }

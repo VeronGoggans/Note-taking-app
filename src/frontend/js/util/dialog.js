@@ -2,7 +2,6 @@ import { NoteDetailContainer } from "../components/modals/noteDetailModal.js";
 import { DeleteModal } from "../components/modals/deleteModal.js";
 import { ForgotSaveContainer } from "../components/modals/forgotSaveModal.js";
 import { NewFolderContainer } from "../components/modals/newFolderModal.js";
-import { NoteBackroundContainer } from "../components/modals/noteBackgroundModal.js";
 import { NoteLinkModal } from "../components/modals/linkNoteModal.js";
 import { SearchModal } from "../components/modals/searchModal.js";
 import { EditFolderModal } from "../components/modals/editFolderModal.js";
@@ -21,7 +20,6 @@ export class Dialog {
                 '.delete-folder-container',
                 '.settings-container',
                 '.dont-forget-to-save-container',
-                '.note-background-color-container',
                 '.note-details-container',
                 '.note-export-modal',
                 '.note-link-modal',
@@ -77,11 +75,6 @@ export class Dialog {
         this.show();
         const inputElement = this.dialog.querySelector('.new-folder-container input');
         inputElement.focus();
-    }
-
-    renderNoteBackgroundModal(id, color, view) {
-        this.addChild(new NoteBackroundContainer(id, color, view));
-        this.show();
     }
 
     renderNoteLinkModal(view, notes, page, controller, dialog) {
