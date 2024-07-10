@@ -7,19 +7,39 @@ I created this app with two things I thought this app should have.
 
 > **Important** This app is completly local. This app does not save your notes in the cloud, but instead saves them localy in the form of .txt files..
 
+# Light mode
+### Home
+![home view light](https://github.com/VeronGoggans/Keeps/blob/main/docs/img/home-view-light.png?raw=true)
+### Inside folder
+![folder view light](https://github.com/VeronGoggans/Keeps/blob/main/docs/img/folder-view-light.png?raw=true)
+### Inside the editor
+![editor view light](https://github.com/VeronGoggans/Keeps/blob/main/docs/img/editor-view-light.png?raw=true)
+
 ## Features
 **App features:**
-- The user can create notes
-- The user can create Folders/subfolders
-- The use can bookmark notes
-- The user can check detailt about a note such as 
-word count, date of it's creation and the last time it was edited.
-- The user can change the background of a note
-- The user can give a folder/subfolder a color 
-- The user can switch between light and dark mode
-- The user can collapse the sidebar 
-- The User can search in the search bar for notes from within any folder
-- The user can drag and drop folders/notes into other folders.
+The user can create the following:
+- Notes
+- Templates
+- Flashcards
+- Folders
+- Subfolders
+
+### Notes:
+Neutron allows the user to bookmark notes and or set them as favorite,<br>
+to give the user more control over their notes.<br>
+
+**Favorite**<br>
+All favorite notes will be accessable from the sidebar,<br>
+by clicking on the **Favorite** tab.
+
+**Bookmark**<br>
+When a note is bookmarked the note will always render before all the other notes inside the folder. 
+
+
+### Templates
+Templates help the user to improve productivity by being able to load in templates<br> 
+directly into their notes.
+
 
 The following features will be for within the text editor
 
@@ -28,29 +48,54 @@ The following features will be for within the text editor
 - Links (These can be given a custom text)
 - Align text left, center and right
 - Bullet and numbered lists
-- Add code snippets
 - Color/highlight text
-- Sub/super scripts
 - Remove formatting
-- Move selected text by dragging it to a desired place
 - Undo/redo
 - Headings 1 through 6 
 - Fonts
 - Insert horizontal line
 - Link notes
-- The user can change the style of the editor to **original** or **simple**. 
-- The user will be able to create new notes or delete the current note from within the editor.
+- Save current note
+- Delete current note
+- Create new note (saves the previous note)
+- Show details about current note
+- Create Quote block
+- Create Important block
+- Create Copy block
+- Create Date block
+- Link other notes to current note.
+
+## Slash commands 
+To execute a command the user needs to type a **/**.\
+after pressing **/** the command box shows up.
 
 
+![Slash command](https://github.com/VeronGoggans/Keeps/blob/main/docs/img/slash-commands.png?raw=true)\
+Inside the command box the user can either click on a command,\
+or type in the keyword for a command. 
 
+**command keywords**
+|           |                                 |
+| --------- | ------------------------------- |
+| **Keyword**   | **Action**                          |
+| note      | Link a note to the current note |
+| link      | Create a url                    |
+| video     | Insert Youtube video            |
+| line      | Insert horizontal line          |
+| quote     | Insert quote block              |
+| important | Insert important block          |
+| copy      | Insert copy block               |
+| ul        | Insert unordered list           |
+| ol        | Insert ordered list             |
+| h1        | Insert heading 1                |
+| h2        | Insert heading 1                |
+| h3        | Insert heading 1                |
+| h4        | Insert heading 1                |
+| h5        | Insert heading 1                |
+| h6        | Insert heading 1                |
+| time      | Insert time block               |
+| date      | Insert date block               |
 
-# Light mode
-### Home
-![home view light](https://github.com/VeronGoggans/Keeps/blob/main/docs/img/home-view-light.png?raw=true)
-### Inside folder
-![folder view light](https://github.com/VeronGoggans/Keeps/blob/main/docs/img/folder-view-light.png?raw=true)
-### Inside the editor
-![editor view light](https://github.com/VeronGoggans/Keeps/blob/main/docs/img/editor-view-light.png?raw=true)
 
 # Dark mode
 ### Home
