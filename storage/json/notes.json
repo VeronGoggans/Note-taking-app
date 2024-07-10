@@ -4,23 +4,6 @@
             "id": "f-1",
             "name": "Home",
             "color": "rgb(255, 255, 255)",
-            "notes": [
-                {
-                    "id": "n-676",
-                    "name": "untitled",
-                    "content": "storage/notes/note-n-676.txt",
-                    "bookmark": false,
-                    "favorite": false,
-                    "last_edit": "10/07/2024 17:11",
-                    "creation": "10/07/2024"
-                }
-            ],
-            "subfolders": []
-        },
-        {
-            "id": "f-49",
-            "name": "Github",
-            "color": "rgb(255, 255, 255)",
             "notes": [],
             "subfolders": []
         },
@@ -112,7 +95,7 @@
                 },
                 {
                     "id": "s-183",
-                    "name": "CISQ1",
+                    "name": "CISC1",
                     "color": "rgb(255, 255, 255)",
                     "notes": [
                         {
@@ -121,7 +104,7 @@
                             "content": "storage/notes/note-n-466.txt",
                             "bookmark": false,
                             "favorite": false,
-                            "last_edit": "08/06/2024 22:51",
+                            "last_edit": "10/07/2024 19:50",
                             "creation": "20/03/2024"
                         }
                     ],
@@ -129,7 +112,7 @@
                 },
                 {
                     "id": "s-182",
-                    "name": "CISQ2",
+                    "name": "CISC2",
                     "color": "rgb(255, 255, 255)",
                     "notes": [
                         {
@@ -147,7 +130,7 @@
                             "content": "storage/notes/note-n-610.txt",
                             "bookmark": false,
                             "favorite": false,
-                            "last_edit": "30/06/2024 19:50",
+                            "last_edit": "10/07/2024 19:49",
                             "creation": "30/05/2024"
                         },
                         {

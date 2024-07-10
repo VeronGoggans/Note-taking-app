@@ -9,7 +9,7 @@
     height: 50px;
     width: 400px;
     border-radius: 3px;
-    box-shadow: 0 0 10px var(--shadow);
+    border: 1px solid var(--editor-border);
     transition: 200ms;
     transform: translateY(-50px);
     opacity: 0;
@@ -71,4 +71,13 @@
 
 .dark .highlight {
     background-color: #5c7dff;
+}
+
+.current-highlight {
+    background-color: #e0bcff;
+}
+
+.dark .current-highlight {
+    background-color: #ffd547;
+    color: rgb(26, 26, 26);
 }

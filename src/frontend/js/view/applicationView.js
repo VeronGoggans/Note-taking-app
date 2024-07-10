@@ -234,6 +234,7 @@ export class ApplicationView {
         this.createFolderButton.addEventListener('click', () => {this.dialog.renderNewFolderModal(this)});
         this.settingsButton.addEventListener('click', () => {this.updateTheme()});
         this.searchBarInput.addEventListener('input', () => {this.handleSearchBarInput()});
+        this.searchBarInput.addEventListener('click', () => {this.handleSearchBarInput()});
         this.searchBarInput.addEventListener('keydown', (event) => {});
         document.addEventListener("click", (event) => {
             if (!event.target.closest(".search-container")) {

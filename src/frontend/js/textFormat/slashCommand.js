@@ -93,6 +93,10 @@ export class SlashCommand {
         this.commandContainer.style.display = 'none';
         this.executeSlashCommand(this.storedRange, targetClass);
       }
+      if (event.key === 'Backspace' && this.input.value === '') {
+        event.preventDefault();
+        this.commandContainer.style.display = 'none';
+      }
     }
 
     #eventListeners() {

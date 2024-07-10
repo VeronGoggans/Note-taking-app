@@ -78,7 +78,7 @@ export class TextEditorEventListener {
         // Traverse up the DOM to check if any parent is a header
         while (node) {
           if (node.nodeType === Node.ELEMENT_NODE) {
-            if (/^H[1-6]$/.test(node.nodeName)) {
+            if (/^H[1-6]$/.test(node.nodeName) || node.nodeName === 'OL' || node.nodeName === 'UL') {
               return
             }
           }

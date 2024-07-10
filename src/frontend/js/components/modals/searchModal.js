@@ -6,7 +6,8 @@ export class SearchModal {
         this.currentHighlightIndex = -1;
         this.highlights = [];
         this.editor = document.querySelector('.editor');
-        this.editorPaper = document.querySelector('.editor-paper')
+        this.editorPaper = document.querySelector('.editor-paper');
+        this.previousHighlight = null;
 
         this.#initializeElements();
         this.#attachEventListeners();
@@ -76,7 +77,12 @@ export class SearchModal {
                 this.currentHighlightIndex = (this.currentHighlightIndex - 1 + this.highlights.length) % this.highlights.length;
             }
 
-            const nextHighlight = this.highlights[this.currentHighlightIndex];
+            // Remove current-highlight class from all highlights
+            this.highlights.forEach(highlight => highlight.classList.remove('current-highlight'));
+
+             // Add current-highlight class to the current highlight
+             const currentHighlight = this.highlights[this.currentHighlightIndex];
+             currentHighlight.classList.add('current-highlight');
 
             // Updating the paragraph element telling the user at which 
             // occurence they are on.
@@ -86,10 +92,10 @@ export class SearchModal {
     
             // Calculate the top position relative to the scrollable container
             const scrollableContainerRect = scrollableContainer.getBoundingClientRect();
-            const nextHighlightRect = nextHighlight.getBoundingClientRect();
+            const nextHighlightRect = currentHighlight.getBoundingClientRect();
     
             // Calculate offset needed to scroll nextHighlight into view
-            const offset = nextHighlightRect.top - scrollableContainerRect.top - (scrollableContainer.clientHeight / 2) + (nextHighlight.clientHeight / 2);
+            const offset = nextHighlightRect.top - scrollableContainerRect.top - (scrollableContainer.clientHeight / 2) + (currentHighlight.clientHeight / 2);
     
             // Scroll the container smoothly
             scrollableContainer.scrollBy({ top: offset, behavior: 'smooth' });
@@ -124,6 +130,7 @@ export class SearchModal {
                 const highlightSpan = document.createElement('span');
                 highlightSpan.className = 'highlight';
                 highlightSpan.textContent = match;
+
                 fragment.appendChild(before);
                 fragment.appendChild(highlightSpan);
                 lastIndex = offset + match.length;
