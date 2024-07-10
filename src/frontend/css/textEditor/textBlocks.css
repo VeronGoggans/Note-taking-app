@@ -1,11 +1,11 @@
 .editor-paper .important-block,
 .note-content-box .important-block {
+    margin: 10px 0;
     display: flex;
     align-items: center;
     gap: 10px;
     padding: 10px 20px;
     background-color: var(--important-background-color);
-    width: fit-content;
     color: var(--important-text-color);
     border-radius: 5px;
     font-size: 17px;
@@ -38,10 +38,10 @@
 .editor-paper .copyable-block,
 .note-content-box .copyable-block {
     padding: 10px 20px;
+    margin: 10px 0;
     display: flex;
     gap: 10px;
     align-items: center;
-    width: fit-content;
     font-family: sans-serif;
     background-color: var(--copy-background-color);
     border-radius: 5px;
@@ -56,21 +56,43 @@
 
 .editor-paper .quote-block,
 .note-content-box .quote-block {
-    display: flex;
+    display: block;
+    margin: 10px 0;
     padding: 20px;
     color: var(--important);
     border-left: 4px solid #5c7fdd;
 }
 
+.editor-paper .quote-block p,
+.editor-paper .important-block p,
+.editor-paper .copyable-block p {
+    min-height: 20px;
+    width: 100%;
+    margin: 10px 0;
+}
+
 
 .editor-paper .date-time-block,
 .note-content-box .date-time-block {
+    display: flex;
+    margin: 10px 0;
     font-size: 28px;
     font-family: Roboto;
     width: fit-content;
     padding: 5px;
-    border-bottom: 2px solid #5c7fdd;
+    border-bottom: 4px solid #5c7fdd;
     font-weight: 600;
+    align-items: center;
+}
+
+.editor-paper .date-time-block i {
+    padding: 7px;
+}
+.editor-paper .date-time-block span{
+    margin-left: 10px;
+}
+.editor-paper .date-time-block h3 {
+    margin: 0;
 }
 
 .editor-paper .date-time-block h2,

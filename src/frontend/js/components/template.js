@@ -69,7 +69,7 @@ export class Template {
 
 
     async updateName() {
-        this.view.updateNote(this.id, this.H4.textContent, this.CONTENT.innerHTML, this.bookmark, this.color);
+        this.view.updateNote(this.id, this.H4.textContent, this.CONTENT.innerHTML, this.bookmark);
         this.#toggleEditableNoteName();
     }
 }

@@ -2,7 +2,6 @@ from src.backend.data.note.note_manager import NoteManager
 from src.backend.presentation.request_bodies.note.post_note_request import PostNoteRequest
 from src.backend.presentation.request_bodies.note.put_note_request import PutNoteRequest
 from src.backend.presentation.request_bodies.note.move_note_request import MoveNoteRequest
-from src.backend.presentation.request_bodies.note.put_note_color_request import PutNoteColorRequest
 from src.backend.domain.note import Note
 from src.backend.domain.enums.responseMessages import Status
 from src.backend.data.file.json_manager import JsonManager

@@ -25,10 +25,10 @@ export class NoteView {
             const contentFragment = document.createDocumentFragment();
 
             for (let i = 0; i < notes.length; i++) {
-                const NOTE_CARD = this.#note(notes[i]);
+                const noteCard = this.#note(notes[i]);
 
-                contentFragment.appendChild(NOTE_CARD);
-                AnimationHandler.fadeInFromBottom(NOTE_CARD);
+                contentFragment.appendChild(noteCard);
+                AnimationHandler.fadeInFromBottom(noteCard);
             }
             this._content.appendChild(contentFragment);
         } 
@@ -124,8 +124,8 @@ export class NoteView {
         this._content = document.querySelector('.content-view');
     }
 
-    async updateNote(id, name, content, bookmark, favorite, color) {
-        await this.noteController.updateNote(id, name, content, bookmark, favorite, color);
+    async updateNote(id, name, content, bookmark, favorite) {
+        await this.noteController.updateNote(id, name, content, bookmark, favorite);
     }
 
     async handleDeleteButtonClick(id) {

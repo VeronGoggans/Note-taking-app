@@ -1,48 +1,78 @@
-import {CNode} from "../util/CNode.js"
+import {CNode} from "../util/CNode.js";
+import { getCurrentDateAndTime } from "../util/date.js";
 
 export class TextFormatter {
-  static addHorizontalRule() {
-    // Get the current selection 
-    const SELECTION = window.getSelection();
-    const RANGE = SELECTION.getRangeAt(0);
-    const horizontalRule = document.createElement('hr');
-    RANGE.insertNode(horizontalRule);
+  constructor() {
+
+  }
+  
+  
+  addHorizontalLine(range) {
+    const br = document.createElement('br');
+    range.insertNode(br);
+    range.insertNode(document.createElement('hr'));
+    this.#removeSelectedEffect(range, br);
+    this.#moveCursorToTextBlock(br)
   }
 
 
-   static addCodeBlock() {
-     // Get the selected text range
-     const selection = window.getSelection();
-     const range = selection.getRangeAt(0);
+  addImportantBlock(range) {
+    const { br, p } = this.#createBlockHelperNodes();
+    const impContainer = CNode.create('div', {'class': 'important-block'});
+    const icon = CNode.create('i', {'class': 'fa-solid fa-exclamation'});
 
-     // Create a <code> element and set its text content to the selected text
-     const codeElement = document.createElement('code');
-     codeElement.textContent = range.toString();
-
-     // Replace the selected text range with the <code> element
-     range.deleteContents();
-     range.insertNode(codeElement);
-  }
-
-  static async addNoteLink(noteId, noteName) {
-     // Get the selected text range
-     const selection = window.getSelection();
-     const range = selection.getRangeAt(0);
-
-     const LINK_CONTAINER = CNode.create('div', {'class': 'linked-note-container', 'id': noteId, 'contentEditable': 'false'});
-     const LINK_ICON = CNode.create('i', {'class': 'fa-solid fa-paperclip'});
-     const NOTE_NAME = CNode.create('span', {'textContent': noteName, 'class': 'linked-note-name'});
-     const FILE_ICON = CNode.create('i', {'class': 'fa-regular fa-file-lines'});
-
-     LINK_CONTAINER.appendChild(FILE_ICON);
-     LINK_CONTAINER.appendChild(NOTE_NAME);
-     LINK_CONTAINER.appendChild(LINK_ICON);
-
-     range.insertNode(LINK_CONTAINER);
+    impContainer.append(icon, p);
+    range.insertNode(br);
+    range.insertNode(impContainer);
+    this.#removeSelectedEffect(range, impContainer);
+    this.#moveCursorToTextBlock(p);
   }
 
 
-  static addColor(color, command) {
+  addQuoteBlock(range) {
+    const { br, p } = this.#createBlockHelperNodes();
+    const quoteBlock = CNode.create('div', {'class': 'quote-block'});
+
+    quoteBlock.appendChild(p);
+    range.insertNode(br);
+    range.insertNode(quoteBlock);
+    this.#removeSelectedEffect(range, quoteBlock);
+    this.#moveCursorToTextBlock(p);
+  }
+
+
+  addDateTimeBlock(range) {
+    const br = document.createElement('br');
+    const dateTimeContainer = CNode.create('div', {'class': 'date-time-block'});
+
+    dateTimeContainer.innerHTML = getCurrentDateAndTime();
+    range.insertNode(br);
+    range.insertNode(dateTimeContainer);
+    this.#removeSelectedEffect(range, dateTimeContainer);
+    this.#moveCursorToTextBlock(br);
+  }
+
+  addCopyBlock(range) {
+    const { br, p } = this.#createBlockHelperNodes();
+    const copyBlock = CNode.create('div', {'class': 'copyable-block'});
+    const icon = CNode.create('i', {'class': 'fa-regular fa-paste'});
+
+    copyBlock.append(icon, p);
+    range.insertNode(br);
+    range.insertNode(copyBlock);
+    this.#removeSelectedEffect(range, copyBlock);
+    this.#moveCursorToTextBlock(p);
+  }
+
+  addHeading(range) {
+    const heading = document.createElement('h1');
+    range.insertNode(heading);
+    this.#removeSelectedEffect(range, heading);
+    this.#moveCursorToTextBlock(heading);
+  }
+
+
+  addColor(color, command) {
       // Use document.execCommand to change text color
       document.execCommand('styleWithCSS', false, true);
       document.execCommand(command, false, color);
@@ -55,13 +85,109 @@ export class TextFormatter {
    * When links are loaded in they don't have eventlisteners on them by default.
    * This method creates those event listener for each link.
    */
-  static listenForLinkClicks(page) {
+  listenForLinkClicks(page) {
       const LINKS = page.querySelectorAll('a');
       LINKS.forEach(function(link) {
         link.addEventListener('click', () => {window.open(link.href)})
     });
   }
 
+
+  addLink() {
+    // Get the range of the selection
+    const range = window.getSelection().getRangeAt(0);
+
+    const container = CNode.create('div', {'class': 'link-container'});
+    const cancelButton = CNode.create('button', {'class': 'cancel-link-btn'});
+    const icon = CNode.create('i', {'class': 'fa-solid fa-xmark'});
+    const originalUrl = CNode.create('input', {'class': 'original-link-input', 'type': 'text', 'placeholder': 'Paste link here...'});
+    const customUrl = CNode.create('input', {'class': 'custom-link-input', 'type': 'text', 'placeholder': 'Custom text'});
+
+    // Putting the UI together 
+    cancelButton.append(icon, cancelButton, originalUrl, customUrl);
+    
+    cancelButton.addEventListener('click', () => {container.remove()});
+    originalUrl.addEventListener('keydown', (event) => {insert(event)});
+    customUrl.addEventListener('keydown', (event) => {insert(event)});
+
+    function insert(event) {
+      if (event.key === 'Enter') {
+        // Delete the input
+        range.deleteContents();
+
+        // Create a link element
+        const anchorTag = document.createElement('a');
+
+        anchorTag.addEventListener('click', () => {window.open(originalUrl.value)});
+        
+        // The selected text is equal to the link.
+        anchorTag.href = originalUrl.value;
+
+        if (customUrl.value !== '') {
+          anchorTag.textContent = customUrl.value;
+        } else {
+          anchorTag.textContent = originalUrl.value;
+        }
+
+        range.insertNode(anchorTag);
+      }
+    }
+    range.insertNode(container);
+    originalUrl.focus();
+ }
+
+
+  addEmbedVideo() {
+    const range = window.getSelection().getRangeAt(0);
+    
+    const container = CNode.create('div', {'class': 'embed-container', 'contentEditable': 'false'});
+    const button = CNode.create('button', {'class': 'cancel-embed-video-btn'});
+    const icon = CNode.create('i', {'class': 'fa-solid fa-xmark'});
+    const inputTag = CNode.create('input', {'type': 'text', 'placeholder': 'Paste link here...', 'class': 'embed-link-input'});
+
+    container.append(button, inputTag);
+    button.appendChild(icon);
+
+    button.addEventListener('click', () => {container.remove()})
+
+    inputTag.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        // Delete the input
+        range.deleteContents();
+
+        // Specify no cookies
+        const noCookies = 'youtube-nocookie';
+        const iframe = document.createElement('div');
+
+        // adding nocookies text to the embed link for reduced cookies
+        let iframeArray = inputTag.value.split('youtube');
+        iframeArray.splice(1, 0, noCookies);
+
+        const noCookiesIframe = iframeArray.join('');
+
+        iframe.innerHTML = noCookiesIframe;
+        const iframeElement = iframe.querySelector('iframe');
+        if (iframeElement) {
+          iframeElement.title = '';
+        }
+        range.insertNode(iframe);
+      }
+    })
+    range.insertNode(container);
+    inputTag.focus();
+  }
+
+  static async addNoteLink(noteId, noteName) {
+    const range = window.getSelection().getRangeAt(0);
+
+    const linkContainer = CNode.create('div', {'class': 'linked-note-container', 'id': noteId, 'contentEditable': 'false'});
+    const linkIcon = CNode.create('i', {'class': 'fa-solid fa-paperclip'});
+    const name = CNode.create('span', {'textContent': noteName, 'class': 'linked-note-name'});
+    const fileIcon = CNode.create('i', {'class': 'fa-regular fa-file-lines'});
+
+    linkContainer.append(fileIcon, name, linkIcon);
+    range.insertNode(linkContainer);
+ }
 
   /**
    * This method listens for linked note container clicks.
@@ -77,98 +203,33 @@ export class TextFormatter {
   }
 
 
-  static addLink() {
-    const SELECTION = window.getSelection();
+  #removeSelectedEffect(range, node) {
+    range.setStartAfter(node);
+    range.setEndAfter(node);
+  }
 
-    // Get the range of the selection
-    const RANGE = SELECTION.getRangeAt(0);
+  #moveCursorToTextBlock(node) {
+    // Creating a text node the cursor will move to
+    const textNode = document.createTextNode('');
+    node.appendChild(textNode);
 
-    const CONTAINER = CNode.create('div', {'class': 'link-container'});
-    const CANCEL_BTN = CNode.create('button', {'class': 'cancel-link-btn'});
-    const ICON = CNode.create('i', {'class': 'fa-solid fa-xmark'});
-    const ORIGINAL_LINK = CNode.create('input', {'class': 'original-link-input', 'type': 'text', 'placeholder': 'Paste link here...'});
-    const CUSTOM_LINK = CNode.create('input', {'class': 'custom-link-input', 'type': 'text', 'placeholder': 'Custom text'});
+    // Move the cursor inside the node
+    const range = document.createRange();
+    const selection = window.getSelection();
 
-    // Putting the UI together 
-    CANCEL_BTN.appendChild(ICON);
-    CONTAINER.appendChild(CANCEL_BTN);
-    CONTAINER.appendChild(ORIGINAL_LINK);
-    CONTAINER.appendChild(CUSTOM_LINK);
+    // Set the range to the text node which is already inside the node
+    range.setStart(textNode, 0);
+    range.collapse(true);
 
-    CANCEL_BTN.addEventListener('click', () => {CONTAINER.remove()});
-    ORIGINAL_LINK.addEventListener('keydown', (event) => {insert(event)});
-    CUSTOM_LINK.addEventListener('keydown', (event) => {insert(event)});
+    selection.removeAllRanges();
+    selection.addRange(range);
 
-    function insert(event) {
-      if (event.key === 'Enter') {
-        // Delete the input
-        RANGE.deleteContents();
+    node.focus();
+  }
 
-        // Create a link element
-        const LINK = document.createElement('a');
-
-        LINK.addEventListener('click', () => {window.open(ORIGINAL_LINK.value)});
-        
-        // The selected text is equal to the link.
-        LINK.href = ORIGINAL_LINK.value;
-
-        if (CUSTOM_LINK.value !== '') {
-          LINK.textContent = CUSTOM_LINK.value;
-        } else {
-          LINK.textContent = ORIGINAL_LINK.value;
-        }
-
-        RANGE.insertNode(LINK);
-      }
-    }
-    RANGE.insertNode(CONTAINER);
-    ORIGINAL_LINK.focus();
- }
-
-
-  static addEmbedVideo() {
-    // Get the current selection 
-    const SELECTION = window.getSelection();
-
-    // Get the range of the selection
-    const RANGE = SELECTION.getRangeAt(0);
-    
-    const CONTAINER = CNode.create('div', {'class': 'embed-container', 'contentEditable': 'false'});
-    const BTN = CNode.create('button', {'class': 'cancel-embed-video-btn'});
-    const ICON = CNode.create('i', {'class': 'fa-solid fa-xmark'});
-    const INPUT = CNode.create('input', {'type': 'text', 'placeholder': 'Paste link here...', 'class': 'embed-link-input'});
-
-    // Putting the UI together 
-    CONTAINER.appendChild(BTN);
-    BTN.appendChild(ICON);
-    CONTAINER.appendChild(INPUT);
-
-    BTN.addEventListener('click', () => {CONTAINER.remove()})
-
-    INPUT.addEventListener('keydown', (event) => {
-      if (event.key === 'Enter') {
-        // Delete the input
-        RANGE.deleteContents();
-
-        // Specify no cookies
-        const NO_COOKIES = 'youtube-nocookie';
-        const IFRAME_CONTAINER = document.createElement('div');
-
-        // adding nocookies text to the embed link for reduced cookies
-        let iframeArray = INPUT.value.split('youtube');
-        iframeArray.splice(1, 0, NO_COOKIES);
-
-        const NO_COOKIE_IFRAME = iframeArray.join('');
-
-        IFRAME_CONTAINER.innerHTML = NO_COOKIE_IFRAME;
-        const iframeElement = IFRAME_CONTAINER.querySelector('iframe');
-        if (iframeElement) {
-          iframeElement.title = '';
-        }
-        RANGE.insertNode(IFRAME_CONTAINER);
-      }
-    })
-    RANGE.insertNode(CONTAINER);
-    INPUT.focus();
+  #createBlockHelperNodes() {
+    const br = document.createElement('br');
+    const p = document.createElement('p');
+    return { br, p }
   }
 }

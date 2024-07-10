@@ -48,7 +48,6 @@ class Note:
             json_note['content'], 
             json_note['bookmark'], 
             json_note['favorite'],
-            json_note['color'],
             json_note['last_edit'],
             json_note['creation']
         )

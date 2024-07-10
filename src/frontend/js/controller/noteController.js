@@ -32,8 +32,8 @@ export class NoteController {
         return await note
     }
 
-    async updateNote(noteId, name, content, bookmark, favorite, color) {
-        const response = await this.model.update('/note', noteId, name, content, bookmark, favorite, color);
+    async updateNote(noteId, name, content, bookmark, favorite) {
+        const response = await this.model.update('/note', noteId, name, content, bookmark, favorite);
         const note = await response.Note;
         this.view.renderUpdate(note);
         this.applicationController.updateSearchObject(noteId, name);

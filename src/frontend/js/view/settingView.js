@@ -4,11 +4,8 @@ export class SettingView {
         this.themeText = document.querySelector('.current-theme-text');
         this.themeIcon = document.querySelector('#current-theme-icon');
         this.sidebar = document.querySelector('.sidebar');
-        this.editor = document.querySelector('.editor');
-        this.editorPage = document.querySelector('.editor-paper');
         this.lightIconClass = 'fa-regular fa-sun';
         this.darkIconClass = 'fa-solid fa-moon';
-        this.currentTheme = '';
     }
     /**
      * This method sets the nesecary theme 

@@ -4,6 +4,11 @@ export const months = {
     '09': 'Sep', '10': 'Okt', '11': 'Nov', '12': 'Dec', 
 }
 
+export const fullMonths = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+];
+
 
 export const folderColorNames = {
     'rgb(255, 255, 255)': 'White',
@@ -66,8 +71,7 @@ export const notificationIcons = {
     'UPDATED': 'fa-solid fa-pen',
     'DELETED': 'fa-regular fa-trash-can',
     'NEW': 'fa-solid fa-plus',
-    'EMPTY': 'fa-regular fa-bell',
-    'EXPORT': 'fa-solid fa-download'
+    'EMPTY': 'fa-regular fa-bell'
 }
 
 

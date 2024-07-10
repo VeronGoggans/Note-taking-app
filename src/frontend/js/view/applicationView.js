@@ -4,8 +4,8 @@ export class ApplicationView {
         this.dialog = dialog;
         
 
-        this._initializeDomElements();
-        this._attachEventListeners();
+        this.#initializeDomElements();
+        this.#attachEventListeners();
     }
 
     /**
@@ -44,11 +44,11 @@ export class ApplicationView {
      */
     handleSearchBarInput() {
         this.noteOptionsList.style.visibility = 'visible';
-        const INPUT_VALUE = this.searchBarInput.value.toLowerCase();
-        const FILTERED_OPTIONS = this._searchNoteObjects.filter(suggestion =>
-          suggestion.name.toLowerCase().includes(INPUT_VALUE)
+        const inputValue = this.searchBarInput.value.toLowerCase();
+        const filteredOptions = this._searchNoteObjects.filter(suggestion =>
+          suggestion.name.toLowerCase().includes(inputValue)
         );
-        this.renderSearchOptions(FILTERED_OPTIONS);
+        this.renderSearchOptions(filteredOptions);
     }
 
     /**
@@ -160,8 +160,8 @@ export class ApplicationView {
      * @param {String} name 
      */
     updateSearchObject(noteId, newName) {
-        const OPTION = this._searchNoteObjects.find(obj => obj.id === noteId);
-        OPTION.name = newName;
+        const option = this._searchNoteObjects.find(obj => obj.id === noteId);
+        option.name = newName;
     }
 
     /**
@@ -203,7 +203,7 @@ export class ApplicationView {
         await this.applicationController.setTheme(false)
     }
 
-    _initializeDomElements() {
+    #initializeDomElements() {
         // <main-top> 
         this.createFolderButton = document.querySelector('.create-folder-btn');
         this.currentFolderName = document.querySelector('.current-folder-name');
@@ -225,7 +225,7 @@ export class ApplicationView {
         this._searchNoteObjects = [];
     }
     
-    _attachEventListeners() {
+    #attachEventListeners() {
         this.backButton.addEventListener('click', () => {this.back()});
         this.homeButton.addEventListener('click', () => {this.home()});
         this.createNoteButton.addEventListener('click', () => {this.showTextEditor()});

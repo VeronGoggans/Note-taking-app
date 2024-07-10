@@ -4,17 +4,7 @@
             "id": "f-1",
             "name": "Home",
             "color": "rgb(255, 255, 255)",
-            "notes": [
-                {
-                    "id": "n-668",
-                    "name": "Text Blocks",
-                    "content": "storage/notes/note-n-668.txt",
-                    "bookmark": false,
-                    "favorite": false,
-                    "last_edit": "06/07/2024 14:33",
-                    "creation": "03/07/2024"
-                }
-            ],
+            "notes": [],
             "subfolders": []
         },
         {

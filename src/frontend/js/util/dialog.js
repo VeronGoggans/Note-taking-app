@@ -21,7 +21,6 @@ export class Dialog {
                 '.settings-container',
                 '.dont-forget-to-save-container',
                 '.note-details-container',
-                '.note-export-modal',
                 '.note-link-modal',
                 '.edit-folder-modal'
             ];

@@ -7,11 +7,9 @@ class PutNoteRequest(BaseModel):
     - content (str): The content of the note.
     - bookmrk (bool): A boolean indicating if the note is boomarked or not.
     - favorite (bool): A boolean indicating if the note is favorited or not.
-    - color (str): The background color of the note.
     """
     note_id: str
     name: str
     content: str
     bookmark: bool
     favorite: bool
-    color: str

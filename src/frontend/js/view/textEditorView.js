@@ -4,6 +4,7 @@ import { DropdownHelper } from "../helpers/dropdownHelper.js";
 import { TextFormatter } from "../textFormat/textFormatter.js"; 
 import { formatDocumentLocation } from "../util/formatters.js";
 import { TextBlockHandler } from "../textFormat/textBlockHandler.js";
+import { SlashCommand } from "../textFormat/slashCommand.js";
 
 export class TextEditorView {
   constructor(textEditorController, applicationController, dialog) {
@@ -15,6 +16,8 @@ export class TextEditorView {
     this._initializeDOMElements();
     this._attachEventListeners();
 
+    this.textFormatter = new TextFormatter();
+    this.slashCommand = new SlashCommand(this, this.textFormatter);
     this.textBlockParser = new TextBlockHandler(this.page);
     this.dropdownHelper = new DropdownHelper(this);
     this.keyEventListener = new KeyEventListener(this);
@@ -32,7 +35,7 @@ export class TextEditorView {
     this.page.innerHTML = object.content;
     this.noteNameInput.value = object.name;
     formatDocumentLocation(allFolderNames, this.documentLocation)
-    TextFormatter.listenForLinkClicks(this.page);
+    this.textFormatter.listenForLinkClicks(this.page);
     TextFormatter.listenForNoteLinkClicks(this.page, this.applicationController);
     this.textBlockParser.parse();
     this.show(allFolderNames, allTemplateNames);
@@ -154,7 +157,7 @@ export class TextEditorView {
     this._close();
     this.dropdownHelper.closeDropdowns();
     this._clear();
-    this.textEditorEventListener.removeToolbar();
+    this.textEditorEventListener.removeSpawnables();
   }
 
 

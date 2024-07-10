@@ -175,8 +175,8 @@ export class ApplicationController {
         this.textEditorController.storeNoteData(note)
     }
 
-    async changeNote(noteId, name, content, bookmark, favorite, color) {
-        await this.noteController.updateNote(noteId, name, content, bookmark, favorite, color);
+    async changeNote(noteId, name, content, bookmark, favorite) {
+        await this.noteController.updateNote(noteId, name, content, bookmark, favorite);
     }
 
     async addTemplate(name, content) {

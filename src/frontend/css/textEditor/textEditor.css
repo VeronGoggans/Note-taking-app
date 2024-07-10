@@ -19,7 +19,6 @@
 }
 
 .editor-paper {
-   border-radius: 5px;
    position: relative;
    width: 50%;
    height: fit-content; /*calc(100% - 120px)*/
@@ -236,18 +235,6 @@
     border-radius: 10px;
  }
 
- .editor h2 {
-    margin: 30px 0 7px 0;
- }
-
- .editor h3 {
-    margin: 20px 0 7px 0;
- }
-
- .editor h4 {
-    margin: 10px 0 7px 0;
- }
-
  .editor h5,
  .editor h6 {
     margin: 0;
@@ -257,13 +244,14 @@
    color: rgb(67, 142, 255);
  }
 
- .editor code {
-   cursor: pointer;
-   background-color: var(--code-snippit-background);
-   border-radius: 3px;
-   color: var(--code-snippet-color);
-   font-family: courier, monospace;
-   padding: 0 3px;
+ 
+ .editor h1,
+ .editor h2,
+ .editor h3,
+ .editor h4,
+ .editor h5,
+ .editor h6 {
+   min-height: 10px;
  }
 
  .no-pointer {

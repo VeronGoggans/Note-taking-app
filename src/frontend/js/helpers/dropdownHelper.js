@@ -1,8 +1,8 @@
 export class DropdownHelper {
     constructor(view) {
         this.view = view;
-        this._initializeDomElements();
-        this._attachEventListeners();
+        this.#initializeDomElements();
+        this.#attachEventListeners();
     }
 
 
@@ -44,7 +44,7 @@ export class DropdownHelper {
       }
 
 
-      _initializeDomElements() {
+      #initializeDomElements() {
         this.templateDropdown = document.querySelector('.templates-dropdown');
         this.templateDropdownOptions = this.templateDropdown.querySelector('.options');
         this.templateList = this.templateDropdownOptions.querySelector('.templates-container');
@@ -55,13 +55,11 @@ export class DropdownHelper {
       }
 
 
-      _attachEventListeners() {
+      #attachEventListeners() {
         for (let i = 0; i < this.dropdowns.length; i++) {
             this.dropdowns[i].addEventListener('click', () => {
                 this.toggleVisibleDropdown(this.dropdownOptions[i])
             });
           }
       }
-
-
 }

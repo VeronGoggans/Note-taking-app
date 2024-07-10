@@ -198,7 +198,6 @@ class NoteManager:
         note.content = updated_note.content
         note.bookmark = updated_note.bookmark
         note.favorite = updated_note.favorite
-        note.color = updated_note.color
         note.name = updated_note.name
         note.last_edit = current_time
         print(note.content)
@@ -206,6 +205,5 @@ class NoteManager:
         current_note['name'] = updated_note.name
         current_note['bookmark'] = updated_note.bookmark
         current_note['favorite'] = updated_note.favorite
-        current_note['color'] = updated_note.color
         current_note['last_edit'] = current_time
         return note

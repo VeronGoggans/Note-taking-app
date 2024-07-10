@@ -2,10 +2,10 @@
 
 class SidebarView {
     constructor() {
-        window.addEventListener('resize', () => this.resizeSidebar());
+        window.addEventListener('resize', () => this.#resizeSidebar());
         this._sidebar = document.querySelector('.sidebar');
         this._icon = document.querySelector('.logo');
-        this._icon.addEventListener('click', () => {this.toggleSidebar()});
+        this._icon.addEventListener('click', () => {this.#toggleSidebar()});
         this._wrapper = document.querySelector('.wrapper');
         this._buttonCount = 6 ;
 
@@ -45,7 +45,7 @@ class SidebarView {
      * This method is called when the screen width 
      * becomes smaller then 700 pixels
      */
-    collapseButtons() {
+    #collapseButtons() {
         for (let i = 0; i < this._buttonCount; i++) {
             this._sidebarSpans[i].style.position = 'absolute';
             this._sidebarSpans[i].textContent = '';
@@ -64,7 +64,7 @@ class SidebarView {
      * This method is called when the screen width 
      * becomes bigger then 700 pixels
      */
-    openButtons() {
+    #openButtons() {
         let currentTheme = document.body.classList.toString().charAt(0).toUpperCase() + document.body.classList.toString().slice(1);
         const buttonText = ['Home', 'Back', 'Flashcards', 'Templates', 'Favorites', currentTheme]
         for (let i = 0; i < this._buttonCount; i++) {
@@ -81,23 +81,23 @@ class SidebarView {
         document.querySelector('.logo-text').textContent = 'eutron';
     }
 
-    toggleSidebar() {
+    #toggleSidebar() {
         if (this._sidebar.offsetWidth === 220) {
             this._wrapper.style.transition = '150ms'
             this._wrapper.style.gridTemplateColumns = '70px 1fr';
             this._sidebar.dataset.width = 'small'; 
-            this._removeTransition();
-            this.collapseButtons();
+            this.#removeTransition();
+            this.#collapseButtons();
         } else {
             this._wrapper.style.transition = '150ms'
             this._wrapper.style.gridTemplateColumns = '220px 1fr';
             this._sidebar.dataset.width = 'large';
-            this._removeTransition();
-            this.openButtons();
+            this.#removeTransition();
+            this.#openButtons();
         }
     }
 
-    _removeTransition() {
+    #removeTransition() {
         setTimeout(() => {
             this._wrapper.style.transition = '0ms'
         }, 160);
@@ -109,19 +109,18 @@ class SidebarView {
      * 
      * This method is called when the window resizes
      */
-    resizeSidebar() {
+    #resizeSidebar() {
         if (window.innerWidth < 700) {
             this._wrapper.style.gridTemplateColumns = '70px 1fr';
             this._sidebar.dataset.width = 'small';
-            this.collapseButtons();
+            this.#collapseButtons();
         } else {
             if (this._sidebar.dataset.width !== 'small') {
                 this._wrapper.style.gridTemplateColumns = '220px 1fr';
-                this.openButtons();
+                this.#openButtons();
             }
         }
     }
 }
 
-// Instantiate a SidebarView object 
-const VIEW = new SidebarView();
+const view = new SidebarView();

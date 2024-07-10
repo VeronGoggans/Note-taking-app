@@ -1,4 +1,5 @@
-import { months } from "../constants/constants.js"
+import { months, fullMonths } from "../constants/constants.js";
+
      
     /**
      * This method formats a date string given from the backend.
@@ -21,4 +22,35 @@ export function dateFormat(date) {
     const formattedMonth = months[month] || null
     dateParts[1] = formattedMonth;
     return dateParts.join(' ');
+}
+
+
+export function getCurrentDateAndTime() {
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = fullMonths[currentDate.getMonth()];
+    const day = currentDate.getDate();
+    const hours = currentDate.getHours();
+    const minutes = currentDate.getMinutes();
+
+    // Add ordinal suffix to day
+    const ordinalSuffix = (day) => {
+        if (day > 3 && day < 21) return 'th';
+        switch (day % 10) {
+        case 1: return 'st';
+        case 2: return 'nd';
+        case 3: return 'rd';
+        default: return 'th';
+        }
+    };
+
+    const dayWithSuffix = `${day}${ordinalSuffix(day)}`;
+
+    // Format hours and minutes with leading zero if needed
+    const formattedHours = hours.toString().padStart(2, '0');
+    const formattedMinutes = minutes.toString().padStart(2, '0');
+
+    return `
+    <i class="fa-regular fa-calendar"></i><h3">${formattedHours}:${formattedMinutes}</h3><span>${month} ${dayWithSuffix}, ${year}</span>
+    `;
 }

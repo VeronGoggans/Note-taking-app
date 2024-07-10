@@ -27,14 +27,19 @@ export class PlacementHelper {
         const xPosition = this.#checkForWidthOverflow(rect, this.commandBarWidth);
         const overflow = this.#checkForHeightOverflow(rect);
         if (overflow) {
-            this.forwardSlashCommandContainer.style.top = `${rect.bottom + window.scrollY + this.paddingY}px`;
+            this.forwardSlashCommandContainer.style.top = `${rect.bottom + window.scrollY + this.paddingY + 5}px`;
         } else {
             this.forwardSlashCommandContainer.style.top = `${rect.top + window.scrollY - this.commandBarHeigth - this.paddingY}px`;
         }
         this.forwardSlashCommandContainer.style.left = `${xPosition}px`;
     }
 
-
+    /**
+     * This method adjusts the spawn point of the
+     * command/format containers if X axis overflow is taking place.
+     * @param {DOMRect} rect 
+     * @param {Number} width  
+     */
     #checkForWidthOverflow(rect, width) {
         const padding = 20; //Pixels
         const screenWidth = window.innerWidth;
@@ -48,6 +53,11 @@ export class PlacementHelper {
         return spawnPoint;
     }
 
+    /**
+     * Same thing as the method above but now for 
+     * Y axis overflow.
+     * @param {DOMRect} rect 
+     */
     #checkForHeightOverflow(rect) {
         const spawnPoint = rect.top + window.scrollY;
         const totalHeigth = spawnPoint - this.commandBarHeigth; 
