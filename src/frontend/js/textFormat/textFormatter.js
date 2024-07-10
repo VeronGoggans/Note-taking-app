@@ -41,7 +41,7 @@ export class TextFormatter {
   }
 
 
-  addDateTimeBlock(range) {
+  addDateBlock(range) {
     const br = document.createElement('br');
     const dateTimeContainer = CNode.create('div', {'class': 'date-time-block'});
 
@@ -64,8 +64,8 @@ export class TextFormatter {
     this.#moveCursorToTextBlock(p);
   }
 
-  addHeading(range) {
-    const heading = document.createElement('h1');
+  addHeading(range, num) {
+    const heading = document.createElement(`h${num}`);
     range.insertNode(heading);
     this.#removeSelectedEffect(range, heading);
     this.#moveCursorToTextBlock(heading);
@@ -93,10 +93,7 @@ export class TextFormatter {
   }
 
 
-  addLink() {
-    // Get the range of the selection
-    const range = window.getSelection().getRangeAt(0);
-
+  addLink(range) {
     const container = CNode.create('div', {'class': 'link-container'});
     const cancelButton = CNode.create('button', {'class': 'cancel-link-btn'});
     const icon = CNode.create('i', {'class': 'fa-solid fa-xmark'});
@@ -104,7 +101,7 @@ export class TextFormatter {
     const customUrl = CNode.create('input', {'class': 'custom-link-input', 'type': 'text', 'placeholder': 'Custom text'});
 
     // Putting the UI together 
-    cancelButton.append(icon, cancelButton, originalUrl, customUrl);
+    container.append(icon, cancelButton, originalUrl, customUrl);
     
     cancelButton.addEventListener('click', () => {container.remove()});
     originalUrl.addEventListener('keydown', (event) => {insert(event)});
@@ -137,9 +134,7 @@ export class TextFormatter {
  }
 
 
-  addEmbedVideo() {
-    const range = window.getSelection().getRangeAt(0);
-    
+  addEmbedVideo(range) {    
     const container = CNode.create('div', {'class': 'embed-container', 'contentEditable': 'false'});
     const button = CNode.create('button', {'class': 'cancel-embed-video-btn'});
     const icon = CNode.create('i', {'class': 'fa-solid fa-xmark'});
