@@ -21,7 +21,7 @@ export class TextEditorView {
     this.textBlockParser = new TextBlockHandler(this.page);
     this.dropdownHelper = new DropdownHelper(this);
     this.keyEventListener = new KeyEventListener(this);
-    this.textEditorEventListener = new TextEditorEventListener(this.page, this.editor);
+    this.textEditorEventListener = new TextEditorEventListener(this.page, this.editor, this.slashCommand);
   }
 
   /**

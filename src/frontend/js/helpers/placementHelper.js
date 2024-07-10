@@ -2,7 +2,7 @@ export class PlacementHelper {
     constructor() {
         this.formatBarWidth = 471.6 //Pixels
         this.formatBarHeigth = 51.6 // Pixels
-        this.commandBarHeigth = 241.6 //Pixels
+        this.commandBarHeigth = 291.6 //Pixels
         this.commandBarWidth = 269.78 // Pixels
         this.paddingY = 10 //Pixels
 

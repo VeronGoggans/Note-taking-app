@@ -71,6 +71,16 @@ export class TextFormatter {
     this.#moveCursorToTextBlock(heading);
   }
 
+  addList(range, listType) {
+    const list = document.createElement(listType);
+    const li = document.createElement('li');
+
+    list.appendChild(li);
+    range.insertNode(list);
+    this.#removeSelectedEffect(range, list);
+    this.#moveCursorToTextBlock(li);
+  }
+
 
   addColor(color, command) {
       // Use document.execCommand to change text color

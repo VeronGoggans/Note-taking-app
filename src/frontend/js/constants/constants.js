@@ -84,18 +84,23 @@ export const notificationMessages = {
     'EXPORT': 'Export successful'
 }
 
-export const commands = {
-    'note': '',
-    'link': '',
-    'video': '',
-    'line': '',
-    'quote': '',
-    'important': '',
-    'copy': '',
-    'h1': '',
-    'h2': '',
-    'h3': '',
-    'time': '',
-    'date': '',
 
+export const commands = {
+    'note': 'note-link-option',
+    'link': 'link-option',
+    'video': 'embed-video-option',
+    'line': 'horizontal-line-option',
+    'quote': 'quote-block',
+    'important': 'important-block',
+    'copy': 'copyable-block',
+    'ul': 'unordered-list',
+    'ol': 'ordered-list',
+    'h1': 'heading-1',
+    'h2': 'heading-2',
+    'h3': 'heading-3',
+    'h4': 'heading-4',
+    'h5': 'heading-5',
+    'h6': 'heading-6',
+    'time': 'time',
+    'date': 'date'
 }

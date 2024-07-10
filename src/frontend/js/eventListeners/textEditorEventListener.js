@@ -1,14 +1,14 @@
 import { PlacementHelper } from "../helpers/placementHelper.js";
 
 export class TextEditorEventListener {
-    constructor(editorPage, editor) {
+    constructor(editorPage, editor, slashCommand) {
       this.placementHelper = new PlacementHelper();
-
+      this.slashCommand = slashCommand;
       this.formatBar = document.querySelector('.rich-text-option-container');
       this.forwardSlashCommandContainer = document.querySelector('.foreward-slash-command-container');
+      this.commandInputField = this.forwardSlashCommandContainer.querySelector('input'); 
       this.editor = editor;
       this.editorPage = editorPage;
-      this.forwardSlashKeyCode = 191;
 
       this.#eventListeners();
     }
@@ -27,19 +27,23 @@ export class TextEditorEventListener {
 
     showForwardSlashCommandContainer() {
       const selection = window.getSelection();
+      const range = selection.getRangeAt(0);
       if (selection.isCollapsed) {
+        this.slashCommand.rememberRange(range);
         this.placementHelper.placeCommandBar(selection);
-        this.forwardSlashCommandContainer.style.display = 'flex';
+        this.#deleteForwardSlash(range);
+        this.forwardSlashCommandContainer.style.display = 'grid';
         this.forwardSlashCommandContainer.scrollTop = 0;
+        this.commandInputField.focus();
       } else {
-        this.forwardSlashCommandContainer.style.display = 'none';
+        this.removeForwardSlashCommandContainer();
       }
     }
 
 
     removeForwardSlashCommandContainer() {
-      if (this.forwardSlashCommandContainer.style.display === 'flex') {
-        this.forwardSlashCommandContainer.style.display = 'none';
+      if (this.forwardSlashCommandContainer.style.display === 'grid') {
+        this.forwardSlashCommandContainer.style.display = 'none';        
       }
     }
 
@@ -56,7 +60,7 @@ export class TextEditorEventListener {
 
 
     checkForForwardSlash(event) {
-      if (event.keyCode === this.forwardSlashKeyCode) {
+      if (event.key === '/') {
         this.showForwardSlashCommandContainer();
       }
     }
@@ -66,7 +70,7 @@ export class TextEditorEventListener {
      * of a Heading. If so, this method will step out of the heading.
      * If not the method will insert a <br> tag to got to the next line 
      */
-    headingCheck() {
+    headingCheck(event) {
       if (event.key === 'Enter') {
         const range = window.getSelection().getRangeAt(0);
         let node = range.startContainer;
@@ -82,6 +86,27 @@ export class TextEditorEventListener {
         }
         document.execCommand('insertLineBreak')
         event.preventDefault();
+      }
+    }
+
+    #deleteForwardSlash(range) {
+      const caretNode = range.startContainer;
+      const caretOffset = range.startOffset;
+    
+      // Check if caretNode is a text node and there is a character before the caret
+      if (caretNode.nodeType === Node.TEXT_NODE && caretOffset > 0) {
+        const textContent = caretNode.textContent;
+        
+        // Check if the character before the caret is a forward slash
+        if (textContent[caretOffset - 1] === '/') {
+          // Create a new range to select the forward slash
+          const deleteRange = document.createRange();
+          deleteRange.setStart(caretNode, caretOffset - 1);
+          deleteRange.setEnd(caretNode, caretOffset);
+    
+          // Remove the forward slash
+          deleteRange.deleteContents();
+        }
       }
     }
 

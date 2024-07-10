@@ -1,6 +1,7 @@
 /*Rich Text Options Container*/
 
 .rich-text-option-container {
+    user-select: none;
     position: absolute;
     bottom: -80px;
     display: flex;
@@ -47,35 +48,56 @@
 /*Forward Slash Command Container*/
 
 .foreward-slash-command-container {
+    user-select: none;
     position: absolute;
-    bottom: -242px;
-    display: flex;
-    flex-direction: column;
+    bottom: -300px;
+    display: grid;
+    grid-template-rows: 30px 1fr;
     border: 1px solid var(--editor-border);
     border-radius: 10px;
     width: fit-content;
     padding: 20px;
     row-gap: 10px;
-    overflow-y: scroll;
-    max-height: 200px;
+    max-height: 250px;
     background-color: var(--dropdown);
 }
 
-.foreward-slash-command-container::-webkit-scrollbar {
+.foreward-slash-command-container input {
+    outline: none;
+    border: none;
+    padding: 5px 10px;
+    font-size: 16px;
+    background-color: var(--dropdown);
+    color: var(--editor-text);
+}
+
+.foreward-slash-command-container input::placeholder {
+    color: var(--placeholder);
+}
+
+.foreward-slash-command-container .commands {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    row-gap: 5px;
+
+}
+
+.foreward-slash-command-container .commands::-webkit-scrollbar {
     background-color: transparent;
     width: 5px;
 }
 
-.foreward-slash-command-container::-webkit-scrollbar-thumb {
+.foreward-slash-command-container .commands::-webkit-scrollbar-thumb {
     background-color: #cfd2e3;
     border-radius: 10px;
 }
 
-.foreward-slash-command-container::-webkit-scrollbar-thumb:active {
+.foreward-slash-command-container .commands::-webkit-scrollbar-thumb:active {
   background-color: #bbbed4;
 }
 
-.foreward-slash-command-container div {
+.foreward-slash-command-container .commands div {
     cursor: pointer;
     align-items: center;
     height: 30px;
@@ -88,7 +110,7 @@
     transition: 50ms;
 }
 
-.foreward-slash-command-container div:hover {
+.foreward-slash-command-container .commands div:hover {
     background-color: var(--hover-slash-command);
 }
 

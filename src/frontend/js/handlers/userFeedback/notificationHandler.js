@@ -21,7 +21,6 @@ export class NotificationHandler {
             'deleted': { icon: this.icons.DELETED, message: `${noteName} ${this.messages.DELETED}`, type: this.types.DELETED},
             'new': { icon: this.icons.NEW, message: this.messages.NEW, type: this.types.NEW},
             'empty': { icon: this.icons.EMPTY, message: this.messages.EMPTY, type: this.types.EMPTY},
-            'export': {icon: this.icons.EXPORT, message: this.messages.EXPORT, type: this.types.EXPORT}
         };
     
         const data = notificationTypes[type.toLowerCase()]; // Convert to lowercase for case-insensitivity

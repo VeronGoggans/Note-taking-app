@@ -4,7 +4,17 @@
             "id": "f-1",
             "name": "Home",
             "color": "rgb(255, 255, 255)",
-            "notes": [],
+            "notes": [
+                {
+                    "id": "n-676",
+                    "name": "untitled",
+                    "content": "storage/notes/note-n-676.txt",
+                    "bookmark": false,
+                    "favorite": false,
+                    "last_edit": "10/07/2024 17:11",
+                    "creation": "10/07/2024"
+                }
+            ],
             "subfolders": []
         },
         {
