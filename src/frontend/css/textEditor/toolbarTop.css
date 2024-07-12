@@ -81,17 +81,17 @@
     font-family: Roboto;
     visibility: hidden;
     opacity: 0;
+    border: 1px solid var(--editor-border);
     position: absolute;
     background-color: var(--editor-dropdown);
     display: flex;
     flex-direction: column;
     width: 140px;
-    right: 10px;
+    right: 25px;
     border-radius: 7px;
     padding: 10px;
     font-size: 14px;
     transition: 100ms;
-    box-shadow: 0px 5px 15px var(--shadow);
     z-index: 2;
 }
 
@@ -130,7 +130,7 @@
     position: absolute;
     background-color: var(--dropdown);
     border-radius: 10px;
-    box-shadow: 0 0 10px var(--shadow);
+    border: 1px solid var(--editor-border);
     width: 250px;
     max-height: 350px;
     padding: 30px 20px;
@@ -139,6 +139,7 @@
     z-index: 2;
     top: 0px;
     right: 40px;
+    transition: 100ms;
     visibility: hidden;
     opacity: 0;
 }

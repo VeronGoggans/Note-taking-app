@@ -47,9 +47,11 @@ button {
 
 .create-note-btn {
     border: none;
-    background-color: rgb(232, 234, 241);
+    background-color: var(--create-btn); 
+    color: var(--important);
     padding: 7px 20px;
-    border-radius: 20px; 
+    border-radius: 20px;
+    transition: 150ms; 
 }
 
 .current-folder-name-container {
@@ -167,6 +169,10 @@ button {
 
 .create-folder-btn:hover {
     background-color: #4a6eff;
+}
+
+.create-note-btn:hover {
+    background-color: var(--create-btn-hover);
 }
 
 .main-bottom {

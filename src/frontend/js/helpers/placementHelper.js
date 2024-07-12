@@ -1,3 +1,5 @@
+import { AnimationHandler } from "../handlers/animation/animationHandler.js"
+
 export class PlacementHelper {
     constructor() {
         this.formatBarWidth = 471.6 //Pixels
@@ -18,6 +20,7 @@ export class PlacementHelper {
         const xPosition = this.#checkForWidthOverflow(rect, this.formatBarWidth);
         this.formatBar.style.top = `${rect.top + window.scrollY - this.formatBarHeigth - this.paddingY}px`;
         this.formatBar.style.left = `${xPosition}px`;
+        this.formatBar.style.display = 'flex';
     }
 
 
@@ -32,6 +35,8 @@ export class PlacementHelper {
             this.forwardSlashCommandContainer.style.top = `${rect.top + window.scrollY - this.commandBarHeigth - this.paddingY}px`;
         }
         this.forwardSlashCommandContainer.style.left = `${xPosition}px`;
+        this.forwardSlashCommandContainer.style.display = 'grid';
+        this.forwardSlashCommandContainer.scrollTop = 0;
     }
 
     /**

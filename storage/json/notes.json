@@ -4,13 +4,32 @@
             "id": "f-1",
             "name": "Home",
             "color": "rgb(255, 255, 255)",
-            "notes": [],
+            "notes": [
+                {
+                    "id": "n-679",
+                    "name": "Bugs",
+                    "content": "storage/notes/note-n-679.txt",
+                    "bookmark": false,
+                    "favorite": false,
+                    "last_edit": "11/07/2024 16:59",
+                    "creation": "11/07/2024"
+                },
+                {
+                    "id": "n-680",
+                    "name": "untitled",
+                    "content": "storage/notes/note-n-680.txt",
+                    "bookmark": false,
+                    "favorite": false,
+                    "last_edit": "11/07/2024 17:03",
+                    "creation": "11/07/2024"
+                }
+            ],
             "subfolders": []
         },
         {
             "id": "f-99",
             "name": "School \ud83d\udcd6\u270f\ufe0f",
-            "color": "rgb(169, 215, 255)",
+            "color": "rgb(255, 255, 255)",
             "notes": [],
             "subfolders": [
                 {

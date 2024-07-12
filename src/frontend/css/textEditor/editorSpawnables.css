@@ -11,6 +11,8 @@
     padding: 10px 15px;
     border: 1px solid var(--editor-border);
     border-radius: 10px;
+    opacity: 0;
+    transition: 150ms;
 }
 
 .btn-group {
@@ -60,6 +62,8 @@
     row-gap: 10px;
     max-height: 250px;
     background-color: var(--dropdown);
+    opacity: 0;
+    transition: 150ms;
 }
 
 .foreward-slash-command-container input {

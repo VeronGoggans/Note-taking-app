@@ -1,4 +1,5 @@
 import { PlacementHelper } from "../helpers/placementHelper.js";
+import { AnimationHandler } from "../handlers/animation/animationHandler.js";
 
 export class TextEditorEventListener {
     constructor(editorPage, editor, slashCommand) {
@@ -18,9 +19,9 @@ export class TextEditorEventListener {
       const selection = window.getSelection();
       if (!selection.isCollapsed) {
         this.placementHelper.placeFormatBar(selection);
-        this.formatBar.style.display = 'flex';
+        AnimationHandler.fadeIn(this.formatBar);
       } else {
-        this.formatBar.style.display = 'none';
+        AnimationHandler.fadeOut(this.formatBar);
       }
     }
 
@@ -28,22 +29,15 @@ export class TextEditorEventListener {
     showForwardSlashCommandContainer() {
       const selection = window.getSelection();
       const range = selection.getRangeAt(0);
+      
       if (selection.isCollapsed) {
         this.slashCommand.rememberRange(range);
         this.placementHelper.placeCommandBar(selection);
+        AnimationHandler.fadeIn(this.forwardSlashCommandContainer);
         this.#deleteForwardSlash(range);
-        this.forwardSlashCommandContainer.style.display = 'grid';
-        this.forwardSlashCommandContainer.scrollTop = 0;
         this.commandInputField.focus();
       } else {
-        this.removeForwardSlashCommandContainer();
-      }
-    }
-
-
-    removeForwardSlashCommandContainer() {
-      if (this.forwardSlashCommandContainer.style.display === 'grid') {
-        this.forwardSlashCommandContainer.style.display = 'none';        
+        AnimationHandler.fadeOut(this.forwardSlashCommandContainer)
       }
     }
 
@@ -54,7 +48,7 @@ export class TextEditorEventListener {
 
 
     removeSpawnables() {
-      this.removeForwardSlashCommandContainer();
+      AnimationHandler.fadeOut(this.forwardSlashCommandContainer)
       this.removeToolbar();
     }
 
@@ -118,6 +112,6 @@ export class TextEditorEventListener {
       this.editorPage.addEventListener('keyup', () => {this.showToolbar()});
       this.editorPage.addEventListener('keyup', (event) => {this.checkForForwardSlash(event)});
       this.editorPage.addEventListener('keydown', (event) => {this.headingCheck(event)});
-      this.editorPage.addEventListener('click', () => {this.removeForwardSlashCommandContainer()});
+      this.editorPage.addEventListener('click', () => {AnimationHandler.fadeOut(this.forwardSlashCommandContainer)});
     }
 }

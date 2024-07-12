@@ -1,4 +1,5 @@
 import { commands } from "../constants/constants.js";
+import { AnimationHandler } from "../handlers/animation/animationHandler.js";
  
 export class SlashCommand {
     constructor(view, formatter) {
@@ -80,22 +81,23 @@ export class SlashCommand {
       this.commands.addEventListener('click', (event) => {
         const targetClass = event.target.closest('div').classList[0];
 
-        this.commandContainer.style.display = 'none';
+        AnimationHandler.fadeOut(this.commandContainer)
         this.executeSlashCommand(this.storedRange, targetClass);
       });
     }
+
 
     #updateCommandSuggestions(event) {
       if (event.key === 'Enter') {
         event.preventDefault();
         const userInput = this.input.value;
         const targetClass = commands[userInput];
-        this.commandContainer.style.display = 'none';
+        AnimationHandler.fadeOut(this.commandContainer);
         this.executeSlashCommand(this.storedRange, targetClass);
       }
       if (event.key === 'Backspace' && this.input.value === '') {
         event.preventDefault();
-        this.commandContainer.style.display = 'none';
+        AnimationHandler.fadeOut(this.commandContainer);
       }
     }
 

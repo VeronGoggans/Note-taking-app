@@ -11,7 +11,7 @@ export class KeyEventListener {
                 switch (event.key) {
                     case 's':
                       event.preventDefault();
-                      this.view.save();
+                      this.view.save(true, false);
                       break;
                     case "n":
                       event.preventDefault();

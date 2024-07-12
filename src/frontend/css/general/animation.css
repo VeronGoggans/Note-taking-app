@@ -12,6 +12,10 @@
     opacity: 0;
 }
 
+.fadeIn {
+    opacity: 1 !important;
+}
+
 .openDropdown {
     opacity: 1; 
 }

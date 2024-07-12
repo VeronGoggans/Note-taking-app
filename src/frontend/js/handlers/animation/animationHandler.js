@@ -36,4 +36,23 @@ export class AnimationHandler {
             uiParentElement.removeChild(card);
         }, 700);
     }
+
+    /**
+     * 
+     * @param {Node} node 
+     */
+    static fadeIn(node) {
+        node.classList.add('fadeIn');
+    }
+
+    /**
+     * 
+     * @param {Node} node 
+     */
+    static fadeOut(node) {
+        node.classList.remove('fadeIn');
+        setTimeout(() => {
+            node.style.display = 'none';
+        }, 150);
+    }
 }

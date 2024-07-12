@@ -40,8 +40,6 @@
     --shadow: rgba(92, 98, 157, .1);
     --shadow-notification: #dcdee6;
     --card-shadow: #e0e2ec;
-    --code-snippit-background: #252539;
-    --code-snippet-color: #5c7dff;
     --editor-dropdown: #ffffff;
     --editor-dropdown-hover: rgba(92, 125, 255, .3);
     --editor-dropdown-hover-color: #383838;
@@ -49,6 +47,8 @@
     --modal: #ffffff;
     --dropdown: #ffffff;
     --scrollbar-content-view: #e7e9f3;
+    --create-btn: rgb(232, 234, 241);
+    --create-btn-hover: #dfe3f1;
 
     --hover-slash-command: #f3f4f8;
 
@@ -96,7 +96,7 @@
     --favorite: #38958f;
     --placeholder: #d4d7e5;
     --selection: #314682;
-    --dialog: rgba(15, 23, 79, .15);
+    --dialog: rgb(136 145 204 / 15%);
     --paragraph: #252831;
     --editor-container: #23252e;
     --editor-container-shadow: transparent;
@@ -104,8 +104,6 @@
     --shadow: rgba(0, 0, 0, 0.1);
     --shadow-notification: #121216;
     --card-shadow: #1b1c22; /*16171c*/
-    --code-snippit-background: #252539;
-    --code-snippet-color: #5c7dff;
     --editor-dropdown: #242630;
     --editor-dropdown-hover: #191a20;
     --editor-dropdown-hover-color: #5c7dff;
@@ -113,6 +111,8 @@
     --modal: #1f2129;
     --dropdown: #1f2129;
     --scrollbar-content-view: #3f4045;
+    --create-btn: #4e505c;
+    --create-btn-hover: #434554;
 
     --hover-slash-command: #16171c;
 
@@ -169,8 +169,6 @@
     --shadow: rgba(92, 98, 157, .1);
     --shadow-notification: #dcdee6;
     --card-shadow: #e0e2ec;
-    --code-snippit-background: #f5f5fa;
-    --code-snippet-color: #303030;
     --editor-dropdown: #ffffff;
     --editor-dropdown-hover: rgba(92, 125, 255, .3);
     --editor-dropdown-hover-color: #383838;
@@ -178,6 +176,8 @@
     --modal: #ffffff;
     --dropdown: #ffffff;
     --scrollbar-content-view: #e7e9f3;
+    --create-btn: rgb(232, 234, 241);
+    --create-btn-hover: #dfe3f1;
 
     --hover-slash-command: #f3f4f8;
 
