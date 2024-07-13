@@ -1,48 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <title>Custom Element Example</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
-
-        .date-time-block {
-            font-size: 28px;
-            font-family: Roboto;
-            width: fit-content;
-            padding: 5px;
-            border-bottom: 2px solid #5c7fdd;
-            font-weight: 600;
-        }
-
-        .date-time-block h2 {
-            margin: 10px;
-        }
-
-        .date-time-block span {
-            font-size: 16px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple SPA</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      width: 80%;
+      margin: auto;
+      overflow: hidden;
+    }
+    nav {
+      background: #333;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 1rem;
+    }
+    .content {
+      margin: 2rem 0;
+    }
+  </style>
 </head>
 <body>
-    <div class="editor-paper" contenteditable="true">
-        <div class="date-time-block">
-            <h2>Juli 6th 2024 <span>2:16 pm</span></h2>
-        </div>
-        <br>
+  <div class="container">
+    <nav>
+      <a href="#" data-link="home">Home</a>
+      <a href="#" data-link="about">About</a>
+      <a href="#" data-link="contact">Contact</a>
+    </nav>
+    <div class="content" id="content">
+      <!-- Dynamic content will be loaded here -->
     </div>
+  </div>
 
-    <script>
-        const editor = document.querySelector('.editor-paper')
-        editor.addEventListener('keydown', (event) => {
-            if (event.key === 'Enter') {
-                document.execCommand('insertLineBreak')
-                event.preventDefault()
-            }
-        })
-    </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+  const contentDiv = document.getElementById('content');
+
+  const routes = {
+    home: '<h1>Home</h1><p>Welcome to the Home page!</p><ul><li>Item 1</li></ul>',
+    about: '<h1>About</h1><p>This is the About page. Learn more about us here.</p>',
+    contact: '<h1>Contact</h1><p>Get in touch with us through the Contact page.</p>',
+  };
+
+  function navigate(event) {
+    event.preventDefault();
+    const link = event.target.getAttribute('data-link');
+    if (link && routes[link]) {
+      contentDiv.innerHTML = routes[link];
+      history.pushState({}, '', `#${link}`);
+    }
+  }
+
+  function loadInitialContent() {
+    const path = window.location.hash.substring(1) || 'home';
+    contentDiv.innerHTML = routes[path];
+  }
+
+  document.querySelector('nav').addEventListener('click', navigate);
+  window.addEventListener('popstate', loadInitialContent);
+
+  loadInitialContent();
+});
+
+  </script>
 </body>
 </html>
