@@ -61,6 +61,8 @@
     --copy-icon-color: #1e1e28;
     --copy-icon-text-color: #edeffd;
     --copy-text-color-hover: #5c7fdd;
+
+    --flashcard-shadow: #cfd2e3;
 }
 
 .dark {
@@ -126,6 +128,8 @@
     --copy-icon-text-color: #e2e5ff;
     --copy-text-color-hover: #5c7dff;
 
+    --flashcard-shadow: #13131f;
+
 }
 
 .light {
@@ -190,4 +194,6 @@
     --copy-text-color-hover: #5c7fdd;
     --copy-icon-color: #1e1e28;
     --copy-icon-text-color: #edeffd;
+
+    --flashcard-shadow: #cfd2e3;
 }

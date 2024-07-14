@@ -8,6 +8,7 @@ import { SettingController } from "./settingController.js";
 import { Dialog } from "../util/dialog.js";
 import { NotificationHandler } from "../handlers/userFeedback/notificationHandler.js";
 import { FlashcardController } from "./flashcardController.js";
+import { removeContentFromNode } from "../util/UI.js";
  
 export class ApplicationController {
     constructor() {
@@ -52,7 +53,7 @@ export class ApplicationController {
     }
 
     async navigateToHomescreen() {
-        this.applicationView.removeContent();
+        removeContentFromNode(document.querySelector('.content-view'))
         await this.folderController.getFolders();
         await this.noteController.getNotes(this.homeFolderId);
         this.applicationModel.clearFolderIdlist();
@@ -71,7 +72,7 @@ export class ApplicationController {
     }
 
     async navigateIntoFolder(folderId, name) {
-        this.applicationView.removeContent();
+        removeContentFromNode(document.querySelector('.content-view'))
         this.applicationView.displayFolderName(name);
         this.applicationModel.addFolderIdToList(folderId, name);
 

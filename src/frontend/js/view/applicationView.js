@@ -84,14 +84,6 @@ export class ApplicationView {
     }
 
     /**
-     * This method removes all the creatable components from the UI
-     */
-    removeContent() {
-        while (this._content.firstChild) 
-            this._content.removeChild(this._content.firstChild);
-    }
-
-    /**
      * This method is called when the home button is clicked
      * The home button takes the user to the home screen
      */

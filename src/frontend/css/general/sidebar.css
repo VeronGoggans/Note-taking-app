@@ -3,8 +3,8 @@
     position: relative;
     display: grid;
     grid-template-rows: 50px 1fr;
-    background-color: var(--sidebar);
-    border-right: 1px solid var(--border-sidebar-right);
+    background-color: var(--background);
+    border-right: 1px solid var(--border-card);
 }
 
 .sidebar-logo {
@@ -36,13 +36,13 @@
     font-family: sans-serif;
 }
 
-.sidebar-content {
+.navigation {
     display: grid;
     grid-template-rows: 1fr 50px;
     padding: 10px;
 }
 
-.sidebar-content button {
+.navigation button {
     position: relative;
     border: none;
     display: flex;
@@ -59,16 +59,16 @@
     transition: .2s;
 }
 
-.sidebar-content button span {
+.navigation button span {
     margin-left: 35px;
 }
 
-.sidebar-content button i {
+.navigation button i {
     position: absolute;
     left: 10px;
 }
 
-.sidebar-content button:hover {
+.navigation button:hover {
     background-color: var(--hover-sidebar);
     color: var(--sidebar-text-hover);
 }

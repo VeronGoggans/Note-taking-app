@@ -1,0 +1,144 @@
+body {
+    width: 100dvw;
+    height: 100dvh;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+button {
+    cursor: pointer;
+}
+
+::selection {
+    background-color: var(--selection);
+}
+
+.wrapper {
+    user-select: none;
+    position: relative;
+    max-width: 100dvw;
+    max-height: 100dvh;
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    background-color: var(--background);
+}
+
+
+.home {
+    font-family: Roboto;
+    padding: 15px;   
+    overflow-y: scroll;
+    height: calc(100dvh - 30px);
+    max-height: calc(100dvh - 30px);
+}
+
+
+.welcome-container {overflow: hidden;
+    padding: 10px 20px;
+}
+
+.welcome-container h1 {
+    font-family: sans-serif;
+    color: var(--important);
+    font-size: 40px;
+}
+
+.welcome-container h1 span {
+    color: #5c7fdd;
+}
+
+.welcome-container p {
+    font-weight: 600;
+    color: var(--text);
+    transition: transform 0.5s, opacity 0.5s;
+    position: relative;
+}
+
+.slide-out {
+    animation: slideOut 0.5s forwards;
+}
+.slide-in {
+    animation: slideIn 0.5s forwards;
+}
+@keyframes slideOut {
+    0% { transform: translateX(0); opacity: 1; }
+    100% { transform: translateX(100%); opacity: 0; }
+}
+@keyframes slideIn {
+    0% { transform: translateX(-100%); opacity: 0; }
+    100% { transform: translateX(0); opacity: 1; }
+}
+
+
+.flashcards-container {
+    padding: 10px 20px;
+}
+
+.flashcards-container h2 {
+    font-family: sans-serif;
+    color: var(--important);
+}
+
+.flashcards {
+    display: flex;
+    gap: 15px;
+    overflow-x: scroll;
+    padding: 0 15px;
+}
+
+.flashcard {
+    margin-bottom: 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-family: sans-serif;
+    border: 1px solid var(--border-card);
+    background-color: var(--card);
+    color: var(--important);
+    padding: 10px;
+    height: 150px;
+    width: 260px;
+    border-radius: 7px;
+    box-shadow: 0 10px 10px var(--flashcard-shadow);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 250ms;
+}
+
+.flashcard:hover {
+    scale: 1.025;
+}
+
+img {
+    width: 350px;
+}
+
+
+.recently-container {
+    color: var(--text);
+    padding: 10px 20px;
+}
+
+.recently-container h2 {
+    margin-top: 0;
+    color: var(--important);
+    font-family: sans-serif;
+}
+
+.documents {
+    max-height: 200px;
+}
+
+.document {
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 10px;
+    transition: 150ms;
+    font-family: sans-serif;
+    background-color: var(--background);
+}
+
+.document:hover {
+    background-color: #f6f7ff;
+}

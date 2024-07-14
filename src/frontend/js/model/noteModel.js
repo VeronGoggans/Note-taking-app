@@ -48,4 +48,9 @@ export class NoteModel {
         const options = RequestOptionsBuilder.buildPutOptions({'folder_id': folderId, 'note_id': noteId})
         return fetchData(endpoint, options)
     }
+
+    async getSearchOptions(endpoint) {
+        const options = RequestOptionsBuilder.buildGetOptions();
+        return fetchData(endpoint, options);
+    }
 }

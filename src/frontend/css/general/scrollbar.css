@@ -1,9 +1,9 @@
 .note-suggestions-list::-webkit-scrollbar,
 .linkable-notes-list::-webkit-scrollbar,
-.content-view::-webkit-scrollbar,
 .font-options::-webkit-scrollbar,
 .linkable-notes-list::-webkit-scrollbar,
-.templates-container::-webkit-scrollbar {
+.templates-container::-webkit-scrollbar,
+.flashcards::-webkit-scrollbar {
     background-color: transparent;
     width: 5px;
 }
@@ -13,6 +13,11 @@
     background-color: #cfd2e3;
 } 
 
+.home::-webkit-scrollbar {
+    width: 10px;
+    background-color: transparent;
+}
+
 .note-suggestions-list::-webkit-scrollbar-thumb,
 .font-options::-webkit-scrollbar-thumb,
 .linkable-notes-list::-webkit-scrollbar-thumb {
@@ -20,8 +25,9 @@
     border-radius: 10px;
 }
 
-.content-view::-webkit-scrollbar-thumb {
-    background-color: var(--scrollbar-content-view);
+/*View scrollbars*/
+.home::-webkit-scrollbar-thumb {
+    background-color: #cfd2e3;
     border-radius: 10px;
 }
 
