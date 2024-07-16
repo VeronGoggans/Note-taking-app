@@ -26,11 +26,17 @@ button {
 
 
 .home {
+    display: flex;
+    justify-content: center;
     font-family: Roboto;
     padding: 15px;   
     overflow-y: scroll;
     height: calc(100dvh - 30px);
     max-height: calc(100dvh - 30px);
+}
+
+.center {
+    width: 70%;
 }
 
 
@@ -73,41 +79,39 @@ button {
 
 .flashcards-container {
     padding: 10px 20px;
+    background-color: var(--background);
+    border-top: 1px solid var(--border-card);
 }
 
-.flashcards-container h2 {
+.flashcards-container h3 {
     font-family: sans-serif;
     color: var(--important);
 }
 
+.flashcards-container p {
+    font-family: sans-serif;
+    color: #7f8085;
+}
+
 .flashcards {
-    display: flex;
+    display: block;
     gap: 15px;
     overflow-x: scroll;
     padding: 0 15px;
 }
 
 .flashcard {
-    margin-bottom: 20px;
-    margin-top: 10px;
     cursor: pointer;
     font-family: sans-serif;
-    border: 1px solid var(--border-card);
     background-color: var(--card);
     color: var(--important);
     padding: 10px;
-    height: 150px;
-    width: 260px;
-    border-radius: 7px;
-    box-shadow: 0 10px 10px var(--flashcard-shadow);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    border-radius: 7px;    
     transition: 250ms;
 }
 
 .flashcard:hover {
-    scale: 1.025;
+    background-color: #f6f7ff;
 }
 
 img {
@@ -116,14 +120,22 @@ img {
 
 
 .recently-container {
+    margin-top: 50px;
     color: var(--text);
     padding: 10px 20px;
+    background-color: var(--background);
+    border-top: 1px solid var(--border-card);
 }
 
-.recently-container h2 {
-    margin-top: 0;
+
+.recently-container h3 {
     color: var(--important);
     font-family: sans-serif;
+}
+
+.recently-container p {
+    font-family: sans-serif;
+    color: #7f8085;
 }
 
 .documents {

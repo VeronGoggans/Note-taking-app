@@ -33,7 +33,7 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
   </style>
-<body class="dark">
+<body class="">
     <div class="wrapper">
         <div class="sidebar">
             <div class="sidebar-logo">
@@ -61,36 +61,42 @@
 
         <main class="content">
             <div class="home">
-                <div class="welcome-container">
-                    <h1>All your <span>notes</span> in one place</h1>
-                    <p class="quote">Your mind is to generate ideas, but not to remind them. </p>
-                </div>
-                <div class="flashcards-container">
-                <h2>Jump back in.</h2>
-                <div class="flashcards">
-                    <div class="flashcard">
-                        <span class="flashcard-name">OWASP top 10</span>
+                <div class="center">
+                    <div class="welcome-container">
+                        <h1>Good evening, <span>Veron</span></h1>
                     </div>
-                    <div class="flashcard">
-                        <span class="flashcard-name">OWASP top 10</span>
-                    </div>
-                </div>
-                </div>
-                <div class="recently-container">
-                    <h2>Recently</h2>
-                    <div class="documents">
-                        <div class="document">
-                            <span class="document-name">Compliant checking</span>
+                    <div class="flashcards-container">
+                    <h3>Flashcards</h3>
+                    <p>Jump back in to learning these topics</p>
+                    <div class="flashcards">
+                        <div class="flashcard">
+                            <span class="flashcard-name">OWASP top 10</span>
                         </div>
-                        <div class="document">
-                            <span class="document-name">Compliant engineering</span>
+                        <div class="flashcard">
+                            <span class="flashcard-name"> Big O notation</span>
                         </div>
-                        <div class="document">
-                            <span class="document-name">Operations</span>
+                        <div class="flashcard">
+                            <span class="flashcard-name">Agile</span>
                         </div>
                     </div>
+                    </div>
+                    <div class="recently-container">
+                        <h3>Notes</h3>
+                        <p>Your recently viewed notes</p>
+                        <div class="documents">
+                            <div class="document">
+                                <span class="document-name">Compliant checking</span>
+                            </div>
+                            <div class="document">
+                                <span class="document-name">Compliant engineering</span>
+                            </div>
+                            <div class="document">
+                                <span class="document-name">Operations</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <img src="../../../img/file.png" alt="">
+                
             </div>
         </main>
         
@@ -183,57 +189,5 @@
     </div>
     
     </div>
-          
-    <script>
-        const quotes = [
-            "The palest digital ink is better than the best memory.",
-            "Write it down. Digital notes can help you remember things better.",
-            "The discipline of recording something down is the first step toward making it happen.",
-            "The faintest note is more powerful than the strongest memory.",
-            "I always have a digital notepad handy to jot down ideas and things to remember.",
-            "Taking digital notes doesn't just record what's being said, it focuses and clarifies your thinking.",
-            "To type is to think, and to think is to live.",
-            "Digital notes crystallize thought and thought produces action.",
-            "By recording your dreams and goals digitally, you set in motion the process of becoming the person you most want to be.",
-            "One of the easiest ways to keep on track is to type out your goals and revisit them often.",
-            "Record it. Think on screen.",
-            "Write down the thoughts of the moment. Those that come unsought for are commonly the most valuable.",
-            "The act of typing is the act of discovering what you believe.",
-            "Typing helps you discover the thought that you didn't know you had.",
-            "Your mind is for having ideas, not holding them.",
-            "The weakest note is stronger than the strongest memory.",
-            "I think in terms of the day's resolutions, not the year's.",
-            "Record to be understood, speak to be heard, read to grow."
-        ];
-
-        let currentIndex = 0;
-        const quoteElement = document.querySelector('.quote');
-
-        function updateQuote() {
-            // Slide out the current quote
-            quoteElement.classList.add('slide-out');
-
-            setTimeout(() => {
-                // Update the quote text
-                quoteElement.textContent = quotes[currentIndex];
-                // Prepare to slide in the new quote
-                quoteElement.classList.remove('slide-out');
-                quoteElement.classList.add('slide-in');
-
-                // Reset the animation classes
-                setTimeout(() => {
-                    quoteElement.classList.remove('slide-in');
-                }, 500);
-
-                // Update the index for the next quote
-                currentIndex = (currentIndex + 1) % quotes.length;
-            }, 500);
-        }
-
-        // Initialize with the first quote
-        updateQuote();
-        // Change quote every 7 seconds
-        setInterval(updateQuote, 10000);
-    </script>
 </body>
 </html>
