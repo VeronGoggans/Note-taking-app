@@ -40,7 +40,8 @@ button {
 }
 
 
-.welcome-container {overflow: hidden;
+.welcome-container {
+    overflow: hidden;
     padding: 10px 20px;
 }
 
@@ -66,14 +67,6 @@ button {
 }
 .slide-in {
     animation: slideIn 0.5s forwards;
-}
-@keyframes slideOut {
-    0% { transform: translateX(0); opacity: 1; }
-    100% { transform: translateX(100%); opacity: 0; }
-}
-@keyframes slideIn {
-    0% { transform: translateX(-100%); opacity: 0; }
-    100% { transform: translateX(0); opacity: 1; }
 }
 
 
@@ -101,10 +94,13 @@ button {
 }
 
 .flashcard {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
     cursor: pointer;
     font-family: sans-serif;
     background-color: var(--card);
-    color: var(--important);
+    color: var(--text);
     padding: 10px;
     border-radius: 7px;    
     transition: 250ms;
@@ -114,13 +110,22 @@ button {
     background-color: #f6f7ff;
 }
 
-img {
-    width: 350px;
+.flashcard .rating {color: #c1c2ca;}
+
+.flashcard .rating .good {
+    color: rgb(98, 233, 127);
+    font-weight: 600;
+    font-size: 16px;
+}
+.flashcard .rating .wrong {
+    color: rgb(248, 125, 125);
+    font-weight: 600;
+    font-size: 16px;
 }
 
 
 .recently-container {
-    margin-top: 50px;
+    margin-top: 25px;
     color: var(--text);
     padding: 10px 20px;
     background-color: var(--background);
@@ -143,12 +148,20 @@ img {
 }
 
 .document {
+    display: flex;
+    justify-content: space-between;
     cursor: pointer;
     border-radius: 5px;
     padding: 10px;
     transition: 150ms;
     font-family: sans-serif;
+    color: var(--text);
+    font-size: 14px;
     background-color: var(--background);
+}
+
+.document .time {
+    color: #c1c2ca;
 }
 
 .document:hover {

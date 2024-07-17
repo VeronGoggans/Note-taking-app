@@ -3,7 +3,7 @@
     position: relative;
     display: grid;
     grid-template-rows: 50px 1fr;
-    background-color: var(--background);
+    background-color: var(--sidebar);
     border-right: 1px solid var(--border-card);
 }
 
