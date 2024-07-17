@@ -54,3 +54,11 @@ export function getCurrentDateAndTime() {
     <i class="fa-regular fa-calendar"></i><h3">${formattedHours}:${formattedMinutes}</h3><span>${month} ${dayWithSuffix}, ${year}</span>
     `;
 }
+
+export function timeOfDay() {
+    const time = new Date().getHours();
+    if (time >= 6 && time < 12) return 'morning';
+    if (time >= 12 && time < 18) return 'afternoon';
+    if (time >= 18 && time < 22) return 'evening';
+    return 'night'
+}
