@@ -65,7 +65,7 @@ export class ApplicationModel {
     async getSearchOptions(endpoint) {
         try {
             const RESPONSE = await fetch(`${endpoint}`);
-            if (!RESPONSE.ok) throw new Error(`HTTP error Status: ${RESPONSE.status}`);
+            if (!RESPONSE.ok) throw new Error(`HTTP error status: ${RESPONSE.status}`);
             return await RESPONSE.json();
         } catch(error) {
             console.error('Error fetching data: ', error.message);

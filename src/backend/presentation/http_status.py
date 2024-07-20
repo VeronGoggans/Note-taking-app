@@ -1,6 +1,6 @@
 from enum import Enum
 
-class Status(Enum):
+class HttpStatus(Enum):
     OK = 200
     NO_CONTENT = 204
     INTERAL_SERVER_ERROR = 500

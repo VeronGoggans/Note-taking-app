@@ -1,7 +1,7 @@
 from src.backend.data.template.template_manager import TemplateManager
 from src.backend.data.file.json_manager import JsonManager
 from src.backend.domain.template import Template
-from src.backend.domain.enums.responseMessages import Status
+from src.backend.presentation.http_status import HttpStatus
 from src.backend.presentation.request_bodies.template.template_request import TemplateRequest
 from os import getcwd
 
@@ -25,7 +25,7 @@ class TemplateService:
         template = self.manager.get_by_id(template_structure, id)
         if template:
             return template
-        return Status.NOT_FOUND
+        return HttpStatus.NOT_FOUND
     
 
     def get_template_names(self):
@@ -45,7 +45,7 @@ class TemplateService:
         if new_template:
             self.json_manager.update(self.templates_path, template_structure)
             return new_template
-        return Status.INTERAL_SERVER_ERROR
+        return HttpStatus.INTERAL_SERVER_ERROR
 
 
     def update_template(self, id: str, template_data: TemplateRequest):
@@ -55,7 +55,7 @@ class TemplateService:
         if updated_template:
             self.json_manager.update(self.templates_path, template_structure)
             return updated_template
-        return Status.NOT_FOUND
+        return HttpStatus.NOT_FOUND
 
 
     def delete_template(self, template_id: str):
@@ -65,5 +65,5 @@ class TemplateService:
         if deleted_template:
             self.json_manager.update(self.templates_path, template_structure)
             return deleted_template
-        return Status.NOT_FOUND
+        return HttpStatus.NOT_FOUND
     

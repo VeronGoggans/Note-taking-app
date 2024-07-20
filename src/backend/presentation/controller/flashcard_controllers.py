@@ -1,8 +1,9 @@
 from fastapi import APIRouter
-from src.backend.domain.enums.responseMessages import Status
+from src.backend.presentation.http_status import HttpStatus
 from src.backend.application.flashcard_service import FlashcardService
 from src.backend.data.flashcard.flashcard_deck_manager import FlashcardDeckManager
 from src.backend.presentation.request_bodies.flashcard.post_deck_request import PostDeckRequest
+from src.backend.data.exceptions.exceptions import DeckSerializationException, DeckNotFoundException, DeckDeserializationException
 
 
 class FlashcardRouter:
@@ -16,21 +17,30 @@ class FlashcardRouter:
 
 
     def get_flashcard_by_id(self, id: str):
-        response = self.service.get_flashcard_by_id(id)
-        if response != Status.NOT_FOUND:
-            return {"Status_code": Status.OK, "FlashcardSet": response}
-        return {"Status_code": Status.NOT_FOUND, "FlashcardSet": None}
+        try:
+            deck = self.service.get_flashcard_by_id(id)
+            return {'status': 'succes', "Deck": deck}, HttpStatus.OK
+        except DeckNotFoundException as e:
+            return {'status': 'not_found', "message": str(e)}, HttpStatus.NOT_FOUND
+        except DeckDeserializationException as e:
+            return {'status': 'error', 'message': str(e)}, HttpStatus.INTERAL_SERVER_ERROR
+        
     
-
     def get_all_decks(self):
-        response = self.service.get_all_decks()
-        if response != Status.NOT_FOUND:
-            return {"Status_code": Status.OK, 'Decks': response}
-        return {"Status_code": Status.NOT_FOUND, 'Decks': None}
+        try:
+            all_decks = self.service.get_all_decks()
+            return {'status': 'succes', 'Decks': all_decks}
+        except DeckDeserializationException as e:
+            return {'status': 'error', 'message': str(e)}, HttpStatus.INTERAL_SERVER_ERROR
     
 
     def add_deck(self, post_deck_request: PostDeckRequest): 
-        response = self.service.add_deck(post_deck_request)
-        if response != Status.NOT_FOUND:
-            return {"Status_code": Status.OK, 'Decks': response}
-        return {"Status_code": Status.NOT_FOUND, 'Decks': None}
+        try:
+            new_deck = self.service.add_deck(post_deck_request)
+            return {"status": 'succes', 'Deck': new_deck}, HttpStatus.OK
+        
+        except DeckSerializationException as e:
+            return {'status': 'error', 'message': str(e)}, HttpStatus.INTERAL_SERVER_ERROR
+        
+        except Exception as e:
+            return {"status": "error", "message": "An unexpected error occurred"}, HttpStatus.INTERAL_SERVER_ERROR

@@ -13,7 +13,7 @@ class Calendar():
                 - 'US': American date format (mm/dd/yyyy).
 
         Returns:
-            Union[str, Status]: 
+            Union[str, HttpStatus]: 
             - If successful, it returns the current date formatted based on the specified region.
             - If an invalid region is provided, it returns a message indicating to use 'EU' or 'US'.
         """
@@ -38,7 +38,7 @@ class Calendar():
                 - 'US': American date and time format (mm/dd/yyyy HH:MM).
 
         Returns:
-            Union[str, Status]: 
+            Union[str, HttpStatus]: 
             - If successful, it returns the current date and time formatted based on the specified region.
             - If an invalid region is provided, it returns a message indicating to use 'EU' or 'US'.
         """

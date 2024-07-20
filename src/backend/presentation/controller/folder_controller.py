@@ -2,7 +2,8 @@ from fastapi import APIRouter
 from src.backend.data.folder.folder_manager import FolderManager
 from src.backend.presentation.request_bodies.folder.post_folder_request import PostFolderRequest
 from src.backend.presentation.request_bodies.folder.put_folder_request import PutFolderRequest
-from src.backend.domain.enums.responseMessages import Status
+from src.backend.data.exceptions.exceptions import FolderNotFoundException, FolderAdditionException
+from src.backend.presentation.http_status import HttpStatus
 from src.backend.application.folder_service import FolderService
 
 class FolderRouter:
@@ -10,38 +11,38 @@ class FolderRouter:
         self.route = APIRouter()
         self.folder_service = FolderService(FolderManager(), json_manager)
 
+        self.route.add_api_route('/folder', self.add_folder, methods=['POST'])
         self.route.add_api_route('/folders', self.folders, methods=['GET'])
-        self.route.add_api_route('/folder', self.create_folder, methods=['POST'])
         self.route.add_api_route('/folder', self.update_folder, methods=['PUT'])
         self.route.add_api_route('/folder/{folder_id}', self.delete_folder, methods=['DELETE'])
 
-    
+
+    def add_folder(self, request: PostFolderRequest):
+        try:
+            folder = self.folder_service.add_folder(request)
+            return {'status': 'succes', "folder": folder}, HttpStatus.OK
+        except FolderAdditionException as e:
+            return {'status': 'error', 'message': str(e)}, HttpStatus.INTERAL_SERVER_ERROR
+        
+
     def folders(self):
-        response = self.folder_service.get_folders()
-        return {"Status_code": Status.OK, "Folders": response}
+        folders = self.folder_service.get_folders()
+        return {"status": 'succes', "folders": folders}, HttpStatus.OK
     
 
-    def create_folder(self, folder: PostFolderRequest):
-        response = self.folder_service.add_folder(folder)
-
-        if response != Status.INTERAL_SERVER_ERROR:
-            return {'Status_code': Status.OK, "Folder": response}
-        return {'Status_code': Status.INTERAL_SERVER_ERROR}
-    
-
-    def update_folder(self, folder: PutFolderRequest):
-        response = self.folder_service.update_folder(folder)
-
-        if response != Status.NOT_FOUND:
-            return {'Status_code': Status.OK, "Folder": response}
-        return {'Status_code': Status.NOT_FOUND}
+    def update_folder(self, request: PutFolderRequest):
+        try:
+            folder = self.folder_service.update_folder(request)
+            return {'status': 'succes', "folder": folder}, HttpStatus.OK
+        except FolderNotFoundException as e:
+            return {'status': 'not_found', 'message': str(e)}, HttpStatus.NOT_FOUND
     
 
     def delete_folder(self, folder_id: str ):
-        response = self.folder_service.delete_folder(folder_id)
-
-        if response != Status.NOT_FOUND:
-            return {'Status_code': Status.OK, "Folder": response}
-        return {'Status_code': Status.NOT_FOUND}
+        try:
+            folder = self.folder_service.delete_folder(folder_id)
+            return {'status': 'succes', "folder": folder}, HttpStatus.OK
+        except FolderNotFoundException as e:
+            return {'status': 'not_found', 'message': str(e)}, HttpStatus.NOT_FOUND
     
     

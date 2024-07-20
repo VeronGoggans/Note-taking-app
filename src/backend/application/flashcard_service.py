@@ -5,7 +5,7 @@ from src.backend.presentation.request_bodies.flashcard.post_deck_request import 
 from src.backend.presentation.request_bodies.flashcard.post_flashcard_request import PostFlashcardRequest
 from src.backend.presentation.dtos.flashcard.flashcard_dto import FlashcardDTO
 from src.backend.domain.flashcard_deck import FlashcardDeck
-from src.backend.domain.enums.responseMessages import Status
+from src.backend.data.exceptions.exceptions import DeckSerializationException, DeckAdditionException, DeckNotFoundException, DeckDeserializationException
 from os import getcwd
 
 
@@ -20,35 +20,37 @@ class FlashcardService:
 
     def get_flashcard_by_id(self, id: str):
         json_decks = self.json_manager.load(self.flashcards_path)
-        deck = self.manager.get_by_id(json_decks, id)
-
-        if deck:
-            return deck
-        return Status.NOT_FOUND
+        try:
+            return self.manager.get_by_id(json_decks, id)
+        except (DeckNotFoundException, DeckDeserializationException) as e:
+            raise e
     
 
     def get_all_decks(self):
         json_decks = self.json_manager.load(self.flashcards_path)
-        decks = self.manager.get_all(json_decks)
-
-        if decks:
-            return decks
-        return None 
+        try:
+            return self.manager.get_all(json_decks)
+        except DeckAdditionException as e:
+            raise e
+    
     
 
     def add_deck(self, request: PostDeckRequest):
-        json_decks = self.json_manager.load(self.flashcards_path)
-        deck_id = self.json_manager.generate_id(self.id_path, 'flashcard-deck')
-        flashcard_dtos = self.__request_to_dto(request.flashcards)
-        cards_path = FlashcardSerializer.serialize(deck_id, flashcard_dtos)
-        
-        deck = FlashcardDeck(deck_id, request.name, cards_path)
-        new_deck = self.manager.add(json_decks, deck)
+        try:
+            json_decks = self.json_manager.load(self.flashcards_path)
+            deck_id = self.json_manager.generate_id(self.id_path, 'flashcard-deck')
+            flashcard_dtos = self.__request_to_dto(request.flashcards)
+            cards_path = FlashcardSerializer.serialize(deck_id, flashcard_dtos)
+            
+            deck = FlashcardDeck(deck_id, request.name, cards_path)
+            new_deck = self.manager.add(json_decks, deck)
 
-        if new_deck:
             self.json_manager.update(self.flashcards_path, json_decks)
             return new_deck
-        return None
+        except (DeckSerializationException, DeckAdditionException) as e:
+            raise e
+        except Exception as e:
+            raise e
 
 
     def __request_to_dto(self, flashcards: list[PostFlashcardRequest]):

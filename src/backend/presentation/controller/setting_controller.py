@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from src.backend.domain.enums.responseMessages import Status
+from src.backend.presentation.http_status import HttpStatus
 from src.backend.application.setting_service import SettingService
 
 class SettingRouter:
@@ -13,9 +13,9 @@ class SettingRouter:
     
     def theme(self):
         response = self.setting_service.get_theme()
-        return {"Status_code": Status.OK, "theme": response}
+        return {"HttpStatus_code": HttpStatus.OK, "theme": response}
     
 
     def update_theme(self, theme: str):
         response = self.setting_service.update_theme(theme)
-        return {'Status_code': Status.OK, "theme": response}
+        return {'HttpStatus_code': HttpStatus.OK, "theme": response}

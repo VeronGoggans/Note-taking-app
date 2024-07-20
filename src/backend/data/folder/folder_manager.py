@@ -1,6 +1,27 @@
 from src.backend.domain.folder import Folder
+from src.backend.data.exceptions.exceptions import FolderNotFoundException, FolderAdditionException
 
 class FolderManager:
+
+
+    def add_folder(self, folders, folder: Folder):
+        """
+        Add a new folder to the notes structure.
+
+        Args:
+            folders (List[dict]): The list of folders to search within.
+            folder (Folder): a folder object that will be added to the notes structure.
+
+        Returns:
+           dict:
+            - If successful, it returns the folder.
+        """
+        try:
+            folders.append(folder.__dict__)
+            return folder
+        except Exception as e: 
+            raise FolderAdditionException('An error occurred while adding the folder', errors={'exception': str(e)})
+
 
     def get_folders(self, folders) -> list:
         """
@@ -23,22 +44,6 @@ class FolderManager:
                     })
         return folder_list
 
-
-    def add_folder(self, folders, folder: Folder):
-        """
-        Add a new folder to the notes structure.
-
-        Args:
-            folders (List[dict]): The list of folders to search within.
-            folder (Folder): a folder object that will be added to the notes structure.
-
-        Returns:
-           dict:
-            - If successful, it returns the folder.
-        """
-        folders.append(folder.__dict__)
-        return folder
-
     
     def update_folder(self, folders, folder_id: str, folder_name: str, folder_color: str):
         """
@@ -60,7 +65,7 @@ class FolderManager:
                 folder['name'] = folder_name
                 folder['color'] = folder_color
                 return {'name': folder_name, 'id': folder_id, 'color': folder_color}
-        return None
+        raise FolderNotFoundException(f'Folder with id: {folder_id}, could not be found.')
         
     
     def delete_folder(self, folders, folder_id: str):
@@ -80,4 +85,4 @@ class FolderManager:
             if folder.get('id') == folder_id:
                 folders.remove(folder)
                 return folder 
-        return None
+        raise FolderNotFoundException(f'Folder with id: {folder_id}, could not be found.')

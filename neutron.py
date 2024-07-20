@@ -52,7 +52,7 @@ server_thread.start()
 while True:
     try:
         response = requests.get(f"http://127.0.0.1:{port}/docs")
-        if response.status_code == 200:
+        if response.HttpStatus_code == 200:
             break
     except Exception:
         pass

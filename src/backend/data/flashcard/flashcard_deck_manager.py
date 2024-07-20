@@ -3,6 +3,7 @@ from src.backend.domain.flashcard_deck import FlashcardDeck
 from src.backend.data.file.flashcard_serializer import FlashcardSerializer
 from src.backend.data.file.text_manager import TextManager
 from src.backend.presentation.dtos.flashcard.flashcard_dto import FlashcardDTO
+from src.backend.data.exceptions.exceptions import DeckAdditionException, DeckNotFoundException, DeckDeserializationException
 
 
 class FlashcardDeckManager:
@@ -13,28 +14,33 @@ class FlashcardDeckManager:
             decks.append(deck.__dict__)
             return deck
         except Exception as e:
-            return None
+            raise DeckAdditionException('An error occurred while adding the deck', errors={'exception': str(e)})
 
 
     def get_by_id(self, decks: list, id: str):
-        for deck in decks:
-            if deck['id'] == id:
-                deck_object = FlashcardDeck.from_json(deck)
-                self.__fill_deck_with_cards(deck_object, deck['flashcards_path'])
-                return deck_object
-            
-        return None
+        try:
+            for deck in decks:
+                if deck['id'] == id:
+                    deck_object = FlashcardDeck.from_json(deck)
+                    self.__fill_deck_with_cards(deck_object, deck['flashcards_path'])
+                    return deck_object
+            raise DeckNotFoundException(f'Deck with id: {id}, could not be found.')
+        except DeckDeserializationException as e:
+            raise e 
     
     
     def get_all(self, decks: list):
-        decks_list = []
+        try:
+            decks_list = []
 
-        for deck in decks:
-            deck_object = FlashcardDeck.from_json(deck)
-            self.__fill_deck_with_cards(deck_object, deck['flashcards_path'])
-            decks_list.append(deck_object)
+            for deck in decks:
+                deck_object = FlashcardDeck.from_json(deck)
+                self.__fill_deck_with_cards(deck_object, deck['flashcards_path'])
+                decks_list.append(deck_object)
 
-        return decks_list
+            return decks_list
+        except DeckDeserializationException as e:
+            raise e
 
 
     def update(self, decks: list, id: str):
@@ -50,8 +56,11 @@ class FlashcardDeckManager:
 
 
     def __fill_deck_with_cards(self, deck: FlashcardDeck, cards_path: str) -> FlashcardDeck:
-        plain_text_cards = TextManager.get(cards_path)
-        flashcards = FlashcardSerializer.deserialize(plain_text_cards)
-        deck.fill_set_with_cards(flashcards)
-        deck.calculate_progress()
-        return deck
+        try:
+            plain_text_cards = TextManager.get(cards_path)
+            flashcards = FlashcardSerializer.deserialize(plain_text_cards)
+            deck.fill_set_with_cards(flashcards)
+            deck.calculate_progress()
+            return deck
+        except DeckDeserializationException as e:
+            raise e
