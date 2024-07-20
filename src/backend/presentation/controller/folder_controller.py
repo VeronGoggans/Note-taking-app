@@ -44,5 +44,3 @@ class FolderRouter:
             return {'status': 'succes', "folder": folder}, HttpStatus.OK
         except FolderNotFoundException as e:
             return {'status': 'not_found', 'message': str(e)}, HttpStatus.NOT_FOUND
-    
-    

@@ -4,7 +4,6 @@ from src.backend.presentation.request_bodies.folder.put_folder_request import Pu
 from src.backend.data.exceptions.exceptions import FolderNotFoundException, FolderAdditionException
 from src.backend.domain.folder import Folder
 from src.backend.data.file.json_manager import JsonManager
-from src.backend.presentation.http_status import HttpStatus
 from os import getcwd
 
 
