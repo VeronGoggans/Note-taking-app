@@ -4,6 +4,14 @@ from src.backend.data.cache.json_cache import JsonCache
 class JsonManager:
     def __init__(self) -> None:
         self.cache = JsonCache()
+        self.prefixes = {
+            'note': 'n-',
+            'folder': 'f-',
+            'subfolder': 's-',
+            'template': 't-',
+            'flashcard-deck': 'fcd-',
+            'flashcard': 'fc-'
+            }
 
     
     def load(self, file_path) -> dict:
@@ -48,7 +56,7 @@ class JsonManager:
                 json.dump(backup, file, indent=4)
 
 
-    def generateID(self, file_path, entity_name) -> str:
+    def generate_id(self, file_path, entity_name) -> str:
         """
         Generate a unique identifier for a specified entity type.
         Entity types [note, folder, subfolder]. 
@@ -63,16 +71,12 @@ class JsonManager:
             - If the specified entity does not exist yet, it raises a Error indicating that the entity does not exist.
         """
         data = self.load(file_path)
-        unique_id = None
 
         for entity in data['ids']:
             if entity.get('entity') == entity_name.lower():
                 unique_id = entity['id']
-                id_parts: list = entity['id'].split('-')
-                string_part = id_parts[0]
-                number_part = id_parts[-1]
-                increment_ID = int(number_part) + 1
-                entity['id'] = f'{string_part}-{str(increment_ID)}'
+                entity['id'] = unique_id + 1
                 self.update(file_path, data)
-                return unique_id
+                return f'{self.prefixes[entity_name]}{unique_id}'
+            
         raise ValueError(f'{entity_name} is not a valid entity name.')

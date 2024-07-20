@@ -1,5 +1,10 @@
 from src.backend.data.file.json_manager import JsonManager
+from src.backend.data.file.flashcard_serializer import FlashcardSerializer
 from src.backend.data.flashcard.flashcard_deck_manager import FlashcardDeckManager
+from src.backend.presentation.request_bodies.flashcard.post_deck_request import PostDeckRequest
+from src.backend.presentation.request_bodies.flashcard.post_flashcard_request import PostFlashcardRequest
+from src.backend.presentation.dtos.flashcard.flashcard_dto import FlashcardDTO
+from src.backend.domain.flashcard_deck import FlashcardDeck
 from src.backend.domain.enums.responseMessages import Status
 from os import getcwd
 
@@ -29,7 +34,22 @@ class FlashcardService:
         if decks:
             return decks
         return None 
+    
+
+    def add_deck(self, request: PostDeckRequest):
+        json_decks = self.json_manager.load(self.flashcards_path)
+        deck_id = self.json_manager.generate_id(self.id_path, 'flashcard-deck')
+        flashcard_dtos = self.__request_to_dto(request.flashcards)
+        cards_path = FlashcardSerializer.serialize(deck_id, flashcard_dtos)
+        
+        deck = FlashcardDeck(deck_id, request.name, cards_path)
+        new_deck = self.manager.add(json_decks, deck)
+
+        if new_deck:
+            self.json_manager.update(self.flashcards_path, json_decks)
+            return new_deck
+        return None
 
 
-
-
+    def __request_to_dto(self, flashcards: list[PostFlashcardRequest]):
+        return [FlashcardDTO(card.term, card.description) for card in flashcards]

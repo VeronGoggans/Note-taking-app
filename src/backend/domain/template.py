@@ -1,5 +1,5 @@
 from src.backend.util.calendar import Calendar
-from src.backend.data.file.html_manager import HTMLManager
+from src.backend.data.file.text_manager import TextManager
 
 
 class Template:
@@ -17,26 +17,26 @@ class Template:
         This method takes the content attribute (which is the path to the note content) from the note and gives it to 
         the HTMLOperations class that will read the path and return the html content that's inside the file.
         """
-        self.content = HTMLManager.get(self.content)
+        self.content = TextManager.get(self.content)
 
 
     def set_content_path(self):
         """
         This method takes the html content and id from the template and gives it to 
-        the HTMLManager class that will create a txt file and return it's path.
-        The path returned from the HTMLManager class will be set as the template content.
+        the TextManager class that will create a txt file and return it's path.
+        The path returned from the TextManager class will be set as the template content.
         """
-        self.content = HTMLManager.save(self.content, self.id)
+        self.content = TextManager.save(self.content, self.id)
 
 
     def update_content(self, template_path: str, updated_html_content: str):
         """This method will update the content of a template's html file."""
-        HTMLManager.update(template_path, updated_html_content)
+        TextManager.update(template_path, updated_html_content)
 
 
     def delete_template_file(self, template_path: str):
         """This method uses the template path do delete the file."""
-        HTMLManager.delete(template_path)
+        TextManager.delete(template_path)
 
     @classmethod
     def from_json(self, json_template):

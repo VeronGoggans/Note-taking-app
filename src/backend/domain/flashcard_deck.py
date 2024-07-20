@@ -2,9 +2,10 @@ from src.backend.domain.flashcard import Flashcard
 from src.backend.domain.enums.flashcard_rating import FlashcardRating
 
 class FlashcardDeck:
-    def __init__(self, id: str, name: str) -> None:
+    def __init__(self, id: str, name: str, path: str) -> None:
         self.id: str = id
         self.name: str = name
+        self.flashcards_path: str = path
         self.rating = ''
         self.progress: object = None
         self.flashcards: list = []
@@ -38,10 +39,15 @@ class FlashcardDeck:
             'progress': int(correct / (correct + wrong + idle) * 100)
         }
 
+
+    def set_flashcards_path(self, path):
+        self.flashcards_path = path
+
     
     @classmethod
     def from_json(self, json_set):
         return FlashcardDeck(
             json_set['id'],
-            json_set['name']
+            json_set['name'],
+            json_set['flashcards']
         )

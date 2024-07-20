@@ -76,7 +76,7 @@ class NoteService:
               returns a dictionary representing the new note.
             - If the folder is not found, returns Status.NOT_FOUND.
         """
-        note_id = self.json_manager.generateID(self.id_path, 'note')
+        note_id = self.json_manager.generate_id(self.id_path, 'note')
         note = Note(note_id, post_request.name, post_request.content)
         note.set_content_path()
 

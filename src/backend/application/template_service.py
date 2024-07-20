@@ -35,7 +35,7 @@ class TemplateService:
     
 
     def add_template(self, template_data: TemplateRequest):
-        template_id = self.json_manager.generateID(self.id_path, 'template')
+        template_id = self.json_manager.generate_id(self.id_path, 'template')
         template_structure = self.json_manager.load(self.templates_path)
 
         template = Template(template_id, template_data.name, template_data.content)

@@ -1,6 +1,6 @@
-import os
+from os import getcwd, remove
 
-class HTMLManager:  
+class TextManager:  
     @staticmethod
     def save(html_content: str, entity_id: int):
         """
@@ -13,30 +13,23 @@ class HTMLManager:
         Returns:
             str: The file path where the HTML content is saved.
         """
-        BASE_URL = os.getcwd()
+        BASE_URL = getcwd()
         entity_folder = None 
         file_name = None 
 
-        if 'fcs' in entity_id:
-            entity_folder = 'storage/flashcards'
-            file_name = f'flashcard-set-{entity_id}.txt'
-        elif 'n' in entity_id:
+        if 'n' in entity_id:
             entity_folder = 'storage/notes'
             file_name = f'note-{entity_id}.txt'
         elif 't' in entity_id:
-            print('chose template path')
             entity_folder = 'storage/templates'
             file_name = f'template-{entity_id}.txt'
         
-        file_path = f'{entity_folder}/{file_name}'
+        path = f'{entity_folder}/{file_name}'
 
         try:
-            with open(f'{BASE_URL}/{file_path}', 'w', encoding='utf-8') as file:
-                content_bytes = html_content.encode("utf-8")
-                content_str = content_bytes.decode("utf-8")
-                file.write(content_str)
-                print('Content has been writtin')
-                return file_path
+            with open(f'{BASE_URL}/{path}', 'w', encoding='utf-8') as file:
+                file.write(html_content)
+                return path
         except Exception as e:
             print(f"UnicodeEncodeError occurred: {e}")
             return None
@@ -53,7 +46,7 @@ class HTMLManager:
         Returns:
             str: The content of the file as a string.
         """
-        BASE_URL = os.getcwd()
+        BASE_URL = getcwd()
         html_content = ''
         with open(f'{BASE_URL}/{file_path}', 'r', encoding="utf-8") as file:
             html_content = file.read()
@@ -73,7 +66,7 @@ class HTMLManager:
             None: This method does not return a value.
         """
         try:
-            latest_version = HTMLManager.get(file_path)
+            latest_version = TextManager.get(file_path)
             with open(file_path, 'w', encoding="utf-8") as file:
                 content_bytes = updated_html_content.encode("utf-8")
                 content_str = content_bytes.decode("utf-8")
@@ -97,6 +90,9 @@ class HTMLManager:
             - If an error occurs during deletion, it returns a string with details about the error.
         """
         try:
-            os.remove(file_path)
+            remove(file_path)
         except OSError as e:
             return str(e)
+        
+
+    

@@ -54,7 +54,7 @@ class SubfolderService:
         """
         folder_structure = self.json_manager.load(self.folders_path)
         folders = folder_structure['folders']
-        id = self.json_manager.generateID(self.id_path, 'subfolder')
+        id = self.json_manager.generate_id(self.id_path, 'subfolder')
         subfolder: Subfolder = Subfolder(id, post_request.name, post_request.color)
 
         manager_response = self.subfolder_manager.add_subfolder(folders, post_request.folder_id, subfolder)

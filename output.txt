@@ -1,0 +1,21 @@
+{
+  "name": "CRUD",
+  "flashcards": [
+    {
+      "term": "C",
+      "description": "Create HTTP Method = Post"
+    },
+    {
+      "term": "R",
+      "description": "Read HTTP Method = Get"
+    },
+    {
+      "term": "U",
+      "description": "Update HTTP Method = Put"
+    },
+    {
+      "term": "D",
+      "description": "Delete HTTP Method = Delete"
+    }
+  ]
+}
