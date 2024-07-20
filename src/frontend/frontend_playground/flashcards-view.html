@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/views/home.css">
+    <link rel="stylesheet" href="../css/general/sidebar.css">
+    <link rel="stylesheet" href="../css/components/note.css">
+    <link rel="stylesheet" href="../css/components/folder.css">
+    <link rel="stylesheet" href="../css/general/dialog.css">
+    <link rel="stylesheet" href="../css/general/themes.css">
+    <link rel="stylesheet" href="../css/general/animation.css">
+    <link rel="stylesheet" href="../css/notification/notification.css">
+    <link rel="stylesheet" href="../css/textEditor/textEditor.css">
+    <link rel="stylesheet" href="../css/textEditor/toolbarBottom.css">
+    <link rel="stylesheet" href="../css/textEditor/toolbarTop.css">
+    <link rel="stylesheet" href="../css/textEditor/colorPalletes.css">
+    <link rel="stylesheet" href="../css/textEditor/editorSpawnables.css">
+    <link rel="stylesheet" href="../css/modals/newFolderContainer.css">
+    <link rel="stylesheet" href="../css/modals/saveContainer.css">
+    <link rel="stylesheet" href="../css/modals/deleteContainer.css">
+    <link rel="stylesheet" href="../css/modals/noteDetailsModal.css">
+    <link rel="stylesheet" href="../css/modals/noteBackgroundModal.css">
+    <link rel="stylesheet" href="../css/modals/linkNoteModal.css">
+    <link rel="stylesheet" href="../css/general/scrollbar.css">
+    <link rel="stylesheet" href="../css/modals/searchModal.css">
+    <link rel="stylesheet" href="../css/modals/editFolderModal.css">
+    <link rel="stylesheet" href="../css/textEditor/textBlocks.css">
+    <link rel="stylesheet" href="../css/views/settings.css">
+    <link rel="stylesheet" href="../css/views/notes.css">
+    <link rel="stylesheet" href="../css/views/flashcards.css">
+    <!-- CDN for the icons -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Neutron</title>
+</head>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+  </style>
+<body class="light">
+    <div class="wrapper">
+        <div class="sidebar">
+            <div class="sidebar-logo">
+                <div class="logo-container">
+                    <div class="logo">
+                        <span>N</span>
+                    </div>
+                    <div class="logo-text">eutron</div>
+                </div>
+            </div>
+            <div class="navigation">
+              <div class="sidebar-content-upper">
+                <button class="home-screen-btn" data-link="home"><i class="fa-solid fa-house"></i><span>Home</span></button>
+                <button class="documents-btn" data-link="documents"><i class="fa-solid fa-file"></i><span>Notes</span></button>
+                <button class="flash-cards-btn" data-link="flashcards"><i class="fa-solid fa-circle-check"></i><span>Flashcards</span></button>
+                <button class="templates-btn" data-link="templates"><i class="fa-solid fa-layer-group"></i><span>Templates</span></button>
+              </div>
+              <div class="sidebar-content-lower">
+                <button class="settings-btn"><i class="fa-solid fa-gear"></i><span class="current-theme-text">Settings</span></button>
+              </div>
+            </div>
+        </div>
+
+        <main class="content">
+            <div class="flashcards">
+                <h1>flashcards</h1>
+                <div class="chart-section">
+                  <div class="barchart-container">
+                    <div class="stats">
+                      <div class="study-time-container">
+                        <span>Time studied</span>
+                        <p><span class="hours">2</span>h <span class="minutes">20</span>min</p>
+                      </div>
+                      <p>Total cards <span class="cards-count">72</span></p>
+                    </div>
+                    
+                    <p>Your performance</p>
+                    <canvas id="cards-status-chart"></canvas>
+                  </div>
+
+                  <div class="linechart-container">
+                    <canvas id="cards-studied-chart"></canvas>
+                  </div>
+                </div>
+                <div class="deck-section">
+                  <h2>Decks</h2>
+                  <p class="continue-studying">Continue studying your cards</p>
+                  <button class="create-deck-btn">Add a deck</button>
+                  <div class="flashcard-deck-container">
+                    <div class="flashcard-deck">
+                        <p class="deck-name">OWASP top 10</p>
+                        <p class="linked-note"><i class="fa-solid fa-folder"></i>Security & Web performance</p>
+                        <div>
+                          <p class="last-study-date">Last studied July 18th 2024</p>
+                          <p class="card-count"><span>10</span> cards</p>
+                        </div>
+                      </div>
+      
+                      <div class="flashcard-deck">
+                          <p class="deck-name">Big o Notation</p>
+                          <p class="linked-note not-linked">Not linked</p>
+                          <div>
+                            <p class="last-study-date">Last studied July 19th 2024</p>
+                            <p class="card-count"><span>7</span> cards</p>
+                          </div>
+                      </div>
+
+                      <div class="flashcard-deck">
+                        <p class="deck-name">Agile</p>
+                        <p class="linked-note not-linked">Not linked</p>
+                        <div>
+                          <p class="last-study-date">5 minutes ago</p>
+                          <p class="card-count"><span>20</span> cards</p>
+                        </div>
+                    </div>
+
+                    <div class="flashcard-deck">
+                        <p class="deck-name">Deployment strategies</p>
+                        <p class="linked-note not-linked">Not linked</p>
+                        <div>
+                          <p class="last-study-date">A hour ago</p>
+                          <p class="card-count"><span>4</span> cards</p>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                
+                
+
+                
+                
+            </div>
+        </main>
+        
+    </div>    
+    <div class="dialog"></div>
+    </div>
+    <script>
+
+        // Data for the bar chart
+        const data1 = {
+            labels: ['Correct😀', 'Wrong😔', 'None😐'],
+            datasets: [{
+                label: 'Cards',
+                data: [50, 12, 15],
+                backgroundColor: [
+                    'rgba(38, 255, 45, .2)',
+                    'rgba(255, 64, 38, .2)',
+                    'rgba(92, 127, 221, .2)', 
+                ],
+                borderColor: [
+                    'rgba(38, 255, 45, 1)',
+                    'rgba(255, 64, 38, 1)',
+                    'rgba(92, 127, 221, 1)'
+                ],
+                borderWidth: 1,
+                barPercentage: 0.8, // Adjust this value to make bars thinner
+                categoryPercentage: 0.5
+            }]
+        };
+
+        // Configuring the bar chart
+        const config1 = {
+            type: 'bar',
+            data: data1,
+            options: {
+                plugins: {
+                    legend: {
+                        display: false // Hides the legend
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: {
+                            display: false
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            callback: function(value, index, values) {
+                                if (index === 0 || index === values.length - 1) {
+                                    return value;
+                                }
+                                return '';
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        // Render the bar chart
+        const myBarChart = new Chart(
+            document.getElementById('cards-status-chart'),
+            config1
+        );
+
+        const data = {
+            labels: ['Mon', 'Tue', 'Wed', 'Today', 'Fri', 'Sat', 'Sun'],
+            datasets: [{
+                label: 'Cards studied',
+                data: [10, 20, 18, 15, 20, 5, 15],
+                fill: false,
+                borderWidth: 1,
+                borderColor: 'rgba(92, 127, 221, 1)',
+                backgroundColor: 'rgba(92, 127, 221, .3)',
+                tension: 0.1 // This makes the line smooth
+            }]
+        };
+
+        // Configuring the line chart
+        const config = {
+            type: 'bar',
+            data: data,
+            options: {
+                plugins: {
+                    legend: {
+                        display: false // Shows the legend
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: {
+                            display: false
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            callback: function(value, index, values) {
+                                if (index === 0 || index === values.length - 1) {
+                                    return value;
+                                }
+                                return '';
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        // Render the line chart
+        const myLineChart = new Chart(
+            document.getElementById('cards-studied-chart'),
+            config
+        );
+  </script>
+</body>
+</html>

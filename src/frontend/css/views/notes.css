@@ -18,34 +18,22 @@
     height: 35px;
     border: none;
     border-radius: 7px; 
-    transition: 150ms;
-}
-
-.create-folder-btn {
-    background-color: #5c7dff; 
-    color: #ffffff;
-}
-
-.create-note-btn {
+    transition: 100ms;
+    color: var(--text);
     background-color: var(--create-btn); 
-    color: var(--important);
 }
 
-.favorite-btn {
-    background-color: #ffb4b4;
-    color: var(--important);
+.current-folder-name-container button:hover {
+    background-color: #5c7fdd;
+    color: white;
 }
 
-.bookmark-btn {
-    background-color: #ffee8b;
-    color: var(--important);
-}
 
 .exit-folder-btn {
     position: absolute;
     top: 10px;
     left: 5px;
-    font-size: 18px;
+    font-size: 16px;
     border: none;
     background-color: transparent;
     padding: 10px 15px;
@@ -53,17 +41,10 @@
     transition: 150ms;
 }
 
-.favorite-btn:hover {
-    background-color: #ffa1a1;
+.exit-folder-btn:hover {
+    background-color: #f4f5f7;
 }
 
-.bookmark-btn:hover {
-    background-color: #f7e371;
-}
-
-.back-folder-btn:hover {
-    background-color: var(--create-btn);
-}
 
 .current-folder-name-container {
     display: block;
@@ -75,7 +56,7 @@
 
 .current-folder-name-container div {
     display: flex;
-    column-gap: 5px;
+    column-gap: 10px;
     padding-top: 10px;
 }
 
@@ -176,14 +157,6 @@
     color: var(--placeholder);
     font-size: 14px;
     margin: 20px 15px;
-}
-
-.create-folder-btn:hover {
-    background-color: #4a6eff;
-}
-
-.create-note-btn:hover {
-    background-color: var(--create-btn-hover);
 }
 
 .main-bottom {
