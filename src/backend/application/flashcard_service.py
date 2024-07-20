@@ -1,14 +1,11 @@
 from src.backend.data.file.json_manager import JsonManager
-from src.backend.data.flashcard.flashcard_manager import FlashcardManager
+from src.backend.data.flashcard.flashcard_deck_manager import FlashcardDeckManager
 from src.backend.domain.enums.responseMessages import Status
-
-
-
 from os import getcwd
 
 
 class FlashcardService:
-    def __init__(self, flashcard_manager: FlashcardManager, json_manager: JsonManager):
+    def __init__(self, flashcard_manager: FlashcardDeckManager, json_manager: JsonManager):
         self.manager = flashcard_manager
         self.json_manager = json_manager
         self.BASE_URL = getcwd()
@@ -17,11 +14,22 @@ class FlashcardService:
 
 
     def get_flashcard_by_id(self, id: str):
-        flashcard_sets = self.json_manager.load(self.flashcards_path)
-        flashcard_set = self.manager.get_by_id(flashcard_sets, id)
+        json_decks = self.json_manager.load(self.flashcards_path)
+        deck = self.manager.get_by_id(json_decks, id)
 
-        if flashcard_set:
-            return flashcard_set
+        if deck:
+            return deck
         return Status.NOT_FOUND
+    
+
+    def get_all_decks(self):
+        json_decks = self.json_manager.load(self.flashcards_path)
+        decks = self.manager.get_all(json_decks)
+
+        if decks:
+            return decks
+        return None 
+
+
 
 
