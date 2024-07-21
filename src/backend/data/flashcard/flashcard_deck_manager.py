@@ -43,16 +43,21 @@ class FlashcardDeckManager:
             raise e
 
 
-    def update(self, decks: list, id: str):
-        pass
+    def update(self, decks: list, id: str, name: str):
+        for deck in decks:
+            if deck['id'] == id:
+                deck['name'] = name
+                return deck
+        raise NotFoundException(f'Deck with id: {id}, could not be found.')
 
 
     def delete(self, decks: list, id: str):
         for deck in decks:
             if deck['id'] == id:
                 decks.remove(deck)
+                TextManager.delete(deck['flashcards_path'])
                 return deck
-        return None
+        raise NotFoundException(f'Deck with id: {id}, could not be found.')
 
 
     def __fill_deck_with_cards(self, deck: FlashcardDeck, cards_path: str) -> FlashcardDeck:

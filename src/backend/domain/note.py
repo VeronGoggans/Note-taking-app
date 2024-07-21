@@ -35,11 +35,6 @@ class Note:
         TextManager.update(note_path, updated_html_content)
 
 
-    def delete_note_file(self, note_path: str):
-        """This method uses the note path do delete the file."""
-        TextManager.delete(note_path)
-
-
     @classmethod
     def from_json(self, json_note):
         return Note(

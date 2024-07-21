@@ -29,14 +29,13 @@ class FolderService:
             - If the folder is successfully added, it returns the new folder object.
             - If there is an internal server error during the process, it returns 'INTERNAL_SERVER_ERROR'.
         """
-        folder_structure = self.json_manager.load(self.folders_path)
-        json_folders = folder_structure['folders']
+        folders = self.json_manager.load(self.folders_path)
         id = self.json_manager.generate_id(self.id_path, 'folder')
         folder = Folder(id, post_request.name, post_request.color)
 
         try:
-            new_folder = self.folder_manager.add_folder(json_folders, folder)
-            self.json_manager.update(self.folders_path, folder_structure)
+            new_folder = self.folder_manager.add_folder(folder, folder)
+            self.json_manager.update(self.folders_path, folders)
             return new_folder
         except AdditionException as e:
             raise e
@@ -49,10 +48,8 @@ class FolderService:
             list or HttpStatus: 
             - A list containing information (name, id) about the folders.
         """
-        folder_structure = self.json_manager.load(self.folders_path)
-        json_folders = folder_structure['folders']
-        folders = self.folder_manager.get_folders(json_folders)
-        return folders
+        json_folders = self.json_manager.load(self.folders_path)
+        return self.folder_manager.get_folders(json_folders)
        
 
     def update_folder(self, put_request: PutFolderRequest):
@@ -70,11 +67,10 @@ class FolderService:
             - If the folder is successfully updated, it returns the updated folder.
             - If the specified folder is not found, it returns 'NOT_FOUND'.
         """
-        folder_structure = self.json_manager.load(self.folders_path)
-        json_folders = folder_structure['folders']
+        folders = self.json_manager.load(self.folders_path)
         try:
-            folder = self.folder_manager.update_folder(json_folders, put_request.folder_id, put_request.name, put_request.color)
-            self.json_manager.update(self.folders_path, folder_structure)
+            folder = self.folder_manager.update_folder(folders, put_request.folder_id, put_request.name, put_request.color)
+            self.json_manager.update(self.folders_path, folders)
             return folder
         except NotFoundException as e:
             raise e
@@ -92,11 +88,10 @@ class FolderService:
             - If the folder is successfully deleted, it returns 'OK'.
             - If the specified folder is not found, it returns 'NOT_FOUND'.
         """
-        folder_structure = self.json_manager.load(self.folders_path)
-        json_folders = folder_structure['folders']
+        folders = self.json_manager.load(self.folders_path)
         try:
-            folder = self.folder_manager.delete_folder(json_folders, folder_id)
-            self.json_manager.update(self.folders_path, folder_structure)
+            folder = self.folder_manager.delete_folder(folders, folder_id)
+            self.json_manager.update(self.folders_path, folders)
             return folder
         except NotFoundException as e:
             raise e

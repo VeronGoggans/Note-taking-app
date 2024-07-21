@@ -83,8 +83,7 @@ class NoteService:
         """
         folders = self.json_manager.load(self.folders_path)
         try:
-            note = self.note_manager.get_note_by_id(folders, note_id)
-            return note
+            return self.note_manager.get_note_by_id(folders, note_id)
         except NotFoundException as e:
             raise e
 

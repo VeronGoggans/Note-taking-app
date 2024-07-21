@@ -4,6 +4,8 @@ from src.backend.util.calendar import Calendar
 from src.backend.domain.factory import Factory
 from src.backend.util.folder_finder import FolderFinder
 from src.backend.data.exceptions.exceptions import AdditionException, NotFoundException
+from src.backend.data.file.text_manager import TextManager
+
 
 class NoteManager:
     def __init__(self):
@@ -139,7 +141,7 @@ class NoteManager:
         if note:
             folder['notes'].remove(note)
             if delete_txt_file:
-                self.__delete_note_txt_file(note)
+                TextManager.delete(note['content'])
             return note    
         raise NotFoundException(f'Note with id: {note_id}, could not be found.')  
 
@@ -174,12 +176,6 @@ class NoteManager:
             if note:
                 return note, folder
         return None, None
-    
-
-    def __delete_note_txt_file(self, note_data: Note):
-        """This method will delete the htm file linked to the note object."""
-        note_object = Note.from_json(note_data)
-        note_object.delete_note_file(note_object.content)
 
     
     def __update_entity(self, current_note: dict, updated_note: PutNoteRequest):

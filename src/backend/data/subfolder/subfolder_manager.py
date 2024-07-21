@@ -1,9 +1,35 @@
 from src.backend.domain.subfolder import Subfolder
 from src.backend.util.folder_finder import FolderFinder
+from src.backend.data.exceptions.exceptions import AdditionException, NotFoundException
 
 class SubfolderManager:
 
-    def get_subfolders(self, folders, folder_id: str):
+
+    def add(self, folders, folder_id: str, subfolder: Subfolder):
+        """
+        Add a new subfolder to an existing folder in the notes structure.
+
+        Args:
+            folders (List[dict]): The list of folders to search within.
+            folder_id (str): The unique identifier of the parent folder.
+            subfolder (Subfolder): Data containing information to create the new subdirectory.
+
+        Returns:
+            dict or None:
+            - If successful, it returns the subfolder.
+            - If the parent folder is not found, it returns None.
+        """
+        parent_folder = FolderFinder.find_folder_by_id(folders, folder_id)
+        if parent_folder:
+            try:
+                parent_folder['subfolders'].append(subfolder.__dict__)
+                return subfolder
+            except Exception as e:
+                raise AdditionException('An error occurred while adding the subfolder', errors={'exception': str(e)})
+        raise NotFoundException(f'Subfolder with id: {folder_id}, could not be found')
+    
+
+    def get_all(self, folders, folder_id: str):
         """
         Retrieve a list of subfolder names belonging to a specific folder.
 
@@ -22,31 +48,10 @@ class SubfolderManager:
             subfolders = target_folder.get('subfolders', [])
             subfolder_info = [{'id': subfolder['id'], 'name': subfolder['name'], 'color': subfolder['color']} for subfolder in subfolders]
             return subfolder_info
-        return None
+        raise NotFoundException(f'Subfolder with id: {folder_id}, could not be found')
 
 
-    def add_subfolder(self, folders, folder_id: str, subfolder: Subfolder):
-        """
-        Add a new subfolder to an existing folder in the notes structure.
-
-        Args:
-            folders (List[dict]): The list of folders to search within.
-            folder_id (str): The unique identifier of the parent folder.
-            subfolder (Subfolder): Data containing information to create the new subdirectory.
-
-        Returns:
-            dict or None:
-            - If successful, it returns the subfolder.
-            - If the parent folder is not found, it returns None.
-        """
-        parent_folder = FolderFinder.find_folder_by_id(folders, folder_id)
-        if parent_folder:
-            parent_folder['subfolders'].append(subfolder.__dict__)
-            return subfolder
-        return None
-
-
-    def update_subfolder(self, folders, subfolder_id: str, subfolder_name: str, subfolder_color: str):
+    def update(self, folders, folder_id: str, folder_name: str, folder_color: str):
         """
         Update the name of a subfolder in the notes structure.
 
@@ -60,15 +65,15 @@ class SubfolderManager:
             - If successful, it returns this object {'name': 'some_name'} .
             - If the subfolder is not found, it returns None.
         """
-        subfolder = FolderFinder.find_folder_by_id(folders, subfolder_id)
+        subfolder = FolderFinder.find_folder_by_id(folders, folder_id)
         if subfolder:
-            subfolder['name'] = subfolder_name
-            subfolder['color'] = subfolder_color
-            return {'name': subfolder_name, 'id': subfolder_id, 'color': subfolder_color}
-        return None
+            subfolder['name'] = folder_name
+            subfolder['color'] = folder_color
+            return {'name': folder_name, 'id': folder_id, 'color': folder_color}
+        raise NotFoundException(f'Subfolder with id: {folder_id}, could not be found')
 
 
-    def delete_subfolder(self, folders, parent_id: str, folder_id: str):
+    def delete(self, folders, parent_id: str, folder_id: str):
         """
         Delete a folder from the notes structure.
 
@@ -88,5 +93,5 @@ class SubfolderManager:
                 if subfolder.get('id') == folder_id:
                     parent_folder['subfolders'].remove(subfolder)
                     return subfolder
-            return None
-        return None 
+            return NotFoundException(f'Subfolder with id: {folder_id}, could not be found')
+        raise NotFoundException(f'Parent folder with id: {parent_id}, could not be found') 

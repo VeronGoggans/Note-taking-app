@@ -5,46 +5,49 @@ from src.backend.presentation.request_bodies.subfolder.post_subfolder_request im
 from src.backend.presentation.request_bodies.subfolder.put_subfolder_request import PutSubfolderRequest
 from src.backend.presentation.request_bodies.subfolder.del_subfolder_request import DeleteSubfolderRequest
 from src.backend.presentation.http_status import HttpStatus
+from src.backend.data.exceptions.exceptions import AdditionException, NotFoundException
 
 
 class SubfolderRouter:
     def __init__(self, json_manager):
         self.route = APIRouter()
-        self.subfolder_service = SubfolderService(SubfolderManager(), json_manager)
+        self.service = SubfolderService(SubfolderManager(), json_manager)
 
         self.route.add_api_route('/subfolders/{folder_id}', self.subfolders, methods=['GET'])
-        self.route.add_api_route('/subfolder', self.create_subfolder, methods=['POST'])
+        self.route.add_api_route('/subfolder', self.add_subfolder, methods=['POST'])
         self.route.add_api_route('/subfolder', self.update_subfolder, methods=['PUT'])
         self.route.add_api_route('/subfolder', self.delete_subfolder, methods=['DELETE'])
 
 
     def subfolders(self, folder_id: str):
-        response = self.subfolder_service.get_subfolders(folder_id)
+        try:
+            subfolder = self.service.get_subfolders(folder_id)
+            return {'status': 'succes', 'Folder': subfolder}, HttpStatus.OK
+        except NotFoundException as e:
+            return {'status': 'not_found', "message": str(e)}, HttpStatus.NOT_FOUND
+    
 
-        if response != HttpStatus.NOT_FOUND:
-            return {'HttpStatus_code': HttpStatus.OK, "Folders": response}
-        return {'HttpStatus_code': HttpStatus.NOT_FOUND, "Folders": []}
-
-
-    def create_subfolder(self, subfolder: PostSubfolderRequest):
-        response = self.subfolder_service.add_subfolder(subfolder)
-
-        if response != HttpStatus.NOT_FOUND:
-            return {'HttpStatus_code': HttpStatus.OK, "Folder": response}
-        return {'HttpStatus_code': HttpStatus.NOT_FOUND}
-
+    def add_subfolder(self, subfolder: PostSubfolderRequest):
+        try:
+            subfolder = self.service.add_subfolder(subfolder)
+            return {'status': HttpStatus.OK, "folder": subfolder}, HttpStatus.OK
+        except AdditionException as e:
+            return {'status': 'error', 'message': str(e)}, HttpStatus.INTERAL_SERVER_ERROR
+        except NotFoundException as e:
+            return {'status': 'not_found', "message": str(e)}, HttpStatus.NOT_FOUND
+    
 
     def update_subfolder(self, update_request: PutSubfolderRequest):
-        response = self.subfolder_service.update_subfolder(update_request)
+        try:
+            subfolder = self.service.update_subfolder(update_request)
+            return {'status': 'succes', 'Folder': subfolder}, HttpStatus.OK
+        except NotFoundException as e:
+            return {'status': 'not_found', "message": str(e)}, HttpStatus.NOT_FOUND
+    
 
-        if response != HttpStatus.NOT_FOUND:
-            return {'HttpStatus_code': HttpStatus.OK, "Folder": response}
-        return {'HttpStatus_code': HttpStatus.NOT_FOUND}
-    
-    
     def delete_subfolder(self, delete_request: DeleteSubfolderRequest):
-        response = self.subfolder_service.delete_subfolder(delete_request)
-
-        if response != HttpStatus.NOT_FOUND:
-            return {'HttpStatus_code': HttpStatus.OK, 'Folder': response}
-        return {'HttpStatus_code': HttpStatus.NOT_FOUND}
+        try:
+            subfolder = self.service.delete_subfolder(delete_request)
+            return {'status': 'succes', 'Folder': subfolder}, HttpStatus.OK
+        except NotFoundException as e:
+            return {'status': 'not_found', "message": str(e)}, HttpStatus.NOT_FOUND

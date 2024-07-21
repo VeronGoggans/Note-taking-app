@@ -93,6 +93,3 @@ class TextManager:
             remove(file_path)
         except OSError as e:
             return str(e)
-        
-
-    
