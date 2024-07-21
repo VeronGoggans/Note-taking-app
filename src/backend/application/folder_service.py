@@ -1,7 +1,7 @@
 from src.backend.data.folder.folder_manager import FolderManager
 from src.backend.presentation.request_bodies.folder.post_folder_request import PostFolderRequest
 from src.backend.presentation.request_bodies.folder.put_folder_request import PutFolderRequest
-from src.backend.data.exceptions.exceptions import FolderNotFoundException, FolderAdditionException
+from src.backend.data.exceptions.exceptions import NotFoundException, AdditionException
 from src.backend.domain.folder import Folder
 from src.backend.data.file.json_manager import JsonManager
 from os import getcwd
@@ -38,7 +38,7 @@ class FolderService:
             new_folder = self.folder_manager.add_folder(json_folders, folder)
             self.json_manager.update(self.folders_path, folder_structure)
             return new_folder
-        except FolderAdditionException as e:
+        except AdditionException as e:
             raise e
 
     def get_folders(self):
@@ -76,7 +76,7 @@ class FolderService:
             folder = self.folder_manager.update_folder(json_folders, put_request.folder_id, put_request.name, put_request.color)
             self.json_manager.update(self.folders_path, folder_structure)
             return folder
-        except FolderNotFoundException as e:
+        except NotFoundException as e:
             raise e
     
     
@@ -98,5 +98,5 @@ class FolderService:
             folder = self.folder_manager.delete_folder(json_folders, folder_id)
             self.json_manager.update(self.folders_path, folder_structure)
             return folder
-        except FolderNotFoundException as e:
+        except NotFoundException as e:
             raise e

@@ -3,7 +3,7 @@ from src.backend.presentation.http_status import HttpStatus
 from src.backend.application.flashcard_service import FlashcardService
 from src.backend.data.flashcard.flashcard_deck_manager import FlashcardDeckManager
 from src.backend.presentation.request_bodies.flashcard.post_deck_request import PostDeckRequest
-from src.backend.data.exceptions.exceptions import DeckSerializationException, DeckNotFoundException, DeckDeserializationException
+from src.backend.data.exceptions.exceptions import DeckSerializationException, NotFoundException, DeckDeserializationException
 
 
 class FlashcardRouter:
@@ -20,7 +20,7 @@ class FlashcardRouter:
         try:
             deck = self.service.get_flashcard_by_id(id)
             return {'status': 'succes', "Deck": deck}, HttpStatus.OK
-        except DeckNotFoundException as e:
+        except NotFoundException as e:
             return {'status': 'not_found', "message": str(e)}, HttpStatus.NOT_FOUND
         except DeckDeserializationException as e:
             return {'status': 'error', 'message': str(e)}, HttpStatus.INTERAL_SERVER_ERROR

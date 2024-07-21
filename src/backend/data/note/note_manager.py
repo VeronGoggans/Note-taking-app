@@ -3,6 +3,7 @@ from src.backend.presentation.request_bodies.note.put_note_request import PutNot
 from src.backend.util.calendar import Calendar
 from src.backend.domain.factory import Factory
 from src.backend.util.folder_finder import FolderFinder
+from src.backend.data.exceptions.exceptions import AdditionException, NotFoundException
 
 class NoteManager:
     def __init__(self):
@@ -26,9 +27,12 @@ class NoteManager:
         """
         parent_folder = FolderFinder.find_folder_by_id(folders, folder_id)
         if parent_folder:
-            parent_folder['notes'].append(note.__dict__)
-            return note
-        return None
+            try:
+                parent_folder['notes'].append(note.__dict__)
+                return note
+            except Exception as e:
+                raise AdditionException('An error occurred while adding the note', errors={'exception': str(e)})
+        raise NotFoundException(f'Folder with id: {folder_id}, could not be found.')
 
     
     def get_notes(self, folders, folder_id: str):
@@ -48,7 +52,7 @@ class NoteManager:
         if parent_folder:
             notes_list = Factory.create_note_list(parent_folder['notes'])
             return notes_list
-        return None
+        raise NotFoundException(f'Folder with id: {folder_id}, could not be found.')
 
 
     def get_note_by_id(self, folders, note_id: str):
@@ -64,24 +68,15 @@ class NoteManager:
             - If successful, it returns the specific Note object.
             - If the note is not found, it returns None.
         """
-        for folder in folders:
-            for note in folder["notes"]:
-                if note.get("id") == note_id:
-                    note_object = Note.from_json(note)
-                    note_object.set_content_text()
-                    return note_object, folder['id'], folder['name']
-            
-            # If note is not found in current folder, search in subfolders recursively
-            note_object = self.get_note_by_id(folder["subfolders"], note_id)
-            if note_object:
-                return note_object
-
-        # Note not found in any folder or subfolder
-        return None
+        note, folder = self.__find_note(folders, note_id)
+        if note:
+            note_object = Note.from_json(note)
+            note_object.set_content_text()
+            return note_object, folder['id'], folder['name']
+        raise NotFoundException(f'Note with id: {note_id}, could not be found.')
     
 
     def get_note_name_id(self, folders):
-        
         for folder in folders:
             for note in folder['notes']:
                 self.search_bar_note_objects.append(
@@ -119,11 +114,11 @@ class NoteManager:
             - If the note with the specified ID is not found, it returns None.
         """
         note_id = put_request.note_id
-        current_note = self.__find_note(folders, note_id)
+        current_note = self.__find_note(folders, note_id)[0]
         if current_note:
             updated_note = self.__update_entity(current_note, put_request)
             return updated_note
-        return None
+        raise NotFoundException(f'Note with id: {note_id}, could not be found.')
     
 
     def delete_note(self, folders, note_id: str, delete_txt_file = True):
@@ -140,27 +135,24 @@ class NoteManager:
             - If successful, it returns the deleted note.
             - If the note is not found, it returns None.
         """
-        for folder in folders:
-            for note in folder['notes']:
-                if note.get('id') == note_id:
-                    folder['notes'].remove(note)
-                    if delete_txt_file:
-                        self.__delete_note_txt_file(note)
-                    return note
-        
-            note_in_subfolder = self.delete_note(folder['subfolders'], note_id)
-            if note_in_subfolder:
-                return note_in_subfolder
-        return None   
+        note, folder = self.__find_note(folders, note_id)
+        if note:
+            folder['notes'].remove(note)
+            if delete_txt_file:
+                self.__delete_note_txt_file(note)
+            return note    
+        raise NotFoundException(f'Note with id: {note_id}, could not be found.')  
+
 
     def clear_search_options_list(self):
         self.search_bar_note_objects = []    
+
 
     def clear_favorites_list(self):
         self.favorites = []
     
 
-    def __find_note(self, folders, note_id: str):
+    def __find_note(self, folders, note_id: str) -> list:
         """
         Recursively search for a note with the specified ID within the folder structure.
 
@@ -176,12 +168,12 @@ class NoteManager:
         for folder in folders:
             for note in folder["notes"]:
                 if note.get("id") == note_id:
-                    return note
+                    return note, folder
         
-            note_in_subfolder = self.__find_note(folder["subfolders"], note_id)
-            if note_in_subfolder:
-                return note_in_subfolder
-        return None
+            note, folder = self.__find_note(folder["subfolders"], note_id)
+            if note:
+                return note, folder
+        return None, None
     
 
     def __delete_note_txt_file(self, note_data: Note):
@@ -200,7 +192,6 @@ class NoteManager:
         note.favorite = updated_note.favorite
         note.name = updated_note.name
         note.last_edit = current_time
-        print(note.content)
 
         current_note['name'] = updated_note.name
         current_note['bookmark'] = updated_note.bookmark

@@ -2,7 +2,7 @@ from fastapi import APIRouter
 from src.backend.data.folder.folder_manager import FolderManager
 from src.backend.presentation.request_bodies.folder.post_folder_request import PostFolderRequest
 from src.backend.presentation.request_bodies.folder.put_folder_request import PutFolderRequest
-from src.backend.data.exceptions.exceptions import FolderNotFoundException, FolderAdditionException
+from src.backend.data.exceptions.exceptions import NotFoundException, AdditionException
 from src.backend.presentation.http_status import HttpStatus
 from src.backend.application.folder_service import FolderService
 
@@ -21,7 +21,7 @@ class FolderRouter:
         try:
             folder = self.folder_service.add_folder(request)
             return {'status': 'succes', "folder": folder}, HttpStatus.OK
-        except FolderAdditionException as e:
+        except AdditionException as e:
             return {'status': 'error', 'message': str(e)}, HttpStatus.INTERAL_SERVER_ERROR
         
 
@@ -34,7 +34,7 @@ class FolderRouter:
         try:
             folder = self.folder_service.update_folder(request)
             return {'status': 'succes', "folder": folder}, HttpStatus.OK
-        except FolderNotFoundException as e:
+        except NotFoundException as e:
             return {'status': 'not_found', 'message': str(e)}, HttpStatus.NOT_FOUND
     
 
@@ -42,5 +42,5 @@ class FolderRouter:
         try:
             folder = self.folder_service.delete_folder(folder_id)
             return {'status': 'succes', "folder": folder}, HttpStatus.OK
-        except FolderNotFoundException as e:
+        except NotFoundException as e:
             return {'status': 'not_found', 'message': str(e)}, HttpStatus.NOT_FOUND

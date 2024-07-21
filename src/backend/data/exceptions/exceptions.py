@@ -14,16 +14,8 @@ class DeckSerializationException(BaseException):
 class DeckDeserializationException(BaseException):
     pass
 
-class DeckAdditionException(BaseException):
+class NotFoundException(BaseException):
     pass
 
-class DeckNotFoundException(BaseException):
-    pass
-
-
-# _______________________ folder exceptions _______________________ #
-class FolderNotFoundException(BaseException):
-    pass
-
-class FolderAdditionException(BaseException):
+class AdditionException(BaseException):
     pass

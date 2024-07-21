@@ -5,7 +5,7 @@ from src.backend.presentation.request_bodies.flashcard.post_deck_request import 
 from src.backend.presentation.request_bodies.flashcard.post_flashcard_request import PostFlashcardRequest
 from src.backend.presentation.dtos.flashcard.flashcard_dto import FlashcardDTO
 from src.backend.domain.flashcard_deck import FlashcardDeck
-from src.backend.data.exceptions.exceptions import DeckSerializationException, DeckAdditionException, DeckNotFoundException, DeckDeserializationException
+from src.backend.data.exceptions.exceptions import DeckSerializationException, AdditionException, NotFoundException, DeckDeserializationException
 from os import getcwd
 
 
@@ -22,7 +22,7 @@ class FlashcardService:
         json_decks = self.json_manager.load(self.flashcards_path)
         try:
             return self.manager.get_by_id(json_decks, id)
-        except (DeckNotFoundException, DeckDeserializationException) as e:
+        except (NotFoundException, DeckDeserializationException) as e:
             raise e
     
 
@@ -30,7 +30,7 @@ class FlashcardService:
         json_decks = self.json_manager.load(self.flashcards_path)
         try:
             return self.manager.get_all(json_decks)
-        except DeckAdditionException as e:
+        except AdditionException as e:
             raise e
     
     
@@ -47,7 +47,7 @@ class FlashcardService:
 
             self.json_manager.update(self.flashcards_path, json_decks)
             return new_deck
-        except (DeckSerializationException, DeckAdditionException) as e:
+        except (DeckSerializationException, AdditionException) as e:
             raise e
         except Exception as e:
             raise e

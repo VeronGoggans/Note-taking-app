@@ -3,7 +3,7 @@ from src.backend.domain.flashcard_deck import FlashcardDeck
 from src.backend.data.file.flashcard_serializer import FlashcardSerializer
 from src.backend.data.file.text_manager import TextManager
 from src.backend.presentation.dtos.flashcard.flashcard_dto import FlashcardDTO
-from src.backend.data.exceptions.exceptions import DeckAdditionException, DeckNotFoundException, DeckDeserializationException
+from src.backend.data.exceptions.exceptions import AdditionException, NotFoundException, DeckDeserializationException
 
 
 class FlashcardDeckManager:
@@ -14,7 +14,7 @@ class FlashcardDeckManager:
             decks.append(deck.__dict__)
             return deck
         except Exception as e:
-            raise DeckAdditionException('An error occurred while adding the deck', errors={'exception': str(e)})
+            raise AdditionException('An error occurred while adding the deck', errors={'exception': str(e)})
 
 
     def get_by_id(self, decks: list, id: str):
@@ -24,7 +24,7 @@ class FlashcardDeckManager:
                     deck_object = FlashcardDeck.from_json(deck)
                     self.__fill_deck_with_cards(deck_object, deck['flashcards_path'])
                     return deck_object
-            raise DeckNotFoundException(f'Deck with id: {id}, could not be found.')
+            raise NotFoundException(f'Deck with id: {id}, could not be found.')
         except DeckDeserializationException as e:
             raise e 
     

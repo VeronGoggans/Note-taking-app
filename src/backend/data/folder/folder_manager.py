@@ -1,5 +1,5 @@
 from src.backend.domain.folder import Folder
-from src.backend.data.exceptions.exceptions import FolderNotFoundException, FolderAdditionException
+from src.backend.data.exceptions.exceptions import NotFoundException, AdditionException
 
 class FolderManager:
 
@@ -20,7 +20,7 @@ class FolderManager:
             folders.append(folder.__dict__)
             return folder
         except Exception as e: 
-            raise FolderAdditionException('An error occurred while adding the folder', errors={'exception': str(e)})
+            raise AdditionException('An error occurred while adding the folder', errors={'exception': str(e)})
 
 
     def get_folders(self, folders) -> list:
@@ -65,7 +65,7 @@ class FolderManager:
                 folder['name'] = folder_name
                 folder['color'] = folder_color
                 return {'name': folder_name, 'id': folder_id, 'color': folder_color}
-        raise FolderNotFoundException(f'Folder with id: {folder_id}, could not be found.')
+        raise NotFoundException(f'Folder with id: {folder_id}, could not be found.')
         
     
     def delete_folder(self, folders, folder_id: str):
@@ -85,4 +85,4 @@ class FolderManager:
             if folder.get('id') == folder_id:
                 folders.remove(folder)
                 return folder 
-        raise FolderNotFoundException(f'Folder with id: {folder_id}, could not be found.')
+        raise NotFoundException(f'Folder with id: {folder_id}, could not be found.')
