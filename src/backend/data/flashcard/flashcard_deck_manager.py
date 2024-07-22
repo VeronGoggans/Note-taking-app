@@ -1,16 +1,18 @@
-from src.backend.domain.flashcard import Flashcard
 from src.backend.domain.flashcard_deck import FlashcardDeck
+from src.backend.presentation.dtos.flashcard.flashcard_dto import FlashcardDTO
 from src.backend.data.file.flashcard_serializer import FlashcardSerializer
 from src.backend.data.file.text_manager import TextManager
-from src.backend.presentation.dtos.flashcard.flashcard_dto import FlashcardDTO
-from src.backend.data.exceptions.exceptions import AdditionException, NotFoundException, DeckDeserializationException
+from src.backend.data.exceptions.exceptions import AdditionException, NotFoundException, DeserializationException
 
 
 class FlashcardDeckManager:
+    def __init__(self) -> None:
+        self.serializer = FlashcardSerializer()
 
 
-    def add(self, decks: list, deck: FlashcardDeck):
+    def add(self, decks: list, deck: FlashcardDeck, flashcards: list[FlashcardDTO]):
         try:
+            self.serializer.serialize(deck.flashcards_path, flashcards)
             decks.append(deck.__dict__)
             return deck
         except Exception as e:
@@ -25,7 +27,7 @@ class FlashcardDeckManager:
                     self.__fill_deck_with_cards(deck_object, deck['flashcards_path'])
                     return deck_object
             raise NotFoundException(f'Deck with id: {id}, could not be found.')
-        except DeckDeserializationException as e:
+        except DeserializationException as e:
             raise e 
     
     
@@ -39,7 +41,7 @@ class FlashcardDeckManager:
                 decks_list.append(deck_object)
 
             return decks_list
-        except DeckDeserializationException as e:
+        except DeserializationException as e:
             raise e
 
 
@@ -62,10 +64,9 @@ class FlashcardDeckManager:
 
     def __fill_deck_with_cards(self, deck: FlashcardDeck, cards_path: str) -> FlashcardDeck:
         try:
-            plain_text_cards = TextManager.get(cards_path)
-            flashcards = FlashcardSerializer.deserialize(plain_text_cards)
+            flashcards = self.serializer.deserialize(cards_path)
             deck.fill_set_with_cards(flashcards)
             deck.calculate_progress()
             return deck
-        except DeckDeserializationException as e:
+        except DeserializationException as e:
             raise e

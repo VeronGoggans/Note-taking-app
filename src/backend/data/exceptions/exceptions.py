@@ -8,10 +8,10 @@ class BaseException(Exception):
 
 
 # _______________________ deck exceptions _______________________ #
-class DeckSerializationException(BaseException):
+class SerializationException(BaseException):
     pass
 
-class DeckDeserializationException(BaseException):
+class DeserializationException(BaseException):
     pass
 
 class NotFoundException(BaseException):

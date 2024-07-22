@@ -93,3 +93,11 @@ class TextManager:
             remove(file_path)
         except OSError as e:
             return str(e)
+        
+        
+    @staticmethod 
+    def create_file(deck_id: str) -> str:
+        path = f'storage/flashcards/flashcard-deck-{deck_id}.txt'
+        with open(path, 'w') as file:
+            file.write('')
+            return path
