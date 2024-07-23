@@ -1,5 +1,5 @@
 from src.backend.domain.flashcard_deck import FlashcardDeck
-from src.backend.presentation.dtos.flashcard.flashcard_dto import FlashcardDTO
+from src.backend.presentation.dtos.flashcard.flashcard_dto import PostFlashcardDTO
 from src.backend.data.file.flashcard_serializer import FlashcardSerializer
 from src.backend.data.file.text_manager import TextManager
 from src.backend.data.exceptions.exceptions import AdditionException, NotFoundException, DeserializationException
@@ -10,7 +10,7 @@ class FlashcardDeckManager:
         self.serializer = FlashcardSerializer()
 
 
-    def add(self, decks: list, deck: FlashcardDeck, flashcards: list[FlashcardDTO]):
+    def add(self, decks: list, deck: FlashcardDeck, flashcards: list[PostFlashcardDTO]):
         try:
             self.serializer.serialize(deck.flashcards_path, flashcards)
             decks.append(deck.__dict__)

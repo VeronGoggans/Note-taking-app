@@ -12,6 +12,17 @@ class PostFlashcardsRequest(BaseModel):
 
 
 class PutFlashcardRequest(BaseModel):
+    id: str
     term: str
     description: str
     performance: str
+
+
+class PutFlashcardsRequest(BaseModel):
+    deck_id: str
+    flashcards: list[PutFlashcardRequest]
+
+
+class DeleteFlashcardsRequest(BaseModel):
+    deck_id: str
+    flashcard_ids: list[int]

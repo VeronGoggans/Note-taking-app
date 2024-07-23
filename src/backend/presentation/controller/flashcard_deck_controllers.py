@@ -4,7 +4,7 @@ from src.backend.application.flashcard_deck_service import FlashcardDeckService
 from src.backend.data.flashcard.flashcard_deck_manager import FlashcardDeckManager
 from src.backend.presentation.request_bodies.flashcard.deck_request import PostDeckRequest, PutDeckRequest
 from src.backend.presentation.request_bodies.flashcard.flashcard_request import PostFlashcardRequest
-from src.backend.presentation.dtos.flashcard.flashcard_dto import FlashcardDTO
+from src.backend.presentation.dtos.flashcard.flashcard_dto import PostFlashcardDTO
 from src.backend.data.exceptions.exceptions import SerializationException, NotFoundException, DeserializationException
 
 
@@ -66,4 +66,4 @@ class FlashcardDeckRouter:
         
 
     def __request_to_dto(self, flashcards: list[PostFlashcardRequest]):
-        return [FlashcardDTO(card.term, card.description) for card in flashcards]
+        return [PostFlashcardDTO(card.term, card.description) for card in flashcards]

@@ -1,7 +1,7 @@
 from src.backend.data.file.json_manager import JsonManager
 from src.backend.data.flashcard.flashcard_deck_manager import FlashcardDeckManager
 from src.backend.presentation.request_bodies.flashcard.deck_request import PutDeckRequest
-from src.backend.presentation.dtos.flashcard.flashcard_dto import FlashcardDTO
+from src.backend.presentation.dtos.flashcard.flashcard_dto import PostFlashcardDTO
 from src.backend.domain.flashcard_deck import FlashcardDeck
 from src.backend.data.file.text_manager import TextManager
 from src.backend.data.exceptions.exceptions import SerializationException, AdditionException, NotFoundException, DeserializationException
@@ -17,7 +17,7 @@ class FlashcardDeckService:
         self.id_path = f'{self.BASE_URL}/storage/json/id.json'
 
 
-    def add_deck(self, name: str, flashcards: list[FlashcardDTO]):
+    def add_deck(self, name: str, flashcards: list[PostFlashcardDTO]):
         try:
             json_decks = self.json_manager.load(self.deck_path)
             deck_id = self.json_manager.generate_id(self.id_path, 'flashcard-deck')
