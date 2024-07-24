@@ -1,3 +1,6 @@
+import { RequestOptionsBuilder } from "../util/builders/requestOptionsBuilder.js";
+import { fetchData } from "../util/request/request.js";
+
 export class ApplicationModel {
     constructor() {
         this.folderObjects = [];
@@ -60,16 +63,9 @@ export class ApplicationModel {
         return lastFolder ? lastFolder: 'f-1';
     }
     
-
-
+    
     async getSearchOptions(endpoint) {
-        try {
-            const RESPONSE = await fetch(`${endpoint}`);
-            if (!RESPONSE.ok) throw new Error(`HTTP error status: ${RESPONSE.status}`);
-            return await RESPONSE.json();
-        } catch(error) {
-            console.error('Error fetching data: ', error.message);
-            throw error;
-        }
+        const options = RequestOptionsBuilder.buildGetOptions();
+        return fetchData(`${endpoint}`, options);
     }
 }

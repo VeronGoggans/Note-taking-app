@@ -45,7 +45,7 @@ class NoteRouter:
     def get_notes(self, folder_id: str):
         try:
             notes = self.service.get_notes(folder_id)
-            return {'status': 'succes', 'note': notes}, HttpStatus.OK
+            return {'status': 'succes', 'notes': notes}, HttpStatus.OK
         except NotFoundException as e:
             return {'status': 'not_found', 'message': str(e)}, HttpStatus.NOT_FOUND
        
@@ -59,11 +59,11 @@ class NoteRouter:
 
 
     def get_note_name_id(self):
-        response = self.note_service.get_search_options()
-
-        if response != HttpStatus.INTERAL_SERVER_ERROR:
-            return {'HttpStatus_code': HttpStatus.OK, 'Notes': response}
-        return {'HttpStatus_code': HttpStatus.INTERAL_SERVER_ERROR}
+        try:
+            notes = self.service.get_search_options()
+            return {'status': 'succes', 'notes': notes}, HttpStatus.OK
+        except NotFoundException as e:
+            return {'status': 'not_found', 'message': str(e)}, HttpStatus.NO_CONTENT
     
 
     def update_note(self, put_request: PutNoteRequest):

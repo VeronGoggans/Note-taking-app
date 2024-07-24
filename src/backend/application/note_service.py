@@ -173,4 +173,4 @@ class NoteService:
         if len(notes) > 0:
             self.note_manager.clear_search_options_list()
             return notes
-        return None 
+        raise NotFoundException('There are no notes to be retrieved.') 

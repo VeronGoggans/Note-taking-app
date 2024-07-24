@@ -22,7 +22,7 @@ class SubfolderRouter:
     def subfolders(self, folder_id: str):
         try:
             subfolder = self.service.get_subfolders(folder_id)
-            return {'status': 'succes', 'Folder': subfolder}, HttpStatus.OK
+            return {'status': 'succes', 'folders': subfolder}, HttpStatus.OK
         except NotFoundException as e:
             return {'status': 'not_found', "message": str(e)}, HttpStatus.NOT_FOUND
     
@@ -40,7 +40,7 @@ class SubfolderRouter:
     def update_subfolder(self, update_request: PutSubfolderRequest):
         try:
             subfolder = self.service.update_subfolder(update_request)
-            return {'status': 'succes', 'Folder': subfolder}, HttpStatus.OK
+            return {'status': 'succes', 'folder': subfolder}, HttpStatus.OK
         except NotFoundException as e:
             return {'status': 'not_found', "message": str(e)}, HttpStatus.NOT_FOUND
     
@@ -48,6 +48,6 @@ class SubfolderRouter:
     def delete_subfolder(self, delete_request: DeleteSubfolderRequest):
         try:
             subfolder = self.service.delete_subfolder(delete_request)
-            return {'status': 'succes', 'Folder': subfolder}, HttpStatus.OK
+            return {'status': 'succes', 'folder': subfolder}, HttpStatus.OK
         except NotFoundException as e:
             return {'status': 'not_found', "message": str(e)}, HttpStatus.NOT_FOUND

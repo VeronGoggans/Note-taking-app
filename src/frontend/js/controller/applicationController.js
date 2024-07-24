@@ -36,9 +36,9 @@ export class ApplicationController {
         await this.setTheme(true);
         await this.folderController.getFolders();
         await this.noteController.getNotes(this.homeFolderId);
-        const response = await this.getSearchObjects();
-        this.applicationView.giveSearchOptions(response.Notes);
-        this.applicationView.renderSearchOptions(response.Notes);
+        const notes = await this.getSearchObjects();
+        this.applicationView.giveSearchOptions(notes);
+        this.applicationView.renderSearchOptions(notes);
     }
 
 
@@ -125,7 +125,9 @@ export class ApplicationController {
     }
 
     async getSearchObjects() {
-        return await this.applicationModel.getSearchOptions('/noteSearchObjects');
+        const response = await this.applicationModel.getSearchOptions('/noteSearchObjects');
+        const notes = response[0].notes;
+        return notes
     }
     
     /**
