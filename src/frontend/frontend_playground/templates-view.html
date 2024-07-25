@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/views/home.css">
+    <link rel="stylesheet" href="../css/general/sidebar.css">
+    <link rel="stylesheet" href="../css/general/dialog.css">
+    <link rel="stylesheet" href="../css/general/themes.css">
+    <link rel="stylesheet" href="../css/general/animation.css">
+    <link rel="stylesheet" href="../css/notification/notification.css">
+    <link rel="stylesheet" href="../css/textEditor/textEditor.css">
+    <link rel="stylesheet" href="../css/textEditor/toolbarBottom.css">
+    <link rel="stylesheet" href="../css/textEditor/toolbarTop.css">
+    <link rel="stylesheet" href="../css/textEditor/colorPalletes.css">
+    <link rel="stylesheet" href="../css/textEditor/editorSpawnables.css">
+    <link rel="stylesheet" href="../css/modals/newFolderContainer.css">
+    <link rel="stylesheet" href="../css/modals/saveContainer.css">
+    <link rel="stylesheet" href="../css/modals/deleteContainer.css">
+    <link rel="stylesheet" href="../css/modals/noteDetailsModal.css">
+    <link rel="stylesheet" href="../css/modals/noteBackgroundModal.css">
+    <link rel="stylesheet" href="../css/modals/linkNoteModal.css">
+    <link rel="stylesheet" href="../css/general/scrollbar.css">
+    <link rel="stylesheet" href="../css/modals/searchModal.css">
+    <link rel="stylesheet" href="../css/modals/editFolderModal.css">
+    <link rel="stylesheet" href="../css/textEditor/textBlocks.css">
+    <link rel="stylesheet" href="../css/views/flashcards.css">
+    <link rel="stylesheet" href="../css/views/templates.css">
+    <link rel="stylesheet" href="../css/components/note.css">
+    <!-- CDN for the icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Neutron</title>
+</head>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+  </style>
+<body class="">
+    <div class="wrapper">
+        <div class="sidebar">
+            <div class="sidebar-logo">
+                <div class="logo-container">
+                    <div class="logo">
+                        <span>N</span>
+                    </div>
+                    <div class="logo-text">eutron</div>
+                </div>
+            </div>
+            <div class="navigation">
+              <div class="sidebar-content-upper">
+                <button class="home-screen-btn" data-link="home"><i class="fa-solid fa-house"></i><span>Home</span></button>
+                <button class="documents-btn" data-link="documents"><i class="fa-solid fa-file"></i><span>Notes</span></button>
+                <button class="flash-cards-btn" data-link="flashcards"><i class="fa-solid fa-circle-check"></i><span>Flashcards</span></button>
+                <button class="templates-btn" data-link="templates"><i class="fa-solid fa-layer-group"></i><span>Templates</span></button>
+              </div>
+              <div class="sidebar-content-lower">
+                <button class="settings-btn"><i id="current-theme-icon" class="fa-regular fa-sun"></i><span class="current-theme-text">Settings</span></button>
+              </div>
+            </div>
+        </div>
+
+        <main class="content">
+            <div class="templates">
+                <div class="top">
+                    <div class="top-left">
+                        <h1 class="templates-title">Templates</h1>
+                        <button class="add-template-btn"><i class="fa-solid fa-plus"></i> Add template</button>
+                    </div>
+                    <div class="top-right">
+                        <p>Time saved: <span>0</span>h <span>0</span>m</p>
+                        <p>Uses: <span>0</span></p>
+                    </div>
+                </div>
+                <div class="bottom">
+                    <p class="block-title">Recent templates</p>
+                    <div class="recent-templates"></div>
+                    <p class="block-title">Other templates</p>
+                    <div class="other-templates"></div>
+                </div>
+            </div>
+        </main>
+        
+    </div>    
+</body>
+</html>

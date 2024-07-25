@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/views/home.css">
     <link rel="stylesheet" href="../css/general/sidebar.css">
-    <link rel="stylesheet" href="../css/components/note.css">
-    <link rel="stylesheet" href="../css/components/folder.css">
     <link rel="stylesheet" href="../css/general/dialog.css">
     <link rel="stylesheet" href="../css/general/themes.css">
     <link rel="stylesheet" href="../css/general/animation.css">
@@ -26,6 +24,7 @@
     <link rel="stylesheet" href="../css/modals/searchModal.css">
     <link rel="stylesheet" href="../css/modals/editFolderModal.css">
     <link rel="stylesheet" href="../css/textEditor/textBlocks.css">
+    <link rel="stylesheet" href="../css/views/flashcards.css">
     <!-- CDN for the icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Neutron</title>
@@ -52,58 +51,27 @@
                 <button class="templates-btn" data-link="templates"><i class="fa-solid fa-layer-group"></i><span>Templates</span></button>
               </div>
               <div class="sidebar-content-lower">
-                <button class="settings-btn"><i id="current-theme-icon" class="fa-regular fa-sun"></i><span class="current-theme-text">Light</span></button>
+                <button class="settings-btn"><i id="current-theme-icon" class="fa-regular fa-sun"></i><span class="current-theme-text">Settings</span></button>
               </div>
             </div>
         </div>
 
         <main class="content">
             <div class="home">
-                <div class="center">
-                    <div class="welcome-container">
-                        <h1>Good evening, <span>Veron</span></h1>
-                    </div>
-                    <div class="flashcards-container">
-                    <h3>Flashcards</h3>
-                    <p>Jump back in to learning these topics</p>
-                    <div class="flashcards">
-                        <div class="flashcard">
-                            <span class="flashcard-name">OWASP top 10</span>
-                            <span class="rating"><span class="good">8</span> - <span class="wrong">2</span></span>
-                        </div>
-                        <div class="flashcard">
-                            <span class="flashcard-name"> Big O notation</span>
-                            <span class="rating">NA</span>
-                        </div>
-                        <div class="flashcard">
-                            <span class="flashcard-name">Agile</span>
-                        </div>
-                    </div>
-                    </div>
-                    <div class="recently-container">
-                        <h3>Notes</h3>
-                        <p>Your recently viewed notes</p>
-                        <div class="documents">
-                            <div class="document">
-                                <span class="document-name">Compliant checking</span>
-                                <span class="time">Just now</span>
-                              </div>
-                            <div class="document">
-                                <span class="document-name">Compliant engineering</span>
-                                <span class="time">5 hours ago</span>
-                            </div>
-                            <div class="document">
-                                <span class="document-name">Operations</span>
-                                <span class="time">19 hours ago</span>
-                            </div>
-                            <div class="document">
-                              <span class="document-name">Operations</span>
-                              <span class="time">2 days ago</span>
-                          </div>
-                        </div>
-                    </div>
+              <div class="top">
+                <div class="searchbar-home">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                  <input type="text" placeholder="Search..." spellcheck="false">
                 </div>
-                
+              </div>
+              <div class="middle">
+                <p class="block-title">Recent folders</p>
+                <div class="folders"></div>
+                <p class="block-title">Recently viewed notes</p>
+                <div class="notes"></div>
+                <p class="block-title">Jump back in</p>
+                <div class="flashcard-decks"></div>
+              </div>
             </div>
         </main>
         
