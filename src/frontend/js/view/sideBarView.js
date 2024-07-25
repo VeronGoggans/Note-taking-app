@@ -13,15 +13,11 @@ class SidebarView {
         this._templatesSpan = this._templatesButton.querySelector('span');
         this._templateIcon = this._templatesButton.querySelector('i');
 
-        this._favoritesButton = document.querySelector('.favorites-btn');
-        this._favoritesSpan = this._favoritesButton.querySelector('span');
-        this._favoritesIcon = this._favoritesButton.querySelector('i');
+        this._notesButton = document.querySelector('.notes-btn');
+        this._notesSpan = this._notesButton.querySelector('span');
+        this._notsIcon = this._notesButton.querySelector('i');
 
-        this._backButton = document.querySelector('.exit-folder-btn');
-        this._backSpan = this._backButton.querySelector('span');
-        this._backIcon = this._backButton.querySelector('i');
-
-        this._homeButton = document.querySelector('.home-screen-btn');
+        this._homeButton = document.querySelector('.home-btn');
         this._homeSpan = this._homeButton.querySelector('span');
         this._homeIcon = this._homeButton.querySelector('i');
 
@@ -29,15 +25,15 @@ class SidebarView {
         this._themeSpan = this._themeButton.querySelector('span');
         this._themeIcon = this._themeButton.querySelector('i');
 
-        this._flashCardButton = document.querySelector('.flash-cards-btn');
+        this._flashCardButton = document.querySelector('.flashcards-btn');
         this._flashCardSpan = this._flashCardButton.querySelector('span');
         this._flashCardIcon = this._flashCardButton.querySelector('i');
 
         this._collapsed = false;
         this._size = 'standard';
-        this._sidebarButtons = [this._homeButton, this._backButton,this._flashCardButton, this._templatesButton, this._favoritesButton, this._themeButton]
-        this._sidebarSpans = [this._homeSpan, this._backSpan,this._flashCardSpan, this._templatesSpan, this._favoritesSpan, this._themeSpan]
-        this._sidebarIcons = [this._homeIcon, this._backIcon,this._flashCardIcon, this._templateIcon, this._favoritesIcon, this._themeIcon]
+        this._sidebarButtons = [this._homeButton,this._flashCardButton, this._templatesButton, this._notesButton, this._themeButton]
+        this._sidebarSpans = [this._homeSpan,this._flashCardSpan, this._templatesSpan, this._notesSpan, this._themeSpan]
+        this._sidebarIcons = [this._homeIcon,this._flashCardIcon, this._templateIcon, this._notsIcon, this._themeIcon]
         
     }
 

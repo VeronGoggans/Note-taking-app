@@ -13,12 +13,15 @@ export class NoteView {
         this.applicationController = applicationController;
         this.notificationHandler = notificationHandler;
         this.dialog = dialog;
-        this.appDiv = document.querySelector('.')
-        this.html = notesTemplate;
+        
         this.noteObjects = new NoteObjectArray();
         this.dragAndDrop = new DragAndDrop(this);
 
         this.#initializeDomElements();
+    }
+
+    renderTemplate() {
+        return notesTemplate;
     }
 
     
@@ -124,6 +127,7 @@ export class NoteView {
     }
 
     #initializeDomElements() {
+        this.appDiv = document.querySelector('.content');
         this._content = document.querySelector('.content-view');
     }
 

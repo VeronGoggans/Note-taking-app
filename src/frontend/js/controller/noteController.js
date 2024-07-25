@@ -9,6 +9,10 @@ export class NoteController {
         this.objectNum = 0;
     }
 
+    init() {
+        return this.view.renderTemplate();
+    }
+
     async getNotes(folderId) {
         const response = await this.model.get('/notes', folderId);
         const notes = response[this.objectNum].notes;

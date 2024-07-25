@@ -212,10 +212,8 @@ export class ApplicationView {
 
         // <sidebar-content>
         this.createNoteButton = document.querySelector('.create-note-btn');
-        this.backButton = document.querySelector('.exit-folder-btn');
-        this.homeButton = document.querySelector('.home-screen-btn');
+        this.homeButton = document.querySelector('.home-btn');
         this.templatesButton = document.querySelector('.templates-btn');
-        this.favoritesButton = document.querySelector('.favorites-btn');
         this.settingsButton = document.querySelector('.settings-btn');
 
         // other
@@ -226,10 +224,8 @@ export class ApplicationView {
     }
     
     #attachEventListeners() {
-        this.backButton.addEventListener('click', () => {this.back()});
         this.homeButton.addEventListener('click', () => {this.home()});
         this.createNoteButton.addEventListener('click', () => {this.showTextEditor()});
-        this.favoritesButton.addEventListener('click', () => {this.favorites()});
         this.templatesButton.addEventListener('click', () => {this.templates()});
         this.createFolderButton.addEventListener('click', () => {this.dialog.renderNewFolderModal(this)});
         this.settingsButton.addEventListener('click', () => {this.updateTheme()});

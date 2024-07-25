@@ -24,7 +24,7 @@ button {
     background-color: var(--background);
 }
 
-.main {
+.content {
     font-family: Roboto;
     display: grid;
     grid-template-rows: 50px 1fr;
