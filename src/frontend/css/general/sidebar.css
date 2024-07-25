@@ -42,7 +42,8 @@
     padding: 10px;
 }
 
-.sidebar-content button {
+.sidebar-content a {
+    text-decoration: none;
     position: relative;
     border: none;
     display: flex;
@@ -59,16 +60,16 @@
     transition: .2s;
 }
 
-.sidebar-content button span {
+.sidebar-content a span {
     margin-left: 35px;
 }
 
-.sidebar-content button i {
+.sidebar-content a i {
     position: absolute;
     left: 10px;
 }
 
-.sidebar-content button:hover {
+.sidebar-content a:hover {
     background-color: var(--hover-sidebar);
     color: var(--sidebar-text-hover);
 }

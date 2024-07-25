@@ -4,6 +4,7 @@ import { NoteObjectArray } from "../util/array.js";
 import { formatName, filterNotePreview } from "../util/formatters.js";
 import { AnimationHandler } from "../handlers/animation/animationHandler.js";
 import { DragAndDrop } from "../handlers/drag&drop/dragAndDropHandler.js";
+import { notesTemplate } from "../constants/templates.js";
 
 
 export class NoteView {
@@ -12,6 +13,8 @@ export class NoteView {
         this.applicationController = applicationController;
         this.notificationHandler = notificationHandler;
         this.dialog = dialog;
+        this.appDiv = document.querySelector('.')
+        this.html = notesTemplate;
         this.noteObjects = new NoteObjectArray();
         this.dragAndDrop = new DragAndDrop(this);
 
