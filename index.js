@@ -2,3 +2,5 @@ import { ApplicationController } from '/src/frontend/js/controller/applicationCo
 
 const App = new ApplicationController();
 App.start();
+
+
