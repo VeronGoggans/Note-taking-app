@@ -1,5 +1,4 @@
 .note {
-    user-select: none;
     cursor: pointer;
     min-height: 280px;
     max-height: 280px;
@@ -63,9 +62,7 @@
     cursor: auto;
 }
 
-.note-util-bar:hover {
-    opacity: 1;
-}
+.note-util-bar:hover {opacity: 1}
 
 .note-util-bar i {
     display: flex;
@@ -99,56 +96,12 @@
     color: var(--icon-hover);
 }
 
-.update-note-btns-container {
-    position: absolute;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    margin-left: auto;
-    background-color: var(--card);
-    color: var(--text);
-    box-shadow: 0 0 20px var(--shadow); 
-    width: 70px;
-    height: 40px;
-    border-radius: 10px;
-    right: -20px;
-    top: -30px;
-    visibility: hidden;
-}
-
-.update-note-btns-container button {
-    cursor: pointer;
-    outline: none;
-    border: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--text);
-    width: 100%;
-    margin: 0;
-    background-color: transparent;
-}
-
-.confirm-note-update-btn {
-    border-radius: 10px 0 0 10px;
-}
-
-.cancel-note-update-btn {
-    border-radius: 0 10px 10px 0;
-}
-
-.update-note-btns-container button:hover {
-    background-color: var(--hover);
-    color: var(--hover-text);
-}
-
 .note-content-box p {
     font-size: 9px;
     cursor: pointer;
 }
 
-.note-content-box img {
-    max-width: 100px;
-}
+.note-content-box img {max-width: 100px}
 
 .note-content-box i {
     border-radius: 50%;
@@ -161,9 +114,7 @@
     transition: .4s;
 }
 
-.note-content-box iframe {
-    visibility: hidden;
-}
+.note-content-box iframe {visibility: hidden}
 
 .note-content-box hr {
     border-style: none;
@@ -172,30 +123,8 @@
   }
 
  .note-content-box h1,
- .note-content-box h2 {
-    color: var(--important);
- }
-
- .note-content-box h1 {
-    font-size: 14px;
- }
-
- .note-content-box h2 {
-    font-size: 12px;
- }
-
-.note-content-box code {
-    background-color: var(--code-snippit-background);
-    border-radius: 3px;
-    color: var(--code-snippet-color);
-    font-family: courier, monospace;
-    padding: 0 3px;
-}
-
-.note-content-box .linked-note-container {
-    visibility: hidden;
-}
-
-.note-content-box a {
-    color: rgb(67, 142, 255);
-}
+ .note-content-box h2 {color: var(--important)}
+.note-content-box h1 {font-size: 14px}
+.note-content-box h2 {font-size: 12px}
+.note-content-box .linked-note-container {visibility: hidden}
+.note-content-box a {color: rgb(67, 142, 255)}

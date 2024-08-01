@@ -1,13 +1,14 @@
 // This class is independent and does not get instantiated by any parent class
 
-class SidebarView {
-    constructor() {
+export class SidebarView {
+    constructor(applicationController) {
+        this.applicationController = applicationController;
         window.addEventListener('resize', () => this.#resizeSidebar());
         this._sidebar = document.querySelector('.sidebar');
         this._icon = document.querySelector('.logo');
         this._icon.addEventListener('click', () => {this.#toggleSidebar()});
         this._wrapper = document.querySelector('.wrapper');
-        this._buttonCount = 6 ;
+        this._buttonCount = 5;
 
         this._templatesButton = document.querySelector('.templates-btn');
         this._templatesSpan = this._templatesButton.querySelector('span');
@@ -21,9 +22,9 @@ class SidebarView {
         this._homeSpan = this._homeButton.querySelector('span');
         this._homeIcon = this._homeButton.querySelector('i');
 
-        this._themeButton = document.querySelector('.settings-btn');
-        this._themeSpan = this._themeButton.querySelector('span');
-        this._themeIcon = this._themeButton.querySelector('i');
+        this._settingsButton = document.querySelector('.settings-btn');
+        this._themeSpan = this._settingsButton.querySelector('span');
+        this._themeIcon = this._settingsButton.querySelector('i');
 
         this._flashCardButton = document.querySelector('.flashcards-btn');
         this._flashCardSpan = this._flashCardButton.querySelector('span');
@@ -31,10 +32,24 @@ class SidebarView {
 
         this._collapsed = false;
         this._size = 'standard';
-        this._sidebarButtons = [this._homeButton,this._flashCardButton, this._templatesButton, this._notesButton, this._themeButton]
-        this._sidebarSpans = [this._homeSpan,this._flashCardSpan, this._templatesSpan, this._notesSpan, this._themeSpan]
-        this._sidebarIcons = [this._homeIcon,this._flashCardIcon, this._templateIcon, this._notsIcon, this._themeIcon]
-        
+        this._sidebarButtons = [this._homeButton,this._notesButton,this._flashCardButton , this._templatesButton, this._settingsButton]
+        this._sidebarSpans = [this._homeSpan, this._notesSpan, this._flashCardSpan, this._templatesSpan, this._themeSpan]
+        this._sidebarIcons = [this._homeIcon, this._notsIcon, this._flashCardIcon, this._templateIcon, this._themeIcon]
+
+        document.querySelectorAll('.sidebar .sidebar-content a').forEach(link => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault();
+
+                const anchor = event.target.closest('a[data-view]')
+                if (anchor) {
+                    if (anchor.getAttribute('data-view') === 'notes') {
+                        applicationController.initView('notes', { folder: {'id': 'f-1', 'name': 'Home'} });
+                        return;
+                    }
+                    applicationController.initView(anchor.getAttribute('data-view'));
+                }
+            });
+        });
     }
 
     /**
@@ -61,8 +76,7 @@ class SidebarView {
      * becomes bigger then 700 pixels
      */
     #openButtons() {
-        let currentTheme = document.body.classList.toString().charAt(0).toUpperCase() + document.body.classList.toString().slice(1);
-        const buttonText = ['Home', 'Back', 'Flashcards', 'Templates', 'Favorites', currentTheme]
+        const buttonText = ['Home', 'Notes', 'Flashcards', 'Templates', 'Settings']
         for (let i = 0; i < this._buttonCount; i++) {
             this._sidebarSpans[i].style.position = 'relative';
             this._sidebarSpans[i].textContent = buttonText[i];
@@ -106,7 +120,7 @@ class SidebarView {
      * This method is called when the window resizes
      */
     #resizeSidebar() {
-        if (window.innerWidth < 700) {
+        if (window.innerWidth < 940) {
             this._wrapper.style.gridTemplateColumns = '70px 1fr';
             this._sidebar.dataset.width = 'small';
             this.#collapseButtons();
@@ -118,5 +132,3 @@ class SidebarView {
         }
     }
 }
-
-const view = new SidebarView();

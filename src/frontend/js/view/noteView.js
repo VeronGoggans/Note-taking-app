@@ -1,15 +1,13 @@
 import { Note } from "../components/note.js";
-import { DeleteModal } from "../components/modals/deleteModal.js";
 import { NoteObjectArray } from "../util/array.js";
-import { formatName, filterNotePreview } from "../util/formatters.js";
 import { AnimationHandler } from "../handlers/animation/animationHandler.js";
 import { DragAndDrop } from "../handlers/drag&drop/dragAndDropHandler.js";
-import { notesTemplate } from "../constants/templates.js";
+import { removeContent } from "../util/ui.js";
 
 
 export class NoteView {
-    constructor(noteController, applicationController, dialog, notificationHandler) {
-        this.noteController = noteController;
+    constructor(controller, applicationController, dialog, notificationHandler) {
+        this.controller = controller;
         this.applicationController = applicationController;
         this.notificationHandler = notificationHandler;
         this.dialog = dialog;
@@ -18,10 +16,7 @@ export class NoteView {
         this.dragAndDrop = new DragAndDrop(this);
 
         this.#initializeDomElements();
-    }
-
-    renderTemplate() {
-        return notesTemplate;
+        this.#attachEventListeners();
     }
 
     
@@ -44,33 +39,6 @@ export class NoteView {
     }
 
     
-    renderOne(note) {
-        const noteCard = this.#note(note);
-        this._content.appendChild(noteCard);
-        AnimationHandler.fadeInFromBottom(noteCard);
-        this.notificationHandler.push('Saved');
-    }
-
-
-    renderUpdate(note) {
-        const cards = this._content.children 
-
-        for (let i = 0; i < cards.length; i++) {
-            if (cards[i].id === note.id) {
-
-                const notePreview = cards[i].querySelector('p');
-                notePreview.innerHTML = filterNotePreview(note.content);
-
-                const noteName = cards[i].querySelector('h4');
-                noteName.textContent = formatName(note.name);
-
-                this.noteObjects.update(note);
-                this.notificationHandler.push('Updated');
-            }
-        }
-    }
-
-    
     renderDelete(note, closeDialog = true) {
         const cards = this._content.children;
 
@@ -87,7 +55,14 @@ export class NoteView {
     
     handleNoteCardClick(noteId) {
         const note = this.noteObjects.get(noteId);
-        this.applicationController.openNoteInTextEditor(note);
+        this.applicationController.initView('editor', 
+            {
+                editorObjectType: 'note', 
+                editorObject: note,
+                newEditorObject: false, 
+                previousView: 'notes', 
+            }
+        );
     }
 
     /**
@@ -102,16 +77,8 @@ export class NoteView {
         return this.noteObjects.get(noteId);
     }
 
-    /**
-     * This method renders a confirmation container 
-     * telling the user if they want to delete the note.
-     * 
-     * @param {String} id 
-     * @param {String} name
-     */
-    renderDeleteContainer(id, name) {
-        this.dialog.addChild(new DeleteModal(id, name, this));
-        this.dialog.show();
+    renderDeleteModal(id, name) {
+        this.dialog.renderDeleteModal(id, name, this)
     }
 
     /**
@@ -126,16 +93,37 @@ export class NoteView {
         return new Note(note, this);
     }
 
-    #initializeDomElements() {
-        this.appDiv = document.querySelector('.content');
-        this._content = document.querySelector('.content-view');
-    }
-
-    async updateNote(id, name, content, bookmark, favorite) {
-        await this.noteController.updateNote(id, name, content, bookmark, favorite);
+    async updateNote(note) {
+        await this.controller.updateNote(note);
     }
 
     async handleDeleteButtonClick(id) {
-        await this.noteController.deleteNote(id);
+        await this.controller.deleteNote(id);
+    }
+
+    #initializeDomElements() {
+        this.createNoteButton = document.querySelector('.create-note-btn')
+        this.favoritedButton = document.querySelector('.favorites-btn')
+        this.bookmarkedButton = document.querySelector('.bookmarks-btn')
+        this._content = document.querySelector('.content-view');
+    }
+
+    #attachEventListeners() {
+        this.bookmarkedButton.addEventListener('click', () => {
+            removeContent(this._content);
+            this.controller.getNotes('bookmarks')});
+
+        this.favoritedButton.addEventListener('click', () => {
+            removeContent(this._content)
+            this.controller.getNotes('favorites')});
+
+        this.createNoteButton.addEventListener('click', () => {
+            this.applicationController.initView('editor', {
+                editorObjectType: 'note', 
+                editorObject: null,
+                newEditorObject: true, 
+                previousView: 'notes', 
+            })
+        })
     }
 }

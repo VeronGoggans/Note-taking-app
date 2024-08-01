@@ -18,19 +18,6 @@ class NoteService:
 
 
     def add_note(self, post_request: PostNoteRequest):
-        """
-        Adds a new note to the specified folder.
-
-        Args:
-            post_request (PostNoteRequest): 
-            Object containing the folder_id, name and content fields for a new note.
-
-        Returns:
-            dict or HttpStatus.NOT_FOUND: 
-            - If the folder with the specified ID is found and the note is successfully added,
-              returns a dictionary representing the new note.
-            - If the folder is not found, returns HttpStatus.NOT_FOUND.
-        """
         note_id = self.json_manager.generate_id(self.id_path, 'note')
         note = Note(note_id, post_request.name, post_request.content)
         note.set_content_path()
@@ -45,23 +32,15 @@ class NoteService:
 
 
     def get_notes(self, folder_id: str):
-        """
-        Retrieves notes from the specified folder.
-
-        Args:
-            folder_id (int): The id of the folder from which to retrieve notes.
-
-        Returns:
-            list(dict) or HttpStatus.NOT_FOUND: 
-            - A list of notes if the folder with the specified id is found 
-            - HttpStatus.NOT_FOUND if the folder is not found returns .
-        """
         folders = self.json_manager.load(self.folders_path)
         notes = None
         try:
-            if folder_id == 'f-2':
+            if folder_id == 'favorites':
                 notes = self.note_manager.get_favorites(folders)
                 self.note_manager.clear_favorites_list()
+            elif folder_id == 'bookmarks':
+                notes = self.note_manager.get_bookmarks(folders)
+                self.note_manager.clear_bookmarks_list()
             else:
                 notes = self.note_manager.get_notes(folders, folder_id)
             return notes
@@ -70,39 +49,21 @@ class NoteService:
 
 
     def get_note_by_id(self, note_id: str):
-        """
-        Retrieves a note with the specified id.
-
-        Args:
-            note_id (int): The id of the note to retrieve.
-
-        Returns:
-            dict or HttpStatus.NOT_FOUND: 
-            - If a note with the specified id is found, returns the note as a dictionary.
-            - If the note is not found, returns HttpStatus.NOT_FOUND.
-        """
         folders = self.json_manager.load(self.folders_path)
         try:
             return self.note_manager.get_note_by_id(folders, note_id)
         except NotFoundException as e:
             raise e
+        
+    
+    def get_recent_notes(self):
+        json_folders = self.json_manager.load(self.folders_path)
+        recent_notes = self.note_manager.get_recent_notes(json_folders)
+        self.note_manager.clear_notes_list()
+        return recent_notes
 
 
     def update_note(self, put_request: PutNoteRequest):
-        """
-        Updates an existing note with the specified details.
-
-        Args:
-            put_request (PutNoteRequest): 
-            Object containing the note_id, name, content, bookmark, 
-            favorite and color fields of a note.
-
-        Returns:
-            dict or HttpStatus.NOT_FOUND: 
-            - If a note with the specified ID is found and successfully updated,
-              returns a dictionary representing the updated note.
-            - If the note is not found, returns HttpStatus.NOT_FOUND.
-        """
         folders = self.json_manager.load(self.folders_path)
         try:
             note = self.note_manager.update_note(folders, put_request)
@@ -113,16 +74,6 @@ class NoteService:
 
 
     def delete_note(self, note_id: str):
-        """
-        Delete an existing note within a specified folder.
-
-        Args:
-            - note_id (str): The ID of the note whished to be deleted.
-
-        Returns:
-            - If the note is successfully deleted, it returns the note.
-            - If the specified folder or note is not found, it returns 'NOT_FOUND'.
-        """
         folders = self.json_manager.load(self.folders_path)
         try:
             note = self.note_manager.delete_note(folders, note_id)
@@ -133,20 +84,6 @@ class NoteService:
 
 
     def move_note(self, move_request: MoveNoteRequest):
-        """
-        Moves a note from it's current folder into 
-        another folder specified with it's ID.
-
-        Args:
-            move_request (MoveNoteRequest): 
-            - folder_id (str): The ID of the folder to which the note will be added to.
-            - name (str): The name of the note.
-
-        Returns:
-            dict or HttpStatus.NOT_FOUND: 
-            - If a note with the specified ID is found, returns the note as a dictionary.
-            - If the note is not found, returns HttpStatus.NOT_FOUND.
-        """
         folders = self.json_manager.load(self.folders_path)
         try:
             deleted_note = self.note_manager.delete_note(folders, move_request.note_id, delete_txt_file=False)
@@ -165,6 +102,7 @@ class NoteService:
             return content
         except OSError as e:
             raise e
+
 
     def get_search_options(self):
         folders = self.json_manager.load(self.folders_path)

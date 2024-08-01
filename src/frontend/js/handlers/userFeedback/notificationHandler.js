@@ -3,7 +3,7 @@ import { notificationTypes, notificationIcons, notificationMessages } from "../.
 
 export class NotificationHandler {
     constructor() {
-        this.screen = document.querySelector('.main');
+        this.screen = document.querySelector('.wrapper');
         this.types = notificationTypes;
         this.icons = notificationIcons;
         this.messages = notificationMessages;

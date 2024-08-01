@@ -3,6 +3,7 @@ import { CNode } from "../../util/CNode.js";
 export class DeleteModal {
     constructor(id, name, view) {
         this.id = id;
+        this.name = name;
         this.view = view;
         this.HOST = CNode.create('div', {'class': 'delete-folder-container'});
         this.MESSAGE = CNode.create('p', {'class': 'delete-warning', 'textContent': 'Press Confirm to delete'});

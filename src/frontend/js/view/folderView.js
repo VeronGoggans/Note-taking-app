@@ -1,23 +1,21 @@
-import { Folder } from '../components/folder.js';
-import { FolderObjectArray } from '../util/array.js';
-import { DeleteModal } from '../components/modals/deleteModal.js';
-import { AnimationHandler } from '../handlers/animation/animationHandler.js';
-import { DragAndDrop } from '../handlers/drag&drop/dragAndDropHandler.js';
+import { Folder } from "../components/folder.js";
+import { FolderObjectArray } from "../util/array.js";
 import { formatName } from "../util/formatters.js";
+import { AnimationHandler } from "../handlers/animation/animationHandler.js";
 import { folderColorClasses } from '../constants/constants.js';
+import { removeContent } from "../util/ui.js";
 
 export class FolderView {
-    constructor(folderController, applicationController, dialog, notificationHandler) {
-        this.folderController = folderController;
+    constructor(controller, applicationController, dialog, notificationHandler) {
+        this.controller = controller;
         this.applicationController = applicationController;
-        this.dialog = dialog;
         this.notificationHandler = notificationHandler;
+        this.dialog = dialog;
+
         this.folderObjects = new FolderObjectArray();
-        this.dragAndDrop = new DragAndDrop(this);
-
         this.#initializeDomElements();
+        this.#attachEventListeners();
     }
-
 
     renderAll(folders) {
         this.folderObjects.clear();
@@ -27,7 +25,6 @@ export class FolderView {
             AnimationHandler.fadeInFromBottom(folderCard);
         }
     }
-    
 
     renderOne(folder) {
         const folderCard = this.#folder(folder);
@@ -35,7 +32,6 @@ export class FolderView {
         AnimationHandler.fadeInFromBottom(folderCard);
         this.dialog.hide();
     }
-
 
     renderUpdate(folder) {
         const folderCards = this._content.children; 
@@ -50,7 +46,6 @@ export class FolderView {
             }
         }
     }
-
     
     renderDelete(folder) {
         const cards = this._content.children;
@@ -64,24 +59,8 @@ export class FolderView {
         this.dialog.hide();
     }
 
-    /**
-    * type has to be one of the following 
-    * (saved, deleted, new, empty).
-    * 
-    * noteName is optional and only nessecary for the 
-    * deleted type.
-    * 
-    * @param {String} type 
-    * @param {String} noteName 
-    */
     pushNotification(type, noteName = null) {
         this.notificationHandler.push(type, noteName);
-    }
-
-
-    renderDeleteContainer(id, name) {
-        this.dialog.addChild(new DeleteModal(id, name, this));
-        this.dialog.show();
     }
 
     renderEditFolderModal(id) {
@@ -89,20 +68,16 @@ export class FolderView {
         this.dialog.renderEditFolderModal(folder, this);
     }
 
-    /**
-     * This method creates a Folder component and returns it.
-     * 
-     * @param {Object} folder
-     * @returns {Folder}
-     */
+    renderDeleteModal(id, name) {
+        this.dialog.renderDeleteModal(id, name, this);
+    }
+
+
     #folder(folder) {
         this.folderObjects.add(folder)
         return new Folder(folder, this);
     }
 
-    #initializeDomElements() {
-        this._content = document.querySelector('.content-view');
-    }
 
     #applyFolderColor(folderCard, color) {
         const folderColorClass = folderColorClasses[color];
@@ -118,39 +93,50 @@ export class FolderView {
     }
 
     
-    async updateFolder(id, name, color) {
-        await this.folderController.updateFolder(id, name, color);
+    updateFolder(id, name, color) {
+        this.controller.updateFolder(id, name, color);
     }
 
-
-    async handleDeleteButtonClick(id) {
-        await this.folderController.deleteFolder(id);
+    handleDeleteButtonClick(id) {
+        this.controller.deleteFolder(id);
     }
 
+    addFolder(name) {
+        this.controller.addFolder(name)
+    }
 
     async handleNoteDrop(noteId, folderId) {
         await this.applicationController.moveNote(noteId, folderId)
     }
 
-
     async handleFolderDrop(droppedFolderId, parentFolderId) {
 
     }
 
-    /**
-     * This method takes the user into a folder 
-     * and displays the notes inside it.
-     * 
-     * This method is triggered when a folder card is clicked. It removes all existing folders from the screen
-     * using {@link navigateIntoFolder}.
-     * 
-     * @param {string} id - The ID of the folder to navigate into.
-     */
     handleFolderCardClick(id, name) {
-        this.applicationController.navigateIntoFolder(id, name);
+        this.controller.navigateIntoFolder(id, name);
     }
 
     getFolderObject(folderId) {
         return this.folderObjects.get(folderId);
+    }
+
+    displayFolderName(name) {
+        removeContent(this._content);
+        this.currentFolderName.textContent = name;
+    }
+
+    #initializeDomElements() {
+        this._content = document.querySelector('.content-view');
+        this.currentFolderName = document.querySelector('.current-folder-name');
+        this.backButton = document.querySelector('.exit-folder-btn');
+        this.createFolderButton = document.querySelector('.create-folder-btn')
+        this.homeButton = document.querySelector('.home-folder-btn')
+    }
+
+    #attachEventListeners() {
+        this.backButton.addEventListener('click', async () => {await this.controller.navigateOutofFolder()})
+        this.createFolderButton.addEventListener('click', () => {this.dialog.renderNewFolderModal(this)});
+        this.homeButton.addEventListener('click', async () => {await this.controller.navigateIntoFolder('f-1', 'Home')})
     }
 }

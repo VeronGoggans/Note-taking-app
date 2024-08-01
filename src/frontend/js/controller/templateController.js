@@ -4,9 +4,15 @@ import { TemplateView } from "../view/templateView.js";
 
 export class TemplateController {
     constructor(applicationController, dialog, notificationHandler) {
-        this.applicationController = applicationController;
+        this.dialog = dialog;
+        this.notificationHandler = notificationHandler;
+        this.applicationController = applicationController
         this.model = new TemplateModel();
-        this.view = new TemplateView(this, applicationController, dialog, notificationHandler)
+    }
+
+    init() {
+        this.view = new TemplateView(this, this.dialog, this.notificationHandler)
+        this.getTemplates()
     }
 
     async getTemplates() {

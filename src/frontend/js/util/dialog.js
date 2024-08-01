@@ -81,10 +81,10 @@ export class Dialog {
         this.show();
     }
 
-    renderSearchModal() {
+    renderSearchModal(toolbar) {
         const modal = new SearchModal()
         const inputElement = modal.querySelector('.search-function-modal input');
-        this.toolbar.appendChild(modal);
+        toolbar.appendChild(modal);
         inputElement.focus()
         modal.style.opacity = '1';
         modal.style.transform = 'translateY(0px)';

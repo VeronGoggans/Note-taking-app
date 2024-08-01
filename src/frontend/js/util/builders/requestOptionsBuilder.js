@@ -21,6 +21,13 @@ export class RequestOptionsBuilder {
         };
     }
 
+    static buildPatchOptions() {
+        return {
+            method: 'PATCH',
+            headers: {"Content-Type": "application/json"}
+        }
+    }
+
     static buildDeleteOptions(bodyData) {
         return {
             method: 'DELETE',

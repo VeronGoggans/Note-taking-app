@@ -9,8 +9,10 @@ from src.backend.data.file.text_manager import TextManager
 
 class NoteManager:
     def __init__(self):
-        self.search_bar_note_objects = []
+        self.notes_list = []
+        self.search_items = []
         self.favorites = []
+        self.bookmarks = []
     
 
     def add_note(self, folders, folder_id: str, note: Note):
@@ -74,22 +76,24 @@ class NoteManager:
         if note:
             note_object = Note.from_json(note)
             note_object.set_content_text()
-            return note_object, folder['id'], folder['name']
+            return note_object
         raise NotFoundException(f'Note with id: {note_id}, could not be found.')
     
+
+    def get_recent_notes(self, folders: list) -> list:
+        for folder in folders:
+            for note in folder['notes']:
+                self.notes_list.append(note)
+            self.get_recent_notes(folder['subfolders'])
+        return self.__get_top_5_most_recent_notes()
+
 
     def get_note_name_id(self, folders):
         for folder in folders:
             for note in folder['notes']:
-                self.search_bar_note_objects.append(
-                    {
-                        'id': note['id'],
-                        'name': note['name'],
-                        'folder_name': folder['name']
-                    }
-                )
+                self.search_items.append({'id': note['id'],'name': note['name'],'folder_name': folder['name']})
             self.get_note_name_id(folder['subfolders'])
-        return self.search_bar_note_objects     
+        return self.search_items     
     
 
     def get_favorites(self, folders):
@@ -100,6 +104,16 @@ class NoteManager:
 
             self.get_favorites(folder['subfolders'])
         return Factory.create_note_list(self.favorites)
+    
+
+    def get_bookmarks(self, folders):
+        for folder in folders:
+            for note in folder['notes']:
+                if note.get('bookmark') == True:
+                    self.bookmarks.append(note)
+
+            self.get_bookmarks(folder['subfolders'])
+        return Factory.create_note_list(self.bookmarks)
                
 
     def update_note(self, folders, put_request: PutNoteRequest):
@@ -147,11 +161,16 @@ class NoteManager:
 
 
     def clear_search_options_list(self):
-        self.search_bar_note_objects = []    
-
+        self.search_items = []    
 
     def clear_favorites_list(self):
         self.favorites = []
+
+    def clear_bookmarks_list(self):
+        self.bookmarks = []
+
+    def clear_notes_list(self):
+        self.notes_list = []
     
 
     def __find_note(self, folders, note_id: str) -> list:
@@ -176,6 +195,17 @@ class NoteManager:
             if note:
                 return note, folder
         return None, None
+    
+
+    def __get_top_5_most_recent_notes(self) -> list:
+        # Sort the Note objects based on last_visit in descending order
+        self.notes_list.sort(key=lambda note: note['last_edit'], reverse=True)
+
+        # Get the 5 most recetly worked on notes
+        most_recent_notes = self.notes_list[:5]
+
+        return Factory.create_note_list(most_recent_notes)
+
 
     
     def __update_entity(self, current_note: dict, updated_note: PutNoteRequest):

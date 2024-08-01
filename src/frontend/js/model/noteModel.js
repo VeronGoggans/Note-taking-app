@@ -2,15 +2,13 @@ import { RequestOptionsBuilder } from "../util/builders/requestOptionsBuilder.js
 import { fetchData } from "../util/request/request.js";
 
 export class NoteModel {
-    
-    async get(endpoint, folderId) {
-        const options = RequestOptionsBuilder.buildGetOptions();
-        return fetchData(`${endpoint}/${folderId}`, options);
+    constructor() {
+        this.folderObjects = [];
     }
-
-    async getById(endpoint, noteId) {
+    
+    async get(endpoint) {
         const options = RequestOptionsBuilder.buildGetOptions();
-        return fetchData(`${endpoint}/${noteId}`, options);
+        return fetchData(endpoint, options);
     }
 
     async add(endpoint, folderId, name, content) {
@@ -22,14 +20,13 @@ export class NoteModel {
         return fetchData(endpoint, options)
     }
 
-    async update(endpoint, noteId, name, content, bookmark, favorite, color) {
+    async update(endpoint, note) {
         const options = RequestOptionsBuilder.buildPutOptions({
-            'note_id': noteId,
-            'name': name,
-            'content': content,
-            'bookmark': bookmark,
-            'favorite': favorite,
-            'color': color
+            'note_id': note.id,
+            'name': note.name,
+            'content': note.content,
+            'bookmark': note.bookmark,
+            'favorite': note.favorite,
         })
         return fetchData(endpoint, options)
     }
@@ -39,12 +36,7 @@ export class NoteModel {
         return fetchData(`${endpoint}/${noteId}`, options);
     }
 
-    async getSearchOptions(endpoint) {
-        const options = RequestOptionsBuilder.buildGetOptions();
-        return fetchData(`${endpoint}`, options);
-    }
-
-    async move(endpoint, noteId, folderId) {
+    async moveNote(endpoint, noteId, folderId) {
         const options = RequestOptionsBuilder.buildPutOptions({'folder_id': folderId, 'note_id': noteId})
         return fetchData(endpoint, options)
     }

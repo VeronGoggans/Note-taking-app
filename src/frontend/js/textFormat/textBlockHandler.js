@@ -6,9 +6,7 @@ export class TextBlockHandler {
         this.copyBlocks = []
     }
 
-    parse() {
-        console.log('Hello world');
-        
+    parse() {        
     }
 
     empty() {

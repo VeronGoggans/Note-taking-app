@@ -1,8 +1,13 @@
+import { RecentFolder } from "../components/folder.js";
+import { FolderObjectArray } from "../util/array.js";
+import { AnimationHandler } from "../handlers/animation/animationHandler.js";
+
+
 export class ApplicationView {
     constructor(applicationController, dialog) {
         this.applicationController = applicationController;
         this.dialog = dialog;
-        
+        this.folderObjects = new FolderObjectArray()
 
         this.#initializeDomElements();
         this.#attachEventListeners();
@@ -84,96 +89,25 @@ export class ApplicationView {
     }
 
     /**
-     * This method removes all the creatable components from the UI
-     */
-    removeContent() {
-        while (this._content.firstChild) 
-            this._content.removeChild(this._content.firstChild);
-    }
-
-    /**
-     * This method is called when the home button is clicked
-     * The home button takes the user to the home screen
-     */
-    home() {
-        this.displayFolderName('Home');
-        this.applicationController.navigateToHomescreen();
-    }
-
-    /**
-     * This method is called when the back button is clicked
-     * The back button takes the user to the previous folder
-     */
-    back() {
-        this.applicationController.navigateOutofFolder();
-    }
-
-    favorites() {
-        this.applicationController.navigateIntoFolder('f-2', 'Favorites')
-    }
-
-    templates() {
-        this.applicationController.navigateIntoFolder('f-3', 'Templates')
-    }
-
-    /**
      * This method is called when the note button is clicked
      */
     showTextEditor() {
         this.applicationController.showTextEditor();
     }
 
-    /**
-     * This method will add a search bar object to the 
-     * _searchNoteObjects array. 
-     * 
-     * This method is called everytime a new note is created.
-     * 
-     * @param {String} id 
-     * @param {String} name 
-     */
     addSearchObject(id, name, folderName) {
         this._searchNoteObjects.push(
             {'id': id, 'name': name, 'folder_name': folderName}
         );
     }
 
-    /**
-     * This method removes a search object from 
-     * the search bar options
-     * 
-     * This method is called everytime a note gets deleted.
-     * 
-     * @param {String} id 
-     */
     deleteSearchObject(id) {
         this._searchNoteObjects = this._searchNoteObjects.filter(obj => obj.id !== id);
     }
 
-    /**
-     * This method updates a search object from 
-     * the search bar options
-     * 
-     * This method is called everytime a note gets updated.
-     * 
-     * @param {String} noteId 
-     * @param {String} name 
-     */
     updateSearchObject(noteId, newName) {
         const option = this._searchNoteObjects.find(obj => obj.id === noteId);
         option.name = newName;
-    }
-
-    /**
-     * This method displays the current folder name 
-     * @param {String} name 
-     */
-    displayFolderName(name) {
-        this.currentFolderName.textContent = name;
-    }
-
-    displayCreateButtonText(btnText) {
-        this.createNoteButton.textContent = btnText;
     }
 
     /**
@@ -190,53 +124,23 @@ export class ApplicationView {
         await this.applicationController.getSearchedNote(noteId);
     }
 
-    /** 
-     * This method is called from with in the new folder container
-     *  
-     * @param {String} name 
-     */
-    async handleAddFolderButtonClick(name) {
-        await this.applicationController.handleAddFolder(name);
-    }
-
-    async updateTheme() {
-        await this.applicationController.setTheme(false)
-    }
-
-    #initializeDomElements() {
-        // <main-top> 
-        this.createFolderButton = document.querySelector('.create-folder-btn');
-        this.currentFolderName = document.querySelector('.current-folder-name');
+    #initializeDomElements() {        
         this.searchBarInput = document.querySelector('.searchbar-input');
         this.noteOptionsList = document.querySelector('.note-suggestions-list');
 
-        // <sidebar-content>
-        this.createNoteButton = document.querySelector('.create-note-btn');
-        this.homeButton = document.querySelector('.home-btn');
-        this.templatesButton = document.querySelector('.templates-btn');
-        this.settingsButton = document.querySelector('.settings-btn');
-
-        // other
-        this._content = document.querySelector('.content-view');
-        this._listViewFolders = document.querySelector('.list-content-folders');
-        this._listViewNotes = document.querySelector('.list-content-notes');
+        this._content = document.querySelector('.recent-folders');
         this._searchNoteObjects = [];
     }
     
     #attachEventListeners() {
-        this.homeButton.addEventListener('click', () => {this.home()});
-        this.createNoteButton.addEventListener('click', () => {this.showTextEditor()});
-        this.templatesButton.addEventListener('click', () => {this.templates()});
-        this.createFolderButton.addEventListener('click', () => {this.dialog.renderNewFolderModal(this)});
-        this.settingsButton.addEventListener('click', () => {this.updateTheme()});
-        this.searchBarInput.addEventListener('input', () => {this.handleSearchBarInput()});
-        this.searchBarInput.addEventListener('click', () => {this.handleSearchBarInput()});
-        this.searchBarInput.addEventListener('keydown', (event) => {});
-        document.addEventListener("click", (event) => {
-            if (!event.target.closest(".search-container")) {
-                this.noteOptionsList.innerHTML = "";
-                this.noteOptionsList.style.visibility = 'hidden';
-            }
-        });
+        // this.searchBarInput.addEventListener('input', () => {this.handleSearchBarInput()});
+        // this.searchBarInput.addEventListener('click', () => {this.handleSearchBarInput()});
+        // this.searchBarInput.addEventListener('keydown', (event) => {});
+        // document.addEventListener("click", (event) => {
+        //     if (!event.target.closest(".search-container")) {
+        //         this.noteOptionsList.innerHTML = "";
+        //         this.noteOptionsList.style.visibility = 'hidden';
+        //     }
+        // });
     }
 }

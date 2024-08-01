@@ -1,41 +1,33 @@
 export class TextEditorModel {
     constructor() {
-        this.noteObject = null
-        this.templateObject = null
-        this.currentlyHandledEntity = '';
+        this.editorObject = null
+        this.editorObjectType = null
     }
 
-    storeNoteData(note) {
-        this.noteObject = note;
+    storeEditorObject(editorObject, editorObjectType) {
+        this.editorObject = editorObject;
+        this.editorObjectType = editorObjectType;
+        console.log(`Stored object: ${editorObject}`);
     }
 
-    storeTemplateData(template) {
-        this.templateObject = template;
+    storeEditorObjectType(type) {
+        this.editorObjectType = type;
+        console.log(`Stored type: ${type}`)
     }
 
-    storeNoteColor(color) {
-        this._color = color;
+    getStoredObject() {
+        return {
+            editorObject: this.editorObject, 
+            editorObjectType: this.editorObjectType
+        }
     }
 
-    getStoredNoteData() {
-        console.log(this.noteObject);
-        return this.noteObject
-    }
-
-    getStoredTemplateData() {
-        return this.templateObject
-    }
-
-    getStoredNoteId() {
-        return this.noteObject.id;
-    }
-
-    getStoredTemplateId() {
-        return this.templateObject.id
+    getStoredObjectId() {
+        return this.editorObject.id;
     }
 
     clear() {
-        this.noteObject = null;
-        this.templateObject = null;
+        this.editorObject = null;
+        console.log('CLEARED Stored Object');
     }
 }

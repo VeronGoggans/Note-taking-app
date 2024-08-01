@@ -1,0 +1,86 @@
+.notes {
+    height: 100dvh;
+    max-height: 100dvh;
+    font-family: Roboto;
+    display: grid;
+    grid-template-rows: 50px 1fr;
+}
+
+.notes-top {
+    position: relative;;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    gap: 10px;
+    padding-right: 40px;
+}
+
+.current-folder-name-container button {
+    width: 35px;
+    height: 35px;
+    border: none;
+    border-radius: 7px; 
+    transition: 100ms;
+    color: var(--text);
+    border: 1px solid var(--create-btn-border);
+    background-color: var(--create-btn); 
+}
+
+.current-folder-name-container button:hover {
+    background-color: #5c7fdd;
+    color: white;
+}
+
+.exit-folder-btn {
+    position: absolute;
+    top: 10px;
+    left: 5px;
+    font-size: 16px;
+    border: none;
+    background-color: transparent;
+    color: var(--important);
+    padding: 10px 15px;
+    border-radius: 7px;
+    transition: 150ms;
+}
+
+.exit-folder-btn:hover {
+    background-color: #f4f5f7;
+}
+
+.current-folder-name-container {
+    display: block;
+    align-items: center;
+    padding: 5px 10px;
+    margin: 15px 10px 15px 10px;
+    color: var(--text);
+}
+
+.current-folder-name-container div {
+    display: flex;
+    column-gap: 10px;
+    padding-top: 10px;
+}
+
+.current-folder-name-container h2 {
+    display: contents;
+    font-size: 35px;
+    height: 50px;
+    max-height: 50px;
+    margin: 0px;
+    color: var(--text);
+    font-family: sans-serif;
+}
+
+.content-folder-view {
+    position: relative;
+}
+
+.content-view {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-rows: repeat(auto-fill, 320px);
+    height: calc(100dvh - 180px);
+    max-height: calc(100dvh - 180px);
+    overflow-y: scroll;
+}

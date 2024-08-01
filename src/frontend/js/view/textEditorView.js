@@ -7,14 +7,14 @@ import { TextBlockHandler } from "../textFormat/textBlockHandler.js";
 import { SlashCommand } from "../textFormat/slashCommand.js";
 
 export class TextEditorView {
-  constructor(textEditorController, applicationController, dialog) {
-    this.textEditorController = textEditorController;
+  constructor(controller, applicationController, dialog) {
+    this.controller = controller;
     this.applicationController = applicationController;
     
-    this.noteContent = '';
+    this.editorContent = '';
     this.dialog = dialog;
-    this._initializeDOMElements();
-    this._attachEventListeners();
+    this.#initializeDOMElements();
+    this.#attachEventListeners();
 
     this.textFormatter = new TextFormatter();
     this.slashCommand = new SlashCommand(this, this.textFormatter);
@@ -31,13 +31,13 @@ export class TextEditorView {
    * @param {Object} object - could be a Note or Template object
    */
   open(object, allFolderNames, allTemplateNames) {
-    this.noteContent = object.content;
+    this.editorContent = object.content;
     this.page.innerHTML = object.content;
-    this.noteNameInput.value = object.name;
+    this.documentNameInput.value = object.name;
+
     formatDocumentLocation(allFolderNames, this.documentLocation)
     this.textFormatter.listenForLinkClicks(this.page);
     TextFormatter.listenForNoteLinkClicks(this.page, this.applicationController);
-    this.textBlockParser.parse();
     this.show(allFolderNames, allTemplateNames);
   }
 
@@ -47,18 +47,17 @@ export class TextEditorView {
    * @param {boolean} checkForChanges - Indicates if changes should be checked.
    */
   async save(closeEditor = true, checkForChanges = true) {
-    const name = this.noteNameInput.value || 'untitled';
+    const name = this.documentNameInput.value || 'untitled';
     const content = this.page.innerHTML;
-    await this.textEditorController.save(name, content);
+    await this.controller.save(name, content);
 
     if (closeEditor) {
       this.closeEditor(checkForChanges);
     }
     else {
-      this.noteContent = content;
+      this.editorContent = content;
     }
   }
-
 
   /**
    * This method will check for changes before closing the editor.
@@ -67,13 +66,12 @@ export class TextEditorView {
    * @param {Boolean} checkForChanges 
    */
   closeEditor(checkForChanges = true) {
-    if (checkForChanges && this.noteContent !== this.page.innerHTML) {
+    if (checkForChanges && this.editorContent !== this.page.innerHTML) {
       this.dialog.renderForgotSaveModal(this);
     } else {
-      this._closeEditorAndClearStoredData();
+      this.controller.loadPreviousView()
     }
   } 
-
 
   /**
    * This method shows the text editor
@@ -82,90 +80,60 @@ export class TextEditorView {
     formatDocumentLocation(allFolderNames, this.documentLocation);
     this.dropdownHelper.renderTemplatesDropdown(allTemplateNames);
     this.editor.scrollTop = 0;
-    this.textEditor.style.visibility = 'visible';
-    this.textEditor.style.top = '0%';
     this.page.focus();
   }
 
 
   async loadInTemplate(templateId) {
     const templateContent = await this.applicationController.getTemplateById(templateId);
-    this.page.innerHTML = this.page.innerHTML += await templateContent.content;
+    this.page.innerHTML = this.page.innerHTML += templateContent.content;
   }
-
 
   async getSearchableNotes() {
     return await this.applicationController.getSearchObjects(); 
   }
 
   exitNoSave() {
-    this._closeEditorAndClearStoredData();
     this.dialog.hide();
+    this.controller.loadPreviousView();
   }
 
   exitBySave() {
-    this.noteContent = this.page.innerHTML;
+    this.editorContent = this.page.innerHTML;
     this.dialog.hide();
     this.save(true, false);
   }
 
-  
   new() {
     this.save(false, true)
-    this._clear();
+    this.#clear();
   }
 
-  /**
-   * This method deletes a specific note from withing 
-   * the text editor
-   * 
-   * This method is called when the confirm button 
-   * inside the noteDeleteContainer is clicked.
-   * 
-   * @param {String} noteId 
-   */
   async handleDeleteButtonClick(noteId) {
-    await this.textEditorController.handleDeleteButtonClick(noteId);
-    this._clear();
+    await this.controller.handleDeleteButtonClick(noteId);
+    this.#clear();
   }
 
-  renderSearchModal() {
-    this.dialog.renderSearchModal()
-  }
 
-  _getStoredNoteData() {
-    return this.textEditorController.getStoredNoteData();
-  }
-
-  _close() {
-    this.textEditor.style.top = '100%';
-    this.textEditor.style.visibility = 'hidden';
+  #getStoredEditorObject() {
+    const storedEditorData = this.controller.getStoredObject();
+    return storedEditorData.editorObject;
   }
 
   /**
    * This method removes all the content in the editor.
    */
-  _clear() {
-    this.noteContent = '';
+  #clear() {
+    this.editorContent = '';
     this.page.innerHTML = '';
-    this.noteNameInput.value = '';
-    this.textEditorController.clearStoredNoteData();
+    this.documentNameInput.value = '';
+    this.controller.clearStoredObject();
   }
 
-
-  _closeEditorAndClearStoredData() {
-    this._close();
-    this.dropdownHelper.closeDropdowns();
-    this._clear();
-    this.textEditorEventListener.removeSpawnables();
-  }
-
-
-
-  _initializeDOMElements() {
+  #initializeDOMElements() {
     // toolbar top
     this.documentLocation = document.querySelector('.document-location');
-    this.noteNameInput = document.querySelector('.note-name-input');
+    this.documentNameInput = document.querySelector('.note-name-input');
     this.exitButton = document.querySelector('#exit-editor-btn');
     this.saveButton = document.querySelector('.save-note-btn');
     this.findButton = document.querySelector('#editor-search-btn');
@@ -174,8 +142,6 @@ export class TextEditorView {
     this.deleteNoteSpan = document.querySelector('.delete-note-span');
     this.saveNoteSpan = document.querySelector('.save-note-span');
     this.newNoteSpan = document.querySelector('.new-note-span');
-    // toolbar bottom
-  
 
     // this.fontButton = document.querySelector('.font-button');
     // this.fontDropdown = document.querySelector('.font-dropdown');
@@ -198,12 +164,13 @@ export class TextEditorView {
     this.textEditor = document.querySelector('.editor-wrapper');
     this.editor = document.querySelector('.editor');
     this.page = document.querySelector('.editor-paper');
+    this.toolbar = document.querySelector('.toolbar')
   }
 
 
-  _attachEventListeners() {
-    this.noteDetailsSpan.addEventListener('click', () => {this.dialog.renderNoteDetailsModal(this._getStoredNoteData())});
-    this.deleteNoteSpan.addEventListener('click', () => {this.dialog.renderDeleteModal(this._getStoredNoteData().id, this.noteNameInput.value, this)});
+  #attachEventListeners() {
+    this.noteDetailsSpan.addEventListener('click', () => {this.dialog.renderNoteDetailsModal(this.#getStoredEditorObject())});
+    this.deleteNoteSpan.addEventListener('click', () => {this.dialog.renderDeleteModal(this.#getStoredEditorObject().id, this.documentNameInput.value, this)});
     this.saveNoteSpan.addEventListener('click', async () => {await this.save(false, false)});
     this.newNoteSpan.addEventListener('click', () => {this.new()});
   
@@ -211,31 +178,6 @@ export class TextEditorView {
     this.saveButton.addEventListener('click', async () => { await this.save(true, false)});
     this.page.addEventListener('click', () => {this.dropdownHelper.closeDropdowns()});
 
-    this.findButton.addEventListener('click', () => {this.renderSearchModal()});
-    // this.linkButton.addEventListener('click', () => {TextFormatter.addLink()});
-    // this.codeBlockButton.addEventListener('click', () => {TextFormatter.addCodeBlock()});
-    // this.horizontalRuleButton.addEventListener('click', () => (TextFormatter.addHorizontalRule()));
-    // this.linkNoteButton.addEventListener('click', async () => {this.dialog.renderNoteLinkModal(this, await this.getSearchableNotes(), this.page, this.applicationController, this.dialog)});
-    // this.embedVideoButton.addEventListener('click', () => {TextFormatter.addEmbedVideo()});
-    
-    // this.foregroundPaletteColors.forEach(button => {
-    //   button.addEventListener('click', () => {
-    //       const COLOR = button.style.backgroundColor;
-    //       TextFormatter.addColor(COLOR, 'forecolor');
-    //       this._toggleVisibleDropdown(this.foregroundPalette);
-    //   });
-    // });
-
-    // this.backgroundPaletteColors.forEach(button => {
-    //   button.addEventListener('click', () => {
-    //       // Get the data-color attribute of the clicked div
-    //       let color = button.style.backgroundColor;
-    //       if (color === '#ffffff') {
-    //           color = 'transparent';
-    //       }
-    //       TextFormatter.addColor(color, 'BackColor');
-    //       this._toggleVisibleDropdown(this.backgroundPalette);
-    //   });
-    // });    
+    this.findButton.addEventListener('click', () => {this.dialog.renderSearchModal(this.toolbar)});    
   }
 }

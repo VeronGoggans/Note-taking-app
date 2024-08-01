@@ -1,91 +1,94 @@
-import { ApplicationModel } from "../model/applicationModel.js";
-import { FolderController } from "./folderController.js";
 import { NoteController } from "./noteController.js";
+import { HomeController } from "./homeController.js";
+import { FolderController } from "./folderController.js";
 import { TemplateController } from "./templateController.js";
 import { ApplicationView } from "../view/applicationView.js";
+import { ApplicationModel } from "../model/applicationModel.js";
+import { SidebarView } from "../view/sideBarView.js";
 import { TextEditorController } from "./textEditorController.js"
 import { SettingController } from "./settingController.js";
 import { Dialog } from "../util/dialog.js";
 import { NotificationHandler } from "../handlers/userFeedback/notificationHandler.js";
 import { FlashcardController } from "./flashcardController.js";
- 
+import { flashcardsTemplate, notesTemplate, settingsTemplate, editorTemplate, homeTemplate, templatesTemplate } from "../constants/templates.js";
+
 export class ApplicationController {
     constructor() {
         this.homeFolderId = 'f-1';
-        this.favoriteFolderId = 'f-2';
-        this.templateFolderId = 'f-3';
         this.dialog = new Dialog();
         this.notificationHandler = new NotificationHandler();
+        this.sidebarView = new SidebarView(this);
         this.applicationView = new ApplicationView(this, this.dialog);
-        this.applicationModel = new ApplicationModel();
-        this.folderController = new FolderController(this, this.dialog, this.notificationHandler);
+        this.model = new ApplicationModel();
         this.noteController = new NoteController(this, this.dialog, this.notificationHandler);
+        this.homeController = new HomeController(this, this.dialog, this.noteController);
+        this.folderController = new FolderController(this, this.dialog, this.notificationHandler)
         this.templateController = new TemplateController(this, this.dialog, this.notificationHandler);
-        this.flashcardCOntroller = new FlashcardController(this, this.dialog, this.notificationHandler);
+        this.flashcardController = new FlashcardController(this, this.dialog, this.notificationHandler);
         this.textEditorController = new TextEditorController(this, this.dialog);
-        this.settingController = new SettingController();
-    }
-
-
-    /**
-     * This method starts the application by fetching the root folders.
-     * 
-     * This method is called when the app starts.
-     */
-    async start() {
-        await this.setTheme(true);
-        await this.folderController.getFolders();
-        await this.noteController.getNotes(this.homeFolderId);
-        const notes = await this.getSearchObjects();
-        this.applicationView.giveSearchOptions(notes);
-        this.applicationView.renderSearchOptions(notes);
-    }
-
-
-    async handleAddFolder(name) {
-        const currentFolderId = this.applicationModel.getCurrentFolderID();
-        if (currentFolderId === 'f-1') {
-            await this.addFolder(name);
-        } else {
-            await this.addSubfolder(name, currentFolderId);
-        } 
-    }
-
-    async navigateToHomescreen() {
-        this.applicationView.removeContent();
-        await this.folderController.getFolders();
-        await this.noteController.getNotes(this.homeFolderId);
-        this.applicationModel.clearFolderIdlist();
-        this.applicationView.displayFolderName('Home');
-        this.applicationView.displayCreateButtonText('Add document')
-    }
+        this.settingController = new SettingController(this);
+        this.viewContainer = document.querySelector('.content');
+        this.controllers = {
+            home: this.homeController,
+            notes: this.noteController,
+            flashcards: this.flashcardController,
+            templates: this.templateController,
+            settings: this.settingController,
+            editor: this.textEditorController
+        }
     
-    async navigateOutofFolder() {
-        const parentFolder = this.applicationModel.removeFolderIdFromList();
-        if (parentFolder === this.homeFolderId) {
-            await this.navigateToHomescreen();
+        this.templates = {
+            home: homeTemplate,
+            notes: notesTemplate,
+            flashcards: flashcardsTemplate,
+            templates: templatesTemplate,
+            settings: settingsTemplate,
+            editor: editorTemplate
         }
-        else {
-            await this.navigateIntoFolder(parentFolder.id, parentFolder.name);
-        }
+        this.initView('home')
+        this.settingController.loadCurrentTheme()
     }
 
-    async navigateIntoFolder(folderId, name) {
-        this.applicationView.removeContent();
-        this.applicationView.displayFolderName(name);
-        this.applicationModel.addFolderIdToList(folderId, name);
+    initView(viewId, viewParameters = {}) {
+        const controller = this.controllers[viewId];
+        if (controller) {
+            this.viewContainer.innerHTML = this.templates[viewId];
+            setTimeout(() => {
 
-        if (folderId === this.templateFolderId) {
-            await this.templateController.getTemplates();
-            this.applicationView.displayCreateButtonText('Add template')
-        }
-        else {
-            await this.folderController.getFolders(folderId);
-            await this.noteController.getNotes(folderId);
-            this.applicationView.displayCreateButtonText('Add document')
+                if (viewId === 'notes') {
+                    const { folder } = viewParameters; 
+                    this.folderController.init(folder.id, folder.name);
+                    // note controller
+                    controller.init(folder.id);
+                    return;
+                }
+
+                if (viewId === 'editor') {
+                    controller.init();
+                    const { 
+                        editorObjectType, 
+                        editorObject, 
+                        newEditorObject, 
+                        previousView
+                    } = viewParameters;
+
+                    this.model.setPreviousView(previousView);
+                    
+                    if (newEditorObject) {
+                        this.openTextEditor(editorObjectType)
+                    } else {
+                        this.openInTextEditor(editorObject, editorObjectType);
+                    }
+                    return;
+                }
+
+                if (viewId === 'home') {
+                    this.folderController.clearFolderHistory()
+                }
+                controller.init();
+            }, 0); 
         }
     }
-
 
     async showTextEditor() {
         const allFolderNames = this.applicationModel.getAllFolderNames();
@@ -93,92 +96,43 @@ export class ApplicationController {
         this.textEditorController.showTextEditor(allFolderNames, allTemplateNames);
     }
 
-    /**
-     * This method retrieves a spicific note
-     * 
-     * This method retrieves the note that has been 
-     * clicked on in the search bar takes the user to the folder 
-     * the searched note is present in and finally opens 
-     * that note in the text editor     
-     * 
-     * @param {String} noteId 
-     */
-    async getSearchedNote(noteId) {
-        const response = await this.noteController.getNoteById(noteId);
-        const note = await response[0];
-        this.openNoteInTextEditor(note);
-        if (response[1] !== this.homeFolderId) {
-            this.navigateIntoFolder(await response[1], await response[2]);
-        }
-    }
-
-    /**
-     * This method returns the current folder ID
-     * by calling the application model to retrieve it.
-     * 
-     * This method is called when
-     * 
-     * @returns {String} The current folder ID.
-     */
     getCurrentFolderID() {
-        return this.applicationModel.getCurrentFolderID();
+        const currentFolderObject = this.folderController.getCurrentFolderObject();
+        return currentFolderObject.id
     }
 
-    async getSearchObjects() {
-        const response = await this.applicationModel.getSearchOptions('/noteSearchObjects');
-        const notes = response[0].notes;
-        return notes
+    getPreviousView() {
+        return this.model.getPreviousView();
     }
     
-    /**
-     * This method is called everytime a new note is created.
-     */
-    addSearchObject(noteId, name, folderName) {
-        this.applicationView.addSearchObject(noteId, name, folderName);
-    }
-
-    /**
-     * This method is called everytime a note gets deleted.
-     */
-    deleteSearchObject(noteId) {
-        this.applicationView.deleteSearchObject(noteId);
-    }
-
-    /**
-     * This method is called everytime a note gets updated.
-     */
-    updateSearchObject(noteId, name) {
-        this.applicationView.updateSearchObject(noteId, name);
-    }
-
-    /**
-     * This method opens up the text editor
-     * And puts the note the user clicked on, in the text editor.
-     */
-    async openNoteInTextEditor(note) {
-        const allFolderNames = this.applicationModel.getAllFolderNames();
+    async openInTextEditor(editorObject, editorObjectType) {
+        const allFolderNames = this.folderController.getAllFolderNames();
         const allTemplateNames = await this.templateController.getTemplateNames();
-        this.textEditorController.openNoteInTextEditor(note, allFolderNames, allTemplateNames);
+        this.textEditorController.openInTextEditor(editorObject, editorObjectType, allFolderNames, allTemplateNames);
     }
 
-    async openTemplateInTextEditor(template) {
-        const allFolderNames = this.applicationModel.getAllFolderNames();
+    async openTextEditor(editorObjectType) {
+        const allFolderNames = this.folderController.getAllFolderNames();
         const allTemplateNames = await this.templateController.getTemplateNames();
-        this.textEditorController.openTemplateInTextEditor(template, allFolderNames, allTemplateNames)
-    }
-
-    getTemplates() {
-        this.templateController.getTemplates();
+        this.textEditorController.showTextEditor(editorObjectType, allFolderNames, allTemplateNames);
     }
 
     async addNote(name, content) {
-        const currentFolderId = this.applicationModel.getCurrentFolderID();
-        const note = await this.noteController.addNote(currentFolderId, name, content);
-        this.textEditorController.storeNoteData(note)
+        const { id } = this.folderController.getCurrentFolderObject();
+        const note = await this.noteController.addNote(id, name, content);
+        this.textEditorController.storeEditorObject(note, 'note')
     }
 
-    async changeNote(noteId, name, content, bookmark, favorite) {
-        await this.noteController.updateNote(noteId, name, content, bookmark, favorite);
+    async getNotes(folderId) {
+        await this.noteController.getNotes(folderId);
+    }
+
+    async updateNote(note) {
+        await this.noteController.updateNote(note);
+    }   
+
+    async deleteNote(noteId) {
+        await this.noteController.deleteNote(noteId);
     }
 
     async addTemplate(name, content) {
@@ -186,25 +140,17 @@ export class ApplicationController {
         this.textEditorController.storeTemplateData(template);
     }
 
-    async changeTemplate(templateId, name, content) {
-        await this.templateController.updateTemplate(templateId, name, content);
+    getTemplates() {
+        this.templateController.getTemplates();
+    }
+
+    async updateTemplate(template) {
+        await this.templateController.updateTemplate(template);
     }
 
     async moveNote(noteId, folderId) {
         await this.noteController.moveNote(noteId, folderId);
-    }
-
-    async addSubfolder(name, parentID) {
-        await this.folderController.addFolder(name, parentID);
-    }
-
-    async addFolder(name) {
-        await this.folderController.addFolder(name);
-    }
-
-    async deleteNote(noteId) {
-        await this.noteController.deleteNote(noteId);
-    }
+    }    
     
     async setTheme(init) {
         const THEME = await this.settingController.getTheme();
@@ -213,5 +159,17 @@ export class ApplicationController {
 
     async getTemplateById(templateId) {
         return await this.templateController.getTemplateById(templateId)
+    }
+
+    getCurrentFolderObject() {
+        return this.folderController.getCurrentFolderObject()
+    }
+
+    async getFolderById(folderId) {
+        return await this.folderController.getFolderById(folderId);
+    }
+
+    async getFolderSearchItems() {
+        return await this.folderController.getSearchItems();
     }
 }

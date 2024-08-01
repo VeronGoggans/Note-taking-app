@@ -5,7 +5,6 @@ from src.backend.presentation.controller.template_controller import TemplateRout
 from src.backend.presentation.controller.flashcard_deck_controllers import FlashcardDeckRouter
 from src.backend.presentation.controller.flashcard_controller import FlashcardRouter
 from src.backend.presentation.controller.folder_controller import FolderRouter
-from src.backend.presentation.controller.subfolder_controller import SubfolderRouter
 from src.backend.presentation.controller.setting_controller import SettingRouter
 from src.backend.data.file.json_manager import JsonManager
 
@@ -16,11 +15,9 @@ template_router = TemplateRouter(json_manager)
 flashcard_deck_router = FlashcardDeckRouter(json_manager)
 flashcard_router = FlashcardRouter(json_manager)
 folder_router = FolderRouter(json_manager)
-subfolder_router = SubfolderRouter(json_manager)
 theme_router = SettingRouter(json_manager)
 
 app.include_router(folder_router.route)
-app.include_router(subfolder_router.route)
 app.include_router(note_router.route)
 app.include_router(template_router.route)
 app.include_router(flashcard_deck_router.route)

@@ -1,13 +1,9 @@
 .editor-wrapper {
    user-select: none;
-   position: absolute;
    display: grid;
    grid-template-rows: 120px 1fr;
    height: 100dvh;
-   width: 100dvw;
    background-color: var(--editor);
-   top: 100%;
-   visibility: hidden;
 }
 
 .editor {

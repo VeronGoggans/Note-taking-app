@@ -30,6 +30,6 @@ export class NewFolderContainer {
 
     #createNewFolder() {
         const NAME = this.INPUT.value || 'untitled';
-        this.view.handleAddFolderButtonClick(NAME);
+        this.view.addFolder(NAME);
     }
 }

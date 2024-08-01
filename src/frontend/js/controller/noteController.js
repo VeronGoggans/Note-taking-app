@@ -1,59 +1,80 @@
 import { NoteModel } from "../model/noteModel.js";
 import { NoteView } from "../view/noteView.js";
+import { Searchbar } from "../view/searchbar.js";
+import { viewToLoad } from "../helpers/random.js";
 
 export class NoteController {
     constructor(applicationController, dialog, notificationHandler) {
+        this.dialog = dialog;
+        this.notificationHandler = notificationHandler
         this.applicationController = applicationController;
-        this.view = new NoteView(this, applicationController, dialog, notificationHandler);
-        this.model = new NoteModel();
         this.objectNum = 0;
+        this.model = new NoteModel();
     }
 
-    init() {
-        return this.view.renderTemplate();
+    async init(folderId = 'f-1') {
+        this.searchbar = new Searchbar(this);
+        const noteSearchItems = await this.getSearchItems();
+        const folderSearchItems = await this.applicationController.getFolderSearchItems();
+        this.searchbar.fillSearchbar('note', noteSearchItems);
+        this.searchbar.fillSearchbar('folder', folderSearchItems);
+        this.view = new NoteView(this, this.applicationController, this.dialog, this.notificationHandler);
+        this.getNotes(folderId);
     }
 
     async getNotes(folderId) {
-        const response = await this.model.get('/notes', folderId);
+        const response = await this.model.get(`/notes/${folderId}`);
         const notes = response[this.objectNum].notes;
         this.view.renderAll(notes);
     }
 
-    async getNoteById(noteId) {
-        const response = await this.model.getById('/noteById', noteId);
-        const note = response[this.objectNum].note;
-        const folderId = response.Folder_id;
-        const folderName = response.Folder_name;
-        return [note, folderId, folderName]
+    async getSearchItems() {
+        const response = await this.model.get('/noteSearchItems');
+        return response[this.objectNum].notes
     }
 
     async addNote(folderId, name, content) {
         const response = await this.model.add('/note', folderId, name, content);
-        let note = response[this.objectNum].note;
-        const folderName = response.folder_name
-        note.content = content;
-        this.view.renderOne(note);
-        this.applicationController.addSearchObject(note.id, note.name, folderName);
-        return note
+        const newNote = response[this.objectNum].note;
+        return newNote
     }
 
-    async updateNote(noteId, name, content, bookmark, favorite) {
-        const response = await this.model.update('/note', noteId, name, content, bookmark, favorite);
-        const note = response[this.objectNum].note;
-        this.view.renderUpdate(note);
-        this.applicationController.updateSearchObject(noteId, name);
+    async updateNote(note) {
+        await this.model.update('/note', note);
     }
 
     async deleteNote(noteId) {
         const response = await this.model.delete('/note', noteId);
         const note = response[this.objectNum].note;
         this.view.renderDelete(note);
-        this.applicationController.deleteSearchObject(noteId);
     }
 
     async moveNote(noteId, folderId) {
-        const response = await this.model.move('/moveNote', noteId, folderId);
+        const response = await this.model.moveNote('/moveNote', noteId, folderId);
         const note = response[this.objectNum].note;
         this.view.removeNote(note, false);
+    }
+
+    async handleSearch(searchItemId, searchType) {
+        const viewId = viewToLoad(searchType)
+        if (viewId === 'editor') {
+            const response = await this.model.get(`/noteById/${searchItemId}`);
+            const note = response[this.objectNum].note; 
+            this.applicationController.initView(viewId, {
+                editorObjectType: 'note', 
+                editorObject: note,
+                newEditorObject: false, 
+                previousView: 'notes', 
+            })
+        }
+        if (viewId === 'notes') {
+            const folder = await this.applicationController.getFolderById(searchItemId);
+            this.applicationController.initView(viewId, {
+                folder: {
+                    'id': searchItemId, 
+                    'name': folder.name
+                }
+            });
+        }
     }
 }

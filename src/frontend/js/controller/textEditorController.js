@@ -3,104 +3,72 @@ import { TextEditorModel } from "../model/textEditorModel.js";
 
 export class TextEditorController {
     constructor(applicationController, dialog) {
+        this.dialog = dialog;
         this.applicationController = applicationController;
-        this.textEditorView = new TextEditorView(this, applicationController, dialog);
-        this.textEditorModel = new TextEditorModel();
+        this.model = new TextEditorModel();
     }
 
-    /**
-     * Save changes to a new or existing note
-     */
+    init() {
+        this.textEditorView = new TextEditorView(this, this.applicationController, this.dialog);
+    }
+
+    loadPreviousView() {
+        const previousView = this.applicationController.getPreviousView();
+        if (previousView === 'notes'){
+            const currentFolder = this.applicationController.getCurrentFolderObject();
+            // The notes view will be initialized in the folder they were in before opening the editor
+            this.applicationController.initView(previousView, {folder: currentFolder});
+        } else {
+            this.applicationController.initView(previousView);
+        }
+        this.model.clear();
+    }
+
     async save(name, content) {
-        const folderId = this.applicationController.getCurrentFolderID();
-        let entityObject = undefined;
+        const { editorObject, editorObjectType } = this.model.getStoredObject();
+        this.model.clear();
 
-        if (folderId !== 'f-3') {
-            entityObject = this.textEditorModel.getStoredNoteData();
+        // Note cases
+        if (editorObject !== null && editorObjectType === 'note') {
+            editorObject.name = name;
+            editorObject.content = content;
+            await this.applicationController.updateNote(editorObject)
         }
-        if (folderId === 'f-3') {
-            entityObject = this.textEditorModel.getStoredTemplateData();
+        if (editorObject === null && editorObjectType === 'note') {
+            await this.applicationController.addNote(name, content)
         }
-
-
-        const entityId = entityObject?.id || null;
-
-        if (entityId === null && folderId !== 'f-3') {
-            await this.applicationController.addNote(name, content); 
-        } 
-        if (entityId !== null && folderId !== 'f-3') {
-            await this.applicationController.changeNote(entityId, name, content, 
-                entityObject.bookmark, entityObject.favorite, entityObject.color)
+        // Template cases
+        if (editorObject !== null && editorObjectType === 'template') {
+            await this.applicationController.updateTemplate(editorObject)
         }
-            
-
-        if (entityId === null && folderId === 'f-3') {
-            await this.applicationController.addTemplate(name, content);
-        }
-        if (entityId !== null && folderId === 'f-3') {
-            await this.applicationController.changeTemplate(entityId, name, content);
+        if (editorObject === null && editorObjectType === 'template') {
+            await this.applicationController.addTemplate(name, content)
         } 
     }
 
-    /**
-     * 
-     * This method is called when a note card has been clicked.
-     */
-    openNoteInTextEditor(note, allFolderNames, allTemplateNames) {
-        this.textEditorModel.storeNoteData(note);
-        this.textEditorView.open(note, allFolderNames, allTemplateNames);
+    openInTextEditor(editorObject, editorObjectType, allFolderNames, allTemplateNames) {
+        this.model.storeEditorObject(editorObject, editorObjectType);
+        this.textEditorView.open(editorObject, allFolderNames, allTemplateNames);
     }
 
-    /**
-     * 
-     * This method is called when a template card has been clicked.
-     */
-    openTemplateInTextEditor(template, allFolderNames, allTemplateNames) {
-        this.textEditorModel.storeTemplateData(template)
-        this.textEditorView.open(template, allFolderNames, allTemplateNames)
+    storeEditorObject(editorObject, editorObjectType) {
+        this.model.storeEditorObject(editorObject, editorObjectType);
     }
 
-    /**
-     * This method returns a list of note data 
-     * And clears the stored data from the model.
-     * 
-     * @returns This method returns a list of stored note data.
-     */
-    getStoredNoteData() {
-        return this.textEditorModel.getStoredNoteData();
-    }
-
-    /**
-     * This method stores the following note data 
-     * And clears the stored data from the model.
-     */
-    storeNoteData(note) {
-        this.textEditorModel.storeNoteData(note);
-    }
-
-    storeTemplateData(template) {
-        this.textEditorModel.storeTemplateData(template)
-    }
-
-    clearStoredNoteData() {
-        this.textEditorModel.clear();
-    }
-
-    showTextEditor(allFolderNames, allTemplateNames) {
+    showTextEditor(editorObjectType, allFolderNames, allTemplateNames) {
+        this.model.storeEditorObjectType(editorObjectType);
         this.textEditorView.show(allFolderNames, allTemplateNames);
     }
 
-    /**
-     * This method deletes a specific note from withing 
-     * the text editor
-     * 
-     * This method is called when the confirm button 
-     * inside the noteDeleteContainer is clicked.
-     * 
-     * @param {String} noteId 
-     */
+    clearStoredObject() {
+        this.model.clear()
+    }
+
+    getStoredObject() {
+        return this.model.getStoredObject();
+    }
+
     async handleDeleteButtonClick(noteId) {
-        this.clearStoredNoteData();
         await this.applicationController.deleteNote(noteId);
     }
 }

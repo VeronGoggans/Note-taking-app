@@ -8,8 +8,8 @@ import { DeleteModal } from "../components/modals/deleteModal.js";
 
 
 export class TemplateView {
-    constructor(templateController, applicationController, dialog, notificationHandler) {
-        this.templateController = templateController;
+    constructor(controller, applicationController, dialog, notificationHandler) {
+        this.controller = controller;
         this.applicationController = applicationController;
         this.notificationHandler = notificationHandler;
         this.dialog = dialog;
@@ -28,7 +28,7 @@ export class TemplateView {
                 contentFragment.appendChild(templateCard);
                 AnimationHandler.fadeInFromBottom(templateCard);
             } 
-            this._content.appendChild(contentFragment)
+            this._recentTemplates.appendChild(contentFragment)
         } else {
             this.notificationHandler.push('empty')
         }
@@ -37,14 +37,14 @@ export class TemplateView {
 
     renderOne(template) {
         const templateCard = this.#template(template);
-        this._content.appendChild(templateCard);
+        this._recentTemplates.appendChild(templateCard);
         AnimationHandler.fadeInFromBottom(templateCard);
         this.notificationHandler.push('saved');
     }
 
 
     renderUpdate(template) {
-        const templates = this._content.children 
+        const templates = this._recentTemplates.children 
 
         for (let i = 0; i < templates.length; i++) {
             if (templates[i].id === template.id) {
@@ -65,11 +65,11 @@ export class TemplateView {
 
     
     renderDelete(template, closeDialog = true) {
-        const templates = this._content.children;
+        const templates = this._recentTemplates.children;
 
         for (let i = 0; i < templates.length; i++) {
             if (templates[i].id === template.id) {
-                AnimationHandler.fadeOutCard(templates[i], this._content);
+                AnimationHandler.fadeOutCard(templates[i], this._recentTemplates);
                 this.templateObjects.remove(template);
                 this.notificationHandler.push('deleted', template.name);
             }
@@ -89,8 +89,6 @@ export class TemplateView {
         this.dialog.show();
     }
 
-
-
     handleTemplateCardClick(templateId) {
         const template = this.templateObjects.get(templateId);
         template.last_edit = dateFormat(template.last_edit);
@@ -103,7 +101,7 @@ export class TemplateView {
     }
 
     async handleDeleteButtonClick(id) {
-        await this.templateController.deleteTemplate(id);
+        await this.controller.deleteTemplate(id);
     }
 
 
@@ -113,6 +111,7 @@ export class TemplateView {
     }
 
     #initializeDomElements() {
-        this._content = document.querySelector('.content-view');
+        this._recentTemplates = document.querySelector('.recent-templates');
+        this._otherTemplates = document.querySelectorAll('.other-templates');
     }
 }

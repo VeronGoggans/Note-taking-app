@@ -61,7 +61,7 @@ export class Folder {
 
     #attachEventListeners() {
         this.EDIT_ICON.addEventListener('click', () => {this._toggleEditableFolderName()});
-        this.DELETE_ICON.addEventListener('click', () => {this.view.renderDeleteContainer(this.id, this.name)});
+        this.DELETE_ICON.addEventListener('click', () => {this.view.renderDeleteModal(this.id, this.name)});
         this.LOGO.addEventListener('click', () => { this.view.handleFolderCardClick(this.id, this.H4.textContent)});
     }
 
@@ -82,5 +82,33 @@ export class Folder {
             this.applyColor(color);
             this._togglePalette();
         }
+    }
+}
+
+
+export class RecentFolder {
+    constructor(folder, view) {
+        this.id = folder.id;
+        this.name = folder.name
+        this.view = view;
+
+        this.#initializeElements();
+        this.#attachEventListeners();
+        return this.#render();
+    }
+
+    #initializeElements() {
+        this.HOST = CNode.create('div', {'class': 'recent-folder', 'id': this.id});
+        this.ICON = CNode.create('i', {'class': 'fa-solid fa-folder'});
+        this.PARAGRAPH = CNode.create('p', {'textContent': this.name});
+    }
+
+    #render() {
+        this.HOST.append(this.ICON, this.PARAGRAPH);
+        return this.HOST;
+    }
+
+    #attachEventListeners() {
+        this.HOST.addEventListener('click', () => {this.view.handleFolderCardClick(this.id)})
     }
 }

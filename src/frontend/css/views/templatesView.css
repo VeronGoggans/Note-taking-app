@@ -1,0 +1,74 @@
+.templates {
+    display: grid; 
+    grid-template-rows: 120px 1fr;
+    font-family: Roboto;
+    padding: 15px;   
+    height: 100dvh;
+    max-height: 100dvh;
+}
+
+.templates .top {
+    display: flex;
+    column-gap: 30px;
+}
+
+.templates .top-right {
+    padding-top: 20px;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+    color: var(--important);
+}
+
+.templates .top-right p {
+    margin: 5px 0;
+}
+
+.templates .top-right p span {
+    font-size: 25px;
+    margin-left: 10px;
+    font-family: sans-serif;
+}
+
+.templates-title {
+    font-family: sans-serif;
+    color: var(--important);
+}
+
+.add-template-btn {
+    cursor: pointer;
+    border: none;
+    font-size: 16px;
+    border-radius: 10px;
+    padding: 5px 10px;
+    border-radius: 7px; 
+    transition: 200ms;
+    color: white;
+    background-color: #5c7fdd; 
+}
+
+.add-template-btn:hover {
+    background-color: #4371f0;
+    color: white;
+}
+
+.templates .bottom {
+    overflow-y: scroll;
+}
+
+.templates .bottom .block-title {
+    font-family: sans-serif;
+    color: #63656d;
+    margin-top: 20px;
+}
+
+.recent-templates,
+.other-templates {
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    grid-template-rows: repeat(auto-fill, 280px);
+    gap: 15px;
+    margin-bottom: 50px;
+}

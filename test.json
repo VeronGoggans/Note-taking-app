@@ -1,0 +1,20 @@
+[
+    {
+        "editorObjectType": "note",
+        "editorObject": {"note": "this is a note"},
+        "newEditorObject": true,
+        "previousView": "notes"
+    },
+    {
+        "editorObjectType": "note",
+        "editorObject": {"note": "this is a note"},
+        "newEditorObject": false,
+        "previousView": "home"
+    },
+    {
+        "editorObjectType": "",
+        "editorObject": {"note": "this is a note"},
+        "newEditorObject": true,
+        "previousView": "notes"
+    }
+]

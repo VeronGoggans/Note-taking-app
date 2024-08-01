@@ -8,90 +8,86 @@ from os import getcwd
 
 
 class FolderService:
-    def __init__(self, folder_manager: FolderManager, json_manager: JsonManager):
-        self.folder_manager = folder_manager
+    def __init__(self, manager: FolderManager, json_manager: JsonManager):
+        self.manager = manager
         self.json_manager = json_manager
         self.folders_path = getcwd() + '/storage/json/notes.json'
         self.id_path = getcwd() + '/storage/json/id.json'
 
 
-    def add_folder(self, post_request: PostFolderRequest):
-        """
-        Add a new folder with the specified name.
-
-        Args:
-            post_request (PostFolderRequest): 
-            Object containing a name for the new folder.
-            - name (str): The name for the new folder.
-
-        Returns:
-            Union[Folder, HttpStatus]: 
-            - If the folder is successfully added, it returns the new folder object.
-            - If there is an internal server error during the process, it returns 'INTERNAL_SERVER_ERROR'.
-        """
+    def add_folder(self, parent_id: str, post_request: PostFolderRequest):
         folders = self.json_manager.load(self.folders_path)
-        id = self.json_manager.generate_id(self.id_path, 'folder')
+        id = self.__generate_id(parent_id)
         folder = Folder(id, post_request.name, post_request.color)
 
         try:
-            new_folder = self.folder_manager.add_folder(folder, folder)
+            new_folder = self.manager.add_folder(folders, parent_id, folder)
             self.json_manager.update(self.folders_path, folders)
             return new_folder
         except AdditionException as e:
             raise e
 
-    def get_folders(self):
-        """
-        Get information about folders in the folder structure.
 
-        Returns:
-            list or HttpStatus: 
-            - A list containing information (name, id) about the folders.
-        """
+    def get_folders(self, parent_id: str):
         json_folders = self.json_manager.load(self.folders_path)
-        return self.folder_manager.get_folders(json_folders)
-       
+        return self.manager.get_folders(json_folders, parent_id)
+    
+
+    def get_recent_folders(self):
+        json_folders = self.json_manager.load(self.folders_path)
+        recent_folders = self.manager.get_recent_folders(json_folders)
+        self.manager.clear_folder_list()
+        return recent_folders
+    
+
+    def get_search_items(self) -> list:
+        json_folders = self.json_manager.load(self.folders_path)
+        search_items = self.manager.get_search_items(json_folders) 
+
+        if len(search_items) > 0:
+            self.manager.clear_search_list()
+            return search_items
+        raise NotFoundException('There are no folders to be retrieved.')
+    
+
+    def get_folder_by_id(self, folder_id: str):
+        json_folders = self.json_manager.load(self.folders_path)
+        try:
+            return self.manager.get_by_id(json_folders, folder_id)
+        except NotFoundException as e:
+            raise e
+
 
     def update_folder(self, put_request: PutFolderRequest):
-        """
-        Update the name of an existing folder with the specified ID.
-
-        Args:
-            folder (PutFolderRequest): 
-            Object containing the folder_id and the new name for the folder.
-            - folder_id (str): The ID of the folder wished to be updated.
-            - new_name (str): The new name of the folder.
-
-        Returns:
-            dict or HttpStatus: 
-            - If the folder is successfully updated, it returns the updated folder.
-            - If the specified folder is not found, it returns 'NOT_FOUND'.
-        """
         folders = self.json_manager.load(self.folders_path)
         try:
-            folder = self.folder_manager.update_folder(folders, put_request.folder_id, put_request.name, put_request.color)
+            folder = self.manager.update_folder(folders, put_request.folder_id, put_request.name, put_request.color)
             self.json_manager.update(self.folders_path, folders)
             return folder
         except NotFoundException as e:
             raise e
+        
     
-    
-    def delete_folder(self, folder_id: str):
-        """
-        Delete an existing folder with the specified ID.
-
-        Args:
-            - folder_id (str): The ID of the folder wished to be deleted.
-
-        Returns:
-            HttpStatus: 
-            - If the folder is successfully deleted, it returns 'OK'.
-            - If the specified folder is not found, it returns 'NOT_FOUND'.
-        """
+    def update_visit(self, folder_id: str):
         folders = self.json_manager.load(self.folders_path)
         try:
-            folder = self.folder_manager.delete_folder(folders, folder_id)
+            self.manager.update_visit_date(folders, folder_id)
+            self.json_manager.update(self.folders_path, folders)
+        except NotFoundException as e:
+            raise e
+    
+
+    def delete_folder(self, parent_id: str, folder_id: str):
+        folders = self.json_manager.load(self.folders_path)
+        try:
+            folder = self.manager.delete_folder(folders, parent_id, folder_id)
             self.json_manager.update(self.folders_path, folders)
             return folder
         except NotFoundException as e:
             raise e
+        
+    
+    def __generate_id(self, parent_id: str) -> str:
+        if parent_id == 'f-1':
+            return self.json_manager.generate_id(self.id_path, 'folder')
+        return self.json_manager.generate_id(self.id_path, 'subfolder')

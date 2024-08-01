@@ -17,7 +17,8 @@ class NoteRouter:
         self.route.add_api_route('/note', self.add_note, methods=['POST'])
         self.route.add_api_route('/notes/{folder_id}', self.get_notes, methods=['GET'])
         self.route.add_api_route('/noteById/{note_id}', self.get_note_by_id, methods=['GET'])
-        self.route.add_api_route('/noteSearchObjects', self.get_note_name_id, methods=['GET'])
+        self.route.add_api_route('/noteSearchItems', self.get_search_items, methods=['GET'])
+        self.route.add_api_route('/recentNotes', self.get_recent_notes, methods=['GET'])
         self.route.add_api_route('/cache', self.cache, methods=['GET'])
         self.route.add_api_route('/note', self.update_note, methods=['PUT'])
         self.route.add_api_route('/moveNote', self.move_note, methods=['PUT'])
@@ -58,12 +59,17 @@ class NoteRouter:
             return {'status': 'not_found', 'message': str(e)}, HttpStatus.NOT_FOUND
 
 
-    def get_note_name_id(self):
+    def get_search_items(self):
         try:
             notes = self.service.get_search_options()
             return {'status': 'succes', 'notes': notes}, HttpStatus.OK
         except NotFoundException as e:
             return {'status': 'not_found', 'message': str(e)}, HttpStatus.NO_CONTENT
+        
+
+    def get_recent_notes(self):
+        notes = self.service.get_recent_notes()
+        return {'status': 'succes', 'notes': notes}, HttpStatus.OK
     
 
     def update_note(self, put_request: PutNoteRequest):

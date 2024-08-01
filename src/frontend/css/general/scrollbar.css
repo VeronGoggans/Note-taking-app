@@ -1,4 +1,4 @@
-.note-suggestions-list::-webkit-scrollbar,
+.searchbar ul::-webkit-scrollbar,
 .linkable-notes-list::-webkit-scrollbar,
 .content-view::-webkit-scrollbar,
 .font-options::-webkit-scrollbar,
@@ -13,7 +13,7 @@
     background-color: #cfd2e3;
 } 
 
-.note-suggestions-list::-webkit-scrollbar-thumb,
+.searchbar ul::-webkit-scrollbar-thumb,
 .font-options::-webkit-scrollbar-thumb,
 .linkable-notes-list::-webkit-scrollbar-thumb {
     background-color: var(--scrollbar-content-view);
@@ -37,4 +37,17 @@
 
 .editor::-webkit-scrollbar-thumb:active {
    background-color: #bbbed4;
+}
+
+
+.home .middle::-webkit-scrollbar,
+.templates .bottom::-webkit-scrollbar {
+    background-color: transparent;
+    width: 10px;
+}
+
+.home .middle::-webkit-scrollbar-thumb,
+.templates .bottom::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #bbbed4;
 }
