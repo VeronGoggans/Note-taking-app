@@ -149,7 +149,7 @@ class FolderManager:
     
     def __get_top_5_most_recent_folders(self) -> list:
         # Sort the Folder objects based on last_visit in descending order
-        self.folder_list = sorted(self.folder_list, key=lambda folder: folder['last_visit'], reverse=True)
+        self.folder_list.sort(key=lambda folder: folder['last_visit'], reverse=True)
 
         # Get the 5 most recently viewed folders
         most_recent_folders = self.folder_list[:5]

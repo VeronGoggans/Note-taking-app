@@ -199,7 +199,7 @@ class NoteManager:
 
     def __get_top_5_most_recent_notes(self) -> list:
         # Sort the Note objects based on last_visit in descending order
-        self.notes_list.sort(key=lambda note: note['last_edit'], reverse=True)
+        self.notes_list.sort(key=lambda note: note['last_edit'], reverse=False)
 
         # Get the 5 most recetly worked on notes
         most_recent_notes = self.notes_list[:5]

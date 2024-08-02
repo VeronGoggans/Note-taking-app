@@ -3,7 +3,7 @@
         "id": "f-1",
         "name": "Home",
         "color": "rgb(255, 255, 255)",
-        "last_visit": "03/08/2024 00:20:58",
+        "last_visit": "03/08/2024 00:43:34",
         "notes": [
             {
                 "id": "n-692",
@@ -21,21 +21,21 @@
         "id": "f-99",
         "name": "School \ud83d\udcd6\u270f\ufe0f",
         "color": "rgb(255, 255, 255)",
-        "last_visit": "02/08/2024 15:49:36",
+        "last_visit": "03/08/2024 00:35:55",
         "notes": [],
         "subfolders": [
             {
                 "id": "s-191",
                 "name": "Year 2",
                 "color": "rgb(255, 255, 255)",
-                "last_visit": "02/08/2024 15:49:38",
+                "last_visit": "03/08/2024 00:42:51",
                 "notes": [],
                 "subfolders": [
                     {
                         "id": "s-181",
                         "name": "Software Architecture\ud83c\udf31",
                         "color": "rgb(255, 255, 255)",
-                        "last_visit": "02/08/2024 15:49:38",
+                        "last_visit": "03/08/2024 00:42:59",
                         "notes": [
                             {
                                 "id": "n-589",
@@ -61,7 +61,7 @@
                                 "content": "storage/notes/note-n-625.txt",
                                 "bookmark": false,
                                 "favorite": false,
-                                "last_edit": "26/06/2024 18:02",
+                                "last_edit": "03/08/2024 00:35",
                                 "creation": "03/06/2024"
                             },
                             {
@@ -218,7 +218,7 @@
         "id": "f-125",
         "name": "Other",
         "color": "rgb(158, 213, 197)",
-        "last_visit": "02/08/2024 16:02:34",
+        "last_visit": "03/08/2024 00:42:46",
         "notes": [
             {
                 "id": "n-585",
