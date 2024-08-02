@@ -3,7 +3,7 @@
         "id": "f-1",
         "name": "Home",
         "color": "rgb(255, 255, 255)",
-        "last_visit": "01/08/2024 12:10:28",
+        "last_visit": "03/08/2024 00:20:58",
         "notes": [
             {
                 "id": "n-692",
@@ -11,7 +11,7 @@
                 "content": "storage/notes/note-n-692.txt",
                 "bookmark": true,
                 "favorite": false,
-                "last_edit": "01/08/2024 12:10",
+                "last_edit": "03/08/2024 00:20",
                 "creation": "30/07/2024"
             }
         ],
@@ -21,21 +21,21 @@
         "id": "f-99",
         "name": "School \ud83d\udcd6\u270f\ufe0f",
         "color": "rgb(255, 255, 255)",
-        "last_visit": "01/08/2024 12:09:19",
+        "last_visit": "02/08/2024 15:49:36",
         "notes": [],
         "subfolders": [
             {
                 "id": "s-191",
                 "name": "Year 2",
                 "color": "rgb(255, 255, 255)",
-                "last_visit": "01/08/2024 12:09:20",
+                "last_visit": "02/08/2024 15:49:38",
                 "notes": [],
                 "subfolders": [
                     {
                         "id": "s-181",
                         "name": "Software Architecture\ud83c\udf31",
                         "color": "rgb(255, 255, 255)",
-                        "last_visit": "01/08/2024 12:09:21",
+                        "last_visit": "02/08/2024 15:49:38",
                         "notes": [
                             {
                                 "id": "n-589",
@@ -134,7 +134,7 @@
                         "id": "s-182",
                         "name": "CISC2",
                         "color": "rgb(255, 255, 255)",
-                        "last_visit": "01/08/2024 12:09:34",
+                        "last_visit": "02/08/2024 15:49:50",
                         "notes": [
                             {
                                 "id": "n-609",
@@ -206,7 +206,7 @@
                         "id": "s-193",
                         "name": "Innovation",
                         "color": "rgb(255, 255, 255)",
-                        "last_visit": "30/07/2024 12:02:04.2024-07",
+                        "last_visit": "02/08/2024 15:48:45",
                         "notes": [],
                         "subfolders": []
                     }
@@ -216,9 +216,9 @@
     },
     {
         "id": "f-125",
-        "name": "Thoughts",
-        "color": "rgb(255, 255, 255)",
-        "last_visit": "29/07/2024 16:04",
+        "name": "Other",
+        "color": "rgb(158, 213, 197)",
+        "last_visit": "02/08/2024 16:02:34",
         "notes": [
             {
                 "id": "n-585",

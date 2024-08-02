@@ -3,8 +3,8 @@ from src.backend.presentation.http_status import HttpStatus
 from src.backend.application.flashcard_service import FlashcardService
 from src.backend.data.flashcard.flashcard_manager import FlashcardManager
 from src.backend.data.exceptions.exceptions import NotFoundException, SerializationException
-from src.backend.presentation.request_bodies.flashcard.flashcard_request import PostFlashcardsRequest, PutFlashcardsRequest, DeleteFlashcardsRequest
-from src.backend.presentation.dtos.flashcard.flashcard_dto import PostFlashcardDTO, FlashcardDTO
+from src.backend.presentation.request_bodies.flashcard_requests import PostFlashcardsRequest, PutFlashcardsRequest, DeleteFlashcardsRequest
+from src.backend.presentation.dtos.flashcard_dtos import PostFlashcardDTO, FlashcardDTO
 
 
 class FlashcardRouter:

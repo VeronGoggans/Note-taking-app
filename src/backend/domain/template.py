@@ -4,12 +4,13 @@ from src.backend.data.file.text_manager import TextManager
 
 class Template:
     def __init__(self, id: str, name: str, content: str, 
-                last_edit = Calendar.datetime(), creation = Calendar.date()):
+                last_edit = Calendar.datetime(), creation = Calendar.date(), uses = 0):
         self.id = id
         self.name = name
         self.content = content
         self.last_edit = last_edit
         self.creation = creation
+        self.uses = uses
 
 
     def set_content_text(self):
@@ -38,6 +39,11 @@ class Template:
         """This method uses the template path do delete the file."""
         TextManager.delete(template_path)
 
+
+    def increment_uses_by_one(self):
+        self.uses += 1
+
+
     @classmethod
     def from_json(self, json_template):
         return Template(
@@ -45,5 +51,6 @@ class Template:
             json_template['name'], 
             json_template['content'], 
             json_template['last_edit'],
-            json_template['creation']
+            json_template['creation'],
+            json_template['uses']
         )

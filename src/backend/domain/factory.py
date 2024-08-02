@@ -1,5 +1,6 @@
 from src.backend.domain.note import Note
 from src.backend.domain.template import Template
+from src.backend.data.exceptions.exceptions import DeserializationException
 
 class Factory:    
 
@@ -29,10 +30,12 @@ class Factory:
     @staticmethod
     def create_template_list(templates: list) -> list[Template]:
         template_objects = []
+        try:
+            for t in templates:
+                template = Template.from_json(t)
+                template.set_content_text()
+                template_objects.append(template)
 
-        for t in templates:
-            template = Template.from_json(t)
-            template.set_content_text()
-            template_objects.append(template)
-
-        return template_objects
+            return template_objects
+        except Exception as e:
+            raise DeserializationException('Failed to deserialize the templates', errors={'exceptions': str(e)})

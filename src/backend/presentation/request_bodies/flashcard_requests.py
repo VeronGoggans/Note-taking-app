@@ -26,3 +26,13 @@ class PutFlashcardsRequest(BaseModel):
 class DeleteFlashcardsRequest(BaseModel):
     deck_id: str
     flashcard_ids: list[int]
+
+
+class PostDeckRequest(BaseModel):
+    name: str
+    flashcards: list[PostFlashcardRequest]
+
+
+class PutDeckRequest(BaseModel):
+    id: str
+    name: str

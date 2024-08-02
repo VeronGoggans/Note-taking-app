@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from src.backend.data.folder.folder_manager import FolderManager
-from src.backend.presentation.request_bodies.folder.post_folder_request import PostFolderRequest
-from src.backend.presentation.request_bodies.folder.put_folder_request import PutFolderRequest
+from src.backend.presentation.request_bodies.folder_requests import FolderRequest
+from src.backend.presentation.dtos.folder_dtos import FolderRequestDto
 from src.backend.data.exceptions.exceptions import NotFoundException, AdditionException
 from src.backend.presentation.http_status import HttpStatus
 from src.backend.application.folder_service import FolderService
@@ -11,7 +11,7 @@ class FolderRouter:
         self.route = APIRouter()
         self.service = FolderService(FolderManager(), json_manager)
 
-        self.route.add_api_route('/folder/{parent_id}', self.add_folder, methods=['POST'])
+        self.route.add_api_route('/folder', self.add_folder, methods=['POST'])
         self.route.add_api_route('/folders/{parent_id}', self.get_folders, methods=['GET'])
         self.route.add_api_route('/recentFolders', self.get_recent_folders, methods=['GET'])
         self.route.add_api_route('/folderSearchItems', self.get_search_items, methods=['GET'])
@@ -21,9 +21,10 @@ class FolderRouter:
         self.route.add_api_route('/viewedFolderTime/{folder_id}', self.folder_visit, methods=['PATCH'])
 
 
-    def add_folder(self, parent_id: str, request: PostFolderRequest):
+    def add_folder(self, request: FolderRequest):
         try:
-            folder = self.service.add_folder(parent_id, request)
+            request_dto = FolderRequestDto(request.folder_id, request.name, request.color)
+            folder = self.service.add_folder(request_dto)
             return {'status': 'succes', "folder": folder}, HttpStatus.OK
         except AdditionException as e:
             return {'status': 'error', 'message': str(e)}, HttpStatus.INTERAL_SERVER_ERROR
@@ -61,7 +62,7 @@ class FolderRouter:
             return {'status': 'not_found', 'message': str(e)}, HttpStatus.NOT_FOUND
 
 
-    def update_folder(self, request: PutFolderRequest):
+    def update_folder(self, request: FolderRequest):
         try:
             folder = self.service.update_folder(request)
             return {'status': 'succes', "folder": folder}, HttpStatus.OK

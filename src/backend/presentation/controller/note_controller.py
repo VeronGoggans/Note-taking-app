@@ -1,9 +1,8 @@
 from fastapi import APIRouter
 from src.backend.application.note_service import NoteService
 from src.backend.data.note.note_manager import NoteManager
-from src.backend.presentation.request_bodies.note.post_note_request import PostNoteRequest
-from src.backend.presentation.request_bodies.note.put_note_request import PutNoteRequest
-from src.backend.presentation.request_bodies.note.move_note_request import MoveNoteRequest
+from src.backend.presentation.request_bodies.note_requests import *
+from src.backend.presentation.dtos.note_dtos import *
 from src.backend.presentation.http_status import HttpStatus
 from src.backend.data.exceptions.exceptions import NotFoundException, AdditionException
 
@@ -25,9 +24,10 @@ class NoteRouter:
         self.route.add_api_route('/note/{note_id}', self.delete_note, methods=['DELETE'])
         
 
-    def add_note(self, post_request: PostNoteRequest):
+    def add_note(self, request: PostNoteRequest):
         try:
-            note = self.service.add_note(post_request)
+            request_dto = PostNoteDto(request.folder_id, request.name, request.content)
+            note = self.service.add_note(request_dto)
             return {'status': 'succes', 'note': note}, HttpStatus.OK
         except NotFoundException as e:
             return {'status': 'not_found', 'message': str(e)}, HttpStatus.NOT_FOUND
@@ -72,17 +72,20 @@ class NoteRouter:
         return {'status': 'succes', 'notes': notes}, HttpStatus.OK
     
 
-    def update_note(self, put_request: PutNoteRequest):
+    def update_note(self, request: PutNoteRequest):
         try:
-            note = self.service.update_note(put_request)
+            request_dto = PutNoteDto(request.note_id, request.name, request.content, 
+                                     request.bookmark, request.favorite)
+            
+            note = self.service.update_note(request_dto)
             return {'status': 'succes', 'note': note}, HttpStatus.OK
         except NotFoundException as e:
             return {'status': 'not_found', 'message': str(e)}, HttpStatus.NOT_FOUND
 
 
-    def move_note(self, mover_request: MoveNoteRequest):
+    def move_note(self, request: MoveNoteRequest):
         try:
-            note = self.service.move_note(mover_request)
+            note = self.service.move_note(request.folder_id, request.note_id)
             return {'status': 'succes', 'note': note}, HttpStatus.OK
         except AdditionException as e:
             return {'status': 'error', 'message': str(e)}, HttpStatus.INTERAL_SERVER_ERROR

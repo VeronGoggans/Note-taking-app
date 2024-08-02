@@ -136,8 +136,7 @@ export class ApplicationController {
     }
 
     async addTemplate(name, content) {
-        const template = await this.templateController.addTemplate(name, content);
-        this.textEditorController.storeTemplateData(template);
+        await this.templateController.addTemplate(name, content);
     }
 
     getTemplates() {
@@ -157,8 +156,8 @@ export class ApplicationController {
         this.settingController.setTheme(init, THEME);
     }
 
-    async getTemplateById(templateId) {
-        return await this.templateController.getTemplateById(templateId)
+    async getTemplateById(templateId, updateUseCount) {
+        return await this.templateController.getTemplateById(templateId, updateUseCount)
     }
 
     getCurrentFolderObject() {

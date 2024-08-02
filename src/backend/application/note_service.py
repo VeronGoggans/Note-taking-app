@@ -1,7 +1,5 @@
 from src.backend.data.note.note_manager import NoteManager
-from src.backend.presentation.request_bodies.note.post_note_request import PostNoteRequest
-from src.backend.presentation.request_bodies.note.put_note_request import PutNoteRequest
-from src.backend.presentation.request_bodies.note.move_note_request import MoveNoteRequest
+from src.backend.presentation.dtos.note_dtos import *
 from src.backend.domain.note import Note
 from src.backend.data.exceptions.exceptions import NotFoundException, AdditionException
 from src.backend.data.file.json_manager import JsonManager
@@ -17,14 +15,14 @@ class NoteService:
         self.id_path = f'{self.BASE_URL}/storage/json/id.json'
 
 
-    def add_note(self, post_request: PostNoteRequest):
+    def add_note(self, request_dto: PostNoteDto):
         note_id = self.json_manager.generate_id(self.id_path, 'note')
-        note = Note(note_id, post_request.name, post_request.content)
+        note = Note(note_id, request_dto.name, request_dto.content)
         note.set_content_path()
 
         folders = self.json_manager.load(self.folders_path)
         try:
-            note = self.note_manager.add_note(folders, post_request.folder_id, note)
+            note = self.note_manager.add_note(folders, request_dto.folder_id, note)
             self.json_manager.update(self.folders_path, folders)
             return note
         except AdditionException as e:
@@ -63,10 +61,10 @@ class NoteService:
         return recent_notes
 
 
-    def update_note(self, put_request: PutNoteRequest):
+    def update_note(self, request_dto: PutNoteDto):
         folders = self.json_manager.load(self.folders_path)
         try:
-            note = self.note_manager.update_note(folders, put_request)
+            note = self.note_manager.update_note(folders, request_dto)
             self.json_manager.update(self.folders_path, folders)
             return note 
         except NotFoundException as e:
@@ -83,13 +81,13 @@ class NoteService:
             raise e
 
 
-    def move_note(self, move_request: MoveNoteRequest):
+    def move_note(self, folder_id: str, note_id: str):
         folders = self.json_manager.load(self.folders_path)
         try:
-            deleted_note = self.note_manager.delete_note(folders, move_request.note_id, delete_txt_file=False)
+            deleted_note = self.note_manager.delete_note(folders, note_id, delete_txt_file=False)
             deleted_note_object = Note.from_json(deleted_note)
 
-            new_note = self.note_manager.add_note(folders, move_request.folder_id, deleted_note_object)
+            new_note = self.note_manager.add_note(folders, folder_id, deleted_note_object)
             self.json_manager.update(self.folders_path, folders)
             return new_note
         except (NotFoundException, AdditionException) as e:

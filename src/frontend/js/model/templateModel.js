@@ -8,11 +8,7 @@ export class TemplateModel {
         const options = RequestOptionsBuilder.buildGetOptions();
         return fetchData(endpoint, options);
     }
-
-    async getById(endpoint, templateId) {
-        const options = RequestOptionsBuilder.buildGetOptions();
-        return fetchData(`${endpoint}/${templateId}`, options);
-    }
+    
 
     async add(endpoint, name, content) {
         const options = RequestOptionsBuilder.buildPostOptions({
@@ -22,10 +18,11 @@ export class TemplateModel {
         return fetchData(endpoint, options)
     }
 
-    async update(endpoint, name, content) {
+    async update(endpoint, template) {
         const options = RequestOptionsBuilder.buildPutOptions({
-            'name': name,
-            'content': content
+            'id': template.id,
+            'name': template.name,
+            'content': template.content
         })
         return fetchData(endpoint, options)
     }

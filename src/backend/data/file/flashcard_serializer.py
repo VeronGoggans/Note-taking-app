@@ -1,6 +1,6 @@
 from os import getcwd
 from src.backend.domain.enums.flashcard_rating import FlashcardRating
-from src.backend.presentation.dtos.flashcard.flashcard_dto import FlashcardDTO
+from src.backend.presentation.dtos.flashcard_dtos import FlashcardDTO
 from src.backend.data.exceptions.exceptions import SerializationException, DeserializationException
 from src.backend.data.file.text_manager import TextManager
 

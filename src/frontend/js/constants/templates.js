@@ -57,11 +57,12 @@ export const templatesTemplate =  `
         <div class="top">
             <div class="top-left">
                 <h1 class="templates-title">Templates</h1>
-                <button class="add-template-btn"><i class="fa-solid fa-plus"></i> Add</button>
+                <button class="add-template-btn"><i class="fa-solid fa-plus"></i>Add template</button>
             </div>
             <div class="top-right">
-                <p>Time saved: <span>0</span>h <span>0</span>m</p>
-                <p>Uses: <span>0</span></p>
+                <p>Uses: <span class="total-uses-count">0</span></p>
+                <p>Templates: <span class="template-count"></span></p>
+                <p>Most used: <span class="most-used-template"></span></p>
             </div>
         </div>
         <div class="bottom">

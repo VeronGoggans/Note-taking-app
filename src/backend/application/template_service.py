@@ -1,8 +1,8 @@
 from src.backend.data.template.template_manager import TemplateManager
 from src.backend.data.file.json_manager import JsonManager
 from src.backend.domain.template import Template
-from src.backend.presentation.http_status import HttpStatus
-from src.backend.presentation.request_bodies.template.template_request import TemplateRequest
+from src.backend.presentation.dtos.template_dtos import *
+from src.backend.data.exceptions.exceptions import *
 from os import getcwd
 
 class TemplateService:
@@ -13,57 +13,63 @@ class TemplateService:
         self.templates_path = f'{self.BASE_URL}/storage/json/templates.json'
         self.id_path = f'{self.BASE_URL}/storage/json/id.json'
 
-
-    def get_templates(self) -> list[Template]:
-        template_structure = self.json_manager.load(self.templates_path)
-        templates = self.manager.get_all(template_structure)
-        return templates
     
-
-    def get_template_by_id(self, id: str) -> Template:
+    def add_template(self, request_dto: PostTemplateDto):
+        template_id = self.json_manager.generate_id(self.id_path, 'template')
         template_structure = self.json_manager.load(self.templates_path)
-        template = self.manager.get_by_id(template_structure, id)
-        if template:
-            return template
-        return HttpStatus.NOT_FOUND
+
+        template = Template(template_id, request_dto.name, request_dto.content)
+        template.set_content_path()
+        try:
+            new_template = self.manager.add(template_structure, template)
+            self.json_manager.update(self.templates_path, template_structure)
+            return new_template
+        except AdditionException as e:
+            raise e
+
+
+    def get_templates(self) -> list[list[Template], list[Template]]:
+        try:
+            template_structure = self.json_manager.load(self.templates_path)
+            templates = self.manager.get_all(template_structure)
+            return templates
+        except DeserializationException as e:
+            raise e
+        
+
+    def get_template_by_id(self, id: str, update_use_count: bool) -> Template:
+        template_structure = self.json_manager.load(self.templates_path)
+        try:
+            template = self.manager.get_by_id(template_structure, id, update_use_count)
+            if update_use_count:
+                self.json_manager.update(self.templates_path, template_structure)
+            return template    
+        except NotFoundException as e:
+            raise e
     
 
     def get_template_names(self):
         template_structure = self.json_manager.load(self.templates_path)
         templates = self.manager.get_all_names(template_structure)
         return templates
-    
 
-    def add_template(self, template_data: TemplateRequest):
-        template_id = self.json_manager.generate_id(self.id_path, 'template')
+
+    def update_template(self, request_dto: PutTemplateDto):
         template_structure = self.json_manager.load(self.templates_path)
-
-        template = Template(template_id, template_data.name, template_data.content)
-        template.set_content_path()
-        new_template = self.manager.add(template_structure, template)
-        
-        if new_template:
-            self.json_manager.update(self.templates_path, template_structure)
-            return new_template
-        return HttpStatus.INTERAL_SERVER_ERROR
-
-
-    def update_template(self, id: str, template_data: TemplateRequest):
-        template_structure = self.json_manager.load(self.templates_path)
-        updated_template = self.manager.update(id, template_structure, template_data)
-
-        if updated_template:
+        try:
+            updated_template = self.manager.update(template_structure, request_dto)
             self.json_manager.update(self.templates_path, template_structure)
             return updated_template
-        return HttpStatus.NOT_FOUND
+        except NotFoundException as e:
+            raise e
 
 
     def delete_template(self, template_id: str):
         template_structure = self.json_manager.load(self.templates_path)
-        deleted_template = self.manager.delete(template_structure, template_id)
-
-        if deleted_template:
+        try:
+            deleted_template = self.manager.delete(template_structure, template_id)
             self.json_manager.update(self.templates_path, template_structure)
             return deleted_template
-        return HttpStatus.NOT_FOUND
-    
+        except NotFoundException as e:
+            raise e
+        

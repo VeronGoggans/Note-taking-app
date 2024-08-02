@@ -2,9 +2,9 @@ from fastapi import APIRouter
 from src.backend.presentation.http_status import HttpStatus
 from src.backend.application.flashcard_deck_service import FlashcardDeckService
 from src.backend.data.flashcard.flashcard_deck_manager import FlashcardDeckManager
-from src.backend.presentation.request_bodies.flashcard.deck_request import PostDeckRequest, PutDeckRequest
-from src.backend.presentation.request_bodies.flashcard.flashcard_request import PostFlashcardRequest
-from src.backend.presentation.dtos.flashcard.flashcard_dto import PostFlashcardDTO
+from src.backend.presentation.request_bodies.flashcard_requests import PostDeckRequest, PutDeckRequest
+from src.backend.presentation.request_bodies.flashcard_requests import PostFlashcardRequest
+from src.backend.presentation.dtos.flashcard_dtos import PostFlashcardDTO
 from src.backend.data.exceptions.exceptions import SerializationException, NotFoundException, DeserializationException
 
 

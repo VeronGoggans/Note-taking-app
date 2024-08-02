@@ -2,7 +2,9 @@ from fastapi import APIRouter
 from src.backend.application.template_service import TemplateService
 from src.backend.data.template.template_manager import TemplateManager
 from src.backend.presentation.http_status import HttpStatus
-from src.backend.presentation.request_bodies.template.template_request import TemplateRequest
+from src.backend.presentation.request_bodies.template_requests import *
+from src.backend.presentation.dtos.template_dtos import *
+from src.backend.data.exceptions.exceptions import *
 
 class TemplateRouter:
     def __init__(self, json_manager):
@@ -10,50 +12,57 @@ class TemplateRouter:
         self.service = TemplateService(TemplateManager(), json_manager)
 
         self.route.add_api_route('/templates', self.get_templates, methods=['GET'])
-        self.route.add_api_route('/template/{id}', self.get_template_by_id, methods=['GET'])
+        self.route.add_api_route('/templateById/{id}/{update_use_count}', self.get_template_by_id, methods=['GET'])
         self.route.add_api_route('/templateNames', self.get_template_names, methods=['GET'])
 
         self.route.add_api_route('/template', self.add_template, methods=['POST'])
-        self.route.add_api_route('/template/{id}', self.update_template, methods=['PUT'])
+        self.route.add_api_route('/template', self.update_template, methods=['PUT'])
         self.route.add_api_route('/template/{template_id}', self.delete_template, methods=['DELETE'])
 
 
     def get_templates(self):
-        response = self.service.get_templates()
-        return {"HttpStatus_code": HttpStatus.OK, "Templates": response}
-    
+        try:
+            recent, other, total_uses, most_used = self.service.get_templates()
+            return {'status': 'succes', 'recent': recent, 'other': other, 'totalUses': total_uses, 'mostUsed': most_used}, HttpStatus.OK
+        except DeserializationException as e:
+            return {'status': 'error', 'message': str(e)}, HttpStatus.INTERAL_SERVER_ERROR
 
-    def get_template_by_id(self, id: str):
-        response = self.service.get_template_by_id(id)
-        if response != HttpStatus.NOT_FOUND:
-            return {"HttpStatus_code": HttpStatus.OK, "Template": response}
-        return {"HttpStatus_code": HttpStatus.NOT_FOUND, "Template": None}
-    
+
+    def get_template_by_id(self, id: str, update_use_count: bool):
+        try:
+            template = self.service.get_template_by_id(id, update_use_count)
+            return {'status': 'succes', 'template': template}, HttpStatus.OK
+        except NotFoundException as e:
+            return {'status': 'not_found', 'message': str(e)}, HttpStatus.NOT_FOUND
+            
 
     def get_template_names(self):
-        response = self.service.get_template_names()
-        return {"HttpStatus_code": HttpStatus.OK, "Templates": response}
+        templates = self.service.get_template_names()
+        return {'status': 'succes', 'templates': templates}, HttpStatus.OK
     
 
-    def add_template(self, template: TemplateRequest):
-        response = self.service.add_template(template)
-
-        if response != HttpStatus.INTERAL_SERVER_ERROR:
-            return {'HttpStatus_code': HttpStatus.OK, "Template": response}
-        return {'HttpStatus_code': HttpStatus.INTERAL_SERVER_ERROR}
+    def add_template(self, request: PostTemplateRequest):
+        try:
+            request_dto = PostTemplateDto(request.name, request.content)
+            template = self.service.add_template(request_dto)
+            return {'status': 'succes', 'template': template}, HttpStatus.OK
+        except AdditionException as e:
+            return {'status': 'error', 'message': str(e)}, HttpStatus.INTERAL_SERVER_ERROR
     
 
-    def update_template(self, id: str, template: TemplateRequest):
-        response = self.service.update_template(id, template)
+    def update_template(self, request: PutTemplateRequest):
+        try:
+            request_dto = PutTemplateDto(request.id, request.name, request.content)
+            template = self.service.update_template(request_dto)
+            return {'status': 'succes', 'template': template}, HttpStatus.OK 
+        except NotFoundException as e:
+            return {'status': 'not_found', 'message': str(e)}, HttpStatus.NOT_FOUND
 
-        if response != HttpStatus.NOT_FOUND:
-            return {'HttpStatus_code': HttpStatus.OK, "Template": response}
-        return {'HttpStatus_code': HttpStatus.NOT_FOUND}
-    
 
     def delete_template(self, template_id: str):
-        response = self.service.delete_template(template_id)
-
-        if response != HttpStatus.NOT_FOUND:
-            return {'HttpStatus_code': HttpStatus.OK, "Template": response}
-        return {'HttpStatus_code': HttpStatus.NOT_FOUND}
+        try:
+            template = self.service.delete_template(template_id)
+            return {'status': 'succes', 'template': template}, HttpStatus.OK
+        except NotFoundException as e:
+            return {'status': 'not_found', 'message': str(e)}, HttpStatus.NOT_FOUND
+        

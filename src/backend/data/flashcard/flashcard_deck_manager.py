@@ -1,5 +1,5 @@
 from src.backend.domain.flashcard_deck import FlashcardDeck
-from src.backend.presentation.dtos.flashcard.flashcard_dto import PostFlashcardDTO
+from src.backend.presentation.dtos.flashcard_dtos import PostFlashcardDTO
 from src.backend.data.file.flashcard_serializer import FlashcardSerializer
 from src.backend.data.file.text_manager import TextManager
 from src.backend.data.exceptions.exceptions import AdditionException, NotFoundException, DeserializationException

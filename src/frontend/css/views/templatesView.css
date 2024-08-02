@@ -1,6 +1,6 @@
 .templates {
     display: grid; 
-    grid-template-rows: 120px 1fr;
+    grid-template-rows: 130px 1fr;
     font-family: Roboto;
     padding: 15px;   
     height: 100dvh;
@@ -48,6 +48,10 @@
     background-color: #5c7fdd; 
 }
 
+.add-template-btn i {
+    margin-right: 5px;
+}
+
 .add-template-btn:hover {
     background-color: #4371f0;
     color: white;
@@ -67,8 +71,6 @@
 .other-templates {
     max-width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    grid-template-rows: repeat(auto-fill, 280px);
-    gap: 15px;
-    margin-bottom: 50px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-rows: repeat(auto-fill, 320px);
 }

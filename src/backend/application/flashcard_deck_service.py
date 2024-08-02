@@ -1,7 +1,7 @@
 from src.backend.data.file.json_manager import JsonManager
 from src.backend.data.flashcard.flashcard_deck_manager import FlashcardDeckManager
-from src.backend.presentation.request_bodies.flashcard.deck_request import PutDeckRequest
-from src.backend.presentation.dtos.flashcard.flashcard_dto import PostFlashcardDTO
+from src.backend.presentation.request_bodies.flashcard_requests import PutDeckRequest
+from src.backend.presentation.dtos.flashcard_dtos import PostFlashcardDTO
 from src.backend.domain.flashcard_deck import FlashcardDeck
 from src.backend.data.file.text_manager import TextManager
 from src.backend.data.exceptions.exceptions import SerializationException, AdditionException, NotFoundException, DeserializationException

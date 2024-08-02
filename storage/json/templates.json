@@ -1,9 +1,10 @@
 [
     {
-        "id": "t-3",
-        "name": "Software Project planning",
-        "content": "storage/templates/template-t-3.txt",
-        "last_edit": "29/06/2024 18:33",
-        "creation": "29/05/2024"
+        "id": "t-26",
+        "name": "Project Planning",
+        "content": "storage/templates/template-t-26.txt",
+        "last_edit": "02/08/2024 23:58",
+        "creation": "02/08/2024",
+        "uses": 0
     }
 ]

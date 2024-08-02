@@ -1,10 +1,7 @@
 import { Template } from "../components/template.js"; 
 import { AnimationHandler } from "../handlers/animation/animationHandler.js";
 import { TemplateObjectArray } from "../util/array.js";
-import { dateFormat } from "../util/date.js";
-import { formatName, filterNotePreview } from "../util/formatters.js";
-import { DeleteModal } from "../components/modals/deleteModal.js";
-
+import { decrementString } from "../util/usefull.js";
 
 
 export class TemplateView {
@@ -15,51 +12,32 @@ export class TemplateView {
         this.dialog = dialog;
         this.templateObjects = new TemplateObjectArray();
         this.#initializeDomElements();
+        this.#attachEventListeners();
     }
 
 
-    renderAll(templates) {
+    renderAll(recent, other, totalUses, mostUsed) {
         this.templateObjects.clear()
-        if (templates.length > 0) {
-            const contentFragment = document.createDocumentFragment();
+        this.#renderTemplateStats(recent, other, totalUses, mostUsed);
+        if (recent.length > 0) {
+            const recentContentFragment = document.createDocumentFragment();
+            const otherContentFragment = document.createDocumentFragment();
 
-            for(let i = 0; i < templates.length; i++) {
-                const templateCard = this.#template(templates[i]);
-                contentFragment.appendChild(templateCard);
+            for(let i = 0; i < recent.length; i++) {
+                const templateCard = this.#template(recent[i]);
+                recentContentFragment.appendChild(templateCard);
                 AnimationHandler.fadeInFromBottom(templateCard);
-            } 
-            this._recentTemplates.appendChild(contentFragment)
+            }
+
+            for(let i = 0; i < other.length; i++) {
+                const templateCard = this.#template(other[i]);
+                otherContentFragment.appendChild(templateCard);
+                AnimationHandler.fadeInFromBottom(templateCard);
+            }
+            this._recentTemplates.appendChild(recentContentFragment);
+            this._otherTemplates.appendChild(otherContentFragment);
         } else {
             this.notificationHandler.push('empty')
-        }
-    }
-
-
-    renderOne(template) {
-        const templateCard = this.#template(template);
-        this._recentTemplates.appendChild(templateCard);
-        AnimationHandler.fadeInFromBottom(templateCard);
-        this.notificationHandler.push('saved');
-    }
-
-
-    renderUpdate(template) {
-        const templates = this._recentTemplates.children 
-
-        for (let i = 0; i < templates.length; i++) {
-            if (templates[i].id === template.id) {
-
-                const templatePreview = templates[i].querySelector('p');
-                templatePreview.innerHTML = filterNotePreview(template.content);
-
-                const templateName = templates[i].querySelector('h4');
-                templateName.textContent = formatName(template.name);
-
-                templates[i].setAttribute("data-info", `${dateFormat(template.creation)}--${dateFormat(template.last_edit)}`);
-
-                this.templateObjects.update(template);
-                this.notificationHandler.push('updated');
-            }
         }
     }
 
@@ -71,7 +49,9 @@ export class TemplateView {
             if (templates[i].id === template.id) {
                 AnimationHandler.fadeOutCard(templates[i], this._recentTemplates);
                 this.templateObjects.remove(template);
-                this.notificationHandler.push('deleted', template.name);
+                this._templateCountSpan.textContent = decrementString(
+                    this._templateCountSpan.textContent
+                ); 
             }
         }
         if (closeDialog) this.dialog.hide();
@@ -85,16 +65,20 @@ export class TemplateView {
      * @param {String} name
      */
     renderDeleteContainer(id, name) {
-        this.dialog.addChild(new DeleteModal(id, name, this));
-        this.dialog.show();
+        this.dialog.renderDeleteModal(id, name, this)
     }
 
     handleTemplateCardClick(templateId) {
         const template = this.templateObjects.get(templateId);
-        template.last_edit = dateFormat(template.last_edit);
-        this.applicationController.openTemplateInTextEditor(template);
+        this.applicationController.initView('editor', 
+            {
+                editorObjectType: 'template', 
+                editorObject: template,
+                newEditorObject: false, 
+                previousView: 'templates', 
+            }
+        );
     }
-
 
     getTemplateObject(templateId) {
         return this.templateObjects.get(templateId);
@@ -104,6 +88,13 @@ export class TemplateView {
         await this.controller.deleteTemplate(id);
     }
 
+    #renderTemplateStats(recent, other, totalUses, mostUsed) {
+        this._templateCountSpan.textContent = 
+        recent.length + other.length
+
+        this._templateUsesCountSpan.textContent = totalUses;
+        this._mostUsedTemplateSpan.textContent = mostUsed;
+    }
 
     #template(template) {
         this.templateObjects.add(template);
@@ -111,7 +102,22 @@ export class TemplateView {
     }
 
     #initializeDomElements() {
+        this._addTemplateButton = document.querySelector('.add-template-btn');
         this._recentTemplates = document.querySelector('.recent-templates');
-        this._otherTemplates = document.querySelectorAll('.other-templates');
+        this._otherTemplates = document.querySelector('.other-templates');
+        this._templateCountSpan = document.querySelector('.template-count');
+        this._templateUsesCountSpan = document.querySelector('.total-uses-count');
+        this._mostUsedTemplateSpan = document.querySelector('.most-used-template');
+    }
+
+    #attachEventListeners() {
+        this._addTemplateButton.addEventListener('click', () => {
+            this.applicationController.initView('editor', {
+                editorObjectType: 'template', 
+                editorObject: null,
+                newEditorObject: true, 
+                previousView: 'templates', 
+            })
+        });
     }
 }

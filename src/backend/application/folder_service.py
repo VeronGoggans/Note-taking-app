@@ -1,6 +1,5 @@
 from src.backend.data.folder.folder_manager import FolderManager
-from src.backend.presentation.request_bodies.folder.post_folder_request import PostFolderRequest
-from src.backend.presentation.request_bodies.folder.put_folder_request import PutFolderRequest
+from src.backend.presentation.dtos.folder_dtos import FolderRequestDto
 from src.backend.data.exceptions.exceptions import NotFoundException, AdditionException
 from src.backend.domain.folder import Folder
 from src.backend.data.file.json_manager import JsonManager
@@ -15,10 +14,11 @@ class FolderService:
         self.id_path = getcwd() + '/storage/json/id.json'
 
 
-    def add_folder(self, parent_id: str, post_request: PostFolderRequest):
+    def add_folder(self, request_dto: FolderRequestDto):
         folders = self.json_manager.load(self.folders_path)
+        parent_id = request_dto.folder_id
         id = self.__generate_id(parent_id)
-        folder = Folder(id, post_request.name, post_request.color)
+        folder = Folder(id, request_dto.name, request_dto.color)
 
         try:
             new_folder = self.manager.add_folder(folders, parent_id, folder)
@@ -58,10 +58,10 @@ class FolderService:
             raise e
 
 
-    def update_folder(self, put_request: PutFolderRequest):
+    def update_folder(self, request_dto: FolderRequestDto):
         folders = self.json_manager.load(self.folders_path)
         try:
-            folder = self.manager.update_folder(folders, put_request.folder_id, put_request.name, put_request.color)
+            folder = self.manager.update_folder(folders, request_dto.folder_id, request_dto.name, request_dto.color)
             self.json_manager.update(self.folders_path, folders)
             return folder
         except NotFoundException as e:

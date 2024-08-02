@@ -1,4 +1,4 @@
-from src.backend.presentation.dtos.flashcard.flashcard_dto import PostFlashcardDTO, FlashcardDTO
+from src.backend.presentation.dtos.flashcard_dtos import PostFlashcardDTO, FlashcardDTO
 from src.backend.data.file.flashcard_serializer import FlashcardSerializer
 from src.backend.data.exceptions.exceptions import SerializationException
 from src.backend.data.exceptions.exceptions import NotFoundException

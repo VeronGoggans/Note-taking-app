@@ -39,6 +39,8 @@ export class TextEditorController {
         }
         // Template cases
         if (editorObject !== null && editorObjectType === 'template') {
+            editorObject.name = name;
+            editorObject.content = content;
             await this.applicationController.updateTemplate(editorObject)
         }
         if (editorObject === null && editorObjectType === 'template') {
