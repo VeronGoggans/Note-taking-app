@@ -1,9 +1,12 @@
+import { AnimationHandler } from "../handlers/animation/animationHandler.js";
+
 export class SettingView {
     constructor(controller, applicationController) {
         this.controller = controller;
         this.applicationController = applicationController;
         this.#initializeDomElements();
         this.#attachEventListeners();
+        AnimationHandler.fadeInFromSide(this.settingsView);
     }
 
     setThemeDropdownState(currentTheme) {

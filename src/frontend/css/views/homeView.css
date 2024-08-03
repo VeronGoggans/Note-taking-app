@@ -67,6 +67,9 @@ button {
     background-color: var(--card);
     border-radius: 10px;
     color: var(--icon);
+    opacity: 0;
+    transform: translateY(30%);
+    transition: opacity .7s ease, transform .25s ease;
 }
 
 .home .recent-folder i {
@@ -93,7 +96,8 @@ button {
     display: grid;
     grid-template-rows: 40px 1fr;
     border: 1px solid var(--border-card);
-    opacity: 1;
+    opacity: 0;
+    transform: translateY(30%);
     transition: opacity .7s ease, transform .25s ease;
 }
 

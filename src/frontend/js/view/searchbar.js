@@ -42,11 +42,6 @@ export class Searchbar {
         }
     }
 
-    handleSearch(searchItemId) {
-
-
-    }
-
     
     handleInput() {
         this.searchList.style.opacity = '1';
@@ -65,13 +60,13 @@ export class Searchbar {
             let content = '';
 
             if (suggestion.type === 'note') {
-                content = `<i class="fa-solid fa-file"></i> ${suggestion.object.name}`;
+                content = `<i id="note-search-type" class="fa-solid fa-file"></i> ${suggestion.object.name}`;
                 suggestionElement.dataset.searchType = 'note'
             } else if (suggestion.type === 'folder') {
-                content = `<i class="fa-solid fa-folder"></i> ${suggestion.object.name}`;
+                content = `<i id="folder-search-type" class="fa-solid fa-folder"></i> ${suggestion.object.name}`;
                 suggestionElement.dataset.searchType = 'folder'
             } else if (suggestion.type === 'template') {
-                content = `Template ${suggestion.object.title}`;
+                content = `<i id="template-search-type" class="fa-solid fa-layer-group"></i> ${suggestion.object.name}`;
                 suggestionElement.dataset.searchType = 'template'
             } else if (suggestion.type === 'flashcard') {
                 content = `Flashcard ${suggestion.object.question}`;

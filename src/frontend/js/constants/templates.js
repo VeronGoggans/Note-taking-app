@@ -51,7 +51,22 @@ export const notesTemplate = `
     </div>
 `;
 
-export const flashcardsTemplate = '';
+export const flashcardsTemplate = `
+    <div class="flashcards-view">
+        <h1>Flashcards</h1>
+        <div class="stats-section">
+            <p>Current streak: <span>🔥0</span>d</p>
+            <p>Time studied: <span>0</span>h <span>0</span>m</p>
+            <p>Total cards: <span class="flashcard-count">0</span></p>
+        </div>
+        <div class="deck-section">
+            <h2>Decks</h2>
+            <p class="continue-studying">Continue studying your cards</p>
+            <button class="create-deck-btn">Add a deck</button>
+            <div class="flashcard-deck-container"> </div>
+        </div>
+    </div>
+`;
 export const templatesTemplate =  `
     <div class="templates">
         <div class="top">

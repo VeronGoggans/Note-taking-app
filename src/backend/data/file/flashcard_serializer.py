@@ -30,7 +30,7 @@ class FlashcardSerializer:
                     id = int(lines[0]),
                     term = lines[1],
                     description = ' '.join(lines[2:-1]),
-                    rating = self.ratings[lines[-1]]
+                    rating = self.ratings[lines[-1]].lower()
                     )
                 )
 

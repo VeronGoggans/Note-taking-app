@@ -48,7 +48,7 @@ class TemplateService:
             raise e
     
 
-    def get_template_names(self):
+    def get_template_names(self) -> list:
         template_structure = self.json_manager.load(self.templates_path)
         templates = self.manager.get_all_names(template_structure)
         return templates

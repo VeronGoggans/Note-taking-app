@@ -1,155 +1,105 @@
-.flashcards {
+.flashcards-view {
     height: 100dvh;
     max-height: 100dvh;
     font-family: Roboto;
+    padding: 15px;
 }
 
-.flashcard-deck-container {
+.flashcards-view .flashcard-deck-container {
     display: grid;
     column-gap: 20px;
     grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-    grid-template-rows: repeat(auto-fill, 220px);
-    max-height: calc(100dvh - 180px);
+    grid-template-rows: repeat(auto-fill, 170px);
+    max-height: 500px;
     overflow-y: scroll;
 }
 
-.flashcards h1 {
+.flashcards-view h1 {
     font-family: sans-serif;
     color: var(--important);
 }
 
-.flashcard-deck {
+.flashcards-view .flashcard-deck {
     cursor: pointer;
     border: 1px solid var(--border-card);
     background-color: var(--card);
     height: 150px;
     padding: 10px 20px;
     border-radius: 10px;
+    opacity: 0;
+    transform: translateY(30%);
+    transition: opacity .7s ease, transform .25s ease;
 }
 
-.flashcard-deck .deck-name {
+.flashcards-view .flashcard-deck .deck-name {
     font-weight: 600;
     font-family: sans-serif;
     color: var(--text);
     font-size: 16px;
 }
 
-.flashcard-deck .linked-note {
+.flashcards-view .flashcard-deck .linked-note {
     color: var(--text);
     font-weight: 600;
     font-size: 14px;
 }
 
-.not-linked {
+.flashcards-view .not-linked {
     font-style: italic;
     color: #50545c !important;
 }
 
-.flashcard-deck .linked-note i {
+.flashcards-view .flashcard-deck .linked-note i {
     margin-right: 10px;
 }
 
-.flashcard-deck div {
+.flashcards-view .flashcard-deck div {
     display: flex;
     align-items: end;
     justify-content: space-between;
 }
 
 
-.flashcard-deck .last-study-date {
+.flashcards-view .flashcard-deck .last-study-date {
     font-size: 14px;
     font-weight: 600;
     color: #a4a8bb;
 } 
 
-.flashcard-deck .card-count {
+.flashcards-view .flashcard-deck .card-count {
     font-size: 14px;
     color: #a4a8bb;
     font-weight: 600;
     margin-left: 7px;
 }
 
-.flashcard-deck .card-count span {
+.flashcards-view .flashcard-deck .card-count span {
     font-size: 20px;
     font-family: sans-serif;
 }
 
-.linechart-container {
-    width: 400px; 
-    height: fit-content;
-    box-shadow: 0 0 10px var(--shadow);
-    border: 1px solid var(--border-card);
-    border-radius: 10px;
-    padding: 10px;
-    background-color: var(--background)
-}
-
-.barchart-container {
-    border: 1px solid var(--border-card);
-    border-radius: 10px;
-    padding: 10px;
-    width: 400px; 
-    height: fit-content;
-    box-shadow: 0 0 10px var(--shadow);
-    background-color: var(--background);
-}
-
-.barchart-container .stats {
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
-}
-
-
-
-.barchart-container p {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text);
-}
-
-.study-time-container span {
-    font-size: 14px;
-    font-family: sans-serif;
-    color: var(--text);
-    font-weight: 600;
-}
-
-.study-time-container p .hours,
-.study-time-container p .minutes {
-    font-size: 20px;
-    font-family: sans-serif;
-    font-weight: 600;
-    color: var(--text);
-    margin-right: 3px;
-}
-
-.chart-section {
-    display: flex;
-    justify-content: center;
-    column-gap: 20px;
-    align-items: center;
-    max-height: 350px;
-    border-bottom: 1px solid var(--border-card);
-    padding: 20px 0;
-}
-
-.deck-section {
+.flashcards-view .deck-section {
     position: relative;
 }
 
-.deck-section h2 {
+.flashcards-view .stats-section {
+    display: flex;
+    align-items: end;
+    column-gap: 20px;
+}
+
+.flashcards-view .deck-section h2 {
     font-family: sans-serif;
     color: var(--text);
     margin-bottom: 5px;
 }
 
-.deck-section .continue-studying {
+.flashcards-view .deck-section .continue-studying {
     font-family: sans-serif;
     color: #a4a8bb;
 }
 
-.create-deck-btn {
+.flashcards-view .create-deck-btn {
     position: absolute;
     border: none;
     background-color: #5c7fdd;
@@ -159,4 +109,15 @@
     border-radius: 5px;
     top: 0;
     right: 10px;
+}
+
+.flashcards-view .stats-section p {
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--important);
+}
+
+.flashcards-view .stats-section p span {
+    font-size: 25px;
+    font-family: sans-serif;
 }

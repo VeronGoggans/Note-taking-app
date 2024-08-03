@@ -6,9 +6,6 @@ from src.backend.util.calendar import Calendar
 
 
 class TemplateManager:
-    def __init__(self) -> None:
-        pass        
-
 
     def add(self, templates: list, new_template: Template):
         try:

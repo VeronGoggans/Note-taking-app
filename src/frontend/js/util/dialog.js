@@ -5,6 +5,7 @@ import { NewFolderContainer } from "../components/modals/newFolderModal.js";
 import { NoteLinkModal } from "../components/modals/linkNoteModal.js";
 import { SearchModal } from "../components/modals/searchModal.js";
 import { EditFolderModal } from "../components/modals/editFolderModal.js";
+import { FlashcardPracticeModal } from "../components/modals/flashcardPracticeModal.js";
 
 export class Dialog {
     constructor() {
@@ -22,7 +23,8 @@ export class Dialog {
                 '.dont-forget-to-save-container',
                 '.note-details-container',
                 '.note-link-modal',
-                '.edit-folder-modal'
+                '.edit-folder-modal',
+                '.flashcard-practice-modal'
             ];
 
             // Check if the clicked target belongs to any excluded container
@@ -61,6 +63,11 @@ export class Dialog {
     
     renderDeleteModal(id, name, view) {
         this.addChild(new DeleteModal(id, name, view))
+        this.show();
+    }
+
+    renderFlashcardPracticeModal(deck, view) {
+        this.addChild(new FlashcardPracticeModal(deck, view, this))
         this.show();
     }
 

@@ -16,6 +16,7 @@
     width: 100%;
     font-size: 16px;
     padding-left: 40px;
+    color: var(--text);
 }
 
 .searchbar input::placeholder {
@@ -67,3 +68,7 @@
     color: var(--placeholder);
     font-size: 18px;
 }
+
+.searchbar ul #folder-search-type{color: #bcadff}
+.searchbar ul #note-search-type {color: #b2dbff}
+.searchbar ul #template-search-type {color: #b3f5cc}

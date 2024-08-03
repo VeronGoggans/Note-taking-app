@@ -6,7 +6,7 @@ export class HomeModel {
 
     }
 
-    getRecent(endpoint) {
+    get(endpoint) {
         const options = RequestOptionsBuilder.buildGetOptions()
         return fetchData(endpoint, options);
     }

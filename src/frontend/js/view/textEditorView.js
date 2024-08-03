@@ -85,7 +85,7 @@ export class TextEditorView {
 
 
   async loadInTemplate(templateId) {
-    const templateContent = await this.applicationController.getTemplateById(templateId, updateUseCount=true);
+    const templateContent = await this.applicationController.getTemplateById(templateId, true);
     this.page.innerHTML = this.page.innerHTML += templateContent.content;
   }
 

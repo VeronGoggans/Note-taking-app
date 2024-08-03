@@ -67,3 +67,13 @@ export class FolderObjectArray extends ObjectArray {
         }
     }
 }
+
+export class FlashcardDeckObjectArray extends ObjectArray {
+    update(deck) {
+        for (let i = 0; i < this.objects.length; i++) {
+            if (this.objects[i].id === deck.id) {
+                this.objects[i].name = deck.name;
+            }
+        }
+    }
+}

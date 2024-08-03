@@ -3,12 +3,14 @@
 .content-view::-webkit-scrollbar,
 .font-options::-webkit-scrollbar,
 .linkable-notes-list::-webkit-scrollbar,
-.templates-container::-webkit-scrollbar {
+.templates-container::-webkit-scrollbar,
+.flashcard-deck-container::-webkit-scrollbar {
     background-color: transparent;
     width: 5px;
 }
 
-.templates-container::-webkit-scrollbar-thumb {
+.templates-container::-webkit-scrollbar-thumb,
+.flashcard-deck-container::-webkit-scrollbar-thumb {
     border-radius: 5px;
     background-color: #cfd2e3;
 } 

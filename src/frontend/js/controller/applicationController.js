@@ -9,7 +9,7 @@ import { TextEditorController } from "./textEditorController.js"
 import { SettingController } from "./settingController.js";
 import { Dialog } from "../util/dialog.js";
 import { NotificationHandler } from "../handlers/userFeedback/notificationHandler.js";
-import { FlashcardController } from "./flashcardController.js";
+import { FlashcardDeckController } from "./flashcardDeckController.js";
 import { flashcardsTemplate, notesTemplate, settingsTemplate, editorTemplate, homeTemplate, templatesTemplate } from "../constants/templates.js";
 
 export class ApplicationController {
@@ -24,14 +24,14 @@ export class ApplicationController {
         this.homeController = new HomeController(this, this.dialog, this.noteController);
         this.folderController = new FolderController(this, this.dialog, this.notificationHandler)
         this.templateController = new TemplateController(this, this.dialog, this.notificationHandler);
-        this.flashcardController = new FlashcardController(this, this.dialog, this.notificationHandler);
+        this.flashcardDeckController = new FlashcardDeckController(this, this.dialog);
         this.textEditorController = new TextEditorController(this, this.dialog);
         this.settingController = new SettingController(this);
         this.viewContainer = document.querySelector('.content');
         this.controllers = {
             home: this.homeController,
             notes: this.noteController,
-            flashcards: this.flashcardController,
+            flashcards: this.flashcardDeckController,
             templates: this.templateController,
             settings: this.settingController,
             editor: this.textEditorController
@@ -127,6 +127,10 @@ export class ApplicationController {
         await this.noteController.getNotes(folderId);
     }
 
+    async getNoteSearchItems() {
+        return await this.noteController.getSearchItems();
+    }
+
     async updateNote(note) {
         await this.noteController.updateNote(note);
     }   
@@ -139,8 +143,12 @@ export class ApplicationController {
         await this.templateController.addTemplate(name, content);
     }
 
-    getTemplates() {
-        this.templateController.getTemplates();
+    async getTemplates() {
+        await this.templateController.getTemplates();
+    }
+
+    async getTemplateSearchItems() {
+        return await this.templateController.getTemplateNames();
     }
 
     async updateTemplate(template) {

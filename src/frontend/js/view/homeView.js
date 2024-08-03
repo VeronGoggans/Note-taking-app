@@ -23,7 +23,7 @@ export class HomeView {
             const folderCard = this.#recentFolder(folders[i]);
 
             contentFragment.appendChild(folderCard);
-            AnimationHandler.fadeInFromSide(folderCard);
+            AnimationHandler.fadeInFromBottom(folderCard);
         }
         this.recentFolderContainer.appendChild(contentFragment); 
     }
@@ -37,7 +37,7 @@ export class HomeView {
             const noteCard = this.#recentNote(notes[i]);
 
             contentFragment.appendChild(noteCard);
-            AnimationHandler.fadeInFromSide(noteCard);
+            AnimationHandler.fadeInFromBottom(noteCard);
         }
         this.recentNoteContainer.appendChild(contentFragment); 
     }

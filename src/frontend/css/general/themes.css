@@ -65,6 +65,9 @@
     --copy-icon-color: #1e1e28;
     --copy-icon-text-color: #edeffd;
     --copy-text-color-hover: #5c7fdd;
+
+    --progress-color: #e6eaff;
+    --shadow-practice-card: #e6eaf3;
 }
 
 .dark {
@@ -135,6 +138,9 @@
     --copy-icon-text-color: #e2e5ff;
     --copy-text-color-hover: #5c7dff;
 
+    --progress-color: #49517a;
+    --shadow-practice-card: #111020;
+
 }
 
 .light {
@@ -203,4 +209,7 @@
     --copy-text-color-hover: #5c7fdd;
     --copy-icon-color: #1e1e28;
     --copy-icon-text-color: #edeffd;
+
+    --progress-color: #e6eaff;
+    --shadow-practice-card: #e6eaf3;
 }

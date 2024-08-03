@@ -13,7 +13,7 @@ class Flashcard:
         self.rating = rating
 
 
-file_location = 'C:/Users/jsvgo\Web Dev/In progress/Note Taking App/storage/flashcards/flashcard-set-fcs-1.txt'
+file_location = 'C:/Users/jsvgo\Web Dev/In progress/Note Taking App/storage/flashcards/flashcard-deck-fcd-1.txt'
 flashcards_text = ''
 with open(file_location, 'r') as file:
     flashcards_text = file.read()
@@ -24,7 +24,9 @@ flashcard_blocks = flashcards_text.strip().split('# flashcard ')
 flashcard_blocks = [block.strip() for block in flashcard_blocks if block.strip()]
 
 for block in flashcard_blocks:
+    
     lines = block.strip().split('\n')
+    print(lines)
     id = int(lines[0])
     name = lines[1]
     answer = ' '.join(lines[2:-1])

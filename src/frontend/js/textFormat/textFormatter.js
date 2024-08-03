@@ -110,8 +110,9 @@ export class TextFormatter {
     const originalUrl = CNode.create('input', {'class': 'original-link-input', 'type': 'text', 'placeholder': 'Paste link here...'});
     const customUrl = CNode.create('input', {'class': 'custom-link-input', 'type': 'text', 'placeholder': 'Custom text'});
 
-    // Putting the UI together 
-    container.append(icon, cancelButton, originalUrl, customUrl);
+    // Putting the UI together
+    cancelButton.append(icon); 
+    container.append(cancelButton, originalUrl, customUrl);
     
     cancelButton.addEventListener('click', () => {container.remove()});
     originalUrl.addEventListener('keydown', (event) => {insert(event)});
