@@ -2,14 +2,15 @@
     height: 100dvh;
     max-height: 100dvh;
     font-family: Roboto;
+    padding: 15px;
 }
 
 .flashcard-deck-container {
     display: grid;
     column-gap: 20px;
     grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-    grid-template-rows: repeat(auto-fill, 220px);
-    max-height: calc(100dvh - 180px);
+    grid-template-rows: repeat(auto-fill, 170px);
+    max-height: 500px;
     overflow-y: scroll;
 }
 
@@ -74,66 +75,6 @@
     font-family: sans-serif;
 }
 
-.linechart-container {
-    width: 400px; 
-    height: fit-content;
-    box-shadow: 0 0 10px var(--shadow);
-    border: 1px solid var(--border-card);
-    border-radius: 10px;
-    padding: 10px;
-    background-color: var(--background)
-}
-
-.barchart-container {
-    border: 1px solid var(--border-card);
-    border-radius: 10px;
-    padding: 10px;
-    width: 400px; 
-    height: fit-content;
-    box-shadow: 0 0 10px var(--shadow);
-    background-color: var(--background);
-}
-
-.barchart-container .stats {
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
-}
-
-
-
-.barchart-container p {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text);
-}
-
-.study-time-container span {
-    font-size: 14px;
-    font-family: sans-serif;
-    color: var(--text);
-    font-weight: 600;
-}
-
-.study-time-container p .hours,
-.study-time-container p .minutes {
-    font-size: 20px;
-    font-family: sans-serif;
-    font-weight: 600;
-    color: var(--text);
-    margin-right: 3px;
-}
-
-.chart-section {
-    display: flex;
-    justify-content: center;
-    column-gap: 20px;
-    align-items: center;
-    max-height: 350px;
-    border-bottom: 1px solid var(--border-card);
-    padding: 20px 0;
-}
-
 .deck-section {
     position: relative;
 }
@@ -159,4 +100,15 @@
     border-radius: 5px;
     top: 0;
     right: 10px;
+}
+
+.stats-section p {
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--important);
+}
+
+.stats-section p span {
+    font-size: 25px;
+    font-family: sans-serif;
 }

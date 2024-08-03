@@ -65,23 +65,10 @@
         <main class="content">
             <div class="flashcards">
                 <h1>flashcards</h1>
-                <div class="chart-section">
-                  <div class="barchart-container">
-                    <div class="stats">
-                      <div class="study-time-container">
-                        <span>Time studied</span>
-                        <p><span class="hours">2</span>h <span class="minutes">20</span>min</p>
-                      </div>
-                      <p>Total cards <span class="cards-count">72</span></p>
-                    </div>
-                    
-                    <p>Your performance</p>
-                    <canvas id="cards-status-chart"></canvas>
-                  </div>
-
-                  <div class="linechart-container">
-                    <canvas id="cards-studied-chart"></canvas>
-                  </div>
+                <div class="stats-section">
+                  <p>Time studied: <span>5</span>h <span>22</span>m</p>
+                  <p>Current streak: <span>🔥10</span>d</p>
+                  <p>Total cards: <span>72</span></p>
                 </div>
                 <div class="deck-section">
                   <h2>Decks</h2>
@@ -136,122 +123,5 @@
     </div>    
     <div class="dialog"></div>
     </div>
-    <script>
-
-        // Data for the bar chart
-        const data1 = {
-            labels: ['Correct😀', 'Wrong😔', 'None😐'],
-            datasets: [{
-                label: 'Cards',
-                data: [50, 12, 15],
-                backgroundColor: [
-                    'rgba(38, 255, 45, .2)',
-                    'rgba(255, 64, 38, .2)',
-                    'rgba(92, 127, 221, .2)', 
-                ],
-                borderColor: [
-                    'rgba(38, 255, 45, 1)',
-                    'rgba(255, 64, 38, 1)',
-                    'rgba(92, 127, 221, 1)'
-                ],
-                borderWidth: 1,
-                barPercentage: 0.8, // Adjust this value to make bars thinner
-                categoryPercentage: 0.5
-            }]
-        };
-
-        // Configuring the bar chart
-        const config1 = {
-            type: 'bar',
-            data: data1,
-            options: {
-                plugins: {
-                    legend: {
-                        display: false // Hides the legend
-                    }
-                },
-                scales: {
-                    x: {
-                        grid: {
-                            display: false
-                        }
-                    },
-                    y: {
-                        beginAtZero: true,
-                        grid: {
-                            display: false
-                        },
-                        ticks: {
-                            callback: function(value, index, values) {
-                                if (index === 0 || index === values.length - 1) {
-                                    return value;
-                                }
-                                return '';
-                            }
-                        }
-                    }
-                }
-            }
-        };
-
-        // Render the bar chart
-        const myBarChart = new Chart(
-            document.getElementById('cards-status-chart'),
-            config1
-        );
-
-        const data = {
-            labels: ['Mon', 'Tue', 'Wed', 'Today', 'Fri', 'Sat', 'Sun'],
-            datasets: [{
-                label: 'Cards studied',
-                data: [10, 20, 18, 15, 20, 5, 15],
-                fill: false,
-                borderWidth: 1,
-                borderColor: 'rgba(92, 127, 221, 1)',
-                backgroundColor: 'rgba(92, 127, 221, .3)',
-                tension: 0.1 // This makes the line smooth
-            }]
-        };
-
-        // Configuring the line chart
-        const config = {
-            type: 'bar',
-            data: data,
-            options: {
-                plugins: {
-                    legend: {
-                        display: false // Shows the legend
-                    }
-                },
-                scales: {
-                    x: {
-                        grid: {
-                            display: false
-                        }
-                    },
-                    y: {
-                        beginAtZero: true,
-                        grid: {
-                            display: false
-                        },
-                        ticks: {
-                            callback: function(value, index, values) {
-                                if (index === 0 || index === values.length - 1) {
-                                    return value;
-                                }
-                                return '';
-                            }
-                        }
-                    }
-                }
-            }
-        };
-
-        // Render the line chart
-        const myLineChart = new Chart(
-            document.getElementById('cards-studied-chart'),
-            config
-        );
-  </script>
 </body>
 </html>
