@@ -186,7 +186,7 @@ export const editorTemplate = `
         </div>
       </div>
 
-      <i id="editor-flashcard-set-btn" class="fa-solid fa-pencil"></i>
+      <i id="editor-flashcard-set-btn" class="fa-solid fa-circle-check"></i>
 
       <div class="rich-text-option-container">
         <div class="btn-group">

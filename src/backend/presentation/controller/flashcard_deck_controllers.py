@@ -14,6 +14,7 @@ class FlashcardDeckRouter:
         self.service = FlashcardDeckService(FlashcardDeckManager(), json_manager)
 
         self.route.add_api_route('/deck/{id}', self.get_deck_by_id, methods=['GET'])
+        self.route.add_api_route('/deckSearchItems', self.get_search_items, methods=['GET'])
         self.route.add_api_route('/decks', self.get_all_decks, methods=['GET'])
         self.route.add_api_route('/deck', self.add_deck, methods=['POST'])
         self.route.add_api_route('/deck', self.update_deck, methods=['PUT'])
@@ -47,6 +48,14 @@ class FlashcardDeckRouter:
             return {'status': 'succes', 'decks': all_decks, 'misc': misc}, HttpStatus.OK
         except DeserializationException as e:
             return {'status': 'error', 'message': str(e)}, HttpStatus.INTERAL_SERVER_ERROR
+        
+    
+    def get_search_items(self):
+        try:
+            search_items = self.service.get_search_items()
+            return {'status': 'succes', 'items': search_items}, HttpStatus.OK
+        except NotFoundException as e:
+            return {'status': 'not_found', 'message': str(e)}, HttpStatus.NO_CONTENT
         
 
     def update_deck(self, request: PutDeckRequest):

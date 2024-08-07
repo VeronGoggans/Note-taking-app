@@ -69,7 +69,7 @@ export class Searchbar {
                 content = `<i id="template-search-type" class="fa-solid fa-layer-group"></i> ${suggestion.object.name}`;
                 suggestionElement.dataset.searchType = 'template'
             } else if (suggestion.type === 'flashcard') {
-                content = `Flashcard ${suggestion.object.question}`;
+                content = `<i id="flashcard-search-type" class="fa-solid fa-circle-check"></i> ${suggestion.object.name}`;
                 suggestionElement.dataset.searchType = 'flashcard'
             }
 

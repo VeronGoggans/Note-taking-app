@@ -16,12 +16,10 @@ export class HomeController {
 
     async init() {
         this.searchbar = new Searchbar(this);
-        const noteSearchItems = await this.applicationController.getNoteSearchItems();
-        const folderSearchItems = await this.applicationController.getFolderSearchItems();
-        const templateSearchItems = await this.applicationController.getTemplateSearchItems();        
-        this.searchbar.fillSearchbar('note', noteSearchItems);
-        this.searchbar.fillSearchbar('folder', folderSearchItems);
-        this.searchbar.fillSearchbar('template', templateSearchItems);
+        this.searchbar.fillSearchbar('note', await this.applicationController.getNoteSearchItems());
+        this.searchbar.fillSearchbar('folder', await this.applicationController.getFolderSearchItems());
+        this.searchbar.fillSearchbar('flashcard', await this.applicationController.getDeckSearchItems());
+        this.searchbar.fillSearchbar('template', await this.applicationController.getTemplateSearchItems());
         this.view = new HomeView(this, this.applicationController, this.dialog, this.notificationHandler);
         this.getRecentFolders();
         this.getRecentNotes();
@@ -71,6 +69,14 @@ export class HomeController {
                     'name': folder.name
                 }
             });
+        }
+
+        if (viewId === 'flashcardsPractice') {
+            const deck = await this.applicationController.getDeckById(searchItemId);
+            this.applicationController.initView(viewId, {
+                deck: deck,
+                previousView: 'home'
+            })
         }
     }
 }

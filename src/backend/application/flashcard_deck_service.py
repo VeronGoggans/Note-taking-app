@@ -52,6 +52,14 @@ class FlashcardDeckService:
         except DeserializationException as e:
             raise e
         
+    def get_search_items(self):
+        decks = self.json_manager.load(self.deck_path)
+        items = self.manager.get_search_items(decks)
+
+        if len(items) > 0:
+            return items
+        raise NotFoundException('There are no folders to be retrieved.')
+        
 
     def update_deck(self, request: PutDeckRequest):
         decks = self.json_manager.load(self.deck_path)

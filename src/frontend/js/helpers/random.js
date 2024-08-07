@@ -6,6 +6,6 @@ export function viewToLoad(searchType) {
         return 'notes';
     } 
     else if (searchType === 'flashcard') {
-        return 'flashcard';
+        return 'flashcardsPractice';
     }
 }

@@ -43,7 +43,14 @@ class FlashcardDeckManager:
             return decks_list
         except DeserializationException as e:
             raise e
+        
 
+    def get_search_items(self, decks: list) -> list[object]:
+        items = []
+        for deck in decks:
+            items.append({'name': deck['name'], 'id': deck['id']})
+        return items
+    
 
     def update(self, decks: list, id: str, name: str):
         for deck in decks:

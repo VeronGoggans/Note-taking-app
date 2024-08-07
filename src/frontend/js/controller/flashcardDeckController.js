@@ -20,9 +20,13 @@ export class FlashcardDeckController {
         this.view.renderStats(response[this.objectNum].misc)
     }
 
-    async getFlashcardById(flashcardId) {
-        const response = await this.model.getById('/flashcardById', flashcardId);
-        const flashcard = response.Flashcard;
-        return flashcard
+    async getDeckById(deckId) {
+        const response = await this.model.get(`/deck/${deckId}`);
+        return response[this.objectNum].deck;
+    }
+
+    async getSearchItems() {
+        const response = await this.model.get('/deckSearchItems');
+        return response[this.objectNum].items;
     }
 }

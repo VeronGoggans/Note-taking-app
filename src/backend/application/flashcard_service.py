@@ -33,11 +33,12 @@ class FlashcardService:
 
     def update_flashcard_ratings(self, deck_id: str, time_studied: str, flashcards: list[FlashcardDTO]) -> None:
         decks = self.json_manager.load(self.deck_path)
-        flashcard_misc = self.json_manager.load(self.misc_path)
+        misc = self.json_manager.load(self.misc_path)
 
         try:
-            self.manager.update_ratings(decks, flashcard_misc['flashcard_misc'], deck_id, time_studied, flashcards)
-            self.json_manager.update(self.misc_path, flashcard_misc)
+            self.manager.update_ratings(decks, misc['flashcard_misc'], deck_id, time_studied, flashcards)
+            self.json_manager.update(self.misc_path, misc)
+            self.json_manager.update(self.deck_path, decks)
         except (NotFoundException, SerializationException) as e:
             raise e
 

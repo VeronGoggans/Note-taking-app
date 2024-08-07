@@ -9,11 +9,6 @@ export class FlashcardModel {
         return fetchData(endpoint, options);
     }
 
-    async getById(endpoint, flashcardId) {
-        const options = RequestOptionsBuilder.buildGetOptions();
-        return fetchData(`${endpoint}/${flashcardId}`, options);
-    }
-
     async add(endpoint) {
         
     }

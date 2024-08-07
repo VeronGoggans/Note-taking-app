@@ -3,7 +3,7 @@
         "id": "f-1",
         "name": "Home",
         "color": "rgb(255, 255, 255)",
-        "last_visit": "07/08/2024 17:53:22",
+        "last_visit": "07/08/2024 18:37:29",
         "notes": [
             {
                 "id": "n-692",
@@ -21,21 +21,21 @@
         "id": "f-99",
         "name": "School \ud83d\udcd6\u270f\ufe0f",
         "color": "rgb(255, 255, 255)",
-        "last_visit": "07/08/2024 17:44:25",
+        "last_visit": "07/08/2024 18:00:18",
         "notes": [],
         "subfolders": [
             {
                 "id": "s-191",
                 "name": "Year 2",
                 "color": "rgb(255, 255, 255)",
-                "last_visit": "07/08/2024 17:44:25",
+                "last_visit": "07/08/2024 18:00:18",
                 "notes": [],
                 "subfolders": [
                     {
                         "id": "s-181",
                         "name": "Software Architecture\ud83c\udf31",
                         "color": "rgb(255, 255, 255)",
-                        "last_visit": "07/08/2024 17:44:26",
+                        "last_visit": "07/08/2024 18:00:22",
                         "notes": [
                             {
                                 "id": "n-589",
@@ -134,7 +134,7 @@
                         "id": "s-182",
                         "name": "CISC2",
                         "color": "rgb(255, 255, 255)",
-                        "last_visit": "07/08/2024 17:53:29",
+                        "last_visit": "07/08/2024 18:01:33",
                         "notes": [
                             {
                                 "id": "n-609",
@@ -187,7 +187,7 @@
                                 "content": "storage/notes/note-n-615.txt",
                                 "bookmark": false,
                                 "favorite": true,
-                                "last_edit": "01/08/2024 12:09",
+                                "last_edit": "07/08/2024 18:01",
                                 "creation": "30/05/2024"
                             }
                         ],

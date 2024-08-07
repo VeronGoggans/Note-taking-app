@@ -93,7 +93,7 @@ export class ApplicationController {
                     } = viewParameters
 
                     // Setting previous view 
-                    this.model.setPreviousView(previousView);
+                    this.model.setPreviousView(previousView);                    
 
                     controller.init(deck)
 
@@ -196,5 +196,13 @@ export class ApplicationController {
 
     async getFolderSearchItems() {
         return await this.folderController.getSearchItems();
+    }
+
+    async getDeckSearchItems() {
+        return await this.flashcardDeckController.getSearchItems();
+    }
+
+    async getDeckById(deckId) {
+        return await this.flashcardDeckController.getDeckById(deckId)
     }
 }
