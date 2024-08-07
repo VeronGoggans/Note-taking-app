@@ -43,8 +43,8 @@ class FlashcardDeckRouter:
     
     def get_all_decks(self):
         try:
-            all_decks = self.service.get_all_decks()
-            return {'status': 'succes', 'decks': all_decks}, HttpStatus.OK
+            all_decks, misc = self.service.get_all_decks()
+            return {'status': 'succes', 'decks': all_decks, 'misc': misc}, HttpStatus.OK
         except DeserializationException as e:
             return {'status': 'error', 'message': str(e)}, HttpStatus.INTERAL_SERVER_ERROR
         

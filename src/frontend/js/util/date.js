@@ -97,3 +97,14 @@ export function getPassedTime(dateString) {
         return `${Math.floor(passedTime / year)}y ago`;
     }
 }
+
+export function getMinutesDifference(startDate, endDate) {
+    // Calculate the difference in milliseconds
+    const diffInMs = endDate - startDate;
+
+    // Convert milliseconds to minutes
+    const diffInMinutes = diffInMs / (1000 * 60);
+
+    // Return the difference as an integer
+    return Math.round(diffInMinutes);
+}

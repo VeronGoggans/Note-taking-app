@@ -5,6 +5,7 @@
     padding: 15px;   
     height: 100dvh;
     max-height: 100dvh;
+    overflow-y: scroll;
 }
 
 .templates .top {
@@ -57,9 +58,6 @@
     color: white;
 }
 
-.templates .bottom {
-    overflow-y: scroll;
-}
 
 .templates .bottom .block-title {
     font-family: sans-serif;

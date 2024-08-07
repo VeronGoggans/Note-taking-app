@@ -12,14 +12,20 @@ class PostFlashcardsRequest(BaseModel):
 
 
 class PutFlashcardRequest(BaseModel):
-    id: str
+    id: int
     term: str
     description: str
-    performance: str
+    rating: str
 
 
 class PutFlashcardsRequest(BaseModel):
     deck_id: str
+    flashcards: list[PutFlashcardRequest]
+
+
+class FlashcardStudyRequest(BaseModel):
+    deck_id: str
+    time_studied: int
     flashcards: list[PutFlashcardRequest]
 
 

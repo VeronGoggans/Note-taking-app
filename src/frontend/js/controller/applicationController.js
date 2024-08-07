@@ -10,11 +10,11 @@ import { SettingController } from "./settingController.js";
 import { Dialog } from "../util/dialog.js";
 import { NotificationHandler } from "../handlers/userFeedback/notificationHandler.js";
 import { FlashcardDeckController } from "./flashcardDeckController.js";
-import { flashcardsTemplate, notesTemplate, settingsTemplate, editorTemplate, homeTemplate, templatesTemplate } from "../constants/templates.js";
+import { FlashcardPracticeController } from "./flashcardPracticeController.js";
+import { flashcardsTemplate, flashcardPracticeTemplate, notesTemplate, settingsTemplate, editorTemplate, homeTemplate, templatesTemplate } from "../constants/templates.js";
 
 export class ApplicationController {
     constructor() {
-        this.homeFolderId = 'f-1';
         this.dialog = new Dialog();
         this.notificationHandler = new NotificationHandler();
         this.sidebarView = new SidebarView(this);
@@ -25,13 +25,15 @@ export class ApplicationController {
         this.folderController = new FolderController(this, this.dialog, this.notificationHandler)
         this.templateController = new TemplateController(this, this.dialog, this.notificationHandler);
         this.flashcardDeckController = new FlashcardDeckController(this, this.dialog);
+        this.flashcardPracticeController = new FlashcardPracticeController(this, this.dialog);
         this.textEditorController = new TextEditorController(this, this.dialog);
         this.settingController = new SettingController(this);
         this.viewContainer = document.querySelector('.content');
         this.controllers = {
             home: this.homeController,
             notes: this.noteController,
-            flashcards: this.flashcardDeckController,
+            flashcardsHome: this.flashcardDeckController,
+            flashcardsPractice: this.flashcardPracticeController,
             templates: this.templateController,
             settings: this.settingController,
             editor: this.textEditorController
@@ -40,7 +42,8 @@ export class ApplicationController {
         this.templates = {
             home: homeTemplate,
             notes: notesTemplate,
-            flashcards: flashcardsTemplate,
+            flashcardsHome: flashcardsTemplate,
+            flashcardsPractice: flashcardPracticeTemplate,
             templates: templatesTemplate,
             settings: settingsTemplate,
             editor: editorTemplate
@@ -72,6 +75,7 @@ export class ApplicationController {
                         previousView
                     } = viewParameters;
 
+                    // Setting previous view 
                     this.model.setPreviousView(previousView);
                     
                     if (newEditorObject) {
@@ -79,6 +83,20 @@ export class ApplicationController {
                     } else {
                         this.openInTextEditor(editorObject, editorObjectType);
                     }
+                    return;
+                }
+
+                if (viewId === 'flashcardsPractice') {
+                    const {
+                        deck,
+                        previousView
+                    } = viewParameters
+
+                    // Setting previous view 
+                    this.model.setPreviousView(previousView);
+
+                    controller.init(deck)
+
                     return;
                 }
 

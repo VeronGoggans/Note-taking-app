@@ -16,14 +16,8 @@ export class FlashcardDeckController {
 
     async getDecks() {
         const response = await this.model.get('/decks');
-        this.view.renderAll(
-            response[this.objectNum].decks
-        )
-    }
-
-    async getFlashcards() {
-        const response = await this.model.get('/flashcards', folderId);
-        const notes = response.Note;
+        this.view.renderAll(response[this.objectNum].decks)
+        this.view.renderStats(response[this.objectNum].misc)
     }
 
     async getFlashcardById(flashcardId) {

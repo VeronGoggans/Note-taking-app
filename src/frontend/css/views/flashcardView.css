@@ -3,6 +3,7 @@
     max-height: 100dvh;
     font-family: Roboto;
     padding: 15px;
+    overflow-y: scroll;
 }
 
 .flashcards-view .flashcard-deck-container {
@@ -10,7 +11,6 @@
     column-gap: 20px;
     grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
     grid-template-rows: repeat(auto-fill, 170px);
-    max-height: 500px;
     overflow-y: scroll;
 }
 
@@ -38,20 +38,6 @@
     font-size: 16px;
 }
 
-.flashcards-view .flashcard-deck .linked-note {
-    color: var(--text);
-    font-weight: 600;
-    font-size: 14px;
-}
-
-.flashcards-view .not-linked {
-    font-style: italic;
-    color: #50545c !important;
-}
-
-.flashcards-view .flashcard-deck .linked-note i {
-    margin-right: 10px;
-}
 
 .flashcards-view .flashcard-deck div {
     display: flex;
@@ -80,21 +66,23 @@
 
 .flashcards-view .deck-section {
     position: relative;
+    max-height: 750px;
 }
 
 .flashcards-view .stats-section {
     display: flex;
     align-items: end;
-    column-gap: 20px;
+    column-gap: 50px;
 }
 
 .flashcards-view .deck-section h2 {
     font-family: sans-serif;
     color: var(--text);
-    margin-bottom: 5px;
+    margin-bottom: 30px;
 }
 
-.flashcards-view .deck-section .continue-studying {
+.flashcards-view .deck-section .continue-studying,
+.flashcards-view .deck-progression-section p {
     font-family: sans-serif;
     color: #a4a8bb;
 }
@@ -120,4 +108,70 @@
 .flashcards-view .stats-section p span {
     font-size: 25px;
     font-family: sans-serif;
+}
+
+.flashcard-deck-progression-container {
+    max-height: 500px;
+    overflow-y: scroll;
+}
+
+.flashcards-view .flashcard-deck-progression {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin: 20px 0;
+    border-radius: 7px;
+    column-gap: 20px;
+    border: 1px solid var(--border-card);
+    background-color: var(--card);
+    opacity: 0;
+    transform: translateY(30%);
+    transition: opacity .7s ease, transform .25s ease;
+}
+
+.flashcards-view .flashcard-deck-progression .deck-name {
+    color: var(--important);
+    font-family: sans-serif;
+    font-weight: 600;
+}
+
+.flashcards-view .flashcard-deck-progression .progress {
+    position: relative;
+    display: flex;
+    width: 400px;
+    min-width: 200px;
+    height: 7px;
+    background-color: var(--progress-color);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.flashcards-view .flashcard-deck-progression .progress .progress__fill {
+    width: 0%;
+    height: 100%;
+    background-color: #5c7fdd;
+}
+
+.flashcards-view .flashcard-deck-progression button {
+    background-color: var(--background);
+    border: 1px solid var(--border-card);
+    border-radius: 5px;
+    padding: 5px 10px;
+    color: var(--important);
+    cursor: pointer;
+    transition: 150ms;
+}
+
+.flashcards-view .flashcard-deck-progression button:hover {
+    color: #5c7fdd;
+}
+
+.flashcards-view .deck-progression-section {
+    font-family: Roboto;
+    margin-bottom: 50px
+}
+
+.flashcards-view .deck-progression-section h2 {
+    font-family: sans-serif;
+    color: var(--important);
 }

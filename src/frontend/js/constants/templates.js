@@ -55,18 +55,48 @@ export const flashcardsTemplate = `
     <div class="flashcards-view">
         <h1>Flashcards</h1>
         <div class="stats-section">
-            <p>Current streak: <span>🔥0</span>d</p>
-            <p>Time studied: <span>0</span>h <span>0</span>m</p>
+            <p>Current streak: <span class="study-streak">🔥0</span>d</p>
+            <p>Time studied: <span class="hours-studied">0</span>h <span class="minutes-studied">0</span>m</p>
             <p>Total cards: <span class="flashcard-count">0</span></p>
         </div>
         <div class="deck-section">
             <h2>Decks</h2>
-            <p class="continue-studying">Continue studying your cards</p>
             <button class="create-deck-btn">Add a deck</button>
-            <div class="flashcard-deck-container"> </div>
+            <div class="flashcard-deck-container"></div>
         </div>
+        <div class="deck-progression-section">
+        <h2>Progression</h2>
+        <div class="flashcard-deck-progression-container"></div>
+    </div>
     </div>
 `;
+
+export const flashcardPracticeTemplate = `
+    <div class="flashcard-practice">
+    <button class="flashcard-home-btn"><i class="fa-solid fa-chevron-left"></i></button>
+        <div class="center">
+            <div class="deck-section">
+                <i id="previous-card-btn" class="fa-solid fa-caret-left"></i>
+                <i id="next-card-btn" class="fa-solid fa-caret-right"></i>
+                <h2 class="deck-name"></h2>
+                <span class="current-card-number">1 out of 0</span>
+                <div class="flashcard">
+                    <div class="flashcard-content">
+                    </div>
+                </div>
+                <div class="progress">
+                    <div class="progress__fill"></div>
+                </div>
+                <div class="button-bar">
+                    <i id="restart-btn" class="fa-solid fa-repeat"></i>
+                    <i id="forward-backward-btn" class="fa-solid fa-arrows-rotate"></i>
+                    <i id="wrong-btn" class="fa-solid fa-xmark"></i>
+                    <i id="correct-btn" class="fa-solid fa-check"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+`
 export const templatesTemplate =  `
     <div class="templates">
         <div class="top">

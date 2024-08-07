@@ -3,143 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="../css/general/sidebar.css">
+    <link rel="stylesheet" href="../css/general/main.css">
+    <link rel="stylesheet" href="../css/general/dialog.css">
+    <link rel="stylesheet" href="../css/general/themes.css">
+    <link rel="stylesheet" href="../css/general/animation.css">
+    <link rel="stylesheet" href="../css/views/flashcardPracticeView.css">
+    <link rel="stylesheet" href="src/frontend/css/notification/notification.css">
+    <link rel="stylesheet" href="src/frontend/css/textEditor/textEditor.css">
+    <link rel="stylesheet" href="src/frontend/css/textEditor/toolbarBottom.css">
+    <link rel="stylesheet" href="src/frontend/css/textEditor/toolbarTop.css">
+    <link rel="stylesheet" href="src/frontend/css/textEditor/colorPalletes.css">
+    <link rel="stylesheet" href="src/frontend/css/textEditor/editorSpawnables.css">
+    <link rel="stylesheet" href="src/frontend/css/modals/newFolderContainer.css">
+    <link rel="stylesheet" href="src/frontend/css/modals/saveContainer.css">
+    <link rel="stylesheet" href="src/frontend/css/modals/deleteContainer.css">
+    <link rel="stylesheet" href="src/frontend/css/modals/noteDetailsModal.css">
+    <link rel="stylesheet" href="src/frontend/css/modals/noteBackgroundModal.css">
+    <link rel="stylesheet" href="src/frontend/css/modals/linkNoteModal.css">
+    <link rel="stylesheet" href="src/frontend/css/general/scrollbar.css">
+    <link rel="stylesheet" href="src/frontend/css/modals/searchModal.css">
+    <link rel="stylesheet" href="src/frontend/css/modals/editFolderModal.css">
+    <link rel="stylesheet" href="src/frontend/css/textEditor/textBlocks.css">
+    <link rel="stylesheet" href="src/frontend/css/views/flashcardView.css">
+    <link rel="stylesheet" href="src/frontend/css/views/homeView.css">
+    <link rel="stylesheet" href="src/frontend/css/views/notesView.css">
+    <link rel="stylesheet" href="src/frontend/css/views/templatesView.css">
+    <link rel="stylesheet" href="src/frontend/css/views/settingsView.css">
+    <link rel="stylesheet" href="src/frontend/css/general/searchbar.css">
+    <link rel="stylesheet" href="src/frontend/css/">
+    <!-- CDN for the icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
-        
-        body {
-            height: 100dvh;
-            padding: 0;
-            margin: 0;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .wrapper {
-            width: 500px;
-            height: 600px;
-            display: grid;
-            grid-template-rows: 120px 1fr;
-        }
-
-        .folder-info-container h2 {
-            font-family: sans-serif;
-            margin-bottom: 5px;
-        }
-
-        .folder-info-container .add-folder-btn {
-            cursor: pointer;
-            border: none;
-            background-color: rgb(87, 87, 244);
-            color: white;
-            padding: 7px 20px;
-            border-radius: 20px;
-        }
-
-        .folder-info-container .add-document-btn {
-            border: none;
-            cursor: pointer;
-            background-color: rgb(232, 234, 241);
-            padding: 7px 20px;
-            border-radius: 20px;           
-        }
-
-        .folder-content-container {
-            display: flex;
-            flex-direction: column;
-            row-gap: 20px;
-        }
-
-        .folder-content-container span {
-            font-family: Roboto;
-            font-weight: 600;
-        }
-
-        .folder-content-container .documents {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .document,
-        .folder {
-            cursor: pointer;
-            height: 20px;
-            padding: 5px;
-            display: flex;
-            align-items: center;
-            border-radius: 5px;
-            background-color: transparent;
-            transition: 150ms;
-        }
-
-        .document:hover,
-        .folder:hover {
-            background-color: #f4f5f7;
-        }
-
-        .document h4,
-        .folder h4 {
-            margin: 0;
-            font-family: Roboto;
-
-        }
-
-
-
-    </style>
+    <title>Neutron</title>
 </head>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+  </style>
 <body>
     <div class="wrapper">
-        <div class="folder-info-container">
-            <h2>Software architecture</h2>
-            <div>
-                <button class="add-folder-btn">Add subfolder</button>
-                <button class="add-document-btn">Add document</button>
+        <div class="sidebar">
+            <div class="sidebar-logo">
+                <div class="logo-container">
+                    <div class="logo">
+                        <span>N</span>
+                    </div>
+                    <div class="logo-text">eutron</div>
+                </div>
+            </div>
+            <div class="sidebar-content">
+              <div class="sidebar-content-upper">
+                <a href="/home" data-view="home" class="home-btn"><i class="fa-solid fa-house"></i><span>Home</span></a>
+                <a href="/notes" data-view="notes" class="notes-btn"><i class="fa-solid fa-file"></i><span>Notes</span></a>
+                <a href="/flashcards" data-view="flashcards" class="flashcards-btn"><i class="fa-solid fa-circle-check"></i><span>Flashcards</span></a>
+                <a href="/templates" data-view="templates" class="templates-btn"><i class="fa-solid fa-layer-group"></i><span>Templates</span></a>
+              </div>
+              <div class="sidebar-content-lower">
+                <a href="/settings" data-view="settings" class="settings-btn"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
+              </div>
             </div>
         </div>
-        <div class="folder-content-container">
-            <div class="folders">
-                <span>Folders</span>
-                <div class="folder">
-                    <h4 class="folder-name">Untitled</h4>
+
+        <main class="content">
+            <div class="flashcard-practice">
+                <div class="center">
+                    <div class="deck-section">
+                        <i id="previous-card-btn" class="fa-solid fa-caret-left"></i>
+                        <i id="next-card-btn" class="fa-solid fa-caret-right"></i>
+                        <h2 class="deck-name">OWASP Top 10</h2>
+                        <span class="current-card-number">1 out of 10</span>
+                        <div class="flashcard">
+                            <div class="flashcard-content">
+                            </div>
+                        </div>
+                        <div class="progress">
+                            <div class="progress__fill"></div>
+                        </div>
+                        <div class="button-bar">
+                            <i id="restart-btn" class="fa-solid fa-repeat"></i>
+                            <i id="forward-backward-btn" class="fa-solid fa-arrows-rotate"></i>
+                            <i id="wrong-btn" class="fa-solid fa-xmark"></i>
+                            <i id="right-btn" class="fa-solid fa-check"></i>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="documents">
-                <span>Documents</span>
-                <div class="document">
-                    <h4 class="document-name">Exam sumary</h4>
-                </div>
-                <div class="document">
-                    <h4 class="document-name">Compliant checking</h4>
-                </div>
-                <div class="document">
-                    <h4 class="document-name">Dependencies and packages</h4>
-                </div>
-                <div class="document">
-                    <h4 class="document-name">Exam sumary</h4>
-                </div>
-                <div class="document">
-                    <h4 class="document-name">Compliant checking</h4>
-                </div>
-                <div class="document">
-                    <h4 class="document-name">Dependencies and packages</h4>
-                </div>
-                <div class="document">
-                    <h4 class="document-name">Exam sumary</h4>
-                </div>
-                <div class="document">
-                    <h4 class="document-name">Compliant checking</h4>
-                </div>
-                <div class="document">
-                    <h4 class="document-name">Dependencies and packages</h4>
-                </div>
-            </div>
-        </div>
-    </div>
-    
+        </main>
+        
+    </div>    
+    <div class="dialog"></div>
 </body>
 </html>

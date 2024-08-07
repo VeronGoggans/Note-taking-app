@@ -37,7 +37,7 @@ class FlashcardDeck:
             'correct': correct,
             'wrong': wrong,
             'idle': idle,
-            'progress': int(correct / (correct + wrong + idle) * 100)
+            'percentage': int(correct / (correct + wrong + idle) * 100)
         }
 
 

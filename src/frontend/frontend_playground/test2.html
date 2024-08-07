@@ -9,98 +9,78 @@
     <link rel="stylesheet" href="../css/general/themes.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
-        .flashcard-practice-modal {
-            position: relative;
-            width: 550px;
-            padding: 5px 20px;
-            border-radius: 10px;
-            height: 400px;
-            background-color: #ffffff;
-            border: 1px solid var(--border-card);
-        }
-
-        .flashcard-practice-modal h3 {
-            font-family: sans-serif;
-            color: var(--important);
-        }
-
-        .flashcard-practice-modal span {
-            position: absolute;
-            top: 40px;
-            right: 25px;
-            font-family: Roboto;
-            font-weight: 600;
-            font-size: 15px;
-        }
-
-        .flashcard {
-            cursor: pointer;
-            height: 65%;
-            border-radius: 7px;
+        .flashcard-deck-progression-container {
             display: flex;
-            justify-content: center;
             align-items: center;
-            box-shadow: 0 0 10px #e6eaf3;
+            padding: 10px;
+            border-radius: 7px;
+            column-gap: 20px;
+            border: 1px solid var(--border-card);
+            background-color: var(--background);
         }
 
-        .flashcard p {
-            font-family: Roboto;
+        .flashcard-deck-progression-container .deck-name {
+            color: var(--important);
+            font-family: sans-serif;
             font-weight: 600;
         }
 
-
-        .progress {
-            margin-top: 10px;
-            margin: 10px 40px 0 40px;
+        .flashcard-deck-progression-container .progress {
             position: relative;
-            height: 5px;
-            background-color: #e6eaff;
+            display: flex;
+            width: 400px;
+            min-width: 200px;
+            height: 7px;
+            background-color: var(--progress-color);
             border-radius: 5px;
             overflow: hidden;
         }
 
-        .progress__fill {
-            width: 90%;
+        .flashcard-deck-progression-container .progress .progress__fill {
+            width: 70%;
             height: 100%;
-            background-color: #5d7cff;
+            background-color: #5c7fdd;
         }
 
-        .button-bar {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 50px;
-            margin: 10px 0;
-            gap: 20px;
-        }
-
-        .button-bar i {
-            cursor: pointer;
-            width: 30px;
-            height: 30px;
+        .flashcard-deck-progression-container button {
+            background-color: var(--background);
+            border: 1px solid var(--border-card);
             border-radius: 5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            padding: 5px 10px;
+            color: var(--important);
+            cursor: pointer;
+            transition: 150ms;
+        }
+
+        .flashcard-deck-progression-container button:hover {
+            color: #5c7fdd;
+        }
+
+        .deck-progression-section {
+            font-family: Roboto;
+            max-height: 400px;
+            height: 400px;
+            overflow-y: scroll;
+        }
+
+        .deck-progression-section h2 {
+            font-family: sans-serif;
+            color: var(--important);
         }
     </style>
 </head>
 <body>
-    <div class="flashcard-practice-modal">
-        <h3>Owasp Top 10</h3>
-        <span class="card-count">9/10</span>
-        <div class="flashcard">
-            <p class="flashcard-content">Broken authentication</p>
-        </div>
-        <div class="progress">
-            <div class="progress__fill"></div>
-        </div>
-        <div class="button-bar">
-            <i id="restart-btn" class="fa-solid fa-repeat"></i>
-            <i id="forward-backward-btn" class="fa-solid fa-arrows-rotate"></i>
-            <i id="wrong-btn" class="fa-solid fa-xmark"></i>
-            <i id="right-btn" class="fa-solid fa-check"></i>
+    <div class="deck-progression-section">
+        <h2>Your performance</h2>
+        <div class="flashcard-deck-progression-container">
+            <span class="deck-name">OWASP Top 10</span>
+            <button class="edit-deck-btn"><i class="fa-solid fa-pen"></i> View</button>
+            <button class="study-deck-btn"><i class="fa-solid fa-graduation-cap"></i> Study</button>
+            <div class="progress">
+                <div class="progress__fill"></div>
+            </div>
         </div>
     </div>
+    
 </body>
 </html>

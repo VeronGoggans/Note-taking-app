@@ -23,9 +23,3 @@ button {
     grid-template-columns: 220px 1fr;
     background-color: var(--background);
 }
-
-.content {
-    font-family: Roboto;
-    display: grid;
-    grid-template-rows: 50px 1fr;
-}

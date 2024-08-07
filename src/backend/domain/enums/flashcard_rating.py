@@ -1,6 +1,6 @@
 from enum import Enum
 
 class FlashcardRating(Enum):
-    CORRECT = 'Correct'
-    WRONG = 'Wrong'
+    CORRECT = 'correct'
+    WRONG = 'wrong'
     IDLE = 'idle'

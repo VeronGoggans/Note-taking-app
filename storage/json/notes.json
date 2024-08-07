@@ -3,7 +3,7 @@
         "id": "f-1",
         "name": "Home",
         "color": "rgb(255, 255, 255)",
-        "last_visit": "04/08/2024 00:16:12",
+        "last_visit": "07/08/2024 17:53:22",
         "notes": [
             {
                 "id": "n-692",
@@ -11,7 +11,7 @@
                 "content": "storage/notes/note-n-692.txt",
                 "bookmark": true,
                 "favorite": false,
-                "last_edit": "03/08/2024 17:50",
+                "last_edit": "05/08/2024 13:52",
                 "creation": "30/07/2024"
             }
         ],
@@ -21,21 +21,21 @@
         "id": "f-99",
         "name": "School \ud83d\udcd6\u270f\ufe0f",
         "color": "rgb(255, 255, 255)",
-        "last_visit": "03/08/2024 17:56:05",
+        "last_visit": "07/08/2024 17:44:25",
         "notes": [],
         "subfolders": [
             {
                 "id": "s-191",
                 "name": "Year 2",
                 "color": "rgb(255, 255, 255)",
-                "last_visit": "03/08/2024 17:56:05",
+                "last_visit": "07/08/2024 17:44:25",
                 "notes": [],
                 "subfolders": [
                     {
                         "id": "s-181",
                         "name": "Software Architecture\ud83c\udf31",
                         "color": "rgb(255, 255, 255)",
-                        "last_visit": "03/08/2024 22:43:52",
+                        "last_visit": "07/08/2024 17:44:26",
                         "notes": [
                             {
                                 "id": "n-589",
@@ -134,7 +134,7 @@
                         "id": "s-182",
                         "name": "CISC2",
                         "color": "rgb(255, 255, 255)",
-                        "last_visit": "03/08/2024 17:57:03",
+                        "last_visit": "07/08/2024 17:53:29",
                         "notes": [
                             {
                                 "id": "n-609",

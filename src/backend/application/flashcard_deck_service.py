@@ -15,6 +15,7 @@ class FlashcardDeckService:
         self.BASE_URL = getcwd()
         self.deck_path = f'{self.BASE_URL}/storage/json/flashcard_bundles.json'
         self.id_path = f'{self.BASE_URL}/storage/json/id.json'
+        self.misc_path = f'{self.BASE_URL}/storage/json/misc.json'
 
 
     def add_deck(self, name: str, flashcards: list[PostFlashcardDTO]):
@@ -45,9 +46,10 @@ class FlashcardDeckService:
 
     def get_all_decks(self):
         decks = self.json_manager.load(self.deck_path)
+        misc = self.json_manager.load(self.misc_path)
         try:
-            return self.manager.get_all(decks)
-        except AdditionException as e:
+            return self.manager.get_all(decks), misc['flashcard_misc']
+        except DeserializationException as e:
             raise e
         
 
