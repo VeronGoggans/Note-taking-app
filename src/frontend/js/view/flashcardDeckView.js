@@ -10,6 +10,7 @@ export class FlashcardDeckView {
         this.deckObjects = new FlashcardDeckObjectArray();
 
         this.#initializeDomElements();
+        this.#attachEventListeners();
 
     }
 
@@ -70,6 +71,10 @@ export class FlashcardDeckView {
         return new FlashcardProgression(deck, this);
     }
 
+    #attachEventListeners() {
+        this._addDeckButton.addEventListener('click', () => {this.dialog.renderNewDeckModal(this)});
+    }
+
 
     #initializeDomElements() {
         this._flashcardDecks = document.querySelector('.flashcard-deck-container');
@@ -78,5 +83,7 @@ export class FlashcardDeckView {
         this._streakSpan = document.querySelector('.study-streak');
         this._hoursStudiedSpan = document.querySelector('.hours-studied');
         this._minutesStudiedSpan = document.querySelector('.minutes-studied');
+
+        this._addDeckButton = document.querySelector('.create-deck-btn');
     }
 }

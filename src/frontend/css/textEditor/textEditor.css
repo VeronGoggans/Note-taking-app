@@ -58,7 +58,7 @@
 
  .editor iframe {
     border-radius: 20px;
-    transition: .2s;
+    transition: 200ms;
     width: 444px;
     height: 250px;
  }
@@ -89,7 +89,7 @@
    background-color: transparent;
    color: var(--text);
    font-size: 16px;
-   transition: .3s;
+   transition: 200ms;
 }
 
 .embed-link-input:hover,
@@ -104,11 +104,9 @@
    left: 0;
    background-color: #5c7dff;
    color: rgb(255, 255, 255);
-   border: none;
    border-radius: 0 0 10px 0;
    width: 25px;
    height: 25px;
-   transition: 150ms;
 }
 
 .link-container {
@@ -133,7 +131,7 @@
    background-color: transparent;
    color: var(--text);
    font-size: 16px;
-   transition: .3s;
+   transition: 200ms;
 }
 
 .original-link-input:hover,
@@ -150,13 +148,11 @@
 
 .save-link-btn {
    background-color: #5c7dff;
-   border: none;
    color: white;
    border-radius: 7px;
    height: 30px;
    width: 90px;
    font-size: 16px;
-   transition: 200ms;
 }
 
 .save-link-btn:hover {
@@ -232,22 +228,15 @@
     border-radius: 10px;
  }
 
- .editor h5,
- .editor h6 {
-    margin: 0;
+ .editor :where(h5, h6) {
+   margin: 0;
  }
 
  .editor a {
    color: rgb(67, 142, 255);
  }
 
- 
- .editor h1,
- .editor h2,
- .editor h3,
- .editor h4,
- .editor h5,
- .editor h6 {
+ .editor :where(h1, h2, h3, h4, h5, h6) {
    min-height: 10px;
  }
 

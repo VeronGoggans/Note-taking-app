@@ -237,5 +237,5 @@ export class TextFormatter {
     const br = document.createElement('br');
     const p = document.createElement('p');
     return { br, p }
-  }
+  }  
 }

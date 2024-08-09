@@ -22,7 +22,7 @@ export class EditFolderModal {
         this.INPUT.value = this.folder.name;
         this.NAME_SPAN = CNode.create('span', {'textContent': 'Folder name', 'id': 'title'});
         this.COLOR_SPAN = CNode.create('span', {'textContent': 'Folder color', 'id': 'title'});
-        this.NAME_P = CNode.create('p', {'textContent': 'You can change the name of your folder below.'});
+        this.NAME_P = CNode.create('p', {'textContent': 'Change the name of the folder below.'});
         this.COLOR_P = CNode.create('p', {'textContent': 'Select a folder background color: '});
         this.ACTIVE_COLOR_SPAN = CNode.create('span', {'textContent': '(Original)'});
         this.HR = CNode.create('hr', {});
@@ -39,7 +39,7 @@ export class EditFolderModal {
         this.ORIGINAL_COLOR = CNode.create('div', {'class': 'original-folder-color', 'style': 'background-color: rgb(255, 255, 255);'});
         this.BUTTONS_CONTAINER = CNode.create('div', {'class': 'buttons-container'});
         this.CANCEL = CNode.create('button', {'textContent': 'Cancel', 'class': 'cancel-folder-customization-btn'});
-        this.SAVE = CNode.create('button', {'textContent': 'Save preferences', 'class': 'save-folder-customisations-btn'});
+        this.SAVE = CNode.create('button', {'textContent': 'Save', 'class': 'save-folder-customisations-btn'});
         this.colorsArray = [this.BLUE, this.LAVENDER, this.LIGHT_GREEN, this.PEACH, this.PINK_LAVENDER,
             this.BLUE_VIOLET, this.SALMON_PINK, this.TURQUOISE, this.SUNSET_ORANGE, this.ORIGINAL_COLOR
         ]

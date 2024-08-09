@@ -1,6 +1,4 @@
 .templates {
-    display: grid; 
-    grid-template-rows: 130px 1fr;
     font-family: Roboto;
     padding: 15px;   
     height: 100dvh;
@@ -8,38 +6,46 @@
     overflow-y: scroll;
 }
 
-.templates .top {
-    display: flex;
-    column-gap: 30px;
+.templates h1 {
+    font-family: sans-serif;
+    color: var(--important);
 }
 
-.templates .top-right {
-    padding-top: 20px;
-    padding-left: 20px;
+.templates h2 {
+    font-family: sans-serif;
+    color: var(--important);
+    margin-bottom: 30px;
+}
+
+.templates .stats-section {
     display: flex;
-    flex-direction: column;
+    align-items: end;
+    column-gap: 50px;
+}
+
+.templates .stats-section p {
     font-weight: 600;
+    font-size: 20px;
     color: var(--important);
 }
 
-.templates .top-right p {
-    margin: 5px 0;
-}
-
-.templates .top-right p span {
+.templates .stats-section p span {
     font-size: 25px;
-    margin-left: 10px;
     font-family: sans-serif;
+    color: var(--stats-span-color);
 }
 
-.templates-title {
-    font-family: sans-serif;
-    color: var(--important);
+.templates .recent-section {
+    position: relative;
+    max-height: 750px;
 }
+
 
 .add-template-btn {
+    position: absolute;
+    top: 0;
+    right: 10px;
     cursor: pointer;
-    border: none;
     font-size: 16px;
     border-radius: 10px;
     padding: 5px 10px;
@@ -58,11 +64,9 @@
     color: white;
 }
 
-
-.templates .bottom .block-title {
+.templates .bottom h2 {
     font-family: sans-serif;
-    color: #63656d;
-    margin-top: 20px;
+    color: var(--important);
 }
 
 .recent-templates,

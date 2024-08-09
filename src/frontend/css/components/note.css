@@ -33,15 +33,12 @@
 
 .note-name-box h4 {
     width: 100%;
-    outline: none;
     padding: 5px;
     margin-left: 10px;
     margin-right: 10px;
     color: var(--important);
-    border-bottom: 2px solid transparent;
     font-family: sans-serif;
     font-size: 15px;
-    transition: 200ms;
 }
 
 .note-content-box {
@@ -69,14 +66,11 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    outline: none;
-    border: none;
     width: 30px;
     height: 30px;
     border-radius: 10px;
     background-color: transparent;
     color: var(--icon);
-    transition: .3s;
 }
 
 .note-util-bar i:hover {
@@ -111,7 +105,6 @@
     width: 35px;
     height: 35px;
     color: var(--text);
-    transition: .4s;
 }
 
 .note-content-box iframe {visibility: hidden}

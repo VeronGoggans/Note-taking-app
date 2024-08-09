@@ -1,4 +1,5 @@
 import { AnimationHandler } from "../handlers/animation/animationHandler.js";
+import { DropdownHelper } from "../helpers/dropdownHelper.js";
 
 export class SettingView {
     constructor(controller, applicationController) {
@@ -6,6 +7,7 @@ export class SettingView {
         this.applicationController = applicationController;
         this.#initializeDomElements();
         this.#attachEventListeners();
+        this.dropdownHelper = new DropdownHelper(this, this.dropdowns, this.dropdownOptions);
         AnimationHandler.fadeInFromSide(this.settingsView);
     }
 
@@ -22,7 +24,7 @@ export class SettingView {
     }
 
     async #lightMode() {
-        this.closeDropdowns();
+        this.dropdownHelper.closeDropdowns();
         this.setThemeDropdownState('Light');
         document.body.classList.remove('dark');
         document.body.classList.add('light');
@@ -30,42 +32,29 @@ export class SettingView {
     }
     
     async #darkmode() {
-        this.closeDropdowns();
+        this.dropdownHelper.closeDropdowns();
         this.setThemeDropdownState('Dark');
         document.body.classList.remove('light');
         document.body.classList.add('dark');
         await this.controller.updateTheme('dark');
     }
 
-    toggleDropdown(dropdownItems) {
-        this.closeDropdowns(dropdownItems);
-        dropdownItems.style.visibility = dropdownItems.style.visibility === 'visible' ? 'hidden' : 'visible';
-        dropdownItems.style.opacity = dropdownItems.style.opacity === '1' ? '0' : '1';
-    }
-
-    closeDropdowns(targetDropdown) {
-        this.dropdowns.forEach((dropdown) => {
-            if (dropdown !== targetDropdown) {
-              dropdown.style.visibility = 'hidden';
-              dropdown.style.opacity = '0';
-            }
-        });
-    }
 
     #initializeDomElements() {
         this.settingsView = document.querySelector('.settings');
         this.themeInput = document.querySelector('.theme-dropdown input');
-        this.themeDropdown = document.querySelector('.theme-dropdown ul')
-        this.languageInput = document.querySelector('.language-dropdown input');
-        this.languageDropdown = document.querySelector('.language-dropdown ul');
-        this.dropdowns = [this.themeDropdown, this.languageDropdown];
+        this.themeDropdownOptions = document.querySelector('.theme-dropdown ul');
         this.darkThemeOption = document.querySelector('.theme-dropdown ul li[theme="dark"]');
         this.lightThemeOption = document.querySelector('.theme-dropdown ul li[theme="light"]');
+
+        this.languageInput = document.querySelector('.language-dropdown input');
+        this.languageDropdownOptions = document.querySelector('.language-dropdown ul');
+
+        this.dropdowns = [this.themeInput, this.languageInput];
+        this.dropdownOptions = [this.themeDropdownOptions, this.languageDropdownOptions]
     }
 
     #attachEventListeners() {
-        this.themeInput.addEventListener('click', () => {this.toggleDropdown(this.themeDropdown)});
-        this.languageInput.addEventListener('click', () => {this.toggleDropdown(this.languageDropdown)});
         this.lightThemeOption.addEventListener('click', () => {this.#lightMode()});
         this.darkThemeOption.addEventListener('click', () => {this.#darkmode()});
         this.settingsView.addEventListener('click', (event) => {
@@ -74,7 +63,7 @@ export class SettingView {
             // Check if the click was on a dropdown.
             if (excludedContainers.some(selector => event.target.closest(selector))) {
                 return;
-            } this.closeDropdowns();
+            } this.dropdownHelper.closeDropdowns();
         });
     }
 }

@@ -8,6 +8,7 @@
     justify-content: center;
     align-items: center;
     background-color: var(--modal);
+    box-shadow: 0 0 10px var(--shadow);
   }
   
   .dont-forget-to-save-container h1 {
@@ -26,7 +27,6 @@
   }
   
   .exit-without-save-btn {
-    border: none;
     padding: 10px 20px;
     margin: 0 5px;
     border-radius: 10px;
@@ -36,7 +36,6 @@
   }
   
   .exit-with-save-btn {
-    border: none;
     padding: 10px 20px;
     margin: 0 5px;
     border-radius: 10px;

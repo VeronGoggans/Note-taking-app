@@ -12,3 +12,9 @@
     z-index: 3;
     font-family: Roboto;
 }
+
+.dialog > div:first-child {
+    opacity: 0;
+    transform: translateY(30%);
+    transition: opacity 250ms ease, transform 150ms ease;
+}

@@ -1,4 +1,4 @@
-import { NoteModel } from "../model/noteModel.js";
+import { HttpModel } from "../model/httpModel.js";
 import { NoteView } from "../view/noteView.js";
 import { Searchbar } from "../view/searchbar.js";
 import { viewToLoad } from "../helpers/random.js";
@@ -9,7 +9,7 @@ export class NoteController {
         this.notificationHandler = notificationHandler
         this.applicationController = applicationController;
         this.objectNum = 0;
-        this.model = new NoteModel();
+        this.model = new HttpModel();
     }
 
     async init(folderId = 'f-1') {
@@ -34,23 +34,29 @@ export class NoteController {
     }
 
     async addNote(folderId, name, content) {
-        const response = await this.model.add('/note', folderId, name, content);
+        const response = await this.model.add('/note', {'folder_id': folderId,'name': name,'content': content});
         const newNote = response[this.objectNum].note;
         return newNote
     }
 
     async updateNote(note) {
-        await this.model.update('/note', note);
+        await this.model.update('/note', {
+            'note_id': note.id,
+            'name': note.name,
+            'content': note.content,
+            'bookmark': note.bookmark,
+            'favorite': note.favorite
+        });
     }
 
     async deleteNote(noteId) {
-        const response = await this.model.delete('/note', noteId);
+        const response = await this.model.delete(`/note/${noteId}`);
         const note = response[this.objectNum].note;
         this.view.renderDelete(note);
     }
 
     async moveNote(noteId, folderId) {
-        const response = await this.model.moveNote('/moveNote', noteId, folderId);
+        const response = await this.model.update('/moveNote', {'folder_id': folderId, 'note_id': noteId});
         const note = response[this.objectNum].note;
         this.view.removeNote(note, false);
     }

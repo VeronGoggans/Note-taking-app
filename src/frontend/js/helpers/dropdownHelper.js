@@ -1,7 +1,9 @@
 export class DropdownHelper {
-    constructor(view) {
+    constructor(view, dropdowns, dropdownOptions, templateList = null) {
         this.view = view;
-        this.#initializeDomElements();
+        this.dropdowns = dropdowns;
+        this.dropdownOptions = dropdownOptions
+        this.templateList = templateList;
         this.#attachEventListeners();
     }
 
@@ -37,28 +39,17 @@ export class DropdownHelper {
       }
 
 
-      toggleVisibleDropdown(dropdownOptions) {
+      toggleDropdown(dropdownOptions) {
         this.closeDropdowns(dropdownOptions);
         dropdownOptions.style.visibility = dropdownOptions.style.visibility === 'visible' ? 'hidden' : 'visible';
         dropdownOptions.style.opacity = dropdownOptions.style.opacity === '1' ? '0' : '1';
       }
 
 
-      #initializeDomElements() {
-        this.templateDropdown = document.querySelector('.templates-dropdown');
-        this.templateDropdownOptions = this.templateDropdown.querySelector('.options');
-        this.templateList = this.templateDropdownOptions.querySelector('.templates-container');
-        this.editorDropdown = document.querySelector('.editor-options-dropdown');
-        this.editorDropdownOptions = this.editorDropdown.querySelector('.options');
-        this.dropdowns = [this.editorDropdown, this.templateDropdown]
-        this.dropdownOptions = [this.editorDropdownOptions, this.templateDropdownOptions]
-      }
-
-
       #attachEventListeners() {
         for (let i = 0; i < this.dropdowns.length; i++) {
             this.dropdowns[i].addEventListener('click', () => {
-                this.toggleVisibleDropdown(this.dropdownOptions[i])
+                this.toggleDropdown(this.dropdownOptions[i])
             });
           }
       }

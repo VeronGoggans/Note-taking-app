@@ -1,5 +1,5 @@
 import { HomeView } from "../view/homeView.js";
-import { HomeModel } from "../model/homeModel.js";
+import { HttpModel } from "../model/httpModel.js";
 import { Searchbar } from "../view/searchbar.js";
 import { viewToLoad } from "../helpers/random.js";
 
@@ -11,7 +11,7 @@ export class HomeController {
         this.applicationController = applicationController;
         this.objectNum = 0;
         this.homeFolderId = 'f-1';
-        this.model = new HomeModel();
+        this.model = new HttpModel()
     }
 
     async init() {

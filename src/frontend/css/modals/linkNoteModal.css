@@ -6,6 +6,7 @@
     border-radius: 5px;
     background-color: var(--modal);
     font-family: Roboto;
+    box-shadow: 0 0 10px var(--shadow);
 }
 
 .note-link-modal #link-icon {
@@ -74,7 +75,6 @@
 }
 
 .search-note-link-container button {
-    border: none;
     width: 200px;
     margin-top: 20px;
     background-color: #5c7dff;

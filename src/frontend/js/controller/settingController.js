@@ -1,10 +1,10 @@
-import { SettingModel } from "../model/settingModel.js";
+import { HttpModel } from "../model/httpModel.js";
 import { SettingView } from "../view/settingView.js";
 
 
 export class SettingController {
     constructor(applicationController) {
-        this.model = new SettingModel();
+        this.model = new HttpModel();
         this.applicationController = applicationController;
     }
 
@@ -25,13 +25,13 @@ export class SettingController {
     }
 
     async getTheme() {
-        const response = await this.model.getTheme('/settings/theme');
-        return await response.theme;
+        const response = await this.model.get('/settings/theme');
+        return response.theme;
     }
 
     async updateTheme(theme) {
-        const response = await this.model.updateTheme('/settings/theme', theme)
-        return await response.theme;
+        const response = await this.model.update(`/settings/theme/${theme}`, null);
+        return response.theme;
     }
 
     setTheme(init, theme) {

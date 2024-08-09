@@ -1,7 +1,7 @@
 import { Template } from "../components/template.js"; 
 import { AnimationHandler } from "../handlers/animation/animationHandler.js";
 import { TemplateObjectArray } from "../util/array.js";
-import { decrementString } from "../util/usefull.js";
+import { decrementString } from "../util/ui.js";
 
 
 export class TemplateView {

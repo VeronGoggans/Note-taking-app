@@ -1,47 +1,9 @@
-import { RequestOptionsBuilder } from "../util/builders/requestOptionsBuilder.js";
-import { fetchData } from "../util/request/request.js";
+import { HttpModel } from "./httpModel.js";
 
-export class FolderModel {
+export class FolderModel extends HttpModel {
     constructor() {
+        super();
         this.folderObjects = []
-    }
-
-    async add(name, color='rgb(255, 255, 255)') {
-        const parentId = this.getCurrentFolderID()
-        const options = RequestOptionsBuilder.buildPostOptions({'folder_id': parentId, 'name': name, 'color': color}) 
-        return fetchData(`/folder/${parentId}`, options);
-    }
-    
-    async get() {
-        const parentId = this.getCurrentFolderID()
-        const options = RequestOptionsBuilder.buildGetOptions();
-        return fetchData(`/folders/${parentId}`, options)
-    }
-
-    async getById(endpoint) {
-        const options = RequestOptionsBuilder.buildGetOptions();
-        return fetchData(endpoint, options)
-    }
-
-    async getSearchItems() {
-        const options = RequestOptionsBuilder.buildGetOptions();
-        return fetchData('/folderSearchItems', options)
-    }
-
-    async update(folderId, name, color) {
-        const options = RequestOptionsBuilder.buildPutOptions({'folder_id': folderId, 'name': name, 'color': color})
-        return fetchData('/folder', options)
-    }
-
-    async updateVisitTime(folderId) {
-        const options = RequestOptionsBuilder.buildPatchOptions()
-        return fetchData(`/viewedFolderTime/${folderId}`, options)
-    }
-
-    async delete(folderId) {
-        const parentId = this.getCurrentFolderID()
-        const options = RequestOptionsBuilder.buildDeleteOptions();
-        return fetchData(`/folder/${parentId}/${folderId}`, options);
     }
 
     clearFolderIdlist() {
@@ -52,6 +14,7 @@ export class FolderModel {
         const lastFolder = this.folderObjects[this.folderObjects.length - 1];
         return lastFolder ? lastFolder : {id: 'f-1', name: 'Home'};
     }
+    
     /** 
      * @returns {String} The ID of the current folder, 
      * or the home folder id if the stack is empty.

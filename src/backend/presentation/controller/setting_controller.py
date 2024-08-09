@@ -13,9 +13,9 @@ class SettingRouter:
     
     def theme(self):
         response = self.setting_service.get_theme()
-        return {"HttpStatus_code": HttpStatus.OK, "theme": response}
+        return {"status": HttpStatus.OK, "theme": response}
     
 
     def update_theme(self, theme: str):
         response = self.setting_service.update_theme(theme)
-        return {'HttpStatus_code': HttpStatus.OK, "theme": response}
+        return {'status': HttpStatus.OK, "theme": response}

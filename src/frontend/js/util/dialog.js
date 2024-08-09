@@ -5,7 +5,8 @@ import { NewFolderContainer } from "../components/modals/newFolderModal.js";
 import { NoteLinkModal } from "../components/modals/linkNoteModal.js";
 import { SearchModal } from "../components/modals/searchModal.js";
 import { EditFolderModal } from "../components/modals/editFolderModal.js";
-import { FlashcardPracticeModal } from "../components/modals/flashcardPracticeModal.js";
+import { NewDeckModal } from "../components/modals/newDeckModal.js";
+import { AnimationHandler } from "../handlers/animation/animationHandler.js";
 
 export class Dialog {
     constructor() {
@@ -24,7 +25,7 @@ export class Dialog {
                 '.note-details-container',
                 '.note-link-modal',
                 '.edit-folder-modal',
-                '.flashcard-practice-modal'
+                '.create-deck-modal'
             ];
 
             // Check if the clicked target belongs to any excluded container
@@ -54,38 +55,34 @@ export class Dialog {
 
     addChild(child) {
         this.dialog.appendChild(child);
+        AnimationHandler.fadeInFromBottom(child);
+        this.show();
     }
 
     renderNoteDetailsModal(noteInfo) {
         this.addChild(new NoteDetailContainer(noteInfo))
-        this.show();
     }
     
     renderDeleteModal(id, name, view) {
         this.addChild(new DeleteModal(id, name, view))
-        this.show();
     }
 
-    renderFlashcardPracticeModal(deck, view) {
-        this.addChild(new FlashcardPracticeModal(deck, view, this))
-        this.show();
+    renderNewDeckModal(view) {
+        this.addChild(new NewDeckModal(view))
     }
 
     renderForgotSaveModal(view) {
         this.addChild(new ForgotSaveContainer(view));
-        this.show();
     }
 
     renderNewFolderModal(view) {
         this.addChild(new NewFolderContainer(view));
-        this.show();
         const inputElement = this.dialog.querySelector('.new-folder-container input');
         inputElement.focus();
     }
 
     renderNoteLinkModal(view, notes, page, controller, dialog) {
         this.addChild(new NoteLinkModal(view, notes, page, controller, dialog));
-        this.show();
     }
 
     renderSearchModal(toolbar) {
@@ -99,6 +96,5 @@ export class Dialog {
 
     renderEditFolderModal(folder, view) {
         this.addChild(new EditFolderModal(folder, view, this))
-        this.show();
     }
 }

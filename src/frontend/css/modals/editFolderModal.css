@@ -51,10 +51,10 @@
     background-color: transparent;
     border: 1px solid var(--folder-name-input);
     padding: 5px 10px;
-    height: 25px;
+    height: 45px;
     margin-bottom: 10px;
     color: var(--text);
-    font-size: 16px;
+    font-size: 18px;
     width: 300px;
     transition: 200ms;
 }
@@ -65,25 +65,21 @@
 }
 
 .cancel-folder-customization-btn {
-    border-radius: 5px;
+    border-radius: 7px;
     width: 80px;
-    transition: 200ms;
     height: 30px;
-    border: none;
     background-color: var(--toolbar);
-    font-size: 14px;
+    font-size: 16px;
     color: var(--text);
 }
 
 .save-folder-customisations-btn {
-    border-radius: 5px;
-    border: none;
+    border-radius: 7px;
     background-color: #5c7dff;
     color: #fff;
-    font-size: 14px;
+    font-size: 16px;
     height: 30px;
-    width: 140px;
-    transition: 200ms;
+    width: 80px;
 }
 
 .cancel-folder-customization-btn:hover {
@@ -91,7 +87,7 @@
 }
 
 .folder-color-options div {
-    width: 25px;
+    width: 100%;
     height: 25px;
     margin: 0 5px;
     border-radius: 50%;

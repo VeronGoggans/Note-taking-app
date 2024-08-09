@@ -9,6 +9,7 @@
     height: 200px;
     border-radius: 20px;
     font-weight: 600;
+    box-shadow: 0 0 10px var(--shadow);
   }
   
   .delete-warning {
@@ -25,13 +26,11 @@
   }
   
   .confirm-delete-folder-btn {
-    border: none;
     background-color: var(--toolbar);
     padding: 10px 30px;
     border-radius: 10px;
     font-size: 16px;
     color: var(--text);
-    transition: 200ms;
   }
   
   .confirm-delete-folder-btn:hover,

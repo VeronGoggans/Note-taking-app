@@ -1,0 +1,97 @@
+.create-deck-modal {
+    position: relative;
+    background-color: var(--modal);
+    font-family: Roboto;
+    width: 500px;
+    height: 500px;
+    border-radius: 10px;
+    padding: 10px 20px;
+    box-shadow: 0 0 10px var(--shadow);
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+}
+
+.create-deck-modal h2 {
+    font-family: sans-serif;
+    color: var(--important);
+}
+
+.create-deck-modal .deck-name-input {
+    border: none;
+    border-bottom: 2px solid #5c7fdd;
+}
+
+.create-deck-modal .term-input {
+    border: 2px solid var(--border-card);
+    border-radius: 10px;
+    height: 50px;
+}
+
+.create-deck-modal input,
+.create-deck-modal textarea {
+    outline: none;
+    background-color: transparent;
+    padding: 5px 15px;
+    font-size: 17px;
+    color: var(--text);
+    font-family: sans-serif;
+    transition: 150ms;
+}
+
+.create-deck-modal input:focus,
+.create-deck-modal textarea:focus {
+    border-color: #5c7fdd;
+}
+
+.create-deck-modal input::placeholder,
+.create-deck-modal textarea::placeholder {
+    color: var(--placeholder);
+}
+
+.create-deck-modal .card-description {
+    resize: none;
+    height: 150px;
+    border-radius: 10px;
+    border: 2px solid var(--border-card);
+}
+
+.create-deck-modal .description-section {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+}
+
+.create-deck-modal .description-section button {
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    color: var(--text);
+    background-color: transparent;
+    cursor: pointer;
+    transition: 150ms;
+}
+
+.create-deck-modal .description-section button:hover {
+    color: #5c7fdd;
+    background-color: var(--hover);
+}
+
+.create-deck-modal .next-card-btn,
+.create-deck-modal .save-deck-btn {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: #5c7fdd;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 30px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.create-deck-modal .save-deck-btn {
+    right: 130px;
+}

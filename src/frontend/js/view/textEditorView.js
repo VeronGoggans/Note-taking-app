@@ -19,7 +19,7 @@ export class TextEditorView {
     this.textFormatter = new TextFormatter();
     this.slashCommand = new SlashCommand(this, this.textFormatter);
     this.textBlockParser = new TextBlockHandler(this.page);
-    this.dropdownHelper = new DropdownHelper(this);
+    this.dropdownHelper = new DropdownHelper(this, this.dropdowns, this.dropdownOptions, this.templateList);
     this.keyEventListener = new KeyEventListener(this);
     this.textEditorEventListener = new TextEditorEventListener(this.page, this.editor, this.slashCommand);
   }
@@ -137,34 +137,27 @@ export class TextEditorView {
     this.exitButton = document.querySelector('#exit-editor-btn');
     this.saveButton = document.querySelector('.save-note-btn');
     this.findButton = document.querySelector('#editor-search-btn');
+    this.deckButton = document.querySelector('#editor-flashcard-set-btn');
 
     this.noteDetailsSpan = document.querySelector('.note-details-span');
     this.deleteNoteSpan = document.querySelector('.delete-note-span');
     this.saveNoteSpan = document.querySelector('.save-note-span');
     this.newNoteSpan = document.querySelector('.new-note-span');
 
-    // this.fontButton = document.querySelector('.font-button');
-    // this.fontDropdown = document.querySelector('.font-dropdown');
-    // this.fontDropdownOptions = document.querySelector('.font-options');
-    
-    this.linkButton = document.querySelector('.link-btn');
-    this.codeBlockButton = document.querySelector('.code-block-btn');
-    this.horizontalRuleButton = document.querySelector('.hr-btn');
-    this.linkNoteButton = document.querySelector('.link-note-btn');
-    this.removeFormattingButton = document.querySelector('.remove-formatting-btn');
-    this.embedVideoButton = document.querySelector('.video-btn');
-    this.foregroundColor = document.querySelector('.foreground-color-picker');
-    this.backgroundColor = document.querySelector('.background-color-picker');
-    // this.foregroundPalette = document.querySelector('.foreground-color-palette');
-    // this.foregroundPaletteColors = this.foregroundPalette.querySelectorAll('.nature-colors button, .sunset-colors button, .neon-colors button, .text-colors button');
-    // this.backgroundPalette = document.querySelector('.background-color-palette');
-    // this.backgroundPaletteColors = this.backgroundPalette.querySelectorAll('.nature-colors button, .sunset-colors button, .neon-colors button, .text-colors button');
-
     // other
     this.textEditor = document.querySelector('.editor-wrapper');
     this.editor = document.querySelector('.editor');
     this.page = document.querySelector('.editor-paper');
     this.toolbar = document.querySelector('.toolbar')
+
+    // dropdowns
+    this.templateDropdown = document.querySelector('.templates-dropdown');
+    this.templateDropdownOptions = this.templateDropdown.querySelector('.options');
+    this.templateList = this.templateDropdownOptions.querySelector('.templates-container');
+    this.editorDropdown = document.querySelector('.editor-options-dropdown');
+    this.editorDropdownOptions = this.editorDropdown.querySelector('.options');
+    this.dropdowns = [this.editorDropdown, this.templateDropdown]
+    this.dropdownOptions = [this.editorDropdownOptions, this.templateDropdownOptions]
   }
 
 
@@ -178,6 +171,7 @@ export class TextEditorView {
     this.saveButton.addEventListener('click', async () => { await this.save(true, false)});
     this.page.addEventListener('click', () => {this.dropdownHelper.closeDropdowns()});
 
-    this.findButton.addEventListener('click', () => {this.dialog.renderSearchModal(this.toolbar)});    
+    this.findButton.addEventListener('click', () => {this.dialog.renderSearchModal(this.toolbar)});  
+    this.deckButton.addEventListener('click', () => {this.dialog.renderNewDeckModal(this)});  
   }
 }

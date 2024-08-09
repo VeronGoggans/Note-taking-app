@@ -23,19 +23,19 @@ export class FolderController {
     }
 
     async getFolders() {
-        const response = await this.model.get();
+        const parentFolderId = this.model.getCurrentFolderID();
+        const response = await this.model.get(`/folders/${parentFolderId}`);
         const folders = response[this.objectNum].folders;
         this.view.renderAll(folders);
     }
 
     async getFolderById(folderId) {
-        const response = await this.model.getById(`folderById/${folderId}`);
-        const folder = response[this.objectNum].folder;
-        return folder // <-- application controller
+        const response = await this.model.get(`folderById/${folderId}`);
+        return response[this.objectNum].folder;
     }
 
     async getSearchItems() {
-        const response = await this.model.getSearchItems()
+        const response = await this.model.get('/folderSearchItems')
         return response[this.objectNum].folders;
     }
 
@@ -48,19 +48,21 @@ export class FolderController {
     }
 
     async addFolder(name) {
-        const response = await this.model.add(name);
+        const parentFolderId = this.model.getCurrentFolderID();
+        const response = await this.model.add('/folder', {'folder_id': parentFolderId, 'name': name, 'color': 'rgb(255, 255, 255)'});
         const folder = response[this.objectNum].folder;
         this.view.renderOne(folder);
     }
 
-    async updateFolder(folderId, newName, color) {
-        const response = await this.model.update(folderId, newName, color);
+    async updateFolder(folderId, name, color) {
+        const response = await this.model.update('/folder', {'folder_id': folderId, 'name': name, 'color': color});
         const folder = response[this.objectNum].folder;
         this.view.renderUpdate(folder);
     }
 
     async deleteFolder(folderId) {
-        const response = await this.model.delete(folderId);
+        const parentFolderId = this.model.getCurrentFolderID();
+        const response = await this.model.delete(`/folder/${parentFolderId}/${folderId}`);
         const folder = response[this.objectNum].folder;
         this.view.renderDelete(folder);
     }
@@ -79,7 +81,7 @@ export class FolderController {
         if (folderId === this.homeFolderId) this.model.clearFolderIdlist();
 
         this.view.displayFolderName(name);
-        this.model.updateVisitTime(folderId)
+        this.model.patch(`/viewedFolderTime/${folderId}`);
         this.model.addFolderIdToList(folderId, name);
 
         await this.getFolders();

@@ -42,13 +42,10 @@
 .search-function-modal button {
     background-color: transparent;
     color: var(--toolbar-btn-text);
-    border: none;
     min-width: 30px;
     height: 30px;
     border-radius: 50%;
     margin: 0 5px;
-    cursor: pointer;
-    transition: 150ms;
 }
 
 .search-function-modal button:hover {

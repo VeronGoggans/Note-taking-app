@@ -2,7 +2,6 @@ import { NoteController } from "./noteController.js";
 import { HomeController } from "./homeController.js";
 import { FolderController } from "./folderController.js";
 import { TemplateController } from "./templateController.js";
-import { ApplicationView } from "../view/applicationView.js";
 import { ApplicationModel } from "../model/applicationModel.js";
 import { SidebarView } from "../view/sideBarView.js";
 import { TextEditorController } from "./textEditorController.js"
@@ -18,7 +17,6 @@ export class ApplicationController {
         this.dialog = new Dialog();
         this.notificationHandler = new NotificationHandler();
         this.sidebarView = new SidebarView(this);
-        this.applicationView = new ApplicationView(this, this.dialog);
         this.model = new ApplicationModel();
         this.noteController = new NoteController(this, this.dialog, this.notificationHandler);
         this.homeController = new HomeController(this, this.dialog, this.noteController);

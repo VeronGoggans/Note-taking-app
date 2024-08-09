@@ -66,14 +66,11 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    outline: none;
-    border: none;
     width: 30px;
     height: 30px;
     border-radius: 10px;
     background-color: transparent;
     color: var(--icon);
-    transition: 200ms;
 }
 
 .folder-util-bar i:hover {
@@ -83,14 +80,11 @@
 
 .folder h4 {
     width: 100%;
-    outline: none;
     padding: 5px;
     margin-left: 10px;
     margin-right: 10px;
     color: var(--important);
-    border-bottom: 2px solid transparent;
     font-size: 15px;
-    transition: 200ms;
 }
 
 .color-light-sky-blue {
@@ -138,37 +132,19 @@
 .color-pink-lavender h4,
 .color-sunset-orange h4,
 .color-turquoise h4,
-.color-blue-violet h4 {
-    color: #1b1c22;
-}
+.color-blue-violet h4 {color: #1b1c22}
 
-.color-light-sky-blue .folder-logo i {
-    color: rgb(110, 183, 249);
-}
-.color-light-green .folder-logo i {
-    color: rgb(88, 204, 76);
-}
-.color-peach .folder-logo i {
-    color: rgb(255, 201, 84);
-}
-.color-lavender .folder-logo i {
-    color: rgb(201, 151, 255);
-}
-.color-salmon-pink .folder-logo i {
-    color: rgb(255, 118, 118);
-}
-.color-pink-lavender .folder-logo i {
-    color: rgb(169, 115, 151);
-}
-.color-sunset-orange .folder-logo i {
-    color: rgb(215 147 124);
-}
-.color-turquoise .folder-logo i {
-    color: rgb(116 183 164);
-}
-.color-blue-violet .folder-logo i {
-    color: rgb(115 92 159);
-}
+
+.color-light-sky-blue .folder-logo i {color: rgb(110, 183, 249)}
+.color-light-green .folder-logo i {color: rgb(88, 204, 76)}
+.color-peach .folder-logo i {color: rgb(255, 201, 84)}
+.color-lavender .folder-logo i {color: rgb(201, 151, 255)}
+.color-salmon-pink .folder-logo i {color: rgb(255, 118, 118)}
+.color-pink-lavender .folder-logo i {color: rgb(169, 115, 151)}
+.color-sunset-orange .folder-logo i {color: rgb(215 147 124)}
+.color-turquoise .folder-logo i { color: rgb(116 183 164)}
+.color-blue-violet .folder-logo i {color: rgb(115 92 159)}
+
 
 .color-light-sky-blue .folder-util-bar i,
 .color-peach .folder-util-bar i,
@@ -178,34 +154,15 @@
 .color-salmon-pink .folder-util-bar i,
 .color-sunset-orange .folder-util-bar i,
 .color-turquoise .folder-util-bar i,
-.color-blue-violet .folder-util-bar i {
-    color: #444863;
-}
+.color-blue-violet .folder-util-bar i {color: #444863}
 
-.color-light-sky-blue .folder-util-bar i:hover {
-    background-color: rgb(135, 198, 255);
-}
-.color-peach .folder-util-bar i:hover {
-    background-color: rgb(255, 208, 107);
-}
-.color-light-green .folder-util-bar i:hover {
-    background-color: rgb(106, 226, 94);
-}
-.color-lavender .folder-util-bar i:hover {
-    background-color: rgb(210, 168, 255);
-}
-.color-pink-lavender .folder-util-bar i:hover {
-    background-color: rgb(214, 150, 192);
-}
-.color-salmon-pink .folder-util-bar i:hover {
-    background-color: rgb(255, 141, 141);
-}
-.color-sunset-orange .folder-util-bar i:hover {
-    background-color: rgb(246 170 145);
-}
-.color-turquoise .folder-util-bar i:hover {
-    background-color: rgb(112 198 173);
-}
-.color-blue-violet .folder-util-bar i:hover {
-    background-color: rgb(131 104 182);
-}
+
+.color-light-sky-blue .folder-util-bar i:hover {background-color: rgb(135, 198, 255)}
+.color-peach .folder-util-bar i:hover {background-color: rgb(255, 208, 107)}
+.color-light-green .folder-util-bar i:hover {background-color: rgb(106, 226, 94)}
+.color-lavender .folder-util-bar i:hover {background-color: rgb(210, 168, 255)}
+.color-pink-lavender .folder-util-bar i:hover {background-color: rgb(214, 150, 192)}
+.color-salmon-pink .folder-util-bar i:hover {background-color: rgb(255, 141, 141)}
+.color-sunset-orange .folder-util-bar i:hover {background-color: rgb(246 170 145)}
+.color-turquoise .folder-util-bar i:hover {background-color: rgb(112 198 173)}
+.color-blue-violet .folder-util-bar i:hover {background-color: rgb(131 104 182)}

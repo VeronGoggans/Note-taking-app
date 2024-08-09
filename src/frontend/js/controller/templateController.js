@@ -1,4 +1,4 @@
-import { TemplateModel } from "../model/templateModel.js";
+import { HttpModel } from "../model/httpModel.js";
 import { TemplateView } from "../view/templateView.js";
 
 
@@ -8,7 +8,7 @@ export class TemplateController {
         this.notificationHandler = notificationHandler;
         this.applicationController = applicationController;
         this.objectNum = 0;
-        this.model = new TemplateModel();
+        this.model = new HttpModel();
     }
 
     async init() {
@@ -26,8 +26,8 @@ export class TemplateController {
         );
     }
 
-    async getTemplateById(id, updateUseCount) {
-        const response = await this.model.get(`/templateById/${id}/${updateUseCount}`);
+    async getTemplateById(templateId, updateUseCount) {
+        const response = await this.model.get(`/templateById/${templateId}/${updateUseCount}`);
         const template = response[this.objectNum].template;
         return template
     }
@@ -39,17 +39,23 @@ export class TemplateController {
     }
 
     async addTemplate(name, content) {
-        await this.model.add('/template', name, content)
+        await this.model.add('/template', {
+            'name': name,
+            'content': content
+        })
     }
 
     async updateTemplate(template) {
-        await this.model.update('/template', template)
+        await this.model.update('/template', {
+            'id': template.id,
+            'name': template.name,
+            'content': template.content
+        })
     }
 
-    async deleteTemplate(id) {
-        const response = await this.model.delete('/template', id)
+    async deleteTemplate(templateId) {
+        const response = await this.model.delete(`/template/${templateId}`)
         const template = response[this.objectNum].template;
         this.view.renderDelete(template);
     }
-
 }

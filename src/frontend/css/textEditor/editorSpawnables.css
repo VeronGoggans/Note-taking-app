@@ -21,8 +21,6 @@
 }
 
 .btn-group button {
-    border: none;
-    cursor: pointer;
     background-color: transparent;
     border-radius: 10px;
     display: flex;
@@ -30,7 +28,6 @@
     justify-content: center;
     width: 30px;
     height: 30px;
-    transition: 150ms;
     color: var(--editor-text);
 }
 

@@ -21,8 +21,8 @@
 
 .flashcards-view .flashcard-deck {
     cursor: pointer;
-    border: 1px solid var(--border-card);
-    background-color: var(--card);
+    border: 1px solid var(--flashcard-border);
+    background-color: var(--flashcard-bg);
     height: 150px;
     padding: 10px 20px;
     border-radius: 10px;
@@ -89,7 +89,6 @@
 
 .flashcards-view .create-deck-btn {
     position: absolute;
-    border: none;
     background-color: #5c7fdd;
     color: white;
     font-size: 16px;
@@ -108,6 +107,7 @@
 .flashcards-view .stats-section p span {
     font-size: 25px;
     font-family: sans-serif;
+    color: var(--stats-span-color);
 }
 
 .flashcard-deck-progression-container {
@@ -122,8 +122,8 @@
     margin: 20px 0;
     border-radius: 7px;
     column-gap: 20px;
-    border: 1px solid var(--border-card);
-    background-color: var(--card);
+    border: 1px solid var(--flashcard-border);
+    background-color: var(--flashcard-bg);
     opacity: 0;
     transform: translateY(30%);
     transition: opacity .7s ease, transform .25s ease;
@@ -158,7 +158,6 @@
     border-radius: 5px;
     padding: 5px 10px;
     color: var(--important);
-    cursor: pointer;
     transition: 150ms;
 }
 

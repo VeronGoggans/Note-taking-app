@@ -99,21 +99,19 @@ export const flashcardPracticeTemplate = `
 `
 export const templatesTemplate =  `
     <div class="templates">
-        <div class="top">
-            <div class="top-left">
-                <h1 class="templates-title">Templates</h1>
-                <button class="add-template-btn"><i class="fa-solid fa-plus"></i>Add template</button>
-            </div>
-            <div class="top-right">
-                <p>Uses: <span class="total-uses-count">0</span></p>
-                <p>Templates: <span class="template-count"></span></p>
-                <p>Most used: <span class="most-used-template"></span></p>
-            </div>
+        <h1 class="templates-title">Templates</h1>
+        <div class="stats-section">
+            <p>Uses: <span class="total-uses-count">0</span></p>
+            <p>Templates: <span class="template-count">0</span></p>
+            <p>Most used: <span class="most-used-template"></span></p>
         </div>
-        <div class="bottom">
-            <p class="block-title">Recent templates</p>
+        <div class="recent-section">
+            <h2>Recent templates</h2>
+            <button class="add-template-btn">Add a template</button>
             <div class="recent-templates"></div>
-            <p class="block-title">Other templates</p>
+        </div>
+        <div claa="other-section">
+            <h2>Other templates</h2>
             <div class="other-templates"></div>
         </div>
     </div>
@@ -204,7 +202,6 @@ export const editorTemplate = `
         <div class="btn-group">
             <button onclick="formatText('insertUnorderedList')"><i class="fa-solid fa-list-ul"></i></button>
             <button onclick="formatText('insertOrderedList')"><i class="fa-solid fa-list-ol"></i></button>
-            <button onclick="formatText('insertCheckbox')"><i class="fa-solid fa-list-check"></i></button>
         </div>
         <div class="btn-group">
             <button onclick="formatText('removeFormat')"><i class="fa-solid fa-text-slash"></i></button>

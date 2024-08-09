@@ -1,26 +1,3 @@
-* {
-    box-sizing: border-box;
-}
-
-button {
-    cursor: pointer;
-}
-
-::selection {
-    background-color: var(--selection);
-}
-
-.wrapper {
-    user-select: none;
-    position: relative;
-    max-width: 100dvw;
-    max-height: 100dvh;
-    display: grid;
-    grid-template-columns: 220px 1fr;
-    background-color: var(--background);
-}
-
-
 .home {
     display: grid; 
     grid-template-rows: 50px 1fr;
@@ -43,7 +20,7 @@ button {
 
 .home .middle .block-title {
     font-family: sans-serif;
-    color: #63656d;
+    color: var(--subtitle);
     margin-top: 20px;
 }
 

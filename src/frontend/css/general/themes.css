@@ -1,60 +1,36 @@
 :root {
     /*Settings view*/
     --setting-dropdown: #f4f5f7;
-    --background: #ffffff; /*f4f5f7*/
-    --notification: #ffffff;
-    --editor: #fff;
-    --editor-background: #fcfcff; /*fafbff*/
-    --editor-border: #ced1e3;
-    --toolbar-border: #ced1e3;
-    --sidebar: #fff; /*f4f5f9*/ 
-    --searchbar: #eaecf1;
-    --sidebar-text: #444452; /*4c4c4c*/
-    --sidebar-text-hover: #5c7dff; /*414141*/
-    --sidebar-icon: #747aa0;
-    --card: #ffffff; /*f4f5f7*/
-    --text: #444863;
-    --icon: #4c4c68; /*646485*/
-    --searchbar-icon: #ced2ea;
-    --icon-hover: #444863;
-    --important: #444863;
-    --toolbar: #ffffff;/* Light grey eff1f7, Light blue #f1f5ff*/
-    --toolbar-btn-text: #4f578f; /*747aa0*/
-    --editor-text: #383838;
-    --border-card: #dee1ef;
-    --border-sidebar-right: #dee1ef; /*dee1ef*/
+    /*Flashcard View*/
+    --progress-color: #e6eaff;
+    --shadow-practice-card: #e6eaf3;
+    --flashcard-bg: #ffffff;
+    --flashcard-border: #dee1ef;
+    --stats-span-color: #aab7f6;
+    /*Template View*/
+
+    /*Notes View*/
+    --bookmark: #f3f4ff;
+    --favorite: #ffb7b7;
     --hover: rgba(92, 125, 255, .3); 
     --hover-bookmark-icon-if-bookmarked: rgba(92, 125, 255, .3);
     --hover-favorite-icon-if-favorited: rgb(255 141 141);
-    --hover-searchbar-options: #f4f5f7;
-    --hover-text: #444863;
-    --hover-toolbar-btns: rgba(185, 198, 250, 0.5);
-    --hover-sidebar: rgba(92, 125, 255, .3);
-    --bookmark: #f3f4ff;
-    --favorite: #ffb7b7;
-    --searchbar-placeholder: #9297aa; 
-    --placeholder: #d4d7e5;
-    --selection: #b1daff;
-    --dialog: rgba(0, 3, 24, 0.30);
-    --paragraph: rgba(239, 241, 250, .4);
-    --editor-container: #252831;
-    --editor-container-shadow: #272933;
-    --editor-container-input: #f6f7ff;
-    --shadow: rgba(92, 98, 157, .1);
-    --shadow-notification: #dcdee6;
-    --card-shadow: #e0e2ec;
-    --editor-dropdown: #ffffff;
-    --editor-dropdown-hover: rgba(92, 125, 255, .3);
-    --editor-dropdown-hover-color: #383838;
     --folder-name-input: #ced1e3;
-    --modal: #ffffff;
-    --dropdown: #ffffff;
-    --scrollbar-content-view: #e7e9f3;
     --create-btn: rgb(232, 234, 241);
     --create-btn-border: rgb(232, 234, 241);
     --create-btn-hover: #dfe3f1;
 
-    --hover-slash-command: #f3f4f8;
+    /*Home View*/
+
+    /*Editor View*/
+    --editor: #fff;
+    --editor-background: #fcfcff;
+    --editor-border: #ced1e3;
+    --toolbar-border: #ced1e3;
+    --editor-container: #252831;
+    --editor-container-shadow: #272933;
+    --editor-container-input: #f6f7ff;
+    --dropdown: #ffffff;
 
     --important-background-color: #f4f4f4;
     --important-text-color: #444863;
@@ -66,67 +42,61 @@
     --copy-icon-text-color: #edeffd;
     --copy-text-color-hover: #5c7fdd;
 
-    --progress-color: #e6eaff;
-    --shadow-practice-card: #e6eaf3;
+    --editor-dropdown: #ffffff;
+    --editor-dropdown-hover: rgba(92, 125, 255, .3);
+    --editor-dropdown-hover-color: #383838;
+
+    --toolbar-btn-text: #4f578f;
+    --hover-toolbar-btns: rgba(185, 198, 250, 0.5);
+    --editor-text: #383838;
+    --hover-slash-command: #f3f4f8;
+
+    /*Other*/
+    --background: #ffffff;
+    --notification: #ffffff;
+    --subtitle: #63656d;
+    --sidebar: #fff; 
+    --searchbar: #eaecf1;
+    --sidebar-text: #444452; 
+    --sidebar-text-hover: #5c7dff; 
+    --card: #ffffff; 
+    --text: #444863;
+    --icon: #4c4c68; 
+    --icon-hover: #444863;
+    --important: #444863;
+    --border-card: #dee1ef;
+    --border-sidebar-right: #dee1ef; 
+    --hover-searchbar-options: #f4f5f7;
+    --hover-text: #444863;
+    --hover-sidebar: rgba(92, 125, 255, .3);
+    --searchbar-placeholder: #9297aa; 
+    --placeholder: #d4d7e5;
+    --selection: #b1daff;
+    --dialog: #6fa2ff1c;
+    --shadow: rgba(92, 98, 157, .1);
+    --shadow-notification: #dcdee6;
+    --modal: #ffffff;
+    --scrollbar-content-view: #e7e9f3;
 }
 
 .dark {
     /*Settings view*/
-    --setting-dropdown: #16171c;
-
-    --background: #1b1c22;
-    --notification: #16171c;
-    --editor: #1b1c23;
+    --setting-dropdown: #121318;
+    /*Editor View*/
+    --editor: #17181f;
     --editor-background: #1f2129;
     --editor-border: #000000;
     --toolbar-border: #000000;
-    --sidebar: #16171c; 
-    --searchbar: #252831;
-    --sidebar-text: #d6d8e5;
-    --sidebar-text-hover: #5c7dff; 
-    --sidebar-icon: #d6d8e5;
-    --card: #252831;
-    --text: #bbbed2;
-    --icon: #bbbed2;
-    --icon-hover: #5c7dff;
-    --important: #d6d8e5;
     --toolbar: #1b1c23;
     --toolbar-btn-text: #bbbed2;
     --editor-text: #d5d9e0;
-    --border-card: #000000;
-    --border-sidebar-right: #16171c;
-    --hover: #3c4361; 
-    --hover-bookmark-icon-if-bookmarked: #434c71;
-    --hover-favorite-icon-if-favorited: rgba(142, 223, 204, .3);
-    --hover-searchbar-options: #1a1b21;
-    --hover-text: #5c7dff;
-    --hover-toolbar-btns: #383d4c;
-    --hover-sidebar: #16171c;
-    --bookmark: #5063b1;
-    --favorite: #38958f;
-    --searchbar-placeholder: #d4d7e5; 
-    --placeholder: #d4d7e5;
-    --selection: #314682;
-    --dialog: rgb(136 145 204 / 15%);
-    --paragraph: #252831;
     --editor-container: #23252e;
     --editor-container-shadow: transparent;
     --editor-container-input: #16171c;
-    --shadow: rgba(0, 0, 0, 0.1);
-    --shadow-notification: #121216;
-    --card-shadow: #1b1c22; /*16171c*/
     --editor-dropdown: #242630;
     --editor-dropdown-hover: #191a20;
     --editor-dropdown-hover-color: #5c7dff;
-    --folder-name-input: #5c7dff;
-    --modal: #1f2129;
     --dropdown: #1f2129;
-    --scrollbar-content-view: #3f4045;
-    --create-btn: #252831;
-    --create-btn-border: #000;
-    --create-btn-hover: #434554;
-
-    --hover-slash-command: #16171c;
 
     --important-background-color: #ffefb3;
     --important-text-color: #101118;
@@ -137,68 +107,88 @@
     --copy-icon-color: #15152f;
     --copy-icon-text-color: #e2e5ff;
     --copy-text-color-hover: #5c7dff;
+    --hover-slash-command: #16171c;
 
+    /*Flashcard View*/
     --progress-color: #49517a;
     --shadow-practice-card: #111020;
+    --flashcard-bg: #17181f;
+    --flashcard-border: #5063b1;
+    --stats-span-color: #c1cbfe;
 
+    /*Notes View*/ 
+    --hover-bookmark-icon-if-bookmarked: #434c71;
+    --hover-favorite-icon-if-favorited: rgba(142, 223, 204, .3);
+    --bookmark: #5063b1;
+    --favorite: #38958f;
+    --hover: #3c4361; 
+    --create-btn: #252831;
+    --create-btn-border: #000;
+    --create-btn-hover: #434554;
+    --folder-name-input: #5c7dff;
+    
+    /*Other*/
+    --background: #17181f; /*1b1c22*/
+    --notification: #16171c;
+    --subtitle: #9196aa;
+    --sidebar: #121318; 
+    --searchbar: #252831;
+    --sidebar-text: #d6d8e5;
+    --sidebar-text-hover: #5c7dff; 
+    --card: #2528314f;
+    --text: #bbbed2;
+    --icon: #bbbed2;
+    --icon-hover: #5c7dff;
+    --important: #d6d8e5;
+    --border-card: #000000;
+    --border-sidebar-right: #000000;
+    --hover-searchbar-options: #1a1b21;
+    --hover-text: #5c7dff;
+    --hover-toolbar-btns: #383d4c;
+    --hover-sidebar: #16171c;
+    --searchbar-placeholder: #d4d7e5; 
+    --placeholder: #d4d7e5;
+    --selection: #314682;
+    --dialog: rgb(136 145 204 / 15%);
+    --shadow: rgba(0, 0, 0, 0.1);
+    --shadow-notification: #121216;
+    --modal: #1f2129;
+    --scrollbar-content-view: #3f4045;
 }
 
-.light {
+.light{
     /*Settings view*/
     --setting-dropdown: #f4f5f7;
-    --background: #ffffff;
-    --notification: #ffffff;
-    --editor: #fff;
-    --editor-background: #fcfcff;
-    --editor-border: #ced1e3;
-    --toolbar-border: #ced1e3;
-    --searchbar: #eaecf1;
-    --sidebar: #fff;
-    --sidebar-text: #444452;
-    --sidebar-text-hover: #5c7dff;
-    --sidebar-icon: #747aa0;
-    --card: #ffffff;
-    --text: #444863;
-    --icon: #4c4c68;
-    --icon-hover: #444863;
-    --important: #444863;
-    --toolbar: #ffffff;
-    --toolbar-btn-text: #4f578f;
-    --editor-text: #383838;
-    --border-card: #dee1ef;
-    --border-sidebar-right: #dee1ef;
-    --hover: rgba(92, 125, 255, .3);
-    --hover-bookmark-icon-if-bookmarked: rgba(92, 125, 255, .3);
-    --hover-favorite-icon-if-favorited: rgb(255 141 141);
-    --hover-searchbar-options: #f4f5f7;
-    --hover-text: #444863;
-    --hover-toolbar-btns: rgba(185, 198, 250, 0.5);
-    --hover-sidebar: rgba(92, 125, 255, .3);
+    /*Flashcard View*/
+    --progress-color: #e6eaff;
+    --shadow-practice-card: #e6eaf3;
+    --flashcard-bg: #ffffff;
+    --flashcard-border: #dee1ef;
+    --stats-span-color: #aab7f6;
+    /*Template View*/
+
+    /*Notes View*/
     --bookmark: #f3f4ff;
     --favorite: #ffb7b7;
-    --searchbar-placeholder: #9297aa; 
-    --placeholder: #d4d7e5;
-    --selection: #b1daff;
-    --dialog: rgba(58, 64, 106, 0.15);
-    --paragraph: rgba(239, 241, 250, .4);
-    --editor-container: #ffffff;
-    --editor-container-shadow: #dcdeee;
-    --editor-container-input: #f6f7ff;
-    --shadow: rgba(92, 98, 157, .1);
-    --shadow-notification: #dcdee6;
-    --card-shadow: #e0e2ec;
-    --editor-dropdown: #ffffff;
-    --editor-dropdown-hover: rgba(92, 125, 255, .3);
-    --editor-dropdown-hover-color: #383838;
+    --hover: rgba(92, 125, 255, .3); 
+    --hover-bookmark-icon-if-bookmarked: rgba(92, 125, 255, .3);
+    --hover-favorite-icon-if-favorited: rgb(255 141 141);
     --folder-name-input: #ced1e3;
-    --modal: #ffffff;
-    --dropdown: #ffffff;
-    --scrollbar-content-view: #e7e9f3;
     --create-btn: rgb(232, 234, 241);
     --create-btn-border: rgb(232, 234, 241);
     --create-btn-hover: #dfe3f1;
 
-    --hover-slash-command: #f3f4f8;
+    /*Home View*/
+
+    /*Editor View*/
+    --editor: #fff;
+    --editor-background: #fcfcff;
+    --editor-border: #ced1e3;
+    --toolbar-border: #ced1e3;
+    --editor-container: #252831;
+    --editor-container-shadow: #272933;
+    --editor-container-input: #f6f7ff;
+    --dropdown: #ffffff;
 
     --important-background-color: #f4f4f4;
     --important-text-color: #444863;
@@ -206,10 +196,43 @@
 
     --copy-background-color: #393742;
     --copy-text-color: #edeffd;
-    --copy-text-color-hover: #5c7fdd;
     --copy-icon-color: #1e1e28;
     --copy-icon-text-color: #edeffd;
+    --copy-text-color-hover: #5c7fdd;
 
-    --progress-color: #e6eaff;
-    --shadow-practice-card: #e6eaf3;
+    --editor-dropdown: #ffffff;
+    --editor-dropdown-hover: rgba(92, 125, 255, .3);
+    --editor-dropdown-hover-color: #383838;
+
+    --toolbar-btn-text: #4f578f;
+    --hover-toolbar-btns: rgba(185, 198, 250, 0.5);
+    --editor-text: #383838;
+    --hover-slash-command: #f3f4f8;
+
+    /*Other*/
+    --background: #ffffff;
+    --notification: #ffffff;
+    --subtitle: #63656d;
+    --sidebar: #fff; 
+    --searchbar: #eaecf1;
+    --sidebar-text: #444452; 
+    --sidebar-text-hover: #5c7dff; 
+    --card: #ffffff; 
+    --text: #444863;
+    --icon: #4c4c68; 
+    --icon-hover: #444863;
+    --important: #444863;
+    --border-card: #dee1ef;
+    --border-sidebar-right: #dee1ef; 
+    --hover-searchbar-options: #f4f5f7;
+    --hover-text: #444863;
+    --hover-sidebar: rgba(92, 125, 255, .3);
+    --searchbar-placeholder: #9297aa; 
+    --placeholder: #d4d7e5;
+    --selection: #b1daff;
+    --dialog: #6fa2ff1c;
+    --shadow: rgba(92, 98, 157, .1);
+    --shadow-notification: #dcdee6;
+    --modal: #ffffff;
+    --scrollbar-content-view: #e7e9f3;
 }

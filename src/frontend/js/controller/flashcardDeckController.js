@@ -1,4 +1,4 @@
-import { FlashcardModel } from "../model/flashcardModel.js";
+import { HttpModel } from "../model/httpModel.js";
 import { FlashcardDeckView } from "../view/flashcardDeckView.js";
 
 export class FlashcardDeckController {
@@ -6,7 +6,7 @@ export class FlashcardDeckController {
         this.applicationController = applicationController;
         this.dialog = dialog;
         this.objectNum = 0;
-        this.model = new FlashcardModel();
+        this.model = new HttpModel();
     }
 
     async init() {

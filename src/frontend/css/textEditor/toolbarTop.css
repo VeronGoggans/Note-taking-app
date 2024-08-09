@@ -2,7 +2,6 @@
 #editor-search-btn,
 #editor-template-btn,
 #editor-flashcard-set-btn {
-    cursor: pointer;
     display: flex;
     width: 30px;
     height: 30px;
@@ -20,7 +19,6 @@
 }
 
 .save-note-btn {
-    cursor: pointer;
     position: absolute;
     right: 50px;
     top: 3px;
@@ -28,7 +26,6 @@
     font-family: sans-serif;
     padding: 5px 10px;
     border-radius: 7px;
-    transition: 150ms;
 }
 
 #editor-search-btn {
@@ -36,7 +33,6 @@
     right: 20px;
     top: 45px;
     color: var(--placeholder);
-    transition: 150ms;
 }
 
 #editor-search-btn:hover {
@@ -46,7 +42,6 @@
 
 #editor-template-btn {
     color: var(--placeholder);
-    transition: 150ms;
 }
 
 #editor-template-btn:hover {
@@ -59,7 +54,6 @@
     top: 125px;
     right: 20px;
     color: var(--placeholder);
-    transition: 150ms;
 }
 
 #editor-flashcard-set-btn:hover {
@@ -69,7 +63,6 @@
 
 .editor-options-dropdown {
     overflow: visible;
-    transition: 200ms;
     position: absolute;
     right: 10px;
     top: 3px;
@@ -106,7 +99,6 @@
     font-weight: 600;
     color: var(--editor-text);
     background-color: transparent;
-    border: none;
     transition: background-color 100ms ease;
     text-align: start;
 }
@@ -199,4 +191,3 @@
 .note-name-input::placeholder {
     color: var(--placeholder);
 }
-
