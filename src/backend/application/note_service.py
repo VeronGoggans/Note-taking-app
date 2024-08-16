@@ -31,17 +31,10 @@ class NoteService:
 
     def get_notes(self, folder_id: str):
         folders = self.json_manager.load(self.folders_path)
-        notes = None
         try:
-            if folder_id == 'favorites':
-                notes = self.note_manager.get_favorites(folders)
-                self.note_manager.clear_favorites_list()
-            elif folder_id == 'bookmarks':
-                notes = self.note_manager.get_bookmarks(folders)
-                self.note_manager.clear_bookmarks_list()
-            else:
-                notes = self.note_manager.get_notes(folders, folder_id)
-            return notes
+            if folder_id == 'bookmarks':
+                return self.note_manager.get_bookmarks(folders, bookmarks = [])
+            return self.note_manager.get_notes(folders, folder_id)
         except NotFoundException as e:
             raise e
 
@@ -56,10 +49,9 @@ class NoteService:
     
     def get_recent_notes(self):
         json_folders = self.json_manager.load(self.folders_path)
-        recent_notes = self.note_manager.get_recent_notes(json_folders)
-        self.note_manager.clear_notes_list()
-        return recent_notes
-
+        notes = self.note_manager.get_recent_notes(json_folders, notes_list = [])
+        return self.note_manager.get_top_6_most_recent_notes(notes)
+    
 
     def update_note(self, request_dto: PutNoteDto):
         folders = self.json_manager.load(self.folders_path)
@@ -104,9 +96,8 @@ class NoteService:
 
     def get_search_options(self):
         folders = self.json_manager.load(self.folders_path)
-        notes = self.note_manager.get_note_name_id(folders)
+        notes = self.note_manager.get_note_name_id(folders, search_items = [])
 
         if len(notes) > 0:
-            self.note_manager.clear_search_options_list()
             return notes
         raise NotFoundException('There are no notes to be retrieved.') 

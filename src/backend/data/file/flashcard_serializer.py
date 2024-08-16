@@ -43,6 +43,7 @@ class FlashcardSerializer:
     def serialize(self, file_path: str, flashcards: list, mode = 'w') -> None:
         try:
             deck_content = ''
+            flashcard_id = None
 
             if mode == 'a':
                 flashcard_id = self.__get_current_id_index(file_path)

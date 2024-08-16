@@ -47,9 +47,8 @@
 .edit-folder-modal input {
     outline: none;
     border: none;
-    border-radius: 5px;
     background-color: transparent;
-    border: 1px solid var(--folder-name-input);
+    border-bottom: 2px solid var(--folder-name-input);
     padding: 5px 10px;
     height: 45px;
     margin-bottom: 10px;

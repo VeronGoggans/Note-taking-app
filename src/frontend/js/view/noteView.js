@@ -103,7 +103,6 @@ export class NoteView {
 
     #initializeDomElements() {
         this.createNoteButton = document.querySelector('.create-note-btn')
-        this.favoritedButton = document.querySelector('.favorites-btn')
         this.bookmarkedButton = document.querySelector('.bookmarks-btn')
         this._content = document.querySelector('.content-view');
     }
@@ -112,10 +111,6 @@ export class NoteView {
         this.bookmarkedButton.addEventListener('click', () => {
             removeContent(this._content);
             this.controller.getNotes('bookmarks')});
-
-        this.favoritedButton.addEventListener('click', () => {
-            removeContent(this._content)
-            this.controller.getNotes('favorites')});
 
         this.createNoteButton.addEventListener('click', () => {
             this.applicationController.initView('editor', {

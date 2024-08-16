@@ -2,10 +2,20 @@ from src.backend.domain.note import Note
 from src.backend.domain.template import Template
 from src.backend.data.exceptions.exceptions import DeserializationException
 
-class Factory:    
+class Factory:  
 
     @staticmethod
-    def create_note_list(notes: list) -> list[Note]:
+    def to_list(notes: list[dict]) -> list[Note]:
+        note_objects = []
+        for n in notes:
+            note = Note.from_json(n)
+            note.set_content_text()
+            note_objects.append(note)
+        return note_objects
+
+
+    @staticmethod
+    def to_priority_list(notes: list) -> list[Note]:
         bookmarked_notes = []
         non_bookmarked_notes = []
 

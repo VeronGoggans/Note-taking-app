@@ -7,10 +7,19 @@ export class TextFormatter {
   }
   
   
-  addHorizontalLine(range) {
+  addHorizontalLine(range, lineType = null) {
     const br = document.createElement('br');
     range.insertNode(br);
-    range.insertNode(document.createElement('hr'));
+
+    // Create the hr element with specified border type
+    const line = document.createElement('hr');
+    if (lineType !== null) {
+      line.style.border = `2px ${lineType} var(--editor-text)`;
+    } else {
+      line.style.border = `2px solid var(--editor-text)`;
+    }
+
+    range.insertNode(line);
     this.#removeSelectedEffect(range, br);
     this.#moveCursorToTextBlock(br)
   }
@@ -64,8 +73,14 @@ export class TextFormatter {
     this.#moveCursorToTextBlock(p);
   }
 
-  addHeading(range, num) {
-    const heading = document.createElement(`h${num}`);
+  addHeading(range, headingType, extension = null) {
+    const heading = document.createElement(`h${headingType}`);
+
+    // Set the user input as the textContent of the heading. 
+    if (extension !== null) {
+      heading.textContent = extension;
+    }
+
     range.insertNode(heading);
     this.#removeSelectedEffect(range, heading);
     this.#moveCursorToTextBlock(heading);
@@ -105,20 +120,14 @@ export class TextFormatter {
 
   addLink(range) {
     const container = CNode.create('div', {'class': 'link-container'});
-    const cancelButton = CNode.create('button', {'class': 'cancel-link-btn'});
-    const icon = CNode.create('i', {'class': 'fa-solid fa-xmark'});
     const originalUrl = CNode.create('input', {'class': 'original-link-input', 'type': 'text', 'placeholder': 'Paste link here...'});
     const customUrl = CNode.create('input', {'class': 'custom-link-input', 'type': 'text', 'placeholder': 'Custom text'});
-
-    // Putting the UI together
-    cancelButton.append(icon); 
-    container.append(cancelButton, originalUrl, customUrl);
+    container.append(originalUrl, customUrl);
     
-    cancelButton.addEventListener('click', () => {container.remove()});
-    originalUrl.addEventListener('keydown', (event) => {insert(event)});
-    customUrl.addEventListener('keydown', (event) => {insert(event)});
+    originalUrl.addEventListener('keydown', (event) => {insert(event, originalUrl)});
+    customUrl.addEventListener('keydown', (event) => {insert(event, customUrl)});
 
-    function insert(event) {
+    function insert(event, input) {
       if (event.key === 'Enter') {
         // Delete the input
         range.deleteContents();
@@ -138,8 +147,12 @@ export class TextFormatter {
         }
 
         range.insertNode(anchorTag);
-      }
+      } 
+      if (event.key === 'Backspace' && input.value === '') {
+        container.remove();
+      } 
     }
+
     range.insertNode(container);
     originalUrl.focus();
  }
@@ -147,14 +160,8 @@ export class TextFormatter {
 
   addEmbedVideo(range) {    
     const container = CNode.create('div', {'class': 'embed-container', 'contentEditable': 'false'});
-    const button = CNode.create('button', {'class': 'cancel-embed-video-btn'});
-    const icon = CNode.create('i', {'class': 'fa-solid fa-xmark'});
     const inputTag = CNode.create('input', {'type': 'text', 'placeholder': 'Paste link here...', 'class': 'embed-link-input'});
-
-    container.append(button, inputTag);
-    button.appendChild(icon);
-
-    button.addEventListener('click', () => {container.remove()})
+    container.append(inputTag);
 
     inputTag.addEventListener('keydown', (event) => {
       if (event.key === 'Enter') {
@@ -177,6 +184,12 @@ export class TextFormatter {
           iframeElement.title = '';
         }
         range.insertNode(iframe);
+      }
+    })
+
+    inputTag.addEventListener('keydown', (event) => {
+      if (event.key === 'Backspace' && inputTag.value === '') {
+        container.remove()
       }
     })
     range.insertNode(container);

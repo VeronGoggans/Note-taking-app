@@ -18,7 +18,7 @@ class FlashcardDeckRouter:
         self.route.add_api_route('/decks', self.get_all_decks, methods=['GET'])
         self.route.add_api_route('/deck', self.add_deck, methods=['POST'])
         self.route.add_api_route('/deck', self.update_deck, methods=['PUT'])
-        self.route.add_api_route('/deck', self.delete_deck, methods=['DELETE'])
+        self.route.add_api_route('/deck/{id}', self.delete_deck, methods=['DELETE'])
 
 
     def add_deck(self, request: PostDeckRequest): 
@@ -66,9 +66,9 @@ class FlashcardDeckRouter:
             return {'status': 'error', 'message': str(e)}
         
 
-    def delete_deck(self, deck_id: str):
+    def delete_deck(self, id: str):
         try:
-            deck = self.service.delete_deck(deck_id)
+            deck = self.service.delete_deck(id)
             return {"status": 'succes', 'deck': deck}, HttpStatus.OK
         except NotFoundException as e:
             return {'status': 'not_found', "message": str(e)}, HttpStatus.NOT_FOUND

@@ -1,0 +1,100 @@
+.flashcard-edit-view {
+    padding: 20px;
+    font-family: sans-serif;
+    color: var(--important);
+    overflow-y: scroll;
+    max-height: 100dvh;
+    opacity: 0;
+    transform: translateX(30%);
+    transition: opacity .7s ease, transform .2s ease;
+}
+
+.flashcard-edit-view h1 {
+    outline: none;
+    width: 300px;
+}
+
+.flashcard-edit-view .exit-flashcard-edit-view-btn {
+    font-size: 16px;
+    background-color: transparent;
+    color: var(--important);
+    padding: 10px 15px;
+    border-radius: 7px;
+    transition: 150ms;
+}
+
+.flashcard-edit-view .exit-flashcard-edit-view-btn:hover {
+    background-color: #e7ebffb5;
+}
+
+.flashcard-edit-view .save-btn {
+    position: absolute;
+    top: 80px;
+    right: 50px;
+    background-color: #5c7fdd;
+    color: white;
+    padding: 7px 35px;
+    font-size: 16px;
+    border-radius: 25px;
+}
+
+.flashcard-edit-view .flashcards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-rows: repeat(auto-fill, 200px);
+    gap: 20px;
+    padding: 10px;
+}
+
+.flashcard-edit-view .flashcard {
+    position: relative;
+    display: grid;
+    grid-template-rows: 1fr 30px 40px;
+    border-radius: 10px;
+    height: 200px;
+    background-color: #e7ebffb5; /*e7ebff*/
+    cursor: pointer;
+}
+
+.flashcard-edit-view .flashcard .rating {
+    border-radius: 20px;
+    background-color: #5c7fdd;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    color: white;
+    height: 30px;
+    padding-left: 10px;
+    margin: 0 60px;
+}
+
+.flashcard-edit-view .flashcard h3 {
+    margin: auto;
+    font-family: Roboto;
+    padding: 0 15px;
+}
+
+.flashcard-edit-view .flashcard .util-bar {
+    transition: 100ms;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    opacity: 0;
+}
+
+.flashcard-edit-view .flashcard .util-bar:hover {
+    opacity: 1;
+}
+
+.flashcard-edit-view .flashcard .util-bar button {
+    color: var(--icon);
+    padding: 7px;
+    border-radius: 5px;
+    margin: 0 10px;
+    background-color: transparent;
+}
+
+.flashcard-edit-view .flashcard .util-bar button:hover {
+    background-color: var(--hover);
+    color: #5c7fdd;
+}

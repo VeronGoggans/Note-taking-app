@@ -27,7 +27,7 @@
     --editor-background: #fcfcff;
     --editor-border: #ced1e3;
     --toolbar-border: #ced1e3;
-    --editor-container: #252831;
+    --editor-container: #ffffff;
     --editor-container-shadow: #272933;
     --editor-container-input: #f6f7ff;
     --dropdown: #ffffff;
@@ -76,7 +76,7 @@
     --shadow: rgba(92, 98, 157, .1);
     --shadow-notification: #dcdee6;
     --modal: #ffffff;
-    --scrollbar-content-view: #e7e9f3;
+    --scrollbar-content-view: #cccfe1;
 }
 
 .dark {
@@ -185,7 +185,7 @@
     --editor-background: #fcfcff;
     --editor-border: #ced1e3;
     --toolbar-border: #ced1e3;
-    --editor-container: #252831;
+    --editor-container: #ffffff;
     --editor-container-shadow: #272933;
     --editor-container-input: #f6f7ff;
     --dropdown: #ffffff;
@@ -234,5 +234,5 @@
     --shadow: rgba(92, 98, 157, .1);
     --shadow-notification: #dcdee6;
     --modal: #ffffff;
-    --scrollbar-content-view: #e7e9f3;
+    --scrollbar-content-view: #cccfe1;
 }

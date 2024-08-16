@@ -1,5 +1,3 @@
-import { AnimationHandler } from "../handlers/animation/animationHandler.js"
-
 export class PlacementHelper {
     constructor() {
         this.formatBarWidth = 471.6 //Pixels

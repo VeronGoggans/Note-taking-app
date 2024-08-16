@@ -1,5 +1,6 @@
 import { HttpModel } from "../model/httpModel.js";
 import { FlashcardDeckView } from "../view/flashcardDeckView.js";
+import { FlashcardModel } from "../model/flashcardModel.js";
 
 export class FlashcardDeckController {
     constructor(applicationController, dialog) {
@@ -11,7 +12,18 @@ export class FlashcardDeckController {
 
     async init() {
         this.view = new FlashcardDeckView(this, this.applicationController, this.dialog);
+        this.flashcardModel = new FlashcardModel();
         await this.getDecks()
+    }
+
+    async addDeck(deckName, flashcards) {
+        const response = await this.model.add('/deck', {
+            'name': deckName,
+            'flashcards': flashcards
+        });
+        const deck = response[this.objectNum].deck;
+        this.view.renderOne(deck);
+        
     }
 
     async getDecks() {
@@ -28,5 +40,30 @@ export class FlashcardDeckController {
     async getSearchItems() {
         const response = await this.model.get('/deckSearchItems');
         return response[this.objectNum].items;
+    }
+
+    async deleteDeck(deckId) {
+        const response = await this.model.delete(`/deck/${deckId}`);
+        const deck = response[this.objectNum].deck;
+        console.log(deck);
+        
+        this.view.renderDelete(deck);
+    }
+
+    /**
+     * Temporarely saves a flashcard object
+     * 
+     * @param {Object} flashcard 
+     */
+    saveCardToModel(flashcard) {
+        this.flashcardModel.save(flashcard);
+    }
+
+    /**
+     * Returns a list of saved flashcard objects
+     * @returns {Array[Object]}
+    */
+    getSavedFlashcards() {
+        return this.flashcardModel.getSavedFlashcards();
     }
 }

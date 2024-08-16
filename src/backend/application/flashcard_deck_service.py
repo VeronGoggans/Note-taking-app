@@ -26,10 +26,11 @@ class FlashcardDeckService:
             deck = FlashcardDeck(deck_id, name)
             deck.set_flashcards_path(TextManager.create_file(deck_id))
 
-            new_deck = self.manager.add(json_decks, deck, flashcards)
+            self.manager.add(json_decks, deck, flashcards)
 
             self.json_manager.update(self.deck_path, json_decks)
-            return new_deck
+            
+            return self.get_deck_by_id(deck_id)
         except (SerializationException, AdditionException) as e:
             raise e
         except Exception as e:

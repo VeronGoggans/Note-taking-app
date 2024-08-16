@@ -13,7 +13,7 @@ export class SlashCommand {
     }
 
   
-    executeSlashCommand(range, targetClass) {
+    executeSlashCommand(range, targetClass, extension = null) {
       switch (targetClass) {
         case 'note-link-option':
           // Implement note link function
@@ -25,7 +25,7 @@ export class SlashCommand {
           this.formatter.addEmbedVideo(range);
           break;
         case 'horizontal-line-option':
-          this.formatter.addHorizontalLine(range);
+          this.formatter.addHorizontalLine(range, extension);
           break;
         case 'quote-block':
           this.formatter.addQuoteBlock(range);
@@ -43,22 +43,22 @@ export class SlashCommand {
           this.formatter.addCopyBlock(range);
           break;
         case 'heading-1':
-          this.formatter.addHeading(range, 1);
+          this.formatter.addHeading(range, 1, extension);
           break;
         case 'heading-2':
-          this.formatter.addHeading(range, 2);
+          this.formatter.addHeading(range, 2, extension);
           break;
         case 'heading-3':
-          this.formatter.addHeading(range, 3);
+          this.formatter.addHeading(range, 3, extension);
           break;
         case 'heading-4':
-          this.formatter.addHeading(range, 4);
+          this.formatter.addHeading(range, 4, extension);
           break;
         case 'heading-5':
-          this.formatter.addHeading(range, 5);
+          this.formatter.addHeading(range, 5, extension);
           break;
         case 'heading-6':
-          this.formatter.addHeading(range, 6);
+          this.formatter.addHeading(range, 6, extension);
           break;
         case 'time':
           // Implement time function
@@ -91,15 +91,68 @@ export class SlashCommand {
       if (event.key === 'Enter') {
         event.preventDefault();
         const userInput = this.input.value;
-        const targetClass = commands[userInput];
+
+        const extension = this.#checkForCommandExtension(userInput);
+        const command = this.#getCommand(userInput);
+
+        const targetClass = commands[command];
         AnimationHandler.fadeOut(this.commandContainer);
-        this.executeSlashCommand(this.storedRange, targetClass);
+        this.#deleteForwardSlash(this.storedRange)
+        this.executeSlashCommand(this.storedRange, targetClass, extension);
       }
       if (event.key === 'Backspace' && this.input.value === '') {
         event.preventDefault();
         AnimationHandler.fadeOut(this.commandContainer);
+        this.#deleteForwardSlash(this.storedRange)
+      }
+      
+    }
+
+    /**
+     * This method is used to see if the user is using a #,
+     * to specify a command extension
+     * @param {String} userInput 
+     * @returns 
+     */
+    #checkForCommandExtension(userInput) {
+      if (userInput.includes('#')) {
+        // return the extension found
+        const inputParts = userInput.split('#');
+        return inputParts[inputParts.length - 1]
+      }
+      return null
+    }
+
+    #getCommand(userInput) {
+      if (userInput.includes('#')) {
+        const inputParts = userInput.split('#');
+        return inputParts[0];
+      }
+      return userInput
+    }
+
+    #deleteForwardSlash(range) {
+      const caretNode = range.startContainer;
+      const caretOffset = range.startOffset;
+
+      // Check if caretNode is a text node and there is a character before the caret
+      if (caretNode.nodeType === Node.TEXT_NODE && caretOffset > 0) {
+        const textContent = caretNode.textContent;
+
+        // Check if the character before the caret is a forward slash
+        if (textContent[caretOffset - 1] === '/') {
+          
+          // Replace the forward slash with a space
+          caretNode.textContent = textContent.slice(0, caretOffset - 1) + ' ' + textContent.slice(caretOffset);
+
+          // Move the caret position after the space
+          range.setStart(caretNode, caretOffset);
+          range.setEnd(caretNode, caretOffset);
+        }
       }
     }
+
+
 
     #eventListeners() {
       this.#listenForCommmandClicks();

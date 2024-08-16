@@ -67,8 +67,9 @@ export class Dialog {
         this.addChild(new DeleteModal(id, name, view))
     }
 
-    renderNewDeckModal(view) {
-        this.addChild(new NewDeckModal(view))
+    renderNewDeckModal(controller, flashcards) {
+        this.addChild(new NewDeckModal(controller, flashcards));
+        this.dialog.querySelector('.create-deck-modal input').focus();
     }
 
     renderForgotSaveModal(view) {
@@ -77,8 +78,7 @@ export class Dialog {
 
     renderNewFolderModal(view) {
         this.addChild(new NewFolderContainer(view));
-        const inputElement = this.dialog.querySelector('.new-folder-container input');
-        inputElement.focus();
+        this.dialog.querySelector('.new-folder-container input').focus();
     }
 
     renderNoteLinkModal(view, notes, page, controller, dialog) {
@@ -87,14 +87,14 @@ export class Dialog {
 
     renderSearchModal(toolbar) {
         const modal = new SearchModal()
-        const inputElement = modal.querySelector('.search-function-modal input');
+        modal.querySelector('.search-function-modal input').focus();
         toolbar.appendChild(modal);
-        inputElement.focus()
         modal.style.opacity = '1';
         modal.style.transform = 'translateY(0px)';
     }
 
     renderEditFolderModal(folder, view) {
-        this.addChild(new EditFolderModal(folder, view, this))
+        this.addChild(new EditFolderModal(folder, view, this));
+        this.dialog.querySelector('.edit-folder-modal input').focus()
     }
 }

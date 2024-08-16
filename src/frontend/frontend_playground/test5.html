@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple Tooltips Example</title>
+    <style>
+        body {
+            margin: 50px;
+        }
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            border-radius: 5px;
+            padding: 5px 0;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%; /* Position the tooltip above the button */
+            left: 50%;
+            margin-left: -60px; /* Use half of the width to center the tooltip */
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tooltip .tooltiptext::after {
+            content: "";
+            position: absolute;
+            top: 100%; /* At the bottom of the tooltip */
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: black transparent transparent transparent;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="tooltip">
+        <button>Button 1</button>
+        <span class="tooltiptext">Tooltip for Button 1</span>
+    </div>
+    <div class="tooltip">
+        <button>Button 2</button>
+        <span class="tooltiptext">Tooltip for Button 2</span>
+    </div>
+    <div class="tooltip">
+        <button>Button 3</button>
+        <span class="tooltiptext">Tooltip for Button 3</span>
+    </div>
+    <div class="tooltip">
+        <button>Button 4</button>
+        <span class="tooltiptext">Tooltip for Button 4</span>
+    </div>
+    <div class="tooltip">
+        <button>Button 5</button>
+        <span class="tooltiptext">Tooltip for Button 5</span>
+    </div>
+</body>
+</html>

@@ -2,13 +2,12 @@ from src.backend.data.file.text_manager import TextManager
 from src.backend.util.calendar import Calendar
 
 class Note:
-    def __init__(self, id: int, name: str, content: str, bookmark = False, favorite = False, 
+    def __init__(self, id: int, name: str, content: str, bookmark = False, 
                 last_edit = Calendar.datetime(), creation = Calendar.date()):
         self.id = id
         self.name = name
         self.content = content
         self.bookmark = bookmark
-        self.favorite = favorite
         self.last_edit = last_edit
         self.creation = creation
 
@@ -42,7 +41,6 @@ class Note:
             json_note['name'], 
             json_note['content'], 
             json_note['bookmark'], 
-            json_note['favorite'],
             json_note['last_edit'],
             json_note['creation']
         )

@@ -75,7 +75,7 @@
     min-width: 500px
 }
 
-.flashcard-practice .deck-section span {
+.flashcard-practice .deck-section .current-card-number {
     position: absolute;
     top: 25px;
     right: 20px;

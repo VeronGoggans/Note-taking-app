@@ -1,5 +1,5 @@
 from src.backend.domain.flashcard_deck import FlashcardDeck
-from src.backend.presentation.dtos.flashcard_dtos import PostFlashcardDTO
+from src.backend.presentation.dtos.flashcard_dtos import PostFlashcardDTO, FlashcardDTO
 from src.backend.data.file.flashcard_serializer import FlashcardSerializer
 from src.backend.data.file.text_manager import TextManager
 from src.backend.data.exceptions.exceptions import AdditionException, NotFoundException, DeserializationException
@@ -12,7 +12,8 @@ class FlashcardDeckManager:
 
     def add(self, decks: list, deck: FlashcardDeck, flashcards: list[PostFlashcardDTO]):
         try:
-            self.serializer.serialize(deck.flashcards_path, flashcards)
+            flashcard_dtos = self.__create_flashcard_dto(flashcards)
+            self.serializer.serialize(deck.flashcards_path, flashcard_dtos)
             decks.append(deck.__dict__)
             return deck
         except Exception as e:
@@ -77,3 +78,25 @@ class FlashcardDeckManager:
             return deck
         except DeserializationException as e:
             raise e
+        
+
+    
+    def __create_flashcard_dto(self, flashcards: PostFlashcardDTO) -> list[FlashcardDTO]:
+        """
+            This method is only used for the add_flashcards() method
+            The request parameter only expects a flashcard term/description
+            This method fills in the other fields to create a flashcard DTO
+        """
+        dtos = []
+        flashcard_id = 0
+        for flashcard in flashcards:
+            dtos.append(
+                FlashcardDTO(
+                    flashcard_id,
+                    flashcard.term,
+                    flashcard.description,
+                    'idle'
+                )
+            )
+            flashcard_id += 1
+        return dtos

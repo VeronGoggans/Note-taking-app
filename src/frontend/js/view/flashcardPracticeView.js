@@ -180,11 +180,12 @@ export class FlashcardPracticeView {
      */
     #adjustFont(showing) {
         if (showing === 'term') {
-            this.flashcardContent.style.fontFamily = 'sans-serif'
+            this.flashcardContent.style.fontFamily = 'sans-serif';
             this.flashcardContent.style.fontSize = '28px';
+            this.flashcardContent.style.fontWeight = '600';
         }
         if (showing === 'description') {
-            this.flashcardContent.style.fontFamily = 'Roboto'
+            this.flashcardContent.style.fontWeight = '500';
             this.flashcardContent.style.fontSize = '20px';
         } 
     }

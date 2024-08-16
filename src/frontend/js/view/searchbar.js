@@ -45,6 +45,7 @@ export class Searchbar {
     
     handleInput() {
         this.searchList.style.opacity = '1';
+        this.searchList.style.visibility = 'visible';
         const inputValue = this.input.value.toLowerCase();
         const filteredItems = this.searchItems.filter(suggestion =>
           suggestion.object.name.toLowerCase().includes(inputValue)
@@ -94,6 +95,7 @@ export class Searchbar {
         this.viewContent.addEventListener('click', (event) => {
             if (!event.target.closest('.searchbar')) {
                 this.searchList.style.opacity = '0';
+                this.searchList.style.visibility = 'hidden';
             }
         })
     }

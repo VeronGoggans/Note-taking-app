@@ -13,4 +13,3 @@ class PutNoteDto:
     name: str
     content: str
     bookmark: bool
-    favorite: bool

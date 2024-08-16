@@ -28,7 +28,7 @@ export class HttpModel {
      * @param {String} endpoint - May include a Id of some sort
      */
     async delete(endpoint) {
-        const options = RequestOptionsBuilder.buildGetOptions();
+        const options = RequestOptionsBuilder.buildDeleteOptions();
         return fetchData(endpoint, options)
     }
 

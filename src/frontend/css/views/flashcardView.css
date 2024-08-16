@@ -21,8 +21,8 @@
 
 .flashcards-view .flashcard-deck {
     cursor: pointer;
-    border: 1px solid var(--flashcard-border);
-    background-color: var(--flashcard-bg);
+    border: 1px solid var(--border-card);
+    background-color: var(--card);
     height: 150px;
     padding: 10px 20px;
     border-radius: 10px;
@@ -98,6 +98,10 @@
     right: 10px;
 }
 
+.flashcards-view .create-deck-btn:hover {
+    background-color: #222428;
+}
+
 .flashcards-view .stats-section p {
     font-weight: 600;
     font-size: 20px;
@@ -118,28 +122,28 @@
 .flashcards-view .flashcard-deck-progression {
     display: flex;
     align-items: center;
+    width: fit-content;
     padding: 10px;
     margin: 20px 0;
     border-radius: 7px;
-    column-gap: 20px;
-    border: 1px solid var(--flashcard-border);
-    background-color: var(--flashcard-bg);
+    column-gap: 10px;
+    border: 1px solid var(--border-card);
+    background-color: var(--card);
     opacity: 0;
     transform: translateY(30%);
     transition: opacity .7s ease, transform .25s ease;
 }
 
 .flashcards-view .flashcard-deck-progression .deck-name {
-    color: var(--important);
+    color: #a4a8bb;
     font-family: sans-serif;
-    font-weight: 600;
 }
 
 .flashcards-view .flashcard-deck-progression .progress {
     position: relative;
     display: flex;
     width: 400px;
-    min-width: 200px;
+    min-width: 100px !important; 
     height: 7px;
     background-color: var(--progress-color);
     border-radius: 5px;
@@ -149,19 +153,20 @@
 .flashcards-view .flashcard-deck-progression .progress .progress__fill {
     width: 0%;
     height: 100%;
-    background-color: #5c7fdd;
+    background: linear-gradient(90deg, rgba(92,127,221,1) 0%, rgba(227,238,255,1) 100%);
 }
 
 .flashcards-view .flashcard-deck-progression button {
     background-color: var(--background);
-    border: 1px solid var(--border-card);
     border-radius: 5px;
-    padding: 5px 10px;
+    width: 30px;
+    height: 30px;
     color: var(--important);
     transition: 150ms;
 }
 
 .flashcards-view .flashcard-deck-progression button:hover {
+    background-color: var(--hover);
     color: #5c7fdd;
 }
 

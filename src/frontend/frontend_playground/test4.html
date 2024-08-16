@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/general/themes.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../css/general/main.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+        body {
+            height: 100dvh;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+            font-family: Roboto;
+        }
+
+        .flashcard-edit-view {
+            padding: 20px;
+            font-family: sans-serif;
+            color: var(--important);
+        }
+
+        .flashcard-edit-view .exit-flashcard-edit-view-btn {
+            font-size: 16px;
+            background-color: transparent;
+            color: var(--important);
+            padding: 10px 15px;
+            border-radius: 7px;
+            transition: 150ms;
+        }
+
+        .flashcard-edit-view .exit-flashcard-edit-view-btn:hover {
+            background-color: #e7ebffb5;
+        }
+
+        .flashcard-edit-view .save-btn {
+            position: absolute;
+            top: 80px;
+            right: 50px;
+            background-color: #5c7fdd;
+            color: white;
+            padding: 10px 35px;
+            font-size: 18px;
+            border-radius: 25px;
+        }
+
+        .flashcard-edit-view .flashcards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-rows: repeat(auto-fill, 200px);
+            overflow-y: scroll;
+            gap: 20px;
+            padding: 10px;
+        }
+
+        .flashcard-edit-view .flashcard {
+            position: relative;
+            display: grid;
+            grid-template-rows: 1fr 30px 40px;
+            border-radius: 10px;
+            height: 200px;
+            background-color: #e7ebffb5; /*e7ebff*/
+            cursor: pointer;
+        }
+
+        .flashcard-edit-view .flashcard .rating {
+            border-radius: 20px;
+            background-color: #5c7fdd;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            color: white;
+            height: 30px;
+            padding-left: 10px;
+            margin: 0 60px;
+        }
+
+        .flashcard-edit-view .flashcard h3 {
+            margin: auto;
+            font-family: Roboto;
+        }
+
+        .flashcard-edit-view .flashcard .util-bar {
+            transition: 100ms;
+            display: flex;
+            justify-content: end;
+            align-items: center;
+            opacity: 0;
+        }
+
+        .flashcard-edit-view .flashcard .util-bar:hover {
+            opacity: 1;
+        }
+
+        .flashcard-edit-view .flashcard .util-bar i {
+            cursor: pointer;
+            color: var(--icon);
+            padding: 7px;
+            border-radius: 5px;
+            margin: 0 10px;
+        }
+
+        .flashcard-edit-view .flashcard .util-bar i:hover {
+            background-color: var(--hover);
+            color: #5c7fdd;
+        }
+
+        
+
+
+    </style>
+</head>
+<body>
+    <div class="flashcard-edit-view">
+        <button class="exit-flashcard-edit-view-btn">
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <h1>OWASP Top 10</h1>
+        <button class="save-btn">Save</button>
+        <div class="flashcards"></div>
+    </div>
+
+    
+</body>
+</html>

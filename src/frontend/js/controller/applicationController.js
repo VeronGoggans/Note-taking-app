@@ -10,7 +10,8 @@ import { Dialog } from "../util/dialog.js";
 import { NotificationHandler } from "../handlers/userFeedback/notificationHandler.js";
 import { FlashcardDeckController } from "./flashcardDeckController.js";
 import { FlashcardPracticeController } from "./flashcardPracticeController.js";
-import { flashcardsTemplate, flashcardPracticeTemplate, notesTemplate, settingsTemplate, editorTemplate, homeTemplate, templatesTemplate } from "../constants/templates.js";
+import { FlashcardEditController } from "./flashcardEditController.js";
+import { flashcardsTemplate, flashcardPracticeTemplate, notesTemplate, settingsTemplate, editorTemplate, homeTemplate, templatesTemplate, flashcardEditTemplate } from "../constants/templates.js";
 
 export class ApplicationController {
     constructor() {
@@ -24,6 +25,7 @@ export class ApplicationController {
         this.templateController = new TemplateController(this, this.dialog, this.notificationHandler);
         this.flashcardDeckController = new FlashcardDeckController(this, this.dialog);
         this.flashcardPracticeController = new FlashcardPracticeController(this, this.dialog);
+        this.flashcardEditController = new FlashcardEditController(this, this.dialog);
         this.textEditorController = new TextEditorController(this, this.dialog);
         this.settingController = new SettingController(this);
         this.viewContainer = document.querySelector('.content');
@@ -32,6 +34,7 @@ export class ApplicationController {
             notes: this.noteController,
             flashcardsHome: this.flashcardDeckController,
             flashcardsPractice: this.flashcardPracticeController,
+            flashcardEdit: this.flashcardEditController,
             templates: this.templateController,
             settings: this.settingController,
             editor: this.textEditorController
@@ -42,6 +45,7 @@ export class ApplicationController {
             notes: notesTemplate,
             flashcardsHome: flashcardsTemplate,
             flashcardsPractice: flashcardPracticeTemplate,
+            flashcardEdit: flashcardEditTemplate,
             templates: templatesTemplate,
             settings: settingsTemplate,
             editor: editorTemplate
@@ -53,13 +57,13 @@ export class ApplicationController {
     initView(viewId, viewParameters = {}) {
         const controller = this.controllers[viewId];
         if (controller) {
+            // Putting the view template on the screen
             this.viewContainer.innerHTML = this.templates[viewId];
             setTimeout(() => {
 
                 if (viewId === 'notes') {
                     const { folder } = viewParameters; 
                     this.folderController.init(folder.id, folder.name);
-                    // note controller
                     controller.init(folder.id);
                     return;
                 }
@@ -73,7 +77,6 @@ export class ApplicationController {
                         previousView
                     } = viewParameters;
 
-                    // Setting previous view 
                     this.model.setPreviousView(previousView);
                     
                     if (newEditorObject) {
@@ -90,17 +93,29 @@ export class ApplicationController {
                         previousView
                     } = viewParameters
 
-                    // Setting previous view 
                     this.model.setPreviousView(previousView);                    
 
-                    controller.init(deck)
+                    controller.init(deck);
 
                     return;
                 }
 
-                if (viewId === 'home') {
-                    this.folderController.clearFolderHistory()
+                if (viewId === 'flashcardEdit') {
+                    const {
+                        deck, 
+                        previousView
+                    } = viewParameters
+
+                    this.model.setPreviousView(previousView);
+
+                    controller.init(deck);
+                    return;
                 }
+
+                if (viewId === 'home') {
+                    this.folderController.clearFolderHistory();
+                }
+
                 controller.init();
             }, 0); 
         }
@@ -198,6 +213,10 @@ export class ApplicationController {
 
     async getDeckSearchItems() {
         return await this.flashcardDeckController.getSearchItems();
+    }
+
+    async addDeck(deckName, flashcards) {
+        await this.flashcardDeckController.addDeck(deckName, flashcards);
     }
 
     async getDeckById(deckId) {

@@ -1,5 +1,6 @@
 import { TextEditorView } from "../view/textEditorView.js";
 import { TextEditorModel } from "../model/textEditorModel.js";
+import { FlashcardModel } from "../model/flashcardModel.js";
 
 export class TextEditorController {
     constructor(applicationController, dialog) {
@@ -10,6 +11,7 @@ export class TextEditorController {
 
     init() {
         this.textEditorView = new TextEditorView(this, this.applicationController, this.dialog);
+        this.flashcardModel = new FlashcardModel();
     }
 
     loadPreviousView() {
@@ -32,6 +34,7 @@ export class TextEditorController {
         if (editorObject !== null && editorObjectType === 'note') {
             editorObject.name = name;
             editorObject.content = content;
+            
             await this.applicationController.updateNote(editorObject)
         }
         if (editorObject === null && editorObjectType === 'note') {
@@ -68,6 +71,27 @@ export class TextEditorController {
 
     getStoredObject() {
         return this.model.getStoredObject();
+    }
+
+    /**
+     * Temporarely saves a flashcard object
+     * 
+     * @param {Object} flashcard 
+     */
+    saveCardToModel(flashcard) {
+        this.flashcardModel.save(flashcard);
+    }
+
+    /**
+     * Returns a list of saved flashcard objects
+     * @returns {Array[Object]}
+    */
+    getSavedFlashcards() {
+        return this.flashcardModel.getSavedFlashcards();
+    }
+
+    async addDeck(deckName, flashcards) {
+        await this.applicationController.addDeck(deckName, flashcards);
     }
 
     async handleDeleteButtonClick(noteId) {

@@ -17,13 +17,11 @@ class PutNoteRequest(BaseModel):
     - name (str): The name of the note.
     - content (str): The content of the note.
     - bookmrk (bool): A boolean indicating if the note is boomarked or not.
-    - favorite (bool): A boolean indicating if the note is favorited or not.
     """
     note_id: str
     name: str
     content: str
     bookmark: bool
-    favorite: bool
 
 
 class MoveNoteRequest(BaseModel):

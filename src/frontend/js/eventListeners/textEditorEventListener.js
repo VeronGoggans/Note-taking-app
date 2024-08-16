@@ -17,6 +17,7 @@ export class TextEditorEventListener {
 
     showToolbar() {
       const selection = window.getSelection();
+
       if (!selection.isCollapsed) {
         this.placementHelper.placeFormatBar(selection);
         AnimationHandler.fadeIn(this.formatBar);
@@ -34,7 +35,6 @@ export class TextEditorEventListener {
         this.slashCommand.rememberRange(range);
         this.placementHelper.placeCommandBar(selection);
         AnimationHandler.fadeIn(this.forwardSlashCommandContainer);
-        this.#deleteForwardSlash(range);
         this.commandInputField.focus();
       } else {
         AnimationHandler.fadeOut(this.forwardSlashCommandContainer)
@@ -83,31 +83,11 @@ export class TextEditorEventListener {
       }
     }
 
-    #deleteForwardSlash(range) {
-      const caretNode = range.startContainer;
-      const caretOffset = range.startOffset;
-    
-      // Check if caretNode is a text node and there is a character before the caret
-      if (caretNode.nodeType === Node.TEXT_NODE && caretOffset > 0) {
-        const textContent = caretNode.textContent;
-        
-        // Check if the character before the caret is a forward slash
-        if (textContent[caretOffset - 1] === '/') {
-          // Create a new range to select the forward slash
-          const deleteRange = document.createRange();
-          deleteRange.setStart(caretNode, caretOffset - 1);
-          deleteRange.setEnd(caretNode, caretOffset);
-    
-          // Remove the forward slash
-          deleteRange.deleteContents();
-        }
-      }
-    }
-
 
     #eventListeners() {
       this.editor.addEventListener('mouseup', () => {this.showToolbar()});
       this.editor.addEventListener('scroll', () => {this.removeSpawnables()});
+      
       this.editorPage.addEventListener('mouseup',  () => {this.showToolbar()});
       this.editorPage.addEventListener('keyup', () => {this.showToolbar()});
       this.editorPage.addEventListener('keyup', (event) => {this.checkForForwardSlash(event)});

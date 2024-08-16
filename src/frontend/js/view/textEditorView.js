@@ -114,6 +114,10 @@ export class TextEditorView {
     this.#clear();
   }
 
+  saveFlashcard(flashcard) {
+    this.controller.saveCardToModel(flashcard);
+  }
+
 
   #getStoredEditorObject() {
     const storedEditorData = this.controller.getStoredObject();
@@ -172,6 +176,9 @@ export class TextEditorView {
     this.page.addEventListener('click', () => {this.dropdownHelper.closeDropdowns()});
 
     this.findButton.addEventListener('click', () => {this.dialog.renderSearchModal(this.toolbar)});  
-    this.deckButton.addEventListener('click', () => {this.dialog.renderNewDeckModal(this)});  
+    this.deckButton.addEventListener('click', () => {
+      // Get currently stored cards
+      const flashcards = this.controller.getSavedFlashcards();
+      this.dialog.renderNewDeckModal(this.controller, flashcards)});  
   }
 }

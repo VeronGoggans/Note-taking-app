@@ -219,7 +219,6 @@
  .editor hr {
    border-style: none;
    border-radius: 5px;
-   border: 1px solid var(--editor-text);
  }
 
  .editor img {

@@ -75,7 +75,7 @@ class NoteRouter:
     def update_note(self, request: PutNoteRequest):
         try:
             request_dto = PutNoteDto(request.note_id, request.name, request.content, 
-                                     request.bookmark, request.favorite)
+                                     request.bookmark)
             
             note = self.service.update_note(request_dto)
             return {'status': 'succes', 'note': note}, HttpStatus.OK

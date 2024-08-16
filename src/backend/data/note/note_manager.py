@@ -5,15 +5,10 @@ from src.backend.domain.factory import Factory
 from src.backend.util.folder_finder import FolderFinder
 from src.backend.data.exceptions.exceptions import AdditionException, NotFoundException
 from src.backend.data.file.text_manager import TextManager
+from datetime import datetime
 
 
-class NoteManager:
-    def __init__(self):
-        self.notes_list = []
-        self.search_items = []
-        self.favorites = []
-        self.bookmarks = []
-    
+class NoteManager:    
 
     def add_note(self, folders, folder_id: str, note: Note):
         """
@@ -54,7 +49,7 @@ class NoteManager:
         """
         parent_folder = FolderFinder.find_folder_by_id(folders, folder_id)
         if parent_folder:
-            notes_list = Factory.create_note_list(parent_folder['notes'])
+            notes_list = Factory.to_priority_list(parent_folder['notes'])
             return notes_list
         raise NotFoundException(f'Folder with id: {folder_id}, could not be found.')
 
@@ -80,40 +75,30 @@ class NoteManager:
         raise NotFoundException(f'Note with id: {note_id}, could not be found.')
     
 
-    def get_recent_notes(self, folders: list) -> list:
+    def get_recent_notes(self, folders: list, notes_list: list) -> list[dict]:
         for folder in folders:
             for note in folder['notes']:
-                self.notes_list.append(note)
-            self.get_recent_notes(folder['subfolders'])
-        return self.__get_top_5_most_recent_notes()
+                notes_list.append(note)
+            self.get_recent_notes(folder['subfolders'], notes_list)
+        return notes_list 
 
 
-    def get_note_name_id(self, folders):
+    def get_note_name_id(self, folders, search_items: list) -> list[dict]:
         for folder in folders:
             for note in folder['notes']:
-                self.search_items.append({'id': note['id'],'name': note['name'],'folder_name': folder['name']})
-            self.get_note_name_id(folder['subfolders'])
-        return self.search_items     
+                search_items.append({'id': note['id'],'name': note['name'],'folder_name': folder['name']})
+            self.get_note_name_id(folder['subfolders'], search_items)
+        return search_items     
     
 
-    def get_favorites(self, folders):
-        for folder in folders:
-            for note in folder['notes']:
-                if note.get('favorite') == True:
-                    self.favorites.append(note)
-
-            self.get_favorites(folder['subfolders'])
-        return Factory.create_note_list(self.favorites)
-    
-
-    def get_bookmarks(self, folders):
+    def get_bookmarks(self, folders, bookmarks: list) -> list[Note]:
         for folder in folders:
             for note in folder['notes']:
                 if note.get('bookmark') == True:
-                    self.bookmarks.append(note)
+                    bookmarks.append(note)
 
-            self.get_bookmarks(folder['subfolders'])
-        return Factory.create_note_list(self.bookmarks)
+            self.get_bookmarks(folder['subfolders'], bookmarks)
+        return Factory.to_priority_list(bookmarks)
                
 
     def update_note(self, folders, request_dto: PutNoteDto):
@@ -157,20 +142,8 @@ class NoteManager:
             if delete_txt_file:
                 TextManager.delete(note['content'])
             return note    
-        raise NotFoundException(f'Note with id: {note_id}, could not be found.')  
+        raise NotFoundException(f'Note with id: {note_id}, could not be found.')    
 
-
-    def clear_search_options_list(self):
-        self.search_items = []    
-
-    def clear_favorites_list(self):
-        self.favorites = []
-
-    def clear_bookmarks_list(self):
-        self.bookmarks = []
-
-    def clear_notes_list(self):
-        self.notes_list = []
     
 
     def __find_note(self, folders, note_id: str) -> list:
@@ -197,14 +170,22 @@ class NoteManager:
         return None, None
     
 
-    def __get_top_5_most_recent_notes(self) -> list:
+    def get_top_6_most_recent_notes(self, notes: list) -> list:
+        # Convert the last_edit strings to datetime objects within the dict
+        for note in notes:
+            note['last_edit_dt'] = datetime.strptime(note['last_edit'], "%d/%m/%Y %H:%M")
+
         # Sort the Note objects based on last_visit in descending order
-        self.notes_list.sort(key=lambda note: note['last_edit'], reverse=False)
-
+        notes.sort(key=lambda note: note['last_edit_dt'], reverse=True)
+        
         # Get the 5 most recetly worked on notes
-        most_recent_notes = self.notes_list[:5]
+        most_recent_notes = notes[:6]
 
-        return Factory.create_note_list(most_recent_notes)
+        # Clean up by removing the temporary datetime objects
+        for note in notes:
+            del note['last_edit_dt']
+        
+        return Factory.to_list(most_recent_notes)
 
 
     
@@ -215,12 +196,10 @@ class NoteManager:
         note.update_content(note.content, updated_note.content)
         note.content = updated_note.content
         note.bookmark = updated_note.bookmark
-        note.favorite = updated_note.favorite
         note.name = updated_note.name
         note.last_edit = current_time
 
         current_note['name'] = updated_note.name
         current_note['bookmark'] = updated_note.bookmark
-        current_note['favorite'] = updated_note.favorite
         current_note['last_edit'] = current_time
         return note

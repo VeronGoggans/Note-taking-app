@@ -2,8 +2,8 @@
     position: relative;
     background-color: var(--modal);
     font-family: Roboto;
-    width: 500px;
-    height: 500px;
+    width: 700px;
+    height: 600px;
     border-radius: 10px;
     padding: 10px 20px;
     box-shadow: 0 0 10px var(--shadow);
@@ -19,17 +19,16 @@
 
 .create-deck-modal .deck-name-input {
     border: none;
-    border-bottom: 2px solid #5c7fdd;
+    border-bottom: 2px solid var(--border-card);
 }
 
 .create-deck-modal .term-input {
-    border: 2px solid var(--border-card);
-    border-radius: 10px;
+    border: none;
+    border-bottom: 2px solid var(--border-card);
     height: 50px;
 }
 
-.create-deck-modal input,
-.create-deck-modal textarea {
+.create-deck-modal input {
     outline: none;
     background-color: transparent;
     padding: 5px 15px;
@@ -39,8 +38,7 @@
     transition: 150ms;
 }
 
-.create-deck-modal input:focus,
-.create-deck-modal textarea:focus {
+.create-deck-modal input:focus {
     border-color: #5c7fdd;
 }
 
@@ -51,8 +49,14 @@
 
 .create-deck-modal .card-description {
     resize: none;
-    height: 150px;
+    outline: none;
+    height: 250px;
+    padding: 10px;
+    font-size: 16px;
     border-radius: 10px;
+    color: var(--text);
+    font-family: sans-serif;
+    overflow-y: scroll;
     border: 2px solid var(--border-card);
 }
 
@@ -81,17 +85,24 @@
 .create-deck-modal .next-card-btn,
 .create-deck-modal .save-deck-btn {
     position: absolute;
-    bottom: 20px;
+    bottom: 12px;
     right: 20px;
     background-color: #5c7fdd;
-    border: none;
     border-radius: 5px;
     padding: 5px 30px;
     color: white;
     font-size: 16px;
-    cursor: pointer;
 }
 
-.create-deck-modal .save-deck-btn {
-    right: 130px;
+.create-deck-modal .save-deck-btn {right: 130px}
+
+.create-deck-modal .next-card-btn:hover,
+.create-deck-modal .save-deck-btn:hover {
+    background-color: #222428;
+}
+
+.create-deck-modal .card-count {
+    font-family: sans-serif;
+    font-size: 20px;
+    color: var(--important);
 }

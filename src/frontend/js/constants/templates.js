@@ -37,10 +37,9 @@ export const notesTemplate = `
         <div class="current-folder-name-container">
             <h2 class="current-folder-name">Home</h2>
             <div>
-            <button class="create-folder-btn"><i class="fa-solid fa-folder"></i></button>
+            <button title="Create folder" class="create-folder-btn"><i class="fa-solid fa-folder"></i></button>
             <button class="create-note-btn"><i class="fa-solid fa-file"></i></button>
             <button class="home-folder-btn"><i class="fa-solid fa-house"></i></button>
-            <button class="favorites-btn"><i class="fa-solid fa-heart"></i></button>
             <button class="bookmarks-btn"><i class="fa-solid fa-bookmark"></i></button>
             </div>
         </div>
@@ -55,7 +54,7 @@ export const flashcardsTemplate = `
     <div class="flashcards-view">
         <h1>Flashcards</h1>
         <div class="stats-section">
-            <p>Current streak: <span class="study-streak">🔥0</span>d</p>
+            <p>Current streak: <span class="study-streak">0</span>d</p>
             <p>Time studied: <span class="hours-studied">0</span>h <span class="minutes-studied">0</span>m</p>
             <p>Total cards: <span class="flashcard-count">0</span></p>
         </div>
@@ -95,6 +94,16 @@ export const flashcardPracticeTemplate = `
                 </div>
             </div>
         </div>
+    </div>
+`
+export const flashcardEditTemplate = `
+    <div class="flashcard-edit-view">
+        <button class="exit-flashcard-edit-view-btn">
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <h1 contenteditable="true" spellCheck="false"></h1>
+        <button class="save-btn">Save</button>
+        <div class="flashcards"></div>
     </div>
 `
 export const templatesTemplate =  `
