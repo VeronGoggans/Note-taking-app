@@ -26,7 +26,7 @@
 }
 
 .current-folder-name-container button:hover {
-    background-color: #5c7fdd;
+    background-color: var(--secondary);
     color: white;
 }
 

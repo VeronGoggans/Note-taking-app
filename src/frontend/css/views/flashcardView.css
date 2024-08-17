@@ -16,7 +16,9 @@
 
 .flashcards-view h1 {
     font-family: sans-serif;
-    color: var(--important);
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-image: linear-gradient(45deg, #5c7fdd, #ff0057);
 }
 
 .flashcards-view .flashcard-deck {
@@ -89,7 +91,7 @@
 
 .flashcards-view .create-deck-btn {
     position: absolute;
-    background-color: #5c7fdd;
+    background-color: var(--secondary);
     color: white;
     font-size: 16px;
     padding: 5px 20px;
@@ -134,7 +136,7 @@
     transition: opacity .7s ease, transform .25s ease;
 }
 
-.flashcards-view .flashcard-deck-progression .deck-name {
+.flashcards-view .flashcard-deck-progression span {
     color: #a4a8bb;
     font-family: sans-serif;
 }
@@ -145,7 +147,7 @@
     width: 400px;
     min-width: 100px !important; 
     height: 7px;
-    background-color: var(--progress-color);
+    background-color: var(--progress-color2);
     border-radius: 5px;
     overflow: hidden;
 }
@@ -153,7 +155,7 @@
 .flashcards-view .flashcard-deck-progression .progress .progress__fill {
     width: 0%;
     height: 100%;
-    background: linear-gradient(90deg, rgba(92,127,221,1) 0%, rgba(227,238,255,1) 100%);
+    background: var(--progress-color1)
 }
 
 .flashcards-view .flashcard-deck-progression button {

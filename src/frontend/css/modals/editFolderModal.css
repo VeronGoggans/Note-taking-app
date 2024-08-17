@@ -3,18 +3,12 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    width: 400px;
+    width: 450px;
     padding: 30px 40px;
     border-radius: 13px;
     justify-content: center;
     font-family: Roboto;
     box-shadow: 0 10px 20px var(--shadow);
-}
-
-.edit-folder-modal hr {
-    border-style: none;
-    width: 100%;
-    border: 1px solid var(--toolbar);
 }
 
 .edit-folder-modal h2 {
@@ -86,7 +80,7 @@
 }
 
 .folder-color-options div {
-    width: 100%;
+    width: 25px;
     height: 25px;
     margin: 0 5px;
     border-radius: 50%;
@@ -103,10 +97,9 @@
     cursor: pointer;
     transition: 50ms;
     background-color: var(--card);
-    border: 2px solid var(--toolbar);
+    border: 2px solid var(--border-card);
 }
 .buttons-container {
-    border-top: 2px solid var(--toolbar);
     display: flex;
     gap: 15px;
     padding-top: 10px;
@@ -123,6 +116,4 @@
     display: flex;
     align-items: center;
     height: 40px;
-    padding-top: 5px;
-    padding-bottom: 20px;
 }   

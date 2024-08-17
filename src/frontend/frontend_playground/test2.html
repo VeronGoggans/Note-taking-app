@@ -25,7 +25,7 @@
             background-color: var(--modal);
             font-family: Roboto;
             width: 500px;
-            height: 500px;
+            height: 550px;
             border-radius: 10px;
             padding: 10px 20px;
             box-shadow: 0 0 10px var(--shadow);
@@ -41,13 +41,14 @@
 
         .create-deck-modal .deck-name-input {
             border: none;
-            border-bottom: 2px solid #5c7fdd;
+            border-radius: 10px;
+            height: 50px;
         }
 
         .create-deck-modal .term-input {
-            border: 1px solid var(--border-card);
             border-radius: 10px;
             height: 50px;
+            border: none;
         }
 
         .create-deck-modal input,
@@ -57,18 +58,19 @@
             font-size: 17px;
             color: var(--text);
             font-family: sans-serif;
+            background-color: #f1f2f7;
         }
 
         .create-deck-modal input::placeholder,
         .create-deck-modal textarea::placeholder {
-            color: var(--placeholder);
+            color: #3f4155;
         }
 
         .create-deck-modal .card-description {
             resize: none;
+            border: none;
             height: 150px;
             border-radius: 10px;
-            border: 1px solid var(--border-card);
         }
 
         .create-deck-modal .description-section {
@@ -100,10 +102,11 @@
             background-color: #5c7fdd;
             border: none;
             border-radius: 5px;
-            padding: 5px 30px;
+            padding: 10px 30px;
             color: white;
             font-size: 16px;
             cursor: pointer;
+            box-shadow: 0 7px 10px #9099f5;
         }
 
         .create-deck-modal .save-deck-btn {

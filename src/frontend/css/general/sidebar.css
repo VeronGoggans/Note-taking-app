@@ -27,11 +27,11 @@
     border-radius: 15px 10px 15px 10px;
     color: aliceblue;
     font-weight: 600;
-    background-color: #5c7dff;
+    background-color: var(--secondary);
 }
 
 .logo-text {
-    color: #5c7dff;
+    color: var(--secondary);
     margin-left: 2px;
     font-family: sans-serif;
 }

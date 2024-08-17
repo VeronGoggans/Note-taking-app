@@ -111,7 +111,7 @@
     margin: 25px 40px 0 40px;
     position: relative;
     height: 5px;
-    background-color: var(--progress-color);
+    background-color: var(--progress-color2);
     border-radius: 5px;
     overflow: hidden;
 }
@@ -119,7 +119,7 @@
 .flashcard-practice .deck-section .progress .progress__fill {
     width: 0%;
     height: 100%;
-    background-color: #5d7cff;
+    background-color: #5c7fdd;
     transition: 150ms;
 }
 

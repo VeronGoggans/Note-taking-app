@@ -52,7 +52,7 @@
     border-radius: 7px; 
     transition: 200ms;
     color: white;
-    background-color: #5c7fdd; 
+    background-color: var(--secondary); 
 }
 
 .add-template-btn i {

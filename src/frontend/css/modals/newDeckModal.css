@@ -17,25 +17,18 @@
     color: var(--important);
 }
 
-.create-deck-modal .deck-name-input {
-    border: none;
-    border-bottom: 2px solid var(--border-card);
-}
-
-.create-deck-modal .term-input {
-    border: none;
-    border-bottom: 2px solid var(--border-card);
-    height: 50px;
-}
-
 .create-deck-modal input {
     outline: none;
+    border: none;
+    height: 50px;
+    border-radius: 10px;
     background-color: transparent;
     padding: 5px 15px;
     font-size: 17px;
     color: var(--text);
     font-family: sans-serif;
     transition: 150ms;
+    border: 1px solid var(--border-card);
 }
 
 .create-deck-modal input:focus {
@@ -50,14 +43,14 @@
 .create-deck-modal .card-description {
     resize: none;
     outline: none;
-    height: 250px;
+    height: 220px;
     padding: 10px;
     font-size: 16px;
     border-radius: 10px;
     color: var(--text);
     font-family: sans-serif;
     overflow-y: scroll;
-    border: 2px solid var(--border-card);
+    border: 1px solid var(--border-card);
 }
 
 .create-deck-modal .description-section {
@@ -71,7 +64,7 @@
     width: 30px;
     height: 30px;
     border-radius: 5px;
-    color: var(--text);
+    color: #979bb1;
     background-color: transparent;
     cursor: pointer;
     transition: 150ms;
@@ -82,22 +75,35 @@
     background-color: var(--hover);
 }
 
-.create-deck-modal .next-card-btn,
 .create-deck-modal .save-deck-btn {
     position: absolute;
-    bottom: 12px;
+    top: 20px;
     right: 20px;
-    background-color: #5c7fdd;
-    border-radius: 5px;
-    padding: 5px 30px;
-    color: white;
+    background-color: transparent;
+    border-radius: 7px;
+    padding: 10px 20px;
+    color: #5c7fdd;
     font-size: 16px;
 }
 
-.create-deck-modal .save-deck-btn {right: 130px}
+.create-deck-modal .next-card-btn {
+    position: absolute;
+    bottom: 15px;
+    right: 20px;
+    background-color: #5c7fdd;
+    color: white;
+    padding: 10px 30px;
+    border-radius: 7px;
+    font-size: 16px;
+}
 
-.create-deck-modal .next-card-btn:hover,
-.create-deck-modal .save-deck-btn:hover {
+.create-deck-modal .select-text-btn {
+    margin-left: 390px;
+    font-size: 14px;
+    width: fit-content !important;
+}
+
+.create-deck-modal .next-card-btn:hover{
     background-color: #222428;
 }
 

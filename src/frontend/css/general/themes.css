@@ -2,11 +2,13 @@
     /*Settings view*/
     --setting-dropdown: #f4f5f7;
     /*Flashcard View*/
-    --progress-color: #e6eaff;
+    --progress-color1: linear-gradient(90deg, rgba(92, 127, 221, 1) 0%, rgb(190 153 235) 100%);
+    --progress-color2: #e6eaff;
     --shadow-practice-card: #e6eaf3;
     --flashcard-bg: #ffffff;
+    --flashcard-edit-bg: #e7ebffb5;
     --flashcard-border: #dee1ef;
-    --stats-span-color: #aab7f6;
+    --stats-span-color: #7990ff;
     /*Template View*/
 
     /*Notes View*/
@@ -52,6 +54,7 @@
     --hover-slash-command: #f3f4f8;
 
     /*Other*/
+    --secondary: #5c7dff;
     --background: #ffffff;
     --notification: #ffffff;
     --subtitle: #63656d;
@@ -110,11 +113,13 @@
     --hover-slash-command: #16171c;
 
     /*Flashcard View*/
-    --progress-color: #49517a;
+    --progress-color1: linear-gradient(90deg, #5c7fdd 0%, #be99eb 100%);
+    --progress-color2: #49517a;
     --shadow-practice-card: #111020;
     --flashcard-bg: #17181f;
+    --flashcard-edit-bg: #595fc6bd;
     --flashcard-border: #5063b1;
-    --stats-span-color: #c1cbfe;
+    --stats-span-color: #7990ff;
 
     /*Notes View*/ 
     --hover-bookmark-icon-if-bookmarked: #434c71;
@@ -128,6 +133,7 @@
     --folder-name-input: #5c7dff;
     
     /*Other*/
+    --secondary: #5c7dff;
     --background: #17181f; /*1b1c22*/
     --notification: #16171c;
     --subtitle: #9196aa;
@@ -149,7 +155,7 @@
     --searchbar-placeholder: #d4d7e5; 
     --placeholder: #d4d7e5;
     --selection: #314682;
-    --dialog: rgb(136 145 204 / 15%);
+    --dialog: rgb(0 0 0 / 25%);
     --shadow: rgba(0, 0, 0, 0.1);
     --shadow-notification: #121216;
     --modal: #1f2129;
@@ -160,11 +166,13 @@
     /*Settings view*/
     --setting-dropdown: #f4f5f7;
     /*Flashcard View*/
-    --progress-color: #e6eaff;
+    --progress-color1: linear-gradient(90deg, rgba(92, 127, 221, 1) 0%, rgb(190 153 235) 100%);
+    --progress-color2: #e6eaff;
     --shadow-practice-card: #e6eaf3;
     --flashcard-bg: #ffffff;
+    --flashcard-edit-bg: #e7ebffb5;
     --flashcard-border: #dee1ef;
-    --stats-span-color: #aab7f6;
+    --stats-span-color: #7990ff;
     /*Template View*/
 
     /*Notes View*/
@@ -210,6 +218,7 @@
     --hover-slash-command: #f3f4f8;
 
     /*Other*/
+    --secondary: #5c7dff;
     --background: #ffffff;
     --notification: #ffffff;
     --subtitle: #63656d;

@@ -56,17 +56,18 @@ export class FlashcardProgression {
 
     #render() {
         this.PROGRESS.append(this.PROGRESS_FILL);
-        this.HOST.append(this.NAME, this.EDIT_BUTTON, this.DELETE_BUTTON, this.PROGRESS);
+        this.HOST.append(this.NAME, this.EDIT_BUTTON, this.DELETE_BUTTON, this.PROGRESS, this.PERCENTAGE_CORRECT);
         return this.HOST
     }
 
     #initializeDomElements() {
         this.HOST = CNode.create('div', {'class': 'flashcard-deck-progression', 'id': this.deck.id});
-        this.NAME = CNode.create('span', {'class': 'deck-name', 'textContent': this.name });
+        this.NAME = CNode.create('span', {'class': 'deck-name', 'textContent': this.name});
         this.EDIT_BUTTON = CNode.create('button', {'class': 'edit-deck-btn', 'innerHTML': '<i class="fa-solid fa-pen"></i>'});
         this.DELETE_BUTTON = CNode.create('button', {'class': 'delete-deck-btn', 'innerHTML': '<i class="fa-solid fa-trash"></i>'});
         this.PROGRESS = CNode.create('div', {'class': 'progress'});
         this.PROGRESS_FILL = CNode.create('div', {'class': 'progress__fill'});
+        this.PERCENTAGE_CORRECT = CNode.create('span', {'textContent': `${this.deck.progress.percentage}% Correct`});
     }
 
     #attachEventListeners() {
@@ -87,12 +88,12 @@ export class Flashcard {
     #applyRatingStyle() {
         if (this.flashcard.rating === 'wrong') {
             this.HOST.style.border = '1px solid var(--border-card)';
-            this.HOST.style.backgroundColor = '#ffffff';
+            this.HOST.style.backgroundColor = 'var(--card)';
             this.RATING_CONTAINER.style.backgroundColor = '#ff8c8c';
         }
         if (this.flashcard.rating === 'idle') {
             this.HOST.style.border = '1px solid var(--border-card)';
-            this.HOST.style.backgroundColor = '#ffffff';
+            this.HOST.style.backgroundColor = 'var(--card)';
             this.RATING_CONTAINER.style.backgroundColor = '#9d9eaf';
         }
     }

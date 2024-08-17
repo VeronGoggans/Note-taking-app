@@ -25,10 +25,10 @@ export class NewDeckModal {
         this.STRIKE_BTN = CNode.create('button', {'innerHTML': '<i class="fa-solid fa-strikethrough"></i>', 'onclick' : "formatText('strikethrough')", 'id': 'strikeBtn'});
         this.LIST1_BTN = CNode.create('button', {'innerHTML': '<i class="fa-solid fa-list-ul"></i>', 'onclick' : "formatText('insertUnorderedList')"});
         this.LIST2_BTN = CNode.create('button', {'innerHTML': '<i class="fa-solid fa-list-ol"></i>', 'onclick' : "formatText('insertOrderedList')"});
-        this.SELECT_BTN = CNode.create('button', {'innerHTML': '<i class="fa-solid fa-wand-magic-sparkles"></i>'});
+        this.SELECT_BTN = CNode.create('button', {'class': 'select-text-btn', 'textContent': 'Select text'});
         this.CARD_DECSRIPTION = CNode.create('div', {'class': 'card-description', 'contentEditable': true, 'spellCheck': false});
-        this.NEXT_BTN = CNode.create('button', {'class': 'next-card-btn', 'textContent': 'Next'});
-        this.SAVE_BTN = CNode.create('button', {'class': 'save-deck-btn', 'textContent': 'Save'});
+        this.NEXT_BTN = CNode.create('button', {'class': 'next-card-btn', 'textContent': 'Save card'});
+        this.SAVE_BTN = CNode.create('button', {'class': 'save-deck-btn', 'textContent': 'Save deck'});
         this.CARD_COUNT_SPAN = CNode.create('span', {'textContent': `${cards === undefined ? '0' : cards.length} cards`, 'class': 'card-count'});
 
         this.#attachEventListeners();

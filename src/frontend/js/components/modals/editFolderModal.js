@@ -25,7 +25,6 @@ export class EditFolderModal {
         this.NAME_P = CNode.create('p', {'textContent': 'Change the name of the folder below.'});
         this.COLOR_P = CNode.create('p', {'textContent': 'Select a folder background color: '});
         this.ACTIVE_COLOR_SPAN = CNode.create('span', {'textContent': '(Original)'});
-        this.HR = CNode.create('hr', {});
         this.COLORS_CONTAINER = CNode.create('div', {'class': 'folder-color-options'});
         this.BLUE = CNode.create('div', {'style': 'background-color: rgb(169, 215, 255);'});
         this.SALMON_PINK = CNode.create('div', {'style': 'background-color: rgb(238, 165, 166);'});
@@ -48,7 +47,7 @@ export class EditFolderModal {
 
     #render() {
         this.COLOR_P.appendChild(this.ACTIVE_COLOR_SPAN);
-        this.SETTINGS_CONTAINER.append(this.NAME_SPAN, this.NAME_P, this.INPUT, this.HR, this.COLOR_SPAN,
+        this.SETTINGS_CONTAINER.append(this.NAME_SPAN, this.NAME_P, this.INPUT, this.COLOR_SPAN,
             this.COLOR_P, this.COLORS_CONTAINER
         );
         this.COLORS_CONTAINER.append(this.BLUE, this.LAVENDER, this.LIGHT_GREEN, this.PEACH,
