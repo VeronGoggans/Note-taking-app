@@ -44,7 +44,7 @@ export class NoteView {
 
         for (let i = 0; i < cards.length; i++) {
             if (cards[i].id === note.id) {
-                AnimationHandler.fadeOutCard(cards[i], this._content);
+                AnimationHandler.fadeOutCard(cards[i]);
                 this.noteObjects.remove(note);
                 this.notificationHandler.push('Deleted', note.name);
             }

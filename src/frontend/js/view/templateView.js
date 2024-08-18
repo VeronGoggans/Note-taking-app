@@ -47,7 +47,7 @@ export class TemplateView {
 
         for (let i = 0; i < templates.length; i++) {
             if (templates[i].id === template.id) {
-                AnimationHandler.fadeOutCard(templates[i], this._recentTemplates);
+                AnimationHandler.fadeOutCard(templates[i]);
                 this.templateObjects.remove(template);
                 this._templateCountSpan.textContent = decrementString(
                     this._templateCountSpan.textContent

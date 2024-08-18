@@ -25,13 +25,11 @@ export class FlashcardEditView {
             for (let i = 0; i < flashcards.length; i++) {
                 const flashcard = this.#flashcard(flashcards[i]);
                 flashcardsFragment.appendChild(flashcard);
-                AnimationHandler.fadeInFromBottom(flashcard);
             }
             this._flashcardsContainer.appendChild(flashcardsFragment);
         } 
         else {
             console.log('Bitch this deck empty');
-            
         }
         
     }
@@ -41,10 +39,7 @@ export class FlashcardEditView {
         AnimationHandler.fadeInFromBottom(flashcardObj);
         this._flashcardsContainer.appendChild(flashcardObj);
     }
-
-    markAsDelete() {
-
-    }
+    
 
     renderUpdate(flashcard) {
 
@@ -52,7 +47,7 @@ export class FlashcardEditView {
 
     #flashcard(flashcard) {
         this.flashcardObjects.add(flashcard);
-        return new Flashcard(flashcard, this);
+        return new Flashcard(flashcard, this.dialog, this.controller);
     }
 
     #initializeDomElements() {

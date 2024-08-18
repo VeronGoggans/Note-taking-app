@@ -52,7 +52,7 @@ export class FolderView {
         
         for (let i = 0; i < cards.length; i++) {
             if (cards[i].id === folder.id) {
-                AnimationHandler.fadeOutCard(cards[i], this._content);
+                AnimationHandler.fadeOutCard(cards[i]);
                 this.folderObjects.remove(folder);
             }
         }

@@ -3,54 +3,29 @@
         "id": "f-1",
         "name": "Home",
         "color": "rgb(255, 255, 255)",
-        "last_visit": "17/08/2024 13:25:49",
-        "notes": [
-            {
-                "id": "n-692",
-                "name": "Neutron Bugs",
-                "content": "storage/notes/note-n-692.txt",
-                "bookmark": true,
-                "last_edit": "13/08/2024 16:45",
-                "creation": "30/07/2024"
-            },
-            {
-                "id": "n-714",
-                "name": "Sample text",
-                "content": "storage/notes/note-n-714.txt",
-                "bookmark": false,
-                "last_edit": "16/08/2024 16:21",
-                "creation": "12/08/2024"
-            },
-            {
-                "id": "n-715",
-                "name": "To do Neutron",
-                "content": "storage/notes/note-n-715.txt",
-                "bookmark": false,
-                "last_edit": "13/08/2024 17:54",
-                "creation": "12/08/2024"
-            }
-        ],
+        "last_visit": "18/08/2024 04:27:42",
+        "notes": [],
         "subfolders": []
     },
     {
         "id": "f-99",
         "name": "School \ud83d\udcd6\u270f\ufe0f",
         "color": "rgb(255, 255, 255)",
-        "last_visit": "17/08/2024 12:40:18",
+        "last_visit": "17/08/2024 13:48:25",
         "notes": [],
         "subfolders": [
             {
                 "id": "s-191",
                 "name": "Year 2",
                 "color": "rgb(255, 255, 255)",
-                "last_visit": "17/08/2024 12:40:21",
+                "last_visit": "17/08/2024 13:48:26",
                 "notes": [],
                 "subfolders": [
                     {
                         "id": "s-181",
                         "name": "Software Architecture\ud83c\udf31",
                         "color": "rgb(255, 255, 255)",
-                        "last_visit": "17/08/2024 13:27:08",
+                        "last_visit": "17/08/2024 13:48:28",
                         "notes": [
                             {
                                 "id": "n-589",
@@ -140,7 +115,7 @@
                         "id": "s-182",
                         "name": "CISC2",
                         "color": "rgb(255, 255, 255)",
-                        "last_visit": "16/08/2024 17:53:58",
+                        "last_visit": "17/08/2024 13:46:58",
                         "notes": [
                             {
                                 "id": "n-609",
@@ -163,7 +138,7 @@
                                 "name": "Declarative Code",
                                 "content": "storage/notes/note-n-611.txt",
                                 "bookmark": false,
-                                "last_edit": "30/06/2024 16:23",
+                                "last_edit": "17/08/2024 13:46",
                                 "creation": "30/05/2024"
                             },
                             {
@@ -220,6 +195,31 @@
         "color": "rgb(255, 255, 255)",
         "last_visit": "12/08/2024 17:25:33",
         "notes": [],
+        "subfolders": []
+    },
+    {
+        "id": "f-147",
+        "name": "Neutron",
+        "color": "rgb(255, 255, 255)",
+        "last_visit": "18/08/2024 13:46:57",
+        "notes": [
+            {
+                "id": "n-724",
+                "name": "Future plans",
+                "content": "storage/notes/note-n-724.txt",
+                "bookmark": false,
+                "last_edit": "18/08/2024 04:22",
+                "creation": "18/08/2024"
+            },
+            {
+                "id": "n-725",
+                "name": "To do",
+                "content": "storage/notes/note-n-725.txt",
+                "bookmark": false,
+                "last_edit": "18/08/2024 03:52",
+                "creation": "18/08/2024"
+            }
+        ],
         "subfolders": []
     }
 ]

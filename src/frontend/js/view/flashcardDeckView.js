@@ -62,8 +62,8 @@ export class FlashcardDeckView {
 
         for (let i = 0; i < decks.length; i++) {
             if (decks[i].id === deck.id) {
-                AnimationHandler.fadeOutCard(decks[i], this._flashcardDecks);
-                AnimationHandler.fadeOutCard(progressions[i], this._flashcardProgressions);
+                AnimationHandler.fadeOutCard(decks[i]);
+                AnimationHandler.fadeOutCard(progressions[i]);
                 this.deckObjects.remove(deck);
             }
         }

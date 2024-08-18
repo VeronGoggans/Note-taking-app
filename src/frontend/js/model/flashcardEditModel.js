@@ -10,11 +10,13 @@ export class FlashcardEditModel {
     }
 
     update(flashcard) {
-        this.updatedFlashcard.push(flashcard)
+        this.updatedFlashcard.push(flashcard);
+        console.log(this.updatedFlashcard);
     }
 
     delete(flashcardId) {
         this.flashcardsToDelete.push(flashcardId)
+        console.log(this.flashcardsToDelete);
     }
 
     getEditInfo() {

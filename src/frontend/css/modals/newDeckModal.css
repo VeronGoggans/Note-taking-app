@@ -1,4 +1,5 @@
-.create-deck-modal {
+.create-deck-modal,
+.edit-flashcard-modal {
     position: relative;
     background-color: var(--modal);
     font-family: Roboto;
@@ -12,12 +13,18 @@
     row-gap: 30px;
 }
 
-.create-deck-modal h2 {
+.edit-flashcard-modal {
+    height: 480px !important;
+}
+
+.create-deck-modal h2,
+.edit-flashcard-modal h2 {
     font-family: sans-serif;
     color: var(--important);
 }
 
-.create-deck-modal input {
+.create-deck-modal input,
+.edit-flashcard-modal input {
     outline: none;
     border: none;
     height: 50px;
@@ -31,16 +38,18 @@
     border: 1px solid var(--border-card);
 }
 
-.create-deck-modal input:focus {
+.create-deck-modal input:focus,
+.edit-flashcard-modal input:focus {
     border-color: #5c7fdd;
 }
 
 .create-deck-modal input::placeholder,
-.create-deck-modal textarea::placeholder {
+.edit-flashcard-modal input::placeholder {
     color: var(--placeholder);
 }
 
-.create-deck-modal .card-description {
+.create-deck-modal .card-description,
+.edit-flashcard-modal .card-description {
     resize: none;
     outline: none;
     height: 220px;
@@ -53,13 +62,15 @@
     border: 1px solid var(--border-card);
 }
 
-.create-deck-modal .description-section {
+.create-deck-modal .description-section,
+.edit-flashcard-modal .description-section {
     display: flex;
     flex-direction: column;
     row-gap: 5px;
 }
 
-.create-deck-modal .description-section button {
+.create-deck-modal .description-section button,
+.edit-flashcard-modal .description-section button {
     border: none;
     width: 30px;
     height: 30px;
@@ -70,12 +81,14 @@
     transition: 150ms;
 }
 
-.create-deck-modal .description-section button:hover {
+.create-deck-modal .description-section button:hover,
+.edit-flashcard-modal .description-section button:hover {
     color: #5c7fdd;
     background-color: var(--hover);
 }
 
-.create-deck-modal .save-deck-btn {
+.create-deck-modal .save-deck-btn,
+.edit-flashcard-modal .save-flashcard-btn {
     position: absolute;
     top: 20px;
     right: 20px;

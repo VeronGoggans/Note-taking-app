@@ -28,10 +28,10 @@ export class AnimationHandler {
     /**
      * @param {HTML} card 
      */
-    static fadeOutCard(card, uiParentElement) { 
+    static fadeOutCard(card) { 
         card.classList.add('fadeOut');
         setTimeout(() => {
-            uiParentElement.removeChild(card);
+            card.remove();
         }, 700);
     }
 

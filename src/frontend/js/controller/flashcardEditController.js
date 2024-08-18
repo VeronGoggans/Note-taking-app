@@ -11,7 +11,7 @@ export class FlashcardEditController {
 
     init(deck) {
         this.editModel = new FlashcardEditModel();
-        this.view = new FlashcardEditView(this, this.applicationController);
+        this.view = new FlashcardEditView(this, this.applicationController, this.dialog);
         this.view.renderAll(deck);
     }
 
@@ -30,5 +30,13 @@ export class FlashcardEditController {
 
     async deleteFlashcards() {
 
+    }
+
+    deleteFlashcard(flashcardId) {
+        this.editModel.delete(flashcardId);
+    }
+
+    updateFlashcard(flashcard) {
+        this.editModel.update(flashcard);
     }
 }

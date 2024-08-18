@@ -7,6 +7,7 @@ import { SearchModal } from "../components/modals/searchModal.js";
 import { EditFolderModal } from "../components/modals/editFolderModal.js";
 import { NewDeckModal } from "../components/modals/newDeckModal.js";
 import { AnimationHandler } from "../handlers/animation/animationHandler.js";
+import { EditFlashcardModal } from "../components/modals/editFlashcardModal.js";
 
 export class Dialog {
     constructor() {
@@ -25,7 +26,8 @@ export class Dialog {
                 '.note-details-container',
                 '.note-link-modal',
                 '.edit-folder-modal',
-                '.create-deck-modal'
+                '.create-deck-modal',
+                '.edit-flashcard-modal'
             ];
 
             // Check if the clicked target belongs to any excluded container
@@ -70,6 +72,11 @@ export class Dialog {
     renderNewDeckModal(controller, flashcards) {
         this.addChild(new NewDeckModal(controller, flashcards));
         this.dialog.querySelector('.create-deck-modal input').focus();
+    }
+
+    renderEditFlashcardModal(flashcard, controller) {
+        this.addChild(new EditFlashcardModal(flashcard, controller, this));
+    
     }
 
     renderForgotSaveModal(view) {

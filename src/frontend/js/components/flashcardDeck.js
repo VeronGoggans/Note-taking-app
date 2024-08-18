@@ -1,3 +1,4 @@
+import { AnimationHandler } from "../handlers/animation/animationHandler.js";
 import { CNode } from "../util/CNode.js";
 import { getPassedTime } from "../util/date.js";
 import { capitalizeFirstLetter } from "../util/formatters.js";
@@ -77,11 +78,14 @@ export class FlashcardProgression {
 }
 
 export class Flashcard {
-    constructor(flashcard) {
+    constructor(flashcard, dialog, controller) {
         this.flashcard = flashcard;
+        this.dialog = dialog;
+        this.controller = controller;
 
         this.#initializeDomElements();
         this.#applyRatingStyle();
+        this.#attachEventListeners();
         return this.#render();
     }
 
@@ -100,7 +104,7 @@ export class Flashcard {
 
     #render() {
         this.RATING_CONTAINER.appendChild(this.RATING);
-        this.UTIL_BAR.appendChild(this.DELETE_BUTTON);
+        this.UTIL_BAR.append(this.EDIT_BUTTON, this.DELETE_BUTTON);
         this.HOST.append(this.NAME, this.RATING_CONTAINER, this.UTIL_BAR);
         return this.HOST
     }
@@ -109,8 +113,16 @@ export class Flashcard {
         this.HOST = CNode.create('div', {'class': 'flashcard', 'id': this.flashcard.id});
         this.NAME = CNode.create('h3', {'textContent': this.flashcard.term});
         this.UTIL_BAR = CNode.create('div', {'class': 'util-bar'});
-        this.DELETE_BUTTON = CNode.create('button', {'class': 'delete-deck-btn', 'innerHTML': '<i class="fa-solid fa-trash"></i>'});
+        this.DELETE_BUTTON = CNode.create('button', {'class': 'delete-flashcard-btn', 'innerHTML': '<i class="fa-solid fa-trash"></i>'});
+        this.EDIT_BUTTON = CNode.create('button', {'class': 'edit-flashcard-btn', 'innerHTML': '<i class="fa-solid fa-pen"></i>'});
         this.RATING_CONTAINER = CNode.create('div', {'class': 'rating'});
         this.RATING = CNode.create('span', {'textContent': capitalizeFirstLetter(this.flashcard.rating)});
+    }
+
+    #attachEventListeners() {
+        this.EDIT_BUTTON.addEventListener('click', () => {this.dialog.renderEditFlashcardModal(this.flashcard, this.controller)});
+        this.DELETE_BUTTON.addEventListener('click', () => {
+            AnimationHandler.fadeOutCard(this.HOST)
+            this.controller.deleteFlashcard(this.flashcard.id)});
     }
 }
