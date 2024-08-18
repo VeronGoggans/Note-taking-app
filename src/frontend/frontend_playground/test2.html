@@ -20,12 +20,12 @@
             margin: 0;
         }
 
-        .create-deck-modal {
+        .sticky-note-modal {
             position: relative;
             background-color: var(--modal);
             font-family: Roboto;
             width: 500px;
-            height: 550px;
+            height: 450px;
             border-radius: 10px;
             padding: 10px 20px;
             box-shadow: 0 0 10px var(--shadow);
@@ -34,25 +34,20 @@
             row-gap: 30px;
         }
 
-        .create-deck-modal h2 {
+        .sticky-note-modal h2 {
             font-family: sans-serif;
             color: var(--important);
         }
 
-        .create-deck-modal .deck-name-input {
-            border: none;
-            border-radius: 10px;
-            height: 50px;
-        }
 
-        .create-deck-modal .term-input {
+        .sticky-note-modal .name-input {
             border-radius: 10px;
             height: 50px;
             border: none;
         }
 
-        .create-deck-modal input,
-        .create-deck-modal textarea {
+        .sticky-note-modal input,
+        .sticky-note-modal textarea {
             outline: none;
             padding: 5px 15px;
             font-size: 17px;
@@ -61,41 +56,20 @@
             background-color: #f1f2f7;
         }
 
-        .create-deck-modal input::placeholder,
-        .create-deck-modal textarea::placeholder {
+        .sticky-note-modal input::placeholder,
+        .sticky-note-modal textarea::placeholder {
             color: #3f4155;
         }
 
-        .create-deck-modal .card-description {
+        .sticky-note-modal .content-textarea {
             resize: none;
             border: none;
             height: 150px;
             border-radius: 10px;
         }
 
-        .create-deck-modal .description-section {
-            display: flex;
-            flex-direction: column;
-        }
 
-        .create-deck-modal .description-section button {
-            border: none;
-            width: 30px;
-            height: 30px;
-            border-radius: 5px;
-            color: var(--text);
-            background-color: transparent;
-            cursor: pointer;
-            transition: 150ms;
-        }
-
-        .create-deck-modal .description-section button:hover {
-            color: #5c7fdd;
-            background-color: var(--hover);
-        }
-
-        .create-deck-modal .next-card-btn,
-        .create-deck-modal .save-deck-btn {
+        .sticky-note-modal .save-deck-btn {
             position: absolute;
             bottom: 20px;
             right: 20px;
@@ -109,31 +83,14 @@
             box-shadow: 0 7px 10px #9099f5;
         }
 
-        .create-deck-modal .save-deck-btn {
-            right: 130px;
-        }
-
 
     </style>
 </head>
 <body>
-    <div class="create-deck-modal">
-        <h2>Creating a new deck </h2>
-        <input type="text" class="deck-name-input" placeholder="Deck name">
-
-        <input type="text" class="term-input" placeholder="Card term">
-        <div class="description-section">
-            <div class="rich-text-options">
-                <button id="boldBtn" onclick="formatText('bold')"><i class="fa-solid fa-bold"></i></button>
-                <button id="italicBtn" onclick="formatText('italic')"><i class="fa-solid fa-italic"></i></button>
-                <button id="underlineBtn" onclick="formatText('underline')"><i class="fa-solid fa-underline"></i></button>
-                <button id="strikeBtn" onclick="formatText('strikethrough')"><i class="fa-solid fa-strikethrough"></i></button>
-                <button onclick="formatText('insertUnorderedList')"><i class="fa-solid fa-list-ul"></i></button>
-                <button onclick="formatText('insertOrderedList')"><i class="fa-solid fa-list-ol"></i></button>
-            </div>
-            <textarea class="card-description" placeholder="Card description"></textarea>
-        </div>
-        <button class="next-card-btn">Next</button>
+    <div class="sticky-note-modal">
+        <h2>Change Sticky note</h2>
+        <input type="text" class="name-input" placeholder="Sticky note name">
+        <textarea class="content-textarea" placeholder="Sticky note content"></textarea>
         <button class="save-deck-btn">Save</button>
     </div>
 </body>

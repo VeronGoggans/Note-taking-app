@@ -13,3 +13,16 @@ class PutNoteDto:
     name: str
     content: str
     bookmark: bool
+
+
+@dataclass
+class PostStickyNoteDto:
+    name: str
+    content: str
+
+
+@dataclass
+class PutStickyNoteDto:
+    sticky_note_id: str
+    name: str
+    content: str

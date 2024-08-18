@@ -126,6 +126,15 @@ export const templatesTemplate =  `
     </div>
 `;
 
+export const stickyWallTemplate = `
+    <div class="sticky-wall-view">
+        <h1>Sticky Wall</h1>
+        <div class="sticky-wall">
+            <button class="add-sticky-btn"><i class="fa-solid fa-plus"></i></button>
+        </div>
+    </div>
+`
+
 export const settingsTemplate = `
     <div class="settings">
     <div class="center">

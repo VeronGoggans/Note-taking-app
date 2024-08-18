@@ -10,7 +10,8 @@ class JsonManager:
             'subfolder': 's-',
             'template': 't-',
             'flashcard-deck': 'fcd-',
-            'flashcard': 'fc-'
+            'flashcard': 'fc-',
+            'sticky-note': 'sn-'
             }
 
     

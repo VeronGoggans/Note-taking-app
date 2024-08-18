@@ -1,6 +1,7 @@
 import { CNode } from "../util/CNode.js";
 import { dateFormat } from "../util/date.js";
 import { formatName, filterNotePreview } from "../util/formatters.js";
+import { stickyNoteColors } from "../constants/constants.js";
 
 export class Note {
     constructor(note, view) {
@@ -83,9 +84,9 @@ export class RecentNote {
     }
 
     #initializeElements() {
-        this.HOST = CNode.create('div', { 'class': 'recent-note', 'id': this.id, 'draggable': 'true'});
+        this.HOST = CNode.create('div', { 'class': 'recent-note', 'id': this.id});
         this.NAME_BOX = CNode.create('div', { 'class': 'note-name-box' });
-        this.H4 = CNode.create('h4', { 'contentEditable': 'false', 'textContent': formatName(this.name), 'spellCheck': false });
+        this.H4 = CNode.create('h4', { 'textContent': formatName(this.name), 'spellCheck': false });
         this.CONTENT_BOX = CNode.create('div', { 'class': 'note-content-box' });
         this.CONTENT = CNode.create('p', { 'innerHTML': filterNotePreview(this.content) });
     }
@@ -99,5 +100,38 @@ export class RecentNote {
 
     #attachEventListeners() {
         this.CONTENT_BOX.addEventListener('click', () => {this.view.handleNoteCardClick(this.id)});
+    }
+}
+
+export class StickyNote {
+    constructor(stickyNote, view, controller, dialog) {
+        this.stickyNote = stickyNote;
+        this.view = view;
+        this.controller = controller;
+        this.dialog = dialog;
+
+        this.#initializeElements();
+
+        // Give the sticky note a random color.
+        this.HOST.style.backgroundColor = stickyNoteColors[Math.floor(Math.random()*stickyNoteColors.length)]
+
+        this.#attachEventListeners();
+        return this.#render();
+    }
+
+
+    #initializeElements() {
+        this.HOST = CNode.create('div', { 'class': 'sticky-note', 'id': this.stickyNote.id});
+        this.H3 = CNode.create('h3', { 'textContent': this.stickyNote.name });
+        this.CONTENT = CNode.create('p', { 'textContent': this.stickyNote.content });
+    }
+
+    #render() {
+        this.HOST.append(this.H3, this.CONTENT);
+        return this.HOST
+    }
+
+    #attachEventListeners() {
+        this.HOST.addEventListener('click', () => {this.dialog.renderStickyNoteModal(this.controller, this.view.getStickyNoteObject(this.stickyNote.id))});
     }
 }

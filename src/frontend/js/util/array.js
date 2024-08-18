@@ -102,3 +102,15 @@ export class FlashcardObjectArray extends ObjectArray {
         }
     }
 }
+
+
+export class StickyNoteObjectArray extends ObjectArray {
+    update(stickyNote) {
+        for (let i = 0; i < this.objects.length; i++) {
+            if (this.objects[i].id === stickyNote.id) {
+                this.objects[i].name = stickyNote.name;
+                this.objects[i].content = stickyNote.content;
+            }
+        }
+    }
+}

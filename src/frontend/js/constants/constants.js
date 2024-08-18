@@ -104,3 +104,11 @@ export const commands = {
     'time': 'time',
     'date': 'date'
 }
+
+export const stickyNoteColors = [
+    '#ffdfef',
+    '#ded7ff',
+    '#b4ebce',
+    '#ffecc0',
+    '#ffd0d0',
+]

@@ -2,7 +2,7 @@ from src.backend.data.file.text_manager import TextManager
 from src.backend.util.calendar import Calendar
 
 class Note:
-    def __init__(self, id: int, name: str, content: str, bookmark = False, 
+    def __init__(self, id: str, name: str, content: str, bookmark = False, 
                 last_edit = Calendar.datetime(), creation = Calendar.date()):
         self.id = id
         self.name = name

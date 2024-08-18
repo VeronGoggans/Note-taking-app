@@ -6,62 +6,12 @@
     <title>Document</title>
     <link rel="stylesheet" href="../css/general/themes.css">
     <style>
-        .todo-list {
-            width: 500px;
-            padding: 10px;
-            background-color: #f5f9ff;
-            border: 1px solid var(--border-card);
-            border-radius: 5px;
-            box-shadow: 5px 5px 10px var(--shadow);
-        }
-        .todo {
-            display: flex;
-            justify-content: space-between;
-            padding: 1rem;
-            margin: 5px;
-            column-gap: 15px;
-            transition: 100ms;
-            border-radius: 10px;
-        }
-
-        .todo .todo__value {
-            outline: none;
-            border: none;
-            font-size: 1em;
-            font-weight: 600;
-            color: var(--text);
-            flex-grow: 1;
-            background-color: transparent;
-        }
-
-        .todo .todo__checkbox {
-            background-color: aquamarine;
-        }
-
-        .todo:has(.todo__checkbox:checked) {
-            text-decoration: line-through;
-            color: #555555;
-            background-color: #e5e8ff;
-            order: 1;
-
-        }
+        
      </style>
 </head>
 <body>
-    <div class="todo-list">
-        <div class="todo">
-            <input class="todo__value" type="text" placeholder="(Empty)">
-            <input class="todo__checkbox" type="checkbox">
-        </div>
-        <div class="todo">
-            <input class="todo__value" type="text" placeholder="(Empty)">
-            <input class="todo__checkbox" type="checkbox">
-        </div>
-        <div class="todo">
-            <input class="todo__value" type="text" placeholder="(Empty)">
-            <input class="todo__checkbox" type="checkbox">
-        </div>
+    <div class="sticky-wall-view">
+        
     </div>
-    
 </body>
 </html>

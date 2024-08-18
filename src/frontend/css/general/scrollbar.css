@@ -13,7 +13,8 @@
 .flashcards-view::-webkit-scrollbar,
 .flashcard-practice .deck-section .flashcard::-webkit-scrollbar,
 .editor-wrapper .templates-container::-webkit-scrollbar,
-.flashcard-edit-view::-webkit-scrollbar {
+.flashcard-edit-view::-webkit-scrollbar,
+.sticky-wall-view .sticky-wall::-webkit-scrollbar {
     background-color: transparent;
     width: 5px;
 }
@@ -33,7 +34,8 @@
 .flashcards-view::-webkit-scrollbar-thumb,
 .flashcard-practice .deck-section .flashcard::-webkit-scrollbar-thumb,
 .editor-wrapper .templates-container::-webkit-scrollbar-thumb,
-.flashcard-edit-view::-webkit-scrollbar-thumb {
+.flashcard-edit-view::-webkit-scrollbar-thumb,
+.sticky-wall-view .sticky-wall::-webkit-scrollbar-thumb {
     background-color: var(--scrollbar-content-view);
     border-radius: 10px;
 }

@@ -6,12 +6,13 @@ import { ApplicationModel } from "../model/applicationModel.js";
 import { SidebarView } from "../view/sideBarView.js";
 import { TextEditorController } from "./textEditorController.js"
 import { SettingController } from "./settingController.js";
+import { StickWallController } from "./stickyWallController.js";
 import { Dialog } from "../util/dialog.js";
 import { NotificationHandler } from "../handlers/userFeedback/notificationHandler.js";
 import { FlashcardDeckController } from "./flashcardDeckController.js";
 import { FlashcardPracticeController } from "./flashcardPracticeController.js";
 import { FlashcardEditController } from "./flashcardEditController.js";
-import { flashcardsTemplate, flashcardPracticeTemplate, notesTemplate, settingsTemplate, editorTemplate, homeTemplate, templatesTemplate, flashcardEditTemplate } from "../constants/templates.js";
+import { flashcardsTemplate, flashcardPracticeTemplate, notesTemplate, settingsTemplate, editorTemplate, homeTemplate, templatesTemplate, flashcardEditTemplate, stickyWallTemplate } from "../constants/templates.js";
 
 export class ApplicationController {
     constructor() {
@@ -27,6 +28,7 @@ export class ApplicationController {
         this.flashcardPracticeController = new FlashcardPracticeController(this, this.dialog);
         this.flashcardEditController = new FlashcardEditController(this, this.dialog);
         this.textEditorController = new TextEditorController(this, this.dialog);
+        this.stickyWallController = new StickWallController(this, this.dialog);
         this.settingController = new SettingController(this);
         this.viewContainer = document.querySelector('.content');
         this.controllers = {
@@ -36,6 +38,7 @@ export class ApplicationController {
             flashcardsPractice: this.flashcardPracticeController,
             flashcardEdit: this.flashcardEditController,
             templates: this.templateController,
+            stickyWall: this.stickyWallController,
             settings: this.settingController,
             editor: this.textEditorController
         }
@@ -47,6 +50,7 @@ export class ApplicationController {
             flashcardsPractice: flashcardPracticeTemplate,
             flashcardEdit: flashcardEditTemplate,
             templates: templatesTemplate,
+            stickyWall: stickyWallTemplate,
             settings: settingsTemplate,
             editor: editorTemplate
         }

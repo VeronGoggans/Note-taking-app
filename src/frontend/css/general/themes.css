@@ -22,6 +22,9 @@
     --create-btn-border: rgb(232, 234, 241);
     --create-btn-hover: #dfe3f1;
 
+    /*stickyWall view*/
+    --add-sticky-btn: #eae9f9;
+
     /*Home View*/
 
     /*Editor View*/
@@ -121,6 +124,9 @@
     --flashcard-border: #5063b1;
     --stats-span-color: #7990ff;
 
+    /*stickyWall view*/
+    --add-sticky-btn: #333448;
+
     /*Notes View*/ 
     --hover-bookmark-icon-if-bookmarked: #434c71;
     --hover-favorite-icon-if-favorited: rgba(142, 223, 204, .3);
@@ -174,6 +180,9 @@
     --flashcard-border: #dee1ef;
     --stats-span-color: #7990ff;
     /*Template View*/
+
+    /*stickyWall view*/
+    --add-sticky-btn: #eae9f9;
 
     /*Notes View*/
     --bookmark: #f3f4ff;

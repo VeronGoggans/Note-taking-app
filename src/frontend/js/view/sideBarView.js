@@ -8,7 +8,7 @@ export class SidebarView {
         this._icon = document.querySelector('.logo');
         this._icon.addEventListener('click', () => {this.#toggleSidebar()});
         this._wrapper = document.querySelector('.wrapper');
-        this._buttonCount = 5;
+        this._buttonCount = 6;
 
         this._templatesButton = document.querySelector('.templates-btn');
         this._templatesSpan = this._templatesButton.querySelector('span');
@@ -30,11 +30,15 @@ export class SidebarView {
         this._flashCardSpan = this._flashCardButton.querySelector('span');
         this._flashCardIcon = this._flashCardButton.querySelector('i');
 
+        this._stickyWallButton = document.querySelector('.sticky-wall-btn');
+        this._stickyWallSapn = this._stickyWallButton.querySelector('span');
+        this._stickyWallIcon = this._stickyWallButton.querySelector('i');
+
         this._collapsed = false;
         this._size = 'standard';
-        this._sidebarButtons = [this._homeButton,this._notesButton,this._flashCardButton , this._templatesButton, this._settingsButton]
-        this._sidebarSpans = [this._homeSpan, this._notesSpan, this._flashCardSpan, this._templatesSpan, this._themeSpan]
-        this._sidebarIcons = [this._homeIcon, this._notsIcon, this._flashCardIcon, this._templateIcon, this._themeIcon]
+        this._sidebarButtons = [this._homeButton,this._notesButton,this._flashCardButton , this._templatesButton, this._stickyWallButton, this._settingsButton]
+        this._sidebarSpans = [this._homeSpan, this._notesSpan, this._flashCardSpan, this._templatesSpan, this._stickyWallSapn, this._themeSpan]
+        this._sidebarIcons = [this._homeIcon, this._notsIcon, this._flashCardIcon, this._templateIcon, this._stickyWallIcon, this._themeIcon]
 
         document.querySelectorAll('.sidebar .sidebar-content a').forEach(link => {
             link.addEventListener('click', (event) => {
@@ -76,7 +80,7 @@ export class SidebarView {
      * becomes bigger then 700 pixels
      */
     #openButtons() {
-        const buttonText = ['Home', 'Notes', 'Flashcards', 'Templates', 'Settings']
+        const buttonText = ['Home', 'Notes', 'Flashcards', 'Templates', 'Sticky wall', 'Settings']
         for (let i = 0; i < this._buttonCount; i++) {
             this._sidebarSpans[i].style.position = 'relative';
             this._sidebarSpans[i].textContent = buttonText[i];

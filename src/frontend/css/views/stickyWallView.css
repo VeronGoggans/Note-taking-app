@@ -1,0 +1,60 @@
+.sticky-wall-view {
+    height: 100dvh;
+    max-height: 100dvh;
+    font-family: Roboto;
+    padding: 15px;
+    opacity: 0;
+    transform: translateX(30%);
+    transition: opacity .7s ease, transform .2s ease;
+}
+
+.sticky-wall-view h1 {
+    font-family: sans-serif;
+    color: var(--important);
+    margin: 0px;
+}
+
+.sticky-wall-view .sticky-wall {
+    margin-top: 30px;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-rows: repeat(auto-fill, 220px);
+    max-height: calc(100dvh - 100px);
+    height: calc(100dvh - 100px);
+    overflow-y: scroll;
+    gap: 15px;
+}
+
+.sticky-wall .sticky-note {
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+    height: 220px;
+    background-color: rgb(255, 205, 230);
+    display: grid;
+    grid-template-rows: 20px 1fr 30px;
+    box-shadow: 0 0 10px var(--shadow);
+    opacity: 0;
+    transform: translateY(30%);
+    transition: opacity .7s ease, transform .25s ease;
+}
+
+.sticky-wall .sticky-note h3 {
+    margin: 0;
+    font-family: sans-serif;
+    color: rgb(31, 32, 34);
+}
+
+.sticky-wall .sticky-note p {
+    font-weight: 600;
+    color: rgb(42, 42, 49);
+}
+
+.sticky-wall .add-sticky-btn {
+    height: 220px;
+    font-size: 35px;
+    border-radius: 5px;
+    color: var(--text);
+    background-color: var(--add-sticky-btn);
+}

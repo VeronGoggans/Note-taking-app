@@ -1,0 +1,60 @@
+.sticky-note-modal {
+    position: relative;
+    background-color: var(--modal);
+    font-family: Roboto;
+    width: 500px;
+    height: 450px;
+    border-radius: 10px;
+    padding: 10px 20px;
+    box-shadow: 0 0 10px var(--shadow);
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+}
+
+.sticky-note-modal h2 {
+    font-family: sans-serif;
+    color: var(--important);
+}
+
+
+.sticky-note-modal .name-input {
+    border-radius: 10px;
+    height: 50px;
+}
+
+.sticky-note-modal input,
+.sticky-note-modal textarea {
+    outline: none;
+    padding: 5px 15px;
+    font-size: 17px;
+    color: var(--text);
+    font-family: sans-serif;
+    background-color: transparent;
+    border: 1px solid var(--border-card);
+}
+
+.sticky-note-modal input::placeholder,
+.sticky-note-modal textarea::placeholder {
+    color: var(--placeholder);
+}
+
+.sticky-note-modal .content-textarea {
+    resize: none;
+    height: 150px;
+    border-radius: 10px;
+}
+
+
+.sticky-note-modal .save-sticky-note-btn {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: #5c7fdd;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 30px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}

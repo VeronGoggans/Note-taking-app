@@ -19,6 +19,10 @@
         {
             "entity": "flashcard-deck",
             "id": 27
+        },
+        {
+            "entity": "sticky-note",
+            "id": 7
         }
     ]
 }
