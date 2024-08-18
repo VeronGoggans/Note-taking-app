@@ -120,7 +120,7 @@ export class Flashcard {
     }
 
     #attachEventListeners() {
-        this.EDIT_BUTTON.addEventListener('click', () => {this.dialog.renderEditFlashcardModal(this.flashcard, this.controller)});
+        this.EDIT_BUTTON.addEventListener('click', () => {this.dialog.renderEditFlashcardModal(this.controller, this.flashcard)});
         this.DELETE_BUTTON.addEventListener('click', () => {
             AnimationHandler.fadeOutCard(this.HOST)
             this.controller.deleteFlashcard(this.flashcard.id)});

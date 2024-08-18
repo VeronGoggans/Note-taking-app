@@ -96,16 +96,20 @@ export const flashcardPracticeTemplate = `
         </div>
     </div>
 `
+
 export const flashcardEditTemplate = `
     <div class="flashcard-edit-view">
         <button class="exit-flashcard-edit-view-btn">
             <i class="fa-solid fa-chevron-left"></i>
         </button>
         <h1 contenteditable="true" spellCheck="false"></h1>
-        <button class="save-btn">Save</button>
+        <button class="add-flashcard-btn">Add flashcard</button>
+        <button class="save-btn">Save changes</button>
+
         <div class="flashcards"></div>
     </div>
 `
+
 export const templatesTemplate =  `
     <div class="templates">
         <h1 class="templates-title">Templates</h1>

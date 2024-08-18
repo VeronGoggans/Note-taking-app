@@ -40,5 +40,5 @@ class PostDeckRequest(BaseModel):
 
 
 class PutDeckRequest(BaseModel):
-    id: str
+    deck_id: str
     name: str

@@ -12,36 +12,40 @@ export class FlashcardEditView {
         this.#initializeDomElements();
         this.#attachEventListeners();
         AnimationHandler.fadeInFromSide(this._viewElement);
-        
     }
 
     renderAll(deck) {
+        this.deck = deck;
         this._deckName.textContent = deck.name;
         const flashcards = deck.flashcards;
+        const flashcardsFragment = document.createDocumentFragment();
 
-        if (flashcards.length > 0) {
-            const flashcardsFragment = document.createDocumentFragment();
-
-            for (let i = 0; i < flashcards.length; i++) {
-                const flashcard = this.#flashcard(flashcards[i]);
-                flashcardsFragment.appendChild(flashcard);
-            }
-            this._flashcardsContainer.appendChild(flashcardsFragment);
-        } 
-        else {
-            console.log('Bitch this deck empty');
+        for (let i = 0; i < flashcards.length; i++) {
+            const flashcard = this.#flashcard(flashcards[i]);
+            flashcardsFragment.appendChild(flashcard);
         }
-        
+        this._flashcardsContainer.appendChild(flashcardsFragment);
     }
 
+
     renderOne(flashcard) {
-        const flashcardObj= this.#flashcard(flashcard);
+        const flashcardObj = this.#flashcard(flashcard);
         AnimationHandler.fadeInFromBottom(flashcardObj);
         this._flashcardsContainer.appendChild(flashcardObj);
     }
     
 
     renderUpdate(flashcard) {
+        const flashcards = this._flashcardsContainer.children 
+
+        for (let i = 0; i < flashcards.length; i++) {
+            if (flashcards[i].id == flashcard.id) {    
+
+                flashcards[i].querySelector('h3').textContent = flashcard.term;
+
+                this.flashcardObjects.update(flashcard);
+            }
+        }
 
     }
 
@@ -55,9 +59,22 @@ export class FlashcardEditView {
         this._viewElement = document.querySelector('.flashcard-edit-view');
         this._exitButton = document.querySelector('.exit-flashcard-edit-view-btn');
         this._deckName = this._viewElement.querySelector('h1');
+        this._saveButton = this._viewElement.querySelector('.save-btn'); 
+        this._addFlashcardButton = this._viewElement.querySelector('.add-flashcard-btn');
     }
 
     #attachEventListeners() {
+        this._addFlashcardButton.addEventListener('click', () => {this.dialog.renderEditFlashcardModal(this.controller)});
         this._exitButton.addEventListener('click', () => {this.controller.loadPreviousView()})
+        this._saveButton.addEventListener('click', async () => {
+
+            // Checking if the deck name has been changed.
+            let newDeckName = null;
+            if (this._deckName.textContent !== this.deck.name) {
+                newDeckName = this._deckName.textContent;
+            }
+            await this.controller.saveDeckChanges(this.deck.id, newDeckName);
+            this.controller.loadPreviousView();
+        })
     }
 }

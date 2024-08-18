@@ -60,8 +60,8 @@ class FlashcardDeckRouter:
 
     def update_deck(self, request: PutDeckRequest):
         try:
-            deck = self.service.update_deck(request)
-            return {'status': 'succes', 'deck': deck}, HttpStatus.OK
+            self.service.update_deck(request)
+            return {'status': 'succes'}, HttpStatus.OK
         except Exception as e:
             return {'status': 'error', 'message': str(e)}
         

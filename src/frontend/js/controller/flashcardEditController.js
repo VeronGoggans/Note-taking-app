@@ -10,6 +10,7 @@ export class FlashcardEditController {
     }
 
     init(deck) {
+        this.deck = deck;
         this.editModel = new FlashcardEditModel();
         this.view = new FlashcardEditView(this, this.applicationController, this.dialog);
         this.view.renderAll(deck);
@@ -20,16 +21,25 @@ export class FlashcardEditController {
         this.applicationController.initView(previousView);
     }
 
-    async addFlashcards() {
+    async saveDeckChanges(deckId = null, newDeckName = null) {
+        const {
+            newFlashcards,
+            updatedFlashcards,
+            flashcardsToDelete
+        } = this.editModel.getSavedChanges();
 
-    }
-
-    async updateFlashcards() {
-
-    }
-
-    async deleteFlashcards() {
-
+        if (newFlashcards.length > 0) {
+            await this.model.add('/flashcards', {'deck_id': this.deck.id, 'flashcards': newFlashcards})
+        }
+        if (updatedFlashcards.length > 0) {
+            await this.model.update('/flashcards', {'deck_id': this.deck.id, 'flashcards': updatedFlashcards})
+        }
+        if (flashcardsToDelete.length > 0) {
+            await this.model.delete('/flashcards', {'deck_id': this.deck.id, 'flashcard_ids': flashcardsToDelete})
+        }
+        if (deckId !== null) {
+            await this.model.update('/deck', {'deck_id': deckId, 'name': newDeckName})
+        }
     }
 
     deleteFlashcard(flashcardId) {
@@ -38,5 +48,10 @@ export class FlashcardEditController {
 
     updateFlashcard(flashcard) {
         this.editModel.update(flashcard);
+        this.view.renderUpdate(flashcard);
+    }
+
+    addFlashcard(flashcard) {
+        this.editModel.save(flashcard)
     }
 }

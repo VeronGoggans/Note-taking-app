@@ -57,7 +57,6 @@ class FlashcardDeckManager:
         for deck in decks:
             if deck['id'] == id:
                 deck['name'] = name
-                return deck
         raise NotFoundException(f'Deck with id: {id}, could not be found.')
 
 

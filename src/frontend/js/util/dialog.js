@@ -80,9 +80,8 @@ export class Dialog {
         this.addChild(new StickyNoteModal(controller, this, stickyNote))
     }
 
-    renderEditFlashcardModal(flashcard, controller) {
-        this.addChild(new EditFlashcardModal(flashcard, controller, this));
-    
+    renderEditFlashcardModal(controller, flashcard = null) {
+        this.addChild(new EditFlashcardModal(controller, this, flashcard));
     }
 
     renderForgotSaveModal(view) {

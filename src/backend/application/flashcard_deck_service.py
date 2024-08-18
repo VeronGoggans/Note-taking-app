@@ -65,9 +65,8 @@ class FlashcardDeckService:
     def update_deck(self, request: PutDeckRequest):
         decks = self.json_manager.load(self.deck_path)
         try:
-            deck = self.manager.update(decks, request.id, request.name)
+            self.manager.update(decks, request.deck_id, request.name)
             self.json_manager.update(self.deck_path, decks)
-            return deck
         except NotFoundException as e:
             raise e
 

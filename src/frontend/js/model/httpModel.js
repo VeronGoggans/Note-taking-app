@@ -27,8 +27,8 @@ export class HttpModel {
      * Specifiy the endpoint you want to reach.
      * @param {String} endpoint - May include a Id of some sort
      */
-    async delete(endpoint) {
-        const options = RequestOptionsBuilder.buildDeleteOptions();
+    async delete(endpoint, object = null) {
+        const options = RequestOptionsBuilder.buildDeleteOptions(object);
         return fetchData(endpoint, options)
     }
 

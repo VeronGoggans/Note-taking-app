@@ -27,15 +27,23 @@
     background-color: #e7ebffb5;
 }
 
-.flashcard-edit-view .save-btn {
+.flashcard-edit-view .save-btn,
+.flashcard-edit-view .add-flashcard-btn {
     position: absolute;
+    background-color: transparent;
+    color: #5c7fdd;
+    padding: 7px 10px;
+    font-size: 16px;
+}
+
+.flashcard-edit-view .save-btn {
     top: 80px;
     right: 50px;
-    background-color: #5c7fdd;
-    color: white;
-    padding: 7px 35px;
-    font-size: 16px;
-    border-radius: 25px;
+}
+
+.flashcard-edit-view .add-flashcard-btn {
+    top: 80px;
+    right: 190px;
 }
 
 .flashcard-edit-view .flashcards {
@@ -53,7 +61,6 @@
     border-radius: 10px;
     height: 200px;
     background-color: var(--flashcard-edit-bg); /*e7ebff*/
-    cursor: pointer;
     transition: opacity .7s ease, transform .25s ease;
 }
 

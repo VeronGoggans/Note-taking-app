@@ -12,10 +12,10 @@ class FlashcardRouter:
         self.route = APIRouter()
         self.service = FlashcardService(FlashcardManager(), json_manager)
 
-        self.route.add_api_route('/flashcard', self.add_flashcards, methods=['POST'])
+        self.route.add_api_route('/flashcards', self.add_flashcards, methods=['POST'])
         self.route.add_api_route('/flashcards', self.update_flashcards, methods=['PUT'])
         self.route.add_api_route('/flashcardRatings', self.update_flashcard_ratings, methods=['PUT'])
-        self.route.add_api_route('/flashcard', self.delete_flashcards, methods=['DELETE'])
+        self.route.add_api_route('/flashcards', self.delete_flashcards, methods=['DELETE'])
 
     
     def add_flashcards(self, request: PostFlashcardsRequest):
