@@ -39,17 +39,18 @@ class StickyNoteService:
         sticky_notes = self.json_manager.load(self.sticky_notes_path)
 
         try:
-            self.manager.update(sticky_notes, reqeust_dto)
+            updated_sticky_note = self.manager.update(sticky_notes, reqeust_dto)
             self.json_manager.update(self.sticky_notes_path, sticky_notes)
+            return updated_sticky_note
         except NotFoundException as e:
             raise e 
 
 
-    def delete_sticky_note(self, sticky_note_id: str):
+    def delete_sticky_note(self, id: str):
         sticky_notes = self.json_manager.load(self.sticky_notes_path)
         
         try:
-            self.manager.delete(sticky_notes, sticky_note_id)
+            self.manager.delete(sticky_notes, id)
             self.json_manager.update(self.sticky_notes_path, sticky_notes)
         except NotFoundException as e:
             raise e 

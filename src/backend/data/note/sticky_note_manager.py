@@ -15,18 +15,18 @@ class StickyNoteManager:
 
     def update(self, sticky_notes: list, request_dto: PutStickyNoteDto):
         for sticky_note in sticky_notes:
-            if sticky_note['id'] == request_dto.sticky_note_id:
+            if sticky_note['id'] == request_dto.id:
                 updated_sticky_note = self.__update_entity(sticky_note, request_dto)
                 return updated_sticky_note
-        raise NotFoundException(f'Sticky note with id: {request_dto.sticky_note_id}, could not be found.')
+        raise NotFoundException(f'Sticky note with id: {request_dto.id}, could not be found.')
     
 
-    def delete(self, sticky_notes: list, sticky_note_id: str):
+    def delete(self, sticky_notes: list, id: str):
         for sticky_note in sticky_notes:
-            if sticky_note['id'] == sticky_note_id:
+            if sticky_note['id'] == id:
                 sticky_notes.remove(sticky_note)
                 return sticky_note
-        raise NotFoundException(f'Sticky note with id: {sticky_note_id}, could not be found.')    
+        raise NotFoundException(f'Sticky note with id: {id}, could not be found.')    
 
     
     def __update_entity(self, current_note: dict, updated_note: PutStickyNoteDto):

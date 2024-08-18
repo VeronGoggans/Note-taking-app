@@ -58,3 +58,12 @@
     font-size: 16px;
     cursor: pointer;
 }
+
+.sticky-note-modal .delete-sticky-note-btn {
+    position: absolute;
+    right: 20px;
+    top: 35px;
+    color: #5c7fdd;
+    font-size: 16px;
+    background-color: transparent;
+}

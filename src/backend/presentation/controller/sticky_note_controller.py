@@ -16,7 +16,7 @@ class StickyNoteRouter:
         self.route.add_api_route('/stickyNote', self.add_sticky_note, methods=['POST'])
         self.route.add_api_route('/stickyNotes', self.get_sticky_notes, methods=['GET'])
         self.route.add_api_route('/stickyNote', self.update_sticky_note, methods=['PUT'])
-        self.route.add_api_route('/stickyNote/{sticky_note_id}', self.delete_sticky_note, methods=['DELETE'])
+        self.route.add_api_route('/stickyNote/{id}', self.delete_sticky_note, methods=['DELETE'])
         
 
     def add_sticky_note(self, request: PostStickyNoteRequest):
@@ -40,16 +40,16 @@ class StickyNoteRouter:
 
     def update_sticky_note(self, request: PutStickyNoteRequest):
         try:
-            request_dto = PutStickyNoteDto(request.sticky_note_id, request.name, request.content)
+            request_dto = PutStickyNoteDto(request.id, request.name, request.content)
             note = self.service.update_sticky_note(request_dto)
             return {'status': 'succes', 'stickyNote': note}, HttpStatus.OK
         except NotFoundException as e:
             return {'status': 'not_found', 'message': str(e)}, HttpStatus.NOT_FOUND
 
 
-    def delete_sticky_note(self, sticky_note_id: str ):
+    def delete_sticky_note(self, id: str ):
         try:
-            note = self.service.delete_sticky_note(sticky_note_id)
+            note = self.service.delete_sticky_note(id)
             return {'status': 'succes', 'stickyNote': note}, HttpStatus.OK
         except NotFoundException as e:
             return {'status': 'not_found', 'message': str(e)}, HttpStatus.NOT_FOUND

@@ -1,6 +1,6 @@
 import { CNode } from "../util/CNode.js";
 import { dateFormat } from "../util/date.js";
-import { formatName, filterNotePreview } from "../util/formatters.js";
+import { formatName, filterNotePreview, captureNewLines } from "../util/formatters.js";
 import { stickyNoteColors } from "../constants/constants.js";
 
 export class Note {
@@ -123,7 +123,7 @@ export class StickyNote {
     #initializeElements() {
         this.HOST = CNode.create('div', { 'class': 'sticky-note', 'id': this.stickyNote.id});
         this.H3 = CNode.create('h3', { 'textContent': this.stickyNote.name });
-        this.CONTENT = CNode.create('p', { 'textContent': this.stickyNote.content });
+        this.CONTENT = CNode.create('p', { 'innerHTML': captureNewLines(this.stickyNote.content) });
     }
 
     #render() {

@@ -1,6 +1,7 @@
 import { StickyNote } from "../components/note.js";
 import { StickyNoteObjectArray } from "../util/array.js";
 import { AnimationHandler } from "../handlers/animation/animationHandler.js";
+import { captureNewLines } from "../util/formatters.js";
 
 export class StickyNoteView {
     constructor(controller, dialog) {
@@ -30,12 +31,29 @@ export class StickyNoteView {
         this._stickyWall.insertBefore(stickyNoteCard, this._stickyWall.firstChild);
     }
 
-    renderDelete() {
+    renderDelete(stickyNoteId) {
+        const stickyNotes = this._stickyWall.children 
 
+        for (let i = 0; i < stickyNotes.length; i++) {
+            if (stickyNotes[i].id === stickyNoteId) {
+                AnimationHandler.fadeOutCard(stickyNotes[i])
+                this.stickyNoteObjects.remove(stickyNoteId);
+            }
+        }
     }
 
-    renderUpdate() {
+    renderUpdate(stickyNote) {
+        const stickyNotes = this._stickyWall.children 
 
+        for (let i = 0; i < stickyNotes.length; i++) {
+            if (stickyNotes[i].id === stickyNote.id) {    
+
+                stickyNotes[i].querySelector('p').innerHTML = captureNewLines(stickyNote.content);
+                stickyNotes[i].querySelector('h3').textContent = stickyNote.name;
+
+                this.stickyNoteObjects.update(stickyNote);
+            }
+        }
     }
 
     getStickyNoteObject(stickyNoteId) {

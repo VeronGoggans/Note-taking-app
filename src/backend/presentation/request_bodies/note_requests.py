@@ -43,10 +43,10 @@ class PostStickyNoteRequest(BaseModel):
 
 class PutStickyNoteRequest(BaseModel):
     """
-    - sticky_note_id (str): The ID of the note that will be updated.
+    - id (str): The ID of the note that will be updated.
     - name (str): The name of the sticky note
     - content (str): The content of the sticky note
     """
-    sticky_note_id: str
+    id: str
     name: str
     content: str

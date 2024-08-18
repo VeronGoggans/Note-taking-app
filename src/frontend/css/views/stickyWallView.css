@@ -11,7 +11,7 @@
 .sticky-wall-view h1 {
     font-family: sans-serif;
     color: var(--important);
-    margin: 0px;
+    margin-top: 40px;
 }
 
 .sticky-wall-view .sticky-wall {

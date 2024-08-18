@@ -50,3 +50,9 @@ function filterFolderNames(folderNames) {
 export function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
+
+export function captureNewLines(text) {
+    // Display the text with visible newline characters
+    var htmlText = text.replace(/\n/g, '<br>');
+    return htmlText;
+}

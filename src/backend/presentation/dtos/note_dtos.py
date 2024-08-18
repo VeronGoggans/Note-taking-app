@@ -23,6 +23,6 @@ class PostStickyNoteDto:
 
 @dataclass
 class PutStickyNoteDto:
-    sticky_note_id: str
+    id: str
     name: str
     content: str

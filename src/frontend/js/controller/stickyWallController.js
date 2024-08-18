@@ -28,11 +28,17 @@ export class StickWallController {
         this.view.renderAll(stickyNotes);
     }
 
-    async update() {
-        
+    async update(stickyNote) {
+        const response  = await this.model.update('/stickyNote', stickyNote);
+        this.view.renderUpdate(
+            response[this.objectNum].stickyNote
+        );
     }
 
-    async delete() {
-        
+    async delete(stickyNoteId) {
+        await this.model.delete(`/stickyNote/${stickyNoteId}`);
+        this.view.renderDelete(
+            stickyNoteId
+        );
     }
 }
