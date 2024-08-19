@@ -25,7 +25,6 @@
 
 .create-deck-modal input,
 .edit-flashcard-modal input {
-    outline: none;
     border: none;
     height: 50px;
     border-radius: 10px;

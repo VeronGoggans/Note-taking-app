@@ -31,7 +31,6 @@
   }
   
   .new-folder-container input {
-    outline: none;
     border: none;
     box-sizing: border-box;
     color: var(--text);

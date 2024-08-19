@@ -16,8 +16,17 @@ button {
     transition: 150ms;
 }
 
+input {
+    outline: none;
+}
+
+textarea {
+    outline: none;
+}
+
 i {
     transition: 150ms;
+    background-color: transparent;
 }
 
 ::selection {

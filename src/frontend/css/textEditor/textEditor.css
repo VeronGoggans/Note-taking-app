@@ -80,7 +80,6 @@
 
 .embed-link-input {
    cursor: text;
-   outline: none;
    border: none;
    border-bottom: 2px solid var(--editor-border);
    padding: 5px;
@@ -122,7 +121,6 @@
 .original-link-input,
 .custom-link-input {
    cursor: text;
-   outline: none;
    border: none;
    border-bottom: 2px solid var(--editor-border);
    padding: 5px;

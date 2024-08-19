@@ -4,6 +4,7 @@
     height: 100dvh;
     max-height: 100dvh;
     overflow-y: scroll;
+    outline: none;
 }
 
 .templates h1 {

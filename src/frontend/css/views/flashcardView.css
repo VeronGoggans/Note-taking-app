@@ -1,4 +1,5 @@
 .flashcards-view {
+    outline: none;
     height: 100dvh;
     max-height: 100dvh;
     font-family: Roboto;
@@ -21,7 +22,8 @@
     background-image: linear-gradient(45deg, #5c7fdd, #ff0057);
 }
 
-.flashcards-view .flashcard-deck {
+.flashcards-view .flashcard-deck,
+.home .flashcard-deck {
     cursor: pointer;
     border: 1px solid var(--border-card);
     background-color: var(--card);
@@ -33,35 +35,40 @@
     transition: opacity .7s ease, transform .25s ease;
 }
 
-.flashcards-view .flashcard-deck .deck-name {
+.flashcards-view .flashcard-deck .deck-name,
+.home .flashcard-deck .deck-name {
     font-weight: 600;
     font-family: sans-serif;
-    color: var(--text);
+    color: var(--text) ;
     font-size: 16px;
 }
 
 
-.flashcards-view .flashcard-deck div {
+.flashcards-view .flashcard-deck div,
+.home .flashcard-deck div {
     display: flex;
     align-items: end;
     justify-content: space-between;
 }
 
 
-.flashcards-view .flashcard-deck .last-study-date {
+.flashcards-view .flashcard-deck .last-study-date,
+.home .flashcard-deck .last-study-date {
     font-size: 14px;
     font-weight: 600;
     color: #a4a8bb;
 } 
 
-.flashcards-view .flashcard-deck .card-count {
+.flashcards-view .flashcard-deck .card-count,
+.home .flashcard-deck .card-count  {
     font-size: 14px;
     color: #a4a8bb;
     font-weight: 600;
     margin-left: 7px;
 }
 
-.flashcards-view .flashcard-deck .card-count span {
+.flashcards-view .flashcard-deck .card-count span,
+.home .flashcard-deck .card-count span {
     font-size: 20px;
     font-family: sans-serif;
 }

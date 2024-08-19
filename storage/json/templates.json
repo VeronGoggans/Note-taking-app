@@ -3,9 +3,9 @@
         "id": "t-26",
         "name": "Software Project Planning",
         "content": "storage/templates/template-t-26.txt",
-        "last_edit": "09/08/2024 19:56",
+        "last_edit": "19/08/2024 01:58",
         "creation": "02/08/2024",
-        "uses": 2
+        "uses": 3
     },
     {
         "id": "t-27",
@@ -19,8 +19,8 @@
         "id": "t-28",
         "name": "Completed tasks",
         "content": "storage/templates/template-t-28.txt",
-        "last_edit": "10/08/2024 18:47",
+        "last_edit": "19/08/2024 02:23",
         "creation": "10/08/2024",
-        "uses": 5
+        "uses": 7
     }
 ]

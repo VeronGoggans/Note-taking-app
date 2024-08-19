@@ -23,18 +23,28 @@ export class HomeController {
         this.view = new HomeView(this, this.applicationController, this.dialog, this.notificationHandler);
         this.getRecentFolders();
         this.getRecentNotes();
+        this.get5RandomDecks();
     }
 
     async getRecentFolders() {
         const response = await this.model.get('/recentFolders');
-        const folders = response[this.objectNum].folders;
-        this.view.renderRecentFolders(folders);
+        this.view.renderRecentFolders(
+            response[this.objectNum].folders
+        );
     }
 
     async getRecentNotes() {
         const response = await this.model.get('/recentNotes');
-        const notes = response[this.objectNum].notes;
-        this.view.renderRecentNotes(notes);
+        this.view.renderRecentNotes(
+            response[this.objectNum].notes
+        );
+    }
+
+    async get5RandomDecks() {
+        const response = await this.model.get('/randomDecks');
+        this.view.renderRandomDecks(
+            response[this.objectNum].decks
+        );
     }
 
     async handleSearch(searchItemId, searchType) {

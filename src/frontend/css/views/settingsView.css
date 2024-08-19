@@ -51,7 +51,6 @@
 .language-dropdown input {
     background-color: transparent;
     border: none;
-    outline: none;
     width: -webkit-fill-available;
     color: var(--text);
     padding: 2px 5px;

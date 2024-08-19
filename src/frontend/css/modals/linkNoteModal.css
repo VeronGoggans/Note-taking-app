@@ -54,7 +54,6 @@
 }
 
 .search-note-link-container input {
-    outline: none;
     position: relative;
     margin: 10px 0;
     display: flex;

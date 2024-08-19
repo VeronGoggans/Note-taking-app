@@ -1,6 +1,7 @@
 import { RecentFolder } from "../components/folder.js";
 import { RecentNote } from "../components/note.js";
-import { FolderObjectArray, NoteObjectArray } from "../util/array.js";
+import { FlashcardDeck } from "../components/flashcardDeck.js";
+import { FolderObjectArray, NoteObjectArray, FlashcardDeckObjectArray } from "../util/array.js";
 import { AnimationHandler } from "../handlers/animation/animationHandler.js";
 
 export class HomeView {
@@ -11,7 +12,8 @@ export class HomeView {
         this.dialog = dialog;
 
         this.folderObjects = new FolderObjectArray();
-        this.noteObjects = new NoteObjectArray()
+        this.noteObjects = new NoteObjectArray();
+        this.deckObjects = new FlashcardDeckObjectArray();
         this.#initializeDomElements();
     }
 
@@ -42,6 +44,20 @@ export class HomeView {
         this.recentNoteContainer.appendChild(contentFragment); 
     }
 
+    renderRandomDecks(decks) {
+        this.deckObjects.clear()
+        const contentFragment = document.createDocumentFragment();
+
+        for (let i = 0; i < decks.length; i++) {
+            const deckCard = this.#FlashcardDeck(decks[i]);
+
+            contentFragment.appendChild(deckCard);
+            AnimationHandler.fadeInFromBottom(deckCard);
+        }
+        this.flashcardDeckContainer.appendChild(contentFragment); 
+
+    }
+
     handleNoteCardClick(noteId) {
         const note = this.noteObjects.get(noteId);
         this.applicationController.initView('editor', 
@@ -59,6 +75,10 @@ export class HomeView {
         this.applicationController.initView('notes', {folder: folder});
     }
 
+    handleDeckCardClick(deckId) {
+        const deck = this.deckObjects.get(deckId)
+        this.applicationController.initView('flashcardsPractice', {deck: deck, previousView: 'home'})
+    }
 
     #recentFolder(folder) {
         this.folderObjects.add(folder)
@@ -70,8 +90,14 @@ export class HomeView {
         return new RecentNote(note, this);
     }
 
+    #FlashcardDeck(deck) {
+        this.deckObjects.add(deck);
+        return new FlashcardDeck(deck, this);
+    }
+
     #initializeDomElements() {
         this.recentFolderContainer = document.querySelector('.recent-folders');
         this.recentNoteContainer = document.querySelector('.recent-notes');
+        this.flashcardDeckContainer = document.querySelector('.flashcard-decks');
     }
 }

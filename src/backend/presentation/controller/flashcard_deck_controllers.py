@@ -16,6 +16,7 @@ class FlashcardDeckRouter:
         self.route.add_api_route('/deck/{id}', self.get_deck_by_id, methods=['GET'])
         self.route.add_api_route('/deckSearchItems', self.get_search_items, methods=['GET'])
         self.route.add_api_route('/decks', self.get_all_decks, methods=['GET'])
+        self.route.add_api_route('/randomDecks', self.get_5_random_decks, methods=['GET'])
         self.route.add_api_route('/deck', self.add_deck, methods=['POST'])
         self.route.add_api_route('/deck', self.update_deck, methods=['PUT'])
         self.route.add_api_route('/deck/{id}', self.delete_deck, methods=['DELETE'])
@@ -54,6 +55,14 @@ class FlashcardDeckRouter:
         try:
             search_items = self.service.get_search_items()
             return {'status': 'succes', 'items': search_items}, HttpStatus.OK
+        except NotFoundException as e:
+            return {'status': 'not_found', 'message': str(e)}, HttpStatus.NO_CONTENT
+        
+
+    def get_5_random_decks(self):
+        try:
+            random_decks = self.service.get_random_decks()
+            return {'status': 'succes', 'decks': random_decks}, HttpStatus.OK
         except NotFoundException as e:
             return {'status': 'not_found', 'message': str(e)}, HttpStatus.NO_CONTENT
         

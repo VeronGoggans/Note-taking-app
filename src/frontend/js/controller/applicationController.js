@@ -100,7 +100,6 @@ export class ApplicationController {
                     this.model.setPreviousView(previousView);                    
 
                     controller.init(deck);
-
                     return;
                 }
 

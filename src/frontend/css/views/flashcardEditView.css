@@ -1,4 +1,5 @@
 .flashcard-edit-view {
+    outline: none;
     padding: 20px;
     font-family: sans-serif;
     color: var(--important);

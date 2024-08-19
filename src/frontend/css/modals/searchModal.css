@@ -21,7 +21,6 @@
     font-weight: 600;
     background-color: transparent;
     color: var(--text);
-    outline: none;
     border: none;
     border-bottom: 2px solid var(--border-card);
     padding: 5px 70px 5px 15px;

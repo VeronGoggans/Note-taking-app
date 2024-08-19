@@ -3,7 +3,7 @@ from src.backend.presentation.dtos.flashcard_dtos import PostFlashcardDTO, Flash
 from src.backend.data.file.flashcard_serializer import FlashcardSerializer
 from src.backend.data.file.text_manager import TextManager
 from src.backend.data.exceptions.exceptions import AdditionException, NotFoundException, DeserializationException
-
+import random
 
 class FlashcardDeckManager:
     def __init__(self) -> None:
@@ -53,10 +53,23 @@ class FlashcardDeckManager:
         return items
     
 
+    def get_random_decks(self, decks: list) -> list[object]:
+        amount_of_decks = 5
+        if len(decks) < 5:
+            # To prevent a valueError with the sample function 
+            amount_of_decks = len(decks)
+        
+        if len(decks) > 0:    
+            # Use get_all to deserialize the decks flashcards
+            return self.get_all(random.sample(decks, amount_of_decks))
+        return decks
+
+
     def update(self, decks: list, id: str, name: str):
         for deck in decks:
             if deck['id'] == id:
                 deck['name'] = name
+                return 
         raise NotFoundException(f'Deck with id: {id}, could not be found.')
 
 

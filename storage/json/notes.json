@@ -3,7 +3,7 @@
         "id": "f-1",
         "name": "Home",
         "color": "rgb(255, 255, 255)",
-        "last_visit": "18/08/2024 23:01:54",
+        "last_visit": "19/08/2024 02:23:46",
         "notes": [],
         "subfolders": []
     },
@@ -11,7 +11,7 @@
         "id": "f-99",
         "name": "School \ud83d\udcd6\u270f\ufe0f",
         "color": "rgb(255, 255, 255)",
-        "last_visit": "18/08/2024 20:12:34",
+        "last_visit": "19/08/2024 00:54:51",
         "notes": [],
         "subfolders": [
             {
@@ -195,23 +195,6 @@
         "color": "rgb(255, 255, 255)",
         "last_visit": "12/08/2024 17:25:33",
         "notes": [],
-        "subfolders": []
-    },
-    {
-        "id": "f-147",
-        "name": "Neutron",
-        "color": "rgb(255, 255, 255)",
-        "last_visit": "18/08/2024 23:02:01",
-        "notes": [
-            {
-                "id": "n-725",
-                "name": "To do",
-                "content": "storage/notes/note-n-725.txt",
-                "bookmark": false,
-                "last_edit": "18/08/2024 23:01",
-                "creation": "18/08/2024"
-            }
-        ],
         "subfolders": []
     }
 ]

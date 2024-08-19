@@ -10,7 +10,6 @@
 }
 
 .searchbar input {
-    outline: none;
     border: none;
     background-color: transparent;
     width: 100%;
@@ -71,5 +70,4 @@
 
 .searchbar ul #folder-search-type{color: #bcadff}
 .searchbar ul #note-search-type {color: #b2dbff}
-.searchbar ul #template-search-type {color: #fbe054}
-.searchbar ul #flashcard-search-type {color: #3cd7a8}
+.searchbar ul #template-search-type {color: #ffabab}
