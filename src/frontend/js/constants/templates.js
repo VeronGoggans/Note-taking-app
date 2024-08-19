@@ -239,7 +239,6 @@ export const editorTemplate = `
             <div class="horizontal-line-option"><i class="fa-solid fa-ruler-horizontal"></i>Add a horizontal line</div>
             <div class="quote-block"><i class="fa-solid fa-quote-right"></i>Quote block</div>   
             <div class="important-block"><i class="fa-solid fa-exclamation"></i>Important block</div>   
-            <div class="copyable-block"><i class="fa-regular fa-paste"></i>Copy block</div> 
             <div class="unordered-list"><i class="fa-solid fa-list-ul"></i>Bullet list</div>
             <div class="ordered-list"><i class="fa-solid fa-list-ol"></i>Numbered list</div> 
             <div class="heading-1"><i class="fa-solid fa-h"></i>Add heading 1</div>
@@ -248,10 +247,10 @@ export const editorTemplate = `
             <div class="heading-4"><i class="fa-solid fa-h"></i>Add heading 4</div>
             <div class="heading-5"><i class="fa-solid fa-h"></i>Add heading 5</div>
             <div class="heading-6"><i class="fa-solid fa-h"></i>Add heading 6</div>
-            <div class="time"><i class="fa-regular fa-clock"></i>Current time</div>
             <div class="date"><i class="fa-regular fa-calendar"></i>Current date</div>
         </div>
     </div>
     
     </div>
 `
+// <div class="copyable-block"><i class="fa-regular fa-paste"></i>Copy block</div>

@@ -39,9 +39,6 @@ export class SlashCommand {
         case 'ordered-list':
           this.formatter.addList(range, 'ol');
           break;
-        case 'copyable-block':
-          this.formatter.addCopyBlock(range);
-          break;
         case 'heading-1':
           this.formatter.addHeading(range, 1, extension);
           break;
@@ -59,9 +56,6 @@ export class SlashCommand {
           break;
         case 'heading-6':
           this.formatter.addHeading(range, 6, extension);
-          break;
-        case 'time':
-          // Implement time function
           break;
         case 'date':
           this.formatter.addDateBlock(range);

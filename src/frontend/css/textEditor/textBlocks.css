@@ -75,24 +75,23 @@
 .editor-paper .date-time-block,
 .note-content-box .date-time-block {
     display: flex;
-    margin: 10px 0;
     font-size: 28px;
     font-family: Roboto;
     width: fit-content;
-    padding: 5px;
-    border-bottom: 4px solid #5c7fdd;
+    padding: 15px;
     font-weight: 600;
-    align-items: center;
+    align-items: end;
 }
 
 .editor-paper .date-time-block i {
     padding: 7px;
 }
 .editor-paper .date-time-block span{
-    margin-left: 10px;
+    margin-bottom: 5px;
 }
 .editor-paper .date-time-block h3 {
     margin: 0;
+    margin-left: 20px;
 }
 
 .editor-paper .date-time-block h2,

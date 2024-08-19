@@ -51,7 +51,7 @@ export function getCurrentDateAndTime() {
     const formattedMinutes = minutes.toString().padStart(2, '0');
 
     return `
-    <i class="fa-regular fa-calendar"></i><h3">${formattedHours}:${formattedMinutes}</h3><span>${month} ${dayWithSuffix}, ${year}</span>
+    <span>${month} ${dayWithSuffix}, ${year}</span><h3>${formattedHours}:${formattedMinutes}</h3>
     `;
 }
 

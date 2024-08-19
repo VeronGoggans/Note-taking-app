@@ -43,7 +43,7 @@
 }
 
 .exit-folder-btn:hover {
-    background-color: #f4f5f7;
+    background-color: var(--exit-btn);
 }
 
 .current-folder-name-container {

@@ -25,7 +25,7 @@
 }
 
 .flashcard-edit-view .exit-flashcard-edit-view-btn:hover {
-    background-color: #e7ebffb5;
+    background-color: var(--exit-btn);
 }
 
 .flashcard-edit-view .save-btn,
