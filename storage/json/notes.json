@@ -3,7 +3,7 @@
         "id": "f-1",
         "name": "Home",
         "color": "rgb(255, 255, 255)",
-        "last_visit": "19/08/2024 02:23:46",
+        "last_visit": "19/08/2024 13:47:41",
         "notes": [],
         "subfolders": []
     },
@@ -11,21 +11,21 @@
         "id": "f-99",
         "name": "School \ud83d\udcd6\u270f\ufe0f",
         "color": "rgb(255, 255, 255)",
-        "last_visit": "19/08/2024 00:54:51",
+        "last_visit": "19/08/2024 02:28:56",
         "notes": [],
         "subfolders": [
             {
                 "id": "s-191",
                 "name": "Year 2",
                 "color": "rgb(255, 255, 255)",
-                "last_visit": "18/08/2024 20:12:35",
+                "last_visit": "19/08/2024 02:28:56",
                 "notes": [],
                 "subfolders": [
                     {
                         "id": "s-181",
                         "name": "Software Architecture\ud83c\udf31",
                         "color": "rgb(255, 255, 255)",
-                        "last_visit": "18/08/2024 20:12:39",
+                        "last_visit": "19/08/2024 02:28:43",
                         "notes": [
                             {
                                 "id": "n-589",
@@ -115,7 +115,7 @@
                         "id": "s-182",
                         "name": "CISC2",
                         "color": "rgb(255, 255, 255)",
-                        "last_visit": "17/08/2024 13:46:58",
+                        "last_visit": "19/08/2024 02:28:57",
                         "notes": [
                             {
                                 "id": "n-609",

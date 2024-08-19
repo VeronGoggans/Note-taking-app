@@ -18,13 +18,13 @@ class FlashcardDeckService:
         self.misc_path = f'{self.BASE_URL}/storage/json/misc.json'
 
 
-    def add_deck(self, name: str, flashcards: list[PostFlashcardDTO]):
+    def add_deck(self, name: str, flashcards: list[PostFlashcardDTO]) -> FlashcardDeck:
         try:
             json_decks = self.json_manager.load(self.deck_path)
             deck_id = self.json_manager.generate_id(self.id_path, 'flashcard-deck')
             
             deck = FlashcardDeck(deck_id, name)
-            deck.set_flashcards_path(TextManager.create_file(deck_id))
+            deck.set_flashcards_path(TextManager.create_deck_file(deck_id))
 
             self.manager.add(json_decks, deck, flashcards)
 
@@ -45,7 +45,7 @@ class FlashcardDeckService:
             raise e
     
 
-    def get_all_decks(self):
+    def get_all_decks(self) -> list[FlashcardDeck]:
         decks = self.json_manager.load(self.deck_path)
         misc = self.json_manager.load(self.misc_path)
         try:
@@ -54,7 +54,7 @@ class FlashcardDeckService:
             raise e
         
 
-    def get_search_items(self):
+    def get_search_items(self) -> list[object]:
         decks = self.json_manager.load(self.deck_path)
         items = self.manager.get_search_items(decks)
 
@@ -63,7 +63,7 @@ class FlashcardDeckService:
         raise NotFoundException('There are no folders to be retrieved.')
     
 
-    def get_random_decks(self):
+    def get_random_decks(self) -> list[FlashcardDeck]:
         decks = self.json_manager.load(self.deck_path)
         random_decks = self.manager.get_random_decks(decks)
 
@@ -73,7 +73,7 @@ class FlashcardDeckService:
 
         
 
-    def update_deck(self, request: PutDeckRequest):
+    def update_deck(self, request: PutDeckRequest) -> None:
         decks = self.json_manager.load(self.deck_path)
         try:
             self.manager.update(decks, request.deck_id, request.name)
@@ -82,7 +82,7 @@ class FlashcardDeckService:
             raise e
 
 
-    def delete_deck(self, deck_id: str):
+    def delete_deck(self, deck_id: str) -> None:
         decks = self.json_manager.load(self.deck_path)
         try:
             deck = self.manager.delete(decks, deck_id)

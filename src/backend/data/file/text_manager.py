@@ -1,8 +1,12 @@
 from os import getcwd, remove
 
 class TextManager:  
+    """
+
+    
+    """
     @staticmethod
-    def save(html_content: str, entity_id: int):
+    def save(html_content: str, entity_id: int) -> (str | None):
         """
         Save HTML content to a new Text file.
 
@@ -36,7 +40,7 @@ class TextManager:
     
     
     @staticmethod
-    def get(file_path: str):
+    def get(file_path: str) -> str:
         """
         Load the content of a file at the specified path.
 
@@ -54,7 +58,7 @@ class TextManager:
     
 
     @staticmethod
-    def update(file_path: str, updated_html_content: str):
+    def update(file_path: str, updated_html_content: str) -> None:
         """
         Update the content of a file at the specified path.
 
@@ -77,7 +81,7 @@ class TextManager:
 
     
     @staticmethod
-    def delete(file_path: str):
+    def delete(file_path: str) -> (None | str):
         """
         Delete a file at the specified path.
 
@@ -96,7 +100,7 @@ class TextManager:
         
         
     @staticmethod 
-    def create_file(deck_id: str) -> str:
+    def create_deck_file(deck_id: str) -> str:
         path = f'storage/flashcards/flashcard-deck-{deck_id}.txt'
         with open(path, 'w') as file:
             file.write('')

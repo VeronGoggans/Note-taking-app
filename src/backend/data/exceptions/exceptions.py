@@ -7,7 +7,6 @@ class BaseException(Exception):
         return f"{self.__class__.__name__}: {self.args[0]}"
 
 
-# _______________________ deck exceptions _______________________ #
 class SerializationException(BaseException):
     pass
 

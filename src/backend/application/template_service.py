@@ -14,7 +14,7 @@ class TemplateService:
         self.id_path = f'{self.BASE_URL}/storage/json/id.json'
 
     
-    def add_template(self, request_dto: PostTemplateDto):
+    def add_template(self, request_dto: PostTemplateDto) -> Template:
         template_id = self.json_manager.generate_id(self.id_path, 'template')
         template_structure = self.json_manager.load(self.templates_path)
 

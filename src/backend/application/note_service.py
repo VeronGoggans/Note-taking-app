@@ -15,7 +15,7 @@ class NoteService:
         self.id_path = f'{self.BASE_URL}/storage/json/id.json'
 
 
-    def add_note(self, request_dto: PostNoteDto):
+    def add_note(self, request_dto: PostNoteDto) -> Note:
         note_id = self.json_manager.generate_id(self.id_path, 'note')
         note = Note(note_id, request_dto.name, request_dto.content)
         note.set_content_path()
@@ -29,7 +29,7 @@ class NoteService:
             raise e
 
 
-    def get_notes(self, folder_id: str):
+    def get_notes(self, folder_id: str) -> list[Note]:
         folders = self.json_manager.load(self.folders_path)
         try:
             if folder_id == 'bookmarks':
@@ -39,7 +39,7 @@ class NoteService:
             raise e
 
 
-    def get_note_by_id(self, note_id: str):
+    def get_note_by_id(self, note_id: str) -> Note:
         folders = self.json_manager.load(self.folders_path)
         try:
             return self.note_manager.get_note_by_id(folders, note_id)
@@ -47,13 +47,13 @@ class NoteService:
             raise e
         
     
-    def get_recent_notes(self):
+    def get_recent_notes(self) -> list[Note]:
         json_folders = self.json_manager.load(self.folders_path)
         notes = self.note_manager.get_recent_notes(json_folders, notes_list = [])
         return self.note_manager.get_top_6_most_recent_notes(notes)
     
 
-    def update_note(self, request_dto: PutNoteDto):
+    def update_note(self, request_dto: PutNoteDto) -> Note:
         folders = self.json_manager.load(self.folders_path)
         try:
             note = self.note_manager.update_note(folders, request_dto)
@@ -63,7 +63,7 @@ class NoteService:
             raise e
 
 
-    def delete_note(self, note_id: str):
+    def delete_note(self, note_id: str) -> Note:
         folders = self.json_manager.load(self.folders_path)
         try:
             note = self.note_manager.delete_note(folders, note_id)
@@ -73,7 +73,7 @@ class NoteService:
             raise e
 
 
-    def move_note(self, folder_id: str, note_id: str):
+    def move_note(self, folder_id: str, note_id: str) -> Note:
         folders = self.json_manager.load(self.folders_path)
         try:
             deleted_note = self.note_manager.delete_note(folders, note_id, delete_txt_file=False)
@@ -86,7 +86,7 @@ class NoteService:
             raise e
     
 
-    def get_cache(self):
+    def get_cache(self) -> dict:
         try:
             content = self.json_manager.load(self.folders_path)
             return content
@@ -94,7 +94,7 @@ class NoteService:
             raise e
 
 
-    def get_search_options(self):
+    def get_search_options(self) -> list[object]:
         folders = self.json_manager.load(self.folders_path)
         notes = self.note_manager.get_note_name_id(folders, search_items = [])
 

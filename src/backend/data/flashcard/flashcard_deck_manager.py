@@ -20,7 +20,7 @@ class FlashcardDeckManager:
             raise AdditionException('An error occurred while adding the deck', errors={'exception': str(e)})
 
 
-    def get_by_id(self, decks: list, id: str):
+    def get_by_id(self, decks: list, id: str) -> FlashcardDeck:
         try:
             for deck in decks:
                 if deck['id'] == id:
@@ -32,7 +32,7 @@ class FlashcardDeckManager:
             raise e 
     
     
-    def get_all(self, decks: list):
+    def get_all(self, decks: list) -> list[FlashcardDeck]:
         try:
             decks_list = []
 
@@ -65,7 +65,7 @@ class FlashcardDeckManager:
         return decks
 
 
-    def update(self, decks: list, id: str, name: str):
+    def update(self, decks: list, id: str, name: str) -> None:
         for deck in decks:
             if deck['id'] == id:
                 deck['name'] = name
@@ -73,7 +73,7 @@ class FlashcardDeckManager:
         raise NotFoundException(f'Deck with id: {id}, could not be found.')
 
 
-    def delete(self, decks: list, id: str):
+    def delete(self, decks: list, id: str) -> object:
         for deck in decks:
             if deck['id'] == id:
                 decks.remove(deck)

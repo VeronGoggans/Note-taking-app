@@ -1,3 +1,14 @@
+/**
+ * This class is used to temporarly store changes made 
+ * to a specific flashcard deck. 
+ * Actions such as:
+ * 1. Deleting 
+ * 2. Updating 
+ * 3. Adding 
+ * 
+ * The FlashcardEditController then uses the getSavedChanges method 
+ * to retrieve this data
+ */
 export class FlashcardEditModel {
     constructor() {
         this.newFlashcards = []

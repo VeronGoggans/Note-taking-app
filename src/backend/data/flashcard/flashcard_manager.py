@@ -10,13 +10,13 @@ class FlashcardManager:
         self.serializer = FlashcardSerializer()
 
 
-    def add(self, decks: list, deck_id: str, flashcards: list[PostFlashcardDTO]):
+    def add(self, decks: list, deck_id: str, flashcards: list[PostFlashcardDTO]) -> None:
         self.__manage_flashcards(decks, deck_id, 'add', flashcards=flashcards)
 
-    def update(self, decks: list, deck_id: str, flashcards: list[FlashcardDTO]):
+    def update(self, decks: list, deck_id: str, flashcards: list[FlashcardDTO]) -> None:
         self.__manage_flashcards(decks, deck_id, 'update', flashcards=flashcards)
 
-    def update_ratings(self, decks: list, flashcard_misc: dict, deck_id: str, time_studied: str, flashcards: list[FlashcardDTO]):
+    def update_ratings(self, decks: list, flashcard_misc: dict, deck_id: str, time_studied: str, flashcards: list[FlashcardDTO]) -> None:
         # Updating the flashcards
         self.__manage_flashcards(decks, deck_id, 'update', flashcards=flashcards)
 
@@ -28,11 +28,11 @@ class FlashcardManager:
         self.__update_deck_study_date(decks, deck_id)
         
 
-    def delete(self, decks: list, deck_id: str, flashcard_ids: list[str]):
+    def delete(self, decks: list, deck_id: str, flashcard_ids: list[str]) -> None:
         self.__manage_flashcards(decks, deck_id, 'delete', flashcard_ids=flashcard_ids)    
     
 
-    def __manage_flashcards(self, decks: list, deck_id: str, action: str, flashcards=None, flashcard_ids=None):
+    def __manage_flashcards(self, decks: list, deck_id: str, action: str, flashcards=None, flashcard_ids=None) -> None:
         try:
             if self.__does_deck_exist(decks, deck_id):
                 file_path = f'storage/flashcards/flashcard-deck-{deck_id}.txt'
@@ -58,7 +58,7 @@ class FlashcardManager:
         return False
     
 
-    def __update_deck_study_date(self, decks: list, deck_id: str) -> object:
+    def __update_deck_study_date(self, decks: list, deck_id: str) -> None:
         for deck in decks:
             if deck['id'] == deck_id:
                 deck['last_study'] = Calendar.datetime()

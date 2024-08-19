@@ -14,7 +14,7 @@ class JsonCache:
         self.cache = {}
 
  
-    def get(self, path: str):
+    def get(self, path: str) -> (dict | None):
         """
         This method returns the cached data for a specified key
         This method is called everytime a GET request is made.

@@ -9,7 +9,7 @@ class FolderManager:
         self.search_items = []
         
 
-    def add_folder(self, folders, parent_id: str, folder: Folder):
+    def add_folder(self, folders, parent_id: str, folder: Folder) -> (Folder | NotFoundException | AdditionException):
         """
         Add a new folder to the notes structure.
 
@@ -18,7 +18,7 @@ class FolderManager:
             folder (Folder): a folder object that will be added to the notes structure.
 
         Returns:
-           dict:
+           Folder:
             - If successful, it returns the folder.
         """
         try:
@@ -35,16 +35,16 @@ class FolderManager:
             raise AdditionException('An error occurred while adding the folder', errors={'exception': str(e)})
 
 
-    def get_folders(self, folders, parent_id: str) -> list:
+    def get_folders(self, folders: list, parent_id: str) -> (list[object] | NotFoundException):
         """
-        Retrieve a list of information (id, name) of folders/subfolders from the notes structure.
+        Retrieve a list of information (id, name, color) about the folders.
 
         Args:
             folders (List[dict]): The list of folders to search within.
         
         Returns:
             list[dict]:
-            - Each dictionary includes 'id' and 'name' keys representing the directory's unique identifier and name.
+            - Each dictionary includes 'id', 'name' and 'color' keys representing the Folder.
         """
         folder_list = []
         if parent_id == 'f-1':
@@ -79,16 +79,16 @@ class FolderManager:
         return self.search_items  
 
 
-    def get_by_id(self, folders: list, folder_id: str) -> dict:
+    def get_by_id(self, folders: list, folder_id: str) -> (dict | NotFoundException):
         folder = FolderFinder.find_folder_by_id(folders, folder_id)
         if folder:
             return {'id': folder['id'], 'name': folder['name']}
         raise NotFoundException(f'Folder with id: {folder_id}, could not be found')
     
     
-    def update_folder(self, folders, folder_id: str, folder_name: str, folder_color: str):
+    def update_folder(self, folders, folder_id: str, folder_name: str, folder_color: str) -> (dict | NotFoundException):
         """
-        Update the name of a folder in the notes structure.
+        Update the name and or color of a folder.
 
         Args:
             folders (List[dict]): The list of folders to search within.
@@ -97,9 +97,8 @@ class FolderManager:
             folder_color (str): The new color for the folder.
 
         Returns:
-            dict or None:
+            dict:
             - If successful, it returns the folder.
-            - If the folder is not found, it returns None.
         """   
         target_folder = FolderFinder.find_folder_by_id(folders, folder_id)   
         if target_folder:
@@ -109,7 +108,7 @@ class FolderManager:
         raise NotFoundException(f'Folder with id: {folder_id}, could not be found')
     
 
-    def update_visit_date(self, folders: list, folder_id: str):
+    def update_visit_date(self, folders: list, folder_id: str) -> (None | NotFoundException):
         folder = FolderFinder.find_folder_by_id(folders, folder_id)
         if folder is not None:
             folder['last_visit'] = Calendar.datetime(precise=True)
@@ -117,7 +116,7 @@ class FolderManager:
         raise NotFoundException(f'Folder with id: {folder_id}, could not be found')
         
     
-    def delete_folder(self, folders, parent_id: str, folder_id: str):
+    def delete_folder(self, folders, parent_id: str, folder_id: str) -> (dict | NotFoundException):
         """
         Delete a folder from the notes structure.
 

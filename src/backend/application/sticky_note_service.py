@@ -15,7 +15,7 @@ class StickyNoteService:
 
 
 
-    def add_sticky_note(self, reqeust_dto: PostStickyNoteDto):    
+    def add_sticky_note(self, reqeust_dto: PostStickyNoteDto) -> StickyNote:    
         object_id = self.json_manager.generate_id(self.id_path, 'sticky-note')
         sticky_note = StickyNote(object_id, reqeust_dto.name, reqeust_dto.content)
 
@@ -28,14 +28,14 @@ class StickyNoteService:
             raise e
 
 
-    def get_sticky_notes(self):
+    def get_sticky_notes(self) -> list[object]:
         try:
             return self.json_manager.load(self.sticky_notes_path)
         except Exception as e:
             raise NotFoundException('There were no sticky notes found.', errors=str(e))
 
 
-    def update_sticky_note(self, reqeust_dto: PutStickyNoteDto):
+    def update_sticky_note(self, reqeust_dto: PutStickyNoteDto) -> object:
         sticky_notes = self.json_manager.load(self.sticky_notes_path)
 
         try:
@@ -46,7 +46,7 @@ class StickyNoteService:
             raise e 
 
 
-    def delete_sticky_note(self, id: str):
+    def delete_sticky_note(self, id: str) -> None:
         sticky_notes = self.json_manager.load(self.sticky_notes_path)
         
         try:

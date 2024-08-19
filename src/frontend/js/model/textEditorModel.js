@@ -1,3 +1,16 @@
+/**
+ * This class is used to store Editor objects togethor with it's type
+ * Objects like:
+ * 1. Notes
+ * 2. Templates
+ * 
+ * Types like:
+ * 1. note
+ * 2. template
+ * 
+ * The type variable is used by the TextEditorController to determine 
+ * if it needs to make a HTTP request to the NoteRouter or TemplateRouter 
+ */
 export class TextEditorModel {
     constructor() {
         this.editorObject = null

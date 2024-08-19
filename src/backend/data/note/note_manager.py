@@ -10,19 +10,18 @@ from datetime import datetime
 
 class NoteManager:    
 
-    def add_note(self, folders, folder_id: str, note: Note):
+    def add_note(self, folders: list, folder_id: str, note: Note) -> (Note | AdditionException | NotFoundException):
         """
-        Add a note to a specified folder in the notes structure.
+        Add a note to a specified folder.
 
         Args:
             folders (List[dict]): The list of folders to search within.
             folder_id (str): The identifier of the folder to which the note will be added.
-            note (Note): the note object to be added in a folder.
+            note (Note): the note object to be added to a folder.
 
         Returns:
-            dict or None: 
-            - If successful, it returns the note.
-            - If the folder is not found, it returns None.
+            Note: 
+            - If successful, it returns the Note object.
         """
         parent_folder = FolderFinder.find_folder_by_id(folders, folder_id)
         if parent_folder:
@@ -34,18 +33,17 @@ class NoteManager:
         raise NotFoundException(f'Folder with id: {folder_id}, could not be found.')
 
     
-    def get_notes(self, folders, folder_id: str):
+    def get_notes(self, folders: list, folder_id: str) -> (list[Note] | NotFoundException):
         """
-        Retrieve a list of notes from a specified folder in the notes structure.
+        Retrieve a list of notes from a specified folder.
 
         Args:
             folders (List[dict]): The list of folders to search within.
             folder_id (str): The identifier of the folder from which to retrieve notes from.
 
         Returns:
-            dict or None: 
-            - If successful, it returns a list of notes as dictionaries.
-            - If the folder is not found, it returns None.
+            list[Note]: 
+            - If successful, it returns a list of Note objects.
         """
         parent_folder = FolderFinder.find_folder_by_id(folders, folder_id)
         if parent_folder:
@@ -54,18 +52,17 @@ class NoteManager:
         raise NotFoundException(f'Folder with id: {folder_id}, could not be found.')
 
 
-    def get_note_by_id(self, folders, note_id: str):
+    def get_note_by_id(self, folders: list, note_id: str) -> (Note | NotFoundException):
         """
-        Retrieve a specific note from the notes structure by its unique identifier.
+        Retrieve a specific note by its unique identifier.
 
         Args:
             folders (List[dict]): The list of folders to search within.
             note_id (str): The unique identifier of the note to retrieve.
 
         Returns:
-            dict or None: 
+            Note: 
             - If successful, it returns the specific Note object.
-            - If the note is not found, it returns None.
         """
         note, folder = self.__find_note(folders, note_id)
         if note:
@@ -101,7 +98,7 @@ class NoteManager:
         return Factory.to_priority_list(bookmarks)
                
 
-    def update_note(self, folders, request_dto: PutNoteDto):
+    def update_note(self, folders, request_dto: PutNoteDto) -> (Note | NotFoundException):
         """
         Update a note with the provided note data.
 
@@ -110,9 +107,8 @@ class NoteManager:
             request_dto (PutNoteDto): The data to update the note.
 
         Returns:
-            dict or None: 
-            - If successful, it returns the updated note as a dictionary.
-            - If the note with the specified ID is not found, it returns None.
+            Note: 
+            - If successful, it returns the updated Note object.
         """
         note_id = request_dto.note_id
         current_note = self.__find_note(folders, note_id)[0]
@@ -124,7 +120,7 @@ class NoteManager:
 
     def delete_note(self, folders, note_id: str, delete_txt_file = True):
         """
-        Delete a specific note from the notes structure by its unique identifier.
+        Delete a specific note  by its unique identifier.
 
         Args:
             folders (List[dict]): The list of folders to search within.
@@ -132,9 +128,8 @@ class NoteManager:
             delete_txt_file (bool): A boolean indicating if the linked txt file should be removed or not.
 
         Returns:
-            dict or None: 
-            - If successful, it returns the deleted note.
-            - If the note is not found, it returns None.
+            dict: 
+            - If successful, it returns the deleted note as a dictionary.
         """
         note, folder = self.__find_note(folders, note_id)
         if note:
@@ -146,9 +141,9 @@ class NoteManager:
 
     
 
-    def __find_note(self, folders, note_id: str) -> list:
+    def __find_note(self, folders, note_id: str) -> (dict | None):
         """
-        Recursively search for a note with the specified ID within the folder structure.
+        Recursively search for a note with the specified ID .
 
         Args:
             folders (List[dict]): The list of folders to search within.
@@ -170,7 +165,7 @@ class NoteManager:
         return None, None
     
 
-    def get_top_6_most_recent_notes(self, notes: list) -> list:
+    def get_top_6_most_recent_notes(self, notes: list) -> list[Note]:
         # Convert the last_edit strings to datetime objects within the dict
         for note in notes:
             note['last_edit_dt'] = datetime.strptime(note['last_edit'], "%d/%m/%Y %H:%M")
@@ -189,7 +184,7 @@ class NoteManager:
 
 
     
-    def __update_entity(self, current_note: dict, updated_note: PutNoteDto):
+    def __update_entity(self, current_note: dict, updated_note: PutNoteDto) -> Note:
         current_time = Calendar.datetime()
 
         note = Note.from_json(current_note)

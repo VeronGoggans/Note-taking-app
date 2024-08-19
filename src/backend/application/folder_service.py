@@ -14,7 +14,7 @@ class FolderService:
         self.id_path = getcwd() + '/storage/json/id.json'
 
 
-    def add_folder(self, request_dto: FolderRequestDto):
+    def add_folder(self, request_dto: FolderRequestDto) -> Folder:
         folders = self.json_manager.load(self.folders_path)
         parent_id = request_dto.folder_id
         id = self.__generate_id(parent_id)
@@ -28,19 +28,19 @@ class FolderService:
             raise e
 
 
-    def get_folders(self, parent_id: str):
+    def get_folders(self, parent_id: str) -> list[object]:
         json_folders = self.json_manager.load(self.folders_path)
         return self.manager.get_folders(json_folders, parent_id)
     
 
-    def get_recent_folders(self):
+    def get_recent_folders(self) -> list[object]:
         json_folders = self.json_manager.load(self.folders_path)
         recent_folders = self.manager.get_recent_folders(json_folders)
         self.manager.clear_folder_list()
         return recent_folders
     
 
-    def get_search_items(self) -> list:
+    def get_search_items(self) -> list[object]:
         json_folders = self.json_manager.load(self.folders_path)
         search_items = self.manager.get_search_items(json_folders) 
 
@@ -50,7 +50,7 @@ class FolderService:
         raise NotFoundException('There are no folders to be retrieved.')
     
 
-    def get_folder_by_id(self, folder_id: str):
+    def get_folder_by_id(self, folder_id: str) -> list[object]:
         json_folders = self.json_manager.load(self.folders_path)
         try:
             return self.manager.get_by_id(json_folders, folder_id)
@@ -58,7 +58,7 @@ class FolderService:
             raise e
 
 
-    def update_folder(self, request_dto: FolderRequestDto):
+    def update_folder(self, request_dto: FolderRequestDto) -> object:
         folders = self.json_manager.load(self.folders_path)
         try:
             folder = self.manager.update_folder(folders, request_dto.folder_id, request_dto.name, request_dto.color)
@@ -68,7 +68,7 @@ class FolderService:
             raise e
         
     
-    def update_visit(self, folder_id: str):
+    def update_visit(self, folder_id: str) -> None:
         folders = self.json_manager.load(self.folders_path)
         try:
             self.manager.update_visit_date(folders, folder_id)
@@ -77,7 +77,7 @@ class FolderService:
             raise e
     
 
-    def delete_folder(self, parent_id: str, folder_id: str):
+    def delete_folder(self, parent_id: str, folder_id: str) -> Folder:
         folders = self.json_manager.load(self.folders_path)
         try:
             folder = self.manager.delete_folder(folders, parent_id, folder_id)

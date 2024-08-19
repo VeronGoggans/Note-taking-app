@@ -7,7 +7,7 @@ from src.backend.util.calendar import Calendar
 
 class TemplateManager:
 
-    def add(self, templates: list, new_template: Template):
+    def add(self, templates: list, new_template: Template) -> (Template | AdditionException):
         try:
             templates.append(new_template.__dict__)
             return new_template
@@ -15,7 +15,7 @@ class TemplateManager:
             raise AdditionException('An error occured while adding the template', errors=str(e))
 
 
-    def get_all(self, templates: list):
+    def get_all(self, templates: list) -> (tuple | DeserializationException):
         try:
             recent, other = self.__get_top_5_most_recent_templates(templates)
             recent_templates = Factory.create_template_list(recent)
@@ -27,7 +27,7 @@ class TemplateManager:
             raise e 
         
 
-    def get_by_id(self, templates: list, id: str, update_use_count: bool) -> Template:
+    def get_by_id(self, templates: list, id: str, update_use_count: bool) -> (Template | NotFoundException):
         for template in templates:
             if template['id'] == id:
                 template_object = Template.from_json(template)
@@ -40,7 +40,7 @@ class TemplateManager:
         raise NotFoundException(f'Template with id: {id}, could not be found')
     
 
-    def get_all_names(self, templates: list):
+    def get_all_names(self, templates: list) -> list[object]:
         template_objects = []
 
         for template in templates:
@@ -51,7 +51,7 @@ class TemplateManager:
         return template_objects
 
 
-    def update(self, templates: list, request_dto: PutTemplateDto):
+    def update(self, templates: list, request_dto: PutTemplateDto) -> (Template | NotFoundException):
         for template in templates:
             if template['id'] == request_dto.template_id:
                 updated_template = self.__update_entity(template, request_dto)
@@ -59,7 +59,7 @@ class TemplateManager:
         raise NotFoundException(f'Template with id: {id}, could not be found')
     
 
-    def delete(self,templates: list, template_id: str):
+    def delete(self,templates: list, template_id: str) -> (object | NotFoundException):
         for template in templates:
             if template['id'] == template_id:
                 templates.remove(template)
@@ -68,7 +68,7 @@ class TemplateManager:
         raise NotFoundException(f'Template with id: {id}, could not be found')
     
 
-    def __update_entity(self, old_template: dict, request_dto: PutTemplateDto):
+    def __update_entity(self, old_template: dict, request_dto: PutTemplateDto) -> Template:
         current_time = Calendar.datetime()
 
         template = Template.from_json(old_template)
@@ -82,7 +82,7 @@ class TemplateManager:
         return template
     
 
-    def __delete_txt_file(self, json_template: dict):
+    def __delete_txt_file(self, json_template: dict) -> None:
         """This method will delete the txt file linked to the template object."""
         template = Template.from_json(json_template)
         template.delete_template_file(template.content)
