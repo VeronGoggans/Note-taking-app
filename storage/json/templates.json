@@ -22,5 +22,13 @@
         "last_edit": "19/08/2024 02:23",
         "creation": "10/08/2024",
         "uses": 8
+    },
+    {
+        "id": "t-33",
+        "name": "Bugs List",
+        "content": "storage/templates/template-t-33.txt",
+        "last_edit": "19/08/2024 16:58",
+        "creation": "19/08/2024",
+        "uses": 1
     }
 ]
