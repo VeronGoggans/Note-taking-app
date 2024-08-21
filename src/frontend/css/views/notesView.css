@@ -5,6 +5,7 @@
     font-family: Roboto;
     display: grid;
     grid-template-rows: 50px 1fr;
+    padding: 0 5%;
 }
 
 .notes-top {
@@ -13,21 +14,30 @@
     justify-content: right;
     align-items: center;
     gap: 10px;
-    padding-right: 40px;
 }
 
 .current-folder-name-container button {
+    position: relative;
     width: 35px;
     height: 35px;
-    border-radius: 7px; 
+    font-size: 16px;
     color: var(--text);
-    border: 1px solid var(--create-btn-border);
-    background-color: var(--create-btn); 
+    background-color:transparent; 
 }
 
-.current-folder-name-container button:hover {
-    background-color: var(--secondary);
-    color: white;
+.current-folder-name-container button::before {
+    position: absolute;
+    content: '';
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 0;
+    background-color: #5c7fdd;
+    transition: .3s;
+}
+
+.current-folder-name-container button:hover::before {
+    width: 100%;
 }
 
 .exit-folder-btn {
@@ -60,13 +70,15 @@
     padding-top: 10px;
 }
 
-.current-folder-name-container h2 {
-    display: contents;
-    font-size: 35px;
-    height: 50px;
-    max-height: 50px;
+.current-folder-name-container h1 {
+    display: flex;
+    font-size: 56px;
+    height: fit-content;
     margin: 0px;
     color: var(--text);
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(45deg, #5c7fdd, #ad62cc);
+    background-clip: text;
     font-family: sans-serif;
 }
 
@@ -82,4 +94,10 @@
     height: calc(100dvh - 180px);
     max-height: calc(100dvh - 180px);
     overflow-y: scroll;
+}
+
+@media screen and (max-width: 700px ) {
+    .current-folder-name-container h1 {
+        font-size: 40px;
+    }
 }

@@ -10,7 +10,7 @@
         },
         {
             "entity": "note",
-            "id": 730
+            "id": 732
         },
         {
             "entity": "template",
@@ -22,7 +22,7 @@
         },
         {
             "entity": "sticky-note",
-            "id": 12
+            "id": 13
         }
     ]
 }

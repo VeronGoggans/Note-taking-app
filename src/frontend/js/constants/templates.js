@@ -35,7 +35,7 @@ export const notesTemplate = `
     <div class="notes-bottom">
         <div class="content-folder-view">
         <div class="current-folder-name-container">
-            <h2 class="current-folder-name">Home</h2>
+            <h1 class="current-folder-name">Home</h1>
             <div>
             <button title="Create folder" class="create-folder-btn"><i class="fa-solid fa-folder"></i></button>
             <button class="create-note-btn"><i class="fa-solid fa-file"></i></button>
@@ -52,19 +52,19 @@ export const notesTemplate = `
 
 export const flashcardsTemplate = `
     <div class="flashcards-view">
-        <h1>Flashcards</h1>
+        <h1 class="view-title">Flashcards</h1>
         <div class="stats-section">
             <p>Current streak: <span class="study-streak">0</span>d</p>
             <p>Time studied: <span class="hours-studied">0</span>h <span class="minutes-studied">0</span>m</p>
             <p>Total cards: <span class="flashcard-count">0</span></p>
         </div>
         <div class="deck-section">
-            <h2>Decks</h2>
+            <h2 class="subtitle">Decks</h2>
             <button class="create-deck-btn">Add a deck</button>
             <div class="flashcard-deck-container"></div>
         </div>
         <div class="deck-progression-section">
-        <h2>Progression</h2>
+        <h2 class="subtitle">Progression</h2>
         <div class="flashcard-deck-progression-container"></div>
     </div>
     </div>
@@ -112,19 +112,19 @@ export const flashcardEditTemplate = `
 
 export const templatesTemplate =  `
     <div class="templates">
-        <h1 class="templates-title">Templates</h1>
+        <h1 class="view-title">Templates</h1>
         <div class="stats-section">
             <p>Uses: <span class="total-uses-count">0</span></p>
             <p>Templates: <span class="template-count">0</span></p>
             <p>Most used: <span class="most-used-template"></span></p>
         </div>
         <div class="recent-section">
-            <h2>Recent templates</h2>
+            <h2 class="subtitle">Recent templates</h2>
             <button class="add-template-btn">Add a template</button>
             <div class="recent-templates"></div>
         </div>
         <div claa="other-section">
-            <h2>Other templates</h2>
+            <h2 class="subtitle">Other templates</h2>
             <div class="other-templates"></div>
         </div>
     </div>
@@ -253,4 +253,3 @@ export const editorTemplate = `
     
     </div>
 `
-// <div class="copyable-block"><i class="fa-regular fa-paste"></i>Copy block</div>

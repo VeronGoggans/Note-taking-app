@@ -3,13 +3,14 @@
     height: 100dvh;
     max-height: 100dvh;
     font-family: Roboto;
-    padding: 15px;
+    padding: 15px 5%;
     opacity: 0;
     transform: translateX(30%);
     transition: opacity .7s ease, transform .2s ease;
 }
 
 .sticky-wall-view h1 {
+    font-size: 56px;
     font-family: sans-serif;
     color: var(--important);
     margin-top: 40px;

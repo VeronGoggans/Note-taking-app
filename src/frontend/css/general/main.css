@@ -42,3 +42,14 @@ i {
     grid-template-columns: 220px 1fr;
     background-color: var(--background);
 }
+
+.view-title {
+    font-size: 56px;
+}
+
+.subtitle {
+    font-weight: 500;
+    color: var(--important);
+    margin-bottom: 30px;
+    font-family: sans-serif;
+}

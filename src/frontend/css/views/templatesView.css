@@ -1,6 +1,6 @@
 .templates {
     font-family: Roboto;
-    padding: 15px;   
+    padding: 15px 5%;   
     height: 100dvh;
     max-height: 100dvh;
     overflow-y: scroll;
@@ -12,7 +12,7 @@
     color: var(--important);
 }
 
-.templates h2 {
+.templates .subtitle {
     font-family: sans-serif;
     color: var(--important);
     margin-bottom: 30px;
@@ -49,11 +49,11 @@
     cursor: pointer;
     font-size: 16px;
     border-radius: 10px;
-    padding: 5px 10px;
+    padding: 10px 20px;
     border-radius: 7px; 
-    transition: 200ms;
-    color: white;
-    background-color: var(--secondary); 
+    transition: .2s;
+    color: var(--text);
+    background-color: transparent; 
 }
 
 .add-template-btn i {

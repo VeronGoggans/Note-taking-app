@@ -13,14 +13,10 @@
 
     /*Notes View*/
     --bookmark: #f3f4ff;
-    --favorite: #ffb7b7;
     --hover: rgba(92, 125, 255, .3); 
     --hover-bookmark-icon-if-bookmarked: rgba(92, 125, 255, .3);
     --hover-favorite-icon-if-favorited: rgb(255 141 141);
     --folder-name-input: #ced1e3;
-    --create-btn: rgb(232, 234, 241);
-    --create-btn-border: rgb(232, 234, 241);
-    --create-btn-hover: #dfe3f1;
 
     /*stickyWall view*/
     --add-sticky-btn: #eae9f9;
@@ -63,7 +59,7 @@
     --notification: #ffffff;
     --subtitle: #63656d;
     --sidebar: #fff; 
-    --searchbar: #eaecf1;
+    --searchbar: #f2f4f9;
     --sidebar-text: #444452; 
     --sidebar-text-hover: #5c7dff; 
     --card: #ffffff; 
@@ -80,6 +76,7 @@
     --placeholder: #d4d7e5;
     --selection: #b1daff;
     --dialog: #6fa2ff1c;
+    --card-shadow: #e6edfb; 
     --shadow: rgba(92, 98, 157, .1);
     --shadow-notification: #dcdee6;
     --modal: #ffffff;
@@ -132,11 +129,7 @@
     --hover-bookmark-icon-if-bookmarked: #434c71;
     --hover-favorite-icon-if-favorited: rgba(142, 223, 204, .3);
     --bookmark: #5063b1;
-    --favorite: #38958f;
     --hover: #3c4361; 
-    --create-btn: #252831;
-    --create-btn-border: #000;
-    --create-btn-hover: #434554;
     --folder-name-input: #5c7dff;
     
     /*Other*/
@@ -149,7 +142,7 @@
     --searchbar: #252831;
     --sidebar-text: #d6d8e5;
     --sidebar-text-hover: #5c7dff; 
-    --card: #2528314f;
+    --card: #363b4a85;
     --text: #bbbed2;
     --icon: #bbbed2;
     --icon-hover: #5c7dff;
@@ -165,6 +158,7 @@
     --selection: #314682;
     --dialog: rgb(0 0 0 / 25%);
     --shadow: rgba(0, 0, 0, 0.1);
+    --card-shadow: #0c0c1a; 
     --shadow-notification: #121216;
     --modal: #1f2129;
     --scrollbar-content-view: #3f4045;
@@ -188,14 +182,10 @@
 
     /*Notes View*/
     --bookmark: #f3f4ff;
-    --favorite: #ffb7b7;
     --hover: rgba(92, 125, 255, .3); 
     --hover-bookmark-icon-if-bookmarked: rgba(92, 125, 255, .3);
     --hover-favorite-icon-if-favorited: rgb(255 141 141);
     --folder-name-input: #ced1e3;
-    --create-btn: rgb(232, 234, 241);
-    --create-btn-border: rgb(232, 234, 241);
-    --create-btn-hover: #dfe3f1;
 
     /*Home View*/
 
@@ -235,13 +225,13 @@
     --notification: #ffffff;
     --subtitle: #63656d;
     --sidebar: #fff; 
-    --searchbar: #eaecf1;
+    --searchbar: #f2f4f9;
     --sidebar-text: #444452; 
     --sidebar-text-hover: #5c7dff; 
     --card: #ffffff; 
     --text: #444863;
     --icon: #4c4c68; 
-    --icon-hover: #444863;
+    --icon-hover: #5c7fdd;
     --important: #444863;
     --border-card: #dee1ef;
     --border-sidebar-right: #dee1ef; 
@@ -253,6 +243,7 @@
     --selection: #b1daff;
     --dialog: #6fa2ff1c;
     --shadow: rgba(92, 98, 157, .1);
+    --card-shadow: #e6edfb; 
     --shadow-notification: #dcdee6;
     --modal: #ffffff;
     --scrollbar-content-view: #cccfe1;

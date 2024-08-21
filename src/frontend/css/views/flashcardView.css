@@ -3,16 +3,18 @@
     height: 100dvh;
     max-height: 100dvh;
     font-family: Roboto;
-    padding: 15px;
+    padding: 15px 5%;
     overflow-y: scroll;
 }
 
 .flashcards-view .flashcard-deck-container {
     display: grid;
-    column-gap: 20px;
+    column-gap: 40px;
+    padding: 0 10px;
     grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
     grid-template-rows: repeat(auto-fill, 170px);
     overflow-y: scroll;
+    overflow: visible;
 }
 
 .flashcards-view h1 {
@@ -22,17 +24,25 @@
     background-image: linear-gradient(45deg, #5c7fdd, #ff0057);
 }
 
+/*Flashcard Deck Card Code Below*/
+
 .flashcards-view .flashcard-deck,
 .home .flashcard-deck {
     cursor: pointer;
-    border: 1px solid var(--border-card);
+    /* border: 1px solid var(--border-card); */
+    box-shadow: 0 0 10px var(--card-shadow);
     background-color: var(--card);
     height: 150px;
     padding: 10px 20px;
     border-radius: 10px;
     opacity: 0;
     transform: translateY(30%);
-    transition: opacity .7s ease, transform .25s ease;
+    transition: opacity .7s ease, transform .25s ease, scale .2s;
+}
+
+.flashcards-view .flashcard-deck:hover {
+    scale: 1.05;
+    box-shadow: 0 0 20px var(--card-shadow);
 }
 
 .flashcards-view .flashcard-deck .deck-name,
@@ -73,6 +83,8 @@
     font-family: sans-serif;
 }
 
+/*Deck & Stats Section Code Below*/
+
 .flashcards-view .deck-section {
     position: relative;
     max-height: 750px;
@@ -84,11 +96,6 @@
     column-gap: 50px;
 }
 
-.flashcards-view .deck-section h2 {
-    font-family: sans-serif;
-    color: var(--text);
-    margin-bottom: 30px;
-}
 
 .flashcards-view .deck-section .continue-studying,
 .flashcards-view .deck-progression-section p {
@@ -96,19 +103,21 @@
     color: #a4a8bb;
 }
 
-.flashcards-view .create-deck-btn {
+
+.create-deck-btn {
     position: absolute;
-    background-color: var(--secondary);
-    color: white;
+    background-color: transparent;
+    color: var(--text);
     font-size: 16px;
-    padding: 5px 20px;
+    padding: 10px 20px;
     border-radius: 5px;
     top: 0;
     right: 10px;
 }
 
-.flashcards-view .create-deck-btn:hover {
+.create-deck-btn:hover {
     background-color: #222428;
+    color: #fff;
 }
 
 .flashcards-view .stats-section p {
@@ -123,12 +132,16 @@
     color: var(--stats-span-color);
 }
 
+/*Progession Card Code Below*/
+
 .flashcard-deck-progression-container {
     max-height: 500px;
     overflow-y: scroll;
+    padding: 0 10px;
 }
 
-.flashcards-view .flashcard-deck-progression {
+.flashcard-deck-progression {
+    position: relative;
     display: flex;
     align-items: center;
     width: fit-content;
@@ -136,36 +149,54 @@
     margin: 20px 0;
     border-radius: 7px;
     column-gap: 10px;
-    border: 1px solid var(--border-card);
+    /* border: 1px solid var(--border-card); */
     background-color: var(--card);
     opacity: 0;
     transform: translateY(30%);
     transition: opacity .7s ease, transform .25s ease;
 }
 
-.flashcards-view .flashcard-deck-progression span {
-    color: #a4a8bb;
-    font-family: sans-serif;
+.flashcard-deck-progression::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    border-radius: 5px;
+    background-color: #5c7fdd;
+    transition: .3s;
 }
 
-.flashcards-view .flashcard-deck-progression .progress {
+.flashcard-deck-progression:hover::before {
+    width: 100%;
+}
+
+.flashcard-deck-progression span {
+    color: #a4a8bb;
+    font-family: sans-serif;
+    width: 170px;
+    text-align: center;
+}
+
+.flashcard-deck-progression .progress {
     position: relative;
     display: flex;
-    width: 400px;
-    min-width: 100px !important; 
-    height: 7px;
+    width: 200px;
+    min-width: 100px; 
+    height: 5px;
     background-color: var(--progress-color2);
     border-radius: 5px;
     overflow: hidden;
 }
 
-.flashcards-view .flashcard-deck-progression .progress .progress__fill {
+.flashcard-deck-progression .progress .progress__fill {
     width: 0%;
     height: 100%;
     background: var(--progress-color1)
 }
 
-.flashcards-view .flashcard-deck-progression button {
+.flashcard-deck-progression button {
     background-color: var(--background);
     border-radius: 5px;
     width: 30px;
@@ -174,7 +205,7 @@
     transition: 150ms;
 }
 
-.flashcards-view .flashcard-deck-progression button:hover {
+.flashcard-deck-progression button:hover {
     background-color: var(--hover);
     color: #5c7fdd;
 }
@@ -182,9 +213,4 @@
 .flashcards-view .deck-progression-section {
     font-family: Roboto;
     margin-bottom: 50px
-}
-
-.flashcards-view .deck-progression-section h2 {
-    font-family: sans-serif;
-    color: var(--important);
 }

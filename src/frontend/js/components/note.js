@@ -25,7 +25,7 @@ export class Note {
         this.HOST = CNode.create('div', { 'class': 'note', 'id': this.id, 'draggable': 'true'});
         this.HOST.dataset.info = `${this.created}--${this.lastEdit}`;
         this.NAME_BOX = CNode.create('div', { 'class': 'note-name-box' });
-        this.H4 = CNode.create('h4', { 'contentEditable': 'false', 'textContent': formatName(this.name), 'spellCheck': false });
+        this.H4 = CNode.create('h4', {'textContent': formatName(this.name)});
         this.CONTENT_BOX = CNode.create('div', { 'class': 'note-content-box' });
         this.CONTENT = CNode.create('p', { 'innerHTML': this.content});
         this.UTIL_BAR = CNode.create('div', { 'class': 'note-util-bar' });

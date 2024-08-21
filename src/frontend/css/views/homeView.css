@@ -2,7 +2,7 @@
     display: grid; 
     grid-template-rows: 50px 1fr;
     font-family: Roboto;
-    padding: 15px;   
+    padding: 15px 5%;   
     height: 100dvh;
     max-height: 100dvh;
 }
@@ -31,7 +31,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     grid-template-rows: repeat(auto-fill, 50px);
-    gap: 15px;
+    gap: 20px;
 }
 
 .home .recent-folder {
@@ -47,7 +47,12 @@
     color: var(--icon);
     opacity: 0;
     transform: translateY(30%);
-    transition: opacity .7s ease, transform .25s ease;
+    transition: opacity .7s ease, transform .25s ease, scale .2s ease;
+}
+
+.home .recent-folder:hover {
+    scale: 1.05;
+
 }
 
 .home .recent-folder i {
@@ -60,7 +65,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     grid-template-rows: repeat(auto-fill, 280px);
-    gap: 15px;
+    gap: 40px;
     margin-bottom: 50px;
 }
 
@@ -72,11 +77,15 @@
     border-radius: 15px;
     background-color: var(--card);
     display: grid;
-    grid-template-rows: 40px 1fr;
     border: 1px solid var(--border-card);
+    grid-template-rows: 40px 1fr;
     opacity: 0;
     transform: translateY(30%);
-    transition: opacity .7s ease, transform .25s ease;
+    transition: opacity .7s ease, transform .25s ease, scale .2s ease;
+}
+
+.home .recent-notes .recent-note:hover {
+    scale: 1.05;
 }
 
 .flashcard-decks {
@@ -84,5 +93,15 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
     grid-template-rows: repeat(auto-fill, 150px);
-    gap: 15px;
+    gap: 20px;
+}
+
+.home .flashcard-deck {
+    border: 1px solid var(--border-card);
+    box-shadow: none;
+    transition: scale .2s ease;
+}
+
+.home .flashcard-deck:hover {
+    scale: 1.05;
 }

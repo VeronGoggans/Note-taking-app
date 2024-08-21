@@ -13,13 +13,13 @@
         "content": "storage/templates/template-t-27.txt",
         "last_edit": "18/08/2024 04:06",
         "creation": "09/08/2024",
-        "uses": 9
+        "uses": 10
     },
     {
         "id": "t-28",
         "name": "Completed tasks",
         "content": "storage/templates/template-t-28.txt",
-        "last_edit": "19/08/2024 02:23",
+        "last_edit": "21/08/2024 15:16",
         "creation": "10/08/2024",
         "uses": 8
     },
@@ -27,7 +27,7 @@
         "id": "t-33",
         "name": "Bugs List",
         "content": "storage/templates/template-t-33.txt",
-        "last_edit": "19/08/2024 16:58",
+        "last_edit": "21/08/2024 15:15",
         "creation": "19/08/2024",
         "uses": 1
     }
