@@ -5,6 +5,7 @@ import { TextFormatter } from "../textFormat/textFormatter.js";
 import { formatDocumentLocation } from "../util/formatters.js";
 import { TextBlockHandler } from "../textFormat/textBlockHandler.js";
 import { SlashCommand } from "../textFormat/slashCommand.js";
+import { AnimationHandler } from "../handlers/animation/animationHandler.js";
 
 export class TextEditorView {
   constructor(controller, applicationController, dialog) {
@@ -22,6 +23,7 @@ export class TextEditorView {
     this.dropdownHelper = new DropdownHelper(this, this.dropdowns, this.dropdownOptions, this.templateList);
     this.keyEventListener = new KeyEventListener(this);
     this.textEditorEventListener = new TextEditorEventListener(this.page, this.editor, this.slashCommand);
+    AnimationHandler.fadeInFromSide(this.textEditor)
   }
 
   /**

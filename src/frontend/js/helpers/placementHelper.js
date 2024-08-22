@@ -1,6 +1,6 @@
 export class PlacementHelper {
     constructor() {
-        this.formatBarWidth = 471.6 //Pixels
+        this.formatBarWidth = 440 //Pixels
         this.formatBarHeigth = 51.6 // Pixels
         this.commandBarHeigth = 291.6 //Pixels
         this.commandBarWidth = 269.78 // Pixels
@@ -45,9 +45,13 @@ export class PlacementHelper {
      */
     #checkForWidthOverflow(rect, width) {
         const padding = 20; //Pixels
-        const screenWidth = window.innerWidth;
+        const screenWidth = this.editor.clientWidth;
         const spawnPoint = rect.left + window.scrollX;
         const totalWidth = spawnPoint + width;
+        console.log(rect);
+        
+        console.log(`Rect: ${rect}\nscreenwidth: ${screenWidth}\nspawnPoint: ${spawnPoint}\ntotalwidth: ${totalWidth}`);
+        
 
         if (totalWidth > screenWidth) {
             const pixelOverflow = totalWidth - screenWidth;

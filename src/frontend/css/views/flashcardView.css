@@ -17,13 +17,6 @@
     overflow: visible;
 }
 
-.flashcards-view h1 {
-    font-family: sans-serif;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    background-image: linear-gradient(45deg, #5c7fdd, #ff0057);
-}
-
 /*Flashcard Deck Card Code Below*/
 
 .flashcards-view .flashcard-deck,
@@ -116,7 +109,7 @@
 }
 
 .create-deck-btn:hover {
-    background-color: #222428;
+    background-color: #5c7fdd;
     color: #fff;
 }
 

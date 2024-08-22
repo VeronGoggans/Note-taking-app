@@ -72,14 +72,9 @@
 
 .current-folder-name-container h1 {
     display: flex;
-    font-size: 56px;
     height: fit-content;
     margin: 0px;
-    color: var(--text);
-    -webkit-text-fill-color: transparent;
-    background-image: linear-gradient(45deg, #5c7fdd, #ad62cc);
-    background-clip: text;
-    font-family: sans-serif;
+    color: var(--text)
 }
 
 .content-folder-view {

@@ -7,11 +7,6 @@
     outline: none;
 }
 
-.templates h1 {
-    font-family: sans-serif;
-    color: var(--important);
-}
-
 .templates .subtitle {
     font-family: sans-serif;
     color: var(--important);
@@ -61,7 +56,7 @@
 }
 
 .add-template-btn:hover {
-    background-color: #222428;
+    background-color: #5c7fdd;
     color: white;
 }
 

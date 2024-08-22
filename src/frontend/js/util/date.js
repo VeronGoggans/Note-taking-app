@@ -83,6 +83,9 @@ export function getPassedTime(dateString) {
     const month = 30 * day; 
     const year = 365 * day;
 
+    if (passedTime < minute) {
+        return 'now'
+    }
     if (passedTime < hour) {
         return `${Math.floor(passedTime / minute)}m ago`;
     } else if (passedTime < day) {
@@ -107,4 +110,18 @@ export function getMinutesDifference(startDate, endDate) {
 
     // Return the difference as an integer
     return Math.round(diffInMinutes);
+}
+
+
+export function greetBasedOnTime() {
+    const now = new Date();
+    const hour = now.getHours();
+
+    if (hour >= 5 && hour < 12) {
+        return "Good Morning";
+    } else if (hour >= 12 && hour < 18) {
+        return "Good Afternoon";
+    } else {
+        return "Good Night";
+    }
 }

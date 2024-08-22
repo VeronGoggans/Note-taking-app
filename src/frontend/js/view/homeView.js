@@ -3,6 +3,7 @@ import { RecentNote } from "../components/note.js";
 import { FlashcardDeck } from "../components/flashcardDeck.js";
 import { FolderObjectArray, NoteObjectArray, FlashcardDeckObjectArray } from "../util/array.js";
 import { AnimationHandler } from "../handlers/animation/animationHandler.js";
+import { greetBasedOnTime } from "../util/date.js";
 
 export class HomeView {
     constructor(controller, applicationController, dialog, notificationHandler) {
@@ -96,6 +97,7 @@ export class HomeView {
     }
 
     #initializeDomElements() {
+        document.querySelector('.view-title').textContent = greetBasedOnTime();
         this.recentFolderContainer = document.querySelector('.recent-folders');
         this.recentNoteContainer = document.querySelector('.recent-notes');
         this.flashcardDeckContainer = document.querySelector('.flashcard-decks');

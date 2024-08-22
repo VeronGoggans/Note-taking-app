@@ -19,6 +19,10 @@
     overflow-y: scroll;
 }
 
+.home .view-title {
+    margin: 20px auto;
+}
+
 .home .middle .block-title {
     font-family: sans-serif;
     color: var(--subtitle);
@@ -76,8 +80,8 @@
     max-height: 280px;
     border-radius: 15px;
     background-color: var(--card);
+    box-shadow: 0 0 10px var(--card-shadow);
     display: grid;
-    border: 1px solid var(--border-card);
     grid-template-rows: 40px 1fr;
     opacity: 0;
     transform: translateY(30%);
@@ -97,8 +101,6 @@
 }
 
 .home .flashcard-deck {
-    border: 1px solid var(--border-card);
-    box-shadow: none;
     transition: scale .2s ease;
 }
 

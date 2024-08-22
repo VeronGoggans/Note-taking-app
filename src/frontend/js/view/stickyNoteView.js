@@ -11,7 +11,6 @@ export class StickyNoteView {
         this.#initializeDomElements();
         this.#attachEventListeners();
         AnimationHandler.fadeInFromSide(this.viewElement);
-        
     }
 
     renderAll(stickyNotes) {

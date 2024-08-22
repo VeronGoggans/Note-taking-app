@@ -4,6 +4,9 @@
    grid-template-rows: 120px 1fr;
    height: 100dvh;
    background-color: var(--editor);
+   opacity: 0;
+   transform: translateX(30%);
+   transition: opacity .7s ease, transform .2s ease;
 }
 
 .editor {

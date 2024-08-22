@@ -10,6 +10,7 @@ export const homeTemplate = `
         
         </div>
         <div class="middle">
+        <h1 class="view-title"></h1>
         <p class="block-title">Recent folders</p>
         <div class="recent-folders"></div>
         <p class="block-title">Your recent work</p>
@@ -35,7 +36,7 @@ export const notesTemplate = `
     <div class="notes-bottom">
         <div class="content-folder-view">
         <div class="current-folder-name-container">
-            <h1 class="current-folder-name">Home</h1>
+            <h1 class="current-folder-name view-title">Home</h1>
             <div>
             <button title="Create folder" class="create-folder-btn"><i class="fa-solid fa-folder"></i></button>
             <button class="create-note-btn"><i class="fa-solid fa-file"></i></button>
@@ -132,7 +133,7 @@ export const templatesTemplate =  `
 
 export const stickyWallTemplate = `
     <div class="sticky-wall-view">
-        <h1>Sticky Wall</h1>
+        <h1 class="view-title">Sticky Wall</h1>
         <div class="sticky-wall">
             <button class="add-sticky-btn"><i class="fa-solid fa-plus"></i></button>
         </div>
@@ -142,7 +143,7 @@ export const stickyWallTemplate = `
 export const settingsTemplate = `
     <div class="settings">
     <div class="center">
-        <h1 class="settings-title">Settings</h1>
+        <h1 class="view-title">Settings</h1>
         <div class="settings-container">
             <h3>Theme</h3>
             <p>Select a theme</p>
