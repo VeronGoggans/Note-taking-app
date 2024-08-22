@@ -120,6 +120,14 @@ export class TextEditorView {
     this.controller.saveCardToModel(flashcard);
   }
 
+  /**
+   * Temporarely stores the deck name
+   * 
+   * @param {Object} flashcard 
+   */
+  saveDeckName(deckName) {
+    this.controller.saveDeckName(deckName)
+  }
 
   #getStoredEditorObject() {
     const storedEditorData = this.controller.getStoredObject();
@@ -180,7 +188,7 @@ export class TextEditorView {
     this.findButton.addEventListener('click', () => {this.dialog.renderSearchModal(this.toolbar)});  
     this.deckButton.addEventListener('click', () => {
       // Get currently stored cards
-      const flashcards = this.controller.getSavedFlashcards();
-      this.dialog.renderNewDeckModal(this.controller, flashcards)});  
+      const { flashcards, deckName } = this.controller.getStoredDeckInfo();
+      this.dialog.renderNewDeckModal(this.controller, flashcards, deckName)});  
   }
 }

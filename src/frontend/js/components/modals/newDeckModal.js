@@ -2,12 +2,13 @@ import { CNode } from "../../util/CNode.js";
 import { AnimationHandler } from "../../handlers/animation/animationHandler.js";
 
 export class NewDeckModal {
-    constructor(controller, cards) {
+    constructor(controller, cards, deckName) {
         this.controller = controller;
         this.dialog = document.querySelector('.dialog');
         this.flashcards = cards;
 
-        if (cards !== undefined && cards.length > 0) {
+        // Setting up the flashcard counter
+        if (cards !== null && cards.length > 0) {
             this.cardCount = cards.length;
         } else {
             this.cardCount = 0;
@@ -15,7 +16,7 @@ export class NewDeckModal {
         
         this.HOST = CNode.create('div', {'class': 'create-deck-modal'});
         this.MODAL_TITLE = CNode.create('h2', {'textContent': 'Creating a new deck'});
-        this.DECK_NAME_INPUT = CNode.create('input', {'type': 'text', 'class': 'deck-name-input', 'placeholder': 'Deck name'});
+        this.DECK_NAME_INPUT = CNode.create('input', {'type': 'text', 'class': 'deck-name-input', 'placeholder': 'Deck name', 'value': deckName === null ? '' : deckName});
         this.CARD_TERM = CNode.create('input', {'type': 'text', 'class': 'term-input', 'placeholder': 'Card term'});
         this.DESCRIPTION_SECTION = CNode.create('div', {'class': 'description-section'});
         this.RICH_TEXT_OPTIONS = CNode.create('div', {'class': 'rich-text-options'});
@@ -29,7 +30,7 @@ export class NewDeckModal {
         this.CARD_DECSRIPTION = CNode.create('div', {'class': 'card-description', 'contentEditable': true, 'spellCheck': false});
         this.NEXT_BTN = CNode.create('button', {'class': 'next-card-btn', 'textContent': 'Save card'});
         this.SAVE_BTN = CNode.create('button', {'class': 'save-deck-btn', 'textContent': 'Save deck'});
-        this.CARD_COUNT_SPAN = CNode.create('span', {'textContent': `${cards === undefined ? '0' : cards.length} cards`, 'class': 'card-count'});
+        this.CARD_COUNT_SPAN = CNode.create('span', {'textContent': `${cards === null ? '0' : cards.length} cards`, 'class': 'card-count'});
 
         this.#attachEventListeners();
         return this.#render();
@@ -84,6 +85,10 @@ export class NewDeckModal {
             const flashcard = this.#saveCardInput();
             this.controller.saveCardToModel(flashcard);
 
+            // Save the deck name if not already saved
+            const deckName = this.DECK_NAME_INPUT.value
+            this.controller.saveDeckName(deckName)
+
             // Clear input
             this.#clearPreviousCardInput();
 
@@ -107,9 +112,15 @@ export class NewDeckModal {
         });
 
         this.SAVE_BTN.addEventListener('click', () => {
-            const flashcards = this.controller.getSavedFlashcards();
+            // Check if there is a flashcard being working on that hasn't been stored yet            
+            if (this.CARD_DECSRIPTION.innerHTML.trim() !== '' || this.CARD_TERM.value.trim() !== '') {
+                const flashcard = this.#saveCardInput();
+                this.controller.saveCardToModel(flashcard);
+            }
+            // Save the deck 
+            const { flashcards, deckName } = this.controller.getStoredDeckInfo();
             this.controller.addDeck(
-                this.DECK_NAME_INPUT.value,
+                deckName,
                 flashcards
             )
         })

@@ -21,6 +21,10 @@ class ObjectArray {
         return this.objects.find(obj => obj.id === objectId)
     }
 
+    getLast() {
+        return this.objects[this.objects.length - 1]
+    }
+
     clear() {
         this.objects = [];
     }

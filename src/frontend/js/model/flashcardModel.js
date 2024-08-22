@@ -4,14 +4,22 @@
  */
 export class FlashcardModel {
     constructor() {
+        this.deckName = 'Untitled'
         this.flashcards = []
     }
 
-    save(flashcard) {
+    storeDeckName(deckName) {
+        this.deckName = deckName
+    }
+
+    storeFlashcard(flashcard) {
         this.flashcards.push(flashcard)
     }
 
-    getSavedFlashcards() {
-        return this.flashcards
+    getStoredDeckInfo() {
+        return {
+            flashcards: this.flashcards,
+            deckName: this.deckName
+        }
     }
 }

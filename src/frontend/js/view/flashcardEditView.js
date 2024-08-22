@@ -29,6 +29,12 @@ export class FlashcardEditView {
 
 
     renderOne(flashcard) {
+        // Adding the missing attributes 
+        // So it can still be found/updated by the Object Array
+        const lastFlashcard = this.flashcardObjects.getLast()
+        flashcard['rating'] = 'idle';
+        flashcard['id'] = lastFlashcard.id += 1
+
         const flashcardObj = this.#flashcard(flashcard);
         AnimationHandler.fadeInFromBottom(flashcardObj);
         this._flashcardsContainer.appendChild(flashcardObj);
@@ -49,9 +55,9 @@ export class FlashcardEditView {
 
     }
 
-    #flashcard(flashcard) {
+    #flashcard(flashcard, unsaved = false) {
         this.flashcardObjects.add(flashcard);
-        return new Flashcard(flashcard, this.dialog, this.controller);
+        return new Flashcard(flashcard, this.dialog, this.controller, unsaved);
     }
 
     #initializeDomElements() {
@@ -72,6 +78,9 @@ export class FlashcardEditView {
             let newDeckName = null;
             if (this._deckName.textContent !== this.deck.name) {
                 newDeckName = this._deckName.textContent;
+            } else {
+                // Set the newDeck name to the old deck name 
+                newDeckName = this.deck.name
             }
             await this.controller.saveDeckChanges(this.deck.id, newDeckName);
             this.controller.loadPreviousView();

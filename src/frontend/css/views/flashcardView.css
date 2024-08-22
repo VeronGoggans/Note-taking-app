@@ -10,9 +10,10 @@
 .flashcards-view .flashcard-deck-container {
     display: grid;
     column-gap: 40px;
+    row-gap: 25px;
     padding: 0 10px;
     grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-    grid-template-rows: repeat(auto-fill, 170px);
+    grid-template-rows: repeat(auto-fill, 150px);
     overflow-y: scroll;
     overflow: visible;
 }
@@ -22,7 +23,6 @@
 .flashcards-view .flashcard-deck,
 .home .flashcard-deck {
     cursor: pointer;
-    /* border: 1px solid var(--border-card); */
     box-shadow: 0 0 10px var(--card-shadow);
     background-color: var(--card);
     height: 150px;

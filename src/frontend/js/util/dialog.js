@@ -71,8 +71,8 @@ export class Dialog {
         this.addChild(new DeleteModal(id, name, view))
     }
 
-    renderNewDeckModal(controller, flashcards) {
-        this.addChild(new NewDeckModal(controller, flashcards));
+    renderNewDeckModal(controller, flashcards = null, deckName = null) {
+        this.addChild(new NewDeckModal(controller, flashcards, deckName));
         this.dialog.querySelector('.create-deck-modal input').focus();
     }
 

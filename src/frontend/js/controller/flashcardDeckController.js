@@ -51,19 +51,29 @@ export class FlashcardDeckController {
     }
 
     /**
-     * Temporarely saves a flashcard object
+     * Temporarely stores a flashcard object
      * 
      * @param {Object} flashcard 
      */
     saveCardToModel(flashcard) {
-        this.flashcardModel.save(flashcard);
+        this.flashcardModel.storeFlashcard(flashcard);
     }
 
     /**
-     * Returns a list of saved flashcard objects
-     * @returns {Array[Object]}
+     * Temporarely stores the deck name
+     * 
+     * @param {Object} flashcard 
+     */
+    saveDeckName(deckName) {
+        this.flashcardModel.storeDeckName(deckName)
+    }
+
+    /**
+     * Returns a Object that contains the deck name and 
+     * a list of saved flashcard objects
+     * @returns {Object}
     */
-    getSavedFlashcards() {
-        return this.flashcardModel.getSavedFlashcards();
+    getStoredDeckInfo() {
+        return this.flashcardModel.getStoredDeckInfo();
     }
 }

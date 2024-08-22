@@ -53,5 +53,6 @@ export class FlashcardEditController {
 
     addFlashcard(flashcard) {
         this.editModel.save(flashcard)
+        this.view.renderOne(flashcard)
     }
 }

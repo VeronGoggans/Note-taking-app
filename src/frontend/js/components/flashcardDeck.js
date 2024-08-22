@@ -78,10 +78,11 @@ export class FlashcardProgression {
 }
 
 export class Flashcard {
-    constructor(flashcard, dialog, controller) {
+    constructor(flashcard, dialog, controller, unsaved = false) {
         this.flashcard = flashcard;
         this.dialog = dialog;
         this.controller = controller;
+        this.unsaved = unsaved;
 
         this.#initializeDomElements();
         this.#applyRatingStyle();
@@ -111,6 +112,9 @@ export class Flashcard {
 
     #initializeDomElements() {
         this.HOST = CNode.create('div', {'class': 'flashcard', 'id': this.flashcard.id});
+        if (this.unsaved) {
+            this.HOST.dataset = 'unsaved-flashcard'
+        }
         this.NAME = CNode.create('h3', {'textContent': this.flashcard.term});
         this.UTIL_BAR = CNode.create('div', {'class': 'util-bar'});
         this.DELETE_BUTTON = CNode.create('button', {'class': 'delete-flashcard-btn', 'innerHTML': '<i class="fa-solid fa-trash"></i>'});
@@ -122,7 +126,12 @@ export class Flashcard {
     #attachEventListeners() {
         this.EDIT_BUTTON.addEventListener('click', () => {this.dialog.renderEditFlashcardModal(this.controller, this.flashcard)});
         this.DELETE_BUTTON.addEventListener('click', () => {
-            AnimationHandler.fadeOutCard(this.HOST)
-            this.controller.deleteFlashcard(this.flashcard.id)});
+            AnimationHandler.fadeOutCard(this.HOST);
+
+            // Check if the flashcard being deleted is saved (Known/stored by the backend)
+            if (Object.keys(this.HOST.dataset).length === 0) {
+                this.controller.deleteFlashcard(this.flashcard.id)
+            }
+        });
     }
 }

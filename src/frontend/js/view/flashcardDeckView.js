@@ -117,6 +117,16 @@ export class FlashcardDeckView {
         this.controller.saveCardToModel(flashcard);
     }
 
+    /**
+     * Temporarely stores the deck name
+     * 
+     * @param {Object} flashcard 
+     */
+    saveDeckName(deckName) {
+        this.controller.saveDeckName(deckName)
+    }
+
+
     #flashcardDeck(deck) {
         this.deckObjects.add(deck);
         return new FlashcardDeck(deck, this);
