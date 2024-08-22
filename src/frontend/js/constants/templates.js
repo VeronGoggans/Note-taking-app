@@ -254,3 +254,15 @@ export const editorTemplate = `
     
     </div>
 `
+
+export const templates = {
+    home: homeTemplate,
+    notes: notesTemplate,
+    flashcardsHome: flashcardsTemplate,
+    flashcardsPractice: flashcardPracticeTemplate,
+    flashcardEdit: flashcardEditTemplate,
+    templates: templatesTemplate,
+    stickyWall: stickyWallTemplate,
+    settings: settingsTemplate,
+    editor: editorTemplate
+}

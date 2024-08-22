@@ -37,7 +37,7 @@
 }
 
 #editor-search-btn:hover {
-    background-color: #a0b3ffa1;
+    background-color: var(--hover);
     color: #819aff;
 }
 
@@ -75,32 +75,32 @@
     font-family: Roboto;
     visibility: hidden;
     opacity: 0;
-    border: 1px solid var(--editor-border);
     position: absolute;
     background-color: var(--editor-dropdown);
     display: flex;
     flex-direction: column;
-    width: 140px;
+    width: 200px;
     right: 25px;
-    border-radius: 7px;
+    border-radius: 10px;
     padding: 10px;
-    font-size: 14px;
-    transition: 100ms;
+    font-size: 16px;
+    transition: 150ms;
     z-index: 2;
+    box-shadow: 0 0 10px var(--card-shadow);
 }
 
 .editor-options-dropdown .options button {
     font-family: Roboto;
     display: flex;
     align-items: center;
-    height: 30px;
+    font-size: 15px;
     margin: 5px 0;
-    padding: 5px 2px;
-    border-radius: 15px;
+    padding: 5px;
+    border-radius: 7px;
     font-weight: 600;
     color: var(--editor-text);
     background-color: transparent;
-    transition: background-color 100ms ease;
+    transition: background-color 150ms ease;
     text-align: start;
 }
 
@@ -123,7 +123,6 @@
     position: absolute;
     background-color: var(--dropdown);
     border-radius: 10px;
-    border: 1px solid var(--editor-border);
     width: 250px;
     max-height: 350px;
     padding: 30px 20px;
@@ -135,6 +134,7 @@
     transition: 100ms;
     visibility: hidden;
     opacity: 0;
+    box-shadow: 0 0 10px var(--card-shadow);
 }
 
 .templates-dropdown .options span {
@@ -173,7 +173,7 @@
 .save-note-btn:hover,
 #editor-options-btn:hover,
 #exit-editor-btn:hover {
-    background-color: var(--hover-toolbar-btns);
+    background-color: var(--hover);
     color: #5c7dff;
 }
 

@@ -73,3 +73,8 @@
     background-color: var(--hover-sidebar);
     color: var(--sidebar-text-hover);
 }
+
+.active-view {
+    background-color: var(--hover-sidebar) !important;
+    color: var(--sidebar-text-hover) !important;
+}

@@ -5,32 +5,32 @@
     align-items: center;
     justify-content: center;
     background-color: var(--modal);
-    width: 300px;
-    height: 200px;
+    width: 350px;
+    height: 250px;
     border-radius: 20px;
     font-weight: 600;
     box-shadow: 0 0 10px var(--shadow);
   }
   
   .delete-warning {
-    display: inline-flex;
     color: var(--text);
-    font-size: 16px;
+    font-size: 20px;
   }
   
   .delete-folder-name {
-    display: inline-flex;
     color: var(--important);
     font-weight: 600;
-    font-size: 14px;
+    font-size: 16px;
+    font-family: sans-serif;
   }
   
   .confirm-delete-folder-btn {
-    background-color: var(--toolbar);
+    background-color: var(--searchbar);
     padding: 10px 30px;
     border-radius: 10px;
     font-size: 16px;
     color: var(--text);
+    margin-top: 10px;
   }
   
   .confirm-delete-folder-btn:hover,

@@ -12,7 +12,8 @@ import { NotificationHandler } from "../handlers/userFeedback/notificationHandle
 import { FlashcardDeckController } from "./flashcardDeckController.js";
 import { FlashcardPracticeController } from "./flashcardPracticeController.js";
 import { FlashcardEditController } from "./flashcardEditController.js";
-import { flashcardsTemplate, flashcardPracticeTemplate, notesTemplate, settingsTemplate, editorTemplate, homeTemplate, templatesTemplate, flashcardEditTemplate, stickyWallTemplate } from "../constants/templates.js";
+import { flashcardsTemplate, flashcardPracticeTemplate, notesTemplate, settingsTemplate, editorTemplate, 
+    homeTemplate, templatesTemplate, flashcardEditTemplate, stickyWallTemplate, templates } from "../constants/templates.js";
 
 export class ApplicationController {
     constructor() {
@@ -43,18 +44,9 @@ export class ApplicationController {
             editor: this.textEditorController
         }
     
-        this.templates = {
-            home: homeTemplate,
-            notes: notesTemplate,
-            flashcardsHome: flashcardsTemplate,
-            flashcardsPractice: flashcardPracticeTemplate,
-            flashcardEdit: flashcardEditTemplate,
-            templates: templatesTemplate,
-            stickyWall: stickyWallTemplate,
-            settings: settingsTemplate,
-            editor: editorTemplate
-        }
+        this.templates = templates
         this.initView('home')
+        document.querySelector('#home-btn').classList.add('active-view');
         this.settingController.loadCurrentTheme()
     }
 

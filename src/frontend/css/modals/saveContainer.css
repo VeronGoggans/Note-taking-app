@@ -1,6 +1,6 @@
 .dont-forget-to-save-container {
     position: relative;
-    height: 200px;
+    height: 250px;
     width: 350px;
     border-radius: 20px;
     display: flex;
@@ -12,10 +12,9 @@
   }
   
   .dont-forget-to-save-container h1 {
-    margin: 0;
     position: relative;
-    bottom: 10px;
     color: var(--important);
+    font-family: sans-serif;
   }
   
   .dont-forget-to-save-container p {
@@ -27,19 +26,36 @@
   }
   
   .exit-without-save-btn {
-    padding: 10px 20px;
+    position: relative;
+    padding: 13px 35px;
     margin: 0 5px;
-    border-radius: 10px;
     font-size: 16px;
-    background-color: var(--editor);
+    background-color: transparent;
     color: var(--text);
   }
   
   .exit-with-save-btn {
-    padding: 10px 20px;
+    position: relative;
+    overflow: hidden;
+    padding: 13px 35px;
     margin: 0 5px;
-    border-radius: 10px;
+    border-radius: 5px;
     font-size: 16px;
-    background-color: var(--editor);
+    background-color: transparent;
     color: #5c7dff;
+  }
+
+  .exit-with-save-btn::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: var(--hover);
+    transition: .2s;
+  }
+
+  .exit-with-save-btn:hover::before {
+    width: 100%;
   }

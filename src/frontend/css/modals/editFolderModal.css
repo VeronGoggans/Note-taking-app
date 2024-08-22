@@ -14,7 +14,7 @@
 .edit-folder-modal h2 {
     color: var(--important);
     font-family: sans-serif;
-    font-weight: 500;
+    font-size: 32px;
 }
 
 .folder-settings {
@@ -46,8 +46,8 @@
     height: 45px;
     margin-bottom: 10px;
     color: var(--text);
-    font-size: 18px;
-    width: 300px;
+    font-size: 20px;
+    width: 100%;
     transition: 200ms;
 }
 
@@ -58,8 +58,8 @@
 
 .cancel-folder-customization-btn {
     border-radius: 7px;
-    width: 80px;
-    height: 30px;
+    width: 120px;
+    height: 40px;
     background-color: var(--toolbar);
     font-size: 16px;
     color: var(--text);
@@ -70,8 +70,12 @@
     background-color: #5c7dff;
     color: #fff;
     font-size: 16px;
-    height: 30px;
-    width: 80px;
+    height: 40px;
+    width: 120px;
+}
+
+.save-folder-customisations-btn:hover {
+    background-color: #476cff;
 }
 
 .cancel-folder-customization-btn:hover {

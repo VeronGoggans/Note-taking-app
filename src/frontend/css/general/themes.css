@@ -37,15 +37,7 @@
     --important-text-color: #444863;
     --important-icon-color: #dde0ec;
 
-    --copy-background-color: #393742;
-    --copy-text-color: #edeffd;
-    --copy-icon-color: #1e1e28;
-    --copy-icon-text-color: #edeffd;
-    --copy-text-color-hover: #5c7fdd;
-
     --editor-dropdown: #ffffff;
-    --editor-dropdown-hover: rgba(92, 125, 255, .3);
-    --editor-dropdown-hover-color: #383838;
 
     --toolbar-btn-text: #4f578f;
     --hover-toolbar-btns: rgba(185, 198, 250, 0.5);
@@ -98,19 +90,12 @@
     --editor-container-shadow: transparent;
     --editor-container-input: #16171c;
     --editor-dropdown: #242630;
-    --editor-dropdown-hover: #191a20;
-    --editor-dropdown-hover-color: #5c7dff;
     --dropdown: #1f2129;
 
     --important-background-color: #ffefb3;
     --important-text-color: #101118;
     --important-icon-color: #ffe547;
 
-    --copy-background-color: #090910;
-    --copy-text-color: #b3b6c6;
-    --copy-icon-color: #15152f;
-    --copy-icon-text-color: #e2e5ff;
-    --copy-text-color-hover: #5c7dff;
     --hover-slash-command: #16171c;
 
     /*Flashcard View*/
@@ -127,9 +112,8 @@
 
     /*Notes View*/ 
     --hover-bookmark-icon-if-bookmarked: #434c71;
-    --hover-favorite-icon-if-favorited: rgba(142, 223, 204, .3);
     --bookmark: #5063b1;
-    --hover: #3c4361; 
+    --hover: #617fff69; 
     --folder-name-input: #5c7dff;
     
     /*Other*/
@@ -152,7 +136,7 @@
     --hover-searchbar-options: #1a1b21;
     --hover-text: #5c7dff;
     --hover-toolbar-btns: #383d4c;
-    --hover-sidebar: #16171c;
+    --hover-sidebar: #617fff69;
     --searchbar-placeholder: #d4d7e5; 
     --placeholder: #d4d7e5;
     --selection: #314682;
@@ -184,7 +168,6 @@
     --bookmark: #f3f4ff;
     --hover: rgba(92, 125, 255, .3); 
     --hover-bookmark-icon-if-bookmarked: rgba(92, 125, 255, .3);
-    --hover-favorite-icon-if-favorited: rgb(255 141 141);
     --folder-name-input: #ced1e3;
 
     /*Home View*/
@@ -203,15 +186,7 @@
     --important-text-color: #444863;
     --important-icon-color: #dde0ec;
 
-    --copy-background-color: #393742;
-    --copy-text-color: #edeffd;
-    --copy-icon-color: #1e1e28;
-    --copy-icon-text-color: #edeffd;
-    --copy-text-color-hover: #5c7fdd;
-
     --editor-dropdown: #ffffff;
-    --editor-dropdown-hover: rgba(92, 125, 255, .3);
-    --editor-dropdown-hover-color: #383838;
 
     --toolbar-btn-text: #4f578f;
     --hover-toolbar-btns: rgba(185, 198, 250, 0.5);

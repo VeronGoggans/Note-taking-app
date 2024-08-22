@@ -10,27 +10,27 @@ export class SidebarView {
         this._wrapper = document.querySelector('.wrapper');
         this._buttonCount = 6;
 
-        this._templatesButton = document.querySelector('.templates-btn');
+        this._templatesButton = document.querySelector('#templates-btn');
         this._templatesSpan = this._templatesButton.querySelector('span');
         this._templateIcon = this._templatesButton.querySelector('i');
 
-        this._notesButton = document.querySelector('.notes-btn');
+        this._notesButton = document.querySelector('#notes-btn');
         this._notesSpan = this._notesButton.querySelector('span');
         this._notsIcon = this._notesButton.querySelector('i');
 
-        this._homeButton = document.querySelector('.home-btn');
+        this._homeButton = document.querySelector('#home-btn');
         this._homeSpan = this._homeButton.querySelector('span');
         this._homeIcon = this._homeButton.querySelector('i');
 
-        this._settingsButton = document.querySelector('.settings-btn');
+        this._settingsButton = document.querySelector('#settings-btn');
         this._themeSpan = this._settingsButton.querySelector('span');
         this._themeIcon = this._settingsButton.querySelector('i');
 
-        this._flashCardButton = document.querySelector('.flashcards-btn');
+        this._flashCardButton = document.querySelector('#flashcards-btn');
         this._flashCardSpan = this._flashCardButton.querySelector('span');
         this._flashCardIcon = this._flashCardButton.querySelector('i');
 
-        this._stickyWallButton = document.querySelector('.sticky-wall-btn');
+        this._stickyWallButton = document.querySelector('#sticky-wall-btn');
         this._stickyWallSapn = this._stickyWallButton.querySelector('span');
         this._stickyWallIcon = this._stickyWallButton.querySelector('i');
 
@@ -47,10 +47,17 @@ export class SidebarView {
                 const anchor = event.target.closest('a[data-view]')
                 if (anchor) {
                     if (anchor.getAttribute('data-view') === 'notes') {
+                        // Load the notes view and tell it to render the Home folder 
                         applicationController.initView('notes', { folder: {'id': 'f-1', 'name': 'Home'} });
-                        return;
-                    }
-                    applicationController.initView(anchor.getAttribute('data-view'));
+                    } else {
+                        // Load any other view if not the notes view.
+                        applicationController.initView(anchor.getAttribute('data-view'));
+                    }                    
+                    // Setting a active tab style
+                    this._sidebarButtons.forEach(button => button.classList.remove('active-view'));
+                    anchor.classList.add('active-view')
+
+                    
                 }
             });
         });

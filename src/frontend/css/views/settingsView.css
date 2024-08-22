@@ -20,6 +20,7 @@
 
 
 .settings-container h3 {
+    font-size: 27px;
     margin-top: 25px;
     margin-bottom: 5px;
     font-family: sans-serif;
@@ -37,7 +38,7 @@
     position: relative;
     border-radius: 5px;
     background-color: var(--setting-dropdown);
-    width: 250px;
+    width: 350px;
     padding: 5px;
 }
 
@@ -46,10 +47,10 @@
 .language-dropdown input {
     background-color: transparent;
     border: none;
-    width: -webkit-fill-available;
+    width: 100%;
     color: var(--text);
-    padding: 2px 5px;
-    font-size: 16px;
+    padding: 10px;
+    font-size: 20px;
     font-family: Roboto;
     font-weight: 600;
 }
@@ -57,7 +58,7 @@
 .theme-dropdown ul,
 .language-dropdown ul {
     position: absolute;
-    top: 50px;
+    top: 60px;
     left: -1px;
     z-index: 1;
     width: 100%;
@@ -77,9 +78,9 @@
 .theme-dropdown li,
 .language-dropdown li {
     cursor: pointer;
-    font-size: 14px;
+    font-size: 16px;
     margin: 10px 0 10px 10px;
-    padding: 5px;
+    padding: 10px;
     color: var(--editor-text);
     border-radius: 5px;
     font-weight: 600;

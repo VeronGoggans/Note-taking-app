@@ -33,11 +33,11 @@
 
 .btn-group button:hover {
     color: #5c7dff;
-    background-color: var(--hover-toolbar-btns);
+    background-color: var(--hover);
 }
 
 .active-text-format {
-    background-color: var(--hover-toolbar-btns);
+    background-color: var(--hover);
     color: #5c7dff;
 }
 
