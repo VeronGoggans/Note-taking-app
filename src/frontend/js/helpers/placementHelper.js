@@ -47,13 +47,11 @@ export class PlacementHelper {
     #checkForWidthOverflow(rect, width) {
         const padding = 20; //Pixels
         const screenWidth = this.editor.clientWidth;
-        const spawnPoint = rect.left + window.scrollX;
+        const spawnPoint = rect.left + window.scrollX - this.sidebar.clientWidth;
         const totalWidth = spawnPoint + width;
         
-        console.log(`Rect: ${rect}\nscreenwidth: ${screenWidth}\nspawnPoint: ${spawnPoint}\ntotalwidth: ${totalWidth}`);
-        
 
-        if (totalWidth > screenWidth) {
+        if (totalWidth > screenWidth) {            
             const pixelOverflow = totalWidth - screenWidth;
             return spawnPoint - pixelOverflow - padding;
         }
