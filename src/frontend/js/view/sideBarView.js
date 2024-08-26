@@ -29,12 +29,17 @@ export class SidebarView {
                         // Load any other view if not the notes view.
                         applicationController.initView(anchor.getAttribute('data-view'));
                     }                    
-                    // Setting a active tab style
-                    this.sidebarButtons.forEach(button => button.classList.remove('active-view'));
-                    anchor.classList.add('active-view')
                 }
             });
         });
+    }
+
+    setActiveTab(view) {
+        // Remove the previous active tab
+        this.sidebarButtons.forEach(button => button.classList.remove('active-view'));
+
+        // Set new active tab
+        this._sidebar.querySelector(`#${view}-btn`).classList.add('active-view')
     }
 
     /**

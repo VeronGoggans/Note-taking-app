@@ -12,8 +12,7 @@ import { NotificationHandler } from "../handlers/userFeedback/notificationHandle
 import { FlashcardDeckController } from "./flashcardDeckController.js";
 import { FlashcardPracticeController } from "./flashcardPracticeController.js";
 import { FlashcardEditController } from "./flashcardEditController.js";
-import { flashcardsTemplate, flashcardPracticeTemplate, notesTemplate, settingsTemplate, editorTemplate, 
-    homeTemplate, templatesTemplate, flashcardEditTemplate, stickyWallTemplate, templates } from "../constants/templates.js";
+import { templates } from "../constants/templates.js";
 
 export class ApplicationController {
     constructor() {
@@ -57,10 +56,16 @@ export class ApplicationController {
             this.viewContainer.innerHTML = this.templates[viewId];
             setTimeout(() => {
 
+                if (viewId === 'home') {
+                    this.folderController.clearFolderHistory();
+                    this.sidebarView.setActiveTab('home')
+                }
+
                 if (viewId === 'notes') {
                     const { folder } = viewParameters; 
                     this.folderController.init(folder.id, folder.name);
                     controller.init(folder.id);
+                    this.sidebarView.setActiveTab('notes');
                     return;
                 }
 
@@ -80,7 +85,12 @@ export class ApplicationController {
                     } else {
                         this.openInTextEditor(editorObject, editorObjectType);
                     }
+                    this.sidebarView.setActiveTab('notes');
                     return;
+                }
+
+                if (viewId === 'flashcardsHome') {
+                    this.sidebarView.setActiveTab('flashcards');
                 }
 
                 if (viewId === 'flashcardsPractice') {
@@ -92,6 +102,7 @@ export class ApplicationController {
                     this.model.setPreviousView(previousView);                    
 
                     controller.init(deck);
+                    this.sidebarView.setActiveTab('flashcards');
                     return;
                 }
 
@@ -107,8 +118,16 @@ export class ApplicationController {
                     return;
                 }
 
-                if (viewId === 'home') {
-                    this.folderController.clearFolderHistory();
+                if (viewId === 'templates') {
+                    this.sidebarView.setActiveTab('templates');
+                }
+
+                if (viewId === 'stickyWall') {  
+                    this.sidebarView.setActiveTab('sticky-wall')
+                }
+
+                if (viewId === 'settings') {
+                    this.sidebarView.setActiveTab('settings')
                 }
 
                 controller.init();
