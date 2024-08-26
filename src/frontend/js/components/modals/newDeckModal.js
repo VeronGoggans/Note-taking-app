@@ -16,8 +16,8 @@ export class NewDeckModal {
         
         this.HOST = CNode.create('div', {'class': 'create-deck-modal'});
         this.MODAL_TITLE = CNode.create('h2', {'textContent': 'Creating a new deck'});
-        this.DECK_NAME_INPUT = CNode.create('input', {'type': 'text', 'class': 'deck-name-input', 'placeholder': 'Deck name', 'value': deckName === null ? '' : deckName});
-        this.CARD_TERM = CNode.create('input', {'type': 'text', 'class': 'term-input', 'placeholder': 'Card term'});
+        this.DECK_NAME_INPUT = CNode.create('input', {'type': 'text', 'class': 'deck-name-input', 'placeholder': 'Deck name', 'value': deckName === null ? '' : deckName, 'spellCheck': false});
+        this.CARD_TERM = CNode.create('input', {'type': 'text', 'class': 'term-input', 'placeholder': 'Card term', 'spellCheck': false});
         this.DESCRIPTION_SECTION = CNode.create('div', {'class': 'description-section'});
         this.RICH_TEXT_OPTIONS = CNode.create('div', {'class': 'rich-text-options'});
         this.BOLD_BTN = CNode.create('button', {'innerHTML': '<i class="fa-solid fa-bold"></i>', 'onclick' : "formatText('bold')", 'id': 'boldBtn'});

@@ -1,11 +1,12 @@
 export class PlacementHelper {
     constructor() {
-        this.formatBarWidth = 440 //Pixels
+        this.formatBarWidth = 490 //Pixels
         this.formatBarHeigth = 51.6 // Pixels
         this.commandBarHeigth = 291.6 //Pixels
         this.commandBarWidth = 269.78 // Pixels
         this.paddingY = 10 //Pixels
 
+        this.sidebar = document.querySelector('.sidebar');
         this.editor = document.querySelector('.editor');
         this.formatBar = document.querySelector('.rich-text-option-container');
         this.forwardSlashCommandContainer = document.querySelector('.foreward-slash-command-container');
@@ -18,7 +19,7 @@ export class PlacementHelper {
         const xPosition = this.#checkForWidthOverflow(rect, this.formatBarWidth);
         this.formatBar.style.top = `${rect.top + window.scrollY - this.formatBarHeigth - this.paddingY}px`;
         this.formatBar.style.left = `${xPosition}px`;
-        this.formatBar.style.display = 'flex';
+        this.formatBar.style.display = 'flex';        
     }
 
 
@@ -48,7 +49,6 @@ export class PlacementHelper {
         const screenWidth = this.editor.clientWidth;
         const spawnPoint = rect.left + window.scrollX;
         const totalWidth = spawnPoint + width;
-        console.log(rect);
         
         console.log(`Rect: ${rect}\nscreenwidth: ${screenWidth}\nspawnPoint: ${spawnPoint}\ntotalwidth: ${totalWidth}`);
         

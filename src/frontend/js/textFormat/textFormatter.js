@@ -104,19 +104,6 @@ export class TextFormatter {
   }
 
 
-  /**
-   * This method listens for link clicks.
-   * 
-   * When links are loaded in they don't have eventlisteners on them by default.
-   * This method creates those event listener for each link.
-   */
-  listenForLinkClicks(page) {
-      const LINKS = page.querySelectorAll('a');
-      LINKS.forEach(function(link) {
-        link.addEventListener('click', () => {window.open(link.href)})
-    });
-  }
-
 
   addLink(range) {
     const container = CNode.create('div', {'class': 'link-container'});

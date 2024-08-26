@@ -41,6 +41,35 @@
     color: #5c7dff;
 }
 
+.color-dropdown {
+    position: relative;
+}
+
+.color-dropdown ul {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 7px;
+    list-style: none;
+    background-color: var(--dropdown);
+    box-shadow: 0 0 10px var(--shadow);
+    border-radius: 10px;
+    margin: 0;
+    padding: 15px;
+    transition: 150ms;
+}
+
+.color-dropdown ul li {
+    cursor: pointer;
+    border-radius: 7px;
+    color: var(--text);
+    font-family: sans-serif;
+    width: 30px;
+    height: 30px;
+}
+
 
 
 

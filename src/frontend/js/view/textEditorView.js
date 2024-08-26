@@ -18,8 +18,8 @@ export class TextEditorView {
     this.#attachEventListeners();
 
     this.textFormatter = new TextFormatter();
+    this.textBlockHandler = new TextBlockHandler(this.page);
     this.slashCommand = new SlashCommand(this, this.textFormatter);
-    this.textBlockParser = new TextBlockHandler(this.page);
     this.dropdownHelper = new DropdownHelper(this, this.dropdowns, this.dropdownOptions, this.templateList);
     this.keyEventListener = new KeyEventListener(this);
     this.textEditorEventListener = new TextEditorEventListener(this.page, this.editor, this.slashCommand);
@@ -38,9 +38,8 @@ export class TextEditorView {
     this.documentNameInput.value = object.name;
 
     formatDocumentLocation(allFolderNames, this.documentLocation)
-    this.textFormatter.listenForLinkClicks(this.page);
-    TextFormatter.listenForNoteLinkClicks(this.page, this.applicationController);
     this.show(allFolderNames, allTemplateNames);
+    this.textBlockHandler.parse();
   }
 
   /**
@@ -70,14 +69,13 @@ export class TextEditorView {
   closeEditor(checkForChanges = true) {
     if (checkForChanges && this.editorContent !== this.page.innerHTML) {
       this.dialog.renderForgotSaveModal(this);
-    } else {
+    } 
+    else {
       this.controller.loadPreviousView()
     }
   } 
 
-  /**
-   * This method shows the text editor
-   */
+
   show(allFolderNames, allTemplateNames) {
     formatDocumentLocation(allFolderNames, this.documentLocation);
     this.dropdownHelper.renderTemplatesDropdown(allTemplateNames);
@@ -152,6 +150,7 @@ export class TextEditorView {
     this.saveButton = document.querySelector('.save-note-btn');
     this.findButton = document.querySelector('#editor-search-btn');
     this.deckButton = document.querySelector('#editor-flashcard-set-btn');
+    this.colorButton = document.querySelector('.color-dropdown button');
 
     this.noteDetailsSpan = document.querySelector('.note-details-span');
     this.deleteNoteSpan = document.querySelector('.delete-note-span');
@@ -165,6 +164,8 @@ export class TextEditorView {
     this.toolbar = document.querySelector('.toolbar')
 
     // dropdowns
+    this.colorDropdown = document.querySelector('.color-dropdown ul');
+    this.colorDropdownOptions = this.colorDropdown.querySelectorAll('ul li');
     this.templateDropdown = document.querySelector('.templates-dropdown');
     this.templateDropdownOptions = this.templateDropdown.querySelector('.options');
     this.templateList = this.templateDropdownOptions.querySelector('.templates-container');
@@ -186,9 +187,17 @@ export class TextEditorView {
     this.page.addEventListener('click', () => {this.dropdownHelper.closeDropdowns()});
 
     this.findButton.addEventListener('click', () => {this.dialog.renderSearchModal(this.toolbar)});  
+    this.colorButton.addEventListener('click', () => {this.dropdownHelper.toggleDropdown(this.colorDropdown)})
     this.deckButton.addEventListener('click', () => {
       // Get currently stored cards
       const { flashcards, deckName } = this.controller.getStoredDeckInfo();
       this.dialog.renderNewDeckModal(this.controller, flashcards, deckName)});  
+
+    this.colorDropdownOptions.forEach(colorDiv => {
+      colorDiv.addEventListener('click', () => {
+        this.textFormatter.addColor(colorDiv.style.backgroundColor, 'foreColor')
+      })
+      
+    })
   }
 }

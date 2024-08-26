@@ -1,46 +1,22 @@
-// This class is independent and does not get instantiated by any parent class
-
 export class SidebarView {
     constructor(applicationController) {
         this.applicationController = applicationController;
-        window.addEventListener('resize', () => this.#resizeSidebar());
+        
         this._sidebar = document.querySelector('.sidebar');
         this._icon = document.querySelector('.logo');
-        this._icon.addEventListener('click', () => {this.#toggleSidebar()});
-        this._wrapper = document.querySelector('.wrapper');
-        this._buttonCount = 6;
-
-        this._templatesButton = document.querySelector('#templates-btn');
-        this._templatesSpan = this._templatesButton.querySelector('span');
-        this._templateIcon = this._templatesButton.querySelector('i');
-
-        this._notesButton = document.querySelector('#notes-btn');
-        this._notesSpan = this._notesButton.querySelector('span');
-        this._notsIcon = this._notesButton.querySelector('i');
-
-        this._homeButton = document.querySelector('#home-btn');
-        this._homeSpan = this._homeButton.querySelector('span');
-        this._homeIcon = this._homeButton.querySelector('i');
-
-        this._settingsButton = document.querySelector('#settings-btn');
-        this._themeSpan = this._settingsButton.querySelector('span');
-        this._themeIcon = this._settingsButton.querySelector('i');
-
-        this._flashCardButton = document.querySelector('#flashcards-btn');
-        this._flashCardSpan = this._flashCardButton.querySelector('span');
-        this._flashCardIcon = this._flashCardButton.querySelector('i');
-
-        this._stickyWallButton = document.querySelector('#sticky-wall-btn');
-        this._stickyWallSapn = this._stickyWallButton.querySelector('span');
-        this._stickyWallIcon = this._stickyWallButton.querySelector('i');
+        this.sidebarButtons = this._sidebar.querySelectorAll('.sidebar-content a');
+        this.sidebarIcons = this._sidebar.querySelectorAll('.sidebar-content a i')
+        this.sidebarSpans = this._sidebar.querySelectorAll('.sidebar-content a span');
 
         this._collapsed = false;
         this._size = 'standard';
-        this._sidebarButtons = [this._homeButton,this._notesButton,this._flashCardButton , this._templatesButton, this._stickyWallButton, this._settingsButton]
-        this._sidebarSpans = [this._homeSpan, this._notesSpan, this._flashCardSpan, this._templatesSpan, this._stickyWallSapn, this._themeSpan]
-        this._sidebarIcons = [this._homeIcon, this._notsIcon, this._flashCardIcon, this._templateIcon, this._stickyWallIcon, this._themeIcon]
+        this._wrapper = document.querySelector('.wrapper');
+        this._buttonCount = 6;
 
-        document.querySelectorAll('.sidebar .sidebar-content a').forEach(link => {
+        this._icon.addEventListener('click', () => {this.#toggleSidebar()});
+        window.addEventListener('resize', () => this.#resizeSidebar());
+
+        this.sidebarButtons.forEach(link => {
             link.addEventListener('click', (event) => {
                 event.preventDefault();
 
@@ -54,10 +30,8 @@ export class SidebarView {
                         applicationController.initView(anchor.getAttribute('data-view'));
                     }                    
                     // Setting a active tab style
-                    this._sidebarButtons.forEach(button => button.classList.remove('active-view'));
+                    this.sidebarButtons.forEach(button => button.classList.remove('active-view'));
                     anchor.classList.add('active-view')
-
-                    
                 }
             });
         });
@@ -69,13 +43,13 @@ export class SidebarView {
      */
     #collapseButtons() {
         for (let i = 0; i < this._buttonCount; i++) {
-            this._sidebarSpans[i].style.position = 'absolute';
-            this._sidebarSpans[i].textContent = '';
+            this.sidebarSpans[i].style.position = 'absolute';
+            this.sidebarSpans[i].textContent = '';
 
-            this._sidebarIcons[i].style.position = 'relative';
-            this._sidebarIcons[i].style.left = 0;
+            this.sidebarIcons[i].style.position = 'relative';
+            this.sidebarIcons[i].style.left = 0;
 
-            this._sidebarButtons[i].style.justifyContent = 'center';
+            this.sidebarButtons[i].style.justifyContent = 'center';
         }
 
         document.querySelector('.logo-container').style.justifyContent = 'center'
@@ -89,13 +63,13 @@ export class SidebarView {
     #openButtons() {
         const buttonText = ['Home', 'Notes', 'Flashcards', 'Templates', 'Sticky wall', 'Settings']
         for (let i = 0; i < this._buttonCount; i++) {
-            this._sidebarSpans[i].style.position = 'relative';
-            this._sidebarSpans[i].textContent = buttonText[i];
+            this.sidebarSpans[i].style.position = 'relative';
+            this.sidebarSpans[i].textContent = buttonText[i];
 
-            this._sidebarIcons[i].style.position = 'absolute';
-            this._sidebarIcons[i].style.left = '10px';
+            this.sidebarIcons[i].style.position = 'absolute';
+            this.sidebarIcons[i].style.left = '10px';
 
-            this._sidebarButtons[i].style.justifyContent = 'normal';
+            this.sidebarButtons[i].style.justifyContent = 'normal';
         }
 
         document.querySelector('.logo-container').style.justifyContent = 'normal'

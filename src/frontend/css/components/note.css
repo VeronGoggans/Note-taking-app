@@ -121,8 +121,14 @@
   }
 
  .note-content-box h1,
- .note-content-box h2 {color: var(--important)}
-.note-content-box h1 {font-size: 14px}
-.note-content-box h2 {font-size: 12px}
+ .note-content-box h2 {
+    color: var(--important);
+    font-weight: 600;
+    font-size: 12px
+}
+.note-content-box h1 {
+    font-size: 14px;
+    font-weight: 600;
+}
 .note-content-box .linked-note-container {visibility: hidden}
 .note-content-box a {color: rgb(67, 142, 255)}

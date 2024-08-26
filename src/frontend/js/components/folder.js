@@ -19,7 +19,7 @@ export class Folder {
         // creating HTML elements.
         this.HOST = CNode.create('div', {'class': 'folder', 'id': this.id});
         this.NAME_BOX = CNode.create('div', {'class': 'folder-name-box'});
-        this.H4 = CNode.create('h4', {'contentEditable': 'false', 'textContent': formatName(this.name), 'spellCheck': 'false'});
+        this.H4 = CNode.create('h4', {'textContent': formatName(this.name)});
         this.LOGO = CNode.create('div', {'class': 'folder-logo'});
         this.ICON = CNode.create('i', {'class': 'fa-solid fa-folder'});
         this.UTIL_BAR = CNode.create('div', {'class': 'folder-util-bar'});

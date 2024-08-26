@@ -86,7 +86,7 @@ export class RecentNote {
     #initializeElements() {
         this.HOST = CNode.create('div', { 'class': 'recent-note', 'id': this.id});
         this.NAME_BOX = CNode.create('div', { 'class': 'note-name-box' });
-        this.H4 = CNode.create('h4', { 'textContent': formatName(this.name), 'spellCheck': false });
+        this.H4 = CNode.create('h4', { 'textContent': formatName(this.name)});
         this.CONTENT_BOX = CNode.create('div', { 'class': 'note-content-box' });
         this.CONTENT = CNode.create('p', { 'innerHTML': filterNotePreview(this.content) });
     }

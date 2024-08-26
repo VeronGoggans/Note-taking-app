@@ -22,7 +22,12 @@ export class TextEditorEventListener {
         this.placementHelper.placeFormatBar(selection);
         AnimationHandler.fadeIn(this.formatBar);
       } else {
+
         AnimationHandler.fadeOut(this.formatBar);
+        setTimeout(() => {
+          this.removeToolbar();
+        }, 150)
+
       }
     }
 
@@ -44,6 +49,10 @@ export class TextEditorEventListener {
 
     removeToolbar() {
       this.formatBar.style.display = 'none';
+      // close color dropdown
+      let colorDropdown = document.querySelector('.color-dropdown ul');
+      colorDropdown.style.visibility = 'hidden';
+      colorDropdown.style.opacity = '0';
     }
 
 
@@ -59,30 +68,6 @@ export class TextEditorEventListener {
       }
     }
 
-    /**
-     * This method will check if the Enter key is pressed inside 
-     * of a Heading. If so, this method will step out of the heading.
-     * If not the method will insert a <br> tag to got to the next line 
-     */
-    headingCheck(event) {
-      if (event.key === 'Enter') {
-        const range = window.getSelection().getRangeAt(0);
-        let node = range.startContainer;
-
-        // Traverse up the DOM to check if any parent is a header
-        while (node) {
-          if (node.nodeType === Node.ELEMENT_NODE) {
-            if (/^H[1-6]$/.test(node.nodeName) || node.nodeName === 'OL' || node.nodeName === 'UL') {
-              return
-            }
-          }
-          node = node.parentNode;
-        }
-        document.execCommand('insertLineBreak')
-        event.preventDefault();
-      }
-    }
-
 
     #eventListeners() {
       this.editor.addEventListener('mouseup', () => {this.showToolbar()});
@@ -91,7 +76,6 @@ export class TextEditorEventListener {
       this.editorPage.addEventListener('mouseup',  () => {this.showToolbar()});
       this.editorPage.addEventListener('keyup', () => {this.showToolbar()});
       this.editorPage.addEventListener('keyup', (event) => {this.checkForForwardSlash(event)});
-      this.editorPage.addEventListener('keydown', (event) => {this.headingCheck(event)});
       this.editorPage.addEventListener('click', () => {AnimationHandler.fadeOut(this.forwardSlashCommandContainer)});
     }
 }

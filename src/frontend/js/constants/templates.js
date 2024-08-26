@@ -229,6 +229,44 @@ export const editorTemplate = `
         <div class="btn-group">
             <button onclick="formatText('removeFormat')"><i class="fa-solid fa-text-slash"></i></button>
         </div>
+        <div class="btn-group">
+            <div class="color-dropdown">
+                <button><i class="fa-solid fa-paintbrush"></i></button>
+                <ul>
+                    <li style="background-color: #ff0000"></li>
+                    <li style="background-color: #0000ff"></li>
+                    <li style="background-color: #ffff00"></li>
+                    <li style="background-color: #008000"></li>
+                    <li style="background-color: #800080"></li>
+                    <li style="background-color: #ffa500"></li>
+                    <li style="background-color: #ffc0cb"></li>
+
+                    <li style="background-color: #ff5555"></li>
+                    <li style="background-color: #4e6eff"></li>
+                    <li style="background-color: #ffff4f"></li>
+                    <li style="background-color: #39dd39"></li>
+                    <li style="background-color: #e632e6"></li>
+                    <li style="background-color: #ffb938"></li>
+                    <li style="background-color: #ffd0d8"></li>
+
+                    <li style="background-color: #ff8383"></li>
+                    <li style="background-color: #849bff"></li>
+                    <li style="background-color: #ffff7d"></li>
+                    <li style="background-color: #81ff81"></li>
+                    <li style="background-color: #ff82ff"></li>
+                    <li style="background-color: #ffcf78"></li>
+                    <li style="background-color: #ffdce2"></li>
+
+                    <li style="background-color: #ffbaba"></li>
+                    <li style="background-color: #b3c1ff"></li>
+                    <li style="background-color: #ffffb2"></li>
+                    <li style="background-color: #b4ffb4"></li>
+                    <li style="background-color: #ffaeff"></li>
+                    <li style="background-color: #ffdea0"></li>
+                    <li style="background-color: #ffe9ed"></li>
+                </ul>
+            </div>
+        </div>
       </div>
 
       <div class="foreward-slash-command-container">

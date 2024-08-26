@@ -3,29 +3,38 @@
         "id": "f-1",
         "name": "Home",
         "color": "rgb(255, 255, 255)",
-        "last_visit": "22/08/2024 16:26:13",
-        "notes": [],
+        "last_visit": "26/08/2024 15:10:55",
+        "notes": [
+            {
+                "id": "n-734",
+                "name": "untitled",
+                "content": "storage/notes/note-n-734.txt",
+                "bookmark": false,
+                "last_edit": "26/08/2024 15:08",
+                "creation": "26/08/2024"
+            }
+        ],
         "subfolders": []
     },
     {
         "id": "f-99",
         "name": "School",
         "color": "rgb(255, 255, 255)",
-        "last_visit": "22/08/2024 15:50:36",
+        "last_visit": "26/08/2024 15:10:00",
         "notes": [],
         "subfolders": [
             {
                 "id": "s-191",
                 "name": "Year 2",
                 "color": "rgb(255, 255, 255)",
-                "last_visit": "22/08/2024 15:50:45",
+                "last_visit": "26/08/2024 15:10:01",
                 "notes": [],
                 "subfolders": [
                     {
                         "id": "s-181",
                         "name": "Software Architecture",
                         "color": "rgb(255, 255, 255)",
-                        "last_visit": "22/08/2024 15:50:46",
+                        "last_visit": "26/08/2024 15:10:21",
                         "notes": [
                             {
                                 "id": "n-589",
@@ -55,8 +64,8 @@
                                 "id": "n-626",
                                 "name": "Packages and Dependencies",
                                 "content": "storage/notes/note-n-626.txt",
-                                "bookmark": true,
-                                "last_edit": "12/08/2024 17:10",
+                                "bookmark": false,
+                                "last_edit": "22/08/2024 21:59",
                                 "creation": "03/06/2024"
                             },
                             {
@@ -71,8 +80,8 @@
                                 "id": "n-628",
                                 "name": "Logical Layers",
                                 "content": "storage/notes/note-n-628.txt",
-                                "bookmark": false,
-                                "last_edit": "26/06/2024 18:06",
+                                "bookmark": true,
+                                "last_edit": "22/08/2024 21:59",
                                 "creation": "03/06/2024"
                             },
                             {
@@ -115,7 +124,7 @@
                         "id": "s-182",
                         "name": "CISC2",
                         "color": "rgb(255, 255, 255)",
-                        "last_visit": "22/08/2024 15:39:16",
+                        "last_visit": "26/08/2024 15:00:08",
                         "notes": [
                             {
                                 "id": "n-609",
@@ -145,8 +154,8 @@
                                 "id": "n-612",
                                 "name": "Authentication & Authorization",
                                 "content": "storage/notes/note-n-612.txt",
-                                "bookmark": false,
-                                "last_edit": "30/06/2024 16:24",
+                                "bookmark": true,
+                                "last_edit": "22/08/2024 22:01",
                                 "creation": "30/05/2024"
                             },
                             {
@@ -188,13 +197,5 @@
                 ]
             }
         ]
-    },
-    {
-        "id": "f-148",
-        "name": "Neutron",
-        "color": "rgb(255, 255, 255)",
-        "last_visit": "22/08/2024 15:50:33",
-        "notes": [],
-        "subfolders": []
     }
 ]
