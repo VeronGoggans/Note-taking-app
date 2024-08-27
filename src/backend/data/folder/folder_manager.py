@@ -69,7 +69,7 @@ class FolderManager:
         for folder in folders:
             self.folder_list.append(folder)
             self.get_recent_folders(folder['subfolders'])
-        return self.__get_top_5_most_recent_folders()
+        return self.__get_top_4_most_recent_folders()
     
 
     def get_search_items(self, folders: list) -> list:
@@ -146,12 +146,12 @@ class FolderManager:
             raise NotFoundException(f'Parent folder with id: {parent_id}, could not be found') 
         
     
-    def __get_top_5_most_recent_folders(self) -> list:
+    def __get_top_4_most_recent_folders(self) -> list:
         # Sort the Folder objects based on last_visit in descending order
         self.folder_list.sort(key=lambda folder: folder['last_visit'], reverse=True)
 
         # Get the 5 most recently viewed folders
-        most_recent_folders = self.folder_list[:5]
+        most_recent_folders = self.folder_list[:4]
 
         # Remove the notes and subfolders fields from each folder
         simplified_folders = [{'id': folder['id'], 'name': folder['name'], 'color': folder['color'], 'last_visit': folder['last_visit']} for folder in most_recent_folders]

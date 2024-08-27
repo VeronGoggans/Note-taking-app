@@ -19,16 +19,8 @@
         "id": "t-28",
         "name": "Completed tasks",
         "content": "storage/templates/template-t-28.txt",
-        "last_edit": "21/08/2024 15:16",
+        "last_edit": "27/08/2024 19:52",
         "creation": "10/08/2024",
         "uses": 10
-    },
-    {
-        "id": "t-33",
-        "name": "Bugs List",
-        "content": "storage/templates/template-t-33.txt",
-        "last_edit": "21/08/2024 15:15",
-        "creation": "19/08/2024",
-        "uses": 1
     }
 ]

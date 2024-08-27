@@ -6,11 +6,9 @@ import { AnimationHandler } from "../handlers/animation/animationHandler.js";
 import { greetBasedOnTime } from "../util/date.js";
 
 export class HomeView {
-    constructor(controller, applicationController, dialog, notificationHandler) {
+    constructor(controller, applicationController) {
         this.controller = controller;
         this.applicationController = applicationController;
-        this.notificationHandler = notificationHandler;
-        this.dialog = dialog;
 
         this.folderObjects = new FolderObjectArray();
         this.noteObjects = new NoteObjectArray();

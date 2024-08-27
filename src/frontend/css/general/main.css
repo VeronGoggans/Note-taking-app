@@ -33,6 +33,24 @@ i {
     background-color: var(--selection);
 }
 
+.dragging {
+    background-color: var(--dragging) !important;
+}
+
+.drag-image {
+    position: absolute;
+    opacity: .8;
+    background-color: var(--dragging);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--icon);
+    width: 125px;
+    height: 100px;
+    font-size: 25px;
+}
+
 .wrapper {
     user-select: none;
     position: relative;

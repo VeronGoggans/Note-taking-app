@@ -3,16 +3,14 @@ import { TemplateView } from "../view/templateView.js";
 
 
 export class TemplateController {
-    constructor(applicationController, dialog, notificationHandler) {
-        this.dialog = dialog;
-        this.notificationHandler = notificationHandler;
+    constructor(applicationController) {
         this.applicationController = applicationController;
         this.objectNum = 0;
         this.model = new HttpModel();
     }
 
     async init() {
-        this.view = new TemplateView(this, this.applicationController, this.dialog, this.notificationHandler)
+        this.view = new TemplateView(this, this.applicationController)
         await this.getTemplates()
     }
 
@@ -45,7 +43,7 @@ export class TemplateController {
         })
     }
 
-    async updateTemplate(template) {
+    async update(template) {
         await this.model.update('/template', {
             'id': template.id,
             'name': template.name,
@@ -53,7 +51,7 @@ export class TemplateController {
         })
     }
 
-    async deleteTemplate(templateId) {
+    async delete(templateId) {
         const response = await this.model.delete(`/template/${templateId}`)
         const template = response[this.objectNum].template;
         this.view.renderDelete(template);

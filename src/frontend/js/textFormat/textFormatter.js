@@ -61,17 +61,6 @@ export class TextFormatter {
     this.#moveCursorToTextBlock(br);
   }
 
-  addCopyBlock(range) {
-    const { br, p } = this.#createBlockHelperNodes();
-    const copyBlock = CNode.create('div', {'class': 'copyable-block'});
-    const icon = CNode.create('i', {'class': 'fa-regular fa-paste'});
-
-    copyBlock.append(icon, p);
-    range.insertNode(br);
-    range.insertNode(copyBlock);
-    this.#removeSelectedEffect(range, copyBlock);
-    this.#moveCursorToTextBlock(p);
-  }
 
   addHeading(range, headingType, extension = null) {
     const heading = document.createElement(`h${headingType}`);
@@ -80,7 +69,6 @@ export class TextFormatter {
     if (extension !== null) {
       heading.textContent = extension;
     }
-
     range.insertNode(heading);
     this.#removeSelectedEffect(range, heading);
     this.#moveCursorToTextBlock(heading);
@@ -102,7 +90,6 @@ export class TextFormatter {
       document.execCommand('styleWithCSS', false, true);
       document.execCommand(command, false, color);
   }
-
 
 
   addLink(range) {
@@ -183,7 +170,7 @@ export class TextFormatter {
     inputTag.focus();
   }
 
-  static async addNoteLink(noteId, noteName) {
+  static addNoteLink(noteId, noteName) {
     const range = window.getSelection().getRangeAt(0);
 
     const linkContainer = CNode.create('div', {'class': 'linked-note-container', 'id': noteId, 'contentEditable': 'false'});

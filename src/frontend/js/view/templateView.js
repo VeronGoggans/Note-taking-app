@@ -2,14 +2,14 @@ import { Template } from "../components/template.js";
 import { AnimationHandler } from "../handlers/animation/animationHandler.js";
 import { TemplateObjectArray } from "../util/array.js";
 import { decrementString } from "../util/ui.js";
+import { BaseView } from "./baseView.js";
 
 
-export class TemplateView {
-    constructor(controller, applicationController, dialog, notificationHandler) {
+export class TemplateView extends BaseView {
+    constructor(controller, applicationController) {
+        super(controller);
         this.controller = controller;
         this.applicationController = applicationController;
-        this.notificationHandler = notificationHandler;
-        this.dialog = dialog;
         this.templateObjects = new TemplateObjectArray();
         this.#initializeDomElements();
         this.#attachEventListeners();
@@ -37,7 +37,7 @@ export class TemplateView {
             this._recentTemplates.appendChild(recentContentFragment);
             this._otherTemplates.appendChild(otherContentFragment);
         } else {
-            this.notificationHandler.push('empty')
+            this.pushNotification('empty')
         }
     }
 
@@ -57,17 +57,6 @@ export class TemplateView {
         if (closeDialog) this.dialog.hide();
     }
 
-    /**
-     * This method renders a confirmation container 
-     * telling the user if they want to delete the note.
-     * 
-     * @param {String} id 
-     * @param {String} name
-     */
-    renderDeleteContainer(id, name) {
-        this.dialog.renderDeleteModal(id, name, this)
-    }
-
     handleTemplateCardClick(templateId) {
         const template = this.templateObjects.get(templateId);
         this.applicationController.initView('editor', 
@@ -84,9 +73,6 @@ export class TemplateView {
         return this.templateObjects.get(templateId);
     }
 
-    async handleDeleteButtonClick(id) {
-        await this.controller.deleteTemplate(id);
-    }
 
     #renderTemplateStats(recent, other, totalUses, mostUsed) {
         this._templateCountSpan.textContent = 

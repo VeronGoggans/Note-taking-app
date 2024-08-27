@@ -62,7 +62,6 @@ export const notificationTypes = {
     'DELETED': 'Deleted',
     'NEW': 'New',
     'EMPTY': 'Empty',
-    'EXPORT': 'Export'
 }
 
 
@@ -92,7 +91,6 @@ export const commands = {
     'line': 'horizontal-line-option',
     'quote': 'quote-block',
     'important': 'important-block',
-    'copy': 'copyable-block',
     'ul': 'unordered-list',
     'ol': 'ordered-list',
     'h1': 'heading-1',
@@ -101,7 +99,6 @@ export const commands = {
     'h4': 'heading-4',
     'h5': 'heading-5',
     'h6': 'heading-6',
-    'time': 'time',
     'date': 'date'
 }
 

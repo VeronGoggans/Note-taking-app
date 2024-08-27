@@ -3,14 +3,14 @@ import { NoteObjectArray } from "../util/array.js";
 import { AnimationHandler } from "../handlers/animation/animationHandler.js";
 import { DragAndDrop } from "../handlers/drag&drop/dragAndDropHandler.js";
 import { removeContent } from "../util/ui.js";
+import { BaseView } from "./baseView.js";
 
 
-export class NoteView {
-    constructor(controller, applicationController, dialog, notificationHandler) {
+export class NoteView extends BaseView {
+    constructor(controller, applicationController) {
+        super(controller);
         this.controller = controller;
         this.applicationController = applicationController;
-        this.notificationHandler = notificationHandler;
-        this.dialog = dialog;
         
         this.noteObjects = new NoteObjectArray();
         this.dragAndDrop = new DragAndDrop(this);
@@ -34,7 +34,7 @@ export class NoteView {
             this._content.appendChild(contentFragment);
         } 
         if (this._content.children.length === 0) {
-            this.notificationHandler.push('Empty');
+            this.pushNotification('Empty');
         }
     }
 
@@ -49,7 +49,7 @@ export class NoteView {
                 this.notificationHandler.push('Deleted', note.name);
             }
         }
-        if (closeDialog) this.dialog.hide();
+        if (closeDialog) this.closeDialog();
     }
 
     
@@ -77,10 +77,6 @@ export class NoteView {
         return this.noteObjects.get(noteId);
     }
 
-    renderDeleteModal(id, name) {
-        this.dialog.renderDeleteModal(id, name, this)
-    }
-
     /**
      * This method creates a note card component 
      * And adds a note object to the noteObjects array. 
@@ -93,13 +89,6 @@ export class NoteView {
         return new Note(note, this);
     }
 
-    async updateNote(note) {
-        await this.controller.updateNote(note);
-    }
-
-    async handleDeleteButtonClick(id) {
-        await this.controller.deleteNote(id);
-    }
 
     #initializeDomElements() {
         this.createNoteButton = document.querySelector('.create-note-btn')

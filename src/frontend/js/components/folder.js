@@ -1,6 +1,7 @@
 import { folderColorClasses } from "../constants/constants.js";
 import { CNode } from "../util/CNode.js";
 import { formatName } from "../util/formatters.js";
+import { addDraggImage } from "../util/ui.js";
 
 export class Folder {
     constructor(folder, view) {
@@ -17,7 +18,7 @@ export class Folder {
 
     #initializeElements() {
         // creating HTML elements.
-        this.HOST = CNode.create('div', {'class': 'folder', 'id': this.id});
+        this.HOST = CNode.create('div', {'class': 'folder', 'id': this.id, 'draggable': true});
         this.NAME_BOX = CNode.create('div', {'class': 'folder-name-box'});
         this.H4 = CNode.create('h4', {'textContent': formatName(this.name)});
         this.LOGO = CNode.create('div', {'class': 'folder-logo'});
@@ -54,7 +55,8 @@ export class Folder {
                     this.HOST.classList.add(cardClass);
                 }
             }        
-        } else {
+        } 
+        else {
             this.HOST.classList.add(cardClass);
         }
     }
@@ -63,25 +65,13 @@ export class Folder {
         this.EDIT_ICON.addEventListener('click', () => {this._toggleEditableFolderName()});
         this.DELETE_ICON.addEventListener('click', () => {this.view.renderDeleteModal(this.id, this.name)});
         this.LOGO.addEventListener('click', () => { this.view.handleFolderCardClick(this.id, this.H4.textContent)});
+        this.HOST.addEventListener('dragstart', (event) => {addDraggImage(event, this.HOST, 'folder')});
+        this.HOST.addEventListener('dragend', () => {this.HOST.classList.remove('dragging')})
     }
 
-    _togglePalette() {
-        this.COLOR_CONTAINER.style.visibility = this.COLOR_CONTAINER.style.visibility === 'visible' ? 'hidden' : 'visible';
-        this.COLOR_CONTAINER.style.opacity = this.COLOR_CONTAINER.style.opacity === '100' ? '0' : '100';
-    }
 
     _toggleEditableFolderName() {
         this.view.renderEditFolderModal(this.id);
-    }
-
-    async updateFolder(color = this.color, toggle = true) {
-        this.view.updateFolder(this.id, this.H4.textContent, color);
-        if (toggle) {
-            this._toggleEditableFolderName();
-        } else {
-            this.applyColor(color);
-            this._togglePalette();
-        }
     }
 }
 

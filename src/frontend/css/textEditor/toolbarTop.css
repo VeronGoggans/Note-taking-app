@@ -72,7 +72,6 @@
 }
 
 .editor-options-dropdown .options {
-    font-family: Roboto;
     visibility: hidden;
     opacity: 0;
     position: absolute;
@@ -80,7 +79,7 @@
     display: flex;
     flex-direction: column;
     width: 200px;
-    right: 25px;
+    right: 40px;
     border-radius: 10px;
     padding: 10px;
     font-size: 16px;
@@ -90,15 +89,14 @@
 }
 
 .editor-options-dropdown .options button {
-    font-family: Roboto;
+    font-family: sans-serif;
     display: flex;
     align-items: center;
     font-size: 15px;
     margin: 5px 0;
     padding: 5px;
     border-radius: 7px;
-    font-weight: 600;
-    color: var(--editor-text);
+    color: var(--important);
     background-color: transparent;
     transition: background-color 150ms ease;
     text-align: start;
@@ -121,7 +119,7 @@
 
 .templates-dropdown .options {
     position: absolute;
-    background-color: var(--dropdown);
+    background-color: var(--editor-dropdown);
     border-radius: 10px;
     width: 250px;
     max-height: 350px;

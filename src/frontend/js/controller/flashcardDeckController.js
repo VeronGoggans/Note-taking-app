@@ -3,15 +3,14 @@ import { FlashcardDeckView } from "../view/flashcardDeckView.js";
 import { FlashcardModel } from "../model/flashcardModel.js";
 
 export class FlashcardDeckController {
-    constructor(applicationController, dialog) {
+    constructor(applicationController) {
         this.applicationController = applicationController;
-        this.dialog = dialog;
         this.objectNum = 0;
         this.model = new HttpModel();
     }
 
     async init() {
-        this.view = new FlashcardDeckView(this, this.applicationController, this.dialog);
+        this.view = new FlashcardDeckView(this, this.applicationController);
         this.flashcardModel = new FlashcardModel();
         await this.getDecks()
     }
@@ -42,11 +41,9 @@ export class FlashcardDeckController {
         return response[this.objectNum].items;
     }
 
-    async deleteDeck(deckId) {
+    async delete(deckId) {
         const response = await this.model.delete(`/deck/${deckId}`);
-        const deck = response[this.objectNum].deck;
-        console.log(deck);
-        
+        const deck = response[this.objectNum].deck;        
         this.view.renderDelete(deck);
     }
 

@@ -4,13 +4,13 @@ import { formatName } from "../util/formatters.js";
 import { AnimationHandler } from "../handlers/animation/animationHandler.js";
 import { folderColorClasses } from '../constants/constants.js';
 import { removeContent } from "../util/ui.js";
+import { BaseView } from "./baseView.js";
 
-export class FolderView {
-    constructor(controller, applicationController, dialog, notificationHandler) {
+export class FolderView extends BaseView {
+    constructor(controller, applicationController) {
+        super(controller);
         this.controller = controller;
         this.applicationController = applicationController;
-        this.notificationHandler = notificationHandler;
-        this.dialog = dialog;
 
         this.folderObjects = new FolderObjectArray();
         this.#initializeDomElements();
@@ -59,17 +59,9 @@ export class FolderView {
         this.dialog.hide();
     }
 
-    pushNotification(type, noteName = null) {
-        this.notificationHandler.push(type, noteName);
-    }
-
     renderEditFolderModal(id) {
         const folder = this.getFolderObject(id);
         this.dialog.renderEditFolderModal(folder, this);
-    }
-
-    renderDeleteModal(id, name) {
-        this.dialog.renderDeleteModal(id, name, this);
     }
 
 
@@ -90,15 +82,6 @@ export class FolderView {
         }
 
         folderCard.classList.add(folderColorClass);
-    }
-
-    
-    updateFolder(id, name, color) {
-        this.controller.updateFolder(id, name, color);
-    }
-
-    handleDeleteButtonClick(id) {
-        this.controller.deleteFolder(id);
     }
 
     addFolder(name) {

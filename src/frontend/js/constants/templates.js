@@ -39,9 +39,9 @@ export const notesTemplate = `
             <h1 class="current-folder-name view-title">Home</h1>
             <div>
             <button title="Create folder" class="create-folder-btn"><i class="fa-solid fa-folder"></i></button>
-            <button class="create-note-btn"><i class="fa-solid fa-file"></i></button>
-            <button class="home-folder-btn"><i class="fa-solid fa-house"></i></button>
-            <button class="bookmarks-btn"><i class="fa-solid fa-bookmark"></i></button>
+            <button title="Create note" class="create-note-btn"><i class="fa-solid fa-file"></i></button>
+            <button title="Return home" class="home-folder-btn"><i class="fa-solid fa-house"></i></button>
+            <button title="Show bookmarks" class="bookmarks-btn"><i class="fa-solid fa-bookmark"></i></button>
             </div>
         </div>
         <div class="content-view">
@@ -272,7 +272,6 @@ export const editorTemplate = `
       <div class="foreward-slash-command-container">
         <input type="text" placeholder="Command..." spellcheck="false">
         <div class="commands">
-            <div class="note-link-option"><i class="fa-solid fa-file"></i>Link a document</div>
             <div class="link-option"><i class="fa-solid fa-link"></i>Add a url</div>
             <div class="embed-video-option"><i class="fa-solid fa-play"></i>Add a video</div>
             <div class="horizontal-line-option"><i class="fa-solid fa-ruler-horizontal"></i>Add a horizontal line</div>

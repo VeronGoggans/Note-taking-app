@@ -16,7 +16,6 @@ export class SlashCommand {
     executeSlashCommand(range, targetClass, extension = null) {
       switch (targetClass) {
         case 'note-link-option':
-          // Implement note link function
           break;
         case 'link-option':
           this.formatter.addLink(range);

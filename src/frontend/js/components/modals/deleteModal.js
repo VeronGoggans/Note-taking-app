@@ -14,7 +14,7 @@ export class DeleteModal {
     }
 
     #attachEventListeners() {
-        this.DELETE.addEventListener('click', () => {this.view.handleDeleteButtonClick(this.id)})
+        this.DELETE.addEventListener('click', () => {this.view.deleteObject(this.id)})
     }
 
     #render() {

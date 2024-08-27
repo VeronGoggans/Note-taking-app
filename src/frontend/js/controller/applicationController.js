@@ -8,7 +8,6 @@ import { TextEditorController } from "./textEditorController.js"
 import { SettingController } from "./settingController.js";
 import { StickWallController } from "./stickyWallController.js";
 import { Dialog } from "../util/dialog.js";
-import { NotificationHandler } from "../handlers/userFeedback/notificationHandler.js";
 import { FlashcardDeckController } from "./flashcardDeckController.js";
 import { FlashcardPracticeController } from "./flashcardPracticeController.js";
 import { FlashcardEditController } from "./flashcardEditController.js";
@@ -17,16 +16,15 @@ import { templates } from "../constants/templates.js";
 export class ApplicationController {
     constructor() {
         this.dialog = new Dialog();
-        this.notificationHandler = new NotificationHandler();
         this.sidebarView = new SidebarView(this);
         this.model = new ApplicationModel();
-        this.noteController = new NoteController(this, this.dialog, this.notificationHandler);
-        this.homeController = new HomeController(this, this.dialog, this.noteController);
-        this.folderController = new FolderController(this, this.dialog, this.notificationHandler)
-        this.templateController = new TemplateController(this, this.dialog, this.notificationHandler);
-        this.flashcardDeckController = new FlashcardDeckController(this, this.dialog);
-        this.flashcardPracticeController = new FlashcardPracticeController(this, this.dialog);
-        this.flashcardEditController = new FlashcardEditController(this, this.dialog);
+        this.noteController = new NoteController(this);
+        this.homeController = new HomeController(this);
+        this.folderController = new FolderController(this)
+        this.templateController = new TemplateController(this);
+        this.flashcardDeckController = new FlashcardDeckController(this);
+        this.flashcardPracticeController = new FlashcardPracticeController(this);
+        this.flashcardEditController = new FlashcardEditController(this);
         this.textEditorController = new TextEditorController(this, this.dialog);
         this.stickyWallController = new StickWallController(this, this.dialog);
         this.settingController = new SettingController(this);
@@ -177,11 +175,11 @@ export class ApplicationController {
     }
 
     async updateNote(note) {
-        await this.noteController.updateNote(note);
+        await this.noteController.update(note);
     }   
 
     async deleteNote(noteId) {
-        await this.noteController.deleteNote(noteId);
+        await this.noteController.delete(noteId);
     }
 
     async addTemplate(name, content) {
@@ -197,7 +195,7 @@ export class ApplicationController {
     }
 
     async updateTemplate(template) {
-        await this.templateController.updateTemplate(template);
+        await this.templateController.update(template);
     }
 
     async moveNote(noteId, folderId) {

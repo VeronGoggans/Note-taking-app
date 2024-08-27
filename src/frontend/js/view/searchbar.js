@@ -67,7 +67,7 @@ export class Searchbar {
                 content = `<i id="folder-search-type" class="fa-solid fa-folder"></i> ${suggestion.object.name}`;
                 suggestionElement.dataset.searchType = 'folder'
             } else if (suggestion.type === 'template') {
-                content = `<i id="template-search-type" class="fa-solid fa-layer-group"></i> ${suggestion.object.name}`;
+                content = `<i id="template-search-type" class="fa-solid fa-file-lines"></i> ${suggestion.object.name}`;
                 suggestionElement.dataset.searchType = 'template'
             } else if (suggestion.type === 'flashcard') {
                 content = `<i id="flashcard-search-type" class="fa-solid fa-circle-check"></i> ${suggestion.object.name}`;

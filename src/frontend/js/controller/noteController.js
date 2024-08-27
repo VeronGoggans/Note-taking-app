@@ -4,9 +4,7 @@ import { Searchbar } from "../view/searchbar.js";
 import { viewToLoad } from "../helpers/random.js";
 
 export class NoteController {
-    constructor(applicationController, dialog, notificationHandler) {
-        this.dialog = dialog;
-        this.notificationHandler = notificationHandler
+    constructor(applicationController) {
         this.applicationController = applicationController;
         this.objectNum = 0;
         this.model = new HttpModel();
@@ -18,7 +16,7 @@ export class NoteController {
         const folderSearchItems = await this.applicationController.getFolderSearchItems();
         this.searchbar.fillSearchbar('note', noteSearchItems);
         this.searchbar.fillSearchbar('folder', folderSearchItems);
-        this.view = new NoteView(this, this.applicationController, this.dialog, this.notificationHandler);
+        this.view = new NoteView(this, this.applicationController);
         this.getNotes(folderId);
     }
 
@@ -39,7 +37,7 @@ export class NoteController {
         return newNote
     }
 
-    async updateNote(note) {
+    async update(note) {
         await this.model.update('/note', {
             'note_id': note.id,
             'name': note.name,
@@ -49,7 +47,7 @@ export class NoteController {
         });
     }
 
-    async deleteNote(noteId) {
+    async delete(noteId) {
         const response = await this.model.delete(`/note/${noteId}`);
         const note = response[this.objectNum].note;
         this.view.renderDelete(note);

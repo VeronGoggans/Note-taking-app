@@ -3,16 +3,15 @@ import { FlashcardEditModel } from "../model/flashcardEditModel.js";
 import { FlashcardEditView } from "../view/flashcardEditView.js";
 
 export class FlashcardEditController {
-    constructor(applicationController, dialog) {
+    constructor(applicationController) {
         this.applicationController = applicationController;
-        this.dialog = dialog;
         this.model = new HttpModel();
     }
 
     init(deck) {
         this.deck = deck;
         this.editModel = new FlashcardEditModel();
-        this.view = new FlashcardEditView(this, this.applicationController, this.dialog);
+        this.view = new FlashcardEditView(this, this.applicationController);
         this.view.renderAll(deck);
     }
 

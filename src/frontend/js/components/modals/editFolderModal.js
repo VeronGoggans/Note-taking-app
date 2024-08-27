@@ -64,8 +64,11 @@ export class EditFolderModal {
             const color = colorElement.style.backgroundColor;
             colorElement.addEventListener('click', () => {this.#showActiveFolderColor(color)});
         });
-        this.SAVE.addEventListener('click', () => {this.view.updateFolder(
-            this.folder.id, this.INPUT.value, this.preferedFolderColor)
+        this.SAVE.addEventListener('click', () => {
+            this.view.updateObject({
+            'id': this.folder.id,
+            'name': this.INPUT.value,
+            'color': this.preferedFolderColor})
             this.dialog.hide();
         });
         this.CANCEL.addEventListener('click', () => {this.dialog.hide()});

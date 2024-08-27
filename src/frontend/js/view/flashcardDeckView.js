@@ -1,12 +1,13 @@
 import { AnimationHandler } from "../handlers/animation/animationHandler.js";
 import { FlashcardDeck, FlashcardProgression } from "../components/flashcardDeck.js";
 import { FlashcardDeckObjectArray } from "../util/array.js";
+import { BaseView } from "./baseView.js";
 
-export class FlashcardDeckView {
-    constructor(controller, applicationController, dialog) {
+export class FlashcardDeckView extends BaseView {
+    constructor(controller, applicationController) {
+        super(controller);
         this.controller = controller;
         this.applicationController = applicationController;
-        this.dialog = dialog;
         this.deckObjects = new FlashcardDeckObjectArray();
 
         this.#initializeDomElements();
@@ -99,13 +100,6 @@ export class FlashcardDeckView {
         });
     }
 
-    async handleDeleteButtonClick(deckId) {
-        await this.controller.deleteDeck(deckId);
-    }
-
-    renderDeleteModal(id, name) {
-        this.dialog.renderDeleteModal(id, name, this);
-    }
 
     /**
      * This method is used to temporarly save a flashcard 

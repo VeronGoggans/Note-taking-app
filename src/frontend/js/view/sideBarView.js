@@ -66,7 +66,7 @@ export class SidebarView {
      * becomes bigger then 700 pixels
      */
     #openButtons() {
-        const buttonText = ['Home', 'Notes', 'Flashcards', 'Templates', 'Sticky wall', 'Settings']
+        const buttonText = ['Home', 'Notes', 'Templates', 'Sticky wall', 'Flashcards', 'Settings']
         for (let i = 0; i < this._buttonCount; i++) {
             this.sidebarSpans[i].style.position = 'relative';
             this.sidebarSpans[i].textContent = buttonText[i];

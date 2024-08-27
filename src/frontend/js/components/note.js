@@ -2,6 +2,7 @@ import { CNode } from "../util/CNode.js";
 import { dateFormat } from "../util/date.js";
 import { formatName, filterNotePreview, captureNewLines } from "../util/formatters.js";
 import { stickyNoteColors } from "../constants/constants.js";
+import { addDraggImage } from "../util/ui.js";
 
 export class Note {
     constructor(note, view) {
@@ -22,7 +23,7 @@ export class Note {
     }
 
     #initializeElements() {
-        this.HOST = CNode.create('div', { 'class': 'note', 'id': this.id});
+        this.HOST = CNode.create('div', { 'class': 'note', 'id': this.id, 'draggable': true});
         this.HOST.dataset.info = `${this.created}--${this.lastEdit}`;
         this.NAME_BOX = CNode.create('div', { 'class': 'note-name-box' });
         this.H4 = CNode.create('h4', {'textContent': formatName(this.name)});
@@ -45,6 +46,8 @@ export class Note {
         this.DELETE_ICON.addEventListener('click', () => {this.view.renderDeleteModal(this.id, this.name)});
         this.CONTENT_BOX.addEventListener('click', () => {this.view.handleNoteCardClick(this.id)});
         this.BOOKMARK_ICON.addEventListener('click', () => {this.updateNoteBookmark()});
+        this.HOST.addEventListener('dragstart', (event) => {addDraggImage(event, this.HOST, 'file')});
+        this.HOST.addEventListener('dragend', () => {this.HOST.classList.remove('dragging')});
     }
 
     #toggleBookmarkStyle() {
@@ -59,7 +62,7 @@ export class Note {
         this.bookmark = !this.bookmark;
         this.#toggleBookmarkStyle();
         const content = this.view.getNoteObject(this.id)['content'];
-        await this.view.updateNote({
+        await this.view.updateObject({
             'id': this.id, 
             'name': this.name, 
             'content': content, 

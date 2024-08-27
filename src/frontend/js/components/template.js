@@ -37,7 +37,7 @@ export class Template {
 
     #attachEventListeners() {
         this.H4.addEventListener('keydown', (event) => {if (event.key === 'Enter') this.updateName()});
-        this.DELETE_ICON.addEventListener('click', () => {this.view.renderDeleteContainer(this.id, this.name)});
+        this.DELETE_ICON.addEventListener('click', () => {this.view.renderDeleteModal(this.id, this.name)});
         this.CONTENT_BOX.addEventListener('click', () => {this.view.handleTemplateCardClick(this.id)});
     }
 }

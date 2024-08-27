@@ -4,7 +4,7 @@ from src.backend.data.template.template_manager import TemplateManager
 from src.backend.presentation.http_status import HttpStatus
 from src.backend.presentation.request_bodies.template_requests import *
 from src.backend.presentation.dtos.template_dtos import *
-from backend.presentation.decorators.controller_decorators import exception_handler
+from src.backend.presentation.decorators.controller_decorators import exception_handler
 
 class TemplateRouter:
     def __init__(self, json_manager):

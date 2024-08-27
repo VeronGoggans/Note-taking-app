@@ -2,8 +2,8 @@ export class PlacementHelper {
     constructor() {
         this.formatBarWidth = 490 //Pixels
         this.formatBarHeigth = 51.6 // Pixels
-        this.commandBarHeigth = 291.6 //Pixels
-        this.commandBarWidth = 269.78 // Pixels
+        this.commandBarHeigth = 300 //Pixels
+        this.commandBarWidth = 255 // Pixels
         this.paddingY = 10 //Pixels
 
         this.sidebar = document.querySelector('.sidebar');

@@ -40,7 +40,7 @@
     overflow-y: auto;
     border: 1px solid var(--editor-border);
     border-radius: 5px;
-    background-color: var(--dropdown);
+    background-color: var(--searchbar-dropdown);
     list-style: none;
     margin: 0;
     padding: 10px;

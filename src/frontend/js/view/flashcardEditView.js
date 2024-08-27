@@ -3,10 +3,9 @@ import { Flashcard } from "../components/flashcardDeck.js";
 import { AnimationHandler } from "../handlers/animation/animationHandler.js";
 
 export class FlashcardEditView {
-    constructor(controller, applicationController, dialog) {
+    constructor(controller, applicationController) {
         this.controller = controller;
         this.applicationController = applicationController;
-        this.dialog = dialog;
 
         this.flashcardObjects = new FlashcardObjectArray();
         this.#initializeDomElements();

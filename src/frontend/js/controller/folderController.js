@@ -3,9 +3,7 @@ import { FolderView } from "../view/folderView.js";
 
 
 export class FolderController {
-    constructor(applicationController, dialog, notificationHandler) {
-        this.dialog = dialog;
-        this.notificationHandler = notificationHandler
+    constructor(applicationController) {
         this.applicationController = applicationController;
         this.objectNum = 0;
         this.homeFolderId = 'f-1';
@@ -13,7 +11,7 @@ export class FolderController {
     }
 
     init(folderId = null, folderName = null) {
-        this.view = new FolderView(this, this.applicationController, this.dialog, this.notificationHandler)
+        this.view = new FolderView(this, this.applicationController)
         
         // If a folder on the home view has been clicked.
         if (folderId === null) {
@@ -54,13 +52,13 @@ export class FolderController {
         this.view.renderOne(folder);
     }
 
-    async updateFolder(folderId, name, color) {
-        const response = await this.model.update('/folder', {'folder_id': folderId, 'name': name, 'color': color});
+    async update(object) {
+        const response = await this.model.update('/folder', {'folder_id': object.id, 'name': object.name, 'color': object.color});
         const folder = response[this.objectNum].folder;
         this.view.renderUpdate(folder);
     }
 
-    async deleteFolder(folderId) {
+    async delete(folderId) {
         const parentFolderId = this.model.getCurrentFolderID();
         const response = await this.model.delete(`/folder/${parentFolderId}/${folderId}`);
         const folder = response[this.objectNum].folder;

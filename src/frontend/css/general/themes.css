@@ -12,6 +12,7 @@
     /*Template View*/
 
     /*Notes View*/
+    --dragging: #f3f4ff;
     --bookmark: #f3f4ff;
     --hover: rgba(92, 125, 255, .3); 
     --hover-bookmark-icon-if-bookmarked: rgba(92, 125, 255, .3);
@@ -73,6 +74,7 @@
     --shadow-notification: #dcdee6;
     --modal: #ffffff;
     --scrollbar-content-view: #cccfe1;
+    --searchbar-dropdown: #fff;
 }
 
 .dark {
@@ -89,7 +91,7 @@
     --editor-container: #23252e;
     --editor-container-shadow: transparent;
     --editor-container-input: #16171c;
-    --editor-dropdown: #242630;
+    --editor-dropdown: #2e3040;
     --dropdown: #1f2129;
 
     --important-background-color: #ffefb3;
@@ -113,6 +115,7 @@
     /*Notes View*/ 
     --hover-bookmark-icon-if-bookmarked: #434c71;
     --bookmark: #5063b1;
+    --dragging: #27293b;
     --hover: #617fff69; 
     --folder-name-input: #5c7dff;
     
@@ -123,10 +126,10 @@
     --notification: #16171c;
     --subtitle: #9196aa;
     --sidebar: #121318; 
-    --searchbar: #252831;
+    --searchbar: #2e3040;
     --sidebar-text: #d6d8e5;
     --sidebar-text-hover: #5c7dff; 
-    --card: #363b4a85;
+    --card: #373950;
     --text: #bbbed2;
     --icon: #bbbed2;
     --icon-hover: #5c7dff;
@@ -145,6 +148,7 @@
     --card-shadow: #0c0c1a; 
     --shadow-notification: #121216;
     --modal: #1f2129;
+    --searchbar-dropdown: #2e3040;
     --scrollbar-content-view: #3f4045;
 }
 
@@ -165,6 +169,7 @@
     --add-sticky-btn: #eae9f9;
 
     /*Notes View*/
+    --dragging: #f3f4ff;
     --bookmark: #f3f4ff;
     --hover: rgba(92, 125, 255, .3); 
     --hover-bookmark-icon-if-bookmarked: rgba(92, 125, 255, .3);
@@ -222,4 +227,5 @@
     --shadow-notification: #dcdee6;
     --modal: #ffffff;
     --scrollbar-content-view: #cccfe1;
+    --searchbar-dropdown: #fff;
 }
