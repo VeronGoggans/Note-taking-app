@@ -2,9 +2,9 @@ from fastapi import APIRouter
 from src.backend.data.folder.folder_manager import FolderManager
 from src.backend.presentation.request_bodies.folder_requests import FolderRequest
 from src.backend.presentation.dtos.folder_dtos import FolderRequestDto
-from src.backend.data.exceptions.exceptions import NotFoundException, AdditionException
 from src.backend.presentation.http_status import HttpStatus
 from src.backend.application.folder_service import FolderService
+from src.backend.presentation.decorators.controller_decorators import exception_handler 
 
 class FolderRouter:
     def __init__(self, json_manager):
@@ -21,66 +21,50 @@ class FolderRouter:
         self.route.add_api_route('/viewedFolderTime/{folder_id}', self.folder_visit, methods=['PATCH'])
 
 
+    @exception_handler
     def add_folder(self, request: FolderRequest):
-        try:
-            request_dto = FolderRequestDto(request.folder_id, request.name, request.color)
-            folder = self.service.add_folder(request_dto)
-            return {'status': 'succes', "folder": folder}, HttpStatus.OK
-        except AdditionException as e:
-            return {'status': 'error', 'message': str(e)}, HttpStatus.INTERAL_SERVER_ERROR
+        request_dto = FolderRequestDto(request.folder_id, request.name, request.color)
+        folder = self.service.add_folder(request_dto)
+        return {'status': 'succes', "folder": folder}, HttpStatus.OK
         
 
+    @exception_handler
     def get_folders(self, parent_id: str):
-        try:
-            folders = self.service.get_folders(parent_id)
-            return {"status": 'succes', "folders": folders}, HttpStatus.OK
-        except NotFoundException as e:
-            return {'status': 'not_found', 'message': str(e)}, HttpStatus.NOT_FOUND
-        
+        folders = self.service.get_folders(parent_id)
+        return {"status": 'succes', "folders": folders}, HttpStatus.OK
 
+        
+    @exception_handler
     def get_recent_folders(self):
-        try:
-            folders = self.service.get_recent_folders()
-            return {"status": 'succes', "folders": folders}, HttpStatus.OK
-        except NotFoundException as e:
-            return {'status': 'not_found', 'message': str(e)}, HttpStatus.NOT_FOUND
+        folders = self.service.get_recent_folders()
+        return {"status": 'succes', "folders": folders}, HttpStatus.OK
+        
 
-
+    @exception_handler
     def get_search_items(self):
-        try:
-            search_items = self.service.get_search_items()
-            return {'status': 'succes', 'folders': search_items}, HttpStatus.OK
-        except NotFoundException as e:
-            return {'status': 'not_found', 'message': str(e)}, HttpStatus.NO_CONTENT
+        search_items = self.service.get_search_items()
+        return {'status': 'succes', 'folders': search_items}, HttpStatus.OK
         
 
+    @exception_handler
     def get_folder_by_id(self, folder_id: str):
-        try:
-            folder = self.service.get_folder_by_id(folder_id)
-            return {'status': 'succes', 'folder': folder}, HttpStatus.OK
-        except NotFoundException as e:
-            return {'status': 'not_found', 'message': str(e)}, HttpStatus.NOT_FOUND
+        folder = self.service.get_folder_by_id(folder_id)
+        return {'status': 'succes', 'folder': folder}, HttpStatus.OK
 
 
+    @exception_handler
     def update_folder(self, request: FolderRequest):
-        try:
-            folder = self.service.update_folder(request)
-            return {'status': 'succes', "folder": folder}, HttpStatus.OK
-        except NotFoundException as e:
-            return {'status': 'not_found', 'message': str(e)}, HttpStatus.NOT_FOUND
+        folder = self.service.update_folder(request)
+        return {'status': 'succes', "folder": folder}, HttpStatus.OK
         
 
+    @exception_handler
     def folder_visit(self, folder_id: str):
-        try:
-            self.service.update_visit(folder_id) 
-            return {'status': 'succes'}, HttpStatus.OK
-        except NotFoundException as e:
-            return {'status': 'not_found', 'message': str(e)}, HttpStatus.NOT_FOUND
+        self.service.update_visit(folder_id) 
+        return {'status': 'succes'}, HttpStatus.OK
+       
         
-
+    @exception_handler
     def delete_folder(self, parent_id: str, folder_id: str ):
-        try:
-            folder = self.service.delete_folder(parent_id, folder_id)
-            return {'status': 'succes', "folder": folder}, HttpStatus.OK
-        except NotFoundException as e:
-            return {'status': 'not_found', 'message': str(e)}, HttpStatus.NOT_FOUND
+        folder = self.service.delete_folder(parent_id, folder_id)
+        return {'status': 'succes', "folder": folder}, HttpStatus.OK

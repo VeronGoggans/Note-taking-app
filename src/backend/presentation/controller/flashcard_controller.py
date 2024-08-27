@@ -2,9 +2,9 @@ from fastapi import APIRouter
 from src.backend.presentation.http_status import HttpStatus
 from src.backend.application.flashcard_service import FlashcardService
 from src.backend.data.flashcard.flashcard_manager import FlashcardManager
-from src.backend.data.exceptions.exceptions import NotFoundException, SerializationException
 from src.backend.presentation.request_bodies.flashcard_requests import *
 from src.backend.presentation.dtos.flashcard_dtos import PostFlashcardDTO, FlashcardDTO
+from src.backend.presentation.decorators.controller_decorators import exception_handler
 
 
 class FlashcardRouter:
@@ -18,45 +18,31 @@ class FlashcardRouter:
         self.route.add_api_route('/flashcards', self.delete_flashcards, methods=['DELETE'])
 
     
+    @exception_handler
     def add_flashcards(self, request: PostFlashcardsRequest):
-        try:
-            flashcards = self.__request_to_dto('add', new_flashcards=request.flashcards)
-            self.service.add_flashcards(request.deck_id, flashcards)
-            return {'status': 'succes'}, HttpStatus.OK
-        except SerializationException as e:
-            return {'status': 'error', 'message': str(e)}, HttpStatus.INTERAL_SERVER_ERROR
-        except NotFoundException as e:
-            return {'status': 'not_found', 'message': str(e)}, HttpStatus.NOT_FOUND
+        flashcards = self.__request_to_dto('add', new_flashcards=request.flashcards)
+        self.service.add_flashcards(request.deck_id, flashcards)
+        return {'status': 'succes'}, HttpStatus.OK
         
 
+    @exception_handler
     def update_flashcards(self, request: PutFlashcardsRequest):
-        try:
-            flashcards = self.__request_to_dto('update', updated_flashcards=request.flashcards)
-            self.service.update_flashcards(request.deck_id, flashcards)
-            return {'status': 'succes'}, HttpStatus.OK
-        except SerializationException as e:
-            return {'status': 'error', 'message': str(e)}, HttpStatus.INTERAL_SERVER_ERROR
-        except NotFoundException as e:
-            return {'status': 'not_found', 'message': str(e)}, HttpStatus.NOT_FOUND
+        flashcards = self.__request_to_dto('update', updated_flashcards=request.flashcards)
+        self.service.update_flashcards(request.deck_id, flashcards)
+        return {'status': 'succes'}, HttpStatus.OK
         
 
+    @exception_handler
     def update_flashcard_ratings(self, request: FlashcardStudyRequest):
-        try:
-            flashcards = self.__request_to_dto('update', updated_flashcards=request.flashcards)
-            self.service.update_flashcard_ratings(request.deck_id, request.time_studied, flashcards)
-            return {'status': 'succes'}, HttpStatus.OK
-        except SerializationException as e:
-            return {'status': 'error', 'message': str(e)}, HttpStatus.INTERAL_SERVER_ERROR
-        except NotFoundException as e:
-            return {'status': 'not_found', 'message': str(e)}, HttpStatus.NOT_FOUND
+        flashcards = self.__request_to_dto('update', updated_flashcards=request.flashcards)
+        self.service.update_flashcard_ratings(request.deck_id, request.time_studied, flashcards)
+        return {'status': 'succes'}, HttpStatus.OK
         
 
+    @exception_handler
     def delete_flashcards(self, request: DeleteFlashcardsRequest):
-        try:
-            self.service.delete_flashcards(request.deck_id, request.flashcard_ids)
-            return {'status': 'succes'}, HttpStatus.OK
-        except NotFoundException as e:
-            return {'status': 'not_found', 'message': str(e)}, HttpStatus.NOT_FOUND
+        self.service.delete_flashcards(request.deck_id, request.flashcard_ids)
+        return {'status': 'succes'}, HttpStatus.OK
         
     
     def __request_to_dto(self, action: str, new_flashcards: list[PostFlashcardDTO] = None, updated_flashcards: list[PutFlashcardRequest] = None):

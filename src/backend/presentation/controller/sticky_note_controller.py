@@ -4,7 +4,7 @@ from src.backend.data.note.sticky_note_manager import StickyNoteManager
 from src.backend.presentation.request_bodies.note_requests import PostStickyNoteRequest, PutStickyNoteRequest
 from src.backend.presentation.dtos.note_dtos import PostStickyNoteDto, PutStickyNoteDto
 from src.backend.presentation.http_status import HttpStatus
-from src.backend.data.exceptions.exceptions import NotFoundException, AdditionException
+from src.backend.presentation.decorators.controller_decorators import exception_handler
 
 
 
@@ -19,37 +19,27 @@ class StickyNoteRouter:
         self.route.add_api_route('/stickyNote/{id}', self.delete_sticky_note, methods=['DELETE'])
         
 
+    @exception_handler
     def add_sticky_note(self, request: PostStickyNoteRequest):
-        try:
-            request_dto = PostStickyNoteDto(request.name, request.content)
-            note = self.service.add_sticky_note(request_dto)
-            return {'status': 'succes', 'stickyNote': note}, HttpStatus.OK
-        except NotFoundException as e:
-            return {'status': 'not_found', 'message': str(e)}, HttpStatus.NOT_FOUND
-        except AdditionException as e:
-            return {'status': 'error', 'message': str(e)}, HttpStatus.INTERAL_SERVER_ERROR
+        request_dto = PostStickyNoteDto(request.name, request.content)
+        note = self.service.add_sticky_note(request_dto)
+        return {'status': 'succes', 'stickyNote': note}, HttpStatus.OK
        
 
+    @exception_handler
     def get_sticky_notes(self):
-        try:
-            notes = self.service.get_sticky_notes()
-            return {'status': 'succes', 'stickyNotes': notes}, HttpStatus.OK
-        except NotFoundException as e:
-            return {'status': 'not_found', 'message': str(e)}, HttpStatus.NOT_FOUND
+        notes = self.service.get_sticky_notes()
+        return {'status': 'succes', 'stickyNotes': notes}, HttpStatus.OK
        
 
+    @exception_handler
     def update_sticky_note(self, request: PutStickyNoteRequest):
-        try:
-            request_dto = PutStickyNoteDto(request.id, request.name, request.content)
-            note = self.service.update_sticky_note(request_dto)
-            return {'status': 'succes', 'stickyNote': note}, HttpStatus.OK
-        except NotFoundException as e:
-            return {'status': 'not_found', 'message': str(e)}, HttpStatus.NOT_FOUND
+        request_dto = PutStickyNoteDto(request.id, request.name, request.content)
+        note = self.service.update_sticky_note(request_dto)
+        return {'status': 'succes', 'stickyNote': note}, HttpStatus.OK
+    
 
-
+    @exception_handler
     def delete_sticky_note(self, id: str ):
-        try:
-            note = self.service.delete_sticky_note(id)
-            return {'status': 'succes', 'stickyNote': note}, HttpStatus.OK
-        except NotFoundException as e:
-            return {'status': 'not_found', 'message': str(e)}, HttpStatus.NOT_FOUND
+        note = self.service.delete_sticky_note(id)
+        return {'status': 'succes', 'stickyNote': note}, HttpStatus.OK

@@ -4,7 +4,7 @@ from src.backend.data.template.template_manager import TemplateManager
 from src.backend.presentation.http_status import HttpStatus
 from src.backend.presentation.request_bodies.template_requests import *
 from src.backend.presentation.dtos.template_dtos import *
-from src.backend.data.exceptions.exceptions import *
+from backend.presentation.decorators.controller_decorators import exception_handler
 
 class TemplateRouter:
     def __init__(self, json_manager):
@@ -21,57 +21,45 @@ class TemplateRouter:
         self.route.add_api_route('/template/{template_id}', self.delete_template, methods=['DELETE'])
 
 
+    @exception_handler
     def get_templates(self):
-        try:
-            recent, other, total_uses, most_used = self.service.get_templates()
-            return {'status': 'succes', 'recent': recent, 'other': other, 'totalUses': total_uses, 'mostUsed': most_used}, HttpStatus.OK
-        except DeserializationException as e:
-            return {'status': 'error', 'message': str(e)}, HttpStatus.INTERAL_SERVER_ERROR
+        recent, other, total_uses, most_used = self.service.get_templates()
+        return {'status': 'succes', 'recent': recent, 'other': other, 'totalUses': total_uses, 'mostUsed': most_used}, HttpStatus.OK
 
 
+    @exception_handler
     def get_template_by_id(self, id: str, update_use_count: bool):
-        try:
-            template = self.service.get_template_by_id(id, update_use_count)
-            return {'status': 'succes', 'template': template}, HttpStatus.OK
-        except NotFoundException as e:
-            return {'status': 'not_found', 'message': str(e)}, HttpStatus.NOT_FOUND
-            
+        template = self.service.get_template_by_id(id, update_use_count)
+        return {'status': 'succes', 'template': template}, HttpStatus.OK
+        
 
+    @exception_handler
     def get_template_names(self):
         templates = self.service.get_template_names()
         return {'status': 'succes', 'templates': templates}, HttpStatus.OK
     
 
+    @exception_handler
     def get_search_items(self):
-        try:
-            templates = self.service.get_template_names()
-            return {'status': 'succes', 'templates': templates}, HttpStatus.OK
-        except NotFoundException as e:
-            return {'status': 'not_found', 'message': str(e)}, HttpStatus.NO_CONTENT
+        templates = self.service.get_template_names()
+        return {'status': 'succes', 'templates': templates}, HttpStatus.OK
     
-
+    
+    @exception_handler
     def add_template(self, request: PostTemplateRequest):
-        try:
-            request_dto = PostTemplateDto(request.name, request.content)
-            template = self.service.add_template(request_dto)
-            return {'status': 'succes', 'template': template}, HttpStatus.OK
-        except AdditionException as e:
-            return {'status': 'error', 'message': str(e)}, HttpStatus.INTERAL_SERVER_ERROR
+        request_dto = PostTemplateDto(request.name, request.content)
+        template = self.service.add_template(request_dto)
+        return {'status': 'succes', 'template': template}, HttpStatus.OK
     
 
+    @exception_handler
     def update_template(self, request: PutTemplateRequest):
-        try:
             request_dto = PutTemplateDto(request.id, request.name, request.content)
             template = self.service.update_template(request_dto)
             return {'status': 'succes', 'template': template}, HttpStatus.OK 
-        except NotFoundException as e:
-            return {'status': 'not_found', 'message': str(e)}, HttpStatus.NOT_FOUND
 
 
+    @exception_handler
     def delete_template(self, template_id: str):
-        try:
-            template = self.service.delete_template(template_id)
-            return {'status': 'succes', 'template': template}, HttpStatus.OK
-        except NotFoundException as e:
-            return {'status': 'not_found', 'message': str(e)}, HttpStatus.NOT_FOUND
-        
+        template = self.service.delete_template(template_id)
+        return {'status': 'succes', 'template': template}, HttpStatus.OK        

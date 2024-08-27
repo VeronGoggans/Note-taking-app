@@ -5,7 +5,7 @@ from src.backend.data.flashcard.flashcard_deck_manager import FlashcardDeckManag
 from src.backend.presentation.request_bodies.flashcard_requests import PostDeckRequest, PutDeckRequest
 from src.backend.presentation.request_bodies.flashcard_requests import PostFlashcardRequest
 from src.backend.presentation.dtos.flashcard_dtos import PostFlashcardDTO
-from src.backend.data.exceptions.exceptions import SerializationException, NotFoundException, DeserializationException
+from src.backend.presentation.decorators.controller_decorators import exception_handler
 
 
 class FlashcardDeckRouter:
@@ -22,65 +22,47 @@ class FlashcardDeckRouter:
         self.route.add_api_route('/deck/{id}', self.delete_deck, methods=['DELETE'])
 
 
+    @exception_handler
     def add_deck(self, request: PostDeckRequest): 
-        try:
-            flashcards = self.__request_to_dto(request.flashcards)
-            new_deck = self.service.add_deck(request.name, flashcards)
-            return {"status": 'succes', 'deck': new_deck}, HttpStatus.OK
-        except SerializationException as e:
-            return {'status': 'error', 'message': str(e)}, HttpStatus.INTERAL_SERVER_ERROR
-        except Exception as e:
-            return {"status": "error", "message": "An unexpected error occurred"}, HttpStatus.INTERAL_SERVER_ERROR
+        flashcards = self.__request_to_dto(request.flashcards)
+        new_deck = self.service.add_deck(request.name, flashcards)
+        return {"status": 'succes', 'deck': new_deck}, HttpStatus.OK
 
 
+    @exception_handler
     def get_deck_by_id(self, id: str):
-        try:
-            deck = self.service.get_deck_by_id(id)
-            return {'status': 'succes', "deck": deck}, HttpStatus.OK
-        except NotFoundException as e:
-            return {'status': 'not_found', "message": str(e)}, HttpStatus.NOT_FOUND
-        except DeserializationException as e:
-            return {'status': 'error', 'message': str(e)}, HttpStatus.INTERAL_SERVER_ERROR
+        deck = self.service.get_deck_by_id(id)
+        return {'status': 'succes', "deck": deck}, HttpStatus.OK
         
-    
+
+    @exception_handler
     def get_all_decks(self):
-        try:
-            all_decks, misc = self.service.get_all_decks()
-            return {'status': 'succes', 'decks': all_decks, 'misc': misc}, HttpStatus.OK
-        except DeserializationException as e:
-            return {'status': 'error', 'message': str(e)}, HttpStatus.INTERAL_SERVER_ERROR
+        all_decks, misc = self.service.get_all_decks()
+        return {'status': 'succes', 'decks': all_decks, 'misc': misc}, HttpStatus.OK
         
-    
+
+    @exception_handler
     def get_search_items(self):
-        try:
-            search_items = self.service.get_search_items()
-            return {'status': 'succes', 'items': search_items}, HttpStatus.OK
-        except NotFoundException as e:
-            return {'status': 'not_found', 'message': str(e)}, HttpStatus.NO_CONTENT
+        search_items = self.service.get_search_items()
+        return {'status': 'succes', 'items': search_items}, HttpStatus.OK
         
 
+    @exception_handler
     def get_5_random_decks(self):
-        try:
-            random_decks = self.service.get_random_decks()
-            return {'status': 'succes', 'decks': random_decks}, HttpStatus.OK
-        except NotFoundException as e:
-            return {'status': 'not_found', 'message': str(e)}, HttpStatus.NO_CONTENT
+        random_decks = self.service.get_random_decks()
+        return {'status': 'succes', 'decks': random_decks}, HttpStatus.OK
         
 
+    @exception_handler
     def update_deck(self, request: PutDeckRequest):
-        try:
-            self.service.update_deck(request)
-            return {'status': 'succes'}, HttpStatus.OK
-        except Exception as e:
-            return {'status': 'error', 'message': str(e)}
+        self.service.update_deck(request)
+        return {'status': 'succes'}, HttpStatus.OK
         
 
+    @exception_handler
     def delete_deck(self, id: str):
-        try:
-            deck = self.service.delete_deck(id)
-            return {"status": 'succes', 'deck': deck}, HttpStatus.OK
-        except NotFoundException as e:
-            return {'status': 'not_found', "message": str(e)}, HttpStatus.NOT_FOUND
+        deck = self.service.delete_deck(id)
+        return {"status": 'succes', 'deck': deck}, HttpStatus.OK
         
 
     def __request_to_dto(self, flashcards: list[PostFlashcardRequest]):
