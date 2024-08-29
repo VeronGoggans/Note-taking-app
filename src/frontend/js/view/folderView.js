@@ -30,7 +30,7 @@ export class FolderView extends BaseView {
         const folderCard = this.#folder(folder);
         this._content.insertBefore(folderCard, this._content.firstChild);
         AnimationHandler.fadeInFromBottom(folderCard);
-        this.dialog.hide();
+        this.closeDialog()
     }
 
     renderUpdate(folder) {
@@ -56,7 +56,7 @@ export class FolderView extends BaseView {
                 this.folderObjects.remove(folder);
             }
         }
-        this.dialog.hide();
+        this.closeDialog()
     }
 
     renderEditFolderModal(id) {
@@ -84,16 +84,12 @@ export class FolderView extends BaseView {
         folderCard.classList.add(folderColorClass);
     }
 
-    addFolder(name) {
-        this.controller.addFolder(name)
+    async handleNoteDrop(folderId, droppedNoteId) {
+        await this.applicationController.moveNote(folderId, droppedNoteId)
     }
 
-    async handleNoteDrop(noteId, folderId) {
-        await this.applicationController.moveNote(noteId, folderId)
-    }
-
-    async handleFolderDrop(droppedFolderId, parentFolderId) {
-
+    async handleFolderDrop(newParentFolderId, droppedFolderId) {
+        await this.applicationController.moveFolder(newParentFolderId, droppedFolderId);
     }
 
     handleFolderCardClick(id, name) {

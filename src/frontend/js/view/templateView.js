@@ -54,7 +54,7 @@ export class TemplateView extends BaseView {
                 ); 
             }
         }
-        if (closeDialog) this.dialog.hide();
+        if (closeDialog) this.closeDialog();
     }
 
     handleTemplateCardClick(templateId) {

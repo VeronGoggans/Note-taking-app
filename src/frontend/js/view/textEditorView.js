@@ -6,14 +6,15 @@ import { formatDocumentLocation } from "../util/formatters.js";
 import { TextBlockHandler } from "../textFormat/textBlockHandler.js";
 import { SlashCommand } from "../textFormat/slashCommand.js";
 import { AnimationHandler } from "../handlers/animation/animationHandler.js";
+import { BaseView } from "../view/baseView.js"
 
-export class TextEditorView {
-  constructor(controller, applicationController, dialog) {
+export class TextEditorView extends BaseView {
+  constructor(controller, applicationController) {
+    super(controller);
     this.controller = controller;
     this.applicationController = applicationController;
     
     this.editorContent = '';
-    this.dialog = dialog;
     this.#initializeDOMElements();
     this.#attachEventListeners();
 
@@ -47,17 +48,16 @@ export class TextEditorView {
    * @param {boolean} closeEditor - Indicates if the editor should be closed or not.
    * @param {boolean} checkForChanges - Indicates if changes should be checked.
    */
-  async save(closeEditor = true, checkForChanges = true) {
+  async save(closeEditor = true, checkForChanges = true, notify = false) {
     const name = this.documentNameInput.value || 'untitled';
     const content = this.page.innerHTML;
-    await this.controller.save(name, content);
+    await this.controller.save(name, content, notify);
 
     if (closeEditor) {
       this.closeEditor(checkForChanges);
+      return;
     }
-    else {
-      this.editorContent = content;
-    }
+    this.editorContent = content;
   }
 
   /**
@@ -94,13 +94,13 @@ export class TextEditorView {
   }
 
   exitNoSave() {
-    this.dialog.hide();
+    this.closeDialog();
     this.controller.loadPreviousView();
   }
 
   exitBySave() {
     this.editorContent = this.page.innerHTML;
-    this.dialog.hide();
+    this.closeDialog();
     this.save(true, false);
   }
 
@@ -109,8 +109,8 @@ export class TextEditorView {
     this.#clear();
   }
 
-  async handleDeleteButtonClick(noteId) {
-    await this.controller.handleDeleteButtonClick(noteId);
+  async handleDeleteButtonClick(editorObjectId) {
+    await this.controller.handleDeleteButtonClick(editorObjectId);
     this.#clear();
   }
 
@@ -178,8 +178,8 @@ export class TextEditorView {
 
   #attachEventListeners() {
     this.noteDetailsSpan.addEventListener('click', () => {this.dialog.renderNoteDetailsModal(this.#getStoredEditorObject())});
-    this.deleteNoteSpan.addEventListener('click', () => {this.dialog.renderDeleteModal(this.#getStoredEditorObject().id, this.documentNameInput.value, this)});
-    this.saveNoteSpan.addEventListener('click', async () => {await this.save(false, false)});
+    this.deleteNoteSpan.addEventListener('click', () => {this.renderDeleteModal(this.#getStoredEditorObject().id, this.documentNameInput.value, this)});
+    this.saveNoteSpan.addEventListener('click', async () => {await this.save(false, false, true)});
     this.newNoteSpan.addEventListener('click', () => {this.new()});
   
     this.exitButton.addEventListener('click', () => {this.closeEditor()});

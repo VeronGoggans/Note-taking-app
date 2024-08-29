@@ -31,10 +31,15 @@ export class NoteController {
         return response[this.objectNum].notes
     }
 
-    async addNote(folderId, name, content) {
-        const response = await this.model.add('/note', {'folder_id': folderId,'name': name,'content': content});
-        const newNote = response[this.objectNum].note;
-        return newNote
+    async addNote(folderId, name, content, notify) {
+        await this.model.add('/note', {
+            'folder_id': folderId,
+            'name': name,
+            'content': content
+        });
+        if (notify) {
+            this.view.pushNotification('saved');
+        }
     }
 
     async update(note) {
@@ -45,18 +50,24 @@ export class NoteController {
             'bookmark': note.bookmark,
             'favorite': note.favorite
         });
+        this.view.pushNotification('updated');
     }
 
-    async delete(noteId) {
+    async delete(noteId, notify) {
         const response = await this.model.delete(`/note/${noteId}`);
         const note = response[this.objectNum].note;
+        this.searchbar.deleteSearchItem(noteId);
         this.view.renderDelete(note);
+        
+        if (notify) {
+            this.view.pushNotification('deleted', note.name)
+        }
     }
 
-    async moveNote(noteId, folderId) {
-        const response = await this.model.update('/moveNote', {'folder_id': folderId, 'note_id': noteId});
+    async moveNote(folderId, droppedNoteId) {
+        const response = await this.model.update('/moveNote', {'folder_id': folderId, 'note_id': droppedNoteId});
         const note = response[this.objectNum].note;
-        this.view.removeNote(note, false);
+        this.view.renderDelete(note, false);
     }
 
     async handleSearch(searchItemId, searchType) {

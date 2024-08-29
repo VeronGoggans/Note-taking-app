@@ -1,7 +1,6 @@
 import { Note } from "../components/note.js";
 import { NoteObjectArray } from "../util/array.js";
 import { AnimationHandler } from "../handlers/animation/animationHandler.js";
-import { DragAndDrop } from "../handlers/drag&drop/dragAndDropHandler.js";
 import { removeContent } from "../util/ui.js";
 import { BaseView } from "./baseView.js";
 
@@ -13,7 +12,6 @@ export class NoteView extends BaseView {
         this.applicationController = applicationController;
         
         this.noteObjects = new NoteObjectArray();
-        this.dragAndDrop = new DragAndDrop(this);
 
         this.#initializeDomElements();
         this.#attachEventListeners();
@@ -34,7 +32,7 @@ export class NoteView extends BaseView {
             this._content.appendChild(contentFragment);
         } 
         if (this._content.children.length === 0) {
-            this.pushNotification('Empty');
+            this.pushNotification('empty');
         }
     }
 
@@ -46,7 +44,6 @@ export class NoteView extends BaseView {
             if (cards[i].id === note.id) {
                 AnimationHandler.fadeOutCard(cards[i]);
                 this.noteObjects.remove(note);
-                this.notificationHandler.push('Deleted', note.name);
             }
         }
         if (closeDialog) this.closeDialog();

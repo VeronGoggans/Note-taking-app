@@ -18,7 +18,7 @@ export class NotificationHandler {
         const notificationTypes = {
             'saved': { icon: this.icons.SAVED, message: this.messages.SAVED, type: this.types.SAVED},
             'updated': { icon: this.icons.UPDATED, message: this.messages.UPDATED, type: this.types.UPDATED},
-            'deleted': { icon: this.icons.DELETED, message: `${noteName} ${this.messages.DELETED}`, type: this.types.DELETED},
+            'deleted': { icon: this.icons.DELETED, message: `<b>${noteName}</b> ${this.messages.DELETED}`, type: this.types.DELETED},
             'new': { icon: this.icons.NEW, message: this.messages.NEW, type: this.types.NEW},
             'empty': { icon: this.icons.EMPTY, message: this.messages.EMPTY, type: this.types.EMPTY},
         };
@@ -37,17 +37,13 @@ class Notification {
     constructor(icon, message, title) {
         this.NOTIFICATION_CARD = CNode.create('div', {'class': 'notification-card'});
         this.ICON = CNode.create('i', {'class': icon, 'id': 'notification-icon'});
-        this.MESSAGE_BOX = CNode.create('div', {});
-        this.TITLE = CNode.create('p', {'class': 'notification-message-title', 'textContent': title})
-        this.MESSAGE = CNode.create('p', {'class': 'notification-message', 'innerHTML': message});
+        this.TITLE = CNode.create('h3', {'textContent': title})
+        this.MESSAGE = CNode.create('p', {'innerHTML': message});
         return this.#render();
     }
 
     #render() {
-        this.NOTIFICATION_CARD.appendChild(this.ICON);
-        this.MESSAGE_BOX.appendChild(this.TITLE);
-        this.MESSAGE_BOX.appendChild(this.MESSAGE);
-        this.NOTIFICATION_CARD.appendChild(this.MESSAGE_BOX);
+        this.NOTIFICATION_CARD.append(this.ICON, this.TITLE, this.MESSAGE);
         this.NOTIFICATION_CARD.addEventListener('click', () => {this.#slideDown(250)});
         setTimeout(() => {
             this.slideUp();
@@ -66,6 +62,6 @@ class Notification {
         this.NOTIFICATION_CARD.classList.add('show-notification');
         setTimeout(() => {
             this.#slideDown(250);
-        },5000);   
+        },4500);   
     }
 }

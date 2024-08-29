@@ -25,12 +25,12 @@ class FolderManager:
             if parent_id == 'f-1':
                 folders.append(folder.__dict__)
                 return folder
-            else:
-                parent_folder = FolderFinder.find_folder_by_id(folders, parent_id)
-                if parent_folder:
-                    parent_folder['subfolders'].append(folder.__dict__)
-                    return folder
-                raise NotFoundException(f'Folder with id: {parent_id}, could not be found')
+            
+            parent_folder = FolderFinder.find_folder_by_id(folders, parent_id)
+            if parent_folder:
+                parent_folder['subfolders'].append(folder.__dict__)
+                return folder
+            raise NotFoundException(f'Folder with id: {parent_id}, could not be found')
         except Exception as e: 
             raise AdditionException('An error occurred while adding the folder', errors={'exception': str(e)})
 
@@ -116,7 +116,7 @@ class FolderManager:
         raise NotFoundException(f'Folder with id: {folder_id}, could not be found')
         
     
-    def delete_folder(self, folders, parent_id: str, folder_id: str) -> (dict | NotFoundException):
+    def delete_folder(self, folders, folder_id: str) -> (dict | NotFoundException):
         """
         Delete a folder from the notes structure.
 
@@ -129,21 +129,10 @@ class FolderManager:
             - If successful, it returns the folder.
             - If the folder is not found, it returns None.
         """
-        if parent_id == 'f-1':
-            for folder in folders:
-                if folder.get('id') == folder_id:
-                    folders.remove(folder)
-                    return folder 
-            raise NotFoundException(f'Folder with id: {folder_id}, could not be found.')
-        else: 
-            parent_folder = FolderFinder.find_folder_by_id(folders, parent_id)
-            if parent_folder:
-                for subfolder in parent_folder['subfolders']:
-                    if subfolder.get('id') == folder_id:
-                        parent_folder['subfolders'].remove(subfolder)
-                        return subfolder
-                return NotFoundException(f'Subfolder with id: {folder_id}, could not be found')
-            raise NotFoundException(f'Parent folder with id: {parent_id}, could not be found') 
+        folder_to_remove = FolderFinder.delete_folder_by_id(folders, folder_id)
+        if folder_to_remove:
+            return folder_to_remove
+        raise NotFoundException(f'Folder with the specified ID {folder_id}, does not exist')
         
     
     def __get_top_4_most_recent_folders(self) -> list:

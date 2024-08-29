@@ -13,7 +13,7 @@
 
     /*Notes View*/
     --dragging: #f3f4ff;
-    --bookmark: #f3f4ff;
+    --bookmark: #d5ddff;
     --hover: rgba(92, 125, 255, .3); 
     --hover-bookmark-icon-if-bookmarked: rgba(92, 125, 255, .3);
     --hover-favorite-icon-if-favorited: rgb(255 141 141);
@@ -170,7 +170,7 @@
 
     /*Notes View*/
     --dragging: #f3f4ff;
-    --bookmark: #f3f4ff;
+    --bookmark: #d5ddff;
     --hover: rgba(92, 125, 255, .3); 
     --hover-bookmark-icon-if-bookmarked: rgba(92, 125, 255, .3);
     --folder-name-input: #ced1e3;

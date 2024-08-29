@@ -21,3 +21,20 @@ class FolderFinder:
             if subfolder:
                 return subfolder
         return None
+    
+
+    @staticmethod
+    def delete_folder_by_id(folders, folder_id, parent = None):
+        for folder in folders:
+            if folder.get("id") == folder_id and parent is not None:
+                parent['subfolders'].remove(folder)
+                return folder
+            if folder.get("id") == folder_id and parent is None:
+                folders.remove(folder)
+                return folder
+
+            
+            subfolder = FolderFinder.delete_folder_by_id(folder["subfolders"], folder_id, folder)
+            if subfolder:
+                return subfolder
+        return None

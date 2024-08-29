@@ -65,8 +65,48 @@ export class Folder {
         this.EDIT_ICON.addEventListener('click', () => {this._toggleEditableFolderName()});
         this.DELETE_ICON.addEventListener('click', () => {this.view.renderDeleteModal(this.id, this.name)});
         this.LOGO.addEventListener('click', () => { this.view.handleFolderCardClick(this.id, this.H4.textContent)});
-        this.HOST.addEventListener('dragstart', (event) => {addDraggImage(event, this.HOST, 'folder')});
+
+        // Drag and drop event listeners below.
+        this.HOST.addEventListener('dragstart', (event) => {
+            addDraggImage(event, this.HOST, 'folder')
+            event.dataTransfer.setData('text/plain', `{"draggedItem": "folder", "draggedCardId": "${this.id}"}`)
+        }); 
+
         this.HOST.addEventListener('dragend', () => {this.HOST.classList.remove('dragging')})
+
+        this.HOST.addEventListener('dragover', (event) => {
+            event.preventDefault();
+            this.HOST.classList.add('hovered')
+        })
+
+        this.HOST.addEventListener('dragleave', (event) => {
+            event.preventDefault();
+            this.HOST.classList.remove('hovered')
+        })
+
+        this.HOST.addEventListener('drop', (event) => {
+            event.preventDefault();
+            // Get the id of the element being dragged
+            const droppedCardInfo = JSON.parse(event.dataTransfer.getData('text/plain'));
+            const droppedCardId = droppedCardInfo.draggedCardId;
+            const draggedItemType = droppedCardInfo.draggedItem;
+
+            // CAUTION the code below is very important
+            // This code will only trigger if 
+            // the the droppped folder ID is not equal to the ID of the folder it lands on.
+            // In other words nothing will happen if a user drops a folder on itself. 
+            if (droppedCardId !== this.id) {
+                if (draggedItemType === 'folder') {
+                    this.view.handleFolderDrop(this.id, droppedCardId)                    
+                }
+                if (draggedItemType === 'note') {
+                    this.view.handleNoteDrop(this.id, droppedCardId)
+                }
+            }
+
+            // Remove the visual feedback class
+            this.HOST.classList.remove('hovered');
+        });
     }
 
 

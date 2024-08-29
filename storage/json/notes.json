@@ -3,38 +3,29 @@
         "id": "f-1",
         "name": "Home",
         "color": "rgb(255, 255, 255)",
-        "last_visit": "27/08/2024 19:44:01",
-        "notes": [
-            {
-                "id": "n-736",
-                "name": "Test Note",
-                "content": "storage/notes/note-n-736.txt",
-                "bookmark": false,
-                "last_edit": "27/08/2024 19:36",
-                "creation": "27/08/2024"
-            }
-        ],
+        "last_visit": "29/08/2024 17:10:02",
+        "notes": [],
         "subfolders": []
     },
     {
         "id": "f-99",
         "name": "School",
-        "color": "rgb(255, 255, 255)",
-        "last_visit": "27/08/2024 19:27:05",
+        "color": "rgb(217, 237, 255)",
+        "last_visit": "29/08/2024 17:11:01",
         "notes": [],
         "subfolders": [
             {
                 "id": "s-191",
                 "name": "Year 2",
                 "color": "rgb(255, 255, 255)",
-                "last_visit": "27/08/2024 19:27:06",
+                "last_visit": "29/08/2024 17:11:00",
                 "notes": [],
                 "subfolders": [
                     {
                         "id": "s-181",
                         "name": "Software Architecture",
                         "color": "rgb(255, 255, 255)",
-                        "last_visit": "27/08/2024 19:27:07",
+                        "last_visit": "29/08/2024 17:10:40",
                         "notes": [
                             {
                                 "id": "n-589",
@@ -56,8 +47,8 @@
                                 "id": "n-625",
                                 "name": "Intro to Software Architecture",
                                 "content": "storage/notes/note-n-625.txt",
-                                "bookmark": true,
-                                "last_edit": "12/08/2024 17:10",
+                                "bookmark": false,
+                                "last_edit": "29/08/2024 17:10",
                                 "creation": "03/06/2024"
                             },
                             {
@@ -80,8 +71,8 @@
                                 "id": "n-628",
                                 "name": "Logical Layers",
                                 "content": "storage/notes/note-n-628.txt",
-                                "bookmark": true,
-                                "last_edit": "22/08/2024 21:59",
+                                "bookmark": false,
+                                "last_edit": "29/08/2024 17:10",
                                 "creation": "03/06/2024"
                             },
                             {
@@ -107,7 +98,7 @@
                         "id": "s-183",
                         "name": "CISC1",
                         "color": "rgb(255, 255, 255)",
-                        "last_visit": "27/08/2024 16:26:27",
+                        "last_visit": "29/08/2024 17:10:49",
                         "notes": [
                             {
                                 "id": "n-466",
@@ -124,7 +115,7 @@
                         "id": "s-182",
                         "name": "CISC2",
                         "color": "rgb(255, 255, 255)",
-                        "last_visit": "27/08/2024 17:34:46",
+                        "last_visit": "29/08/2024 17:10:54",
                         "notes": [
                             {
                                 "id": "n-609",
@@ -163,7 +154,7 @@
                                 "name": "Websecurity & Web Performance",
                                 "content": "storage/notes/note-n-613.txt",
                                 "bookmark": false,
-                                "last_edit": "27/08/2024 16:00",
+                                "last_edit": "28/08/2024 23:49",
                                 "creation": "30/05/2024"
                             },
                             {
@@ -183,27 +174,19 @@
                 "id": "s-192",
                 "name": "Year 3",
                 "color": "rgb(255, 255, 255)",
-                "last_visit": "26/08/2024 16:15:44",
+                "last_visit": "29/08/2024 17:11:01",
                 "notes": [],
                 "subfolders": [
                     {
                         "id": "s-193",
                         "name": "Innovation",
                         "color": "rgb(255, 255, 255)",
-                        "last_visit": "27/08/2024 01:36:36",
+                        "last_visit": "29/08/2024 17:11:03",
                         "notes": [],
                         "subfolders": []
                     }
                 ]
             }
         ]
-    },
-    {
-        "id": "f-149",
-        "name": "Test 1",
-        "color": "rgb(238, 165, 166)",
-        "last_visit": "27/08/2024 18:54:10",
-        "notes": [],
-        "subfolders": []
     }
 ]

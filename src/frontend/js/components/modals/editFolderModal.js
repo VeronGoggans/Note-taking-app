@@ -27,6 +27,7 @@ export class EditFolderModal {
         this.ACTIVE_COLOR_SPAN = CNode.create('span', {'textContent': '(Original)'});
         this.COLORS_CONTAINER = CNode.create('div', {'class': 'folder-color-options'});
         this.BLUE = CNode.create('div', {'style': 'background-color: rgb(169, 215, 255);'});
+        this.SOFT_BLUE = CNode.create('div', {'style': 'background-color: rgb(217, 237, 255)'});
         this.SALMON_PINK = CNode.create('div', {'style': 'background-color: rgb(238, 165, 166);'});
         this.LAVENDER = CNode.create('div', {'style': 'background-color: rgb(223, 193, 255);'});
         this.LIGHT_GREEN = CNode.create('div', {'style': 'background-color: rgb(159, 251, 149);'});
@@ -39,7 +40,7 @@ export class EditFolderModal {
         this.BUTTONS_CONTAINER = CNode.create('div', {'class': 'buttons-container'});
         this.CANCEL = CNode.create('button', {'textContent': 'Cancel', 'class': 'cancel-folder-customization-btn'});
         this.SAVE = CNode.create('button', {'textContent': 'Save', 'class': 'save-folder-customisations-btn'});
-        this.colorsArray = [this.BLUE, this.LAVENDER, this.LIGHT_GREEN, this.PEACH, this.PINK_LAVENDER,
+        this.colorsArray = [this.BLUE, this.SOFT_BLUE, this.LAVENDER, this.LIGHT_GREEN, this.PEACH, this.PINK_LAVENDER,
             this.BLUE_VIOLET, this.SALMON_PINK, this.TURQUOISE, this.SUNSET_ORANGE, this.ORIGINAL_COLOR
         ]
     }   
@@ -50,7 +51,7 @@ export class EditFolderModal {
         this.SETTINGS_CONTAINER.append(this.NAME_SPAN, this.NAME_P, this.INPUT, this.COLOR_SPAN,
             this.COLOR_P, this.COLORS_CONTAINER
         );
-        this.COLORS_CONTAINER.append(this.BLUE, this.LAVENDER, this.LIGHT_GREEN, this.PEACH,
+        this.COLORS_CONTAINER.append(this.BLUE, this.SOFT_BLUE, this.LAVENDER, this.LIGHT_GREEN, this.PEACH,
             this.PINK_LAVENDER, this.BLUE_VIOLET, this.SALMON_PINK, this.TURQUOISE, this.SUNSET_ORANGE,
             this.ORIGINAL_COLOR
         );

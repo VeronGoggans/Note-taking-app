@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from src.backend.data.folder.folder_manager import FolderManager
-from src.backend.presentation.request_bodies.folder_requests import FolderRequest
+from src.backend.presentation.request_bodies.folder_requests import FolderRequest, MoveFolderRequest
 from src.backend.presentation.dtos.folder_dtos import FolderRequestDto
 from src.backend.presentation.http_status import HttpStatus
 from src.backend.application.folder_service import FolderService
@@ -17,7 +17,8 @@ class FolderRouter:
         self.route.add_api_route('/folderSearchItems', self.get_search_items, methods=['GET'])
         self.route.add_api_route('/folderById/{folder_id}', self.get_folder_by_id, methods=['GET'])
         self.route.add_api_route('/folder', self.update_folder, methods=['PUT'])
-        self.route.add_api_route('/folder/{parent_id}/{folder_id}', self.delete_folder, methods=['DELETE'])
+        self.route.add_api_route('/moveFolder', self.move_folder, methods=['PUT'])
+        self.route.add_api_route('/folder/{folder_id}', self.delete_folder, methods=['DELETE'])
         self.route.add_api_route('/viewedFolderTime/{folder_id}', self.folder_visit, methods=['PATCH'])
 
 
@@ -56,6 +57,12 @@ class FolderRouter:
     def update_folder(self, request: FolderRequest):
         folder = self.service.update_folder(request)
         return {'status': 'succes', "folder": folder}, HttpStatus.OK
+    
+
+    @exception_handler
+    def move_folder(self, request: MoveFolderRequest):
+        folder = self.service.move_folder(request.new_parent_folder_id, request.folder_id)
+        return {'status': 'succes', "folder": folder}, HttpStatus.OK
         
 
     @exception_handler
@@ -65,6 +72,6 @@ class FolderRouter:
        
         
     @exception_handler
-    def delete_folder(self, parent_id: str, folder_id: str ):
-        folder = self.service.delete_folder(parent_id, folder_id)
+    def delete_folder(self, folder_id: str ):
+        folder = self.service.delete_folder(folder_id)
         return {'status': 'succes', "folder": folder}, HttpStatus.OK

@@ -13,6 +13,7 @@ export const fullMonths = [
 export const folderColorNames = {
     'rgb(255, 255, 255)': 'White',
     'rgb(169, 215, 255)': 'Light Sky Blue',
+    'rgb(217, 237, 255)': 'Soft Blue',
     'rgb(223, 193, 255)': 'Lavender',
     'rgb(159, 251, 149)': 'Light Green',
     'rgb(255, 224, 158)': 'Peach',
@@ -27,6 +28,7 @@ export const folderColorNames = {
 export const folderColorClasses = {
     'rgb(255, 255, 255)': 'color-original',
     'rgb(169, 215, 255)': 'color-light-sky-blue',
+    'rgb(217, 237, 255)': 'color-soft-blue',
     'rgb(255, 224, 158)': 'color-peach',
     'rgb(159, 251, 149)': 'color-light-green',
     'rgb(223, 193, 255)': 'color-lavender',
@@ -61,26 +63,25 @@ export const notificationTypes = {
     'UPDATED': 'Updated',
     'DELETED': 'Deleted',
     'NEW': 'New',
-    'EMPTY': 'Empty',
+    'EMPTY': 'Nothing here',
 }
 
 
 export const notificationIcons = {
-    'SAVED': 'fa-solid fa-check',
+    'SAVED': 'fa-solid fa-file',
     'UPDATED': 'fa-solid fa-pen',
     'DELETED': 'fa-regular fa-trash-can',
     'NEW': 'fa-solid fa-plus',
-    'EMPTY': 'fa-regular fa-bell'
+    'EMPTY': 'fa-solid fa-folder-open'
 }
 
 
 export const notificationMessages = {
-    'SAVED': 'Note successfully created.',
+    'SAVED': 'Your note has been saved successfully.',
     'UPDATED': 'Your changes have been saved.',
     'DELETED': 'has been deleted.',
     'NEW': 'Changes saved.\nCreating a new note.',
-    'EMPTY': 'This folder is empty.<br>Start by making a note or subfolder.',
-    'EXPORT': 'Export successful'
+    'EMPTY': 'There is no content in this folder.',
 }
 
 
@@ -109,3 +110,5 @@ export const stickyNoteColors = [
     '#ffecc0',
     '#ffd0d0',
 ]
+
+export const sidebarButtonText = ['Home', 'Notes', 'Templates', 'Sticky wall', 'Flashcards', 'Settings']

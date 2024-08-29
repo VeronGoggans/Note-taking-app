@@ -46,9 +46,9 @@ class JsonManager:
         Returns:
             None: This method does not return a value.
         """
-        self.cache.update(file_path, updated_data)
         backup = self.load(file_path)
-
+        self.cache.update(file_path, updated_data)
+        
         try:
             with open(file_path, 'w') as file:
                 json.dump(updated_data, file, indent=4)

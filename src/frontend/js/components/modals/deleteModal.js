@@ -1,8 +1,9 @@
 import { CNode } from "../../util/CNode.js";
 
 export class DeleteModal {
-    constructor(id, name, view) {
+    constructor(id, name, notify, view) {
         this.id = id;
+        this.notify = notify;
         this.name = name;
         this.view = view;
         this.HOST = CNode.create('div', {'class': 'delete-folder-container'});
@@ -14,7 +15,15 @@ export class DeleteModal {
     }
 
     #attachEventListeners() {
-        this.DELETE.addEventListener('click', () => {this.view.deleteObject(this.id)})
+        this.DELETE.addEventListener('click', () => {
+
+            if (this.notify) {
+                this.view.handleDeleteButtonClick(this.id)
+                return
+            }
+            this.view.deleteObject(this.id)
+
+        })
     }
 
     #render() {

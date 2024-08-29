@@ -154,15 +154,6 @@ export const settingsTemplate = `
                     <li theme="dark">Dark</li>
                 </ul>
             </div>
-            <h3>Language</h3>
-            <p>Select a language</p>
-            <div class="language-dropdown">
-                <input type="text" spellcheck="false" placeholder="Coming soon" class="language-input">
-                <ul class="languages">
-                    <li>English</li>
-                    <li>Dutch</li>
-                </ul>
-            </div>
         </div>
     </div>
     </div>

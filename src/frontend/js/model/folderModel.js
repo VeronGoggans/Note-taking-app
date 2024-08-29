@@ -15,6 +15,11 @@ export class FolderModel extends HttpModel {
         return lastFolder ? lastFolder : {id: 'f-1', name: 'Home'};
     }
     
+    getPreviousFolderObject() {
+        const lastFolder = this.folderObjects[this.folderObjects.length - 2];
+        return lastFolder ? lastFolder : {id: 'f-1', name: 'Home'};
+    }
+    
     /** 
      * @returns {String} The ID of the current folder, 
      * or the home folder id if the stack is empty.

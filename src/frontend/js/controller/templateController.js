@@ -36,11 +36,14 @@ export class TemplateController {
         return templates
     }
 
-    async addTemplate(name, content) {
+    async addTemplate(name, content, notify) {
         await this.model.add('/template', {
             'name': name,
             'content': content
         })
+        if (notify) {
+            this.view.pushNotification('saved')
+        }
     }
 
     async update(template) {
@@ -51,9 +54,13 @@ export class TemplateController {
         })
     }
 
-    async delete(templateId) {
+    async delete(templateId, notify) {
         const response = await this.model.delete(`/template/${templateId}`)
         const template = response[this.objectNum].template;
         this.view.renderDelete(template);
+
+        if (notify) {
+            this.view.pushNotification('deleted', template.name)
+        }
     }
 }

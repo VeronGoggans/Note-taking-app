@@ -18,3 +18,6 @@ class NotFoundException(BaseException):
 
 class AdditionException(BaseException):
     pass
+
+class InvalidMoveRequestException(BaseException):
+    pass

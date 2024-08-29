@@ -1,3 +1,5 @@
+import { sidebarButtonText } from "../constants/constants.js";
+
 export class SidebarView {
     constructor(applicationController) {
         this.applicationController = applicationController;
@@ -13,8 +15,7 @@ export class SidebarView {
         this._wrapper = document.querySelector('.wrapper');
         this._buttonCount = 6;
 
-        this._icon.addEventListener('click', () => {this.#toggleSidebar()});
-        window.addEventListener('resize', () => this.#resizeSidebar());
+        this.#attachEventListeners();
 
         this.sidebarButtons.forEach(link => {
             link.addEventListener('click', (event) => {
@@ -66,10 +67,9 @@ export class SidebarView {
      * becomes bigger then 700 pixels
      */
     #openButtons() {
-        const buttonText = ['Home', 'Notes', 'Templates', 'Sticky wall', 'Flashcards', 'Settings']
         for (let i = 0; i < this._buttonCount; i++) {
             this.sidebarSpans[i].style.position = 'relative';
-            this.sidebarSpans[i].textContent = buttonText[i];
+            this.sidebarSpans[i].textContent = sidebarButtonText[i];
 
             this.sidebarIcons[i].style.position = 'absolute';
             this.sidebarIcons[i].style.left = '10px';
@@ -120,5 +120,37 @@ export class SidebarView {
                 this.#openButtons();
             }
         }
+    }
+
+    #attachEventListeners() {
+        this._icon.addEventListener('click', () => {this.#toggleSidebar()});
+        window.addEventListener('resize', () => this.#resizeSidebar());
+
+        this._sidebar.addEventListener('drop', (event) => {
+            event.preventDefault();
+
+            const droppedCardInfo = JSON.parse(event.dataTransfer.getData('text/plain'));
+            const droppedCardId = droppedCardInfo.draggedCardId;
+            const draggedItemType = droppedCardInfo.draggedItem;
+
+            const newParentDFolderId = this.applicationController.getPreviousFolderObject().id;
+
+            if (droppedCardId !== this.id) {
+                if (draggedItemType === 'folder') {
+                    this.applicationController.moveFolder(newParentDFolderId, droppedCardId)
+                }
+                if (draggedItemType === 'note') {
+                    this.applicationController.moveNote(newParentDFolderId, droppedCardId)
+                }
+            }
+        })
+
+        this._sidebar.addEventListener('dragover', (event) => {
+            event.preventDefault();
+        })
+
+        this._sidebar.addEventListener('dragleave', (event) => {
+            event.preventDefault();
+        })
     }
 }

@@ -74,9 +74,9 @@ class NoteService:
         folders = self.json_manager.load(FOLDERS_PATH)
         try:
             deleted_note = self.note_manager.delete_note(folders, note_id, delete_txt_file=False)
-            deleted_note_object = Note.from_json(deleted_note)
+            note_object_to_move = Note.from_json(deleted_note)
 
-            new_note = self.note_manager.add_note(folders, folder_id, deleted_note_object)
+            new_note = self.note_manager.add_note(folders, folder_id, note_object_to_move)
             self.json_manager.update(FOLDERS_PATH, folders)
             return new_note
         except (NotFoundException, AdditionException) as e:

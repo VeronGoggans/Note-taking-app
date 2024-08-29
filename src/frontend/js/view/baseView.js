@@ -8,8 +8,8 @@ export class BaseView {
         this.dialog = new Dialog()
     }
 
-    renderDeleteModal(id, name) {
-        this.dialog.renderDeleteModal(id, name, this)
+    renderDeleteModal(id, name, notify = false) {
+        this.dialog.renderDeleteModal(id, name, notify, this)
     }
 
     pushNotification(type, noteName = null) {
@@ -20,9 +20,15 @@ export class BaseView {
         this.dialog.hide();
     }
 
-    
+    // methods to communicate with the childs controller
+
+    async addObject(object) {
+        await this.controller.add(object)
+    }
+
+    // False meaning don't notify the user it deleted something.
     async deleteObject(id) {
-        await this.controller.delete(id);
+        await this.controller.delete(id, false);
     }
 
     async updateObject(object) {

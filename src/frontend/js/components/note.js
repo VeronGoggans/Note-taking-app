@@ -46,7 +46,12 @@ export class Note {
         this.DELETE_ICON.addEventListener('click', () => {this.view.renderDeleteModal(this.id, this.name)});
         this.CONTENT_BOX.addEventListener('click', () => {this.view.handleNoteCardClick(this.id)});
         this.BOOKMARK_ICON.addEventListener('click', () => {this.updateNoteBookmark()});
-        this.HOST.addEventListener('dragstart', (event) => {addDraggImage(event, this.HOST, 'file')});
+
+        // Drag and drop event listeners below.
+        this.HOST.addEventListener('dragstart', (event) => {
+            addDraggImage(event, this.HOST, 'file')
+            event.dataTransfer.setData('text/plain', `{"draggedItem": "note", "draggedCardId": "${this.id}"}`)
+        });
         this.HOST.addEventListener('dragend', () => {this.HOST.classList.remove('dragging')});
     }
 

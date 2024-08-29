@@ -16,12 +16,12 @@ export class Searchbar {
         this.searchItems.push({ type: searchType, object: searchObject});
     }
 
-    deleteSearchItem(searchObject) {
-        this.searchItems = this.searchItems.filter(obj => obj.id !== searchObject.id);
+    deleteSearchItem(searchObjectId) {
+        this.searchItems = this.searchItems.filter(obj => obj.object.id !== searchObjectId);
     }
 
-    updateSearchItem() {
-        const option = this.searchItems.find(obj => obj.id === noteId);
+    updateSearchItem(searchObjectId, newName) {
+        const option = this.searchItems.find(obj => obj.object.id === searchObjectId);
         option.name = newName;
     }
     

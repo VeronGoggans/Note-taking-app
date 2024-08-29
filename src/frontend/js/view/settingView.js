@@ -47,11 +47,9 @@ export class SettingView {
         this.darkThemeOption = document.querySelector('.theme-dropdown ul li[theme="dark"]');
         this.lightThemeOption = document.querySelector('.theme-dropdown ul li[theme="light"]');
 
-        this.languageInput = document.querySelector('.language-dropdown input');
-        this.languageDropdownOptions = document.querySelector('.language-dropdown ul');
 
-        this.dropdowns = [this.themeInput, this.languageInput];
-        this.dropdownOptions = [this.themeDropdownOptions, this.languageDropdownOptions]
+        this.dropdowns = [this.themeInput];
+        this.dropdownOptions = [this.themeDropdownOptions]
     }
 
     #attachEventListeners() {

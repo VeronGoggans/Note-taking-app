@@ -44,8 +44,13 @@ export class FolderController {
     getCurrentFolderObject() {
         return this.model.getCurrentFolderObject();
     }
+    
+    getPreviousFolderObject() {
+        return this.model.getPreviousFolderObject();
+    }
 
-    async addFolder(name) {
+    async add(object) {
+        const { name } = object
         const parentFolderId = this.model.getCurrentFolderID();
         const response = await this.model.add('/folder', {'folder_id': parentFolderId, 'name': name, 'color': 'rgb(255, 255, 255)'});
         const folder = response[this.objectNum].folder;
@@ -58,9 +63,18 @@ export class FolderController {
         this.view.renderUpdate(folder);
     }
 
+
+    async moveFolder(newParentFolderId, droppedFolderId) {
+        const response = await this.model.update('/moveFolder', {
+            'new_parent_folder_id': newParentFolderId, 
+            'folder_id': droppedFolderId
+        });
+        const folder = response[this.objectNum].folder;
+        this.view.renderDelete(folder);
+    }
+
     async delete(folderId) {
-        const parentFolderId = this.model.getCurrentFolderID();
-        const response = await this.model.delete(`/folder/${parentFolderId}/${folderId}`);
+        const response = await this.model.delete(`/folder/${folderId}`);
         const folder = response[this.objectNum].folder;
         this.view.renderDelete(folder);
     }

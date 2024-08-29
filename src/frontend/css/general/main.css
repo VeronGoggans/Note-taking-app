@@ -37,6 +37,11 @@ i {
     background-color: var(--dragging) !important;
 }
 
+.hovered {
+    scale: 1.05;
+    box-shadow: 0 0 20px var(--shadow) !important;
+}
+
 .drag-image {
     position: absolute;
     opacity: .8;

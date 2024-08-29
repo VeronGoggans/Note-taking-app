@@ -84,42 +84,37 @@
 
 .color-light-sky-blue {
     background-color: rgb(169, 215, 255); 
-    border-color: rgb(169, 215, 255);
+}
+.color-soft-blue {
+    background-color: rgb(217, 237, 255);
 }
 .color-peach {
     background-color: rgb(255, 224, 158);
-    border-color: rgb(255, 224, 158);
 }
 .color-light-green {
     background-color: rgb(159, 251, 149);
-    border-color: rgb(159, 251, 149);
 }
 .color-lavender {
     background-color: rgb(223, 193, 255);
-    border-color: rgb(223, 193, 255);
 }
 .color-pink-lavender {
     background-color: rgb(225, 175, 209);
-    border-color: rgb(225, 175, 209);
 }
 .color-salmon-pink {
     background-color: rgb(255, 163, 163);
-    border-color: rgb(255, 163, 163);
 }
 .color-sunset-orange {
     background-color: rgb(255, 191, 169);
-    border-color: rgb(255, 191, 169);
 }
 .color-turquoise {
     background-color: rgb(158 213 197);
-    border-color: rgb(158 213 197);
 }
 .color-blue-violet {
     background-color: rgb(142, 122, 181);
-    border-color: rgb(142, 122, 181);
 }
 
 .color-light-sky-blue h4,
+.color-soft-blue h4,
 .color-peach h4,
 .color-light-green h4,
 .color-lavender h4,
@@ -131,6 +126,7 @@
 
 
 .color-light-sky-blue .folder-logo i {color: rgb(110, 183, 249)}
+.color-soft-blue .folder-logo i {color: rgb(165, 212, 255)}
 .color-light-green .folder-logo i {color: rgb(88, 204, 76)}
 .color-peach .folder-logo i {color: rgb(255, 201, 84)}
 .color-lavender .folder-logo i {color: rgb(201, 151, 255)}
@@ -142,6 +138,7 @@
 
 
 .color-light-sky-blue .folder-util-bar i,
+.color-soft-blue .folder-util-bar i,
 .color-peach .folder-util-bar i,
 .color-light-green .folder-util-bar i,
 .color-lavender .folder-util-bar i,
@@ -153,6 +150,7 @@
 
 
 .color-light-sky-blue .folder-util-bar i:hover {background-color: rgb(135, 198, 255)}
+.color-soft-blue .folder-util-bar i:hover {background-color: rgb(165, 212, 255)}
 .color-peach .folder-util-bar i:hover {background-color: rgb(255, 208, 107)}
 .color-light-green .folder-util-bar i:hover {background-color: rgb(106, 226, 94)}
 .color-lavender .folder-util-bar i:hover {background-color: rgb(210, 168, 255)}

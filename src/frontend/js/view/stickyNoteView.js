@@ -2,11 +2,12 @@ import { StickyNote } from "../components/note.js";
 import { StickyNoteObjectArray } from "../util/array.js";
 import { AnimationHandler } from "../handlers/animation/animationHandler.js";
 import { captureNewLines } from "../util/formatters.js";
+import { BaseView } from "./baseView.js";
 
-export class StickyNoteView {
-    constructor(controller, dialog) {
+export class StickyNoteView extends BaseView {
+    constructor(controller) {
+        super(controller);
         this.controller = controller;
-        this.dialog = dialog;
         this.stickyNoteObjects = new StickyNoteObjectArray();
         this.#initializeDomElements();
         this.#attachEventListeners();

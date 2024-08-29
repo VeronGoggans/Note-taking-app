@@ -1,6 +1,6 @@
 from src.backend.data.folder.folder_manager import FolderManager
 from src.backend.presentation.dtos.folder_dtos import FolderRequestDto
-from src.backend.data.exceptions.exceptions import NotFoundException, AdditionException
+from src.backend.data.exceptions.exceptions import NotFoundException, AdditionException, InvalidMoveRequestException
 from src.backend.domain.folder import Folder
 from src.backend.data.file.json_manager import JsonManager
 from src.backend.util.paths import FOLDERS_PATH, ID_PATH
@@ -73,12 +73,25 @@ class FolderService:
             self.json_manager.update(FOLDERS_PATH, folders)
         except NotFoundException as e:
             raise e
-    
+        
 
-    def delete_folder(self, parent_id: str, folder_id: str) -> Folder:
+    def move_folder(self, new_parent_folder_id: str, folder_id: str) -> Folder:
         folders = self.json_manager.load(FOLDERS_PATH)
         try:
-            folder = self.manager.delete_folder(folders, parent_id, folder_id)
+            folder = self.manager.delete_folder(folders, folder_id)
+            folder_object_to_move = Folder.from_json(folder)
+
+            folder_with_new_parent = self.manager.add_folder(folders, new_parent_folder_id, folder_object_to_move)
+            self.json_manager.update(FOLDERS_PATH, folders)
+            return folder_with_new_parent
+        except (NotFoundException | AdditionException) as e:
+            raise e
+    
+
+    def delete_folder(self, folder_id: str) -> Folder:
+        folders = self.json_manager.load(FOLDERS_PATH)
+        try:
+            folder = self.manager.delete_folder(folders, folder_id)
             self.json_manager.update(FOLDERS_PATH, folders)
             return folder
         except NotFoundException as e:

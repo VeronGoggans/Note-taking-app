@@ -67,8 +67,8 @@ export class Dialog {
         this.addChild(new NoteDetailContainer(noteInfo))
     }
     
-    renderDeleteModal(id, name, view) {
-        this.addChild(new DeleteModal(id, name, view))
+    renderDeleteModal(id, name, insideEditor, view) {
+        this.addChild(new DeleteModal(id, name, insideEditor, view))
     }
 
     renderNewDeckModal(controller, flashcards = null, deckName = null) {

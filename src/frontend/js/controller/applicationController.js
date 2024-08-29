@@ -7,7 +7,6 @@ import { SidebarView } from "../view/sideBarView.js";
 import { TextEditorController } from "./textEditorController.js"
 import { SettingController } from "./settingController.js";
 import { StickWallController } from "./stickyWallController.js";
-import { Dialog } from "../util/dialog.js";
 import { FlashcardDeckController } from "./flashcardDeckController.js";
 import { FlashcardPracticeController } from "./flashcardPracticeController.js";
 import { FlashcardEditController } from "./flashcardEditController.js";
@@ -15,7 +14,6 @@ import { templates } from "../constants/templates.js";
 
 export class ApplicationController {
     constructor() {
-        this.dialog = new Dialog();
         this.sidebarView = new SidebarView(this);
         this.model = new ApplicationModel();
         this.noteController = new NoteController(this);
@@ -25,8 +23,8 @@ export class ApplicationController {
         this.flashcardDeckController = new FlashcardDeckController(this);
         this.flashcardPracticeController = new FlashcardPracticeController(this);
         this.flashcardEditController = new FlashcardEditController(this);
-        this.textEditorController = new TextEditorController(this, this.dialog);
-        this.stickyWallController = new StickWallController(this, this.dialog);
+        this.textEditorController = new TextEditorController(this);
+        this.stickyWallController = new StickWallController(this);
         this.settingController = new SettingController(this);
         this.viewContainer = document.querySelector('.content');
         this.controllers = {
@@ -160,9 +158,9 @@ export class ApplicationController {
         this.textEditorController.showTextEditor(editorObjectType, allFolderNames, allTemplateNames);
     }
 
-    async addNote(name, content) {
+    async addNote(name, content, notify) {
         const { id } = this.folderController.getCurrentFolderObject();
-        const note = await this.noteController.addNote(id, name, content);
+        const note = await this.noteController.addNote(id, name, content, notify);
         this.textEditorController.storeEditorObject(note, 'note')
     }
 
@@ -178,12 +176,12 @@ export class ApplicationController {
         await this.noteController.update(note);
     }   
 
-    async deleteNote(noteId) {
-        await this.noteController.delete(noteId);
+    async deleteNote(noteId, notify) {
+        await this.noteController.delete(noteId, notify);
     }
 
-    async addTemplate(name, content) {
-        await this.templateController.addTemplate(name, content);
+    async addTemplate(name, content, notify) {
+        await this.templateController.addTemplate(name, content, notify);
     }
 
     async getTemplates() {
@@ -198,9 +196,13 @@ export class ApplicationController {
         await this.templateController.update(template);
     }
 
-    async moveNote(noteId, folderId) {
-        await this.noteController.moveNote(noteId, folderId);
+    async moveNote(folderId, droppedNoteId) {
+        await this.noteController.moveNote(folderId, droppedNoteId);
     }    
+
+    async moveFolder(newParentFolderId, droppedFolderId) {
+        await this.folderController.moveFolder(newParentFolderId, droppedFolderId)
+    }
     
     async setTheme(init) {
         const THEME = await this.settingController.getTheme();
@@ -211,8 +213,16 @@ export class ApplicationController {
         return await this.templateController.getTemplateById(templateId, updateUseCount)
     }
 
+    async deleteTemplate(templateId, notify) {
+        await this.templateController.delete(templateId, notify)
+    }
+
     getCurrentFolderObject() {
-        return this.folderController.getCurrentFolderObject()
+        return this.folderController.getCurrentFolderObject();
+    }
+
+    getPreviousFolderObject() {
+        return this.folderController.getPreviousFolderObject();
     }
 
     async getFolderById(folderId) {

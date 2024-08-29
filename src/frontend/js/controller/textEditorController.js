@@ -3,20 +3,19 @@ import { TextEditorModel } from "../model/textEditorModel.js";
 import { FlashcardModel } from "../model/flashcardModel.js";
 
 export class TextEditorController {
-    constructor(applicationController, dialog) {
-        this.dialog = dialog;
+    constructor(applicationController) {
         this.applicationController = applicationController;
         this.model = new TextEditorModel();
     }
 
     init() {
-        this.textEditorView = new TextEditorView(this, this.applicationController, this.dialog);
+        this.textEditorView = new TextEditorView(this, this.applicationController);
         this.flashcardModel = new FlashcardModel();
     }
 
     loadPreviousView() {
         const previousView = this.applicationController.getPreviousView();
-        if (previousView === 'notes'){
+        if (previousView === 'notes') {
             const currentFolder = this.applicationController.getCurrentFolderObject();
             // The notes view will be initialized in the folder they were in before opening the editor
             this.applicationController.initView(previousView, {folder: currentFolder});
@@ -26,7 +25,7 @@ export class TextEditorController {
         this.model.clear();
     }
 
-    async save(name, content) {
+    async save(name, content, notify) {
         const { editorObject, editorObjectType } = this.model.getStoredObject();
         this.model.clear();
 
@@ -38,7 +37,7 @@ export class TextEditorController {
             await this.applicationController.updateNote(editorObject)
         }
         if (editorObject === null && editorObjectType === 'note') {
-            await this.applicationController.addNote(name, content)
+            await this.applicationController.addNote(name, content, notify)
         }
         // Template cases
         if (editorObject !== null && editorObjectType === 'template') {
@@ -47,7 +46,7 @@ export class TextEditorController {
             await this.applicationController.updateTemplate(editorObject)
         }
         if (editorObject === null && editorObjectType === 'template') {
-            await this.applicationController.addTemplate(name, content)
+            await this.applicationController.addTemplate(name, content, notify)
         } 
     }
 
@@ -104,7 +103,14 @@ export class TextEditorController {
         await this.applicationController.addDeck(deckName, flashcards);
     }
 
-    async handleDeleteButtonClick(noteId) {
-        await this.applicationController.deleteNote(noteId);
+    // This method will notify the user that they deleted something.
+    async handleDeleteButtonClick(editorObjectId) {
+        const editorObjectType = this.model.getStoredObject()['editorObjectType']
+        if (editorObjectType === 'note') {
+            await this.applicationController.deleteNote(editorObjectId, true);
+        }
+        if (editorObjectType === 'template') {
+            await this.applicationController.deleteTemplate(editorObjectId, true);
+        }
     }
 }
