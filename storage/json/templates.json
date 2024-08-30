@@ -13,7 +13,7 @@
         "content": "storage/templates/template-t-27.txt",
         "last_edit": "18/08/2024 04:06",
         "creation": "09/08/2024",
-        "uses": 11
+        "uses": 12
     },
     {
         "id": "t-28",
@@ -22,13 +22,5 @@
         "last_edit": "27/08/2024 19:52",
         "creation": "10/08/2024",
         "uses": 10
-    },
-    {
-        "id": "t-42",
-        "name": "Test Template",
-        "content": "storage/templates/template-t-42.txt",
-        "last_edit": "28/08/2024 23:39",
-        "creation": "28/08/2024",
-        "uses": 1
     }
 ]

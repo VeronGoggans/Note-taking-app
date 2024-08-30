@@ -49,33 +49,31 @@ export class HomeController {
         const viewId = viewToLoad(searchType)
         if (viewId === 'editor') {
             if (searchType === 'template') {
-                const response = await this.model.get(`/templateById/${searchItemId}/false`);
-                const template = response[this.objectNum].template; 
+                const { template } = await this.applicationController.getTemplateById(searchItemId, false) 
                 this.applicationController.initView(viewId, {
                     editorObjectType: 'template', 
                     editorObject: template,
                     newEditorObject: false, 
                     previousView: 'home', 
+                    editorObjectLocation: null
                 })
             }
             if (searchType === 'note') {
-                const response = await this.model.get(`/noteById/${searchItemId}`);
-                const note = response[this.objectNum].note; 
+                const { note, location } = await this.applicationController.getNoteById(searchItemId);
                 this.applicationController.initView(viewId, {
                     editorObjectType: 'note', 
                     editorObject: note,
                     newEditorObject: false, 
-                    previousView: 'home', 
+                    previousView: 'home',
+                    editorObjectLocation: location 
                 })
             }
         }
         if (viewId === 'notes') {
-            const folder = await this.applicationController.getFolderById(searchItemId);
+            const { folder, location } = await this.applicationController.getFolderById(searchItemId);            
             this.applicationController.initView(viewId, {
-                folder: {
-                    'id': searchItemId, 
-                    'name': folder.name
-                }
+                folder: folder,
+                location: location
             });
         }
 

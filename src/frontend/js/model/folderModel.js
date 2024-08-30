@@ -28,13 +28,7 @@ export class FolderModel extends HttpModel {
         const lastFolder = this.folderObjects[this.folderObjects.length - 1];
         return lastFolder ? lastFolder.id : 'f-1';
     }
-    
-    getCurrentFolderName() {
-        if (this.folderObjects.length > 0) {
-            return this.folderObjects[this.folderObjects.length - 1].name;
-        }
-        return undefined
-    }
+
 
     getAllFolderNames() {
         let folderNames = []
@@ -58,17 +52,23 @@ export class FolderModel extends HttpModel {
         }
     }
 
+    addHierarcyPath(folders) {
+        this.folderObjects = []
+        for (let i = 0; i < folders.length; i++) {
+            const folder = folders[i]
+            this.addFolderIdToList(folder.id, folder.name)
+        }
+    }
+
     /**
-     * This method returns the parent folder ID of the subfolder
+     * This method returns the parent folder ID of the folder
      * the user is currently in. 
      * 
-     * This method also removes the folder ID of which the user is currently in.
-     * 
-     * @returns {String} parent folder ID
+     * @returns {Object} id: folder id, name: folder name
      */
     removeFolderIdFromList() {
         this.folderObjects.pop();
-        const lastFolder = this.folderObjects[this.folderObjects.length - 1];
-        return lastFolder ? lastFolder: {id: 'f-1', name: 'Home'};
+        const previousFolder = this.folderObjects[this.folderObjects.length - 1];
+        return previousFolder ? previousFolder: {id: 'f-1', name: 'Home'};
     }
 }

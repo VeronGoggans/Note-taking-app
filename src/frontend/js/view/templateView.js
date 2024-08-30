@@ -65,6 +65,7 @@ export class TemplateView extends BaseView {
                 editorObject: template,
                 newEditorObject: false, 
                 previousView: 'templates', 
+                editorObjectLocation: null
             }
         );
     }

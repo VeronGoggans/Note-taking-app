@@ -64,11 +64,11 @@ class NoteManager:
             Note: 
             - If successful, it returns the specific Note object.
         """
-        note, folder = self.__find_note(folders, note_id)
-        if note:
+        note_location, note = FolderFinder.find_note_location(folders, note_id)
+        if note_location:
             note_object = Note.from_json(note)
             note_object.set_content_text()
-            return note_object
+            return note_location, note_object
         raise NotFoundException(f'Note with id: {note_id}, could not be found.')
     
 

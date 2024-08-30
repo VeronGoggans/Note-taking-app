@@ -57,21 +57,25 @@ export class HomeView {
 
     }
 
-    handleNoteCardClick(noteId) {
-        const note = this.noteObjects.get(noteId);
+    async handleNoteCardClick(noteId) {
+        const { note, location } = await this.applicationController.getNoteById(noteId)
         this.applicationController.initView('editor', 
             {
                 editorObjectType: 'note', 
                 editorObject: note,
                 newEditorObject: false, 
-                previousView: 'home', 
+                previousView: 'home',
+                editorObjectLocation: location 
             }
         );
     }
 
-    handleFolderCardClick(folderId) {
-        const folder = this.folderObjects.get(folderId);
-        this.applicationController.initView('notes', {folder: folder});
+    async handleFolderCardClick(folderId) {
+        const { folder, location } = await this.applicationController.getFolderById(folderId);
+        this.applicationController.initView('notes', {
+            folder: folder,
+            location: location
+        });
     }
 
     handleDeckCardClick(deckId) {

@@ -3,29 +3,38 @@
         "id": "f-1",
         "name": "Home",
         "color": "rgb(255, 255, 255)",
-        "last_visit": "29/08/2024 17:10:02",
-        "notes": [],
+        "last_visit": "30/08/2024 19:09:54",
+        "notes": [
+            {
+                "id": "n-772",
+                "name": "untitled",
+                "content": "storage/notes/note-n-772.txt",
+                "bookmark": true,
+                "last_edit": "29/08/2024 23:32",
+                "creation": "29/08/2024"
+            }
+        ],
         "subfolders": []
     },
     {
         "id": "f-99",
         "name": "School",
         "color": "rgb(217, 237, 255)",
-        "last_visit": "29/08/2024 17:11:01",
+        "last_visit": "30/08/2024 19:10:33",
         "notes": [],
         "subfolders": [
             {
                 "id": "s-191",
                 "name": "Year 2",
                 "color": "rgb(255, 255, 255)",
-                "last_visit": "29/08/2024 17:11:00",
+                "last_visit": "30/08/2024 19:12:11",
                 "notes": [],
                 "subfolders": [
                     {
                         "id": "s-181",
                         "name": "Software Architecture",
                         "color": "rgb(255, 255, 255)",
-                        "last_visit": "29/08/2024 17:10:40",
+                        "last_visit": "30/08/2024 19:14:59",
                         "notes": [
                             {
                                 "id": "n-589",
@@ -115,7 +124,7 @@
                         "id": "s-182",
                         "name": "CISC2",
                         "color": "rgb(255, 255, 255)",
-                        "last_visit": "29/08/2024 17:10:54",
+                        "last_visit": "30/08/2024 15:56:47",
                         "notes": [
                             {
                                 "id": "n-609",
@@ -174,19 +183,35 @@
                 "id": "s-192",
                 "name": "Year 3",
                 "color": "rgb(255, 255, 255)",
-                "last_visit": "29/08/2024 17:11:01",
+                "last_visit": "30/08/2024 19:09:40",
                 "notes": [],
                 "subfolders": [
                     {
                         "id": "s-193",
                         "name": "Innovation",
                         "color": "rgb(255, 255, 255)",
-                        "last_visit": "29/08/2024 17:11:03",
+                        "last_visit": "29/08/2024 17:12:50",
+                        "notes": [],
+                        "subfolders": []
+                    },
+                    {
+                        "id": "s-196",
+                        "name": "Backend Specialisation",
+                        "color": "rgb(217, 237, 255)",
+                        "last_visit": "29/08/2024 17:15:57",
                         "notes": [],
                         "subfolders": []
                     }
                 ]
             }
         ]
+    },
+    {
+        "id": "f-181",
+        "name": "Test Folder",
+        "color": "rgb(225, 175, 209)",
+        "last_visit": "30/08/2024 15:15:35",
+        "notes": [],
+        "subfolders": []
     }
 ]

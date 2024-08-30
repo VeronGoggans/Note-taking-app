@@ -10,12 +10,21 @@ export class FolderController {
         this.model = new FolderModel();
     }
 
-    init(folderId = null, folderName = null) {
+    /**
+     * 
+     * @param {String} folderId 
+     * @param {String} folderName 
+     * @param {Array} location - Hierarcical array of folder objects. 
+     */
+    init(folderId = null, folderName = null, location) {
         this.view = new FolderView(this, this.applicationController)
         
         // If a folder on the home view has been clicked.
         if (folderId === null) {
             this.model.clearFolderIdlist();
+        }
+        if (location !== null) {
+            this.model.addHierarcyPath(location)
         } 
         this.navigateIntoFolder(folderId, folderName, true)
     }
@@ -29,7 +38,7 @@ export class FolderController {
 
     async getFolderById(folderId) {
         const response = await this.model.get(`folderById/${folderId}`);
-        return response[this.objectNum].folder;
+        return response[this.objectNum];
     }
 
     async getSearchItems() {
@@ -47,6 +56,10 @@ export class FolderController {
     
     getPreviousFolderObject() {
         return this.model.getPreviousFolderObject();
+    }
+
+    setNoteLocation(location) {
+        this.model.addHierarcyPath(location)
     }
 
     async add(object) {

@@ -26,8 +26,7 @@ export class TemplateController {
 
     async getTemplateById(templateId, updateUseCount) {
         const response = await this.model.get(`/templateById/${templateId}/${updateUseCount}`);
-        const template = response[this.objectNum].template;
-        return template
+        return response[this.objectNum].template;
     }
 
     async getTemplateNames() {

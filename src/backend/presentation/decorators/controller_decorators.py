@@ -4,7 +4,7 @@ from functools import wraps
 
 
 
-def exception_handler(func) -> (None | NotFoundException | SerializationException | DeserializationException):
+def exception_handler(func) -> (NotFoundException | SerializationException | DeserializationException):
     @wraps(func)
     def wrapper(*args, **kwargs):
         try:

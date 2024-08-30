@@ -58,8 +58,9 @@ export class ApplicationController {
                 }
 
                 if (viewId === 'notes') {
-                    const { folder } = viewParameters; 
-                    this.folderController.init(folder.id, folder.name);
+                    const { folder, location } = viewParameters; 
+                    this.folderController.init(folder.id, folder.name, location);
+                    // note controller 
                     controller.init(folder.id);
                     this.sidebarView.setActiveTab('notes');
                     return;
@@ -71,10 +72,14 @@ export class ApplicationController {
                         editorObjectType, 
                         editorObject, 
                         newEditorObject, 
-                        previousView
+                        previousView, 
+                        editorObjectLocation
                     } = viewParameters;
 
                     this.model.setPreviousView(previousView);
+                    if (editorObjectLocation !== null) {
+                        this.folderController.setNoteLocation(editorObjectLocation);
+                    }
                     
                     if (newEditorObject) {
                         this.openTextEditor(editorObjectType)
@@ -178,6 +183,10 @@ export class ApplicationController {
 
     async deleteNote(noteId, notify) {
         await this.noteController.delete(noteId, notify);
+    }
+
+    async getNoteById(noteId) {
+        return await this.noteController.getById(noteId)
     }
 
     async addTemplate(name, content, notify) {

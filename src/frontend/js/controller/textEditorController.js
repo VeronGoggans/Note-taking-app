@@ -18,8 +18,12 @@ export class TextEditorController {
         if (previousView === 'notes') {
             const currentFolder = this.applicationController.getCurrentFolderObject();
             // The notes view will be initialized in the folder they were in before opening the editor
-            this.applicationController.initView(previousView, {folder: currentFolder});
-        } else {
+            this.applicationController.initView(previousView, {
+                folder: currentFolder,
+                location: null
+            });
+        } 
+        else {
             this.applicationController.initView(previousView);
         }
         this.model.clear();

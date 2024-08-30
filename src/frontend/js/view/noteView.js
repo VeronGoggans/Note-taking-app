@@ -58,6 +58,7 @@ export class NoteView extends BaseView {
                 editorObject: note,
                 newEditorObject: false, 
                 previousView: 'notes', 
+                editorObjectLocation: null
             }
         );
     }
@@ -104,6 +105,7 @@ export class NoteView extends BaseView {
                 editorObject: null,
                 newEditorObject: true, 
                 previousView: 'notes', 
+                editorObjectLocation: null
             })
         })
     }

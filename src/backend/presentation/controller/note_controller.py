@@ -47,8 +47,8 @@ class NoteRouter:
 
     @exception_handler
     def get_note_by_id(self, note_id: str):
-        note = self.service.get_note_by_id(note_id)
-        return {'status': 'succes', 'note': note}, HttpStatus.OK
+        note_location, note = self.service.get_note_by_id(note_id)
+        return {'status': 'succes', 'note': note, 'location': note_location}, HttpStatus.OK
 
 
     @exception_handler

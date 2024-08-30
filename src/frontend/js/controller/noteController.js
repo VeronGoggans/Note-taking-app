@@ -26,6 +26,11 @@ export class NoteController {
         this.view.renderAll(notes);
     }
 
+    async getById(noteId) {
+        const response = await this.model.get(`/noteById/${noteId}`);
+        return response[this.objectNum];
+    }
+
     async getSearchItems() {
         const response = await this.model.get('/noteSearchItems');
         return response[this.objectNum].notes
@@ -75,20 +80,20 @@ export class NoteController {
         if (viewId === 'editor') {
             const response = await this.model.get(`/noteById/${searchItemId}`);
             const note = response[this.objectNum].note; 
+            const location = response[this.objectNum].location;
             this.applicationController.initView(viewId, {
                 editorObjectType: 'note', 
                 editorObject: note,
                 newEditorObject: false, 
                 previousView: 'notes', 
+                editorObjectLocation: location
             })
         }
         if (viewId === 'notes') {
-            const folder = await this.applicationController.getFolderById(searchItemId);
+            const { folder, location} = await this.applicationController.getFolderById(searchItemId);
             this.applicationController.initView(viewId, {
-                folder: {
-                    'id': searchItemId, 
-                    'name': folder.name
-                }
+                folder: folder,
+                location: location
             });
         }
     }

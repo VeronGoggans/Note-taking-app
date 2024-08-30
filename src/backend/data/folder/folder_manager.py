@@ -80,9 +80,9 @@ class FolderManager:
 
 
     def get_by_id(self, folders: list, folder_id: str) -> (dict | NotFoundException):
-        folder = FolderFinder.find_folder_by_id(folders, folder_id)
-        if folder:
-            return {'id': folder['id'], 'name': folder['name']}
+        folder_location = FolderFinder.find_folder_location(folders, folder_id)
+        if folder_location:
+            return folder_location
         raise NotFoundException(f'Folder with id: {folder_id}, could not be found')
     
     

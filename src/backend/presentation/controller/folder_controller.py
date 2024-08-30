@@ -49,8 +49,8 @@ class FolderRouter:
 
     @exception_handler
     def get_folder_by_id(self, folder_id: str):
-        folder = self.service.get_folder_by_id(folder_id)
-        return {'status': 'succes', 'folder': folder}, HttpStatus.OK
+        folder_location = self.service.get_folder_by_id(folder_id)
+        return {'status': 'succes', 'folder': folder_location[-1], 'location': folder_location}, HttpStatus.OK
 
 
     @exception_handler
