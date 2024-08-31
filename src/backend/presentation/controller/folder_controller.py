@@ -24,54 +24,54 @@ class FolderRouter:
 
     @exception_handler
     def add_folder(self, request: FolderRequest):
-        request_dto = FolderRequestDto(request.folder_id, request.name, request.color)
+        request_dto = FolderRequestDto(request.folder_id, request.name)
         folder = self.service.add_folder(request_dto)
-        return {'status': 'succes', "folder": folder}, HttpStatus.OK
+        return {'status': HttpStatus.OK, "folder": folder}
         
 
     @exception_handler
     def get_folders(self, parent_id: str):
         folders = self.service.get_folders(parent_id)
-        return {"status": 'succes', "folders": folders}, HttpStatus.OK
+        return {"status": HttpStatus.OK, "folders": folders}
 
         
     @exception_handler
     def get_recent_folders(self):
         folders = self.service.get_recent_folders()
-        return {"status": 'succes', "folders": folders}, HttpStatus.OK
+        return {"status": HttpStatus.OK, "folders": folders}
         
 
     @exception_handler
     def get_search_items(self):
         search_items = self.service.get_search_items()
-        return {'status': 'succes', 'folders': search_items}, HttpStatus.OK
+        return {'status': HttpStatus.OK, 'folders': search_items}
         
 
     @exception_handler
     def get_folder_by_id(self, folder_id: str):
         folder_location = self.service.get_folder_by_id(folder_id)
-        return {'status': 'succes', 'folder': folder_location[-1], 'location': folder_location}, HttpStatus.OK
+        return {'status': HttpStatus.OK, 'folder': folder_location[-1], 'location': folder_location}
 
 
     @exception_handler
     def update_folder(self, request: FolderRequest):
         folder = self.service.update_folder(request)
-        return {'status': 'succes', "folder": folder}, HttpStatus.OK
+        return {'status': HttpStatus.OK, "folder": folder}
     
 
     @exception_handler
     def move_folder(self, request: MoveFolderRequest):
         folder = self.service.move_folder(request.new_parent_folder_id, request.folder_id)
-        return {'status': 'succes', "folder": folder}, HttpStatus.OK
+        return {'status': HttpStatus.OK, "folder": folder}
         
 
     @exception_handler
     def folder_visit(self, folder_id: str):
         self.service.update_visit(folder_id) 
-        return {'status': 'succes'}, HttpStatus.OK
+        return {'status': HttpStatus.OK}
        
         
     @exception_handler
     def delete_folder(self, folder_id: str ):
         folder = self.service.delete_folder(folder_id)
-        return {'status': 'succes', "folder": folder}, HttpStatus.OK
+        return {'status': HttpStatus.OK, "folder": folder}

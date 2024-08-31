@@ -19,19 +19,19 @@ export class SettingController {
         if (currentTheme === 'light') {
             document.body.classList.add('light')
         }
-        else if (currentTheme === 'dark') {
+        if (currentTheme === 'dark') {
             document.body.classList.add('dark');
         }
     }
 
     async getTheme() {
-        const response = await this.model.get('/settings/theme');
-        return response.theme;
+        const { theme } = await this.model.get('/settings/theme');
+        return theme;
     }
 
-    async updateTheme(theme) {
-        const response = await this.model.update(`/settings/theme/${theme}`, null);
-        return response.theme;
+    async updateTheme(newTheme) {
+        const { theme } = await this.model.update(`/settings/theme/${newTheme}`, null);
+        return theme;
     }
 
     setTheme(init, theme) {

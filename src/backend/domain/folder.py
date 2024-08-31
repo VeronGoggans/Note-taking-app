@@ -1,7 +1,7 @@
 from src.backend.util.calendar import Calendar
 
 class Folder:
-    def __init__(self, id: int, name: str, color: str, last_visit = Calendar.datetime(), notes = [], subfolders = []):
+    def __init__(self, id: int, name: str, color: str = 'rgb(255, 255, 255)', last_visit = Calendar.datetime(), notes = [], subfolders = []):
         self.id = id
         self.name = name
         self.color = color

@@ -5,4 +5,3 @@ from dataclasses import dataclass
 class FolderRequestDto:
     folder_id: str
     name: str
-    color: str

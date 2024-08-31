@@ -2,33 +2,24 @@ import { CNode } from "../../util/CNode.js";
 import { notificationTypes, notificationIcons, notificationMessages } from "../../constants/constants.js";
 
 export class NotificationHandler {
-    constructor() {
-        this.screen = document.querySelector('.wrapper');
-        this.types = notificationTypes;
-        this.icons = notificationIcons;
-        this.messages = notificationMessages;
-    }
-
-    /**
-     * Pushes a notification of the given type onto the screen.
-     * @param {String} type - One of the following: 'saved', 'updated', 'deleted', 'new', 'empty'.
-     * @param {String} [noteName='null'] - Optional note name, necessary only for 'deleted' type.
-     */
-    push(type, noteName = 'null') {
-        const notificationTypes = {
-            'saved': { icon: this.icons.SAVED, message: this.messages.SAVED, type: this.types.SAVED},
-            'updated': { icon: this.icons.UPDATED, message: this.messages.UPDATED, type: this.types.UPDATED},
-            'deleted': { icon: this.icons.DELETED, message: `<b>${noteName}</b> ${this.messages.DELETED}`, type: this.types.DELETED},
-            'new': { icon: this.icons.NEW, message: this.messages.NEW, type: this.types.NEW},
-            'empty': { icon: this.icons.EMPTY, message: this.messages.EMPTY, type: this.types.EMPTY},
+    
+    
+    static push(type, noteName = null, errorMsg = null) {
+        const types = notificationTypes;
+        const icons = notificationIcons;
+        const messages = notificationMessages;
+        const notifications = {
+            'saved': { icon: icons.saved, message: messages.saved, type: types.saved},
+            'updated': { icon: icons.updated, message: messages.updated, type: types.updated},
+            'deleted': { icon: icons.deleted, message: `<b>${noteName}</b> ${messages.deleted}`, type: types.deleted},
+            'new': { icon: icons.new, message: messages.new, type: types.new},
+            'empty': { icon: icons.empty, message: messages.empty, type: types.empty},
+            'error': { icon: icons.error, message: errorMsg, type: types.error}
         };
     
-        const data = notificationTypes[type.toLowerCase()]; // Convert to lowercase for case-insensitivity
-        if (!data) {
-            throw new Error(`Invalid notification type: ${type}`);
-        }
-    
-        this.screen.appendChild(new Notification(data.icon, data.message, data.type));
+        const data = notifications[type.toLowerCase()]; // Convert to lowercase for case-insensitivity
+        
+        document.querySelector('.wrapper').appendChild(new Notification(data.icon, data.message, data.type));
     }
 }
 

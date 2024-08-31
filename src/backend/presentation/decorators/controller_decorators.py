@@ -10,10 +10,10 @@ def exception_handler(func) -> (NotFoundException | SerializationException | Des
         try:
             return func(*args, **kwargs) # Return the original function 
         except NotFoundException as e:
-            return {'status': 'not_found', 'message': str(e)}, HttpStatus.NOT_FOUND
+            return {'status': HttpStatus.NOT_FOUND, 'message': str(e)}
         except InvalidMoveRequestException as e:
-            return {'status': 'bad_input', 'message': str(e)}, HttpStatus.BAD_REQUEST
+            return {'status': HttpStatus.BAD_REQUEST, 'message': str(e)}
         except (SerializationException | DeserializationException | AdditionException) as e:
-            return {'status': 'error', 'message': str(e)}, HttpStatus.INTERAL_SERVER_ERROR
+            return {'status': HttpStatus.INTERAL_SERVER_ERROR, 'message': str(e)}
         
     return wrapper 

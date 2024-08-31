@@ -29,9 +29,11 @@ export class TextEditorController {
         this.model.clear();
     }
 
-    async save(name, content, notify) {
+    async save(name, content, notify, clearEditorObject) {
         const { editorObject, editorObjectType } = this.model.getStoredObject();
-        this.model.clear();
+        if (clearEditorObject) {
+            this.model.clear()
+        }
 
         // Note cases
         if (editorObject !== null && editorObjectType === 'note') {

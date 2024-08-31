@@ -16,7 +16,7 @@ class FolderService:
         folders = self.json_manager.load(FOLDERS_PATH)
         parent_id = request_dto.folder_id
         id = self.__generate_id(parent_id)
-        folder = Folder(id, request_dto.name, request_dto.color)
+        folder = Folder(id, request_dto.name)
 
         try:
             new_folder = self.manager.add_folder(folders, parent_id, folder)
@@ -59,7 +59,7 @@ class FolderService:
     def update_folder(self, request_dto: FolderRequestDto) -> object:
         folders = self.json_manager.load(FOLDERS_PATH)
         try:
-            folder = self.manager.update_folder(folders, request_dto.folder_id, request_dto.name, request_dto.color)
+            folder = self.manager.update_folder(folders, request_dto.folder_id, request_dto.name)
             self.json_manager.update(FOLDERS_PATH, folders)
             return folder
         except NotFoundException as e:

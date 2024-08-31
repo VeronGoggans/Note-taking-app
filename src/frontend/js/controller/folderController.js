@@ -1,11 +1,11 @@
 import { FolderModel } from "../model/folderModel.js";
 import { FolderView } from "../view/folderView.js";
+import { NotificationHandler } from "../handlers/userFeedback/notificationHandler.js";
 
 
 export class FolderController {
     constructor(applicationController) {
         this.applicationController = applicationController;
-        this.objectNum = 0;
         this.homeFolderId = 'f-1';
         this.model = new FolderModel();
     }
@@ -29,22 +29,87 @@ export class FolderController {
         this.navigateIntoFolder(folderId, folderName, true)
     }
 
-    async getFolders() {
+
+    async add(object) {
+        const { name } = object
         const parentFolderId = this.model.getCurrentFolderID();
-        const response = await this.model.get(`/folders/${parentFolderId}`);
-        const folders = response[this.objectNum].folders;
-        this.view.renderAll(folders);
+
+        try {
+            const { folder } = await this.model.add('/folder', {'folder_id': parentFolderId, 'name': name});
+            this.view.renderOne(folder);
+        } 
+        catch(error) {
+            NotificationHandler.push('error', null, error.message)
+        }
     }
 
-    async getFolderById(folderId) {
-        const response = await this.model.get(`folderById/${folderId}`);
-        return response[this.objectNum];
+
+    async get() {
+        const parentFolderId = this.model.getCurrentFolderID();
+
+        try {
+            const { folders } = await this.model.get(`/folders/${parentFolderId}`);
+            this.view.renderAll(folders);
+        } 
+        catch(error) {
+            NotificationHandler.push('error', null, error.message)
+        }
     }
+
+
+    async getById(folderId) {
+        try {
+            return await this.model.get(`folderById/${folderId}`);
+        } 
+        catch(error) {
+            NotificationHandler.push('error', null, error.message)
+        }
+    }
+
 
     async getSearchItems() {
-        const response = await this.model.get('/folderSearchItems')
-        return response[this.objectNum].folders;
+        try {
+            const { folders } = await this.model.get('/folderSearchItems') 
+            return folders 
+        } 
+        catch(error) {
+            NotificationHandler.push('error', null, error.message)
+        }
     }
+
+
+    async update(object) {
+        try {
+            const { folder } = await this.model.update('/folder', {'folder_id': object.id, 'name': object.name, 'color': object.color});
+            this.view.renderUpdate(folder);
+        } 
+        catch(error) {
+            NotificationHandler.push('error', null, error.message)
+        }
+    }
+
+
+    async move(newParentFolderId, droppedFolderId) {
+        try {
+            const { folder } = await this.model.update('/moveFolder', {'new_parent_folder_id': newParentFolderId, 'folder_id': droppedFolderId});
+            this.view.renderDelete(folder);
+        } 
+        catch(error) {
+            NotificationHandler.push('error', null, error.message)
+        }
+    }
+
+
+    async delete(folderId) {
+        try {
+            const { folder } = await this.model.delete(`/folder/${folderId}`);
+            this.view.renderDelete(folder);
+        } 
+        catch(error) {
+            NotificationHandler.push('error', null, error.message)
+        }
+    }
+
 
     getAllFolderNames() {
         return this.model.getAllFolderNames()
@@ -56,40 +121,6 @@ export class FolderController {
     
     getPreviousFolderObject() {
         return this.model.getPreviousFolderObject();
-    }
-
-    setNoteLocation(location) {
-        this.model.addHierarcyPath(location)
-    }
-
-    async add(object) {
-        const { name } = object
-        const parentFolderId = this.model.getCurrentFolderID();
-        const response = await this.model.add('/folder', {'folder_id': parentFolderId, 'name': name, 'color': 'rgb(255, 255, 255)'});
-        const folder = response[this.objectNum].folder;
-        this.view.renderOne(folder);
-    }
-
-    async update(object) {
-        const response = await this.model.update('/folder', {'folder_id': object.id, 'name': object.name, 'color': object.color});
-        const folder = response[this.objectNum].folder;
-        this.view.renderUpdate(folder);
-    }
-
-
-    async moveFolder(newParentFolderId, droppedFolderId) {
-        const response = await this.model.update('/moveFolder', {
-            'new_parent_folder_id': newParentFolderId, 
-            'folder_id': droppedFolderId
-        });
-        const folder = response[this.objectNum].folder;
-        this.view.renderDelete(folder);
-    }
-
-    async delete(folderId) {
-        const response = await this.model.delete(`/folder/${folderId}`);
-        const folder = response[this.objectNum].folder;
-        this.view.renderDelete(folder);
     }
     
     async navigateOutofFolder() {
@@ -109,11 +140,17 @@ export class FolderController {
         this.model.patch(`/viewedFolderTime/${folderId}`);
         this.model.addFolderIdToList(folderId, name);
 
-        await this.getFolders();
-        if (!init) await this.applicationController.getNotes(folderId);
+        await this.get();
+        if (!init) {
+            await this.applicationController.getNotes(folderId);
+        }
     }
 
     clearFolderHistory() {
         this.model.clearFolderIdlist();
+    }
+
+    setNoteLocation(location) {
+        this.model.addHierarcyPath(location)
     }
 }

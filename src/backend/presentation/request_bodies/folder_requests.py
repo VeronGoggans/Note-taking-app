@@ -9,7 +9,6 @@ class FolderRequest(BaseModel):
     """
     folder_id: str
     name: str
-    color: str
 
 
 class MoveFolderRequest(BaseModel):

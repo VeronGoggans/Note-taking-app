@@ -1,4 +1,4 @@
-import { fetchData } from "../util/request/request.js";
+import { fetchData } from "../util/http_request/request.js";
 import { RequestOptionsBuilder } from "../util/builders/requestOptionsBuilder.js";
 
 export class HttpModel {

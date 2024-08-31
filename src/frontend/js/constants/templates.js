@@ -190,7 +190,7 @@ export const editorTemplate = `
       <i id="editor-search-btn" class="fa-solid fa-magnifying-glass"></i>
 
       <div class="templates-dropdown">
-        <i id="editor-template-btn" class="fa-solid fa-layer-group"></i>
+        <i id="editor-template-btn" class="fa-solid fa-file-lines"></i>
         <div class="options">
           <span>Templates</span>
           <ul class="templates-container">

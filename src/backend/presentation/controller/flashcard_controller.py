@@ -22,27 +22,27 @@ class FlashcardRouter:
     def add_flashcards(self, request: PostFlashcardsRequest):
         flashcards = self.__request_to_dto('add', new_flashcards=request.flashcards)
         self.service.add_flashcards(request.deck_id, flashcards)
-        return {'status': 'succes'}, HttpStatus.OK
+        return {'status': HttpStatus.OK}
         
 
     @exception_handler
     def update_flashcards(self, request: PutFlashcardsRequest):
         flashcards = self.__request_to_dto('update', updated_flashcards=request.flashcards)
         self.service.update_flashcards(request.deck_id, flashcards)
-        return {'status': 'succes'}, HttpStatus.OK
+        return {'status': HttpStatus.OK}
         
 
     @exception_handler
     def update_flashcard_ratings(self, request: FlashcardStudyRequest):
         flashcards = self.__request_to_dto('update', updated_flashcards=request.flashcards)
         self.service.update_flashcard_ratings(request.deck_id, request.time_studied, flashcards)
-        return {'status': 'succes'}, HttpStatus.OK
+        return {'status': HttpStatus.OK}
         
 
     @exception_handler
     def delete_flashcards(self, request: DeleteFlashcardsRequest):
         self.service.delete_flashcards(request.deck_id, request.flashcard_ids)
-        return {'status': 'succes'}, HttpStatus.OK
+        return {'status': HttpStatus.OK}
         
     
     def __request_to_dto(self, action: str, new_flashcards: list[PostFlashcardDTO] = None, updated_flashcards: list[PutFlashcardRequest] = None):

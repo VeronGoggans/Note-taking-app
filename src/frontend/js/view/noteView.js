@@ -3,6 +3,7 @@ import { NoteObjectArray } from "../util/array.js";
 import { AnimationHandler } from "../handlers/animation/animationHandler.js";
 import { removeContent } from "../util/ui.js";
 import { BaseView } from "./baseView.js";
+import { NotificationHandler } from "../handlers/userFeedback/notificationHandler.js";
 
 
 export class NoteView extends BaseView {
@@ -32,7 +33,7 @@ export class NoteView extends BaseView {
             this._content.appendChild(contentFragment);
         } 
         if (this._content.children.length === 0) {
-            this.pushNotification('empty');
+            NotificationHandler.push('empty');
         }
     }
 
@@ -97,7 +98,7 @@ export class NoteView extends BaseView {
     #attachEventListeners() {
         this.bookmarkedButton.addEventListener('click', () => {
             removeContent(this._content);
-            this.controller.getNotes('bookmarks')});
+            this.controller.get('bookmarks')});
 
         this.createNoteButton.addEventListener('click', () => {
             this.applicationController.initView('editor', {

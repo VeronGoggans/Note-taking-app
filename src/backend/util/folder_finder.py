@@ -107,7 +107,7 @@ class FolderFinder:
                         return result
             
             # Return None if the note_id is not found in this branch
-            return None, None
+            return None
 
         # Start traversal from the root level
         return traverse_folders_for_note(folders, note_id, [{'id': 'f-1', 'name': 'Home'}])

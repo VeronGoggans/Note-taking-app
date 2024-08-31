@@ -48,10 +48,10 @@ export class TextEditorView extends BaseView {
    * @param {boolean} closeEditor - Indicates if the editor should be closed or not.
    * @param {boolean} checkForChanges - Indicates if changes should be checked.
    */
-  async save(closeEditor = true, checkForChanges = true, notify = false) {
+  async save(closeEditor = true, checkForChanges = true, notify = false, clearEditorObject = true) {
     const name = this.documentNameInput.value || 'untitled';
     const content = this.page.innerHTML;
-    await this.controller.save(name, content, notify);
+    await this.controller.save(name, content, notify, clearEditorObject);
 
     if (closeEditor) {
       this.closeEditor(checkForChanges);
@@ -179,7 +179,7 @@ export class TextEditorView extends BaseView {
   #attachEventListeners() {
     this.noteDetailsSpan.addEventListener('click', () => {this.dialog.renderNoteDetailsModal(this.#getStoredEditorObject())});
     this.deleteNoteSpan.addEventListener('click', () => {this.renderDeleteModal(this.#getStoredEditorObject().id, this.documentNameInput.value, this)});
-    this.saveNoteSpan.addEventListener('click', async () => {await this.save(false, false, true)});
+    this.saveNoteSpan.addEventListener('click', async () => {await this.save(false, false, true, false)});
     this.newNoteSpan.addEventListener('click', () => {this.new()});
   
     this.exitButton.addEventListener('click', () => {this.closeEditor()});

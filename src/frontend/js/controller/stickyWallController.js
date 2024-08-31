@@ -1,5 +1,6 @@
 import { HttpModel } from "../model/httpModel.js";
 import { StickyNoteView } from "../view/stickyNoteView.js";
+import { NotificationHandler } from "../handlers/userFeedback/notificationHandler.js";
 
 
 export class StickWallController {
@@ -7,7 +8,6 @@ export class StickWallController {
         this.applicationController = applicationController;
         this.dialog = dialog;
         this.model = new HttpModel();
-        this.objectNum = 0
     }
 
     async init() {
@@ -15,30 +15,42 @@ export class StickWallController {
         await this.get()
     }
 
-    async add(stickyNote) {
-        const response  = await this.model.add('/stickyNote', stickyNote);
-        this.view.renderOne(
-            response[this.objectNum].stickyNote
-        );
+    async add(sticky) {
+        try {
+            const { stickyNote }  = await this.model.add('/stickyNote', sticky);
+            this.view.renderOne(stickyNote);
+        } catch(error) {
+            NotificationHandler.push('error', null, error.message)
+        }
     }
+
 
     async get() {
-        const response = await this.model.get(`/stickyNotes`);
-        const stickyNotes = response[this.objectNum].stickyNotes;
-        this.view.renderAll(stickyNotes);
+        try {
+            const { stickyNotes } = await this.model.get(`/stickyNotes`);
+            this.view.renderAll(stickyNotes);
+        } catch(error) {
+            NotificationHandler.push('error', null, error.message)
+        }
     }
 
-    async update(stickyNote) {
-        const response  = await this.model.update('/stickyNote', stickyNote);
-        this.view.renderUpdate(
-            response[this.objectNum].stickyNote
-        );
+
+    async update(sticky) {
+        try {
+            const { stickyNote }  = await this.model.update('/stickyNote', sticky);
+            this.view.renderUpdate(stickyNote);
+        } catch(error) {
+            NotificationHandler.push('error', null, error.message)
+        }
     }
+
 
     async delete(stickyNoteId) {
-        await this.model.delete(`/stickyNote/${stickyNoteId}`);
-        this.view.renderDelete(
-            stickyNoteId
-        );
+        try  {
+            await this.model.delete(`/stickyNote/${stickyNoteId}`);
+            this.view.renderDelete(stickyNoteId);
+        } catch(error) {
+            NotificationHandler.push('error', null, error.message)
+        }
     }
 }

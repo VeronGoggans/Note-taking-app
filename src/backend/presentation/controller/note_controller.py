@@ -28,7 +28,7 @@ class NoteRouter:
     def add_note(self, request: PostNoteRequest):
         request_dto = PostNoteDto(request.folder_id, request.name, request.content)
         note = self.service.add_note(request_dto)
-        return {'status': 'succes', 'note': note}, HttpStatus.OK
+        return {'status': HttpStatus.OK, 'note': note}
        
 
     def cache(self):
@@ -42,41 +42,41 @@ class NoteRouter:
     @exception_handler
     def get_notes(self, folder_id: str):
         notes = self.service.get_notes(folder_id)
-        return {'status': 'succes', 'notes': notes}, HttpStatus.OK
+        return {'status': HttpStatus.OK, 'notes': notes}
        
 
     @exception_handler
     def get_note_by_id(self, note_id: str):
         note_location, note = self.service.get_note_by_id(note_id)
-        return {'status': 'succes', 'note': note, 'location': note_location}, HttpStatus.OK
+        return {'status': HttpStatus.OK, 'note': note, 'location': note_location}
 
 
     @exception_handler
     def get_search_items(self):
         notes = self.service.get_search_options()
-        return {'status': 'succes', 'notes': notes}, HttpStatus.OK
+        return {'status': HttpStatus.OK, 'notes': notes}
         
 
     @exception_handler
     def get_recent_notes(self):
         notes = self.service.get_recent_notes()
-        return {'status': 'succes', 'notes': notes}, HttpStatus.OK
+        return {'status': HttpStatus.OK, 'notes': notes}
     
 
     @exception_handler
     def update_note(self, request: PutNoteRequest):
         request_dto = PutNoteDto(request.note_id, request.name, request.content, request.bookmark)
         note = self.service.update_note(request_dto)
-        return {'status': 'succes', 'note': note}, HttpStatus.OK
+        return {'status': HttpStatus.OK, 'note': note}
 
 
     @exception_handler
     def move_note(self, request: MoveNoteRequest):
         note = self.service.move_note(request.folder_id, request.note_id)
-        return {'status': 'succes', 'note': note}, HttpStatus.OK
+        return {'status': HttpStatus.OK, 'note': note}
 
 
     @exception_handler
     def delete_note(self, note_id: str ):
         note = self.service.delete_note(note_id)
-        return {'status': 'succes', 'note': note}, HttpStatus.OK
+        return {'status': HttpStatus.OK, 'note': note}

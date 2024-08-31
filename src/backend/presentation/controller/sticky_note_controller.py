@@ -23,23 +23,23 @@ class StickyNoteRouter:
     def add_sticky_note(self, request: PostStickyNoteRequest):
         request_dto = PostStickyNoteDto(request.name, request.content)
         note = self.service.add_sticky_note(request_dto)
-        return {'status': 'succes', 'stickyNote': note}, HttpStatus.OK
+        return {'status': HttpStatus.OK, 'stickyNote': note}
        
 
     @exception_handler
     def get_sticky_notes(self):
         notes = self.service.get_sticky_notes()
-        return {'status': 'succes', 'stickyNotes': notes}, HttpStatus.OK
+        return {'status': HttpStatus.OK, 'stickyNotes': notes}
        
 
     @exception_handler
     def update_sticky_note(self, request: PutStickyNoteRequest):
         request_dto = PutStickyNoteDto(request.id, request.name, request.content)
         note = self.service.update_sticky_note(request_dto)
-        return {'status': 'succes', 'stickyNote': note}, HttpStatus.OK
+        return {'status': HttpStatus.OK, 'stickyNote': note}
     
 
     @exception_handler
     def delete_sticky_note(self, id: str ):
         note = self.service.delete_sticky_note(id)
-        return {'status': 'succes', 'stickyNote': note}, HttpStatus.OK
+        return {'status': HttpStatus.OK, 'stickyNote': note}

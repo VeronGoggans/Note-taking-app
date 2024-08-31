@@ -4,9 +4,11 @@ import { FlashcardDeck } from "../components/flashcardDeck.js";
 import { FolderObjectArray, NoteObjectArray, FlashcardDeckObjectArray } from "../util/array.js";
 import { AnimationHandler } from "../handlers/animation/animationHandler.js";
 import { greetBasedOnTime } from "../util/date.js";
+import { BaseView } from "./baseView.js";
 
-export class HomeView {
+export class HomeView extends BaseView {
     constructor(controller, applicationController) {
+        super();
         this.controller = controller;
         this.applicationController = applicationController;
 

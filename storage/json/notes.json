@@ -3,14 +3,14 @@
         "id": "f-1",
         "name": "Home",
         "color": "rgb(255, 255, 255)",
-        "last_visit": "30/08/2024 19:09:54",
+        "last_visit": "01/09/2024 01:30:24",
         "notes": [
             {
                 "id": "n-772",
                 "name": "untitled",
                 "content": "storage/notes/note-n-772.txt",
                 "bookmark": true,
-                "last_edit": "29/08/2024 23:32",
+                "last_edit": "01/09/2024 00:09",
                 "creation": "29/08/2024"
             }
         ],
@@ -20,21 +20,21 @@
         "id": "f-99",
         "name": "School",
         "color": "rgb(217, 237, 255)",
-        "last_visit": "30/08/2024 19:10:33",
+        "last_visit": "01/09/2024 00:25:13",
         "notes": [],
         "subfolders": [
             {
                 "id": "s-191",
                 "name": "Year 2",
                 "color": "rgb(255, 255, 255)",
-                "last_visit": "30/08/2024 19:12:11",
+                "last_visit": "01/09/2024 00:25:14",
                 "notes": [],
                 "subfolders": [
                     {
                         "id": "s-181",
                         "name": "Software Architecture",
                         "color": "rgb(255, 255, 255)",
-                        "last_visit": "30/08/2024 19:14:59",
+                        "last_visit": "01/09/2024 00:09:14",
                         "notes": [
                             {
                                 "id": "n-589",
@@ -107,14 +107,14 @@
                         "id": "s-183",
                         "name": "CISC1",
                         "color": "rgb(255, 255, 255)",
-                        "last_visit": "29/08/2024 17:10:49",
+                        "last_visit": "01/09/2024 00:05:08",
                         "notes": [
                             {
                                 "id": "n-466",
                                 "name": "CICQ1 exam summary",
                                 "content": "storage/notes/note-n-466.txt",
                                 "bookmark": false,
-                                "last_edit": "27/07/2024 20:03",
+                                "last_edit": "01/09/2024 00:04",
                                 "creation": "20/03/2024"
                             }
                         ],
@@ -124,7 +124,7 @@
                         "id": "s-182",
                         "name": "CISC2",
                         "color": "rgb(255, 255, 255)",
-                        "last_visit": "30/08/2024 15:56:47",
+                        "last_visit": "01/09/2024 00:05:14",
                         "notes": [
                             {
                                 "id": "n-609",
@@ -183,14 +183,14 @@
                 "id": "s-192",
                 "name": "Year 3",
                 "color": "rgb(255, 255, 255)",
-                "last_visit": "30/08/2024 19:09:40",
+                "last_visit": "01/09/2024 00:08:31",
                 "notes": [],
                 "subfolders": [
                     {
                         "id": "s-193",
                         "name": "Innovation",
                         "color": "rgb(255, 255, 255)",
-                        "last_visit": "29/08/2024 17:12:50",
+                        "last_visit": "31/08/2024 23:17:12",
                         "notes": [],
                         "subfolders": []
                     },
@@ -198,20 +198,12 @@
                         "id": "s-196",
                         "name": "Backend Specialisation",
                         "color": "rgb(217, 237, 255)",
-                        "last_visit": "29/08/2024 17:15:57",
+                        "last_visit": "31/08/2024 23:17:06",
                         "notes": [],
                         "subfolders": []
                     }
                 ]
             }
         ]
-    },
-    {
-        "id": "f-181",
-        "name": "Test Folder",
-        "color": "rgb(225, 175, 209)",
-        "last_visit": "30/08/2024 15:15:35",
-        "notes": [],
-        "subfolders": []
     }
 ]

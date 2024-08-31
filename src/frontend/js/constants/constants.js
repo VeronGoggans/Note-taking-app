@@ -59,29 +59,31 @@ export const arrowKeys = new Set([
 
 
 export const notificationTypes = {
-    'SAVED': 'Saved',
-    'UPDATED': 'Updated',
-    'DELETED': 'Deleted',
-    'NEW': 'New',
-    'EMPTY': 'Nothing here',
+    'saved': 'Saved',
+    'updated': 'Updated',
+    'deleted': 'Deleted',
+    'new': 'New',
+    'empty': 'Nothing here',
+    'error': 'An error occurred'
 }
 
 
 export const notificationIcons = {
-    'SAVED': 'fa-solid fa-file',
-    'UPDATED': 'fa-solid fa-pen',
-    'DELETED': 'fa-regular fa-trash-can',
-    'NEW': 'fa-solid fa-plus',
-    'EMPTY': 'fa-solid fa-folder-open'
+    'saved': 'fa-solid fa-file',
+    'updated': 'fa-solid fa-pen',
+    'deleted': 'fa-regular fa-trash-can',
+    'new': 'fa-solid fa-plus',
+    'empty': 'fa-solid fa-folder-open',
+    'error': 'fa-solid fa-bug'
 }
 
 
 export const notificationMessages = {
-    'SAVED': 'Your note has been saved successfully.',
-    'UPDATED': 'Your changes have been saved.',
-    'DELETED': 'has been deleted.',
-    'NEW': 'Changes saved.\nCreating a new note.',
-    'EMPTY': 'There is no content in this folder.',
+    'saved': 'Your note has been saved successfully.',
+    'updated': 'Your changes have been saved.',
+    'deleted': 'has been deleted.',
+    'new': 'Changes saved.\nCreating a new note.',
+    'empty': 'There is no content in this folder.'
 }
 
 
@@ -109,6 +111,7 @@ export const stickyNoteColors = [
     '#b4ebce',
     '#ffecc0',
     '#ffd0d0',
+    '#d4e7ff',
 ]
 
 export const sidebarButtonText = ['Home', 'Notes', 'Templates', 'Sticky wall', 'Flashcards', 'Settings']

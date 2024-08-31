@@ -24,42 +24,42 @@ class TemplateRouter:
     @exception_handler
     def get_templates(self):
         recent, other, total_uses, most_used = self.service.get_templates()
-        return {'status': 'succes', 'recent': recent, 'other': other, 'totalUses': total_uses, 'mostUsed': most_used}, HttpStatus.OK
+        return {'status': HttpStatus.OK, 'recent': recent, 'other': other, 'totalUses': total_uses, 'mostUsed': most_used}
 
 
     @exception_handler
     def get_template_by_id(self, id: str, update_use_count: bool):
         template = self.service.get_template_by_id(id, update_use_count)
-        return {'status': 'succes', 'template': template}, HttpStatus.OK
+        return {'status': HttpStatus.OK, 'template': template}
         
 
     @exception_handler
     def get_template_names(self):
         templates = self.service.get_template_names()
-        return {'status': 'succes', 'templates': templates}, HttpStatus.OK
+        return {'status': HttpStatus.OK, 'templates': templates}
     
 
     @exception_handler
     def get_search_items(self):
         templates = self.service.get_template_names()
-        return {'status': 'succes', 'templates': templates}, HttpStatus.OK
+        return {'status': HttpStatus.OK, 'templates': templates}
     
     
     @exception_handler
     def add_template(self, request: PostTemplateRequest):
         request_dto = PostTemplateDto(request.name, request.content)
         template = self.service.add_template(request_dto)
-        return {'status': 'succes', 'template': template}, HttpStatus.OK
+        return {'status': HttpStatus.OK, 'template': template}
     
 
     @exception_handler
     def update_template(self, request: PutTemplateRequest):
             request_dto = PutTemplateDto(request.id, request.name, request.content)
             template = self.service.update_template(request_dto)
-            return {'status': 'succes', 'template': template}, HttpStatus.OK 
+            return {'status': HttpStatus.OK, 'template': template}
 
 
     @exception_handler
     def delete_template(self, template_id: str):
         template = self.service.delete_template(template_id)
-        return {'status': 'succes', 'template': template}, HttpStatus.OK        
+        return {'status': HttpStatus.OK, 'template': template}  

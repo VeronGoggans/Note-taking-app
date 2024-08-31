@@ -1,11 +1,11 @@
 import { HttpModel } from "../model/httpModel.js";
 import { FlashcardDeckView } from "../view/flashcardDeckView.js";
 import { FlashcardModel } from "../model/flashcardModel.js";
+import { NotificationHandler } from "../handlers/userFeedback/notificationHandler.js";
 
 export class FlashcardDeckController {
     constructor(applicationController) {
         this.applicationController = applicationController;
-        this.objectNum = 0;
         this.model = new HttpModel();
     }
 
@@ -15,36 +15,60 @@ export class FlashcardDeckController {
         await this.getDecks()
     }
 
+    
     async addDeck(deckName, flashcards) {
-        const response = await this.model.add('/deck', {
-            'name': deckName,
-            'flashcards': flashcards
-        });
-        const deck = response[this.objectNum].deck;
-        this.view.renderOne(deck);
-        
+        try {
+            const { deck } = await this.model.add('/deck', {'name': deckName, 'flashcards': flashcards});
+            this.view.renderOne(deck);
+        } 
+        catch(error) {
+            NotificationHandler.push('error', null, error.message)
+        }
     }
+
 
     async getDecks() {
-        const response = await this.model.get('/decks');
-        this.view.renderAll(response[this.objectNum].decks)
-        this.view.renderStats(response[this.objectNum].misc)
+        try {
+            const { decks, misc } = await this.model.get('/decks');
+            this.view.renderAll(decks)
+            this.view.renderStats(misc)
+        } 
+        catch(error) {
+            NotificationHandler.push('error', null, error.message)
+        }
     }
+
 
     async getDeckById(deckId) {
-        const response = await this.model.get(`/deck/${deckId}`);
-        return response[this.objectNum].deck;
+        try {
+            const { deck } = await this.model.get(`/deck/${deckId}`);
+            return deck
+        } 
+        catch(error) {
+            NotificationHandler.push('error', null, error.message)
+        }
     }
+
 
     async getSearchItems() {
-        const response = await this.model.get('/deckSearchItems');
-        return response[this.objectNum].items;
+        try {
+            const { items } = await this.model.get('/deckSearchItems');
+            return items
+        } 
+        catch(error) {
+            NotificationHandler.push('error', null, error.message)
+        }
     }
 
+
     async delete(deckId) {
-        const response = await this.model.delete(`/deck/${deckId}`);
-        const deck = response[this.objectNum].deck;        
-        this.view.renderDelete(deck);
+        try {
+            const { deck } = await this.model.delete(`/deck/${deckId}`);       
+            this.view.renderDelete(deck);
+        } 
+        catch(error) {
+            NotificationHandler.push('error', null, error.message)
+        }
     }
 
     /**

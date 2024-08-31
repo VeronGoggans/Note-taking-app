@@ -142,11 +142,6 @@ export class ApplicationController {
         this.textEditorController.showTextEditor(allFolderNames, allTemplateNames);
     }
 
-    getCurrentFolderID() {
-        const currentFolderObject = this.folderController.getCurrentFolderObject();
-        return currentFolderObject.id
-    }
-
     getPreviousView() {
         return this.model.getPreviousView();
     }
@@ -163,14 +158,20 @@ export class ApplicationController {
         this.textEditorController.showTextEditor(editorObjectType, allFolderNames, allTemplateNames);
     }
 
+    // Note methods
+
     async addNote(name, content, notify) {
         const { id } = this.folderController.getCurrentFolderObject();
-        const note = await this.noteController.addNote(id, name, content, notify);
+        const note = await this.noteController.add(id, name, content, notify);
         this.textEditorController.storeEditorObject(note, 'note')
     }
 
     async getNotes(folderId) {
-        await this.noteController.getNotes(folderId);
+        await this.noteController.get(folderId);
+    }
+
+    async getNoteById(noteId) {
+        return await this.noteController.getById(noteId)
     }
 
     async getNoteSearchItems() {
@@ -181,49 +182,48 @@ export class ApplicationController {
         await this.noteController.update(note);
     }   
 
+    async moveNote(folderId, droppedNoteId) {
+        await this.noteController.move(folderId, droppedNoteId);
+    } 
+
     async deleteNote(noteId, notify) {
         await this.noteController.delete(noteId, notify);
     }
 
-    async getNoteById(noteId) {
-        return await this.noteController.getById(noteId)
-    }
+    // Template methods
 
     async addTemplate(name, content, notify) {
-        await this.templateController.addTemplate(name, content, notify);
+        await this.templateController.add(name, content, notify);
     }
 
     async getTemplates() {
-        await this.templateController.getTemplates();
+        await this.templateController.get();
     }
 
     async getTemplateSearchItems() {
         return await this.templateController.getTemplateNames();
     }
 
+    async getTemplateById(templateId, updateUseCount) {
+        return await this.templateController.getById(templateId, updateUseCount)
+    }
+
     async updateTemplate(template) {
         await this.templateController.update(template);
     }
 
-    async moveNote(folderId, droppedNoteId) {
-        await this.noteController.moveNote(folderId, droppedNoteId);
-    }    
-
-    async moveFolder(newParentFolderId, droppedFolderId) {
-        await this.folderController.moveFolder(newParentFolderId, droppedFolderId)
-    }
-    
-    async setTheme(init) {
-        const THEME = await this.settingController.getTheme();
-        this.settingController.setTheme(init, THEME);
-    }
-
-    async getTemplateById(templateId, updateUseCount) {
-        return await this.templateController.getTemplateById(templateId, updateUseCount)
-    }
-
     async deleteTemplate(templateId, notify) {
         await this.templateController.delete(templateId, notify)
+    }   
+
+    // Folder methods
+
+    async getFolderById(folderId) {
+        return await this.folderController.getById(folderId);
+    }
+
+    async getFolderSearchItems() {
+        return await this.folderController.getSearchItems();
     }
 
     getCurrentFolderObject() {
@@ -234,17 +234,11 @@ export class ApplicationController {
         return this.folderController.getPreviousFolderObject();
     }
 
-    async getFolderById(folderId) {
-        return await this.folderController.getFolderById(folderId);
+    async moveFolder(newParentFolderId, droppedFolderId) {
+        await this.folderController.move(newParentFolderId, droppedFolderId)
     }
 
-    async getFolderSearchItems() {
-        return await this.folderController.getSearchItems();
-    }
-
-    async getDeckSearchItems() {
-        return await this.flashcardDeckController.getSearchItems();
-    }
+    // Deck methods
 
     async addDeck(deckName, flashcards) {
         await this.flashcardDeckController.addDeck(deckName, flashcards);
@@ -252,5 +246,16 @@ export class ApplicationController {
 
     async getDeckById(deckId) {
         return await this.flashcardDeckController.getDeckById(deckId)
+    }
+
+    async getDeckSearchItems() {
+        return await this.flashcardDeckController.getSearchItems();
+    }
+
+    // Settings methods 
+
+    async setTheme(init) {
+        const theme = await this.settingController.getTheme();
+        this.settingController.setTheme(init, theme);
     }
 }

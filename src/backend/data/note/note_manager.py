@@ -64,12 +64,13 @@ class NoteManager:
             Note: 
             - If successful, it returns the specific Note object.
         """
-        note_location, note = FolderFinder.find_note_location(folders, note_id)
-        if note_location:
+        try:
+            note_location, note = FolderFinder.find_note_location(folders, note_id)
             note_object = Note.from_json(note)
             note_object.set_content_text()
             return note_location, note_object
-        raise NotFoundException(f'Note with id: {note_id}, could not be found.')
+        except TypeError as e:
+            raise NotFoundException(f'Note with id: {note_id}, could not be found.')
     
 
     def get_recent_notes(self, folders: list, notes_list: list) -> list[dict]:
