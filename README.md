@@ -19,7 +19,7 @@ The user can create the following:
 
 # Light mode
 ### Home
-![home view light](https://github.com/VeronGoggans/Note-taking-app/blob/spa/docs/img/home-view-light.png?raw=true)
+![home view light](https://github.com/VeronGoggans/Note-taking-app/blob/main/docs/img/home-view-light.png?raw=true)
 On the home screen, the user can see the following:
 1. **Recently Visited Folders**: By clicking on any folder, the user is taken directly to that location.
 2. **Recently Worked-on Notes**: Clicking on a note opens the editor, allowing the user to continue working on it seamlessly.
@@ -28,7 +28,7 @@ On the home screen, the user can see the following:
 There is also a search bar where the user can search for anything, including templates\,
 flashcard decks, folders, and notes
 ### Inside folder
-![folder view light](https://github.com/VeronGoggans/Note-taking-app/blob/spa/docs/img/folder-view-light.png?raw=true)
+![folder view light](https://github.com/VeronGoggans/Note-taking-app/blob/main/docs/img/folder-view-light.png?raw=true)
 On the Notes tab, the user has several options:
 - Use the search bar to find specific folders and notes.
 - Create new folders by clicking the folder icon.
@@ -38,7 +38,7 @@ On the Notes tab, the user has several options:
 
 Additionally, the Notes tab serves as the main area for accessing and managing notes.
 ### Inside the editor
-![editor view light](https://github.com/VeronGoggans/Note-taking-app/blob/spa/docs/img/editor-view-light.png?raw=true)
+![editor view light](https://github.com/VeronGoggans/Note-taking-app/blob/main/docs/img/editor-view-light.png?raw=true)
 When a user clicks on a note, they are taken to the editor, where several actions are available:
 - In the upper left corner, there is a button to exit the editor and view the note's location.
 - In the upper right corner, the save button allows the user to save their progress and close the editor. Next to it, the ellipsis button provides a dropdown menu with the following options: New, Save, Delete, and Details.
@@ -105,7 +105,7 @@ When a note is bookmarked the note will always render before all the other notes
 And if the bookmark button right under the folder name is clicked, all the bookmarked notes the user has will be shown. 
 
 ### Inside the templates tab
-![template view light](https://github.com/VeronGoggans/Note-taking-app/blob/spa/docs/img/template-view-light.png?raw=true)
+![template view light](https://github.com/VeronGoggans/Note-taking-app/blob/main/docs/img/template-view-light.png?raw=true)
 In the Templates tab, you can view, create, delete, and edit all your templates. Templates are\
 displayed in two categories: recently edited templates (up to 5), and all other templates that are not\
 in the top 5. Additionally, the Templates tab shows how many times templates have been used,\
@@ -115,7 +115,7 @@ Templates help the user to improve productivity by being able to load in freeque
 directly into their notes.
 
 ### Inside the sticky wall tab
-![sticky wall view light](https://github.com/VeronGoggans/Note-taking-app/blob/spa/docs/img/sticky-wall-view-light.png?raw=true)
+![sticky wall view light](https://github.com/VeronGoggans/Note-taking-app/blob/main/docs/img/sticky-wall-view-light.png?raw=true)
 In the Sticky Wall tab, the user can place a post-it note with a small note on the sticky wall.
 
 ### Inside the flashcards tab
