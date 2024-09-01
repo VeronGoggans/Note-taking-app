@@ -9,7 +9,7 @@ I created this app with two things I thought this app should have.
 
 # Light mode
 ### Home
-![home view light](https://github.com/VeronGoggans/Keeps/blob/main/docs/img/home-view-light.png?raw=true)
+![home view light](https://github.com/VeronGoggans/Note-taking-app/blob/spa/docs/img/home-view-light.png?raw=true)
 ### Inside folder
 ![folder view light](https://github.com/VeronGoggans/Keeps/blob/main/docs/img/folder-view-light.png?raw=true)
 ### Inside the editor
