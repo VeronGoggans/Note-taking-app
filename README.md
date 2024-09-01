@@ -119,7 +119,7 @@ directly into their notes.
 In the Sticky Wall tab, the user can place a post-it note with a small note on the sticky wall.
 
 ### Inside the flashcards tab
-![flashcards view light](https://github.com/VeronGoggans/Note-taking-app/blob/spa/docs/img/flashcard-view-light.png?raw=true)
+![flashcards view light](https://github.com/VeronGoggans/Note-taking-app/blob/main/docs/img/flashcard-view-light.png?raw=true)
 in the Flashcards tab, the user can create new decks, delete decks, practice with them, and edit or\
 remove individual flashcards within a deck. The tab also displays the user's current practice streak,\
 the total number of cards they have, and the total time spent studying.
