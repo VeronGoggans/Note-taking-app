@@ -3,15 +3,23 @@
         "id": "f-1",
         "name": "Home",
         "color": "rgb(255, 255, 255)",
-        "last_visit": "01/09/2024 01:30:24",
+        "last_visit": "01/09/2024 02:36:44",
         "notes": [
             {
                 "id": "n-772",
                 "name": "untitled",
                 "content": "storage/notes/note-n-772.txt",
                 "bookmark": true,
-                "last_edit": "01/09/2024 00:09",
+                "last_edit": "01/09/2024 02:15",
                 "creation": "29/08/2024"
+            },
+            {
+                "id": "n-786",
+                "name": "untitled",
+                "content": "storage/notes/note-n-786.txt",
+                "bookmark": false,
+                "last_edit": "01/09/2024 02:24",
+                "creation": "01/09/2024"
             }
         ],
         "subfolders": []
@@ -20,21 +28,21 @@
         "id": "f-99",
         "name": "School",
         "color": "rgb(217, 237, 255)",
-        "last_visit": "01/09/2024 00:25:13",
+        "last_visit": "01/09/2024 02:23:37",
         "notes": [],
         "subfolders": [
             {
                 "id": "s-191",
                 "name": "Year 2",
                 "color": "rgb(255, 255, 255)",
-                "last_visit": "01/09/2024 00:25:14",
+                "last_visit": "01/09/2024 02:36:00",
                 "notes": [],
                 "subfolders": [
                     {
                         "id": "s-181",
                         "name": "Software Architecture",
                         "color": "rgb(255, 255, 255)",
-                        "last_visit": "01/09/2024 00:09:14",
+                        "last_visit": "01/09/2024 02:26:19",
                         "notes": [
                             {
                                 "id": "n-589",
@@ -124,7 +132,7 @@
                         "id": "s-182",
                         "name": "CISC2",
                         "color": "rgb(255, 255, 255)",
-                        "last_visit": "01/09/2024 00:05:14",
+                        "last_visit": "01/09/2024 02:35:58",
                         "notes": [
                             {
                                 "id": "n-609",
