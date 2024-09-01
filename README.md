@@ -20,7 +20,7 @@ The user can create the following:
 # Light mode
 ### Home
 ![home view light](https://github.com/VeronGoggans/Note-taking-app/blob/spa/docs/img/home-view-light.png?raw=true)
-On the home screen, the user can see the following:\
+On the home screen, the user can see the following:
 1. **Recently Visited Folders**: By clicking on any folder, the user is taken directly to that location.
 2. **Recently Worked-on Notes**: Clicking on a note opens the editor, allowing the user to continue working on it seamlessly.
 3. **Random Flashcard Decks**: Clicking on a deck lets the user start or continue practicing the flashcards.
@@ -29,7 +29,7 @@ There is also a search bar where the user can search for anything, including tem
 flashcard decks, folders, and notes
 ### Inside folder
 ![folder view light](https://github.com/VeronGoggans/Note-taking-app/blob/spa/docs/img/folder-view-light.png?raw=true)
-On the Notes tab, the user has several options:\
+On the Notes tab, the user has several options:
 - Use the search bar to find specific folders and notes.
 - Create new folders by clicking the folder icon.
 - Create new notes by clicking the file icon.
@@ -39,29 +39,12 @@ On the Notes tab, the user has several options:\
 Additionally, the Notes tab serves as the main area for accessing and managing notes.
 ### Inside the editor
 ![editor view light](https://github.com/VeronGoggans/Note-taking-app/blob/spa/docs/img/editor-view-light.png?raw=true)
-When a user clicks on a note, they are taken to the editor, where several actions are available:\
+When a user clicks on a note, they are taken to the editor, where several actions are available:
 - In the upper left corner, there is a button to exit the editor and view the note's location.
 - In the upper right corner, the save button allows the user to save their progress and close the editor. Next to it, the ellipsis button provides a dropdown menu with the following options: New, Save, Delete, and Details.
 - Below the ellipsis button is a search icon that lets the user search for any word within the note.
 - The template button, located under the search icon, allows the user to load a template directly into their note.
 - Lastly, the flashcard deck button, located below the template button, enables the user to create a deck from the current note.
-
-### Notes:
-Neutron allows the user to bookmark notes.\
-to give the user more control over their notes.\
-
-
-**Bookmark**\
-When a note is bookmarked the note will always render before all the other notes inside the folder. 
-And if the bookmark button right under the folder name is clicked, all the bookmarked notes the user has will be shown. 
-
-
-### Templates
-Templates help the user to improve productivity by being able to load in freequently needed text\
-directly into their notes.
-
-
-The following features will be for within the text editor
 
 **Editor Features:**
 - bold, italic, underline, strikethrough
@@ -80,6 +63,9 @@ The following features will be for within the text editor
 - Create Quote block
 - Create Important block
 - Create Date block
+- Use the search function
+- Load a template
+- Create a flashcard deck
 
 ## Slash commands 
 To execute a command the user needs to type a **/**.\
@@ -102,9 +88,38 @@ or type in the keyword for a command.
 | ul        | Insert unordered list           |
 | ol        | Insert ordered list             |
 | h1        | Insert heading 1                |
-| h2        | Insert heading 1                |
-| h3        | Insert heading 1                |
-| h4        | Insert heading 1                |
-| h5        | Insert heading 1                |
-| h6        | Insert heading 1                |
+| h2        | Insert heading 2                |
+| h3        | Insert heading 3                |
+| h4        | Insert heading 4                |
+| h5        | Insert heading 5                |
+| h6        | Insert heading 6                |
 | date      | Insert date block               |
+
+### Notes:
+Neutron allows the user to bookmark notes.\
+to give the user more control over their notes.\
+
+
+**Bookmark**\
+When a note is bookmarked the note will always render before all the other notes inside the folder. 
+And if the bookmark button right under the folder name is clicked, all the bookmarked notes the user has will be shown. 
+
+### Inside the templates tab
+![template view light](https://github.com/VeronGoggans/Note-taking-app/blob/spa/docs/img/template-view-light.png?raw=true)
+In the Templates tab, you can view, create, delete, and edit all your templates. Templates are\
+displayed in two categories: recently edited templates (up to 5), and all other templates that are not\
+in the top 5. Additionally, the Templates tab shows how many times templates have been used,\
+highlights your favorite template, and displays the total number of templates you have.  
+
+Templates help the user to improve productivity by being able to load in freequently needed text\
+directly into their notes.
+
+### Inside the sticky wall tab
+![sticky wall view light](https://github.com/VeronGoggans/Note-taking-app/blob/spa/docs/img/sticky-wall-view-light.png?raw=true)
+In the Sticky Wall tab, the user can place a post-it note with a small note on the sticky wall.
+
+### Inside the flashcards tab
+![flashcards view light](https://github.com/VeronGoggans/Note-taking-app/blob/spa/docs/img/flashcard-view-light.png?raw=true)
+in the Flashcards tab, the user can create new decks, delete decks, practice with them, and edit or\
+remove individual flashcards within a deck. The tab also displays the user's current practice streak,\
+the total number of cards they have, and the total time spent studying.
