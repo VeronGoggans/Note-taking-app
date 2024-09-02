@@ -17,6 +17,9 @@
     display: flex;
     align-items: end;
     column-gap: 50px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: var(--stats-background);
 }
 
 .templates .stats-section p {
@@ -39,6 +42,7 @@
 
 .add-template-btn {
     position: absolute;
+    overflow: hidden;
     top: 0;
     right: 10px;
     cursor: pointer;
@@ -47,17 +51,27 @@
     padding: 10px 20px;
     border-radius: 7px; 
     transition: .2s;
-    color: var(--text);
+    color: #5c7fdd;
     background-color: transparent; 
+}
+
+.add-template-btn::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: var(--hover);
+    transition: .2s;
+}
+
+.add-template-btn:hover::before {
+    width: 100%;
 }
 
 .add-template-btn i {
     margin-right: 5px;
-}
-
-.add-template-btn:hover {
-    background-color: #5c7fdd;
-    color: white;
 }
 
 .templates .bottom h2 {

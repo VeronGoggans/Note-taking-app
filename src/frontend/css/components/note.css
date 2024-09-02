@@ -12,12 +12,11 @@
     opacity: 0;
     transform: translateY(30%);
     transition: opacity .7s ease, transform .25s ease, scale .2s ease;
-    box-shadow: 0 0 10px var(--card-shadow);
+    box-shadow: var(--card-shadow);
 }
 
 .note:hover {
     scale: 1.05;
-    box-shadow: 0 0 20px var(--card-shadow);
 }
 
 .bookmark {

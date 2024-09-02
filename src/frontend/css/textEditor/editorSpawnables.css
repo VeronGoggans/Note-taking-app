@@ -10,7 +10,7 @@
     background-color: var(--dropdown);
     padding: 10px 15px;
     border-radius: 10px;
-    box-shadow: 0 0 10px var(--card-shadow);
+    box-shadow: var(--card-shadow);
     opacity: 0;
     transition: 150ms;
 }
@@ -82,7 +82,7 @@
     display: grid;
     grid-template-rows: 30px 1fr;
     border-radius: 10px;
-    box-shadow: 0 0 10px var(--card-shadow);
+    box-shadow: var(--card-shadow);
     width: fit-content;
     padding: 20px;
     row-gap: 10px;

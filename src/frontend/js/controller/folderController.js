@@ -73,6 +73,8 @@ export class FolderController {
             return folders 
         } 
         catch(error) {
+            console.log('folder controller error');
+            
             NotificationHandler.push('error', null, error.message)
         }
     }

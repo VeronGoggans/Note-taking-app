@@ -52,20 +52,12 @@ class FlashcardDeckService:
 
     def get_search_items(self) -> list[object]:
         decks = self.json_manager.load(FLASHCARDS_PATH)
-        items = self.manager.get_search_items(decks)
-
-        if len(items) > 0:
-            return items
-        raise NotFoundException('There are no folders to be retrieved.')
+        return self.manager.get_search_items(decks)
     
 
     def get_random_decks(self) -> list[FlashcardDeck]:
         decks = self.json_manager.load(FLASHCARDS_PATH)
-        random_decks = self.manager.get_random_decks(decks)
-
-        if len(random_decks) > 0:
-            return random_decks
-        raise NotFoundException('There are no decks to be retrieved.')
+        return self.manager.get_random_decks(decks)
         
 
     def update_deck(self, request: PutDeckRequest) -> None:

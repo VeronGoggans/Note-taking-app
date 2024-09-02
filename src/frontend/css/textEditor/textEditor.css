@@ -29,7 +29,7 @@
    overflow-x: hidden;
    font-size: 11pt;
    font-family: sans-serif;
-   background-color: var(--background);
+   background-color: var(--editor);
    color: var(--editor-text);
    padding-bottom: 40px;
 }

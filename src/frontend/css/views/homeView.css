@@ -20,13 +20,33 @@
 }
 
 .home .view-title {
-    margin: 20px auto;
+    position: relative;
+    margin: 50px 0;
 }
+
+.home .view-title::before {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    height: 2px;
+    width: 40%;
+    background-color: var(--text);
+    border-radius: 5px;
+    transition: 300ms;
+}
+
+.home .view-title:hover::before {
+    width: 100%;
+}
+
+
 
 .home .middle .block-title {
     font-family: sans-serif;
     color: var(--subtitle);
     margin-top: 20px;
+    font-size: 20px;
 }
 
 
@@ -80,7 +100,7 @@
     max-height: 280px;
     border-radius: 15px;
     background-color: var(--card);
-    box-shadow: 0 0 10px var(--card-shadow);
+    box-shadow: var(--card-shadow);
     display: grid;
     grid-template-rows: 40px 1fr;
     opacity: 0;

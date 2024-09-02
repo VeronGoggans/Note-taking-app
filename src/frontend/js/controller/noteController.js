@@ -61,6 +61,8 @@ export class NoteController {
             return notes
         } 
         catch(error) {
+            console.log('note controller error');
+            
             NotificationHandler.push('error', null, error.message)
         }
     }

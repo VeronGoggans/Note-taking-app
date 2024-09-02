@@ -3,7 +3,7 @@
         "id": "f-1",
         "name": "Home",
         "color": "rgb(255, 255, 255)",
-        "last_visit": "01/09/2024 12:47:10",
+        "last_visit": "02/09/2024 18:43:53",
         "notes": [
             {
                 "id": "n-772",
@@ -12,14 +12,6 @@
                 "bookmark": true,
                 "last_edit": "01/09/2024 02:15",
                 "creation": "29/08/2024"
-            },
-            {
-                "id": "n-786",
-                "name": "untitled",
-                "content": "storage/notes/note-n-786.txt",
-                "bookmark": false,
-                "last_edit": "01/09/2024 02:24",
-                "creation": "01/09/2024"
             }
         ],
         "subfolders": []
@@ -28,21 +20,21 @@
         "id": "f-99",
         "name": "School",
         "color": "rgb(217, 237, 255)",
-        "last_visit": "01/09/2024 12:47:11",
+        "last_visit": "02/09/2024 18:43:58",
         "notes": [],
         "subfolders": [
             {
                 "id": "s-191",
                 "name": "Year 2",
                 "color": "rgb(255, 255, 255)",
-                "last_visit": "01/09/2024 12:47:15",
+                "last_visit": "02/09/2024 18:41:14",
                 "notes": [],
                 "subfolders": [
                     {
                         "id": "s-181",
                         "name": "Software Architecture",
                         "color": "rgb(255, 255, 255)",
-                        "last_visit": "01/09/2024 12:47:16",
+                        "last_visit": "02/09/2024 18:41:12",
                         "notes": [
                             {
                                 "id": "n-589",
@@ -65,7 +57,7 @@
                                 "name": "Intro to Software Architecture",
                                 "content": "storage/notes/note-n-625.txt",
                                 "bookmark": false,
-                                "last_edit": "29/08/2024 17:10",
+                                "last_edit": "02/09/2024 17:45",
                                 "creation": "03/06/2024"
                             },
                             {
@@ -105,7 +97,7 @@
                                 "name": "Architecture Activities",
                                 "content": "storage/notes/note-n-630.txt",
                                 "bookmark": false,
-                                "last_edit": "12/08/2024 17:01",
+                                "last_edit": "02/09/2024 17:46",
                                 "creation": "03/06/2024"
                             }
                         ],
@@ -115,7 +107,7 @@
                         "id": "s-183",
                         "name": "CISC1",
                         "color": "rgb(255, 255, 255)",
-                        "last_visit": "01/09/2024 00:05:08",
+                        "last_visit": "02/09/2024 17:35:31",
                         "notes": [
                             {
                                 "id": "n-466",
@@ -132,7 +124,7 @@
                         "id": "s-182",
                         "name": "CISC2",
                         "color": "rgb(255, 255, 255)",
-                        "last_visit": "01/09/2024 12:47:13",
+                        "last_visit": "02/09/2024 17:56:12",
                         "notes": [
                             {
                                 "id": "n-609",
@@ -191,7 +183,7 @@
                 "id": "s-192",
                 "name": "Year 3",
                 "color": "rgb(255, 255, 255)",
-                "last_visit": "01/09/2024 00:08:31",
+                "last_visit": "02/09/2024 18:43:58",
                 "notes": [],
                 "subfolders": [
                     {
@@ -206,8 +198,17 @@
                         "id": "s-196",
                         "name": "Backend Specialisation",
                         "color": "rgb(217, 237, 255)",
-                        "last_visit": "31/08/2024 23:17:06",
-                        "notes": [],
+                        "last_visit": "02/09/2024 18:43:59",
+                        "notes": [
+                            {
+                                "id": "n-787",
+                                "name": "Specialisation Intro",
+                                "content": "storage/notes/note-n-787.txt",
+                                "bookmark": false,
+                                "last_edit": "02/09/2024 18:34",
+                                "creation": "02/09/2024"
+                            }
+                        ],
                         "subfolders": []
                     }
                 ]

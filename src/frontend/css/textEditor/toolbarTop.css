@@ -182,7 +182,7 @@
     min-width: 700px;
     font-weight: 600;
     font-size: 25px;
-    background-color: var(--background);
+    background-color: var(--editor);
     color: var(--important);
     }
 
