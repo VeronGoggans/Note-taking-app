@@ -5,12 +5,9 @@
     max-height: 100dvh;
     overflow-y: scroll;
     outline: none;
-}
-
-.templates .subtitle {
-    font-family: sans-serif;
-    color: var(--important);
-    margin-bottom: 30px;
+    opacity: 0;
+    transform: translateY(30%);
+    transition: opacity .7s ease, transform .2s ease;
 }
 
 .templates .stats-section {

@@ -6,15 +6,12 @@ export class Searchbar {
         this.#attachEventListeners();
     }
 
-    fillSearchbar(searchType, searchObjects) {
+    fillSearchbar(searchType, searchObjects) {        
         if (searchObjects.length > 0) {
             for (let i = 0; i < searchObjects.length; i++) {
                 this.addSearchItem(searchType, searchObjects[i])  
             }
-        } else  {
-            console.log('Empty deck list');
-            
-        }
+        } 
     }
 
     addSearchItem(searchType, searchObject) {

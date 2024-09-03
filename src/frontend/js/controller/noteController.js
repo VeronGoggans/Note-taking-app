@@ -60,9 +60,7 @@ export class NoteController {
             const { notes } = await this.model.get('/noteSearchItems');
             return notes
         } 
-        catch(error) {
-            console.log('note controller error');
-            
+        catch(error) {            
             NotificationHandler.push('error', null, error.message)
         }
     }

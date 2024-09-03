@@ -3,7 +3,6 @@ import { AnimationHandler } from "../handlers/animation/animationHandler.js";
 import { TemplateObjectArray } from "../util/array.js";
 import { decrementString } from "../util/ui.js";
 import { BaseView } from "./baseView.js";
-import { NotificationHandler } from "../handlers/userFeedback/notificationHandler.js";
 
 
 export class TemplateView extends BaseView {
@@ -14,6 +13,8 @@ export class TemplateView extends BaseView {
         this.templateObjects = new TemplateObjectArray();
         this.#initializeDomElements();
         this.#attachEventListeners();
+
+        AnimationHandler.fadeInFromBottom(this._viewElement);
     }
 
 
@@ -37,9 +38,7 @@ export class TemplateView extends BaseView {
             }
             this._recentTemplates.appendChild(recentContentFragment);
             this._otherTemplates.appendChild(otherContentFragment);
-        } else {
-            NotificationHandler.push('empty')
-        }
+        } 
     }
 
     
@@ -96,6 +95,7 @@ export class TemplateView extends BaseView {
         this._templateCountSpan = document.querySelector('.template-count');
         this._templateUsesCountSpan = document.querySelector('.total-uses-count');
         this._mostUsedTemplateSpan = document.querySelector('.most-used-template');
+        this._viewElement = document.querySelector('.templates');
     }
 
     #attachEventListeners() {

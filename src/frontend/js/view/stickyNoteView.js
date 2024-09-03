@@ -11,7 +11,7 @@ export class StickyNoteView extends BaseView {
         this.stickyNoteObjects = new StickyNoteObjectArray();
         this.#initializeDomElements();
         this.#attachEventListeners();
-        AnimationHandler.fadeInFromSide(this.viewElement);
+        AnimationHandler.fadeInFromBottom(this.viewElement);
     }
 
     renderAll(stickyNotes) {

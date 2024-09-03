@@ -12,6 +12,7 @@ export class FlashcardDeckView extends BaseView {
 
         this.#initializeDomElements();
         this.#attachEventListeners();
+        AnimationHandler.fadeInFromBottom(this._viewElement)
     }
 
     renderAll(decks) {
@@ -143,5 +144,6 @@ export class FlashcardDeckView extends BaseView {
         this._hoursStudiedSpan = document.querySelector('.hours-studied');
         this._minutesStudiedSpan = document.querySelector('.minutes-studied');
         this._addDeckButton = document.querySelector('.create-deck-btn');
+        this._viewElement = document.querySelector('.flashcards-view');
     }
 }

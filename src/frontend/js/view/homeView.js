@@ -16,6 +16,8 @@ export class HomeView extends BaseView {
         this.noteObjects = new NoteObjectArray();
         this.deckObjects = new FlashcardDeckObjectArray();
         this.#initializeDomElements();
+
+        AnimationHandler.fadeInFromBottom(this._viewElement)
     }
 
     renderRecentFolders(folders) {
@@ -105,5 +107,6 @@ export class HomeView extends BaseView {
         this.recentFolderContainer = document.querySelector('.recent-folders');
         this.recentNoteContainer = document.querySelector('.recent-notes');
         this.flashcardDeckContainer = document.querySelector('.flashcard-decks');
+        this._viewElement = document.querySelector('.home');
     }
 }

@@ -1,12 +1,11 @@
 .searchbar {
     position: relative;
-    background-color: var(--searchbar);
     height: 40px;
-    border-radius: 10px;
     width: 50%;
     max-width: 400px;
     min-width: 300px;
     display: flex;
+    border-bottom: 2px solid var(--searchbar-border);
 }
 
 

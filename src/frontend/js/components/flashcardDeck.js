@@ -57,7 +57,7 @@ export class FlashcardProgression {
 
     #render() {
         this.PROGRESS.append(this.PROGRESS_FILL);
-        this.HOST.append(this.NAME, this.EDIT_BUTTON, this.DELETE_BUTTON, this.PROGRESS, this.PERCENTAGE_CORRECT);
+        this.HOST.append(this.NAME, this.PROGRESS, this.PERCENTAGE_CORRECT, this.EDIT_BUTTON, this.DELETE_BUTTON);
         return this.HOST
     }
 

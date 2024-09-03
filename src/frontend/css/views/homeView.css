@@ -5,6 +5,9 @@
     padding: 15px 5%;   
     height: 100dvh;
     max-height: 100dvh;
+    opacity: 0;
+    transform: translateY(30%);
+    transition: opacity .7s ease, transform .2s ease;
 }
 
 .home .top {

@@ -2,7 +2,7 @@
     "ids": [
         {
             "entity": "folder",
-            "id": 183
+            "id": 184
         },
         {
             "entity": "subfolder",
@@ -10,15 +10,15 @@
         },
         {
             "entity": "note",
-            "id": 788
+            "id": 789
         },
         {
             "entity": "template",
-            "id": 45
+            "id": 46
         },
         {
             "entity": "flashcard-deck",
-            "id": 37
+            "id": 38
         },
         {
             "entity": "sticky-note",

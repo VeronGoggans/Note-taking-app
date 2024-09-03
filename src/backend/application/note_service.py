@@ -93,8 +93,4 @@ class NoteService:
 
     def get_search_options(self) -> list[object]:
         folders = self.json_manager.load(FOLDERS_PATH)
-        notes = self.note_manager.get_note_name_id(folders, search_items = [])
-
-        if len(notes) > 0:
-            return notes
-        raise NotFoundException('There are no notes to be retrieved.') 
+        return self.note_manager.get_note_name_id(folders, search_items = [])

@@ -6,6 +6,9 @@
     display: grid;
     grid-template-rows: 60px 1fr;
     padding: 0 5%;
+    opacity: 0;
+    transform: translateY(30%);
+    transition: opacity .7s ease, transform .2s ease;
 }
 
 .notes-top {

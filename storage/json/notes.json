@@ -3,216 +3,25 @@
         "id": "f-1",
         "name": "Home",
         "color": "rgb(255, 255, 255)",
-        "last_visit": "02/09/2024 18:43:53",
+        "last_visit": "03/09/2024 13:24:09",
         "notes": [
             {
-                "id": "n-772",
+                "id": "n-788",
                 "name": "untitled",
-                "content": "storage/notes/note-n-772.txt",
+                "content": "storage/notes/note-n-788.txt",
                 "bookmark": true,
-                "last_edit": "01/09/2024 02:15",
-                "creation": "29/08/2024"
+                "last_edit": "03/09/2024 02:20",
+                "creation": "03/09/2024"
             }
         ],
         "subfolders": []
     },
     {
-        "id": "f-99",
-        "name": "School",
-        "color": "rgb(217, 237, 255)",
-        "last_visit": "02/09/2024 18:43:58",
+        "id": "f-183",
+        "name": "untitled",
+        "color": "rgb(255, 255, 255)",
+        "last_visit": "03/09/2024 02:19:23",
         "notes": [],
-        "subfolders": [
-            {
-                "id": "s-191",
-                "name": "Year 2",
-                "color": "rgb(255, 255, 255)",
-                "last_visit": "02/09/2024 18:41:14",
-                "notes": [],
-                "subfolders": [
-                    {
-                        "id": "s-181",
-                        "name": "Software Architecture",
-                        "color": "rgb(255, 255, 255)",
-                        "last_visit": "02/09/2024 18:41:12",
-                        "notes": [
-                            {
-                                "id": "n-589",
-                                "name": "Compliance Checking",
-                                "content": "storage/notes/note-n-589.txt",
-                                "bookmark": false,
-                                "last_edit": "27/06/2024 17:54",
-                                "creation": "14/05/2024"
-                            },
-                            {
-                                "id": "n-590",
-                                "name": "Compliant engineering",
-                                "content": "storage/notes/note-n-590.txt",
-                                "bookmark": false,
-                                "last_edit": "27/08/2024 15:59",
-                                "creation": "14/05/2024"
-                            },
-                            {
-                                "id": "n-625",
-                                "name": "Intro to Software Architecture",
-                                "content": "storage/notes/note-n-625.txt",
-                                "bookmark": false,
-                                "last_edit": "02/09/2024 17:45",
-                                "creation": "03/06/2024"
-                            },
-                            {
-                                "id": "n-626",
-                                "name": "Packages and Dependencies",
-                                "content": "storage/notes/note-n-626.txt",
-                                "bookmark": false,
-                                "last_edit": "22/08/2024 21:59",
-                                "creation": "03/06/2024"
-                            },
-                            {
-                                "id": "n-627",
-                                "name": "Logical Components",
-                                "content": "storage/notes/note-n-627.txt",
-                                "bookmark": false,
-                                "last_edit": "26/06/2024 18:05",
-                                "creation": "03/06/2024"
-                            },
-                            {
-                                "id": "n-628",
-                                "name": "Logical Layers",
-                                "content": "storage/notes/note-n-628.txt",
-                                "bookmark": false,
-                                "last_edit": "29/08/2024 17:10",
-                                "creation": "03/06/2024"
-                            },
-                            {
-                                "id": "n-629",
-                                "name": "Software Architecture Reconstruction",
-                                "content": "storage/notes/note-n-629.txt",
-                                "bookmark": false,
-                                "last_edit": "26/06/2024 18:07",
-                                "creation": "03/06/2024"
-                            },
-                            {
-                                "id": "n-630",
-                                "name": "Architecture Activities",
-                                "content": "storage/notes/note-n-630.txt",
-                                "bookmark": false,
-                                "last_edit": "02/09/2024 17:46",
-                                "creation": "03/06/2024"
-                            }
-                        ],
-                        "subfolders": []
-                    },
-                    {
-                        "id": "s-183",
-                        "name": "CISC1",
-                        "color": "rgb(255, 255, 255)",
-                        "last_visit": "02/09/2024 17:35:31",
-                        "notes": [
-                            {
-                                "id": "n-466",
-                                "name": "CICQ1 exam summary",
-                                "content": "storage/notes/note-n-466.txt",
-                                "bookmark": false,
-                                "last_edit": "01/09/2024 00:04",
-                                "creation": "20/03/2024"
-                            }
-                        ],
-                        "subfolders": []
-                    },
-                    {
-                        "id": "s-182",
-                        "name": "CISC2",
-                        "color": "rgb(255, 255, 255)",
-                        "last_visit": "02/09/2024 17:56:12",
-                        "notes": [
-                            {
-                                "id": "n-609",
-                                "name": "Maintainability",
-                                "content": "storage/notes/note-n-609.txt",
-                                "bookmark": false,
-                                "last_edit": "27/08/2024 16:00",
-                                "creation": "30/05/2024"
-                            },
-                            {
-                                "id": "n-610",
-                                "name": "Static analysis en metrics",
-                                "content": "storage/notes/note-n-610.txt",
-                                "bookmark": false,
-                                "last_edit": "10/07/2024 19:49",
-                                "creation": "30/05/2024"
-                            },
-                            {
-                                "id": "n-611",
-                                "name": "Declarative Code",
-                                "content": "storage/notes/note-n-611.txt",
-                                "bookmark": false,
-                                "last_edit": "17/08/2024 13:46",
-                                "creation": "30/05/2024"
-                            },
-                            {
-                                "id": "n-612",
-                                "name": "Authentication & Authorization",
-                                "content": "storage/notes/note-n-612.txt",
-                                "bookmark": false,
-                                "last_edit": "27/08/2024 16:00",
-                                "creation": "30/05/2024"
-                            },
-                            {
-                                "id": "n-613",
-                                "name": "Websecurity & Web Performance",
-                                "content": "storage/notes/note-n-613.txt",
-                                "bookmark": false,
-                                "last_edit": "28/08/2024 23:49",
-                                "creation": "30/05/2024"
-                            },
-                            {
-                                "id": "n-615",
-                                "name": "Operations",
-                                "content": "storage/notes/note-n-615.txt",
-                                "bookmark": false,
-                                "last_edit": "08/08/2024 15:34",
-                                "creation": "30/05/2024"
-                            }
-                        ],
-                        "subfolders": []
-                    }
-                ]
-            },
-            {
-                "id": "s-192",
-                "name": "Year 3",
-                "color": "rgb(255, 255, 255)",
-                "last_visit": "02/09/2024 18:43:58",
-                "notes": [],
-                "subfolders": [
-                    {
-                        "id": "s-193",
-                        "name": "Innovation",
-                        "color": "rgb(255, 255, 255)",
-                        "last_visit": "31/08/2024 23:17:12",
-                        "notes": [],
-                        "subfolders": []
-                    },
-                    {
-                        "id": "s-196",
-                        "name": "Backend Specialisation",
-                        "color": "rgb(217, 237, 255)",
-                        "last_visit": "02/09/2024 18:43:59",
-                        "notes": [
-                            {
-                                "id": "n-787",
-                                "name": "Specialisation Intro",
-                                "content": "storage/notes/note-n-787.txt",
-                                "bookmark": false,
-                                "last_edit": "02/09/2024 18:34",
-                                "creation": "02/09/2024"
-                            }
-                        ],
-                        "subfolders": []
-                    }
-                ]
-            }
-        ]
+        "subfolders": []
     }
 ]

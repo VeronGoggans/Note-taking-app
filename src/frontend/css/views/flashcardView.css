@@ -5,6 +5,9 @@
     font-family: Roboto;
     padding: 15px 5%;
     overflow-y: scroll;
+    opacity: 0;
+    transform: translateY(30%);
+    transition: opacity .7s ease, transform .2s ease;
 }
 
 .flashcards-view .flashcard-deck-container {
@@ -35,7 +38,7 @@
 
 .flashcards-view .flashcard-deck:hover {
     scale: 1.05;
-    box-shadow: 0 0 20px var(--card-shadow);
+    box-shadow: var(--card-shadow);
 }
 
 .flashcards-view .flashcard-deck .deck-name,
@@ -43,7 +46,7 @@
     font-weight: 600;
     font-family: sans-serif;
     color: var(--text) ;
-    font-size: 16px;
+    font-size: 18px;
 }
 
 
@@ -157,7 +160,6 @@
     border-radius: 7px;
     column-gap: 10px;
     /* border: 1px solid var(--border-card); */
-    background-color: var(--card);
     opacity: 0;
     transform: translateY(30%);
     transition: opacity .7s ease, transform .25s ease;
@@ -169,7 +171,7 @@
     bottom: 0;
     left: 0;
     width: 0;
-    height: 1px;
+    height: 2px;
     border-radius: 5px;
     background-color: #5c7fdd;
     transition: .3s;
@@ -208,7 +210,7 @@
     border-radius: 5px;
     width: 30px;
     height: 30px;
-    color: var(--important);
+    color: var(--placeholder);
     transition: 150ms;
 }
 

@@ -5,7 +5,7 @@
     font-family: Roboto;
     padding: 15px 5%;
     opacity: 0;
-    transform: translateX(30%);
+    transform: translateY(30%);
     transition: opacity .7s ease, transform .2s ease;
 }
 

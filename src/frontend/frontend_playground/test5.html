@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Empty Folder</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+      background-color: #f4f4f4;
+    }
+
+    .container {
+      max-width: 600px;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .illustration {
+      width: 100%;
+      max-width: 300px;
+      margin-bottom: 20px;
+    }
+
+    .message {
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .action-button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .action-button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="empty_folder_illustration.png" alt="Empty Folder Illustration" class="illustration">
+    <div class="message">This folder is empty. Start creating something amazing!</div>
+    <button class="action-button" onclick="createNewNote()">Create New Note</button>
+  </div>
+
+  <script>
+    function createNewNote() {
+      // Implement note creation logic here
+      alert('Create New Note clicked!');
+    }
+  </script>
+</body>
+</html>

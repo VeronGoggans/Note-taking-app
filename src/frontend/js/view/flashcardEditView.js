@@ -1,9 +1,11 @@
 import { FlashcardObjectArray } from "../util/array.js";
 import { Flashcard } from "../components/flashcardDeck.js";
 import { AnimationHandler } from "../handlers/animation/animationHandler.js";
+import { BaseView } from "./baseView.js";
 
-export class FlashcardEditView {
+export class FlashcardEditView extends BaseView {
     constructor(controller, applicationController) {
+        super();
         this.controller = controller;
         this.applicationController = applicationController;
 
