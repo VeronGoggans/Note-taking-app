@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from src.backend.data.folder.folder_manager import FolderManager
-from src.backend.presentation.request_bodies.folder_requests import FolderRequest, MoveFolderRequest
-from src.backend.presentation.dtos.folder_dtos import FolderRequestDto
+from src.backend.presentation.request_bodies.folder_requests import FolderRequest, MoveFolderRequest, PutFolderRequest
+from src.backend.presentation.dtos.folder_dtos import FolderRequestDto, PutFolderRequestDto
 from src.backend.presentation.http_status import HttpStatus
 from src.backend.application.folder_service import FolderService
 from src.backend.presentation.decorators.controller_decorators import exception_handler 
@@ -24,8 +24,9 @@ class FolderRouter:
 
     @exception_handler
     def add_folder(self, request: FolderRequest):
-        request_dto = FolderRequestDto(request.folder_id, request.name)
-        folder = self.service.add_folder(request_dto)
+        folder = self.service.add_folder(
+            FolderRequestDto(request.folder_id, request.name)
+        )
         return {'status': HttpStatus.OK, "folder": folder}
         
 
@@ -54,8 +55,10 @@ class FolderRouter:
 
 
     @exception_handler
-    def update_folder(self, request: FolderRequest):
-        folder = self.service.update_folder(request)
+    def update_folder(self, request: PutFolderRequest):
+        folder = self.service.update_folder(
+            PutFolderRequestDto(request.folder_id, request.name, request.color)
+        )
         return {'status': HttpStatus.OK, "folder": folder}
     
 

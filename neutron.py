@@ -66,9 +66,9 @@ while True:
 webview.create_window(
     "Neutron", 
     f"http://127.0.0.1:{port}", 
-    width=1200, 
-    height=750,
-    min_size=(780, 400),
+    width=1400, 
+    height=800,
+    min_size=(850, 400),
 )
 
 # Run the pywebview event loop

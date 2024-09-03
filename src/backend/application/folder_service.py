@@ -1,5 +1,5 @@
 from src.backend.data.folder.folder_manager import FolderManager
-from src.backend.presentation.dtos.folder_dtos import FolderRequestDto
+from src.backend.presentation.dtos.folder_dtos import FolderRequestDto, PutFolderRequestDto
 from src.backend.data.exceptions.exceptions import NotFoundException, AdditionException, InvalidMoveRequestException
 from src.backend.domain.folder import Folder
 from src.backend.data.file.json_manager import JsonManager
@@ -56,10 +56,10 @@ class FolderService:
             raise e
 
 
-    def update_folder(self, request_dto: FolderRequestDto) -> object:
+    def update_folder(self, request_dto: PutFolderRequestDto) -> object:
         folders = self.json_manager.load(FOLDERS_PATH)
         try:
-            folder = self.manager.update_folder(folders, request_dto.folder_id, request_dto.name)
+            folder = self.manager.update_folder(folders, request_dto.folder_id, request_dto.name, request_dto.color)
             self.json_manager.update(FOLDERS_PATH, folders)
             return folder
         except NotFoundException as e:
