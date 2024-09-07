@@ -1,3 +1,10 @@
 [
-    
+    {
+        "id": "fcd-37",
+        "name": "CISC1",
+        "flashcards_path": "storage/flashcards/flashcard-deck-fcd-37.txt",
+        "last_study": "07/09/2024 14:44:52",
+        "progress": null,
+        "flashcards": []
+    }
 ]

@@ -114,4 +114,4 @@ export const stickyNoteColors = [
     '#d4e7ff',
 ]
 
-export const sidebarButtonText = ['Home', 'Notes', 'Templates', 'Sticky wall', 'Flashcards', 'Settings']
+export const sidebarButtonText = ['Home', 'Notes', 'Templates', 'Sticky wall', 'Flashcards', 'Taskboards', 'Settings']

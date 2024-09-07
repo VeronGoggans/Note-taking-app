@@ -3,7 +3,7 @@ from src.backend.data.file.json_manager import JsonManager
 from src.backend.domain.template import Template
 from src.backend.presentation.dtos.template_dtos import *
 from src.backend.data.exceptions.exceptions import *
-from src.backend.util.paths import TEMPLATES_PATH, ID_PATH
+from src.backend.util.paths import TEMPLATES_PATH
 
 class TemplateService:
     def __init__(self, template_manager: TemplateManager, json_manager: JsonManager):
@@ -12,7 +12,7 @@ class TemplateService:
 
     
     def add_template(self, request_dto: PostTemplateDto) -> Template:
-        template_id = self.json_manager.generate_id(ID_PATH, 'template')
+        template_id = self.json_manager.generate_id('template')
         template_structure = self.json_manager.load(TEMPLATES_PATH)
 
         template = Template(template_id, request_dto.name, request_dto.content)

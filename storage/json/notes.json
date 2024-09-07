@@ -3,7 +3,7 @@
         "id": "f-1",
         "name": "Home",
         "color": "rgb(255, 255, 255)",
-        "last_visit": "03/09/2024 19:17:37",
+        "last_visit": "07/09/2024 17:42:53",
         "notes": [],
         "subfolders": []
     },
@@ -11,21 +11,21 @@
         "id": "f-99",
         "name": "School",
         "color": "rgb(217, 237, 255)",
-        "last_visit": "03/09/2024 19:06:23",
+        "last_visit": "07/09/2024 15:12:38",
         "notes": [],
         "subfolders": [
             {
                 "id": "s-191",
                 "name": "Year 2",
                 "color": "rgb(255, 255, 255)",
-                "last_visit": "03/09/2024 14:16:23",
+                "last_visit": "07/09/2024 15:07:05",
                 "notes": [],
                 "subfolders": [
                     {
                         "id": "s-181",
                         "name": "Software Architecture",
                         "color": "rgb(255, 255, 255)",
-                        "last_visit": "03/09/2024 14:16:00",
+                        "last_visit": "06/09/2024 19:39:28",
                         "notes": [
                             {
                                 "id": "n-589",
@@ -98,14 +98,14 @@
                         "id": "s-183",
                         "name": "CISC1",
                         "color": "rgb(255, 255, 255)",
-                        "last_visit": "02/09/2024 17:35:31",
+                        "last_visit": "07/09/2024 15:08:32",
                         "notes": [
                             {
                                 "id": "n-466",
                                 "name": "CICQ1 exam summary",
                                 "content": "storage/notes/note-n-466.txt",
                                 "bookmark": false,
-                                "last_edit": "01/09/2024 00:04",
+                                "last_edit": "07/09/2024 15:08",
                                 "creation": "20/03/2024"
                             }
                         ],
@@ -115,14 +115,14 @@
                         "id": "s-182",
                         "name": "CISC2",
                         "color": "rgb(255, 255, 255)",
-                        "last_visit": "03/09/2024 14:16:16",
+                        "last_visit": "07/09/2024 15:06:30",
                         "notes": [
                             {
                                 "id": "n-609",
                                 "name": "Maintainability",
                                 "content": "storage/notes/note-n-609.txt",
                                 "bookmark": false,
-                                "last_edit": "27/08/2024 16:00",
+                                "last_edit": "04/09/2024 14:27",
                                 "creation": "30/05/2024"
                             },
                             {
@@ -174,21 +174,21 @@
                 "id": "s-192",
                 "name": "Year 3",
                 "color": "rgb(255, 255, 255)",
-                "last_visit": "03/09/2024 19:06:21",
+                "last_visit": "07/09/2024 15:14:40",
                 "notes": [],
                 "subfolders": [
                     {
                         "id": "s-196",
                         "name": "Backend Specialisation",
                         "color": "rgb(217, 237, 255)",
-                        "last_visit": "03/09/2024 19:06:19",
+                        "last_visit": "07/09/2024 15:14:37",
                         "notes": [
                             {
                                 "id": "n-787",
                                 "name": "Specialisation Intro",
                                 "content": "storage/notes/note-n-787.txt",
                                 "bookmark": false,
-                                "last_edit": "02/09/2024 18:46",
+                                "last_edit": "05/09/2024 17:02",
                                 "creation": "02/09/2024"
                             }
                         ],
@@ -210,7 +210,7 @@
         "id": "f-183",
         "name": "untitled",
         "color": "rgb(169, 215, 255)",
-        "last_visit": "03/09/2024 19:17:46",
+        "last_visit": "06/09/2024 19:40:25",
         "notes": [],
         "subfolders": []
     }

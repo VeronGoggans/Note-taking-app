@@ -36,6 +36,9 @@
     <link rel="stylesheet" href="src/frontend/css/views/flashcardEditView.css">
     <link rel="stylesheet" href="src/frontend/css/views/stickyWallView.css">
     <link rel="stylesheet" href="src/frontend/css/modals/stickyNoteModal.css">
+    <link rel="stylesheet" href="src/frontend/css/views/taskboardHomeView.css">
+    <link rel="stylesheet" href="src/frontend/css/views/taskboardView.css">
+    <link rel="stylesheet" href="src/frontend/css/modals/newTaskboardModal.css">
     <!-- CDN for the icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Neutron</title>
@@ -44,34 +47,34 @@
   @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
   </style>
 <body>
-    <div class="wrapper">
-        <div class="sidebar">
-            <div class="sidebar-logo">
-                <div class="logo-container">
-                    <div class="logo">
-                        <span>N</span>
-                    </div>
-                    <div class="logo-text">eutron</div>
+  <div class="wrapper">
+    <div class="sidebar">
+        <div class="sidebar-logo">
+            <div class="logo-container">
+                <div class="logo">
+                    <span>N</span>
                 </div>
-            </div>
-            <div class="sidebar-content">
-              <div class="sidebar-content-upper">
-                <a href="/home" data-view="home" id="home-btn"><i class="fa-solid fa-house"></i><span>Home</span></a>
-                <a href="/notes" data-view="notes" id="notes-btn"><i class="fa-solid fa-file"></i><span>Notes</span></a>
-                <a href="/templates" data-view="templates" id="templates-btn"><i class="fa-solid fa-file-lines"></i><span>Templates</span></a>
-                <a href="/stickyWall" data-view="stickyWall" id="sticky-wall-btn"><i class="fa-solid fa-note-sticky"></i><span>Sticky wall</span></a>
-                <a href="/flashcardsHome" data-view="flashcardsHome" id="flashcards-btn"><i class="fa-solid fa-circle-check"></i><span>Flashcards</span></a>
-                
-              </div>
-              <div class="sidebar-content-lower">
-                <a href="/settings" data-view="settings" id="settings-btn"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
-              </div>
+                <div class="logo-text">eutron</div>
             </div>
         </div>
+        <div class="sidebar-content">
+          <div class="sidebar-content-upper">
+            <a href="/home" data-view="home" id="home-btn"><i class="fa-solid fa-house"></i><span>Home</span></a>
+            <a href="/notes" data-view="notes" id="notes-btn"><i class="fa-solid fa-file"></i><span>Notes</span></a>
+            <a href="/templates" data-view="templates" id="templates-btn"><i class="fa-solid fa-file-lines"></i><span>Templates</span></a>
+            <a href="/stickyWall" data-view="stickyWall" id="sticky-wall-btn"><i class="fa-solid fa-note-sticky"></i><span>Sticky wall</span></a>
+            <a href="/flashcardsHome" data-view="flashcardsHome" id="flashcards-btn"><i class="fa-solid fa-circle-check"></i><span>Flashcards</span></a>
+            <a href="/taskboardHome" data-view="taskboardHome" id="taskboards-btn"><i class="fa-solid fa-list-check"></i><span>Taskboards</span></a>
+          </div>
+          <div class="sidebar-content-lower">
+            <a href="/settings" data-view="settings" id="settings-btn"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
+          </div>
+        </div>
+    </div>
 
-        <main class="content"></main>
-        
-    </div>    
+    <main class="content"></main>
+    
+</div> 
     <div class="dialog"></div>
       
       <script>

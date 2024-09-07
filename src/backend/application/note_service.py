@@ -3,7 +3,7 @@ from src.backend.presentation.dtos.note_dtos import *
 from src.backend.domain.note import Note
 from src.backend.data.exceptions.exceptions import NotFoundException, AdditionException
 from src.backend.data.file.json_manager import JsonManager
-from src.backend.util.paths import FOLDERS_PATH, ID_PATH
+from src.backend.util.paths import FOLDERS_PATH
 
 
 class NoteService:
@@ -13,7 +13,7 @@ class NoteService:
 
 
     def add_note(self, request_dto: PostNoteDto) -> Note:
-        note_id = self.json_manager.generate_id(ID_PATH, 'note')
+        note_id = self.json_manager.generate_id('note')
         note = Note(note_id, request_dto.name, request_dto.content)
         note.set_content_path()
 

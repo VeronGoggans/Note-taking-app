@@ -35,10 +35,6 @@
 }
 
 
-.search-function-modal input::placeholder {
-    color: var(--placeholder);
-}
-
 .search-function-modal button {
     background-color: transparent;
     color: var(--toolbar-btn-text);

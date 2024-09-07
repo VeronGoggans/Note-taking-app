@@ -9,6 +9,7 @@ import { NewDeckModal } from "../components/modals/newDeckModal.js";
 import { AnimationHandler } from "../handlers/animation/animationHandler.js";
 import { EditFlashcardModal } from "../components/modals/editFlashcardModal.js";
 import { StickyNoteModal } from "../components/modals/stickyNoteModal.js";
+import { NewTaskboardModal } from "../components/modals/newTaskboardModal.js";
 
 export class Dialog {
     constructor() {
@@ -29,7 +30,8 @@ export class Dialog {
                 '.edit-folder-modal',
                 '.create-deck-modal',
                 '.edit-flashcard-modal',
-                '.sticky-note-modal'
+                '.sticky-note-modal',
+                '.new-taskboard-modal'
             ];
 
             // Check if the clicked target belongs to any excluded container
@@ -74,6 +76,11 @@ export class Dialog {
     renderNewDeckModal(controller, flashcards = null, deckName = null) {
         this.addChild(new NewDeckModal(controller, flashcards, deckName));
         this.dialog.querySelector('.create-deck-modal input').focus();
+    }
+
+    renderNewTaskboardModal(controller, taskboardInfo = null) {
+        this.addChild(new NewTaskboardModal(controller, taskboardInfo));
+        this.dialog.querySelector('.new-taskboard-modal input').focus()
     }
 
     renderStickyNoteModal(controller, stickyNote = null) {

@@ -52,7 +52,6 @@
     color: var(--important);
     padding: 10px 15px;
     border-radius: 7px;
-    transition: 150ms;
 }
 
 .exit-folder-btn:hover {

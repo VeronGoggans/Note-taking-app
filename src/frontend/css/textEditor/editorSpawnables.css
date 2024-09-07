@@ -100,10 +100,6 @@
     color: var(--editor-text);
 }
 
-.foreward-slash-command-container input::placeholder {
-    color: var(--placeholder);
-}
-
 .foreward-slash-command-container .commands {
     display: flex;
     flex-direction: column;

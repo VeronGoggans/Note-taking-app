@@ -1,6 +1,5 @@
 import { HttpModel } from "../model/httpModel.js";
 import { StickyNoteView } from "../view/stickyNoteView.js";
-import { NotificationHandler } from "../handlers/userFeedback/notificationHandler.js";
 
 
 export class StickWallController {
@@ -16,41 +15,25 @@ export class StickWallController {
     }
 
     async add(sticky) {
-        try {
-            const { stickyNote }  = await this.model.add('/stickyNote', sticky);
-            this.view.renderOne(stickyNote);
-        } catch(error) {
-            NotificationHandler.push('error', null, error.message)
-        }
+        const { stickyNote }  = await this.model.add('/stickyNote', sticky);
+        this.view.renderOne(stickyNote);
     }
 
 
     async get() {
-        try {
-            const { stickyNotes } = await this.model.get(`/stickyNotes`);
-            this.view.renderAll(stickyNotes);
-        } catch(error) {
-            NotificationHandler.push('error', null, error.message)
-        }
+        const { stickyNotes } = await this.model.get(`/stickyNotes`);
+        this.view.renderAll(stickyNotes);
     }
 
 
     async update(sticky) {
-        try {
-            const { stickyNote }  = await this.model.update('/stickyNote', sticky);
-            this.view.renderUpdate(stickyNote);
-        } catch(error) {
-            NotificationHandler.push('error', null, error.message)
-        }
+        const { stickyNote }  = await this.model.update('/stickyNote', sticky);
+        this.view.renderUpdate(stickyNote);
     }
 
 
     async delete(stickyNoteId) {
-        try  {
-            await this.model.delete(`/stickyNote/${stickyNoteId}`);
-            this.view.renderDelete(stickyNoteId);
-        } catch(error) {
-            NotificationHandler.push('error', null, error.message)
-        }
+        await this.model.delete(`/stickyNote/${stickyNoteId}`);
+        this.view.renderDelete(stickyNoteId);
     }
 }

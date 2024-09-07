@@ -46,6 +46,9 @@
     --hover-slash-command: #f3f4f8;
     --file-path: #a0a6c1;
 
+    /*taskboard home*/
+    --taskboard-card: #f0f3ff;
+
     /*Other*/
     --exit-btn: #f4f5f7;
     --secondary: #5c7dff;
@@ -122,6 +125,9 @@
     --hover: #617fff69; 
     --folder-name-input: #5c7dff;
     
+    /*taskboard home*/
+    --taskboard-card: #0f0f13;
+
     /*Other*/
     --exit-btn: #28282f;
     --secondary: #5c7dff;
@@ -144,7 +150,7 @@
     --hover-toolbar-btns: #383d4c;
     --hover-sidebar: #617fff69;
     --searchbar-placeholder: #d4d7e5; 
-    --placeholder: #d4d7e5;
+    --placeholder: #868b9e;
     --selection: #314682;
     --dialog: rgb(0 0 0 / 25%);
     --shadow: rgba(0, 0, 0, 0.1);
@@ -203,6 +209,9 @@
     --editor-text: #383838;
     --hover-slash-command: #f3f4f8;
     --file-path: #a0a6c1;
+
+    /*taskboard home*/
+    --taskboard-card: #f0f3ff;
 
     /*Other*/
     --exit-btn: #f4f5f7;

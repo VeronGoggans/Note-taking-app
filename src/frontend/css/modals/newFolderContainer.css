@@ -41,9 +41,6 @@
     font-size: 18px;
   }
   
-  .new-folder-container input::placeholder {
-    color: var(--placeholder);
-  }
   
   .new-folder-container input:hover,
   .new-folder-container input:focus {

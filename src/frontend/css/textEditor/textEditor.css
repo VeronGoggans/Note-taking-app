@@ -142,11 +142,6 @@
    border-color: #5c7dff;
 }
 
-.original-link-input::placeholder,
-.custom-link-input::placeholder {
-   color: var(--placeholder);
-}
-
 .save-link-btn {
    background-color: #5c7dff;
    color: white;
@@ -163,10 +158,6 @@
 .cancel-embed-video-btn:hover,
 .cancel-link-btn:hover {
    background-color: #4d70ff;
-}
-
-.embed-container input::placeholder {
-   color: var(--placeholder);
 }
 
 .linked-note-container {

@@ -1,0 +1,144 @@
+.task-board-view {
+    outline: none;
+    height: 100dvh;
+    max-height: 100dvh;
+    font-family: Roboto;
+    display: flex;
+    flex-direction: column;
+    padding: 0 5%;
+    opacity: 0;
+    transform: translateY(30%);
+    transition: opacity .7s ease, transform .2s ease;
+}
+
+.task-board-view p {
+    margin: 0;
+}
+
+.exit-taskboard-btn {
+    position: absolute;
+    left: calc(5% - 10px);
+    background-color: transparent;
+    padding: 10px 15px;
+    border-radius: 7px;
+    color: var(--important);
+    width: fit-content;
+}
+
+.exit-taskboard-btn:hover {
+    background-color: var(--exit-btn);
+}
+
+.task-board-view h1 {
+    font-family: sans-serif;
+    color: var(--important);
+    margin-top: 60px;
+}
+
+.task-board-view .task-board-description {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--text);
+    max-width: 500px;
+    margin: 0 0 20px 0;
+}
+
+.task-board {
+    display: grid;
+    grid-template-rows: 40px 1fr;
+    row-gap: 20px;
+    margin: 0 auto;
+    width: 85%;
+    max-width: 85%;
+}
+
+.task-board section {
+    border-radius: 7px;
+}
+
+
+.filter-by-date-btn,
+.add-task-btn {
+    font-size: 16px;
+    background-color: transparent;
+    color: var(--text);
+}
+
+.board {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    min-height: 400px;
+    column-gap: 10px;
+}
+
+.board .todo {
+    background-color: #fff2f2;
+}
+
+.board .inprogress {
+    background-color: #f6f7ff;
+}
+
+.board .done {
+    background-color: #edffed;
+}
+
+.board-section-name {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+    font-size: 16px;
+    font-family: sans-serif;
+    font-weight: 600;
+}
+
+.board-section-name p {
+    padding: 2px 7px;
+    border-radius: 10px;
+}
+
+
+.board .todo .board-section-name {
+    color: #ff0000;
+}
+
+.board .todo .board-section-name p {
+    background-color: #ffd3d3;
+}
+
+.board .inprogress .board-section-name {
+    color: #5c7dff;
+}
+
+.board .inprogress .board-section-name p {
+    background-color: #d7e8ff;
+}
+
+.board .done .board-section-name {
+    color: #00b500;
+}
+
+.board .done .board-section-name p {
+    background-color: #d2ffd2;
+}
+
+
+.task {
+    cursor: pointer;
+    background-color: white;
+    margin: 7px;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.task h3 {
+    font-family: sans-serif;
+    color: var(--important);
+}
+
+.task p {
+    font-family: sans-serif;
+    font-size: 14px;
+
+}

@@ -42,10 +42,6 @@
     border-color: #5c7fdd;
 }
 
-.create-deck-modal input::placeholder,
-.edit-flashcard-modal input::placeholder {
-    color: var(--placeholder);
-}
 
 .create-deck-modal .card-description,
 .edit-flashcard-modal .card-description {

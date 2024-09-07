@@ -1,18 +1,10 @@
 import json
 from src.backend.data.cache.json_cache import JsonCache
+from src.backend.util.paths import ID_PATH, PREFIXES
 
 class JsonManager:
     def __init__(self) -> None:
         self.cache = JsonCache()
-        self.prefixes = {
-            'note': 'n-',
-            'folder': 'f-',
-            'subfolder': 's-',
-            'template': 't-',
-            'flashcard-deck': 'fcd-',
-            'flashcard': 'fc-',
-            'sticky-note': 'sn-'
-            }
 
     
     def load(self, file_path) -> dict:
@@ -57,10 +49,9 @@ class JsonManager:
                 json.dump(backup, file, indent=4)
 
 
-    def generate_id(self, file_path, entity_name) -> str:
+    def generate_id(self, entity_name) -> str:
         """
         Generate a unique identifier for a specified entity type.
-        Entity types [note, folder, subfolder]. 
         Both uppercase/lowercase work.
 
         Args:
@@ -71,13 +62,13 @@ class JsonManager:
             - If successful, it returns the generated unique identifier.
             - If the specified entity does not exist yet, it raises a Error indicating that the entity does not exist.
         """
-        data = self.load(file_path)
+        data = self.load(ID_PATH)
 
         for entity in data['ids']:
             if entity.get('entity') == entity_name.lower():
                 unique_id = entity['id']
                 entity['id'] = unique_id + 1
-                self.update(file_path, data)
-                return f'{self.prefixes[entity_name]}{unique_id}'
+                self.update(ID_PATH, data)
+                return f'{PREFIXES[entity_name]}{unique_id}'
             
         raise ValueError(f'{entity_name} is not a valid entity name.')

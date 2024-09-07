@@ -17,72 +17,42 @@ export class TemplateController {
 
 
     async add(name, content, notify) {
-        try {
-            await this.model.add('/template', {'name': name,'content': content})
-            if (notify) {
-                NotificationHandler.push('saved')
-            }
-        } 
-        catch(error) {
-            NotificationHandler.push('error', null, error.message)
+        await this.model.add('/template', {'name': name,'content': content})
+        if (notify) {
+            NotificationHandler.push('saved')
         }
     }
 
 
     async get() {
-        try {
-            const { recent, other, totalUses, mostUsed } = await this.model.get('/templates');
-            this.view.renderAll(recent, other, totalUses, mostUsed);
-        } 
-        catch(error) {
-            NotificationHandler.push('error', null, error.message)
-        }
+        const { recent, other, totalUses, mostUsed } = await this.model.get('/templates');
+        this.view.renderAll(recent, other, totalUses, mostUsed);   
     }
 
 
     async getById(templateId, updateUseCount) {
-        try {
-            const { template }= await this.model.get(`/templateById/${templateId}/${updateUseCount}`);
-            return template
-        }
-        catch(error) {
-            NotificationHandler.push('error', null, error.message)
-        }
+        const { template }= await this.model.get(`/templateById/${templateId}/${updateUseCount}`);
+        return template
     }
 
 
     async getTemplateNames() {
-        try  {
-            const { templates } = await this.model.get('/templateNames');
-            return templates
-        } 
-        catch(error) {
-            NotificationHandler.push('error', null, error.message)
-        }
+        const { templates } = await this.model.get('/templateNames');
+        return templates
     }
 
 
     async update(template) {
-        try  {
-            await this.model.update('/template', {'id': template.id,'name': template.name, 'content': template.content})
-        } 
-        catch(error) {
-            NotificationHandler.push('error', null, error.message)
-        }
+        await this.model.update('/template', {'id': template.id,'name': template.name, 'content': template.content})
     }
 
 
     async delete(templateId, notify) {
-        try {
-            const { template } = await this.model.delete(`/template/${templateId}`)
-            this.view.renderDelete(template);
+        const { template } = await this.model.delete(`/template/${templateId}`)
+        this.view.renderDelete(template);
 
-            if (notify) {
-                NotificationHandler.push('deleted', template.name)
-            }
-        } 
-        catch(error) {
-            NotificationHandler.push('error', null, error.message)
+        if (notify) {
+            NotificationHandler.push('deleted', template.name)
         }
     }
 }

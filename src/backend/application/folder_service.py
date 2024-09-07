@@ -3,7 +3,7 @@ from src.backend.presentation.dtos.folder_dtos import FolderRequestDto, PutFolde
 from src.backend.data.exceptions.exceptions import NotFoundException, AdditionException, InvalidMoveRequestException
 from src.backend.domain.folder import Folder
 from src.backend.data.file.json_manager import JsonManager
-from src.backend.util.paths import FOLDERS_PATH, ID_PATH
+from src.backend.util.paths import FOLDERS_PATH, FOR_FOLDER
 
 
 class FolderService:
@@ -100,5 +100,5 @@ class FolderService:
     
     def __generate_id(self, parent_id: str) -> str:
         if parent_id == 'f-1':
-            return self.json_manager.generate_id(ID_PATH, 'folder')
-        return self.json_manager.generate_id(ID_PATH, 'subfolder')
+            return self.json_manager.generate_id(FOR_FOLDER)
+        return self.json_manager.generate_id('subfolder')

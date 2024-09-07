@@ -3,7 +3,7 @@ from src.backend.presentation.dtos.note_dtos import PostStickyNoteDto, PutSticky
 from src.backend.domain.sticky_note import StickyNote 
 from src.backend.data.exceptions.exceptions import NotFoundException, AdditionException
 from src.backend.data.file.json_manager import JsonManager
-from src.backend.util.paths import STICKY_NOTES_PATH, ID_PATH
+from src.backend.util.paths import STICKY_NOTES_PATH
 
 class StickyNoteService:
     def __init__(self, manager: StickyNoteManager, json_manager: JsonManager) -> None:
@@ -12,7 +12,7 @@ class StickyNoteService:
 
 
     def add_sticky_note(self, reqeust_dto: PostStickyNoteDto) -> StickyNote:    
-        object_id = self.json_manager.generate_id(ID_PATH, 'sticky-note')
+        object_id = self.json_manager.generate_id('sticky-note')
         sticky_note = StickyNote(object_id, reqeust_dto.name, reqeust_dto.content)
 
         sticky_notes = self.json_manager.load(STICKY_NOTES_PATH)

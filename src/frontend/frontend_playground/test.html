@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="src/frontend/css/modals/noteDetailsModal.css">
     <link rel="stylesheet" href="src/frontend/css/modals/noteBackgroundModal.css">
     <link rel="stylesheet" href="src/frontend/css/modals/linkNoteModal.css">
-    <link rel="stylesheet" href="src/frontend/css/general/scrollbar.css">
+    <link rel="stylesheet" href="../css/general/scrollbar.css">
     <link rel="stylesheet" href="src/frontend/css/modals/searchModal.css">
     <link rel="stylesheet" href="src/frontend/css/modals/editFolderModal.css">
     <link rel="stylesheet" href="src/frontend/css/textEditor/textBlocks.css">
@@ -33,6 +33,9 @@
     <link rel="stylesheet" href="src/frontend/css/general/searchbar.css">
     <link rel="stylesheet" href="src/frontend/css/">
     <link rel="stylesheet" href="../css/views/stickyWallView.css">
+    <link rel="stylesheet" href="../css/views/taskboardView.css">
+    <link rel="stylesheet" href="../css/views/taskboardHomeView.css">
+    <link rel="stylesheet" href="../css/modals/newTaskboardModal.css">
     <!-- CDN for the icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Neutron</title>
@@ -58,6 +61,7 @@
                 <a href="/flashcards" data-view="flashcards" class="flashcards-btn"><i class="fa-solid fa-circle-check"></i><span>Flashcards</span></a>
                 <a href="/templates" data-view="templates" class="templates-btn"><i class="fa-solid fa-layer-group"></i><span>Templates</span></a>
                 <a href="/stickyWall" data-view="stickyWall" class="sticky-wall-btn"><i class="fa-solid fa-note-sticky"></i><span>Sticky wall</span></a>
+                <a href="/taskBoards" data-view="taskBoard" id="task-board-btn"><i class="fa-solid fa-list-check"></i><span>Task boards</span></a>
             </div>
               <div class="sidebar-content-lower">
                 <a href="/settings" data-view="settings" class="settings-btn"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
@@ -66,10 +70,41 @@
         </div>
 
         <main class="content">
-            <div class="sticky-wall-view">
-                <h1>Sticky Wall</h1>
-                <div class="sticky-wall">
-                    <button class="add-sticky-btn"><i class="fa-solid fa-plus"></i></button>
+            <div class="task-board-view">
+                <h1 class="task-board-name">Untitled</h1>
+                <p class="task-board-description"><i>Task board goes here...</i></p>
+                <div class="task-board">
+                    <div class="util-bar-type-2">
+                        <button class="filter-by-date-btn">Filter <i class="fa-regular fa-calendar"></i></button>
+                        <button class="add-task-btn"><i class="fa-solid fa-plus"></i></button>
+                    </div>
+                    <div class="board">
+        
+                        <section class="todo">
+                            <div class="board-section-name">
+                                <p>To Do</p> 
+                                <span class="task-count">1</span>
+                            </div>
+                            <div class="tasks"></div>
+                        </section>
+        
+                        <section class="inprogress">
+                            <div class="board-section-name">
+                                <p>In progress</p> 
+                                <span class="task-count">0</span>
+                            </div>
+                            <div class="tasks"></div>
+                        </section>
+        
+                        <section class="done">
+                            <div class="board-section-name">
+                                <p>Done</p> 
+                                <span class="task-count">0</span>
+                            </div>
+                            <div class="tasks"></div>
+                        </section>
+        
+                    </div>
                 </div>
             </div>
         </main>

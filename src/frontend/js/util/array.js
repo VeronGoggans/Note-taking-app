@@ -118,3 +118,26 @@ export class StickyNoteObjectArray extends ObjectArray {
         }
     }
 }
+
+export class TaskboardObjectArray extends ObjectArray {
+    update(taskboard) {
+        for (let i = 0; i < this.objects.length; i++) {
+            if (this.objects[i].id === taskboard.id) {
+                this.objects[i].name = taskboard.name;
+                this.objects[i].description = taskboard.description;
+            }
+        }
+    }
+}
+
+export class TaskObjectArray extends ObjectArray {
+    update(task) {
+        for (let i = 0; i < this.objects.length; i++) {
+            if (this.objects[i].id === task.id) {
+                this.objects[i].name = task.name;
+                this.objects[i].description = task.description;
+                this.objects[i].due_date = task.due_date;
+            }
+        }
+    }
+}

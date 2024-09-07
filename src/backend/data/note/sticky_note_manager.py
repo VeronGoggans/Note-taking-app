@@ -16,8 +16,7 @@ class StickyNoteManager:
     def update(self, sticky_notes: list, request_dto: PutStickyNoteDto) -> (dict | NotFoundException):
         for sticky_note in sticky_notes:
             if sticky_note['id'] == request_dto.id:
-                updated_sticky_note = self.__update_entity(sticky_note, request_dto)
-                return updated_sticky_note
+                return self.__update_entity(sticky_note, request_dto)
         raise NotFoundException(f'Sticky note with id: {request_dto.id}, could not be found.')
     
 

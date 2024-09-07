@@ -13,6 +13,7 @@ body {
 button {
     cursor: pointer;
     border: none;
+    font-size: 16px;
     transition: 150ms;
 }
 
@@ -81,4 +82,18 @@ i {
     color: var(--important);
     margin: 30px 0;
     font-family: sans-serif;
+}
+
+.util-bar-type-2 {
+    display: flex;
+    justify-content: end;
+    column-gap: 10px;
+    align-items: center;
+    padding: 0 10px;
+    border-bottom: 1px solid var(--border-sidebar-right);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--placeholder);
 }

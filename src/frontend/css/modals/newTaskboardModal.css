@@ -1,0 +1,71 @@
+.new-taskboard-modal {
+    position: relative;
+    width: 650px;
+    height: 520px;
+    border-radius: 15px;
+    background-color: var(--modal);
+    padding: 20px;
+}
+
+.new-taskboard-modal h2 {
+    font-family: sans-serif;
+    color: var(--important);
+}
+
+.new-taskboard-modal div {
+    display: flex;
+    flex-direction: column;
+    min-height: 350px;
+}
+
+.new-taskboard-modal span {
+    color: var(--important);
+    font-weight: 600;
+    font-size: 18px;
+    margin: 20px 0;
+}
+
+.new-taskboard-modal input {
+    height: 50px;
+    border-radius: 10px;
+    border: 1px solid var(--border-card);
+    background-color: transparent;
+    padding: 5px 15px;
+    font-size: 17px;
+    color: var(--text);
+    transition: 150ms;
+    font-family: sans-serif;
+}
+
+.new-taskboard-modal textarea {
+    resize: none;
+    padding: 10px;
+    font-size: 16px;
+    font-family: sans-serif;
+    color: var(--text);
+    border: 1px solid var(--border-card);
+    background-color: transparent;
+    border-radius: 10px;
+    height: 180px;
+    max-height: 180px;
+}
+
+.new-taskboard-modal button {
+    position: absolute;
+    bottom: 15px;
+    right: 20px;
+    background-color: transparent;
+    color: #5c7fdd;
+    padding: 10px 30px;
+    font-size: 16px;
+    border-radius: 7px;
+}
+
+.new-taskboard-modal button:hover {
+    background-color: var(--hover);
+}
+
+.new-taskboard-modal input:focus,
+.new-taskboard-modal textarea:focus {
+    border-color: #5c7fdd;
+}

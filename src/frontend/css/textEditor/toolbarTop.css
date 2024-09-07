@@ -184,8 +184,4 @@
     font-size: 25px;
     background-color: var(--editor);
     color: var(--important);
-    }
-
-.note-name-input::placeholder {
-    color: var(--placeholder);
 }

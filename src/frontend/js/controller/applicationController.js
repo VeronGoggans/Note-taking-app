@@ -10,6 +10,8 @@ import { StickWallController } from "./stickyWallController.js";
 import { FlashcardDeckController } from "./flashcardDeckController.js";
 import { FlashcardPracticeController } from "./flashcardPracticeController.js";
 import { FlashcardEditController } from "./flashcardEditController.js";
+import { TaskBoardHomeController } from "./taskboardHomeController.js";
+import { TaskboardController } from "./taskboardController.js";
 import { templates } from "../constants/templates.js";
 
 export class ApplicationController {
@@ -25,6 +27,8 @@ export class ApplicationController {
         this.flashcardEditController = new FlashcardEditController(this);
         this.textEditorController = new TextEditorController(this);
         this.stickyWallController = new StickWallController(this);
+        this.taskboardHomeController = new TaskBoardHomeController(this);
+        this.taskboardController = new TaskboardController(this);
         this.settingController = new SettingController(this);
         this.viewContainer = document.querySelector('.content');
         this.controllers = {
@@ -36,12 +40,11 @@ export class ApplicationController {
             templates: this.templateController,
             stickyWall: this.stickyWallController,
             settings: this.settingController,
-            editor: this.textEditorController
+            editor: this.textEditorController,
+            taskboardHome: this.taskboardHomeController,
+            taskboard: this.taskboardController
         }
-    
-        this.templates = templates
         this.initView('home')
-        document.querySelector('#home-btn').classList.add('active-view');
         this.settingController.loadCurrentTheme()
     }
 
@@ -49,7 +52,7 @@ export class ApplicationController {
         const controller = this.controllers[viewId];
         if (controller) {
             // Putting the view template on the screen
-            this.viewContainer.innerHTML = this.templates[viewId];
+            this.viewContainer.innerHTML = templates[viewId];
             setTimeout(() => {
 
                 if (viewId === 'home') {
@@ -125,6 +128,22 @@ export class ApplicationController {
 
                 if (viewId === 'stickyWall') {  
                     this.sidebarView.setActiveTab('sticky-wall')
+                }
+
+                if (viewId === 'taskboardHome') {
+                    this.sidebarView.setActiveTab('taskboards')
+                }
+
+                if (viewId === 'taskboard') {
+                    const {
+                        taskboard, 
+                        previousView
+                    } = viewParameters
+
+                    this.model.setPreviousView(previousView);
+
+                    controller.init(taskboard);
+                    return;
                 }
 
                 if (viewId === 'settings') {

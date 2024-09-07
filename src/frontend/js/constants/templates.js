@@ -140,6 +140,60 @@ export const stickyWallTemplate = `
     </div>
 `
 
+export const taskBoardHomeTemplate = `
+    <div class="task-board-home-view">
+        <h1 class="view-title">Task boards 📌​</h1>
+        <p>Create task boards to manage your tasks effectively </p>
+        <div class="task-boards">
+            <div class="util-bar-type-2">
+                <button class="add-task-board-btn"><i class="fa-solid fa-plus"></i></button>
+            </div>
+            <div class="task-board-cards"></div>
+        </div>
+    </div>
+`
+
+export const taskBoardTemplate = `
+    <div class="task-board-view">
+        <button class="exit-taskboard-btn"><i class="fa-solid fa-chevron-left"></i></button>
+        <h1 class="task-board-name">Untitled</h1>
+        <p class="task-board-description"><i>Task board goes here...</i></p>
+        <div class="task-board">
+            <div class="util-bar-type-2">
+                <button class="filter-by-date-btn">Filter <i class="fa-regular fa-calendar"></i></button>
+                <button class="add-task-btn"><i class="fa-solid fa-plus"></i></button>
+            </div>
+            <div class="board">
+
+                <section class="todo">
+                    <div class="board-section-name">
+                        <p>To Do</p> 
+                        <span class="task-count">1</span>
+                    </div>
+                    <div class="tasks"></div>
+                </section>
+
+                <section class="inprogress">
+                    <div class="board-section-name">
+                        <p>In progress</p> 
+                        <span class="task-count">0</span>
+                    </div>
+                    <div class="tasks"></div>
+                </section>
+
+                <section class="done">
+                    <div class="board-section-name">
+                        <p>Done</p> 
+                        <span class="task-count">0</span>
+                    </div>
+                    <div class="tasks"></div>
+                </section>
+
+            </div>
+        </div>
+    </div>
+`
+
 export const settingsTemplate = `
     <div class="settings">
     <div class="center">
@@ -292,5 +346,7 @@ export const templates = {
     templates: templatesTemplate,
     stickyWall: stickyWallTemplate,
     settings: settingsTemplate,
-    editor: editorTemplate
+    editor: editorTemplate,
+    taskboardHome: taskBoardHomeTemplate,
+    taskboard: taskBoardTemplate
 }

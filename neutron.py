@@ -12,6 +12,7 @@ from src.backend.presentation.controller.flashcard_deck_controllers import Flash
 from src.backend.presentation.controller.flashcard_controller import FlashcardRouter
 from src.backend.presentation.controller.folder_controller import FolderRouter
 from src.backend.presentation.controller.sticky_note_controller import StickyNoteRouter
+from src.backend.presentation.controller.taskboard_controller import TaskboardRouter
 from src.backend.presentation.controller.setting_controller import SettingRouter
 from src.backend.data.file.json_manager import JsonManager
 
@@ -25,6 +26,7 @@ flashcard_deck_router = FlashcardDeckRouter(json_manager)
 flashcard_router = FlashcardRouter(json_manager)
 folder_router = FolderRouter(json_manager)
 sticky_note_router = StickyNoteRouter(json_manager)
+taskboard_router = TaskboardRouter(json_manager)
 theme_router = SettingRouter(json_manager)
 
 app.include_router(folder_router.route)
@@ -33,6 +35,7 @@ app.include_router(template_router.route)
 app.include_router(flashcard_deck_router.route)
 app.include_router(flashcard_router.route)
 app.include_router(sticky_note_router.route)
+app.include_router(taskboard_router.route)
 app.include_router(theme_router.route)
 
 # Setting up a FRONT-END page for the API
