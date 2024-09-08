@@ -89,7 +89,6 @@ export const flashcardPracticeTemplate = `
                 </div>
                 <div class="button-bar">
                     <i id="restart-btn" class="fa-solid fa-repeat"></i>
-                    <i id="forward-backward-btn" class="fa-solid fa-arrows-rotate"></i>
                     <i id="wrong-btn" class="fa-solid fa-xmark"></i>
                     <i id="correct-btn" class="fa-solid fa-check"></i>
                 </div>
@@ -160,7 +159,6 @@ export const taskBoardTemplate = `
         <p class="task-board-description"><i>Task board goes here...</i></p>
         <div class="task-board">
             <div class="util-bar-type-2">
-                <button class="filter-by-date-btn">Filter <i class="fa-regular fa-calendar"></i></button>
                 <button class="add-task-btn"><i class="fa-solid fa-plus"></i></button>
             </div>
             <div class="board">
@@ -168,7 +166,7 @@ export const taskBoardTemplate = `
                 <section class="todo">
                     <div class="board-section-name">
                         <p>To Do</p> 
-                        <span class="task-count">1</span>
+                        <span class="task-count">0</span>
                     </div>
                     <div class="tasks"></div>
                 </section>
@@ -183,7 +181,7 @@ export const taskBoardTemplate = `
 
                 <section class="done">
                     <div class="board-section-name">
-                        <p>Done</p> 
+                        <p>Done🍵</p> 
                         <span class="task-count">0</span>
                     </div>
                     <div class="tasks"></div>

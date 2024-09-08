@@ -8,40 +8,51 @@ export class EditFlashcardModal {
 
         this.action = 'add';
         this.HOST = CNode.create('div', {'class': 'edit-flashcard-modal'});
-        this.MODAL_TITLE = CNode.create('h2', {'textContent': 'Edit flashcard'});
-        this.CARD_TERM = CNode.create('input', {'type': 'text', 'class': 'term-input', 'placeholder': 'Card term'});
-        this.DESCRIPTION_SECTION = CNode.create('div', {'class': 'description-section'});
-        this.RICH_TEXT_OPTIONS = CNode.create('div', {'class': 'rich-text-options'});
-        this.BOLD_BTN = CNode.create('button', {'innerHTML': '<i class="fa-solid fa-bold"></i>', 'onclick' : "formatText('bold')", 'id': 'boldBtn'});
-        this.ITALIC_BTN = CNode.create('button', {'innerHTML': '<i class="fa-solid fa-italic"></i>', 'onclick' : "formatText('italic')", 'id': 'italicBtn'});
-        this.UNDERLINE_BTN = CNode.create('button', {'innerHTML': '<i class="fa-solid fa-underline"></i>', 'onclick' : "formatText('underline')", 'id': 'underlineBtn'});
-        this.STRIKE_BTN = CNode.create('button', {'innerHTML': '<i class="fa-solid fa-strikethrough"></i>', 'onclick' : "formatText('strikethrough')", 'id': 'strikeBtn'});
-        this.LIST1_BTN = CNode.create('button', {'innerHTML': '<i class="fa-solid fa-list-ul"></i>', 'onclick' : "formatText('insertUnorderedList')"});
-        this.LIST2_BTN = CNode.create('button', {'innerHTML': '<i class="fa-solid fa-list-ol"></i>', 'onclick' : "formatText('insertOrderedList')"});
-        this.SELECT_BTN = CNode.create('button', {'class': 'select-text-btn', 'textContent': 'Select text'});
-        this.CARD_DECSRIPTION = CNode.create('div', {'class': 'card-description', 'contentEditable': true, 'spellCheck': false});
-        this.SAVE_BTN = CNode.create('button', {'class': 'save-flashcard-btn', 'textContent': 'Add flashcard'});
+        this.HOST.innerHTML = `
+            <h2>Add a flashcard</h2>
+            <input type="text" placeholder="Card term goes here..." spellcheck="false">
+            <div class="description-section">
+                <div class="rich-text-options">
+                    <button onclick="formatText('bold')" id="boldBtn"><i class="fa-solid fa-bold"></i></button>
+                    <button onclick="formatText('italic')" id="italicBtn"><i class="fa-solid fa-italic"></i></button>
+                    <button onclick="formatText('underline')" id="underlineBtn"><i class="fa-solid fa-underline"></i></button>
+                    <button onclick="formatText('strikethrough')" id="strikeBtn"><i class="fa-solid fa-strikethrough"></i></button>
+                    <button onclick="formatText('insertUnorderedList')"><i class="fa-solid fa-list-ul"></i></button>
+                    <button onclick="formatText('insertOrderedList')"><i class="fa-solid fa-list-ol"></i></button>
+                </div>
+                <div class="card-description" contenteditable="true" spellcheck="false"></div>
+            </div>
+            <button class="save-flashcard-btn">Add flashcard</button>
+        `
+        this.#setVariables();
 
-        if (flashcard !== null) {
-            this.#setFlashcardInfo();
-        }
-
+        if (flashcard !== null) this.#setFlashcardInfo();
+        
         this.#attachEventListeners();
-        return this.#render();
+        return this.HOST
+    }
+
+    #setVariables() {
+        this.SAVE_BTN = this.HOST.querySelector('.save-flashcard-btn')
+        console.log(this.SAVE_BTN);
+        
+        this.CARD_TERM = this.HOST.querySelector('input')
+        this.CARD_DESCRIPTION = this.HOST.querySelector('.card-description')
     }
 
     #setFlashcardInfo() {
         this.SAVE_BTN.textContent = 'Save Changes';
+        this.HOST.querySelector('h2').textContent = 'Edit flashcard';
         this.action = 'update';
         this.CARD_TERM.value = this.flashcard.term
-        this.CARD_DECSRIPTION.innerHTML = this.flashcard.description
+        this.CARD_DESCRIPTION.innerHTML = this.flashcard.description
     }
 
     #attachEventListeners() {
-        this.SAVE_BTN.addEventListener('click', () => {
+        this.HOST.querySelector('.save-flashcard-btn').addEventListener('click', () => {
             // Updating the flashcard object with the updated data.
             const cardTerm = this.CARD_TERM.value.trim() === '' ? 'Untitled' : this.CARD_TERM.value;
-            const cardDescription = this.CARD_DECSRIPTION.innerHTML.trim() === '' ? 'No description' : this.CARD_DECSRIPTION.innerHTML;
+            const cardDescription = this.CARD_DESCRIPTION.innerHTML.trim() === '' ? 'No description' : this.CARD_DESCRIPTION.innerHTML;
 
             // this.flashcard is null 
             if (this.action === 'add') {
@@ -55,13 +66,5 @@ export class EditFlashcardModal {
             }
             this.dialog.hide();
         })
-    }
-
-
-    #render() {
-        this.RICH_TEXT_OPTIONS.append(this.BOLD_BTN, this.ITALIC_BTN, this.UNDERLINE_BTN, this.STRIKE_BTN, this.LIST1_BTN, this.LIST2_BTN);
-        this.DESCRIPTION_SECTION.append(this.RICH_TEXT_OPTIONS, this.CARD_DECSRIPTION);
-        this.HOST.append(this.MODAL_TITLE, this.CARD_TERM, this.DESCRIPTION_SECTION, this.SAVE_BTN);
-        return this.HOST;
     }
 }

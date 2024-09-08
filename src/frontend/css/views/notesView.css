@@ -91,7 +91,7 @@
     height: calc(100dvh - 180px);
     max-height: calc(100dvh - 180px);
     overflow-y: scroll;
-    padding-bottom: 20px;
+    padding-bottom: 5%;
 }
 
 @media screen and (max-width: 700px ) {

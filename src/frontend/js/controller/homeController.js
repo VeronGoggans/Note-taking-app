@@ -58,7 +58,8 @@ export class HomeController {
         const viewId = viewToLoad(searchType)
         if (viewId === 'editor') {
             if (searchType === 'template') {
-                const { template } = await this.applicationController.getTemplateById(searchItemId, false) 
+                const template  = await this.applicationController.getTemplateById(searchItemId, false) 
+
                 this.applicationController.initView(viewId, {
                     editorObjectType: 'template', 
                     editorObject: template,

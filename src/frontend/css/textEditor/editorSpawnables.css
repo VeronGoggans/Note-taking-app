@@ -10,7 +10,7 @@
     background-color: var(--dropdown);
     padding: 10px 15px;
     border-radius: 10px;
-    box-shadow: var(--card-shadow);
+    border: 1px solid var(--border-sidebar-right);
     opacity: 0;
     transition: 150ms;
 }
@@ -23,6 +23,7 @@
 .btn-group button {
     background-color: transparent;
     border-radius: 10px;
+    font-size: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -82,7 +83,7 @@
     display: grid;
     grid-template-rows: 30px 1fr;
     border-radius: 10px;
-    box-shadow: var(--card-shadow);
+    border: 1px solid var(--border-sidebar-right);
     width: fit-content;
     padding: 20px;
     row-gap: 10px;

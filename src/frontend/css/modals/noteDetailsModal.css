@@ -1,28 +1,39 @@
-.note-details-container {
+.note-details-modal {
     font-family: Roboto;
     display: flex;
     flex-direction: column;
     padding: 10px 40px;
-    width: 350px;
+    width: 450px;
+    height: 400px;
     background-color: var(--modal);
     border-radius: 25px;
     box-shadow: 0 0 10px var(--shadow);
 }
 
-.note-details-container h2 {
+.note-details-modal h2 {
     color: var(--important);
     font-size: 32px;
     font-family: sans-serif;
 }
 
- .note-details-container .details {
-    height: 100%;
-    display: grid;
-    grid-template-columns: 100px 1fr;
- }
+.note-details-modal table {
+    margin: 50px 0;
+}
 
- .note-details-container .details p {
-    margin: 35px 0;
+.note-details-modal td {
+    padding: 10px 0;
+}
+
+.note-details-modal i {
+    margin: 0 10px;
+}
+
+.note-details-modal .property {
+    color: #c4c6da;
+    font-weight: 600;
+}
+
+.note-details-modal .property-value {
     color: var(--text);
-    font-family: sans-serif;
- }
+    font-weight: 600;
+}

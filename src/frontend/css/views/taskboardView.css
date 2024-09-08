@@ -5,7 +5,9 @@
     font-family: Roboto;
     display: flex;
     flex-direction: column;
+    overflow-y: scroll;
     padding: 0 5%;
+    padding-bottom: 5%;
     opacity: 0;
     transform: translateY(30%);
     transition: opacity .7s ease, transform .2s ease;
@@ -48,8 +50,8 @@
     grid-template-rows: 40px 1fr;
     row-gap: 20px;
     margin: 0 auto;
-    width: 85%;
-    max-width: 85%;
+    width: 90%;
+    max-width: 90%;
 }
 
 .task-board section {
@@ -65,22 +67,28 @@
 }
 
 .board {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    min-height: 400px;
+    display: flex;
+    align-items: start;
+    min-height: 200px;
     column-gap: 10px;
 }
 
+.board section {
+    width: 33%;
+    min-height: 150px;
+    max-height: fit-content;
+}
+
 .board .todo {
-    background-color: #fff2f2;
+    background-color: var(--todo-board);
 }
 
 .board .inprogress {
-    background-color: #f6f7ff;
+    background-color: var(--inprogress-board);
 }
 
 .board .done {
-    background-color: #edffed;
+    background-color: var(--done-board);
 }
 
 .board-section-name {
@@ -100,11 +108,11 @@
 
 
 .board .todo .board-section-name {
-    color: #ff0000;
+    color: #9c34ff;
 }
 
 .board .todo .board-section-name p {
-    background-color: #ffd3d3;
+    background-color: #e6d3ff;
 }
 
 .board .inprogress .board-section-name {
@@ -126,19 +134,21 @@
 
 .task {
     cursor: pointer;
-    background-color: white;
+    background-color: var(--task);
     margin: 7px;
     border-radius: 5px;
-    padding: 10px;
+    padding: 15px 10px;
 }
 
 .task h3 {
     font-family: sans-serif;
     color: var(--important);
+    margin-top: 0;
 }
 
 .task p {
     font-family: sans-serif;
     font-size: 14px;
-
+    color: var(--text);
+    margin: 10px 0;
 }

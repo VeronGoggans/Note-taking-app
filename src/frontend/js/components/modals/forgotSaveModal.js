@@ -4,25 +4,21 @@ export class ForgotSaveContainer {
     constructor(view) {
         this.view = view;
         this.HOST = CNode.create('div', {'class': 'dont-forget-to-save-container'});
-        this.H1 = CNode.create('h1', {'textContent': 'You forgot to save'});
-        this.P = CNode.create('p', {'textContent': 'There are unsaved changes'});
-        this.SAVE_OPTIONS = CNode.create('div', {'class': 'save-options'});
-        this.EXIT = CNode.create('button', {'class': 'exit-without-save-btn', 'textContent': 'Exit'});
-        this.SAVE = CNode.create('button', {'class': 'exit-with-save-btn', 'textContent': 'Save'});
+        this.HOST.innerHTML = `
+            <h1>You forgot to save</h1>
+            <p>There are unsaved changes</p>
+            <div>
+                <button class="exit-without-save-btn">Exit</button>
+                <button class="exit-with-save-btn">Save</button>
+            </div>
+        `
         
         this.#attachEventListeners();
-        return this.#render();
+        return this.HOST
     }
 
     #attachEventListeners() {
-        this.EXIT.addEventListener('click', () => {this.view.exitNoSave()});
-        this.SAVE.addEventListener('click', () => {this.view.exitBySave()});
-    }
-
-    #render() {
-        this.SAVE_OPTIONS.appendChild(this.EXIT);
-        this.SAVE_OPTIONS.appendChild(this.SAVE);
-        this.HOST.append(this.H1, this.P, this.SAVE_OPTIONS);
-        return this.HOST;
+        this.HOST.querySelector('.exit-without-save-btn').addEventListener('click', () => {this.view.exitNoSave()});
+        this.HOST.querySelector('.exit-with-save-btn').addEventListener('click', () => {this.view.exitBySave()});
     }
 }

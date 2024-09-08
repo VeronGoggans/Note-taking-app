@@ -2,7 +2,6 @@ import { NoteDetailContainer } from "../components/modals/noteDetailModal.js";
 import { DeleteModal } from "../components/modals/deleteModal.js";
 import { ForgotSaveContainer } from "../components/modals/forgotSaveModal.js";
 import { NewFolderContainer } from "../components/modals/newFolderModal.js";
-import { NoteLinkModal } from "../components/modals/linkNoteModal.js";
 import { SearchModal } from "../components/modals/searchModal.js";
 import { EditFolderModal } from "../components/modals/editFolderModal.js";
 import { NewDeckModal } from "../components/modals/newDeckModal.js";
@@ -10,6 +9,7 @@ import { AnimationHandler } from "../handlers/animation/animationHandler.js";
 import { EditFlashcardModal } from "../components/modals/editFlashcardModal.js";
 import { StickyNoteModal } from "../components/modals/stickyNoteModal.js";
 import { NewTaskboardModal } from "../components/modals/newTaskboardModal.js";
+import { TaskModal } from "../components/modals/taskModal.js";
 
 export class Dialog {
     constructor() {
@@ -22,16 +22,16 @@ export class Dialog {
         this.dialog.addEventListener('click', (event) => {
             const excludedContainers = [
                 '.new-folder-container',
-                '.delete-folder-container',
+                '.delete-modal',
                 '.settings-container',
                 '.dont-forget-to-save-container',
-                '.note-details-container',
-                '.note-link-modal',
+                '.note-details-modal',
                 '.edit-folder-modal',
                 '.create-deck-modal',
                 '.edit-flashcard-modal',
                 '.sticky-note-modal',
-                '.new-taskboard-modal'
+                '.new-taskboard-modal',
+                '.task-modal'
             ];
 
             // Check if the clicked target belongs to any excluded container
@@ -83,6 +83,11 @@ export class Dialog {
         this.dialog.querySelector('.new-taskboard-modal input').focus()
     }
 
+    renderTaskModal(controller, task = null) {
+        this.addChild(new TaskModal(controller, task));
+        this.dialog.querySelector('.task-modal input').focus()
+    }
+
     renderStickyNoteModal(controller, stickyNote = null) {
         this.addChild(new StickyNoteModal(controller, this, stickyNote))
     }
@@ -98,10 +103,6 @@ export class Dialog {
     renderNewFolderModal(view) {
         this.addChild(new NewFolderContainer(view));
         this.dialog.querySelector('.new-folder-container input').focus();
-    }
-
-    renderNoteLinkModal(view, notes, page, controller, dialog) {
-        this.addChild(new NoteLinkModal(view, notes, page, controller, dialog));
     }
 
     renderSearchModal(toolbar) {

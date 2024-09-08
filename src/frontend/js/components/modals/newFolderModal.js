@@ -6,30 +6,27 @@ export class NewFolderContainer {
 
         // Creating HTMl elements
         this.HOST = CNode.create('div', {'class': 'new-folder-container'});
-        this.H2 = CNode.create('h2', {'textContent': 'New folder'});
-        this.INPUT = CNode.create('input', {'placeholder': 'Folder name', 'spellcheck': false});
-        this.BUTTON = CNode.create('button', {'textContent': 'Add'});
+        this.HOST.innerHTML = `
+            <h2>New folder</h2>
+            <input type="text" placeholder="Folder name" spellcheck="false">
+            <button>Add</button>
+        `
 
         this.#attachEventListeners();
-        return this.#render();
+        return this.HOST;
     }
 
     #attachEventListeners() {
-        this.BUTTON.addEventListener('click', () => {this.#createNewFolder()});
-        this.INPUT.addEventListener('keydown', (event) => {
+        this.HOST.querySelector('button').addEventListener('click', () => {this.#createNewFolder()});
+        this.HOST.querySelector('input').addEventListener('keydown', (event) => {
             // if enter is pressed while the focus is on the input
             // create a new folder and close the modal.
             if (event.key === 'Enter') this.#createNewFolder();
         })
     }
 
-    #render() {
-        this.HOST.append(this.H2, this.INPUT, this.BUTTON);
-        return this.HOST;
-    }
-
     #createNewFolder() {
-        const NAME = this.INPUT.value || 'untitled';
-        this.view.addObject({'name': NAME});
+        const name = this.HOST.querySelector('input').value || 'untitled';
+        this.view.addObject({'name': name});
     }
 }

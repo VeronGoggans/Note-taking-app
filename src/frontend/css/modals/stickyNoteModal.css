@@ -2,9 +2,9 @@
     position: relative;
     background-color: var(--modal);
     font-family: Roboto;
-    width: 500px;
-    height: 450px;
-    border-radius: 10px;
+    width: 600px;
+    height: 500px;
+    border-radius: 20px;
     padding: 10px 20px;
     box-shadow: 0 0 10px var(--shadow);
     display: flex;
@@ -14,6 +14,7 @@
 
 .sticky-note-modal h2 {
     font-family: sans-serif;
+    font-size: 32px;
     color: var(--important);
 }
 
@@ -33,25 +34,47 @@
     border: 1px solid var(--border-card);
 }
 
+.sticky-note-modal input:hover,
+.sticky-note-modal input:focus,
+.sticky-note-modal textarea:hover,
+.sticky-note-modal textarea:focus {
+    border-color: #5c7fdd;
+}
+
 
 .sticky-note-modal .content-textarea {
     resize: none;
-    height: 150px;
+    height: 220px;
     border-radius: 10px;
 }
 
 
-.sticky-note-modal .save-sticky-note-btn {
+.save-sticky-note-btn {
     position: absolute;
+    overflow: hidden;
     bottom: 20px;
     right: 20px;
-    background-color: #5c7fdd;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 30px;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
+    border-radius: 10px;
+    padding: 10px 20px;
+    border-radius: 7px; 
+    transition: .2s;
+    color: #5c7fdd;
+    background-color: transparent; 
+}
+
+.save-sticky-note-btn::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: var(--hover);
+    transition: .2s;
+}
+
+.save-sticky-note-btn:hover::before {
+    width: 100%;
 }
 
 .sticky-note-modal .delete-sticky-note-btn {

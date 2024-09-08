@@ -19,10 +19,14 @@ button {
 
 input {
     outline: none;
+    transition: 150ms;
 }
 
 textarea {
     outline: none;
+    resize: none;
+    border: none;
+    transition: 150ms;
 }
 
 i {

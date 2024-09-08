@@ -22,7 +22,7 @@ class FlashcardManager:
 
         # Updating the study streak and study time
         flashcard_misc['streak'] += 1
-        flashcard_misc['study_time'] += time_studied
+        flashcard_misc['time_studied'] += time_studied
 
         # Updating the deck study date.
         self.__update_deck_study_date(decks, deck_id)

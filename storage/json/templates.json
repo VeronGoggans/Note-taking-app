@@ -8,14 +8,6 @@
         "uses": 8
     },
     {
-        "id": "t-27",
-        "name": "To do List",
-        "content": "storage/templates/template-t-27.txt",
-        "last_edit": "18/08/2024 04:06",
-        "creation": "09/08/2024",
-        "uses": 12
-    },
-    {
         "id": "t-28",
         "name": "Completed tasks",
         "content": "storage/templates/template-t-28.txt",

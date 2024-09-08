@@ -73,7 +73,8 @@
     position: relative;
     background-color: var(--background);
     width: 70%;
-    min-width: 500px
+    min-width: 500px;
+    max-width: 650px;
 }
 
 .flashcard-practice .deck-section .current-card-number {

@@ -40,7 +40,8 @@ export class TaskCard {
     constructor(view, task) {
         this.view = view 
         this.id = task.id
-        this.dueDate = task.due
+        this.name = task.name
+        this.dueDate = task.due_date
 
         this.#initializeElements();
         return this.#render();
@@ -49,7 +50,7 @@ export class TaskCard {
 
     #initializeElements() {
         this.HOST = CNode.create('div', { 'class': 'task', 'id': this.id, 'draggable': true});
-        this.TASK_NAME = CNode.create('h3', {});
+        this.TASK_NAME = CNode.create('h3', {'textContent': this.name});
         this.DUE_DATE = CNode.create('p', { 'class': 'due-date', 'textContent': this.dueDate});
     }
 

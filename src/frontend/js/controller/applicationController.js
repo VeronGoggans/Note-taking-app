@@ -223,7 +223,7 @@ export class ApplicationController {
         return await this.templateController.getTemplateNames();
     }
 
-    async getTemplateById(templateId, updateUseCount) {
+    async getTemplateById(templateId, updateUseCount) {        
         return await this.templateController.getById(templateId, updateUseCount)
     }
 

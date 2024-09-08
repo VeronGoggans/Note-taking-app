@@ -31,7 +31,7 @@ export class TemplateController {
 
 
     async getById(templateId, updateUseCount) {
-        const { template }= await this.model.get(`/templateById/${templateId}/${updateUseCount}`);
+        const { template } = await this.model.get(`/templateById/${templateId}/${updateUseCount}`);        
         return template
     }
 

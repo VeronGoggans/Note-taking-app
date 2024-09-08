@@ -17,18 +17,18 @@ export class TaskView extends BaseView {
     renderTaskboard(taskboard) {
         document.querySelector('.task-board-name').textContent = taskboard.name;
         document.querySelector('.task-board-description').textContent = taskboard.description;
-        this.#renderAll(taskboard.todo, this.toDoSection)
-        this.#renderAll(taskboard.inprogress, this.inProgressSection)
-        this.#renderAll(taskboard.done, this.doneSection)
+        this.#renderAll(taskboard.todo, this.toDoSection, this.todoCount)
+        this.#renderAll(taskboard.inprogress, this.inProgressSection, this.inprogressCount)
+        this.#renderAll(taskboard.done, this.doneSection, this.doneCount)
     }
 
 
-    #renderAll(tasks, boardSection) {
+    #renderAll(tasks, boardSection, countSpan) {
         const contentFragment = document.createDocumentFragment();
 
+        countSpan.textContent = tasks.length
         for (let i = 0; i < tasks.length; i++) {
             const taskboard = this.#task(tasks[i]);
-            AnimationHandler.fadeInFromBottom(taskboard)
             contentFragment.appendChild(taskboard);
         }
         boardSection.append(contentFragment);
@@ -89,6 +89,7 @@ export class TaskView extends BaseView {
     }
 
     #attachEventListeners() {
+        this.addTaskButton.addEventListener('click', () => {this.dialog.renderTaskModal(this.controller)});
         this.exitButton.addEventListener('click', () => {this.controller.loadPreviousView()})
     }
 
@@ -98,6 +99,10 @@ export class TaskView extends BaseView {
         this.inProgressSection = document.querySelector('.inprogress .tasks');
         this.doneSection= document.querySelector('.done .tasks');
         this.exitButton = document.querySelector('.exit-taskboard-btn');
+        this.todoCount = document.querySelector('.todo .board-section-name span')
+        this.inprogressCount = document.querySelector('.inprogress .board-section-name span')
+        this.doneCount = document.querySelector('.done .board-section-name span')
+        this.addTaskButton = document.querySelector('.add-task-btn');
         // this._taskBoardsList = document.querySelector('.task-board-cards');
         // this._addNewTaskboardButton = document.querySelector('.add-task-board-btn');  
     }
