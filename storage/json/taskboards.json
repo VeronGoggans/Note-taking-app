@@ -37,5 +37,13 @@
         ],
         "inprogress": [],
         "done": []
+    },
+    {
+        "id": "tb-13",
+        "name": "new",
+        "description": "",
+        "todo": [],
+        "inprogress": [],
+        "done": []
     }
 ]

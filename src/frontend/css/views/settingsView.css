@@ -62,7 +62,7 @@
     overflow-y: auto;
     border: 1px solid var(--border-sidebar-right);
     border-radius: 5px;
-    background-color: var(--setting-dropdown);
+    background-color: var(--searchbar-dropdown);
     list-style: none;
     margin: 0;
     padding: 10px;

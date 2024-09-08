@@ -36,6 +36,11 @@
     transition: opacity .7s ease, transform .25s ease, scale .2s;
 }
 
+.home .flashcard-deck {
+    box-shadow: none;
+    border: 1px solid var(--border-card)
+}
+
 .flashcards-view .flashcard-deck:hover {
     scale: 1.05;
     box-shadow: var(--card-shadow);

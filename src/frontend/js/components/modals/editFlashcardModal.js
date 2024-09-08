@@ -33,9 +33,7 @@ export class EditFlashcardModal {
     }
 
     #setVariables() {
-        this.SAVE_BTN = this.HOST.querySelector('.save-flashcard-btn')
-        console.log(this.SAVE_BTN);
-        
+        this.SAVE_BTN = this.HOST.querySelector('.save-flashcard-btn')        
         this.CARD_TERM = this.HOST.querySelector('input')
         this.CARD_DESCRIPTION = this.HOST.querySelector('.card-description')
     }

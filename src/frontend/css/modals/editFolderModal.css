@@ -3,9 +3,10 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    width: 450px;
+    width: 650px;
+    height: 500px;
     padding: 30px 40px;
-    border-radius: 13px;
+    border-radius: 20px;
     justify-content: center;
     font-family: Roboto;
     box-shadow: 0 10px 20px var(--shadow);
@@ -56,7 +57,7 @@
     border-color: #5c7dff;
 }
 
-.cancel-folder-customization-btn {
+.edit-folder-modal .cancel-btn {
     border-radius: 7px;
     width: 120px;
     height: 40px;
@@ -65,42 +66,54 @@
     color: var(--text);
 }
 
-.save-folder-customisations-btn {
+.edit-folder-modal .save-btn {
+    position: relative;
     border-radius: 7px;
-    background-color: #5c7dff;
-    color: #fff;
+    background-color: transparent;
+    color: #5c7dff;
     font-size: 16px;
-    height: 40px;
     width: 120px;
+    overflow: hidden;
 }
 
-.save-folder-customisations-btn:hover {
-    background-color: #476cff;
+.edit-folder-modal .save-btn::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    left: 0;
+    bottom: 0;
+    height: 100%;
+    transition: 150ms;
+    background-color: var(--hover);
 }
 
-.cancel-folder-customization-btn:hover {
+.edit-folder-modal .save-btn:hover::before {
+    width: 100%;
+}
+
+.edit-folder-modal .cancel-btn:hover {
     color: #5c7dff;
 }
 
 .folder-color-options div {
-    width: 25px;
-    height: 25px;
+    min-width: 30px;
+    height: 30px;
     margin: 0 5px;
-    border-radius: 50%;
+    border-radius: 5px;
     cursor: pointer;
     transition: 50ms;
     border: 2px solid transparent;
 }
 
 .folder-color-options .original-folder-color {
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
     margin: 0 5px;
-    border-radius: 50%;
+    border-radius: 5px;
     cursor: pointer;
     transition: 50ms;
     background-color: var(--card);
-    border: 2px solid var(--border-card);
+    border: 1px solid var(--border-card);
 }
 .buttons-container {
     display: flex;
@@ -110,13 +123,14 @@
 }
 
 .selected-folder-color {
-    width: 30px !important;
-    height: 30px !important;
+    width: 35px !important;
+    height: 35px !important;
     border-color: #5c7dff !important;
 }
 
 .folder-color-options {
     display: flex;
+    flex-flow: wrap;
+    height: 80px;
     align-items: center;
-    height: 40px;
 }   

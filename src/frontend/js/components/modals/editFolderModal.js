@@ -1,5 +1,4 @@
 import { CNode } from "../../util/CNode.js";
-import { folderColorNames } from "../../constants/constants.js";
 
 
 export class EditFolderModal {
@@ -8,71 +7,61 @@ export class EditFolderModal {
         this.view = view;
         this.dialog = dialog;
         this.preferedFolderColor = null;
-        this.#initializeElements();
+        this.HOST = CNode.create('div', {'class': 'edit-folder-modal'});
+        this.HOST.innerHTML = `
+            <h2>Edit folder</h2>
+            <div class="folder-settings">
+                <span id="title">Folder name</span>
+                <p>You can change the name of this folder below</p>
+                <input type="text" placeholder="Untitled" spellcheck="false">
+
+                <span id="title">Folder theme</span>
+                <p>Select a theme for this folder</p>
+                <div class="folder-color-options">
+                    <div style="background-color: rgb(121, 144, 255);"></div>
+                    <div style="background-color: rgb(169, 215, 255);"></div>
+                    <div style="background-color: rgb(217, 237, 255)"></div>
+                    <div style="background-color: rgb(158, 213, 197);"></div>
+                    <div style="background-color: #cbffc5"></div>
+                    <div style="background-color: #adffa4"></div>
+                    <div style="background-color: #b09bd9"></div>
+                    <div style="background-color: rgb(223, 193, 255)"></div>
+                    <div style="background-color: rgb(255, 163, 163)"></div>
+                    <div style="background-color: #ffc5c5"></div>
+                    <div style="background-color: #ffb674"></div>
+                    <div style="background-color: #ffe09e"></div>
+                    <div class="original-folder-color" style="background-color: #fff"></div>
+                </div>
+                <div class="buttons-container">
+                    <button class="cancel-btn">Cancel</button>
+                    <button class="save-btn">Save changes</button>
+                </div>
+            </div>
+        `
+        this.colorsArray = this.HOST.querySelectorAll('.folder-color-options div');
+        console.log(this.colorsArray);
+        
         this.#attachEventListeners();
         this.#showActiveFolderColor(folder.color);
-        return this.#render();
+        return this.HOST
     }
 
-    #initializeElements() {
-        this.MODAL = CNode.create('div', {'class': 'edit-folder-modal'});
-        this.H2 =CNode.create('h2', {'textContent': 'Folder settings'})
-        this.SETTINGS_CONTAINER = CNode.create('div', {'class': 'folder-settings'});
-        this.INPUT = CNode.create('input', {'placeholder': 'Untitled', 'spellcheck': false});
-        this.INPUT.value = this.folder.name;
-        this.NAME_SPAN = CNode.create('span', {'textContent': 'Folder name', 'id': 'title'});
-        this.COLOR_SPAN = CNode.create('span', {'textContent': 'Folder color', 'id': 'title'});
-        this.NAME_P = CNode.create('p', {'textContent': 'Change the name of the folder below.'});
-        this.COLOR_P = CNode.create('p', {'textContent': 'Select a folder background color: '});
-        this.ACTIVE_COLOR_SPAN = CNode.create('span', {'textContent': '(Original)'});
-        this.COLORS_CONTAINER = CNode.create('div', {'class': 'folder-color-options'});
-        this.BLUE = CNode.create('div', {'style': 'background-color: rgb(169, 215, 255);'});
-        this.SOFT_BLUE = CNode.create('div', {'style': 'background-color: rgb(217, 237, 255)'});
-        this.SALMON_PINK = CNode.create('div', {'style': 'background-color: rgb(238, 165, 166);'});
-        this.LAVENDER = CNode.create('div', {'style': 'background-color: rgb(223, 193, 255);'});
-        this.LIGHT_GREEN = CNode.create('div', {'style': 'background-color: rgb(159, 251, 149);'});
-        this.PEACH = CNode.create('div', {'style': 'background-color: rgb(255, 224, 158);'});
-        this.PINK_LAVENDER = CNode.create('div', {'style': 'background-color: rgb(225, 175, 209);'});
-        this.BLUE_VIOLET = CNode.create('div', {'style': 'background-color: rgb(142, 122, 181);'});
-        this.SUNSET_ORANGE = CNode.create('div', {'style': 'background-color: rgb(255, 191, 169);'});
-        this.TURQUOISE = CNode.create('div', {'style': 'background-color: rgb(158, 213, 197);'});
-        this.ORIGINAL_COLOR = CNode.create('div', {'class': 'original-folder-color', 'style': 'background-color: rgb(255, 255, 255);'});
-        this.BUTTONS_CONTAINER = CNode.create('div', {'class': 'buttons-container'});
-        this.CANCEL = CNode.create('button', {'textContent': 'Cancel', 'class': 'cancel-folder-customization-btn'});
-        this.SAVE = CNode.create('button', {'textContent': 'Save', 'class': 'save-folder-customisations-btn'});
-        this.colorsArray = [this.BLUE, this.SOFT_BLUE, this.LAVENDER, this.LIGHT_GREEN, this.PEACH, this.PINK_LAVENDER,
-            this.BLUE_VIOLET, this.SALMON_PINK, this.TURQUOISE, this.SUNSET_ORANGE, this.ORIGINAL_COLOR
-        ]
-    }   
-
-
-    #render() {
-        this.COLOR_P.appendChild(this.ACTIVE_COLOR_SPAN);
-        this.SETTINGS_CONTAINER.append(this.NAME_SPAN, this.NAME_P, this.INPUT, this.COLOR_SPAN,
-            this.COLOR_P, this.COLORS_CONTAINER
-        );
-        this.COLORS_CONTAINER.append(this.BLUE, this.SOFT_BLUE, this.LAVENDER, this.LIGHT_GREEN, this.PEACH,
-            this.PINK_LAVENDER, this.BLUE_VIOLET, this.SALMON_PINK, this.TURQUOISE, this.SUNSET_ORANGE,
-            this.ORIGINAL_COLOR
-        );
-        this.BUTTONS_CONTAINER.append(this.CANCEL, this.SAVE);
-        this.MODAL.append(this.H2, this.SETTINGS_CONTAINER, this.BUTTONS_CONTAINER);
-        return this.MODAL
-    }
 
     #attachEventListeners() {
         this.colorsArray.forEach(colorElement => {
             const color = colorElement.style.backgroundColor;
             colorElement.addEventListener('click', () => {this.#showActiveFolderColor(color)});
         });
-        this.SAVE.addEventListener('click', () => {
+
+        this.HOST.querySelector('.save-btn').addEventListener('click', () => {
             this.view.updateObject({
             'id': this.folder.id,
-            'name': this.INPUT.value,
+            'name': this.HOST.querySelector('input').value,
             'color': this.preferedFolderColor})
             this.dialog.hide();
         });
-        this.CANCEL.addEventListener('click', () => {this.dialog.hide()});
+
+        this.HOST.querySelector('.cancel-btn').addEventListener('click', () => {this.dialog.hide()});
     }
 
     #showActiveFolderColor(color) {
@@ -85,9 +74,5 @@ export class EditFolderModal {
             this.preferedFolderColor = color;
             colorDiv.classList.add('selected-folder-color');
         }
-
-        // Updating the active color span
-        const colorName = folderColorNames[color];
-        this.ACTIVE_COLOR_SPAN.textContent = `(${colorName})`;
     }  
 }

@@ -3,29 +3,38 @@
         "id": "f-1",
         "name": "Home",
         "color": "rgb(255, 255, 255)",
-        "last_visit": "08/09/2024 16:17:25",
-        "notes": [],
+        "last_visit": "08/09/2024 21:53:19",
+        "notes": [
+            {
+                "id": "n-790",
+                "name": "untitled",
+                "content": "storage/notes/note-n-790.txt",
+                "bookmark": false,
+                "last_edit": "08/09/2024 21:32",
+                "creation": "08/09/2024"
+            }
+        ],
         "subfolders": []
     },
     {
         "id": "f-99",
         "name": "School",
-        "color": "rgb(217, 237, 255)",
-        "last_visit": "08/09/2024 16:16:55",
+        "color": "rgb(255, 255, 255)",
+        "last_visit": "08/09/2024 20:04:50",
         "notes": [],
         "subfolders": [
             {
                 "id": "s-191",
                 "name": "Year 2",
                 "color": "rgb(255, 255, 255)",
-                "last_visit": "08/09/2024 16:17:06",
+                "last_visit": "08/09/2024 20:16:51",
                 "notes": [],
                 "subfolders": [
                     {
                         "id": "s-181",
                         "name": "Software Architecture",
                         "color": "rgb(255, 255, 255)",
-                        "last_visit": "08/09/2024 16:17:05",
+                        "last_visit": "08/09/2024 20:05:10",
                         "notes": [
                             {
                                 "id": "n-589",
@@ -115,7 +124,7 @@
                         "id": "s-182",
                         "name": "CISC2",
                         "color": "rgb(255, 255, 255)",
-                        "last_visit": "08/09/2024 16:16:57",
+                        "last_visit": "08/09/2024 20:47:33",
                         "notes": [
                             {
                                 "id": "n-609",
@@ -174,14 +183,14 @@
                 "id": "s-192",
                 "name": "Year 3",
                 "color": "rgb(255, 255, 255)",
-                "last_visit": "08/09/2024 14:13:03",
+                "last_visit": "08/09/2024 20:04:50",
                 "notes": [],
                 "subfolders": [
                     {
                         "id": "s-196",
                         "name": "Backend Specialisation",
                         "color": "rgb(217, 237, 255)",
-                        "last_visit": "08/09/2024 16:17:23",
+                        "last_visit": "08/09/2024 20:04:49",
                         "notes": [
                             {
                                 "id": "n-787",
@@ -210,7 +219,7 @@
         "id": "f-183",
         "name": "Neutron",
         "color": "rgb(255, 255, 255)",
-        "last_visit": "08/09/2024 15:00:53",
+        "last_visit": "08/09/2024 18:38:15",
         "notes": [
             {
                 "id": "n-789",

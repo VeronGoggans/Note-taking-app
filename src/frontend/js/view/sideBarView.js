@@ -88,7 +88,7 @@ export class SidebarView {
     #toggleSidebar() {
         if (this._sidebar.offsetWidth === 220) {
             this._wrapper.style.transition = '150ms'
-            this._wrapper.style.gridTemplateColumns = '70px 1fr';
+            this._wrapper.style.gridTemplateColumns = '80px 1fr';
             this._sidebar.dataset.width = 'small'; 
             this.#removeTransition();
             this.#collapseButtons();

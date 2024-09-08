@@ -59,7 +59,7 @@
     --background: #ffffff;
     --notification: #ffffff;
     --subtitle: #63656d;
-    --sidebar: #f6f9ff; 
+    --sidebar: #ffffff; 
     --searchbar: #f6f9ff;
     --sidebar-text: #444452; 
     --sidebar-text-hover: #5c7dff; 
@@ -69,7 +69,7 @@
     --icon-hover: #444863;
     --important: #444863;
     --border-card: #dee1ef;
-    --border-sidebar-right: #f6f9ff; 
+    --border-sidebar-right: #dee1ef; 
     --hover-searchbar-options: #f1f6ff;
     --hover-text: #444863;
     --hover-sidebar: rgba(92, 125, 255, .3);
@@ -231,7 +231,7 @@
     --background: #ffffff;
     --notification: #ffffff;
     --subtitle: #63656d;
-    --sidebar: #f6f9ff; 
+    --sidebar: #ffffff; 
     --searchbar: #f6f9ff;
     --sidebar-text: #444452; 
     --sidebar-text-hover: #5c7dff; 
@@ -241,7 +241,7 @@
     --icon-hover: #5c7fdd;
     --important: #444863;
     --border-card: #dee1ef;
-    --border-sidebar-right: #f6f9ff; 
+    --border-sidebar-right: #dee1ef; 
     --hover-searchbar-options: #f1f6ff;
     --hover-text: #444863;
     --hover-sidebar: rgba(92, 125, 255, .3);
