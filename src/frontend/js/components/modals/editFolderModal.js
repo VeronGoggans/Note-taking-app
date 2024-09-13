@@ -38,11 +38,12 @@ export class EditFolderModal {
                 </div>
             </div>
         `
+        
         this.colorsArray = this.HOST.querySelectorAll('.folder-color-options div');
-        console.log(this.colorsArray);
         
         this.#attachEventListeners();
         this.#showActiveFolderColor(folder.color);
+        this.HOST.querySelector('input').value = folder.name
         return this.HOST
     }
 

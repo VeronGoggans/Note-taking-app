@@ -3,8 +3,9 @@
 #editor-template-btn,
 #editor-flashcard-set-btn {
     display: flex;
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
     justify-content: center;
     align-items: center;
     border-radius: 10px;
@@ -15,52 +16,30 @@
     margin-left: 30px;
     color: var(--file-path);
     font-family: sans-serif;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .save-note-btn {
     cursor: pointer;
     position: absolute;
-    right: 50px;
+    right: 60px;
     top: 3px;
     color: var(--editor-text);
     font-family: sans-serif;
-    padding: 5px 10px;
+    padding: 10px 20px;
     border-radius: 7px;
 }
 
-#editor-search-btn {
+.editor-util-btns-container {
     position: absolute;
+    top: 55px;
     right: 20px;
-    top: 45px;
-    color: var(--placeholder);
+    color: var(--placeholder) !important;
+    display: flex;
+    flex-direction: column;
 }
 
-#editor-search-btn:hover {
-    background-color: var(--hover);
-    color: #819aff;
-}
 
-#editor-template-btn {
-    color: var(--placeholder);
-}
-
-#editor-template-btn:hover {
-    background-color: #ffd17d8a;
-    color: #ffc14f;
-}
-
-#editor-flashcard-set-btn {
-    position: absolute;     
-    top: 125px;
-    right: 20px;
-    color: var(--placeholder);
-}
-
-#editor-flashcard-set-btn:hover {
-    background-color: #ffbebe;
-    color: #ff7d8d ;
-}
 
 .editor-options-dropdown {
     overflow: visible;
@@ -109,12 +88,6 @@
 .editor-options-dropdown button:hover {
     background-color: var(--hover);
     color: #5c7dff;
-}
-
-.templates-dropdown {
-    position: absolute;
-    top: 85px;
-    right: 20px;
 }
 
 .templates-dropdown .options {
@@ -170,7 +143,10 @@
 
 .save-note-btn:hover,
 #editor-options-btn:hover,
-#exit-editor-btn:hover {
+#exit-editor-btn:hover,
+#editor-flashcard-set-btn:hover,
+#editor-search-btn:hover,
+#editor-template-btn:hover {
     background-color: var(--hover);
     color: #5c7dff;
 }

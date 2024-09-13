@@ -47,7 +47,7 @@ export class FolderController {
 
 
     async getById(folderId) {
-        return await this.model.get(`folderById/${folderId}`);
+        return await this.model.get(`/folderById/${folderId}`);
     }
 
 

@@ -1,97 +1,8 @@
-    :root {
-    /*Settings view*/
-    --setting-dropdown: #f4f5f7;
-    /*Flashcard View*/
-    --progress-color1: linear-gradient(90deg, rgb(213 224 255) 0%, rgb(149 156 255) 100%);
-    --progress-color2: #e6eaff;
-    --shadow-practice-card: #e6eaf3;
-    --flashcard-bg: #ffffff;
-    --flashcard-edit-bg: #e7ebffb5;
-    --flashcard-border: #dee1ef;
-    --stats-span-color: #7990ff;
-    /*Template View*/
-
-    /*Notes View*/
-    --dragging: #f3f4ff;
-    --bookmark: #d5ddff;
-    --hover: rgba(92, 125, 255, .3); 
-    --hover-bookmark-icon-if-bookmarked: rgba(92, 125, 255, .3);
-    --hover-favorite-icon-if-favorited: rgb(255 141 141);
-    --folder-name-input: #ced1e3;
-
-    /*stickyWall view*/
-    --add-sticky-btn: #eae9f9;
-
-    /*Home View*/
-
-    /*Editor View*/
-    --editor: #fff;
-    --editor-background: #fcfcff;
-    --editor-border: #ced1e3;
-    --toolbar-border: #ced1e3;
-    --editor-container: #ffffff;
-    --editor-container-shadow: #272933;
-    --editor-container-input: #f6f7ff;
-    --dropdown: #ffffff;
-
-    --important-background-color: #f4f4f4;
-    --important-text-color: #444863;
-    --important-icon-color: #dde0ec;
-
-    --editor-dropdown: #ffffff;
-
-    --toolbar-btn-text: #4f578f;
-    --hover-toolbar-btns: rgba(185, 198, 250, 0.5);
-    --editor-text: #383838;
-    --hover-slash-command: #f3f4f8;
-    --file-path: #a0a6c1;
-
-    /*taskboard*/
-    --taskboard-card: #f0f3ff;
-    --todo-board: #f3efff;
-    --inprogress-board: #f6f7ff;
-    --done-board: #edffed;
-    --task: #fff;
-
-    /*Other*/
-    --exit-btn: #f4f5f7;
-    --secondary: #5c7dff;
-    --background: #ffffff;
-    --notification: #ffffff;
-    --subtitle: #63656d;
-    --sidebar: #ffffff; 
-    --searchbar: #f6f9ff;
-    --sidebar-text: #444452; 
-    --sidebar-text-hover: #5c7dff; 
-    --card: #ffffff; 
-    --text: #444863;
-    --icon: #4c4c68; 
-    --icon-hover: #444863;
-    --important: #444863;
-    --border-card: #dee1ef;
-    --border-sidebar-right: #dee1ef; 
-    --hover-searchbar-options: #f1f6ff;
-    --hover-text: #444863;
-    --hover-sidebar: rgba(92, 125, 255, .3);
-    --searchbar-placeholder: #9297aa; 
-    --placeholder: #d4d7e5;
-    --selection: #b1daff;
-    --dialog: #6fa2ff1c;
-    --card-shadow: 0 0 10px #e6edfb; 
-    --shadow: rgba(92, 98, 157, .1);
-    --shadow-notification: #dcdee6;
-    --modal: #ffffff;
-    --scrollbar-content-view: #cccfe1;
-    --searchbar-dropdown: #fff;
-    --searchbar-border: #ced1e3;
-    --stats-background: #f6f7ff;
-}
-
 .dark {
     /*Settings view*/
     --setting-dropdown: #121316;
     /*Editor View*/
-    --editor: #17181f;
+    --editor: #15161a;
     --editor-background: #1f2129;
     --editor-border: #000000;
     --toolbar-border: #000000;
@@ -137,6 +48,8 @@
     --task: #1f2129;
 
     /*Other*/
+    --title-bar-button-background: #252735;
+    --title-bar-button-color: #5c7fdd;
     --exit-btn: #28282f;
     --secondary: #5c7dff;
     --background: #15161a; /*1b1c22*/
@@ -169,6 +82,7 @@
     --searchbar-border: #43454f;
     --scrollbar-content-view: #3f4045;
     --stats-background: #0f0f13;
+    --home-tab: #28283b;
 }
 
 .light{
@@ -226,6 +140,8 @@
     --task: #fff;
 
     /*Other*/
+    --title-bar-button-background: #dfe7ff;
+    --title-bar-button-color: rgb(101, 102, 120);
     --exit-btn: #f4f5f7;
     --secondary: #5c7dff;
     --background: #ffffff;
@@ -244,7 +160,7 @@
     --border-sidebar-right: #dee1ef; 
     --hover-searchbar-options: #f1f6ff;
     --hover-text: #444863;
-    --hover-sidebar: rgba(92, 125, 255, .3);
+    --hover-sidebar: #f0f0ff;
     --searchbar-placeholder: #9297aa; 
     --placeholder: #d4d7e5;
     --selection: #b1daff;
@@ -257,4 +173,5 @@
     --searchbar-dropdown: #fff;
     --searchbar-border: #ced1e3;
     --stats-background: #f6f7ff;
+    --home-tab: #f0f0ff;
 }

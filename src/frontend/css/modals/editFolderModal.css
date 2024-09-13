@@ -61,7 +61,7 @@
     border-radius: 7px;
     width: 120px;
     height: 40px;
-    background-color: var(--toolbar);
+    background-color: transparent;
     font-size: 16px;
     color: var(--text);
 }

@@ -2,7 +2,8 @@ import { BadRequest_400, NotFound_404, InternalServerError_500 } from "./excepti
 
 export async function fetchData(endpoint, options) {
     try {
-        const backendResponse = await fetch(`${endpoint}`, options);
+
+        const backendResponse = await fetch(`http://127.0.0.1:8000${endpoint}`, options);
 
         if (backendResponse.status === 400) {
             throw new BadRequest_400('Your input is invalid or incomplete')

@@ -39,14 +39,16 @@
     <link rel="stylesheet" href="src/frontend/css/views/taskboardView.css">
     <link rel="stylesheet" href="src/frontend/css/modals/newTaskboardModal.css">
     <link rel="stylesheet" href="src/frontend/css/modals/taskModal.css">
+    <link rel="stylesheet" href="src/frontend/css/general/titleBar.css">
     <!-- CDN for the icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Neutron</title>
 </head>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
   </style>
-<body>
+<body class="dark">
   <div class="wrapper">
     <div class="sidebar">
         <div class="sidebar-logo">
@@ -71,13 +73,21 @@
           </div>
         </div>
     </div>
-
-    <main class="content"></main>
+    
+    <main class="content">
+      <div class="controls">
+        <button id="minimize"><i class="bi bi-dash-lg"></i></button>
+        <button id="maximize"><i class="bi bi-square"></i></button>
+        <button id="close"><i class="bi bi-x-lg"></i></button>
+      </div>
+      <div class="view"></div>
+    </main>
     
 </div> 
     <div class="dialog"></div>
       
       <script>
+
         function formatText(command, value = null) {
           if (document.queryCommandSupported(command)) {
             document.execCommand('styleWithCSS', false, true);
@@ -102,9 +112,8 @@
             rightAlignButton.classList.toggle('active-toolbar-btn', document.queryCommandState('justifyRight'));
         }
       </script>
-    <script type="module" src="/src/frontend/js/view/sideBarView.js"></script>
-    <script type="module" src="/src/frontend/js/view/textEditorView.js"></script>
-    <script type="module" src="index.js"></script>
+    <script type="module" src="startup.js"></script>
+    <script type="module" src="titleBar.js"></script>
     
 </body>
 </html>

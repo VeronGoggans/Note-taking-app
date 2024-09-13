@@ -239,18 +239,20 @@ export const editorTemplate = `
         <div class="editor-paper" contenteditable="true" spellcheck="false"></div>
       </div>
 
-      <i id="editor-search-btn" class="fa-solid fa-magnifying-glass"></i>
+      <div class="editor-util-btns-container">
+        <i id="editor-search-btn" class="fa-solid fa-magnifying-glass"></i>
 
-      <div class="templates-dropdown">
-        <i id="editor-template-btn" class="fa-solid fa-file-lines"></i>
-        <div class="options">
-          <span>Templates</span>
-          <ul class="templates-container">
-          </ul>
+        <div class="templates-dropdown">
+            <i id="editor-template-btn" class="fa-solid fa-file-lines"></i>
+            <div class="options">
+            <span>Templates</span>
+            <ul class="templates-container">
+            </ul>
+            </div>
         </div>
-      </div>
 
-      <i id="editor-flashcard-set-btn" class="fa-solid fa-circle-check"></i>
+        <i id="editor-flashcard-set-btn" class="fa-solid fa-circle-check"></i>
+      </div>
 
       <div class="rich-text-option-container">
         <div class="btn-group">

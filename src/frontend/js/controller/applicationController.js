@@ -30,7 +30,7 @@ export class ApplicationController {
         this.taskboardHomeController = new TaskBoardHomeController(this);
         this.taskboardController = new TaskboardController(this);
         this.settingController = new SettingController(this);
-        this.viewContainer = document.querySelector('.content');
+        this.viewContainer = document.querySelector('.content .view');
         this.controllers = {
             home: this.homeController,
             notes: this.noteController,
@@ -172,9 +172,18 @@ export class ApplicationController {
     }
 
     async openTextEditor(editorObjectType) {
+        this.clearEditorObject();
         const allFolderNames = this.folderController.getAllFolderNames();
         const allTemplateNames = await this.templateController.getTemplateNames();
         this.textEditorController.showTextEditor(editorObjectType, allFolderNames, allTemplateNames);
+    }
+
+    /**
+     * This method ensures that the text editor model does note
+     * Remember anything from a previous note or template. 
+     */
+    clearEditorObject() {
+        this.textEditorController.clearStoredObject();
     }
 
     // Note methods

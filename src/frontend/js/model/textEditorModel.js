@@ -41,6 +41,7 @@ export class TextEditorModel {
 
     clear() {
         this.editorObject = null;
+        this.editorObjectType = null;
         console.log('CLEARED Stored Object');
     }
 }

@@ -62,8 +62,8 @@
  .editor iframe {
     border-radius: 20px;
     transition: 200ms;
-    width: 444px;
-    height: 250px;
+    width: 100%;
+    height: 400px;
  }
 
  .editor .paragraph p {
@@ -231,6 +231,21 @@
    min-height: 10px;
  }
 
+ .editor h1 {
+   font-size: 35px;
+ }
+ 
+ .editor h2 {
+   font-size: 30px;
+ }
+ 
+ .editor h3 {
+   font-size: 25px;
+ }
+ 
+ .editor h4 {
+   font-size: 20px;
+ }
  .no-pointer {
    pointer-events: none;
 }

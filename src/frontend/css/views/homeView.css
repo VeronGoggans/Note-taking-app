@@ -25,7 +25,7 @@
 .home .view-title {
     position: relative;
     margin: 50px 0;
-    color: #5c7dff;
+    color: var(--important);
 }
 
 

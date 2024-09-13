@@ -1,7 +1,7 @@
 # flashcard 0
 Wat is een countinuous integration pipeline?
 <div><span style="font-style: italic;">"Met een continuous integration pipeline integreer je regelmatig code op een&nbsp;</span></div><div><span style="font-style: italic;">centraal punt, bijvoorbeeld naar een remote repository, vaak reautomatiseerd</span></div><div><span style="font-style: italic;">met Github Actions"</span></div>
-correct
+wrong
 
 # flashcard 1
 Hoe kan een continuous integration pipeline bijdragen aan de  kwaliteitsbewaking van een software project?

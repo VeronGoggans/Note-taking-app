@@ -12,11 +12,11 @@ export const fullMonths = [
 
 
 export const folderColorClasses = {
-    'rgb(121, 144, 255)': 'color-app-theme',
+    'rgb(121, 144, 255)': 'color-blue-1',
     'rgb(255, 255, 255)': 'color-original',
-    'rgb(169, 215, 255)': 'color-light-sky-blue',
-    'rgb(217, 237, 255)': 'color-soft-blue',
-    'rgb(158, 213, 197)': 'color-turquoise',
+    'rgb(169, 215, 255)': 'color-color-blue-2',
+    'rgb(217, 237, 255)': 'color-blue-3',
+    'rgb(158, 213, 197)': 'color-green-1',
     'rgb(203, 255, 197)': 'color-soft-green',
     'rgb(173, 255, 164)': 'color-grass-green', 
     'rgb(255, 224, 158)': 'color-peach',
@@ -34,9 +34,7 @@ export const headingsMap = {
     'H1': 'Heading 1',
     'H2': 'Heading 2',
     'H3': 'Heading 3',
-    'H4': 'Heading 4',
-    'H5': 'Heading 5',
-    'H6': 'Heading 6'
+    'H4': 'Heading 4'
 }
 
 
