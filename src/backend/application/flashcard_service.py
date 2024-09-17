@@ -1,6 +1,6 @@
 from src.backend.data.file.json_manager import JsonManager
 from src.backend.data.flashcard.flashcard_manager import FlashcardManager
-from src.backend.data.exceptions.exceptions import NotFoundException, SerializationException
+from src.backend.data.exceptions.exceptions import *
 from src.backend.presentation.dtos.flashcard_dtos import PostFlashcardDTO, FlashcardDTO
 from src.backend.util.paths import FLASHCARDS_PATH, MISC_PATH
 

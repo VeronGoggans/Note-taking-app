@@ -2,7 +2,7 @@
    user-select: none;
    display: grid;
    grid-template-rows: 120px 1fr;
-   height: 100dvh;
+   height: calc(100dvh - 37px);
    background-color: var(--editor);
    opacity: 0;
    transform: translateX(30%);

@@ -1,10 +1,9 @@
 from fastapi import APIRouter
 from src.backend.data.folder.folder_manager import FolderManager
 from src.backend.presentation.request_bodies.folder_requests import FolderRequest, MoveFolderRequest, PutFolderRequest
-from src.backend.presentation.dtos.folder_dtos import FolderRequestDto, PutFolderRequestDto
 from src.backend.presentation.http_status import HttpStatus
 from src.backend.application.folder_service import FolderService
-from src.backend.presentation.decorators.controller_decorators import exception_handler 
+from src.backend.data.exceptions.exception_handler import handle_exceptions
 
 class FolderRouter:
     def __init__(self, json_manager):
@@ -22,59 +21,48 @@ class FolderRouter:
         self.route.add_api_route('/viewedFolderTime/{folder_id}', self.folder_visit, methods=['PATCH'])
 
 
-    @exception_handler
+    @handle_exceptions
     def add_folder(self, request: FolderRequest):
-        folder = self.service.add_folder(
-            FolderRequestDto(request.folder_id, request.name)
-        )
-        return {'status': HttpStatus.OK, "folder": folder}
+        return {'status': HttpStatus.OK, "folder": self.service.add_folder(request)}
         
 
-    @exception_handler
+    @handle_exceptions
     def get_folders(self, parent_id: str):
-        folders = self.service.get_folders(parent_id)
-        return {"status": HttpStatus.OK, "folders": folders}
+        return {"status": HttpStatus.OK, "folders": self.service.get_folders(parent_id)}
 
         
-    @exception_handler
+    @handle_exceptions
     def get_recent_folders(self):
-        folders = self.service.get_recent_folders()
-        return {"status": HttpStatus.OK, "folders": folders}
+        return {"status": HttpStatus.OK, "folders": self.service.get_recent_folders()}
         
 
-    @exception_handler
+    @handle_exceptions
     def get_search_items(self):
-        search_items = self.service.get_search_items()
-        return {'status': HttpStatus.OK, 'folders': search_items}
+        return {'status': HttpStatus.OK, 'folders': self.service.get_search_items()}
         
 
-    @exception_handler
+    @handle_exceptions
     def get_folder_by_id(self, folder_id: str):
         folder_location = self.service.get_folder_by_id(folder_id)
         return {'status': HttpStatus.OK, 'folder': folder_location[-1], 'location': folder_location}
 
 
-    @exception_handler
+    @handle_exceptions
     def update_folder(self, request: PutFolderRequest):
-        folder = self.service.update_folder(
-            PutFolderRequestDto(request.folder_id, request.name, request.color)
-        )
-        return {'status': HttpStatus.OK, "folder": folder}
+        return {'status': HttpStatus.OK, "folder": self.service.update_folder(request)}
     
 
-    @exception_handler
+    @handle_exceptions
     def move_folder(self, request: MoveFolderRequest):
-        folder = self.service.move_folder(request.new_parent_folder_id, request.folder_id)
-        return {'status': HttpStatus.OK, "folder": folder}
+        return {'status': HttpStatus.OK, "folder": self.service.move_folder(request)}
         
 
-    @exception_handler
+    @handle_exceptions
     def folder_visit(self, folder_id: str):
         self.service.update_visit(folder_id) 
         return {'status': HttpStatus.OK}
        
         
-    @exception_handler
+    @handle_exceptions
     def delete_folder(self, folder_id: str ):
-        folder = self.service.delete_folder(folder_id)
-        return {'status': HttpStatus.OK, "folder": folder}
+        return {'status': HttpStatus.OK, "folder": self.service.delete_folder(folder_id)}

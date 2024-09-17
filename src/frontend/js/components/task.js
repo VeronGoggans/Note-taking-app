@@ -1,4 +1,5 @@
 import { CNode } from "../util/CNode.js";
+import { addDraggImage } from "../util/ui.js";
 
 
 export class TaskboardCard {
@@ -44,6 +45,7 @@ export class TaskCard {
         this.dueDate = task.due_date
 
         this.#initializeElements();
+        this.#attachEventListeners();
         return this.#render();
     }
 
@@ -54,12 +56,20 @@ export class TaskCard {
         this.DUE_DATE = CNode.create('p', { 'class': 'due-date', 'textContent': this.dueDate});
     }
 
+
     #render() {
         this.HOST.append(this.TASK_NAME, this.DUE_DATE);
         return this.HOST
     }
 
     #attachEventListeners() {
-        
+        // Drag and drop event listeners below.
+        this.HOST.addEventListener('dragstart', (event) => {
+            addDraggImage(event, this.HOST, 'thumbtack')
+            event.dataTransfer.setData('text/plain', `{"draggedItem": "task", "draggedCardId": "${this.id}"}`)
+        }); 
+
+        // Remove the drag style when done dragging
+        this.HOST.addEventListener('dragend', () => {this.HOST.classList.remove('dragging')})
     }
 }

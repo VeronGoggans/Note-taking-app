@@ -1,7 +1,7 @@
 from src.backend.data.note.sticky_note_manager import StickyNoteManager
-from src.backend.presentation.dtos.note_dtos import PostStickyNoteDto, PutStickyNoteDto
+from src.backend.presentation.request_bodies.note_requests import PostStickyNoteRequest, PutStickyNoteRequest
 from src.backend.domain.sticky_note import StickyNote 
-from src.backend.data.exceptions.exceptions import NotFoundException, AdditionException
+from src.backend.data.exceptions.exceptions import *
 from src.backend.data.file.json_manager import JsonManager
 from src.backend.util.paths import STICKY_NOTES_PATH
 
@@ -11,9 +11,9 @@ class StickyNoteService:
         self.json_manager = json_manager
 
 
-    def add_sticky_note(self, reqeust_dto: PostStickyNoteDto) -> StickyNote:    
+    def add_sticky_note(self, request: PostStickyNoteRequest) -> StickyNote:    
         object_id = self.json_manager.generate_id('sticky-note')
-        sticky_note = StickyNote(object_id, reqeust_dto.name, reqeust_dto.content)
+        sticky_note = StickyNote(object_id, request.name, request.content)
 
         sticky_notes = self.json_manager.load(STICKY_NOTES_PATH)
         try:
@@ -31,11 +31,11 @@ class StickyNoteService:
             raise NotFoundException('There were no sticky notes found.', errors=str(e))
 
 
-    def update_sticky_note(self, reqeust_dto: PutStickyNoteDto) -> object:
+    def update_sticky_note(self, request: PutStickyNoteRequest) -> object:
         sticky_notes = self.json_manager.load(STICKY_NOTES_PATH)
 
         try:
-            updated_sticky_note = self.manager.update(sticky_notes, reqeust_dto)
+            updated_sticky_note = self.manager.update(sticky_notes, request)
             self.json_manager.update(STICKY_NOTES_PATH, sticky_notes)
             return updated_sticky_note
         except NotFoundException as e:

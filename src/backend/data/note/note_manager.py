@@ -1,9 +1,9 @@
 from src.backend.domain.note import Note
-from src.backend.presentation.dtos.note_dtos import *
+from src.backend.presentation.request_bodies.note_requests import *
 from src.backend.util.calendar import Calendar
 from src.backend.domain.factory import Factory
 from src.backend.util.folder_finder import FolderFinder
-from src.backend.data.exceptions.exceptions import AdditionException, NotFoundException
+from src.backend.data.exceptions.exceptions import *
 from src.backend.data.file.text_manager import TextManager
 from datetime import datetime
 
@@ -99,22 +99,22 @@ class NoteManager:
         return Factory.to_priority_list(bookmarks)
                
 
-    def update_note(self, folders, request_dto: PutNoteDto) -> (Note | NotFoundException):
+    def update_note(self, folders, request: PutNoteRequest) -> (Note | NotFoundException):
         """
         Update a note with the provided note data.
 
         Args:
             folders (List[dict]): The list of folders to search within.
-            request_dto (PutNoteDto): The data to update the note.
+            request: The data to update the note.
 
         Returns:
             Note: 
             - If successful, it returns the updated Note object.
         """
-        note_id = request_dto.note_id
+        note_id = request.note_id
         current_note = self.__find_note(folders, note_id)[0]
         if current_note:
-            updated_note = self.__update_entity(current_note, request_dto)
+            updated_note = self.__update_entity(current_note, request)
             return updated_note
         raise NotFoundException(f'Note with id: {note_id}, could not be found.')
     
@@ -185,7 +185,7 @@ class NoteManager:
 
 
     
-    def __update_entity(self, current_note: dict, updated_note: PutNoteDto) -> Note:
+    def __update_entity(self, current_note: dict, updated_note: PutNoteRequest) -> Note:
         current_time = Calendar.datetime()
 
         note = Note.from_json(current_note)

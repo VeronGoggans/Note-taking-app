@@ -1,7 +1,7 @@
 .flashcard-practice {
     outline: none;
-    height: 100dvh;
-    max-height: 100dvh;
+    height: calc(100dvh - 37px);
+    max-height: calc(100dvh - 37px);
     font-family: Roboto;
     opacity: 0;
     transform: translateX(30%);

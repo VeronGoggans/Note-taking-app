@@ -1,5 +1,5 @@
 from src.backend.domain.sticky_note import StickyNote
-from src.backend.presentation.dtos.note_dtos import PutStickyNoteDto
+from src.backend.presentation.request_bodies.note_requests import PutStickyNoteRequest
 from src.backend.data.exceptions.exceptions import AdditionException, NotFoundException
 
 
@@ -13,11 +13,11 @@ class StickyNoteManager:
             raise AdditionException('An error occurred while adding the sticky note', errors={'exception': str(e)})
 
 
-    def update(self, sticky_notes: list, request_dto: PutStickyNoteDto) -> (dict | NotFoundException):
+    def update(self, sticky_notes: list, request: PutStickyNoteRequest) -> (dict | NotFoundException):
         for sticky_note in sticky_notes:
-            if sticky_note['id'] == request_dto.id:
-                return self.__update_entity(sticky_note, request_dto)
-        raise NotFoundException(f'Sticky note with id: {request_dto.id}, could not be found.')
+            if sticky_note['id'] == request.id:
+                return self.__update_entity(sticky_note, request)
+        raise NotFoundException(f'Sticky note with id: {request.id}, could not be found.')
     
 
     def delete(self, sticky_notes: list, id: str) -> (dict | NotFoundException):
@@ -28,7 +28,7 @@ class StickyNoteManager:
         raise NotFoundException(f'Sticky note with id: {id}, could not be found.')    
 
     
-    def __update_entity(self, current_note: dict, updated_note: PutStickyNoteDto) -> StickyNote:
+    def __update_entity(self, current_note: dict, updated_note: PutStickyNoteRequest) -> StickyNote:
         sticky_note = StickyNote.from_json(current_note)
         sticky_note.content = updated_note.content
         sticky_note.name = updated_note.name

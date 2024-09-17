@@ -1,7 +1,7 @@
 .task-board-home-view {
     outline: none;
-    height: 100dvh;
-    max-height: 100dvh;
+    height: calc(100dvh - 37px);
+    max-height: calc(100dvh - 37px);
     font-family: Roboto;
     display: flex;
     flex-direction: column;

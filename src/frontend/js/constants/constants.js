@@ -13,20 +13,18 @@ export const fullMonths = [
 
 export const folderColorClasses = {
     'rgb(121, 144, 255)': 'color-blue-1',
-    'rgb(255, 255, 255)': 'color-original',
-    'rgb(169, 215, 255)': 'color-color-blue-2',
+    'rgb(169, 215, 255)': 'color-blue-2',
     'rgb(217, 237, 255)': 'color-blue-3',
     'rgb(158, 213, 197)': 'color-green-1',
-    'rgb(203, 255, 197)': 'color-soft-green',
-    'rgb(173, 255, 164)': 'color-grass-green', 
-    'rgb(255, 224, 158)': 'color-peach',
-    'rgb(159, 251, 149)': 'color-light-green',
-    'rgb(223, 193, 255)': 'color-lavender',
-    'rgb(225, 175, 209)': 'color-pink-lavender',
-    'rgb(238, 165, 166)': 'color-salmon-pink',
-    'rgb(142, 122, 181)': 'color-blue-violet',
-    
-    'rgb(255, 191, 169)': 'color-sunset-orange',
+    'rgb(203, 255, 197)': 'color-green-2',
+    'rgb(173, 255, 164)': 'color-green-3',
+    'rgb(142, 122, 181)': 'color-purple-1', 
+    'rgb(223, 193, 255)': 'color-purple-2',
+    'rgb(255, 163, 163)': 'color-red-1',
+    'rgb(255, 197, 197)': 'color-red-2',
+    'rgb(255, 182, 116)': 'color-orange-1',
+    'rgb(255, 224, 158)': 'color-orange-2',
+    'rgb(255, 255, 255)': 'color-original'
 }
 
 

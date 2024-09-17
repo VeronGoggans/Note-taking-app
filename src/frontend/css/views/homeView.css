@@ -3,8 +3,7 @@
     grid-template-rows: 50px 1fr;
     font-family: Roboto;
     padding: 15px 5%;   
-    height: 100dvh;
-    max-height: 100dvh;
+    height: calc(100dvh - 40px);
     opacity: 0;
     transform: translateY(30%);
     transition: opacity .7s ease, transform .2s ease;

@@ -5,7 +5,7 @@
     max-width: 400px;
     min-width: 300px;
     background-color: var(--searchbar);
-    border-radius: 10px;
+    border-radius: 50px;
     display: flex;
 }
 
@@ -15,7 +15,7 @@
     background-color: transparent;
     width: 100%;
     font-size: 16px;
-    padding-left: 40px;
+    padding-left: 50px;
     color: var(--text);
 }
 
@@ -26,7 +26,7 @@
 .searchbar #search-icon {
     position: absolute;
     top: 11px;
-    left: 10px;
+    left: 20px;
     color: var(--icon);
 }
 

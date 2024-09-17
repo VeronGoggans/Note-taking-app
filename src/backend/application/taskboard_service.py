@@ -1,8 +1,8 @@
 from src.backend.data.taskboard.taskboard_manager import TaskboardManager
 from src.backend.data.file.json_manager import JsonManager
 from src.backend.domain.taskboad import Taskboard
-from src.backend.presentation.dtos.taskboard_dtos import PutTaskboardDto
-from src.backend.data.exceptions.exceptions import NotFoundException, AdditionException
+from src.backend.presentation.request_bodies.taskboard_requests import *
+from src.backend.data.exceptions.exceptions import *
 from src.backend.util.paths import TASKBOARD_PATH, FOR_TASKBOARD
 
 class TaskboardService:
@@ -33,11 +33,11 @@ class TaskboardService:
         return self.manager.get_by_id(taskboards, id)
     
 
-    def update_taskboard(self, request_dto: PutTaskboardDto):
+    def update_taskboard(self, request: PutTaskboardRequest):
         taskboards = self.json_manager.load(TASKBOARD_PATH)
 
         try:
-            self.manager.update(taskboards, request_dto)
+            self.manager.update(taskboards, request)
             self.json_manager.update(TASKBOARD_PATH, taskboards)
         except NotFoundException as e:
             raise e

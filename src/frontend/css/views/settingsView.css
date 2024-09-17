@@ -3,8 +3,8 @@
     justify-content: center;
     font-family: Roboto;
     padding: 15px;   
-    height: calc(100dvh - 30px);
-    max-height: 100dvh;
+    height: calc(100dvh - 37px);
+    max-height: calc(100dvh - 37px);
     opacity: 0;
     transform: translateX(30%);
     transition: opacity .7s ease, transform .2s ease;

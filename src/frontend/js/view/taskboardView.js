@@ -90,7 +90,34 @@ export class TaskView extends BaseView {
 
     #attachEventListeners() {
         this.addTaskButton.addEventListener('click', () => {this.dialog.renderTaskModal(this.controller)});
-        this.exitButton.addEventListener('click', () => {this.controller.loadPreviousView()})
+        this.exitButton.addEventListener('click', () => {this.controller.loadPreviousView()});
+
+        for (let i = 0; i < this.boardSections.length; i++) {
+            this.boardSections[i].addEventListener('dragover', (event) => {
+                event.preventDefault();
+                this.boardSections[i].style.borderColor = '#5c7fdd';
+            });
+
+            this.boardSections[i].addEventListener('dragleave', (event) => {
+                event.preventDefault();
+                this.boardSections[i].style.borderColor = 'transparent';
+            });
+
+            this.boardSections[i].addEventListener('drop', (event) => {
+                event.preventDefault();
+                // Get the id of the element being dragged
+                const droppedCardInfo = JSON.parse(event.dataTransfer.getData('text/plain'));
+                const droppedCardId = droppedCardInfo.draggedCardId;
+                const draggedItemType = droppedCardInfo.draggedItem;
+    
+                // if (draggedItemType === 'task') {
+                //     this.                    
+                // }
+    
+                // Remove the visual feedback class
+                this.HOST.classList.remove('hovered');
+            });
+        }
     }
 
     #initializeDomElements() {
@@ -103,7 +130,7 @@ export class TaskView extends BaseView {
         this.inprogressCount = document.querySelector('.inprogress .board-section-name span')
         this.doneCount = document.querySelector('.done .board-section-name span')
         this.addTaskButton = document.querySelector('.add-task-btn');
-        // this._taskBoardsList = document.querySelector('.task-board-cards');
-        // this._addNewTaskboardButton = document.querySelector('.add-task-board-btn');  
+        
+        this.boardSections = [this.toDoSection, this.inProgressSection, this.doneSection]
     }
 }

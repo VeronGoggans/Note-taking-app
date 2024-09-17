@@ -1,13 +1,13 @@
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
-from src.backend.presentation.controller.note_controller import NoteRouter
-from src.backend.presentation.controller.template_controller import TemplateRouter
-from src.backend.presentation.controller.flashcard_deck_controllers import FlashcardDeckRouter
-from src.backend.presentation.controller.flashcard_controller import FlashcardRouter
-from src.backend.presentation.controller.folder_controller import FolderRouter
-from src.backend.presentation.controller.sticky_note_controller import StickyNoteRouter
-from src.backend.presentation.controller.taskboard_controller import TaskboardRouter
-from src.backend.presentation.controller.setting_controller import SettingRouter
+from src.backend.presentation.routers.note_router import NoteRouter
+from src.backend.presentation.routers.template_router import TemplateRouter
+from src.backend.presentation.routers.flashcard_deck_router import FlashcardDeckRouter
+from src.backend.presentation.routers.flashcard_router import FlashcardRouter
+from src.backend.presentation.routers.folder_router import FolderRouter
+from src.backend.presentation.routers.sticky_note_router import StickyNoteRouter
+from src.backend.presentation.routers.taskboard_router import TaskboardRouter
+from src.backend.presentation.routers.setting_router import SettingRouter
 from src.backend.data.file.json_manager import JsonManager
 
 app = FastAPI()

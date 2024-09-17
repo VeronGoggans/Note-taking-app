@@ -4,7 +4,7 @@ from src.backend.data.note.note_manager import NoteManager
 from src.backend.presentation.request_bodies.note_requests import *
 from src.backend.presentation.dtos.note_dtos import *
 from src.backend.presentation.http_status import HttpStatus
-from src.backend.presentation.decorators.controller_decorators import exception_handler
+from src.backend.data.exceptions.exception_handler import handle_exceptions
 
 
 
@@ -24,11 +24,7 @@ class NoteRouter:
         self.route.add_api_route('/note/{note_id}', self.delete_note, methods=['DELETE'])
         
 
-    @exception_handler
-    def add_note(self, request: PostNoteRequest):
-        request_dto = PostNoteDto(request.folder_id, request.name, request.content)
-        note = self.service.add_note(request_dto)
-        return {'status': HttpStatus.OK, 'note': note}
+    
        
 
     def cache(self):
@@ -39,44 +35,42 @@ class NoteRouter:
         return {'HttpStatus_code': response}
 
 
-    @exception_handler
+    @handle_exceptions
+    def add_note(self, request: PostNoteRequest):
+        return {'status': HttpStatus.OK, 'note': self.service.add_note(request)}
+
+
+    @handle_exceptions
     def get_notes(self, folder_id: str):
-        notes = self.service.get_notes(folder_id)
-        return {'status': HttpStatus.OK, 'notes': notes}
+        return {'status': HttpStatus.OK, 'notes': self.service.get_notes(folder_id)}
        
 
-    @exception_handler
+    @handle_exceptions
     def get_note_by_id(self, note_id: str):
         note_location, note = self.service.get_note_by_id(note_id)
         return {'status': HttpStatus.OK, 'note': note, 'location': note_location}
 
 
-    @exception_handler
+    @handle_exceptions
     def get_search_items(self):
-        notes = self.service.get_search_options()
-        return {'status': HttpStatus.OK, 'notes': notes}
+        return {'status': HttpStatus.OK, 'notes': self.service.get_search_options()}
         
 
-    @exception_handler
+    @handle_exceptions
     def get_recent_notes(self):
-        notes = self.service.get_recent_notes()
-        return {'status': HttpStatus.OK, 'notes': notes}
+        return {'status': HttpStatus.OK, 'notes': self.service.get_recent_notes()}
     
 
-    @exception_handler
+    @handle_exceptions
     def update_note(self, request: PutNoteRequest):
-        request_dto = PutNoteDto(request.note_id, request.name, request.content, request.bookmark)
-        note = self.service.update_note(request_dto)
-        return {'status': HttpStatus.OK, 'note': note}
+        return {'status': HttpStatus.OK, 'note': self.service.update_note(request)}
 
 
-    @exception_handler
+    @handle_exceptions
     def move_note(self, request: MoveNoteRequest):
-        note = self.service.move_note(request.folder_id, request.note_id)
-        return {'status': HttpStatus.OK, 'note': note}
+        return {'status': HttpStatus.OK, 'note': self.service.move_note(request)}
 
 
-    @exception_handler
+    @handle_exceptions
     def delete_note(self, note_id: str ):
-        note = self.service.delete_note(note_id)
-        return {'status': HttpStatus.OK, 'note': note}
+        return {'status': HttpStatus.OK, 'note': self.service.delete_note(note_id)}

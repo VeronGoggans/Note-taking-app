@@ -84,7 +84,7 @@
 .color-blue-1 {background-color: rgb(121, 144, 255)}
 .color-blue-2 {background-color: rgb(169, 215, 255)}
 .color-blue-3 {background-color: rgb(217, 237, 255)}
-.color-green-1 {background-color: rgb(158 213 197)}
+.color-green-1 {background-color: rgb(158, 213, 197)}
 .color-green-2 {background-color: rgb(203, 255, 197)}
 .color-green-3 {background-color: rgb(173, 255, 164)}
 .color-purple-1 {background-color: rgb(142, 122, 181)}
@@ -95,52 +95,57 @@
 .color-orange-2 {background-color: rgb(255, 224, 158)}
 
 
-
-.color-blue-1 h4
-.color-blue-2 h4
-.color-blue-3 h4
-.color-green-1 h4
-.color-green-2 h4
-.color-green-3 h4
-.color-purple-1 h4
-.color-purple-2 h4
-.color-red-1 h4
-.color-red-2 h4
-.color-orange-1 h4
+.color-blue-1 h4,
+.color-blue-2 h4,
+.color-blue-3 h4,
+.color-green-1 h4,
+.color-green-2 h4,
+.color-green-3 h4,
+.color-purple-1 h4,
+.color-purple-2 h4,
+.color-red-1 h4,
+.color-red-2 h4,
+.color-orange-1 h4,
 .color-orange-2 h4 {color: #1b1c22}
 
 
-.color-light-sky-blue .folder-logo i {color: rgb(110, 183, 249)}
-.color-soft-blue .folder-logo i {color: rgb(165, 212, 255)}
-.color-light-green .folder-logo i {color: rgb(88, 204, 76)}
-.color-peach .folder-logo i {color: rgb(255, 201, 84)}
-.color-lavender .folder-logo i {color: rgb(201, 151, 255)}
-.color-salmon-pink .folder-logo i {color: rgb(255, 118, 118)}
-.color-pink-lavender .folder-logo i {color: rgb(169, 115, 151)}
-.color-sunset-orange .folder-logo i {color: rgb(215 147 124)}
-.color-turquoise .folder-logo i { color: rgb(116 183 164)}
-.color-blue-violet .folder-logo i {color: rgb(115 92 159)}
+.color-blue-1 .folder-logo i {color: rgb(76, 102, 225)}
+.color-blue-2 .folder-logo i {color: rgb(121, 191, 255)}
+.color-blue-3 .folder-logo i {color: rgb(176, 217, 255)}
+.color-green-1 .folder-logo i {color: rgb(98, 191, 164)}
+.color-green-2 .folder-logo i {color: rgb(158, 255, 147)}
+.color-green-3 .folder-logo i {color: rgb(123, 226, 112)}
+.color-purple-1 .folder-logo i {color: rgb(125, 96, 179)}
+.color-purple-2 .folder-logo i {color: rgb(208, 164, 255)}
+.color-red-1 .folder-logo i { color: rgb(255, 127, 127)}
+.color-red-2 .folder-logo i {color: rgb(255, 162, 162)}
+.color-orange-1 .folder-logo i {color: rgb(241, 149, 67)}
+.color-orange-2 .folder-logo i {color: rgb(255, 207, 104)}
 
 
-.color-light-sky-blue .folder-util-bar i,
-.color-soft-blue .folder-util-bar i,
-.color-peach .folder-util-bar i,
-.color-light-green .folder-util-bar i,
-.color-lavender .folder-util-bar i,
-.color-pink-lavender .folder-util-bar i,
-.color-salmon-pink .folder-util-bar i,
-.color-sunset-orange .folder-util-bar i,
-.color-turquoise .folder-util-bar i,
-.color-blue-violet .folder-util-bar i {color: #444863}
+.color-blue-1 .folder-util-bar i,
+.color-blue-2 .folder-util-bar i,
+.color-blue-3 .folder-util-bar i,
+.color-green-1 .folder-util-bar i,
+.color-green-2 .folder-util-bar i,
+.color-green-3 .folder-util-bar i,
+.color-purple-1 .folder-util-bar i,
+.color-purple-2 .folder-util-bar i,
+.color-red-1 .folder-util-bar i,
+.color-red-2 .folder-util-bar i,
+.color-orange-1 .folder-util-bar i,
+.color-orange-2 .folder-util-bar i {color: #444863}
 
 
-.color-light-sky-blue .folder-util-bar i:hover {background-color: rgb(135, 198, 255)}
-.color-soft-blue .folder-util-bar i:hover {background-color: rgb(165, 212, 255)}
-.color-peach .folder-util-bar i:hover {background-color: rgb(255, 208, 107)}
-.color-light-green .folder-util-bar i:hover {background-color: rgb(106, 226, 94)}
-.color-lavender .folder-util-bar i:hover {background-color: rgb(210, 168, 255)}
-.color-pink-lavender .folder-util-bar i:hover {background-color: rgb(214, 150, 192)}
-.color-salmon-pink .folder-util-bar i:hover {background-color: rgb(255, 141, 141)}
-.color-sunset-orange .folder-util-bar i:hover {background-color: rgb(246 170 145)}
-.color-turquoise .folder-util-bar i:hover {background-color: rgb(112 198 173)}
-.color-blue-violet .folder-util-bar i:hover {background-color: rgb(131 104 182)}
+.color-blue-1 .folder-util-bar i:hover {background-color: rgb(76, 102, 225)}
+.color-blue-2 .folder-util-bar i:hover {background-color: rgb(121, 191, 255)}
+.color-blue-3 .folder-util-bar i:hover {background-color: rgb(176, 217, 255)}
+.color-green-1 .folder-util-bar i:hover {background-color: rgb(98, 191, 164)}
+.color-green-2 .folder-util-bar i:hover {background-color: rgb(158, 255, 147)}
+.color-green-3 .folder-util-bar i:hover {background-color: rgb(123, 226, 112)}
+.color-purple-1 .folder-util-bar i:hover {background-color: rgb(125, 96, 179)}
+.color-purple-2 .folder-util-bar i:hover {background-color: rgb(208, 164, 255)}
+.color-red-1 .folder-util-bar i:hover {background-color: rgb(255, 127, 127)}
+.color-red-2 .folder-util-bar i:hover {background-color: rgb(255, 162, 162)}
+.color-orange-1 .folder-util-bar i:hover {background-color: rgb(241, 149, 67)}
+.color-orange-2 .folder-util-bar i:hover {background-color: rgb(255, 207, 104)}

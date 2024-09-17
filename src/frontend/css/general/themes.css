@@ -69,7 +69,7 @@
     --hover-searchbar-options: #1a1b21;
     --hover-text: #5c7dff;
     --hover-toolbar-btns: #383d4c;
-    --hover-sidebar: #617fff69;
+    --hover-sidebar: #28283b;
     --searchbar-placeholder: #d4d7e5; 
     --placeholder: #868b9e;
     --selection: #314682;
@@ -148,7 +148,7 @@
     --notification: #ffffff;
     --subtitle: #63656d;
     --sidebar: #ffffff; 
-    --searchbar: #f6f9ff;
+    --searchbar: #f4f4fc;
     --sidebar-text: #444452; 
     --sidebar-text-hover: #5c7dff; 
     --card: #ffffff; 
@@ -166,7 +166,7 @@
     --selection: #b1daff;
     --dialog: #6fa2ff1c;
     --shadow: rgba(92, 98, 157, .1);
-    --card-shadow: 0 0 10px #e6edfb; 
+    --card-shadow: 5px 5px 18px #eaecf7; 
     --shadow-notification: #dcdee6;
     --modal: #ffffff;
     --scrollbar-content-view: #cccfe1;

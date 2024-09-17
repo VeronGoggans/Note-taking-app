@@ -1,10 +1,9 @@
 from fastapi import APIRouter
 from src.backend.application.taskboard_service import TaskboardService
 from src.backend.data.taskboard.taskboard_manager import TaskboardManager
-from src.backend.presentation.dtos.taskboard_dtos import PutTaskboardDto
 from src.backend.presentation.request_bodies.taskboard_requests import PostTaskboardRequest, PutTaskboardRequest
 from src.backend.presentation.http_status import HttpStatus
-from src.backend.presentation.decorators.controller_decorators import exception_handler
+from src.backend.data.exceptions.exception_handler import handle_exceptions
 
 
 
@@ -20,32 +19,27 @@ class TaskboardRouter:
         self.route.add_api_route('/taskboard/{id}', self.delete_taskboard, methods=['DELETE'])
         
 
-    @exception_handler
+    @handle_exceptions
     def add_taskboard(self, request: PostTaskboardRequest):
-        taskboard = self.service.add_taskboard(request.name, request.description)
-        return {'status': HttpStatus.OK, 'taskboard': taskboard}
+        return {'status': HttpStatus.OK, 'taskboard': self.service.add_taskboard(request.name, request.description)}
        
 
-    @exception_handler
+    @handle_exceptions
     def get_taskboards(self):
-        taskboards = self.service.get_taskboards()
-        return {'status': HttpStatus.OK, 'taskboards': taskboards}
+        return {'status': HttpStatus.OK, 'taskboards': self.service.get_taskboards()}
        
 
-    @exception_handler
+    @handle_exceptions
     def get_taskboard_by_id(self, id: str):
-        taskboard = self.service.get_taskboard_by_id(id)
-        return {'status': HttpStatus.OK, 'taskboard': taskboard}
+        return {'status': HttpStatus.OK, 'taskboard': self.service.get_taskboard_by_id(id)}
 
 
-    @exception_handler
+    @handle_exceptions
     def update_taskboard(self, request: PutTaskboardRequest):
-        request_dto = PutTaskboardDto(request.id, request.name, request.description)
-        self.service.update_taskboard(request_dto)
+        self.service.update_taskboard(request)
         return {'status': HttpStatus.OK}
     
 
-    @exception_handler
+    @handle_exceptions
     def delete_taskboard(self, id: str ):
-        taskboard = self.service.delete_taskboard(id)
-        return {'status': HttpStatus.OK, 'taskboard': taskboard}
+        return {'status': HttpStatus.OK, 'taskboard': self.service.delete_taskboard(id)}

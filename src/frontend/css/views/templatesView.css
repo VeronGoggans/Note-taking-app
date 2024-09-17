@@ -1,8 +1,8 @@
 .templates {
     font-family: Roboto;
     padding: 15px 5%;   
-    height: 100dvh;
-    max-height: 100dvh;
+    height: calc(100dvh - 37px);
+    max-height: calc(100dvh - 37px);
     overflow-y: scroll;
     outline: none;
     opacity: 0;

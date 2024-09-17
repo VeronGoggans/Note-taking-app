@@ -1,5 +1,5 @@
 from src.backend.domain.taskboad import Taskboard
-from src.backend.presentation.dtos.taskboard_dtos import PutTaskboardDto
+from src.backend.presentation.request_bodies.taskboard_requests import *
 from src.backend.data.exceptions.exceptions import AdditionException, NotFoundException
 
 
@@ -29,11 +29,11 @@ class TaskboardManager:
         raise NotFoundException(f'Taskboard with id: {id}, could not be found.')
 
 
-    def update(self, taskboards: list, request_dto: PutTaskboardDto) -> (dict | NotFoundException):
+    def update(self, taskboards: list, request: PutTaskboardRequest) -> (dict | NotFoundException):
         for taskboard in taskboards:
-           if taskboard['id'] == request_dto.id:
-                self.__update_entity(taskboard, request_dto)
-        raise NotFoundException(f'Taskboard with id: {request_dto.id}, could not be found.')
+           if taskboard['id'] == request.id:
+                self.__update_entity(taskboard, request)
+        raise NotFoundException(f'Taskboard with id: {request.id}, could not be found.')
     
 
     def delete(self, taskboards: list, id: str) -> (dict | NotFoundException):
@@ -44,6 +44,6 @@ class TaskboardManager:
         raise NotFoundException(f'Taskboard with id: {id}, could not be found.')    
 
     
-    def __update_entity(self, current_taskboard: dict, updated_taskboard: PutTaskboardDto) -> dict:
+    def __update_entity(self, current_taskboard: dict, updated_taskboard: PutTaskboardRequest) -> dict:
         current_taskboard['name'] = updated_taskboard.name
         current_taskboard['description'] = updated_taskboard.description

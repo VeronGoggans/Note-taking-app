@@ -3,5 +3,10 @@
         "id": "sn-26",
         "name": "Event sourcery",
         "content": ""
+    },
+    {
+        "id": "sn-28",
+        "name": "DDD Quickly",
+        "content": "Literasy for Backend specialisation"
     }
 ]

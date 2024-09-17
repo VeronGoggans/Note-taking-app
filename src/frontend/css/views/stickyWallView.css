@@ -1,7 +1,7 @@
 .sticky-wall-view {
     outline: none;
-    height: 100dvh;
-    max-height: 100dvh;
+    height: calc(100dvh - 37px);
+    max-height: calc(100dvh - 37px);
     font-family: Roboto;
     padding: 15px 5%;
     opacity: 0;

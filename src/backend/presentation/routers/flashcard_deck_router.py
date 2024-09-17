@@ -3,9 +3,7 @@ from src.backend.presentation.http_status import HttpStatus
 from src.backend.application.flashcard_deck_service import FlashcardDeckService
 from src.backend.data.flashcard.flashcard_deck_manager import FlashcardDeckManager
 from src.backend.presentation.request_bodies.flashcard_requests import PostDeckRequest, PutDeckRequest
-from src.backend.presentation.request_bodies.flashcard_requests import PostFlashcardRequest
-from src.backend.presentation.dtos.flashcard_dtos import PostFlashcardDTO
-from src.backend.presentation.decorators.controller_decorators import exception_handler
+from src.backend.data.exceptions.exception_handler import handle_exceptions
 
 
 class FlashcardDeckRouter:
@@ -22,48 +20,38 @@ class FlashcardDeckRouter:
         self.route.add_api_route('/deck/{id}', self.delete_deck, methods=['DELETE'])
 
 
-    @exception_handler
+    @handle_exceptions
     def add_deck(self, request: PostDeckRequest): 
-        flashcards = self.__request_to_dto(request.flashcards)
-        new_deck = self.service.add_deck(request.name, flashcards)
-        return {"status": HttpStatus.OK, 'deck': new_deck}
+        return {"status": HttpStatus.OK, 'deck': self.service.add_deck(request)}
 
 
-    @exception_handler
+    @handle_exceptions
     def get_deck_by_id(self, id: str):
-        deck = self.service.get_deck_by_id(id)
-        return {'status': HttpStatus.OK, "deck": deck}
+        return {'status': HttpStatus.OK, "deck": self.service.get_deck_by_id(id)}
         
 
-    @exception_handler
+    @handle_exceptions
     def get_all_decks(self):
         all_decks, misc = self.service.get_all_decks()
         return {'status': HttpStatus.OK, 'decks': all_decks, 'misc': misc}
         
 
-    @exception_handler
+    @handle_exceptions
     def get_search_items(self):
-        search_items = self.service.get_search_items()
-        return {'status': HttpStatus.OK, 'items': search_items}
+        return {'status': HttpStatus.OK, 'items': self.service.get_search_items()}
         
 
-    @exception_handler
+    @handle_exceptions
     def get_5_random_decks(self):
-        random_decks = self.service.get_random_decks()
-        return {'status': HttpStatus.OK, 'decks': random_decks}
+        return {'status': HttpStatus.OK, 'decks': self.service.get_random_decks()}
         
 
-    @exception_handler
+    @handle_exceptions
     def update_deck(self, request: PutDeckRequest):
         self.service.update_deck(request)
         return {'status': HttpStatus.OK}
         
 
-    @exception_handler
+    @handle_exceptions
     def delete_deck(self, id: str):
-        deck = self.service.delete_deck(id)
-        return {"status": HttpStatus.OK, 'deck': deck}
-        
-
-    def __request_to_dto(self, flashcards: list[PostFlashcardRequest]):
-        return [PostFlashcardDTO(card.term, card.description) for card in flashcards]
+        return {"status": HttpStatus.OK, 'deck': self.service.delete_deck(id)}

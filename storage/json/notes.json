@@ -3,38 +3,29 @@
         "id": "f-1",
         "name": "Home",
         "color": "rgb(255, 255, 255)",
-        "last_visit": "13/09/2024 15:16:28",
-        "notes": [
-            {
-                "id": "n-790",
-                "name": "untitled",
-                "content": "storage/notes/note-n-790.txt",
-                "bookmark": false,
-                "last_edit": "13/09/2024 14:53",
-                "creation": "08/09/2024"
-            }
-        ],
+        "last_visit": "17/09/2024 17:28:41",
+        "notes": [],
         "subfolders": []
     },
     {
         "id": "f-99",
         "name": "School",
         "color": "rgb(255, 255, 255)",
-        "last_visit": "13/09/2024 15:14:00",
+        "last_visit": "16/09/2024 18:34:22",
         "notes": [],
         "subfolders": [
             {
                 "id": "s-191",
                 "name": "Year 2",
                 "color": "rgb(255, 255, 255)",
-                "last_visit": "13/09/2024 15:14:01",
+                "last_visit": "16/09/2024 09:53:29",
                 "notes": [],
                 "subfolders": [
                     {
                         "id": "s-181",
                         "name": "Software Architecture",
                         "color": "rgb(255, 255, 255)",
-                        "last_visit": "13/09/2024 15:00:24",
+                        "last_visit": "15/09/2024 16:38:51",
                         "notes": [
                             {
                                 "id": "n-589",
@@ -107,7 +98,7 @@
                         "id": "s-183",
                         "name": "CISC1",
                         "color": "rgb(255, 255, 255)",
-                        "last_visit": "09/09/2024 10:00:39",
+                        "last_visit": "15/09/2024 15:40:39",
                         "notes": [
                             {
                                 "id": "n-466",
@@ -124,7 +115,7 @@
                         "id": "s-182",
                         "name": "CISC2",
                         "color": "rgb(255, 255, 255)",
-                        "last_visit": "13/09/2024 15:00:33",
+                        "last_visit": "16/09/2024 09:53:18",
                         "notes": [
                             {
                                 "id": "n-609",
@@ -181,7 +172,7 @@
                         "id": "s-197",
                         "name": "BEP2",
                         "color": "rgb(255, 255, 255)",
-                        "last_visit": "13/09/2024 14:23:34",
+                        "last_visit": "15/09/2024 15:40:52",
                         "notes": [
                             {
                                 "id": "n-791",
@@ -200,14 +191,14 @@
                 "id": "s-192",
                 "name": "Year 3",
                 "color": "rgb(255, 255, 255)",
-                "last_visit": "13/09/2024 15:02:08",
+                "last_visit": "16/09/2024 18:36:15",
                 "notes": [],
                 "subfolders": [
                     {
                         "id": "s-196",
                         "name": "Backend Specialisation",
-                        "color": "rgb(217, 237, 255)",
-                        "last_visit": "13/09/2024 15:00:41",
+                        "color": "rgb(121, 144, 255)",
+                        "last_visit": "16/09/2024 15:18:39",
                         "notes": [
                             {
                                 "id": "n-787",
@@ -222,8 +213,16 @@
                                 "name": "Tachnical DDD",
                                 "content": "storage/notes/note-n-794.txt",
                                 "bookmark": false,
-                                "last_edit": "10/09/2024 11:15",
+                                "last_edit": "16/09/2024 13:15",
                                 "creation": "10/09/2024"
+                            },
+                            {
+                                "id": "n-805",
+                                "name": "Remote Procedure Call",
+                                "content": "storage/notes/note-n-805.txt",
+                                "bookmark": false,
+                                "last_edit": "16/09/2024 15:17",
+                                "creation": "14/09/2024"
                             }
                         ],
                         "subfolders": []
@@ -232,15 +231,23 @@
                         "id": "s-193",
                         "name": "Innovation",
                         "color": "rgb(255, 255, 255)",
-                        "last_visit": "13/09/2024 15:01:57",
+                        "last_visit": "16/09/2024 18:36:10",
                         "notes": [
                             {
                                 "id": "n-796",
                                 "name": "ISMS Tech Stack",
                                 "content": "storage/notes/note-n-796.txt",
-                                "bookmark": true,
-                                "last_edit": "13/09/2024 15:02",
+                                "bookmark": false,
+                                "last_edit": "16/09/2024 18:36",
                                 "creation": "11/09/2024"
+                            },
+                            {
+                                "id": "n-804",
+                                "name": "Gilde",
+                                "content": "storage/notes/note-n-804.txt",
+                                "bookmark": false,
+                                "last_edit": "16/09/2024 18:34",
+                                "creation": "14/09/2024"
                             }
                         ],
                         "subfolders": []
@@ -248,5 +255,64 @@
                 ]
             }
         ]
+    },
+    {
+        "id": "f-187",
+        "name": "Drafts",
+        "color": "rgb(121, 144, 255)",
+        "last_visit": "17/09/2024 17:26:58",
+        "notes": [
+            {
+                "id": "n-802",
+                "name": "Future features",
+                "content": "storage/notes/note-n-802.txt",
+                "bookmark": false,
+                "last_edit": "16/09/2024 15:36",
+                "creation": "14/09/2024"
+            }
+        ],
+        "subfolders": []
+    },
+    {
+        "id": "f-188",
+        "name": "ByteStream",
+        "color": "rgb(255, 255, 255)",
+        "last_visit": "17/09/2024 17:28:37",
+        "notes": [
+            {
+                "id": "n-803",
+                "name": "Start Document",
+                "content": "storage/notes/note-n-803.txt",
+                "bookmark": false,
+                "last_edit": "15/09/2024 03:36",
+                "creation": "14/09/2024"
+            }
+        ],
+        "subfolders": []
+    },
+    {
+        "id": "f-189",
+        "name": "Testing new features",
+        "color": "rgb(158, 213, 197)",
+        "last_visit": "17/09/2024 17:28:33",
+        "notes": [
+            {
+                "id": "n-806",
+                "name": "Image resize",
+                "content": "storage/notes/note-n-806.txt",
+                "bookmark": false,
+                "last_edit": "17/09/2024 17:27",
+                "creation": "14/09/2024"
+            },
+            {
+                "id": "n-807",
+                "name": "Link preview",
+                "content": "storage/notes/note-n-807.txt",
+                "bookmark": false,
+                "last_edit": "14/09/2024 18:20",
+                "creation": "14/09/2024"
+            }
+        ],
+        "subfolders": []
     }
 ]

@@ -1,7 +1,7 @@
 .task-board-view {
     outline: none;
-    height: 100dvh;
-    max-height: 100dvh;
+    height: calc(100dvh - 37px);
+    max-height: calc(100dvh - 37px);
     font-family: Roboto;
     display: flex;
     flex-direction: column;
@@ -50,8 +50,8 @@
     grid-template-rows: 40px 1fr;
     row-gap: 20px;
     margin: 0 auto;
-    width: 90%;
-    max-width: 90%;
+    width: 100%;
+    max-width: 100%;
 }
 
 .task-board section {
@@ -77,6 +77,13 @@
     width: 33%;
     min-height: 150px;
     max-height: fit-content;
+}
+
+.board section .tasks {
+    margin: 0 7px 7px 7px;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    min-height: 100px;
 }
 
 .board .todo {

@@ -1,7 +1,7 @@
 from src.backend.data.note.note_manager import NoteManager
-from src.backend.presentation.dtos.note_dtos import *
+from src.backend.presentation.request_bodies.note_requests import PostNoteRequest, PutNoteRequest
 from src.backend.domain.note import Note
-from src.backend.data.exceptions.exceptions import NotFoundException, AdditionException
+from src.backend.data.exceptions.exceptions import *
 from src.backend.data.file.json_manager import JsonManager
 from src.backend.util.paths import FOLDERS_PATH
 
@@ -12,14 +12,14 @@ class NoteService:
         self.json_manager = json_manager
 
 
-    def add_note(self, request_dto: PostNoteDto) -> Note:
+    def add_note(self, request: PostNoteRequest) -> Note:
         note_id = self.json_manager.generate_id('note')
-        note = Note(note_id, request_dto.name, request_dto.content)
+        note = Note(note_id, request.name, request.content)
         note.set_content_path()
 
         folders = self.json_manager.load(FOLDERS_PATH)
         try:
-            note = self.note_manager.add_note(folders, request_dto.folder_id, note)
+            note = self.note_manager.add_note(folders, request.folder_id, note)
             self.json_manager.update(FOLDERS_PATH, folders)
             return note
         except AdditionException as e:
@@ -50,10 +50,10 @@ class NoteService:
         return self.note_manager.get_top_6_most_recent_notes(notes)
     
 
-    def update_note(self, request_dto: PutNoteDto) -> Note:
+    def update_note(self, request: PutNoteRequest) -> Note:
         folders = self.json_manager.load(FOLDERS_PATH)
         try:
-            note = self.note_manager.update_note(folders, request_dto)
+            note = self.note_manager.update_note(folders, request)
             self.json_manager.update(FOLDERS_PATH, folders)
             return note 
         except NotFoundException as e:

@@ -1,6 +1,6 @@
 from src.backend.domain.factory import Factory
 from src.backend.domain.template import Template
-from src.backend.presentation.dtos.template_dtos import *
+from src.backend.presentation.request_bodies.template_requests import *
 from src.backend.data.exceptions.exceptions import *
 from src.backend.util.calendar import Calendar
 
@@ -51,10 +51,10 @@ class TemplateManager:
         return template_objects
 
 
-    def update(self, templates: list, request_dto: PutTemplateDto) -> (Template | NotFoundException):
+    def update(self, templates: list, request: PutTemplateRequest) -> (Template | NotFoundException):
         for template in templates:
-            if template['id'] == request_dto.template_id:
-                updated_template = self.__update_entity(template, request_dto)
+            if template['id'] == request.id:
+                updated_template = self.__update_entity(template, request)
                 return updated_template
         raise NotFoundException(f'Template with id: {id}, could not be found')
     
@@ -68,16 +68,16 @@ class TemplateManager:
         raise NotFoundException(f'Template with id: {id}, could not be found')
     
 
-    def __update_entity(self, old_template: dict, request_dto: PutTemplateDto) -> Template:
+    def __update_entity(self, old_template: dict, request: PutTemplateRequest) -> Template:
         current_time = Calendar.datetime()
 
         template = Template.from_json(old_template)
-        template.update_content(template.content, request_dto.content)
-        template.name = request_dto.name
-        template.content = request_dto.content
+        template.update_content(template.content, request.content)
+        template.name = request.name
+        template.content = request.content
         template.last_edit = current_time
 
-        old_template['name'] = request_dto.name
+        old_template['name'] = request.name
         old_template['last_edit'] = current_time
         return template
     

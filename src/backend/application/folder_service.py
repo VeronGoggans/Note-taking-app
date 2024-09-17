@@ -1,6 +1,6 @@
 from src.backend.data.folder.folder_manager import FolderManager
-from src.backend.presentation.dtos.folder_dtos import FolderRequestDto, PutFolderRequestDto
-from src.backend.data.exceptions.exceptions import NotFoundException, AdditionException, InvalidMoveRequestException
+from src.backend.presentation.request_bodies.folder_requests import *
+from src.backend.data.exceptions.exceptions import *
 from src.backend.domain.folder import Folder
 from src.backend.data.file.json_manager import JsonManager
 from src.backend.util.paths import FOLDERS_PATH, FOR_FOLDER
@@ -12,11 +12,11 @@ class FolderService:
         self.json_manager = json_manager
 
 
-    def add_folder(self, request_dto: FolderRequestDto) -> Folder:
+    def add_folder(self, request: FolderRequest) -> Folder:
         folders = self.json_manager.load(FOLDERS_PATH)
-        parent_id = request_dto.folder_id
+        parent_id = request.folder_id
         id = self.__generate_id(parent_id)
-        folder = Folder(id, request_dto.name)
+        folder = Folder(id, request.name)
 
         try:
             new_folder = self.manager.add_folder(folders, parent_id, folder)
@@ -56,10 +56,10 @@ class FolderService:
             raise e
 
 
-    def update_folder(self, request_dto: PutFolderRequestDto) -> object:
+    def update_folder(self, request: PutFolderRequest) -> object:
         folders = self.json_manager.load(FOLDERS_PATH)
         try:
-            folder = self.manager.update_folder(folders, request_dto.folder_id, request_dto.name, request_dto.color)
+            folder = self.manager.update_folder(folders, request.folder_id, request.name, request.color)
             self.json_manager.update(FOLDERS_PATH, folders)
             return folder
         except NotFoundException as e:
@@ -75,13 +75,13 @@ class FolderService:
             raise e
         
 
-    def move_folder(self, new_parent_folder_id: str, folder_id: str) -> Folder:
+    def move_folder(self, request: MoveFolderRequest) -> Folder:
         folders = self.json_manager.load(FOLDERS_PATH)
         try:
-            folder = self.manager.delete_folder(folders, folder_id)
+            folder = self.manager.delete_folder(folders, request.folder_id)
             folder_object_to_move = Folder.from_json(folder)
 
-            folder_with_new_parent = self.manager.add_folder(folders, new_parent_folder_id, folder_object_to_move)
+            folder_with_new_parent = self.manager.add_folder(folders, request.new_parent_folder_id, folder_object_to_move)
             self.json_manager.update(FOLDERS_PATH, folders)
             return folder_with_new_parent
         except (NotFoundException | AdditionException) as e:

@@ -88,8 +88,8 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     grid-template-rows: repeat(auto-fill, 320px);
-    height: calc(100dvh - 180px);
-    max-height: calc(100dvh - 180px);
+    height: calc(100dvh - 220px);
+    max-height: calc(100dvh - 220px);
     overflow-y: scroll;
     padding-bottom: 5%;
 }

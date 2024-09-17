@@ -4,7 +4,7 @@ from src.backend.data.template.template_manager import TemplateManager
 from src.backend.presentation.http_status import HttpStatus
 from src.backend.presentation.request_bodies.template_requests import *
 from src.backend.presentation.dtos.template_dtos import *
-from src.backend.presentation.decorators.controller_decorators import exception_handler
+from src.backend.data.exceptions.exception_handler import handle_exceptions
 
 class TemplateRouter:
     def __init__(self, json_manager):
@@ -21,45 +21,37 @@ class TemplateRouter:
         self.route.add_api_route('/template/{template_id}', self.delete_template, methods=['DELETE'])
 
 
-    @exception_handler
+    @handle_exceptions
     def get_templates(self):
         recent, other, total_uses, most_used = self.service.get_templates()
         return {'status': HttpStatus.OK, 'recent': recent, 'other': other, 'totalUses': total_uses, 'mostUsed': most_used}
 
 
-    @exception_handler
+    @handle_exceptions
     def get_template_by_id(self, id: str, update_use_count: bool):
-        template = self.service.get_template_by_id(id, update_use_count)
-        return {'status': HttpStatus.OK, 'template': template}
+        return {'status': HttpStatus.OK, 'template': self.service.get_template_by_id(id, update_use_count)}
         
 
-    @exception_handler
+    @handle_exceptions
     def get_template_names(self):
-        templates = self.service.get_template_names()
-        return {'status': HttpStatus.OK, 'templates': templates}
+        return {'status': HttpStatus.OK, 'templates': self.service.get_template_names()}
     
 
-    @exception_handler
+    @handle_exceptions
     def get_search_items(self):
-        templates = self.service.get_template_names()
-        return {'status': HttpStatus.OK, 'templates': templates}
+        return {'status': HttpStatus.OK, 'templates': self.service.get_template_names()}
     
     
-    @exception_handler
+    @handle_exceptions
     def add_template(self, request: PostTemplateRequest):
-        request_dto = PostTemplateDto(request.name, request.content)
-        template = self.service.add_template(request_dto)
-        return {'status': HttpStatus.OK, 'template': template}
+        return {'status': HttpStatus.OK, 'template': self.service.add_template(request)}
     
 
-    @exception_handler
+    @handle_exceptions
     def update_template(self, request: PutTemplateRequest):
-            request_dto = PutTemplateDto(request.id, request.name, request.content)
-            template = self.service.update_template(request_dto)
-            return {'status': HttpStatus.OK, 'template': template}
+            return {'status': HttpStatus.OK, 'template': self.service.update_template(request)}
 
 
-    @exception_handler
+    @handle_exceptions
     def delete_template(self, template_id: str):
-        template = self.service.delete_template(template_id)
-        return {'status': HttpStatus.OK, 'template': template}  
+        return {'status': HttpStatus.OK, 'template': self.service.delete_template(template_id)}  

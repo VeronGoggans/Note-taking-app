@@ -24,9 +24,9 @@ export function addDraggImage(event, draggedElement, imageType) {
 class DragImage {
     constructor(type) {
         /**
-         * type is either ( folder ) or ( file )
+         * type is either ( folder ) or ( file ) or ( thumbtack )
          * representing the fontAwesome icon class of 
-         * ( fa-solid fa-folder ) or ( fa-solid fa-file )
+         * ( fa-solid fa-folder ) or ( fa-solid fa-file ) or ( fa-solid fa-thumbtack )
         */
         this.HOST = CNode.create('div', {'class': 'drag-image'});
         this.ICON = CNode.create('i', {'class': `fa-solid fa-${type}`})

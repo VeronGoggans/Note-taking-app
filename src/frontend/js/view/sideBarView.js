@@ -76,7 +76,7 @@ export class SidebarView {
             this.sidebarSpans[i].textContent = sidebarButtonText[i];
 
             this.sidebarIcons[i].style.position = 'absolute';
-            this.sidebarIcons[i].style.left = '10px';
+            this.sidebarIcons[i].style.left = '12px';
 
             this.sidebarButtons[i].style.justifyContent = 'normal';
         }

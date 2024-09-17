@@ -72,6 +72,7 @@ export class Folder {
             event.dataTransfer.setData('text/plain', `{"draggedItem": "folder", "draggedCardId": "${this.id}"}`)
         }); 
 
+        // Remove the drag style when done dragging
         this.HOST.addEventListener('dragend', () => {this.HOST.classList.remove('dragging')})
 
         this.HOST.addEventListener('dragover', (event) => {

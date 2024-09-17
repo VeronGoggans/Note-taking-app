@@ -4,7 +4,7 @@ from src.backend.presentation.request_bodies.flashcard_requests import PutDeckRe
 from src.backend.presentation.dtos.flashcard_dtos import PostFlashcardDTO
 from src.backend.domain.flashcard_deck import FlashcardDeck
 from src.backend.data.file.text_manager import TextManager
-from src.backend.data.exceptions.exceptions import SerializationException, AdditionException, NotFoundException, DeserializationException
+from src.backend.data.exceptions.exceptions import *
 from src.backend.util.paths import FLASHCARDS_PATH, MISC_PATH
 
 

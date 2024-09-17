@@ -4,7 +4,7 @@
     font-family: sans-serif;
     color: var(--important);
     overflow-y: scroll;
-    max-height: 100dvh;
+    max-height: calc(100dvh - 37px);
     opacity: 0;
     transform: translateX(30%);
     transition: opacity .7s ease, transform .2s ease;

@@ -1,7 +1,7 @@
 from src.backend.data.template.template_manager import TemplateManager
 from src.backend.data.file.json_manager import JsonManager
 from src.backend.domain.template import Template
-from src.backend.presentation.dtos.template_dtos import *
+from src.backend.presentation.request_bodies.template_requests import *
 from src.backend.data.exceptions.exceptions import *
 from src.backend.util.paths import TEMPLATES_PATH
 
@@ -11,11 +11,11 @@ class TemplateService:
         self.json_manager = json_manager
 
     
-    def add_template(self, request_dto: PostTemplateDto) -> Template:
+    def add_template(self, request: PostTemplateRequest) -> Template:
         template_id = self.json_manager.generate_id('template')
         template_structure = self.json_manager.load(TEMPLATES_PATH)
 
-        template = Template(template_id, request_dto.name, request_dto.content)
+        template = Template(template_id, request.name, request.content)
         template.set_content_path()
         try:
             new_template = self.manager.add(template_structure, template)
@@ -51,10 +51,10 @@ class TemplateService:
         return templates
 
 
-    def update_template(self, request_dto: PutTemplateDto):
+    def update_template(self, request: PutTemplateRequest):
         template_structure = self.json_manager.load(TEMPLATES_PATH)
         try:
-            updated_template = self.manager.update(template_structure, request_dto)
+            updated_template = self.manager.update(template_structure, request)
             self.json_manager.update(TEMPLATES_PATH, template_structure)
             return updated_template
         except NotFoundException as e:
