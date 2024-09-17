@@ -2,7 +2,6 @@ from fastapi import APIRouter
 from src.backend.application.note_service import NoteService
 from src.backend.data.note.note_manager import NoteManager
 from src.backend.presentation.request_bodies.note_requests import *
-from src.backend.presentation.dtos.note_dtos import *
 from src.backend.presentation.http_status import HttpStatus
 from src.backend.data.exceptions.exception_handler import handle_exceptions
 
@@ -68,7 +67,7 @@ class NoteRouter:
 
     @handle_exceptions
     def move_note(self, request: MoveNoteRequest):
-        return {'status': HttpStatus.OK, 'note': self.service.move_note(request)}
+        return {'status': HttpStatus.OK, 'note': self.service.move_note(request.folder_id, request.note_id)}
 
 
     @handle_exceptions

@@ -3,7 +3,7 @@ export class PlacementHelper {
         this.formatBarWidth = 490 //Pixels
         this.formatBarHeigth = 51.6 // Pixels
         this.commandBarHeigth = 300 //Pixels
-        this.commandBarWidth = 255 // Pixels
+        this.commandBarWidth = 300 // Pixels
         this.paddingY = 50 //Pixels
 
         this.sidebar = document.querySelector('.sidebar');
@@ -29,7 +29,7 @@ export class PlacementHelper {
         const xPosition = this.#checkForWidthOverflow(rect, this.commandBarWidth);
         const overflow = this.#checkForHeightOverflow(rect);
         if (overflow) {
-            this.forwardSlashCommandContainer.style.top = `${rect.bottom + window.scrollY + this.paddingY + 5}px`;
+            this.forwardSlashCommandContainer.style.top = `${rect.bottom + window.scrollY  + 5}px`;
         } else {
             this.forwardSlashCommandContainer.style.top = `${rect.top + window.scrollY - this.commandBarHeigth - this.paddingY}px`;
         }

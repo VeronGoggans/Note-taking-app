@@ -6,8 +6,12 @@ export class TextBlockHandler {
     parse() {        
         this.headings = this.page.querySelectorAll('h1, h2, h3, h4, h5, h6');
         this.anchorTags = this.page.querySelectorAll('a');
-        
         this.#attachEventListeners();
+    }
+
+    renderLinkPreview() {
+        console.log("Preview ?");
+        
     }
 
     #attachEventListeners() {
@@ -29,7 +33,13 @@ export class TextBlockHandler {
         this.anchorTags.forEach(function(link) {
             link.addEventListener('click', () => {
                 window.open(link.href)
-            })
+            });
         });
+
+        this.anchorTags.forEach((link) => {
+            link.addEventListener('mouseover', () => {
+                this.renderLinkPreview();
+            });
+        })
     }
 }

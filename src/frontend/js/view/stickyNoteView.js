@@ -28,7 +28,9 @@ export class StickyNoteView extends BaseView {
     renderOne(stickyNote) {
         const stickyNoteCard = this.#stickyNote(stickyNote);
         AnimationHandler.fadeInFromBottom(stickyNoteCard);
-        this._stickyWall.insertBefore(stickyNoteCard, this._stickyWall.firstChild);
+        this._stickyWall.insertBefore(stickyNoteCard, this._stickyWall.lastElementChild);
+        console.log(this._stickyWall.lastChild);
+        
     }
 
     renderDelete(stickyNoteId) {

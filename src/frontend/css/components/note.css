@@ -99,7 +99,10 @@
     cursor: pointer;
 }
 
-.note-content-box img {max-width: 100px}
+.note-content-box img {
+    max-width: 100px;
+    border-radius: 5px;
+}
 
 .note-content-box i {
     border-radius: 50%;

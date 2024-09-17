@@ -84,7 +84,7 @@
     grid-template-rows: 30px 1fr;
     border-radius: 10px;
     border: 1px solid var(--border-sidebar-right);
-    width: fit-content;
+    width: 300px;
     padding: 20px;
     row-gap: 10px;
     max-height: 300px;

@@ -21,7 +21,6 @@ class FolderRouter:
         self.route.add_api_route('/viewedFolderTime/{folder_id}', self.folder_visit, methods=['PATCH'])
 
 
-    @handle_exceptions
     def add_folder(self, request: FolderRequest):
         return {'status': HttpStatus.OK, "folder": self.service.add_folder(request)}
         

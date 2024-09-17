@@ -3,7 +3,6 @@ from src.backend.application.template_service import TemplateService
 from src.backend.data.template.template_manager import TemplateManager
 from src.backend.presentation.http_status import HttpStatus
 from src.backend.presentation.request_bodies.template_requests import *
-from src.backend.presentation.dtos.template_dtos import *
 from src.backend.data.exceptions.exception_handler import handle_exceptions
 
 class TemplateRouter:

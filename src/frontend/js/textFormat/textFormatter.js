@@ -2,11 +2,7 @@ import {CNode} from "../util/CNode.js";
 import { getCurrentDateAndTime } from "../util/date.js";
 
 export class TextFormatter {
-  constructor() {
 
-  }
-  
-  
   addHorizontalLine(range, lineType = null) {
     const br = document.createElement('br');
     range.insertNode(br);
@@ -168,31 +164,6 @@ export class TextFormatter {
     })
     range.insertNode(container);
     inputTag.focus();
-  }
-
-  static addNoteLink(noteId, noteName) {
-    const range = window.getSelection().getRangeAt(0);
-
-    const linkContainer = CNode.create('div', {'class': 'linked-note-container', 'id': noteId, 'contentEditable': 'false'});
-    const linkIcon = CNode.create('i', {'class': 'fa-solid fa-paperclip'});
-    const name = CNode.create('span', {'textContent': noteName, 'class': 'linked-note-name'});
-    const fileIcon = CNode.create('i', {'class': 'fa-regular fa-file-lines'});
-
-    linkContainer.append(fileIcon, name, linkIcon);
-    range.insertNode(linkContainer);
- }
-
-  /**
-   * This method listens for linked note container clicks.
-   * 
-   * When note link containers are loaded in they don't have eventlisteners on them by default.
-   * This method creates those event listener for each link container.
-   */
-  static listenForNoteLinkClicks(page, controller) {
-    const LINKS = page.querySelectorAll('.linked-note-container');
-    LINKS.forEach(function(link) {
-      link.addEventListener('click', () => {controller.getSearchedNote(link.id)});
-    });
   }
 
 
