@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from src.backend.application.services.template_service import TemplateService
-from src.backend.data.template.template_manager import TemplateManager
+from src.backend.data.managers.template_manager import TemplateManager
 from src.backend.presentation.http_status import HttpStatus
 from src.backend.presentation.request_bodies.template_requests import *
 from src.backend.data.exceptions.exception_handler import handle_exceptions

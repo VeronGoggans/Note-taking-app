@@ -1,4 +1,4 @@
-from src.backend.data.taskboard.taskboard_manager import TaskboardManager
+from src.backend.data.managers.taskboard_manager import TaskboardManager
 from src.backend.domain.taskboad import Taskboard
 from src.backend.presentation.request_bodies.taskboard_requests import *
 from src.backend.data.exceptions.exceptions import *

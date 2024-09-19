@@ -1,4 +1,3 @@
-from src.backend.domain.factory import Factory
 from src.backend.domain.template import Template
 from src.backend.presentation.request_bodies.template_requests import *
 from src.backend.data.exceptions.exceptions import *
@@ -11,7 +10,7 @@ class TemplateManager:
         pass
 
 
-    def get_all(self) -> (tuple | DeserializationException):
+    def get_all(self) -> (tuple):
         pass
         
 

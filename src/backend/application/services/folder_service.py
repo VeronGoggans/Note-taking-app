@@ -1,4 +1,4 @@
-from src.backend.data.folder.folder_manager import FolderManager
+from src.backend.data.managers.folder_manager import FolderManager
 from src.backend.presentation.request_bodies.folder_requests import *
 from src.backend.data.exceptions.exceptions import *
 from src.backend.domain.folder import Folder

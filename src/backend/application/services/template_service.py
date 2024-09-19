@@ -1,4 +1,4 @@
-from src.backend.data.template.template_manager import TemplateManager
+from src.backend.data.managers.template_manager import TemplateManager
 from src.backend.domain.template import Template
 from src.backend.presentation.request_bodies.template_requests import *
 from src.backend.data.exceptions.exceptions import *

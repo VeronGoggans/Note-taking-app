@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from src.backend.data.folder.folder_manager import FolderManager
+from src.backend.data.managers.folder_manager import FolderManager
 from src.backend.presentation.request_bodies.folder_requests import FolderRequest, MoveFolderRequest, PutFolderRequest
 from src.backend.presentation.http_status import HttpStatus
 from src.backend.application.services.folder_service import FolderService
