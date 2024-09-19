@@ -3,7 +3,7 @@
         "id": "f-1",
         "name": "Home",
         "color": "rgb(255, 255, 255)",
-        "last_visit": "17/09/2024 18:50:12",
+        "last_visit": "17/09/2024 18:56:45",
         "notes": [],
         "subfolders": []
     },
@@ -11,21 +11,21 @@
         "id": "f-99",
         "name": "School",
         "color": "rgb(255, 255, 255)",
-        "last_visit": "17/09/2024 18:00:09",
+        "last_visit": "17/09/2024 18:54:08",
         "notes": [],
         "subfolders": [
             {
                 "id": "s-191",
                 "name": "Year 2",
                 "color": "rgb(255, 255, 255)",
-                "last_visit": "16/09/2024 09:53:29",
+                "last_visit": "17/09/2024 18:54:29",
                 "notes": [],
                 "subfolders": [
                     {
                         "id": "s-181",
                         "name": "Software Architecture",
                         "color": "rgb(255, 255, 255)",
-                        "last_visit": "15/09/2024 16:38:51",
+                        "last_visit": "17/09/2024 18:54:34",
                         "notes": [
                             {
                                 "id": "n-589",
@@ -115,7 +115,7 @@
                         "id": "s-182",
                         "name": "CISC2",
                         "color": "rgb(255, 255, 255)",
-                        "last_visit": "16/09/2024 09:53:18",
+                        "last_visit": "17/09/2024 18:54:13",
                         "notes": [
                             {
                                 "id": "n-609",
@@ -260,24 +260,15 @@
         "id": "f-187",
         "name": "Drafts",
         "color": "rgb(121, 144, 255)",
-        "last_visit": "17/09/2024 18:50:09",
-        "notes": [
-            {
-                "id": "n-802",
-                "name": "Future features",
-                "content": "storage/notes/note-n-802.txt",
-                "bookmark": false,
-                "last_edit": "16/09/2024 15:36",
-                "creation": "14/09/2024"
-            }
-        ],
+        "last_visit": "17/09/2024 18:56:14",
+        "notes": [],
         "subfolders": []
     },
     {
         "id": "f-188",
         "name": "ByteStream",
         "color": "rgb(255, 255, 255)",
-        "last_visit": "17/09/2024 18:09:00",
+        "last_visit": "17/09/2024 18:56:36",
         "notes": [
             {
                 "id": "n-803",
@@ -285,6 +276,23 @@
                 "content": "storage/notes/note-n-803.txt",
                 "bookmark": false,
                 "last_edit": "15/09/2024 03:36",
+                "creation": "14/09/2024"
+            }
+        ],
+        "subfolders": []
+    },
+    {
+        "id": "f-195",
+        "name": "Neutron",
+        "color": "rgb(255, 255, 255)",
+        "last_visit": "17/09/2024 18:56:42",
+        "notes": [
+            {
+                "id": "n-802",
+                "name": "Future features",
+                "content": "storage/notes/note-n-802.txt",
+                "bookmark": false,
+                "last_edit": "16/09/2024 15:36",
                 "creation": "14/09/2024"
             }
         ],

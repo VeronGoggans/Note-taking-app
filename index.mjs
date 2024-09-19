@@ -38,8 +38,6 @@ function createWindow () {
   ipcMain.on("manualClose", () => {
     win.close()
   })
-
-  win.webContents.openDevTools();
 }
 
 function startFastAPIServer() {
