@@ -1,19 +1,13 @@
 from src.backend.domain.flashcard_deck import FlashcardDeck
 from src.backend.presentation.dtos.flashcard_dtos import PostFlashcardDTO, FlashcardDTO
-from src.backend.data.file.flashcard_serializer import FlashcardSerializer
-from src.backend.data.file.text_manager import TextManager
 from src.backend.data.exceptions.exceptions import AdditionException, NotFoundException, DeserializationException
 import random
 
 class FlashcardDeckManager:
-    def __init__(self) -> None:
-        self.serializer = FlashcardSerializer()
-
 
     def add(self, decks: list, deck: FlashcardDeck, flashcards: list[PostFlashcardDTO]):
         try:
             flashcard_dtos = self.__create_flashcard_dto(flashcards)
-            self.serializer.serialize(deck.flashcards_path, flashcard_dtos)
             decks.append(deck.__dict__)
             return deck
         except Exception as e:
@@ -77,15 +71,12 @@ class FlashcardDeckManager:
         for deck in decks:
             if deck['id'] == id:
                 decks.remove(deck)
-                TextManager.delete(deck['flashcards_path'])
                 return deck
         raise NotFoundException(f'Deck with id: {id}, could not be found.')
 
 
     def __fill_deck_with_cards(self, deck: FlashcardDeck, cards_path: str) -> FlashcardDeck:
         try:
-            flashcards = self.serializer.deserialize(cards_path)
-            deck.fill_set_with_cards(flashcards)
             deck.calculate_progress()
             return deck
         except DeserializationException as e:

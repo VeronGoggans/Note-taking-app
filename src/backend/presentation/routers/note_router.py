@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from src.backend.application.note_service import NoteService
+from src.backend.application.services.note_service import NoteService
 from src.backend.data.note.note_manager import NoteManager
 from src.backend.presentation.request_bodies.note_requests import *
 from src.backend.presentation.http_status import HttpStatus
@@ -17,21 +17,9 @@ class NoteRouter:
         self.route.add_api_route('/noteById/{note_id}', self.get_note_by_id, methods=['GET'])
         self.route.add_api_route('/noteSearchItems', self.get_search_items, methods=['GET'])
         self.route.add_api_route('/recentNotes', self.get_recent_notes, methods=['GET'])
-        self.route.add_api_route('/cache', self.cache, methods=['GET'])
         self.route.add_api_route('/note', self.update_note, methods=['PUT'])
         self.route.add_api_route('/moveNote', self.move_note, methods=['PUT'])
         self.route.add_api_route('/note/{note_id}', self.delete_note, methods=['DELETE'])
-        
-
-    
-       
-
-    def cache(self):
-        response = self.service.get_cache()
-
-        if response != HttpStatus.INTERAL_SERVER_ERROR:
-            return {'HttpStatus_code': HttpStatus.OK, "Cache-content": response}
-        return {'HttpStatus_code': response}
 
 
     @handle_exceptions

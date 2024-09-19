@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from src.backend.presentation.http_status import HttpStatus
-from src.backend.application.setting_service import SettingService
+from src.backend.application.services.setting_service import SettingService
 
 class SettingRouter:
     def __init__(self, json_manager):

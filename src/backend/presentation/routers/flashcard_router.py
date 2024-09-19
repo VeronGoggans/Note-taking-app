@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from src.backend.presentation.http_status import HttpStatus
-from src.backend.application.flashcard_service import FlashcardService
+from src.backend.application.services.flashcard_service import FlashcardService
 from src.backend.data.flashcard.flashcard_manager import FlashcardManager
 from src.backend.presentation.request_bodies.flashcard_requests import *
 from src.backend.presentation.dtos.flashcard_dtos import PostFlashcardDTO, FlashcardDTO

@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from src.backend.presentation.http_status import HttpStatus
-from src.backend.application.flashcard_deck_service import FlashcardDeckService
+from src.backend.application.services.flashcard_deck_service import FlashcardDeckService
 from src.backend.data.flashcard.flashcard_deck_manager import FlashcardDeckManager
 from src.backend.presentation.request_bodies.flashcard_requests import PostDeckRequest, PutDeckRequest
 from src.backend.data.exceptions.exception_handler import handle_exceptions

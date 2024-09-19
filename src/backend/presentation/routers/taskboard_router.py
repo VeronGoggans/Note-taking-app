@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from src.backend.application.taskboard_service import TaskboardService
+from src.backend.application.services.taskboard_service import TaskboardService
 from src.backend.data.taskboard.taskboard_manager import TaskboardManager
 from src.backend.presentation.request_bodies.taskboard_requests import PostTaskboardRequest, PutTaskboardRequest
 from src.backend.presentation.http_status import HttpStatus

@@ -2,7 +2,7 @@ from fastapi import APIRouter
 from src.backend.data.folder.folder_manager import FolderManager
 from src.backend.presentation.request_bodies.folder_requests import FolderRequest, MoveFolderRequest, PutFolderRequest
 from src.backend.presentation.http_status import HttpStatus
-from src.backend.application.folder_service import FolderService
+from src.backend.application.services.folder_service import FolderService
 from src.backend.data.exceptions.exception_handler import handle_exceptions
 
 class FolderRouter:

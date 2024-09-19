@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from src.backend.application.sticky_note_service import StickyNoteService
+from src.backend.application.services.sticky_note_service import StickyNoteService
 from src.backend.data.note.sticky_note_manager import StickyNoteManager
 from src.backend.presentation.request_bodies.note_requests import PostStickyNoteRequest, PutStickyNoteRequest
 from src.backend.presentation.http_status import HttpStatus
