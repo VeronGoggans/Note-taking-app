@@ -1,8 +1,8 @@
+from sqlalchemy.orm import Session
 from src.backend.data.managers.template_manager import TemplateManager
-from src.backend.domain.template import Template
+from src.backend.data.models import Template
 from src.backend.presentation.request_bodies.template_requests import *
 from src.backend.data.exceptions.exceptions import *
-from src.backend.application.decorators.exceptions import check_for_null 
 
 
 class TemplateService:
@@ -10,36 +10,31 @@ class TemplateService:
         self.manager = template_manager
 
     
-    def add_template(self, request: PostTemplateRequest) -> Template:
-        template = Template(1, request.name, request.content)
-        try:
-            return self.manager.add(template)
-        except AdditionException as e:
-            raise e
+    def add_template(self, request: PostTemplateRequest, db: Session) -> Template:
+        template = Template(
+            name = request.name, 
+            content = request.content
+            )
+        return self.manager.add(template, db)
 
 
-    @check_for_null
-    def get_templates(self) -> list[list[Template], list[Template]]:
-        return self.manager.get_all()
+    def get_templates(self, db: Session) -> list[list[Template], list[Template]]:
+        return self.manager.get_all(db)
         
         
-    @check_for_null
-    def get_template_by_id(self, id: str, update_use_count: bool) -> Template:
-        return self.manager.get_by_id(id, update_use_count)
+    def get_template_by_id(self, id: int, update_use_count: bool, db: Session) -> ( Template | NotFoundException ):
+        return self.manager.get_by_id(id, update_use_count, db)
 
 
-    @check_for_null
-    def get_template_names(self) -> list:
-        return self.manager.get_all_names()
+    def get_template_names(self, db: Session) -> list[dict]:
+        return self.manager.get_all_names(db)
 
 
-    @check_for_null
-    def update_template(self, request: PutTemplateRequest):
-        return self.manager.update(request)
+    def update_template(self, request: PutTemplateRequest, db: Session) -> ( Template | NotFoundException ):
+        return self.manager.update(request.id, request.name, request.content, db)
         
 
-    @check_for_null
-    def delete_template(self, template_id: str):
-        return self.manager.delete(template_id)
+    def delete_template(self, template_id: str, db: Session) -> ( Template | NotFoundException ):
+        return self.manager.delete(template_id, db)
         
         

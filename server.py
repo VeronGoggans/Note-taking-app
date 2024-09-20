@@ -8,18 +8,16 @@ from src.backend.presentation.routers.folder_router import FolderRouter
 from src.backend.presentation.routers.sticky_note_router import StickyNoteRouter
 from src.backend.presentation.routers.taskboard_router import TaskboardRouter
 from src.backend.presentation.routers.setting_router import SettingRouter
-from src.backend.data.file.json_manager import JsonManager
 
 app = FastAPI()
-json_manager = JsonManager()
-note_router = NoteRouter(json_manager)
-template_router = TemplateRouter(json_manager)
-flashcard_deck_router = FlashcardDeckRouter(json_manager)
-flashcard_router = FlashcardRouter(json_manager)
-folder_router = FolderRouter(json_manager)
-sticky_note_router = StickyNoteRouter(json_manager)
-taskboard_router = TaskboardRouter(json_manager)
-theme_router = SettingRouter(json_manager)
+note_router = NoteRouter()
+template_router = TemplateRouter()
+flashcard_deck_router = FlashcardDeckRouter()
+flashcard_router = FlashcardRouter()
+folder_router = FolderRouter()
+sticky_note_router = StickyNoteRouter()
+taskboard_router = TaskboardRouter()
+theme_router = SettingRouter()
 
 app.include_router(folder_router.route)
 app.include_router(note_router.route)

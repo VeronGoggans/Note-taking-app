@@ -11,10 +11,10 @@ class PostTemplateRequest(BaseModel):
 
 class PutTemplateRequest(BaseModel):
     """
-    - id (str): The id of the template to update.
+    - id (int): The id of the template to update.
     - name (str): The name of the template.
     - content (str): The content of the template.
     """
-    id: str
+    id: int
     name: str
     content: str

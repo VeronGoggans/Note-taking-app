@@ -1,59 +1,73 @@
-from src.backend.domain.note import Note
+from src.backend.data.models import Note
+from src.backend.data.helpers import find_folder, find_note
 from src.backend.presentation.request_bodies.note_requests import *
 from src.backend.util.calendar import Calendar
-from src.backend.domain.factory import Factory
 from src.backend.data.exceptions.exceptions import *
-from datetime import datetime
+from sqlalchemy.orm import Session
 
 
 class NoteManager:    
 
-    def add_note(self, folder_id: str, note: Note) -> (Note | AdditionException | NotFoundException):
-        pass
+    def add(self, folder_id: int, note: Note, db: Session) -> (Note | NotFoundException):
+        find_folder(folder_id, db)
+        db.add(note)
+        db.commit()
+        db.refresh(note)
+        return note
 
     
-    def get_notes(self, folder_id: str) -> (list[Note] | NotFoundException):
-        pass
+    def get(self, folder_id: int, db: Session) -> (list[Note] | NotFoundException):
+        find_folder(folder_id, db)
+        return db.query(Note).filter(Note.folder_id == folder_id).all()
 
 
-    def get_note_by_id(self, note_id: str) -> (Note | NotFoundException):
-        pass
+    def get_by_id(self, id: int, db: Session) -> (Note | NotFoundException):
+        return find_note(id, db)
     
 
-    def get_recent_notes(self, notes_list: list) -> list[dict]:
-        pass 
+    def get_recent(self, db: Session) -> list[Note]:
+        recent_notes = (
+            db.query(Note)
+            .order_by(Note.last_edit.desc()) 
+            .limit(6)
+            .all() 
+        )
+        return recent_notes
 
 
-    def get_note_name_id(self, search_items: list) -> list[dict]:
-        pass     
+    def get_name_id(self, db: Session) -> list[dict]:
+        search_items = (db.query(Note.id, Note.name).all())
+        return [{"id": item.id, "name": item.name} for item in search_items]
     
 
-    def get_bookmarks(self, bookmarks: list) -> list[Note]:
-        pass
+    def get_bookmarks(self, db: Session) -> list[Note]:
+        return db.query(Note).filter(Note.bookmark == True).all()
                
 
-    def update_note(self, request: PutNoteRequest) -> (Note | NotFoundException):
-        pass
-    
+    def update(self, id: int, name: str, content: str, bookmark: bool, db: Session) -> (Note | NotFoundException):
+        note = find_note(id, db)
 
-    def delete_note(self, note_id: str):
-        pass 
+        # Updating the note 
+        note.name = name
+        note.content = content
+        note.bookmark = bookmark
+        note.last_edit = Calendar.datetime()
 
-    
+        # Commiting the changes to the database
+        db.commit()
+        db.refresh(note)
+        return note
 
-    def get_top_6_most_recent_notes(self, notes: list) -> list[Note]:
-        # Convert the last_edit strings to datetime objects within the dict
-        for note in notes:
-            note['last_edit_dt'] = datetime.strptime(note['last_edit'], "%d/%m/%Y %H:%M")
 
-        # Sort the Note objects based on last_visit in descending order
-        notes.sort(key=lambda note: note['last_edit_dt'], reverse=True)
-        
-        # Get the 5 most recetly worked on notes
-        most_recent_notes = notes[:6]
+    def move(self, parent_id: int, note_id: int, db: Session) -> None:
+        find_folder(parent_id, db)
+        note = find_note(note_id, db)
+        note.folder_id = parent_id
+        db.commit()
 
-        # Clean up by removing the temporary datetime objects
-        for note in notes:
-            del note['last_edit_dt']
-        
-        return Factory.to_list(most_recent_notes)
+
+    def delete(self, id: int, db: Session) -> Note:
+        note = find_note(id, db)
+        db.delete(note)
+        db.commit()
+        return note

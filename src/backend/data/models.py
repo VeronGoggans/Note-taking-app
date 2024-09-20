@@ -1,5 +1,5 @@
 from sqlalchemy import create_engine, Column, String, Integer, Boolean, ForeignKey, JSON
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import relationship, backref
 from sqlalchemy.ext.declarative import declarative_base
 from src.backend.util.calendar import Calendar
 
@@ -18,7 +18,7 @@ class Folder(Base):
     parent_id = Column(Integer, ForeignKey('folders.id', ondelete='CASCADE'), nullable=True)
 
     # One-to-many relationships
-    subfolders = relationship("Subfolder", backref="parent_folder", cascade="all, delete-orphan")
+    subfolders = relationship("Folder", backref=backref("parent_folder", remote_side=[id]), cascade="all, delete-orphan")
     notes = relationship("Note", backref="folder", cascade="all, delete-orphan")
 
 
@@ -37,7 +37,6 @@ class Note(Base):
     
     # Foreign keys for folder or subfolder
     folder_id = Column(Integer, ForeignKey('folders.id', ondelete='CASCADE'), nullable=True)
-    subfolder_id = Column(Integer, ForeignKey('subfolders.id', ondelete='CASCADE'), nullable=True)
 
 
 

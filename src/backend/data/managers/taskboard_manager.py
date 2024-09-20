@@ -1,11 +1,11 @@
 from src.backend.domain.taskboad import Taskboard
 from src.backend.presentation.request_bodies.taskboard_requests import *
-from src.backend.data.exceptions.exceptions import AdditionException, NotFoundException
+from src.backend.data.exceptions.exceptions import InsertException, NotFoundException
 
 
 class TaskboardManager:    
 
-    def add(self, taskboard: Taskboard) -> (Taskboard | AdditionException):
+    def add(self, taskboard: Taskboard) -> (Taskboard | InsertException):
         pass
 
 

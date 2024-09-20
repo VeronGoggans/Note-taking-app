@@ -8,9 +8,9 @@ from src.backend.data.exceptions.exception_handler import handle_exceptions
 
 
 class TaskboardRouter:
-    def __init__(self, json_manager):
+    def __init__(self):
         self.route = APIRouter()
-        self.service = TaskboardService(TaskboardManager(), json_manager)
+        self.service = TaskboardService(TaskboardManager())
 
         self.route.add_api_route('/taskboard', self.add_taskboard, methods=['POST'])
         self.route.add_api_route('/taskboards', self.get_taskboards, methods=['GET'])

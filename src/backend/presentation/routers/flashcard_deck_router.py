@@ -1,15 +1,15 @@
 from fastapi import APIRouter
 from src.backend.presentation.http_status import HttpStatus
 from src.backend.application.services.flashcard_deck_service import FlashcardDeckService
-from src.backend.data.flashcard.flashcard_deck_manager import FlashcardDeckManager
+from src.backend.data.managers.flashcard_deck_manager import FlashcardDeckManager
 from src.backend.presentation.request_bodies.flashcard_requests import PostDeckRequest, PutDeckRequest
 from src.backend.data.exceptions.exception_handler import handle_exceptions
 
 
 class FlashcardDeckRouter:
-    def __init__(self, json_manager):
+    def __init__(self):
         self.route = APIRouter()
-        self.service = FlashcardDeckService(FlashcardDeckManager(), json_manager)
+        self.service = FlashcardDeckService(FlashcardDeckManager())
 
         self.route.add_api_route('/deck/{id}', self.get_deck_by_id, methods=['GET'])
         self.route.add_api_route('/deckSearchItems', self.get_search_items, methods=['GET'])

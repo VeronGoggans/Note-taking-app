@@ -1,62 +1,50 @@
-from src.backend.data.note.note_manager import NoteManager
+from src.backend.data.managers.note_manager import NoteManager
 from src.backend.presentation.request_bodies.note_requests import PostNoteRequest, PutNoteRequest
-from src.backend.domain.note import Note
+from src.backend.data.models import Note
+from sqlalchemy.orm import Session
 from src.backend.data.exceptions.exceptions import *
-from src.backend.application.decorators.exceptions import check_for_null 
-
 
 
 class NoteService:
-    def __init__(self, note_manager: NoteManager):
-        self.note_manager = note_manager
+    def __init__(self, manager: NoteManager):
+        self.manager = manager
 
 
-    @check_for_null
-    def add_note(self, request: PostNoteRequest) -> Note:
-        note = Note(1, request.name, request.content)
-
-        try:
-            return self.note_manager.add_note(request.folder_id, note)
-        except AdditionException as e:
-            raise e
-
-
-    @check_for_null
-    def get_notes(self, folder_id: str) -> list[Note]:
-        if folder_id == 'bookmarks':
-            return self.note_manager.get_bookmarks(bookmarks = [])
-        return self.note_manager.get_notes(folder_id)
+    def add_note(self, request: PostNoteRequest, db: Session) -> Note:
+        parent_id = request.folder_id
+        note = Note(
+            name = request.name, 
+            content = request.content,
+            folder_id = parent_id
+            )
+        return self.manager.add(parent_id, note, db)
 
 
-    @check_for_null
-    def get_note_by_id(self, note_id: str) -> Note:
-        return self.note_manager.get_note_by_id(note_id)
+    def get_notes(self, folder_id: int, db: Session) -> list[Note]:
+        if folder_id == -1:
+            return self.manager.get_bookmarks(db)
+        return self.manager.get(folder_id, db)
+
+
+    def get_note_by_id(self, note_id: int, db: Session) -> Note:
+        return self.manager.get_by_id(note_id, db)
         
     
-    @check_for_null
-    def get_recent_notes(self) -> list[Note]:
-        return self.note_manager.get_top_6_most_recent_notes()
+    def get_recent_notes(self, db: Session) -> list[Note]:
+        return self.manager.get_recent(db)
     
 
-    @check_for_null
-    def update_note(self, request: PutNoteRequest) -> Note:
-        return self.note_manager.update_note(request)
+    def update_note(self, request: PutNoteRequest, db: Session) -> Note:
+        return self.manager.update(request.note_id, request.name, request.content, request.bookmark, db)
 
 
-    @check_for_null
-    def delete_note(self, note_id: str) -> Note:
-        return self.note_manager.delete_note(note_id)
+    def delete_note(self, note_id: int, db: Session) -> Note:
+        return self.manager.delete(note_id, db)
 
 
-
-    @check_for_null
-    def move_note(self, folder_id: str, note_id: str) -> Note:
-        try:
-            pass
-        except AdditionException as e:
-            raise e
+    def move_note(self, folder_id: int, note_id: int, db: Session) -> Note:
+        self.manager.move(folder_id, note_id, db)
 
 
-    @check_for_null
-    def get_search_options(self) -> list[object]:
-        return self.note_manager.get_note_name_id()
+    def get_search_options(self, db: Session) -> list[dict]:
+        return self.manager.get_name_id(db)

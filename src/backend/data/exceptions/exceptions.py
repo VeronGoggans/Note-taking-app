@@ -10,7 +10,10 @@ class BaseException(Exception):
 class NotFoundException(BaseException):
     pass
 
-class AdditionException(BaseException):
+class NoContentException(BaseException):
+    pass
+
+class InsertException(BaseException):
     pass
 
 class InvalidMoveRequestException(BaseException):

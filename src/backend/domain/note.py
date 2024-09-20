@@ -1,4 +1,3 @@
-from src.backend.data.file.text_manager import TextManager
 from src.backend.util.calendar import Calendar
 
 class Note:
@@ -12,26 +11,6 @@ class Note:
         self.creation = creation
 
     
-    def set_content_path(self):
-        """
-        This method takes the html content and id from the note and gives it to 
-        the TextManager class that will create a txt file and return it's path.
-        The path returned from the TextManager class will be set as the note content.
-        """
-        self.content = TextManager.save(self.content, self.id)
-
-    
-    def set_content_text(self):
-        """
-        This method takes the content attribute (which is the path to the note content) from the note and gives it to 
-        the HTMLOperations class that will read the path and return the html content that's inside the file.
-        """
-        self.content = TextManager.get(self.content)
-
-
-    def update_content(self, note_path: str, updated_html_content: str):
-        """This method will update the content of a note's html file."""
-        TextManager.update(note_path, updated_html_content)
 
 
     @classmethod

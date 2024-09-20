@@ -1,57 +1,74 @@
-from src.backend.domain.folder import Folder
-from src.backend.util.folder_finder import FolderFinder
-from src.backend.data.exceptions.exceptions import NotFoundException, AdditionException
+from sqlalchemy.orm import Session
+from src.backend.data.models import Folder
+from src.backend.data.helpers import find_folder
+from src.backend.data.exceptions.exceptions import NotFoundException, InsertException
 from src.backend.util.calendar import Calendar
 
 class FolderManager:
-    def __init__(self):
-        self.folder_list = []
-        self.search_items = []
+
+    def add(self, parent_id: int, folder: Folder, db: Session) -> (Folder | NotFoundException | InsertException):
+        find_folder(parent_id, db)
+        db.add(folder)
+        db.commit()
+        db.refresh(folder)
+        return folder
+    
+
+    def get(self, parent_id: int, db: Session) -> (list[Folder] | NotFoundException):
+        find_folder(parent_id, db)
+        return db.query(Folder).filter(Folder.parent_id == parent_id).all()
         
 
-    def add_folder(self, parent_id: str, folder: Folder) -> (Folder | NotFoundException | AdditionException):
-        pass
+    def get_recent(self, db: Session) -> list:
+        recent_folders = (
+            db.query(Folder)
+            .order_by(Folder.last_visit.desc()) 
+            .limit(4) 
+            .all()  
+        )
+        return recent_folders
+    
+
+    def get_search_items(self, db: Session) -> list:
+        search_items = (
+            db.query(Folder.id, Folder.name)
+            .all() 
+        )
+        return [{"id": item.id, "name": item.name} for item in search_items]
 
 
-    def get_folders(self, parent_id: str) -> (list[object] | NotFoundException):
-        pass
+    def get_by_id(self, folder_id: int, db: Session) -> (Folder | NotFoundException):
+        return find_folder(folder_id, db)
+    
+
+    def update(self, folder_id: int, folder_name: str, folder_color: str, db: Session) -> (Folder | NotFoundException):
+        folder = find_folder(folder_id, db)
+        folder.name = folder_name
+        folder.color = folder_color
+
+        db.commit()
+        return folder
+    
+
+    def move(self, parent_id: int, folder_id: int, db: Session) -> ( Folder | NotFoundException ):
+        # Check if the new parent even exists
+        find_folder(parent_id, db)
+
+        folder = find_folder(folder_id, db)
+        folder.parent_id = parent_id
+
+        db.commit()
+    
+
+    def update_visit_date(self, folder_id: int, db: Session) -> (None | NotFoundException):
+        folder = find_folder(folder_id, db)
+        folder.last_visit = Calendar.datetime(precise=True)
+        db.commit()
         
 
-    def get_recent_folders(self) -> list:
-        pass
+    def delete(self, folder_id: int, db: Session) -> (Folder | NotFoundException):
+        folder = find_folder(folder_id, db)
+        db.delete(folder)
+        db.commit()
+        return folder
     
-
-    def get_search_items(self) -> list:
-        pass
-
-
-    def get_by_id(self, folders: list, folder_id: str) -> (dict | NotFoundException):
-        folder_location = FolderFinder.find_folder_location(folders, folder_id)
-        if folder_location:
-            return folder_location
-        raise NotFoundException(f'Folder with id: {folder_id}, could not be found')
-    
-    
-    def update_folder(self, folder_id: str, folder_name: str, folder_color: str) -> (dict | NotFoundException):
-       pass
-    
-
-    def update_visit_date(self, folder_id: str) -> (None | NotFoundException):
-        pass # use calendar precise
-        
-    
-    def delete_folder(self, folder_id: str) -> (dict | NotFoundException):
-        pass
-        
-    
-    def __get_top_4_most_recent_folders(self) -> list:
-        # Sort the Folder objects based on last_visit in descending order
-        self.folder_list.sort(key=lambda folder: folder['last_visit'], reverse=True)
-
-        # Get the 5 most recently viewed folders
-        most_recent_folders = self.folder_list[:4]
-
-        # Remove the notes and subfolders fields from each folder
-        simplified_folders = [{'id': folder['id'], 'name': folder['name'], 'color': folder['color'], 'last_visit': folder['last_visit']} for folder in most_recent_folders]
-
-        return simplified_folders

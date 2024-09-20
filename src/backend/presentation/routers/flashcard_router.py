@@ -1,15 +1,15 @@
 from fastapi import APIRouter
 from src.backend.presentation.http_status import HttpStatus
 from src.backend.application.services.flashcard_service import FlashcardService
-from src.backend.data.flashcard.flashcard_manager import FlashcardManager
+from src.backend.data.managers.flashcard_manager import FlashcardManager
 from src.backend.presentation.request_bodies.flashcard_requests import *
 from src.backend.presentation.dtos.flashcard_dtos import PostFlashcardDTO, FlashcardDTO
 from src.backend.data.exceptions.exception_handler import handle_exceptions
 
 class FlashcardRouter:
-    def __init__(self, json_manager):
+    def __init__(self):
         self.route = APIRouter()
-        self.service = FlashcardService(FlashcardManager(), json_manager)
+        self.service = FlashcardService(FlashcardManager())
 
         self.route.add_api_route('/flashcards', self.add_flashcards, methods=['POST'])
         self.route.add_api_route('/flashcards', self.update_flashcards, methods=['PUT'])
