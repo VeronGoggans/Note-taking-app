@@ -5,7 +5,6 @@ from src.backend.data.exceptions.exceptions import *
 from src.backend.data.models import Folder
 
 
-
 class FolderService:
     def __init__(self, manager: FolderManager):
         self.manager = manager
@@ -25,16 +24,11 @@ class FolderService:
     
 
     def get_recent_folders(self, db: Session) -> list[Folder]:
-        recent_folders = self.manager.get_recent(db)
-        return recent_folders
-    
+        return self.manager.get_recent(db)
+        
 
     def get_search_items(self, db: Session) -> list[object]:
-        search_items = self.manager.get_search_items(db) 
-
-        if len(search_items) > 0:
-            return search_items
-        raise NotFoundException('There are no folders to be retrieved.')
+        return self.manager.get_search_items(db) 
     
 
     def get_folder_by_id(self, folder_id: int, db: Session) -> list[Folder]:

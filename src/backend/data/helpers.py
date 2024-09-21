@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from src.backend.data.models import Folder, Note
+from src.backend.data.models import Folder, Note, Taskboard
 from src.backend.data.exceptions.exceptions import NotFoundException
 
 
@@ -18,3 +18,11 @@ def find_note(note_id: int, db: Session) -> ( Note | NotFoundException ):
     if note is None:
         raise NotFoundException(f"Note with id {note_id} not found.")
     return note
+
+
+def find_taskboard(id: int, db: Session) -> ( Taskboard | NotFoundException ):
+        taskboard = db.query(Taskboard).filter(Taskboard.id == id).first()
+
+        if taskboard is None:
+            raise NotFoundException(f"Taskboard with id {id} not found.")
+        return taskboard

@@ -22,6 +22,7 @@ class FolderRouter:
         self.route.add_api_route('/folder/{folder_id}', self.delete_folder, methods=['DELETE'])
         self.route.add_api_route('/viewedFolderTime/{folder_id}', self.folder_visit, methods=['PATCH'])
 
+
     @handle_exceptions
     def add_folder(self, request: FolderRequest, db: Session = Depends(Database.get_db)):
         return {'status': HttpStatus.OK, "folder": self.service.add_folder(request, db)}

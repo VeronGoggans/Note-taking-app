@@ -11,7 +11,7 @@ export class NoteController {
     }
 
     
-    async init(folderId = 'f-1') {
+    async init(folderId = 1) {
         this.searchbar = new Searchbar(this);
         this.view = new NoteView(this, this.applicationController);
 

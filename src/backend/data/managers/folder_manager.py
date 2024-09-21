@@ -30,10 +30,7 @@ class FolderManager:
     
 
     def get_search_items(self, db: Session) -> list:
-        search_items = (
-            db.query(Folder.id, Folder.name)
-            .all() 
-        )
+        search_items = (db.query(Folder.id, Folder.name).all() )
         return [{"id": item.id, "name": item.name} for item in search_items]
 
 

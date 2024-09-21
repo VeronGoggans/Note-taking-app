@@ -1,4 +1,6 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
+from sqlalchemy.orm import Session
+from src.backend.data.database import Database
 from src.backend.presentation.http_status import HttpStatus
 from src.backend.application.services.flashcard_deck_service import FlashcardDeckService
 from src.backend.data.managers.flashcard_deck_manager import FlashcardDeckManager
@@ -21,37 +23,37 @@ class FlashcardDeckRouter:
 
 
     @handle_exceptions
-    def add_deck(self, request: PostDeckRequest): 
-        return {"status": HttpStatus.OK, 'deck': self.service.add_deck(request)}
+    def add_deck(self, request: PostDeckRequest, db: Session = Depends(Database.get_db)): 
+        return {"status": HttpStatus.OK, 'deck': self.service.add_deck(request, db)}
 
 
     @handle_exceptions
-    def get_deck_by_id(self, id: str):
-        return {'status': HttpStatus.OK, "deck": self.service.get_deck_by_id(id)}
+    def get_deck_by_id(self, id: int, db: Session = Depends(Database.get_db)):
+        return {'status': HttpStatus.OK, "deck": self.service.get_deck_by_id(id, db)}
         
 
     @handle_exceptions
-    def get_all_decks(self):
-        all_decks, misc = self.service.get_all_decks()
-        return {'status': HttpStatus.OK, 'decks': all_decks, 'misc': misc}
+    def get_all_decks(self, db: Session = Depends(Database.get_db)):
+        all_decks = self.service.get_all_decks(db)
+        return {'status': HttpStatus.OK, 'decks': all_decks}
         
 
     @handle_exceptions
-    def get_search_items(self):
-        return {'status': HttpStatus.OK, 'items': self.service.get_search_items()}
+    def get_search_items(self, db: Session = Depends(Database.get_db)):
+        return {'status': HttpStatus.OK, 'items': self.service.get_search_items(db)}
         
 
     @handle_exceptions
-    def get_5_random_decks(self):
-        return {'status': HttpStatus.OK, 'decks': self.service.get_random_decks()}
+    def get_5_random_decks(self, db: Session = Depends(Database.get_db)):
+        return {'status': HttpStatus.OK, 'decks': self.service.get_random_decks(db)}
         
 
     @handle_exceptions
-    def update_deck(self, request: PutDeckRequest):
-        self.service.update_deck(request)
+    def update_deck(self, request: PutDeckRequest, db: Session = Depends(Database.get_db)):
+        self.service.update_deck(request, db)
         return {'status': HttpStatus.OK}
         
 
     @handle_exceptions
-    def delete_deck(self, id: str):
-        return {"status": HttpStatus.OK, 'deck': self.service.delete_deck(id)}
+    def delete_deck(self, id: int, db: Session = Depends(Database.get_db)):
+        return {"status": HttpStatus.OK, 'deck': self.service.delete_deck(id, db)}

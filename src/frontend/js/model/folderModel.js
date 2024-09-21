@@ -12,12 +12,12 @@ export class FolderModel extends HttpModel {
 
     getCurrentFolderObject() {
         const lastFolder = this.folderObjects[this.folderObjects.length - 1];
-        return lastFolder ? lastFolder : {id: 'f-1', name: 'Home'};
+        return lastFolder ? lastFolder : {id: 1, name: 'Home'};
     }
     
     getPreviousFolderObject() {
         const lastFolder = this.folderObjects[this.folderObjects.length - 2];
-        return lastFolder ? lastFolder : {id: 'f-1', name: 'Home'};
+        return lastFolder ? lastFolder : {id: 1, name: 'Home'};
     }
     
     /** 
@@ -26,7 +26,7 @@ export class FolderModel extends HttpModel {
      */
     getCurrentFolderID() {
         const lastFolder = this.folderObjects[this.folderObjects.length - 1];
-        return lastFolder ? lastFolder.id : 'f-1';
+        return lastFolder ? lastFolder.id : 1;
     }
 
 
@@ -69,6 +69,6 @@ export class FolderModel extends HttpModel {
     removeFolderIdFromList() {
         this.folderObjects.pop();
         const previousFolder = this.folderObjects[this.folderObjects.length - 1];
-        return previousFolder ? previousFolder: {id: 'f-1', name: 'Home'};
+        return previousFolder ? previousFolder: {id: 1, name: 'Home'};
     }
 }

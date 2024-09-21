@@ -11,10 +11,38 @@ class PostTaskboardRequest(BaseModel):
 
 class PutTaskboardRequest(BaseModel):
     """
-    - taskboard_id (str): The Id of the taskboard to update. 
+    - id (int): The id of the taskboard to update. 
     - name (str): The name of the taskboard.
     - description (str): The description of the taskboard.
     """
-    id: str
+    id: int
     name: str
     description: str
+
+
+class PostTaskRequest(BaseModel):
+    """
+    - parent_id (int): The id of the taskboard to add the task to. 
+    - name (str): The name of the task.
+    - description (str): The description of the task.
+    - due_date (str): The date where the task needs to be completed.
+    """
+    parent_id: int
+    name: str
+    description: str
+    due_date: str
+
+
+class PutTaskRequest(BaseModel):
+    """
+    - id (int): The id of the task to update. 
+    - name (str): The name of the task.
+    - description (str): The description of the task.
+    - due_date (str): The date where the task needs to be completed.
+    - section (str): The board section the task is on.
+    """
+    id: int
+    name: str
+    description: str
+    due_date: str
+    section: str

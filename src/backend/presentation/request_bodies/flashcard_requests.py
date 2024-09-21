@@ -7,7 +7,7 @@ class PostFlashcardRequest(BaseModel):
 
 
 class PostFlashcardsRequest(BaseModel):
-    deck_id: str
+    deck_id: int
     flashcards: list[PostFlashcardRequest]
 
 
@@ -19,18 +19,18 @@ class PutFlashcardRequest(BaseModel):
 
 
 class PutFlashcardsRequest(BaseModel):
-    deck_id: str
+    deck_id: int
     flashcards: list[PutFlashcardRequest]
 
 
 class FlashcardStudyRequest(BaseModel):
-    deck_id: str
+    deck_id: int
     time_studied: int
     flashcards: list[PutFlashcardRequest]
 
 
 class DeleteFlashcardsRequest(BaseModel):
-    deck_id: str
+    deck_id: int
     flashcard_ids: list[int]
 
 
@@ -40,5 +40,5 @@ class PostDeckRequest(BaseModel):
 
 
 class PutDeckRequest(BaseModel):
-    deck_id: str
+    deck_id: int
     name: str

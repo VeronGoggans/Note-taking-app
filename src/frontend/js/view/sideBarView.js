@@ -25,7 +25,7 @@ export class SidebarView {
                 if (anchor) {
                     if (anchor.getAttribute('data-view') === 'notes') {
                         // Load the notes view and tell it to render the Home folder 
-                        const homeFolder = {'id': 'f-1', 'name': 'Home'}
+                        const homeFolder = {'id': 1, 'name': 'Home'}
                         applicationController.initView('notes', { 
                             folder: homeFolder,
                             location: homeFolder

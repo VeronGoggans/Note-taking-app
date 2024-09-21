@@ -1,78 +1,51 @@
-from src.backend.domain.flashcard_deck import FlashcardDeck
-from src.backend.presentation.dtos.flashcard_dtos import PostFlashcardDTO, FlashcardDTO
-from src.backend.data.exceptions.exceptions import InsertException, NotFoundException
-import random
+from sqlalchemy.orm import Session
+from src.backend.data.models import FlashcardSet
+from src.backend.data.exceptions.exceptions import NotFoundException
 
 class FlashcardDeckManager:
 
-    def add(self, decks: list, deck: FlashcardDeck, flashcards: list[PostFlashcardDTO]):
+    def add(self, deck: FlashcardSet, db: Session):
+        db.add(deck)
+        db.commit()
+        db.refresh(deck)
+        return deck
+
+
+    def get_by_id(self, id: int, db: Session) -> ( FlashcardSet | NotFoundException ):
+       return self.__find_deck(id, db)
+    
+    
+    def get_all(self, db: Session) -> list[FlashcardSet]:
+        return db.query(FlashcardSet).all()
+        
+
+    def get_search_items(self, db: Session) -> list[dict]:
+        search_items = (db.query(FlashcardSet.id, FlashcardSet.name).all())
+        return [{"id": item.id, "name": item.name} for item in search_items]
+    
+
+    def get_random_decks(self, db: Session) -> list[FlashcardSet]:
         pass
 
 
-    def get_by_id(self, decks: list, id: str) -> FlashcardDeck:
-       pass
-    
-    
-    def get_all(self, decks: list) -> list[FlashcardDeck]:
-        pass
+    def update(self, id: int, name: str, db: Session) -> None:
+        deck = self.__find_deck(id, db)
+        deck.name = name
+        db.commit()
+        db.refresh(deck)
+        return deck
+
+
+    def delete(self, id: int, db: Session) -> FlashcardSet:
+        deck = self.__find_deck(id, db)
+        db.delete(deck)
+        db.commit()
+        return deck
+
+
+    def __find_deck(self, id: int, db: Session) -> ( FlashcardSet | NotFoundException ):
+        deck = db.query(FlashcardSet).filter(FlashcardSet.id == id).first()
         
-
-    def get_search_items(self, decks: list) -> list[object]:
-        items = []
-        for deck in decks:
-            items.append({'name': deck['name'], 'id': deck['id']})
-        return items
-    
-
-    def get_random_decks(self, decks: list) -> list[object]:
-        amount_of_decks = 5
-        if len(decks) < 5:
-            # To prevent a valueError with the sample function 
-            amount_of_decks = len(decks)
-        
-        if len(decks) > 0:    
-            # Use get_all to deserialize the decks flashcards
-            return self.get_all(random.sample(decks, amount_of_decks))
-        return decks
-
-
-    def update(self, decks: list, id: str, name: str) -> None:
-        for deck in decks:
-            if deck['id'] == id:
-                deck['name'] = name
-                return 
-        raise NotFoundException(f'Deck with id: {id}, could not be found.')
-
-
-    def delete(self, decks: list, id: str) -> object:
-        for deck in decks:
-            if deck['id'] == id:
-                decks.remove(deck)
-                return deck
-        raise NotFoundException(f'Deck with id: {id}, could not be found.')
-
-
-    def __fill_deck_with_cards(self, deck: FlashcardDeck, cards_path: str) -> FlashcardDeck:
-        pass
-        
-
-    
-    def __create_flashcard_dto(self, flashcards: PostFlashcardDTO) -> list[FlashcardDTO]:
-        """
-            This method is only used for the add_flashcards() method
-            The request parameter only expects a flashcard term/description
-            This method fills in the other fields to create a flashcard DTO
-        """
-        dtos = []
-        flashcard_id = 0
-        for flashcard in flashcards:
-            dtos.append(
-                FlashcardDTO(
-                    flashcard_id,
-                    flashcard.term,
-                    flashcard.description,
-                    'idle'
-                )
-            )
-            flashcard_id += 1
-        return dtos
+        if deck is None:
+            raise NotFoundException(f"Deck with id {id} not found.")
+        return deck

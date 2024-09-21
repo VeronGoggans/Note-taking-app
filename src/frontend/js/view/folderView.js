@@ -116,6 +116,6 @@ export class FolderView extends BaseView {
     #attachEventListeners() {
         this.backButton.addEventListener('click', async () => {await this.controller.navigateOutofFolder()})
         this.createFolderButton.addEventListener('click', () => {this.dialog.renderNewFolderModal(this)});
-        this.homeButton.addEventListener('click', async () => {await this.controller.navigateIntoFolder('f-1', 'Home')})
+        this.homeButton.addEventListener('click', async () => {await this.controller.navigateIntoFolder(1, 'Home')})
     }
 }

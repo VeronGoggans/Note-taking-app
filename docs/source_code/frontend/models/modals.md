@@ -12,7 +12,7 @@ The only models that are constant are the **FolderModel** and **HttpModel**.
     export class FolderController {
         constructor(applicationController) {
             this.applicationController = applicationController;
-            this.homeFolderId = 'f-1';
+            this.homeFolderId = 1;
             this.model = new FolderModel();
         }
     }

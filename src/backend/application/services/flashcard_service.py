@@ -3,7 +3,6 @@ from src.backend.data.exceptions.exceptions import *
 from src.backend.presentation.dtos.flashcard_dtos import PostFlashcardDTO, FlashcardDTO
 
 
-
 class FlashcardService:
     def __init__(self, manager: FlashcardManager):
         self.manager = manager
