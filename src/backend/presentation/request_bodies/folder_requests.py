@@ -3,7 +3,7 @@ from pydantic import BaseModel
 
 class FolderRequest(BaseModel):
     """
-    - parent_id (str): The id of the parent folder 
+    - parent_id (int): The id of the parent folder 
     - name (str): The name of the new folder.
     """
     parent_id: int

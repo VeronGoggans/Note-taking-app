@@ -10,8 +10,8 @@ import { StickWallController } from "./stickyWallController.js";
 import { FlashcardDeckController } from "./flashcardDeckController.js";
 import { FlashcardPracticeController } from "./flashcardPracticeController.js";
 import { FlashcardEditController } from "./flashcardEditController.js";
-import { TaskBoardHomeController } from "./taskboardHomeController.js";
-import { TaskboardController } from "./taskboardController.js";
+import { TaskController } from "./taskController.js";
+import { TaskBoardController } from "./taskboardController.js";
 import { templates } from "../constants/templates.js";
 
 export class ApplicationController {
@@ -27,8 +27,8 @@ export class ApplicationController {
         this.flashcardEditController = new FlashcardEditController(this);
         this.textEditorController = new TextEditorController(this);
         this.stickyWallController = new StickWallController(this);
-        this.taskboardHomeController = new TaskBoardHomeController(this);
-        this.taskboardController = new TaskboardController(this);
+        this.taskboardController = new TaskBoardController(this);
+        this.taskController = new TaskController(this);
         this.settingController = new SettingController(this);
         this.viewContainer = document.querySelector('.content .view');
         this.controllers = {
@@ -41,8 +41,8 @@ export class ApplicationController {
             stickyWall: this.stickyWallController,
             settings: this.settingController,
             editor: this.textEditorController,
-            taskboardHome: this.taskboardHomeController,
-            taskboard: this.taskboardController
+            taskboard: this.taskboardController,
+            task: this.taskController
         }
         this.initView('home')
         this.settingController.loadCurrentTheme()
@@ -62,6 +62,8 @@ export class ApplicationController {
 
                 if (viewId === 'notes') {
                     const { folder, location } = viewParameters; 
+                    console.log(viewParameters);
+                    
                     this.folderController.init(folder.id, folder.name, location);
                     // note controller 
                     controller.init(folder.id);
@@ -134,7 +136,7 @@ export class ApplicationController {
                     this.sidebarView.setActiveTab('taskboards')
                 }
 
-                if (viewId === 'taskboard') {
+                if (viewId === 'task') {
                     const {
                         taskboard, 
                         previousView

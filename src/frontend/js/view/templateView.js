@@ -46,12 +46,10 @@ export class TemplateView extends BaseView {
         const templates = this._recentTemplates.children;
 
         for (let i = 0; i < templates.length; i++) {
-            if (templates[i].id === template.id) {
+            if (templates[i].id == template.id) {
                 AnimationHandler.fadeOutCard(templates[i]);
                 this.templateObjects.remove(template);
-                this._templateCountSpan.textContent = decrementString(
-                    this._templateCountSpan.textContent
-                ); 
+                this._templateCountSpan.textContent = decrementString(this._templateCountSpan.textContent); 
             }
         }
         if (closeDialog) this.closeDialog();

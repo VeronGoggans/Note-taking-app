@@ -24,7 +24,7 @@ class TaskRouter:
     def add_task(self, request: PostTaskRequest, db: Session = Depends(Database.get_db)):
         return {
             'status': HttpStatus.OK, 
-            'task': self.service.add_taskboard(
+            'task': self.service.add_task(
                 request.parent_id,
                 request.name, 
                 request.description, 
@@ -34,19 +34,19 @@ class TaskRouter:
 
     @handle_exceptions
     def get_tasks(self, taskboard_id: int, db: Session = Depends(Database.get_db)):
-        return {'status': HttpStatus.OK, 'tasks': self.service.get_taskboards(taskboard_id, db)}
+        return {'status': HttpStatus.OK, 'tasks': self.service.get_tasks(taskboard_id, db)}
        
 
     @handle_exceptions
     def get_task_by_id(self, id: int, db: Session = Depends(Database.get_db)):
-        return {'status': HttpStatus.OK, 'task': self.service.get_taskboard_by_id(id, db)}
+        return {'status': HttpStatus.OK, 'task': self.service.get_task_by_id(id, db)}
 
 
     @handle_exceptions
     def update_task(self, request: PutTaskRequest, db: Session = Depends(Database.get_db)):
         return {
             'status': HttpStatus.OK, 
-            'task': self.service.update_taskboard(
+            'task': self.service.update_task(
             request.id, 
             request.name, 
             request.description,
@@ -57,4 +57,4 @@ class TaskRouter:
 
     @handle_exceptions
     def delete_task(self, id: int, db: Session = Depends(Database.get_db)):
-        return {'status': HttpStatus.OK, 'task': self.service.delete_taskboard(id, db)}
+        return {'status': HttpStatus.OK, 'task': self.service.delete_task(id, db)}

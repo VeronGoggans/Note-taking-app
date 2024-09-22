@@ -11,6 +11,7 @@ export function decrementString(string) {
     return String(num)
 }
 
+
 export function addDraggImage(event, draggedElement, imageType) {
     // Adding the dragging style to the dragged alement
     draggedElement.classList.add('dragging')

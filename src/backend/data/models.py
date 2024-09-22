@@ -70,7 +70,7 @@ class Taskboard(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String, nullable=True)
     description = Column(String, nullable=True)
-    board_sections = Column(JSON, default=['todo', 'inprogress', 'done'])
+    board_sections = Column(JSON, default=['To do', 'In progress', 'Done'])
 
     tasks = relationship("Task", backref="parent_taskboard", cascade="all, delete-orphan")
 
@@ -83,7 +83,7 @@ class Task(Base):
     name = Column(String, nullable=True)
     description = Column(String, nullable=True)
     due_date = Column(String, nullable=True)
-    section = Column(String, nullable=False, default='todo')
+    section = Column(String, nullable=False, default='To do')
 
     # Foreign keys for folder or subfolder
     taskboard_id = Column(Integer, ForeignKey('taskboards.id', ondelete='CASCADE'), nullable=True)

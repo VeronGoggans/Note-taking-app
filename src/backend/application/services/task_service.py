@@ -9,7 +9,7 @@ class TaskService:
         self.manager = manager
 
 
-    def add_taskboard(
+    def add_task(
             self, 
             parent_id: int,
             name: str, 
@@ -34,7 +34,7 @@ class TaskService:
         return self.manager.get_by_id(id, db)
         
 
-    def update_taskboard(
+    def update_task(
             self, 
             id: int, 
             name: str, 
@@ -42,8 +42,8 @@ class TaskService:
             due_date: str,
             section: str, 
             db: Session) -> ( Task | NotFoundException ):
-        return self.manager.update(id, name, description, due_date, section, db)
+        return self.manager.update(id, name, description, section, due_date, db)
 
 
-    def delete_taskboard(self, id: int, db: Session) -> ( Task | NotFoundException ):
+    def delete_task(self, id: int, db: Session) -> ( Task | NotFoundException ):
         return self.manager.delete(id, db)

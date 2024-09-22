@@ -11,7 +11,7 @@ export const fullMonths = [
 
 
 
-export const folderColorClasses = {
+export const folderColors = {
     'rgb(121, 144, 255)': 'color-blue-1',
     'rgb(169, 215, 255)': 'color-blue-2',
     'rgb(217, 237, 255)': 'color-blue-3',
@@ -74,7 +74,6 @@ export const notificationMessages = {
 
 
 export const commands = {
-    'note': 'note-link-option',
     'link': 'link-option',
     'video': 'embed-video-option',
     'line': 'horizontal-line-option',
@@ -86,9 +85,8 @@ export const commands = {
     'h2': 'heading-2',
     'h3': 'heading-3',
     'h4': 'heading-4',
-    'h5': 'heading-5',
-    'h6': 'heading-6',
-    'date': 'date'
+    'date': 'date',
+    'html': 'insert-html'
 }
 
 export const stickyNoteColors = [

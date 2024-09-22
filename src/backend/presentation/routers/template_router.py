@@ -24,8 +24,8 @@ class TemplateRouter:
 
     @handle_exceptions
     def get_templates(self, db: Session = Depends(Database.get_db)):
-        recent, uses, most_used = self.service.get_templates(db)
-        return {'status': HttpStatus.OK, 'recent': recent, 'totalUses': uses, 'mostUsed': most_used}
+        recent, other, uses, most_used = self.service.get_templates(db)
+        return {'status': HttpStatus.OK, 'recent': recent, 'other': other, 'totalUses': uses, 'mostUsed': most_used}
 
 
     @handle_exceptions

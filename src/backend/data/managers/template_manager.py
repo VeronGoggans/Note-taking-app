@@ -16,13 +16,13 @@ class TemplateManager:
 
 
     def get_all(self, db: Session) -> None:
-        templates = self.__get_top_5_most_recent_templates(db)
+        recent, other = self.__get_top_5_most_recent_templates(db)
         uses = self.__get_total_uses(db)
         favorite_template = self.__get_most_used_template(db)
 
-        if not templates:
+        if not recent:
             raise NoContentException('There are no templates yet.')
-        return templates, uses, favorite_template
+        return recent, other, uses, favorite_template
         
 
     def get_by_id(self, id: int, update_use_count: bool, db: Session) -> (Template | NotFoundException):
@@ -83,9 +83,7 @@ class TemplateManager:
             .order_by(Template.name.asc())  # Sort alphabetically by name or use another criteria
             .all()
         )
-        all_templates = top_5_recent_templates + remaining_templates
-
-        return all_templates
+        return top_5_recent_templates, remaining_templates
     
 
     def __get_total_uses(self, db: Session) -> int:

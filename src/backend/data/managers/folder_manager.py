@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from src.backend.data.models import Folder
-from src.backend.data.helpers import find_folder
+from src.backend.data.helpers import find_folder, get_folder_hierarchy
 from src.backend.data.exceptions.exceptions import NotFoundException, InsertException
 from src.backend.util.calendar import Calendar
 
@@ -35,7 +35,9 @@ class FolderManager:
 
 
     def get_by_id(self, folder_id: int, db: Session) -> (Folder | NotFoundException):
-        return find_folder(folder_id, db)
+        folder = find_folder(folder_id, db)
+        hierarchy = get_folder_hierarchy(folder_id, db)
+        return folder, hierarchy
     
 
     def update(self, folder_id: int, folder_name: str, folder_color: str, db: Session) -> (Folder | NotFoundException):
@@ -44,6 +46,7 @@ class FolderManager:
         folder.color = folder_color
 
         db.commit()
+        db.refresh(folder)
         return folder
     
 
@@ -55,6 +58,8 @@ class FolderManager:
         folder.parent_id = parent_id
 
         db.commit()
+        db.refresh(folder)
+        return folder
     
 
     def update_visit_date(self, folder_id: int, db: Session) -> (None | NotFoundException):

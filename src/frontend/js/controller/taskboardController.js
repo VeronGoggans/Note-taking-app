@@ -1,43 +1,45 @@
 import { HttpModel } from "../model/httpModel.js";
-import { TaskView } from "../view/taskboardView.js";
+import { TaskboardView } from "../view/taskboardView.js";
 
-export class TaskboardController {
+
+export class TaskBoardController {
     constructor(applicationController, dialog) {
         this.applicationController = applicationController;
         this.dialog = dialog;
         this.model = new HttpModel();
     }
 
-    async init(taskboard) {
-        this.view = new TaskView(this, this.applicationController);
-        this.view.renderTaskboard(taskboard)
+    async init() {
+        this.view = new TaskboardView(this, this.applicationController);
+        await this.get()
     }
 
-    async add(taskInfo) {
-        const { task }  = await this.model.add('/task', taskInfo);
-        this.view.renderOne(task);
+    async add(taskboardInfo) {
+        const { taskboard }  = await this.model.add('/taskboard', taskboardInfo);
+        this.view.renderOne(taskboard);
     }
 
 
     async get() {
-        const { tasks } = await this.model.get(`/tasks`);
-        this.view.renderAll(tasks);
+        const { taskboards } = await this.model.get(`/taskboards`);
+        this.view.renderAll(taskboards);
     }
 
 
-    async update(updatedTask) {
-        const { task }  = await this.model.update('/task', updatedTask);
-        this.view.renderUpdate(task);
+    async getById(taskboardId) {
+        const { taskboard } = await this.model.get(`/taskboard/${taskboardId}`);
+        return taskboard
     }
 
 
-    async delete(taskId) {
-        await this.model.delete(`/task/${taskId}`);
-        this.view.renderDelete(taskId);
+    async update(updatedTaskboard) {
+        await this.model.update('/taskboard', updatedTaskboard);
+        this.view.renderUpdate(updatedTaskboard);
     }
 
-    loadPreviousView() {
-        const previousView = this.applicationController.getPreviousView();
-        this.applicationController.initView(previousView);
+
+    async delete(taskboardId) {
+        await this.model.delete(`/taskboard/${taskboardId}`);
+        this.view.renderDelete(taskboardId);
     }
 }

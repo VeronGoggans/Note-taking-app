@@ -1,44 +1,34 @@
-import { TaskCard } from "../components/task.js";
-import { TaskObjectArray } from "../util/array.js";
+import { TaskboardCard } from "../components/task.js";
+import { TaskboardObjectArray } from "../util/array.js";
 import { AnimationHandler } from "../handlers/animation/animationHandler.js";
 import { BaseView } from "./baseView.js";
 
-export class TaskView extends BaseView {
+export class TaskboardView extends BaseView {
     constructor(controller, applicationController) {
         super(controller);
         this.controller = controller;
         this.applicationController = applicationController;
-        this.taskObjects = new TaskObjectArray();
+        this.taskboardObjects = new TaskboardObjectArray();
         this.#initializeDomElements();
         this.#attachEventListeners();
         AnimationHandler.fadeInFromBottom(this.viewElement);
     }
 
-    renderTaskboard(taskboard) {
-        document.querySelector('.task-board-name').textContent = taskboard.name;
-        document.querySelector('.task-board-description').textContent = taskboard.description;
-        this.#renderAll(taskboard.todo, this.toDoSection, this.todoCount)
-        this.#renderAll(taskboard.inprogress, this.inProgressSection, this.inprogressCount)
-        this.#renderAll(taskboard.done, this.doneSection, this.doneCount)
-    }
-
-
-    #renderAll(tasks, boardSection, countSpan) {
+    renderAll(taskboards) {
         const contentFragment = document.createDocumentFragment();
 
-        countSpan.textContent = tasks.length
-        for (let i = 0; i < tasks.length; i++) {
-            const taskboard = this.#task(tasks[i]);
+        for (let i = 0; i < taskboards.length; i++) {
+            const taskboard = this.#taskboard(taskboards[i]);
+            AnimationHandler.fadeInFromBottom(taskboard)
             contentFragment.appendChild(taskboard);
         }
-        boardSection.append(contentFragment);
+        this._taskBoardsList.append(contentFragment);
     }
 
-
-    renderOne(task) {
-        const taskCard = this.#task(task);
-        AnimationHandler.fadeInFromBottom(taskCard);
-        this._taskBoardsList.appendChild(taskCard);
+    renderOne(taskboard) {
+        const taskboardCard = this.#taskboard(taskboard);
+        AnimationHandler.fadeInFromBottom(taskboardCard);
+        this._taskBoardsList.appendChild(taskboardCard);
         this.closeDialog();
     }
 
@@ -49,88 +39,51 @@ export class TaskView extends BaseView {
         for (let i = 0; i < taskboards.length; i++) {
             if (taskboards[i].id === taskboardId) {
                 AnimationHandler.fadeOutCard(taskboards[i])
-                this.taskObjects.remove(taskboardId);
+                this.taskboardObjects.remove(taskboardId);
                 this.closeDialog();
             }
         }
     }
 
-    renderUpdate(stickyNote) {
-        const stickyNotes = this._stickyWall.children 
+    renderUpdate(taskboard) {
+        const taskboards = this._taskBoardsList.children; 
 
-        for (let i = 0; i < stickyNotes.length; i++) {
-            if (stickyNotes[i].id === stickyNote.id) {    
+        for (let i = 0; i < taskboards.length; i++) {
+            if (taskboards[i].id === taskboard.id) {    
 
-                stickyNotes[i].querySelector('p').innerHTML = captureNewLines(stickyNote.content);
-                stickyNotes[i].querySelector('h3').textContent = stickyNote.name;
-
-                this.taskObjects.update(stickyNote);
+                taskboards[i].querySelector('h3').textContent = taskboard.name;
+                this.taskboardObjects.update(taskboard);
+                this.closeDialog()
             }
         }
     }
 
     getTaskboardObject(taskboardId) {
-        return this.taskObjects.get(taskboardId);
+        return this.taskboardObjects.get(taskboardId);
     }
 
-    handleTaskboardCardClick(taskboardId) {
-        const taskboard = this.taskObjects.get(taskboardId);
-        this.applicationController.initView('taskboard', 
+    async handleTaskboardCardClick(taskboardId) {
+        const taskboard = await this.controller.getById(taskboardId)
+        this.applicationController.initView('task', 
             {
                 taskboard: taskboard,
-                previousView: 'taskboardHome', 
+                previousView: 'taskboard', 
             }
         );
     }
 
-    #task(task) {
-        this.taskObjects.add(task);
-        return new TaskCard(this, task, this.controller, this.dialog);
+    #taskboard(taskboard) {
+        this.taskboardObjects.add(taskboard);
+        return new TaskboardCard(this, taskboard, this.controller, this.dialog);
     }
 
     #attachEventListeners() {
-        this.addTaskButton.addEventListener('click', () => {this.dialog.renderTaskModal(this.controller)});
-        this.exitButton.addEventListener('click', () => {this.controller.loadPreviousView()});
-
-        for (let i = 0; i < this.boardSections.length; i++) {
-            this.boardSections[i].addEventListener('dragover', (event) => {
-                event.preventDefault();
-                this.boardSections[i].style.borderColor = '#5c7fdd';
-            });
-
-            this.boardSections[i].addEventListener('dragleave', (event) => {
-                event.preventDefault();
-                this.boardSections[i].style.borderColor = 'transparent';
-            });
-
-            this.boardSections[i].addEventListener('drop', (event) => {
-                event.preventDefault();
-                // Get the id of the element being dragged
-                const droppedCardInfo = JSON.parse(event.dataTransfer.getData('text/plain'));
-                const droppedCardId = droppedCardInfo.draggedCardId;
-                const draggedItemType = droppedCardInfo.draggedItem;
-    
-                // if (draggedItemType === 'task') {
-                //     this.                    
-                // }
-    
-                // Remove the visual feedback class
-                this.HOST.classList.remove('hovered');
-            });
-        }
+            this._addNewTaskboardButton.addEventListener('click', () => {this.dialog.renderNewTaskboardModal(this.controller)});
     }
 
     #initializeDomElements() {
-        this.viewElement = document.querySelector('.task-board-view');
-        this.toDoSection = document.querySelector('.todo .tasks');
-        this.inProgressSection = document.querySelector('.inprogress .tasks');
-        this.doneSection= document.querySelector('.done .tasks');
-        this.exitButton = document.querySelector('.exit-taskboard-btn');
-        this.todoCount = document.querySelector('.todo .board-section-name span')
-        this.inprogressCount = document.querySelector('.inprogress .board-section-name span')
-        this.doneCount = document.querySelector('.done .board-section-name span')
-        this.addTaskButton = document.querySelector('.add-task-btn');
-        
-        this.boardSections = [this.toDoSection, this.inProgressSection, this.doneSection]
+        this.viewElement = document.querySelector('.task-board-home-view');
+        this._taskBoardsList = document.querySelector('.task-board-cards');
+        this._addNewTaskboardButton = document.querySelector('.add-task-board-btn');  
     }
 }

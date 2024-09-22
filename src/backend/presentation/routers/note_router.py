@@ -35,7 +35,8 @@ class NoteRouter:
 
     @handle_exceptions
     def get_note_by_id(self, note_id: int, db: Session = Depends(Database.get_db)):
-        return {'status': HttpStatus.OK, 'note': self.service.get_note_by_id(note_id, db)}
+        note, hierarchy = self.service.get_note_by_id(note_id, db)
+        return {'status': HttpStatus.OK, 'note': note, 'location': hierarchy}
 
 
     @handle_exceptions
@@ -55,7 +56,7 @@ class NoteRouter:
 
     @handle_exceptions
     def move_note(self, request: MoveNoteRequest, db: Session = Depends(Database.get_db)):
-        return {'status': HttpStatus.OK, 'note': self.service.move_note(request, db)}
+        return {'status': HttpStatus.OK, 'note': self.service.move_note(request.folder_id, request.note_id, db)}
 
 
     @handle_exceptions

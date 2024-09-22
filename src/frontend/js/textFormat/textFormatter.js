@@ -130,10 +130,10 @@ export class TextFormatter {
 
   addEmbedVideo(range) {    
     const container = CNode.create('div', {'class': 'embed-container', 'contentEditable': 'false'});
-    const inputTag = CNode.create('input', {'type': 'text', 'placeholder': 'Paste link here...', 'class': 'embed-link-input'});
-    container.append(inputTag);
+    const input = CNode.create('input', {'type': 'text', 'placeholder': 'Paste link here...', 'class': 'embed-link-input'});
+    container.append(input);
 
-    inputTag.addEventListener('keydown', (event) => {
+    input.addEventListener('keydown', (event) => {
       if (event.key === 'Enter') {
         // Delete the input
         range.deleteContents();
@@ -143,7 +143,7 @@ export class TextFormatter {
         const iframe = document.createElement('div');
 
         // adding nocookies text to the embed link for reduced cookies
-        let iframeArray = inputTag.value.split('youtube');
+        let iframeArray = input.value.split('youtube');
         iframeArray.splice(1, 0, noCookies);
 
         const noCookiesIframe = iframeArray.join('');
@@ -157,13 +157,33 @@ export class TextFormatter {
       }
     })
 
-    inputTag.addEventListener('keydown', (event) => {
-      if (event.key === 'Backspace' && inputTag.value === '') {
+    input.addEventListener('keydown', (event) => {
+      if (event.key === 'Backspace' && input.value === '') {
         container.remove()
       }
     })
     range.insertNode(container);
-    inputTag.focus();
+    input.focus();
+  }
+
+
+  addHtml(range) {
+    const container = CNode.create('div', {'class': 'html-container', 'contentEditable': 'false'});
+    const input = CNode.create('input', {'placeholder': '<p>Paste html here...</p>'});
+    container.append(input);
+
+    input.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        // Delete the input
+        range.deleteContents();
+
+        const editorPaper = document.querySelector('.editor-paper')
+        let currentPageContent = editorPaper.innerHTML;
+        editorPaper.innerHTML = currentPageContent += input.value;
+      }
+    })
+    range.insertNode(container);
+    input.focus();
   }
 
 

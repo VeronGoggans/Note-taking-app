@@ -1,4 +1,4 @@
-import { folderColorClasses } from "../constants/constants.js";
+import { folderColors } from "../constants/constants.js";
 import { CNode } from "../util/CNode.js";
 import { formatName } from "../util/formatters.js";
 import { addDraggImage } from "../util/ui.js";
@@ -45,20 +45,18 @@ export class Folder {
      * @param {String} color 
      */
     applyColor(color) {
-        const cardClass = folderColorClasses[color];
-        const folderClasses = Array.from(this.HOST.classList);
+        const folderColor = folderColors[color];
+        const colors = Array.from(this.HOST.classList);
 
         if (this.HOST.classList.length > 3) {
-            for (let i = 0; i < folderClasses.length; i++) {
-                if (folderClasses[i].includes('color')) {
-                    this.HOST.classList.remove(folderClasses[i]);
-                    this.HOST.classList.add(cardClass);
+            for (let i = 0; i < colors.length; i++) {
+                if (colors[i].includes('color')) {
+                    this.HOST.classList.remove(colors[i]);
+                    this.HOST.classList.add(folderColor);
                 }
             }        
         } 
-        else {
-            this.HOST.classList.add(cardClass);
-        }
+        else this.HOST.classList.add(folderColor);
     }
 
     #attachEventListeners() {
@@ -96,7 +94,9 @@ export class Folder {
             // This code will only trigger if 
             // the the droppped folder ID is not equal to the ID of the folder it lands on.
             // In other words nothing will happen if a user drops a folder on itself. 
-            if (droppedCardId !== this.id) {
+            // != is used instead of !== because a id attribute of a html tag is a string and 
+            // the id from the backend is a integer
+            if (droppedCardId != this.id) {
                 if (draggedItemType === 'folder') {
                     this.view.handleFolderDrop(this.id, droppedCardId)                    
                 }

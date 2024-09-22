@@ -38,11 +38,15 @@ export class TaskboardCard {
 
 
 export class TaskCard {
-    constructor(view, task) {
+    constructor(view, task, controller, dialog) {
         this.view = view 
+        this.controller = controller;
+        this.dialog = dialog;
+        this.task = task;
         this.id = task.id
         this.name = task.name
-        this.dueDate = task.due_date
+        this.dueDate = task.due_date        
+        this.section = task.section
 
         this.#initializeElements();
         this.#attachEventListeners();
@@ -53,7 +57,7 @@ export class TaskCard {
     #initializeElements() {
         this.HOST = CNode.create('div', { 'class': 'task', 'id': this.id, 'draggable': true});
         this.TASK_NAME = CNode.create('h3', {'textContent': this.name});
-        this.DUE_DATE = CNode.create('p', { 'class': 'due-date', 'textContent': this.dueDate});
+        this.DUE_DATE = CNode.create('p', { 'class': 'due-date', 'innerHTML': '<i class="fa-regular fa-clock"></i>' + 'Due ' + this.dueDate });
     }
 
 
@@ -63,6 +67,10 @@ export class TaskCard {
     }
 
     #attachEventListeners() {
+
+        this.HOST.addEventListener('click', () => {
+            this.dialog.renderTaskModal(this.controller, null, this.task)
+        })
         // Drag and drop event listeners below.
         this.HOST.addEventListener('dragstart', (event) => {
             addDraggImage(event, this.HOST, 'thumbtack')

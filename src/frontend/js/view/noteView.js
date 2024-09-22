@@ -44,7 +44,7 @@ export class NoteView extends BaseView {
         const cards = this._content.children;
 
         for (let i = 0; i < cards.length; i++) {
-            if (cards[i].id === note.id) {
+            if (cards[i].id == note.id) {
                 AnimationHandler.fadeOutCard(cards[i]);
                 this.noteObjects.remove(note);
             }

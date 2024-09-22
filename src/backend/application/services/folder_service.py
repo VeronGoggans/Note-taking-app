@@ -43,7 +43,7 @@ class FolderService:
         self.manager.update_visit_date(folder_id, db)
         
 
-    def move_folder(self, request: MoveFolderRequest, db: Session) -> None:
+    def move_folder(self, request: MoveFolderRequest, db: Session) -> Folder:
         return self.manager.move(request.parent_id, request.folder_id, db)
     
 

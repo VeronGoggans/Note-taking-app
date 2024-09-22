@@ -16,21 +16,3 @@
     color: rgba(92, 125, 255) !important;
     background-color: var(--hover-toolbar-btns) !important;
 }
-
-/*Fore ground color picker*/
-
-.color-picker {
-    position: relative;
-    width: fit-content;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 5px;
-    flex-direction: column;
-    color: var(--toolbar-btn-text);
-  }
-
-  .color-picker i {
-    position: relative;
-    font-size: 12px;
-  }

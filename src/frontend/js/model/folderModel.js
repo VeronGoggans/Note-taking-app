@@ -56,6 +56,8 @@ export class FolderModel extends HttpModel {
         this.folderObjects = []
         for (let i = 0; i < folders.length; i++) {
             const folder = folders[i]
+            console.log('adding ' + folder.name);
+            
             this.addFolderIdToList(folder.id, folder.name)
         }
     }

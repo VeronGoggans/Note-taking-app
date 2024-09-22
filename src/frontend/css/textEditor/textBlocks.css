@@ -23,36 +23,6 @@
     color: var(--important-text-color);
 }
 
-.editor-paper .copyable-block i,
-.note-content-box .copyable-block i {
-    background-color: var(--copy-icon-color);
-    min-width: 30px;
-    min-height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 5px;
-    color: var(--copy-icon-text-color);
-}
-
-.editor-paper .copyable-block,
-.note-content-box .copyable-block {
-    padding: 10px 20px;
-    margin: 10px 0;
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    font-family: sans-serif;
-    background-color: var(--copy-background-color);
-    border-radius: 5px;
-    color: var(--copy-text-color);
-    cursor: pointer;
-    transition: 100ms;
-}
-
-.editor-paper .copyable-block:hover {
-    color: var(--copy-text-color-hover);
-}
 
 .editor-paper .quote-block,
 .note-content-box .quote-block {
@@ -64,11 +34,10 @@
 }
 
 .editor-paper .quote-block p,
-.editor-paper .important-block p,
-.editor-paper .copyable-block p {
+.editor-paper .important-block p {
     min-height: 20px;
     width: 100%;
-    margin: 10px 0;
+    margin: 0;
 }
 
 

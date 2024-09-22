@@ -328,9 +328,8 @@ export const editorTemplate = `
             <div class="heading-2"><i class="fa-solid fa-h"></i>Add heading 2</div>
             <div class="heading-3"><i class="fa-solid fa-h"></i>Add heading 3</div>
             <div class="heading-4"><i class="fa-solid fa-h"></i>Add heading 4</div>
-            <div class="heading-5"><i class="fa-solid fa-h"></i>Add heading 5</div>
-            <div class="heading-6"><i class="fa-solid fa-h"></i>Add heading 6</div>
             <div class="date"><i class="fa-regular fa-calendar"></i>Current date</div>
+            <div class="insert-html"><i class="fa-brands fa-html5"></i>Insert HTML</div>
         </div>
     </div>
     
@@ -347,6 +346,6 @@ export const templates = {
     stickyWall: stickyWallTemplate,
     settings: settingsTemplate,
     editor: editorTemplate,
-    taskboardHome: taskBoardHomeTemplate,
-    taskboard: taskBoardTemplate
+    taskboard: taskBoardHomeTemplate,
+    task: taskBoardTemplate
 }

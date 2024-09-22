@@ -15,8 +15,6 @@ export class SlashCommand {
   
     executeSlashCommand(range, targetClass, extension = null) {
       switch (targetClass) {
-        case 'note-link-option':
-          break;
         case 'link-option':
           this.formatter.addLink(range);
           break;
@@ -50,14 +48,11 @@ export class SlashCommand {
         case 'heading-4':
           this.formatter.addHeading(range, 4, extension);
           break;
-        case 'heading-5':
-          this.formatter.addHeading(range, 5, extension);
-          break;
-        case 'heading-6':
-          this.formatter.addHeading(range, 6, extension);
-          break;
         case 'date':
           this.formatter.addDateBlock(range);
+          break;
+        case 'insert-html':
+          this.formatter.addHtml(range);
           break;
         default:
           console.log('No matching function for:', targetClass);

@@ -37,7 +37,7 @@ export class StickyNoteView extends BaseView {
         const stickyNotes = this._stickyWall.children 
 
         for (let i = 0; i < stickyNotes.length; i++) {
-            if (stickyNotes[i].id === stickyNoteId) {
+            if (stickyNotes[i].id == stickyNoteId) {
                 AnimationHandler.fadeOutCard(stickyNotes[i])
                 this.stickyNoteObjects.remove(stickyNoteId);
             }
@@ -48,7 +48,7 @@ export class StickyNoteView extends BaseView {
         const stickyNotes = this._stickyWall.children 
 
         for (let i = 0; i < stickyNotes.length; i++) {
-            if (stickyNotes[i].id === stickyNote.id) {    
+            if (stickyNotes[i].id == stickyNote.id) {    
 
                 stickyNotes[i].querySelector('p').innerHTML = captureNewLines(stickyNote.content);
                 stickyNotes[i].querySelector('h3').textContent = stickyNote.name;

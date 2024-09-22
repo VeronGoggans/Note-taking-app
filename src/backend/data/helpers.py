@@ -21,8 +21,44 @@ def find_note(note_id: int, db: Session) -> ( Note | NotFoundException ):
 
 
 def find_taskboard(id: int, db: Session) -> ( Taskboard | NotFoundException ):
-        taskboard = db.query(Taskboard).filter(Taskboard.id == id).first()
+    taskboard = db.query(Taskboard).filter(Taskboard.id == id).first()
 
-        if taskboard is None:
-            raise NotFoundException(f"Taskboard with id {id} not found.")
-        return taskboard
+    if taskboard is None:
+        raise NotFoundException(f"Taskboard with id {id} not found.")
+    return taskboard
+
+
+def get_folder_hierarchy(id: int, db: Session) -> list[dict]:
+    """
+    Retrieve the folder hierarchy for a given folder or note ID.
+    The hierarchy is a list of dictionaries with {id, name} for each folder in the path.
+    """
+
+    folder = None
+
+    # Step 1: Check if the ID belongs to a Note
+    note = db.query(Note).filter(Note.id == id).first()
+    
+    if note:
+        # If it's a note, find the folder where the note is located
+        folder_id = note.folder_id
+        folder = db.query(Folder).filter(Folder.id == folder_id).first()
+    else:
+        # Step 2: Check if the ID belongs to a Folder
+        folder = db.query(Folder).filter(Folder.id == id).first()
+
+    if not folder:
+        raise NotFoundException(f"No folder or note found with id {id}.")
+
+    # Step 3: Traverse up the folder hierarchy and collect the path
+    hierarchy = []
+    current_folder = folder
+
+    while current_folder:
+        hierarchy.append({"id": current_folder.id, "name": current_folder.name})
+        current_folder = db.query(Folder).filter(Folder.id == current_folder.parent_id).first()
+
+    # Reverse the hierarchy so that the root folder comes first
+    hierarchy.reverse()
+
+    return hierarchy

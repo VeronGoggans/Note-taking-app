@@ -45,7 +45,8 @@ class FolderRouter:
 
     @handle_exceptions
     def get_folder_by_id(self, folder_id: str, db: Session = Depends(Database.get_db)):
-        return {'status': HttpStatus.OK, 'folder': self.service.get_folder_by_id(folder_id, db)}
+        folder, hierarchy = self.service.get_folder_by_id(folder_id, db)
+        return {'status': HttpStatus.OK, 'folder': folder, 'location': hierarchy}
 
 
     @handle_exceptions

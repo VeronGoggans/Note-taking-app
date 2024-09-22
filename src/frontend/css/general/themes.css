@@ -42,10 +42,9 @@
     
     /*taskboard*/
     --taskboard-card: #0f0f13;
-    --todo-board: #ccbbff;
-    --inprogress-board: #a1abff;
-    --done-board: #bdffbd;
+    --board-section: #0f1015;
     --task: #1f2129;
+    --due-date: #402384;
 
     /*Other*/
     --title-bar-button-background: #252735;
@@ -134,10 +133,9 @@
 
     /*taskboard*/
     --taskboard-card: #f0f3ff;
-    --todo-board: #f3efff;
-    --inprogress-board: #f6f7ff;
-    --done-board: #edffed;
-    --task: #fff;
+    --board-section: #fff;
+    --task: #f5f6ff;
+    --due-date: #d9deff;
 
     /*Other*/
     --title-bar-button-background: #dfe7ff;

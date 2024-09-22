@@ -2,7 +2,7 @@ import { Folder } from "../components/folder.js";
 import { FolderObjectArray } from "../util/array.js";
 import { formatName } from "../util/formatters.js";
 import { AnimationHandler } from "../handlers/animation/animationHandler.js";
-import { folderColorClasses } from '../constants/constants.js';
+import { folderColors } from '../constants/constants.js';
 import { removeContent } from "../util/ui.js";
 import { BaseView } from "./baseView.js";
 
@@ -28,18 +28,17 @@ export class FolderView extends BaseView {
 
     renderOne(folder) {
         const folderCard = this.#folder(folder);
-        this._content.insertBefore(folderCard, this._content.firstChild);
+        this._content.insertAdjacentElement(folderCard, this._content.firstChild);
         AnimationHandler.fadeInFromBottom(folderCard);
         this.closeDialog()
     }
 
     renderUpdate(folder) {
         const folderCards = this._content.children; 
-
+    
         for (let i = 0; i < folderCards.length; i++) {
-            if (folderCards[i].id === folder.id) {
-                const h4 = folderCards[i].querySelector('h4');
-                h4.textContent = formatName(folder.name);
+            if (folderCards[i].id == folder.id) {
+                folderCards[i].querySelector('h4').textContent = formatName(folder.name);
 
                 this.#applyFolderColor(folderCards[i], folder.color);
                 this.folderObjects.update(folder);
@@ -47,12 +46,12 @@ export class FolderView extends BaseView {
         }
     }
     
-    renderDelete(folder) {
-        const cards = this._content.children;
+    renderDelete(folder) {      
+        const folders = this._content.children;
         
-        for (let i = 0; i < cards.length; i++) {
-            if (cards[i].id === folder.id) {
-                AnimationHandler.fadeOutCard(cards[i]);
+        for (let i = 0; i < folders.length; i++) {
+            if (folders[i].id == folder.id) {
+                AnimationHandler.fadeOutCard(folders[i]);
                 this.folderObjects.remove(folder);
             }
         }
@@ -72,16 +71,15 @@ export class FolderView extends BaseView {
 
 
     #applyFolderColor(folderCard, color) {
-        const folderColorClass = folderColorClasses[color];
+        const newColor = folderColors[color];
         const folderClasses = Array.from(folderCard.classList);
-
+        
         for (const cls of folderClasses) {
             if (cls.includes('color')) {
                 folderCard.classList.remove(cls);
             }
-        }
-
-        folderCard.classList.add(folderColorClass);
+        }        
+        folderCard.classList.add(newColor);
     }
 
     async handleNoteDrop(folderId, droppedNoteId) {

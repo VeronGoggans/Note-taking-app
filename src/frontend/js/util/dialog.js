@@ -83,8 +83,8 @@ export class Dialog {
         this.dialog.querySelector('.new-taskboard-modal input').focus()
     }
 
-    renderTaskModal(controller, task = null) {
-        this.addChild(new TaskModal(controller, task));
+    renderTaskModal(controller, taskboardId = null, task = null) {
+        this.addChild(new TaskModal(controller, taskboardId, task));
         this.dialog.querySelector('.task-modal input').focus()
     }
 

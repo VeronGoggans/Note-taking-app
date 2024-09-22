@@ -15,7 +15,7 @@ export class FolderController {
      * @param {String} folderName 
      * @param {Array} location - Hierarcical array of folder objects. 
      */
-    init(folderId = null, folderName = null, location) {
+    init(folderId = null, folderName = null, location = null) {
         this.view = new FolderView(this, this.applicationController)
         
         // If a folder on the home view has been clicked.
@@ -33,7 +33,7 @@ export class FolderController {
         const { name } = object
         const parentFolderId = this.model.getCurrentFolderID();
 
-        const { folder } = await this.model.add('/folder', {'folder_id': parentFolderId, 'name': name});
+        const { folder } = await this.model.add('/folder', {'parent_id': parentFolderId, 'name': name});
         this.view.renderOne(folder);
     }
 
@@ -64,7 +64,7 @@ export class FolderController {
 
 
     async move(newParentFolderId, droppedFolderId) {
-        const { folder } = await this.model.update('/moveFolder', {'new_parent_folder_id': newParentFolderId, 'folder_id': droppedFolderId});
+        const { folder } = await this.model.update('/moveFolder', {'parent_id': newParentFolderId, 'folder_id': droppedFolderId});
         this.view.renderDelete(folder);
     }
 

@@ -43,7 +43,7 @@ class NoteService:
 
 
     def move_note(self, folder_id: int, note_id: int, db: Session) -> Note:
-        self.manager.move(folder_id, note_id, db)
+        return self.manager.move(folder_id, note_id, db)
 
 
     def get_search_options(self, db: Session) -> list[dict]:

@@ -38,11 +38,13 @@
 }
 
 .task-board-view .task-board-description {
-    font-weight: 600;
-    font-size: 15px;
+    font-family: sans-serif;
     color: var(--text);
     max-width: 500px;
     margin: 0 0 20px 0;
+    background-color: var(--stats-background);
+    padding: 20px;
+    border-radius: 10px;
 }
 
 .task-board {
@@ -77,25 +79,16 @@
     width: 33%;
     min-height: 150px;
     max-height: fit-content;
+    box-shadow: var(--card-shadow);
+    background-color: var(--board-section);
 }
 
 .board section .tasks {
     margin: 0 7px 7px 7px;
     border: 2px solid transparent;
     border-radius: 5px;
-    min-height: 100px;
-}
-
-.board .todo {
-    background-color: var(--todo-board);
-}
-
-.board .inprogress {
-    background-color: var(--inprogress-board);
-}
-
-.board .done {
-    background-color: var(--done-board);
+    min-height: 150px;
+    padding-bottom: 30px;
 }
 
 .board-section-name {
@@ -143,8 +136,15 @@
     cursor: pointer;
     background-color: var(--task);
     margin: 10px 0;
-    border-radius: 5px;
+    border-radius: 10px;
     padding: 15px 10px;
+    opacity: 0;
+    transform: translateY(30%);
+    transition: opacity .7s ease, transform .2s ease;
+}
+
+.task i {
+    margin-right: 10px;
 }
 
 .task h3 {
@@ -158,4 +158,8 @@
     font-size: 14px;
     color: var(--text);
     margin: 10px 0;
+    width: fit-content;
+    background-color: var(--due-date);
+    padding: 5px;
+    border-radius: 5px;
 }
