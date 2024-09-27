@@ -5,7 +5,7 @@ export const homeTemplate = `
         <div class="searchbar">
             <i id="search-icon" class="fa-solid fa-magnifying-glass"></i>
             <input type="text" placeholder="Search..." spellcheck="false">
-            <ul></ul>
+            <ul class="dropdown-items"></ul>
         </div>
         
         </div>
@@ -29,7 +29,7 @@ export const notesTemplate = `
         <div class="searchbar">
             <i id="search-icon" class="fa-solid fa-magnifying-glass"></i>
             <input type="text" placeholder="Search..." spellcheck="false">
-            <ul></ul>
+            <ul class="dropdown-items"></ul>
         </div>
 
     </div>
@@ -201,7 +201,7 @@ export const settingsTemplate = `
             <p>Select a theme</p>
             <div class="theme-dropdown">
                 <input type="text" spellcheck="false" placeholder="Theme" class="theme-input">
-                <ul class="themes">
+                <ul class="dropdown-items">
                     <li theme="light">Light</li>
                     <li theme="dark">Dark</li>
                 </ul>
@@ -346,6 +346,6 @@ export const templates = {
     stickyWall: stickyWallTemplate,
     settings: settingsTemplate,
     editor: editorTemplate,
-    taskboard: taskBoardHomeTemplate,
+    taskboards: taskBoardHomeTemplate,
     task: taskBoardTemplate
 }

@@ -34,9 +34,12 @@
     position: absolute;
     top: 55px;
     right: 20px;
-    color: var(--placeholder) !important;
     display: flex;
     flex-direction: column;
+}
+
+.editor-util-btns-container i {
+    color: var(--placeholder) !important;
 }
 
 
@@ -111,16 +114,14 @@
 .templates-dropdown .options span {
     font-family: sans-serif;
     font-weight: 600;
-    font-size: 18px;
+    font-size: 22px;
     color: var(--important);
     margin-bottom: 10px;
 }
 
 .templates-container {
-    list-style-type: circle;;
     overflow-y: scroll;
-    border-left: 2px solid #5c7fdd;
-    list-style: circle;
+    padding: 0;
 }
 
 .templates-container li {
@@ -148,7 +149,7 @@
 #editor-search-btn:hover,
 #editor-template-btn:hover {
     background-color: var(--hover);
-    color: #5c7dff;
+    color: #5c7dff !important;
 }
 
 .note-name-input {

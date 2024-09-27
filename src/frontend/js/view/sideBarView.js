@@ -23,7 +23,10 @@ export class SidebarView {
 
                 const anchor = event.target.closest('a[data-view]')
                 if (anchor) {
-                    if (anchor.getAttribute('data-view') === 'notes') {
+
+                    const viewId = anchor.getAttribute('data-view')
+
+                    if (viewId === 'notes') {
                         // Load the notes view and tell it to render the Home folder 
                         const homeFolder = {'id': 1, 'name': 'Home'}
                         applicationController.initView('notes', { 
@@ -32,7 +35,7 @@ export class SidebarView {
                          });
                     } else {
                         // Load any other view if not the notes view.
-                        applicationController.initView(anchor.getAttribute('data-view'));
+                        applicationController.initView(viewId);
                     }                    
                 }
             });

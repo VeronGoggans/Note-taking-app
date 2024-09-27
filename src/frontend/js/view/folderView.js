@@ -28,7 +28,7 @@ export class FolderView extends BaseView {
 
     renderOne(folder) {
         const folderCard = this.#folder(folder);
-        this._content.insertAdjacentElement(folderCard, this._content.firstChild);
+        this._content.insertBefore(folderCard, this._content.firstChild);
         AnimationHandler.fadeInFromBottom(folderCard);
         this.closeDialog()
     }

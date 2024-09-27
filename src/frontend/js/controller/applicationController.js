@@ -41,7 +41,7 @@ export class ApplicationController {
             stickyWall: this.stickyWallController,
             settings: this.settingController,
             editor: this.textEditorController,
-            taskboard: this.taskboardController,
+            taskboards: this.taskboardController,
             task: this.taskController
         }
         this.initView('home')
@@ -62,7 +62,6 @@ export class ApplicationController {
 
                 if (viewId === 'notes') {
                     const { folder, location } = viewParameters; 
-                    console.log(viewParameters);
                     
                     this.folderController.init(folder.id, folder.name, location);
                     // note controller 
@@ -82,16 +81,20 @@ export class ApplicationController {
                     } = viewParameters;
 
                     this.model.setPreviousView(previousView);
+
                     if (editorObjectLocation !== null) {
                         this.folderController.setNoteLocation(editorObjectLocation);
                     }
                     
                     if (newEditorObject) {
                         this.openTextEditor(editorObjectType)
-                    } else {
+                    } 
+
+                    if (!newEditorObject) {
                         this.openInTextEditor(editorObject, editorObjectType);
                     }
-                    this.sidebarView.setActiveTab('notes');
+                    // EditorObjectType can be Template or note.
+                    this.sidebarView.setActiveTab(`${editorObjectType}s`);
                     return;
                 }
 
@@ -125,6 +128,7 @@ export class ApplicationController {
                 }
 
                 if (viewId === 'templates') {
+                    this.folderController.clearFolderHistory();
                     this.sidebarView.setActiveTab('templates');
                 }
 
@@ -132,7 +136,7 @@ export class ApplicationController {
                     this.sidebarView.setActiveTab('sticky-wall')
                 }
 
-                if (viewId === 'taskboardHome') {
+                if (viewId === 'taskboards') {
                     this.sidebarView.setActiveTab('taskboards')
                 }
 

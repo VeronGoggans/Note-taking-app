@@ -5,9 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../css/components/note.css">
+    <link rel="stylesheet" href="../css/general/main.css">
+    <link rel="stylesheet" href="../css/general/themes.css">
+    <link rel="stylesheet" href="../css//modals/taskModal.css">
 </head>
 <body>
-    <div class="empty-card">
+    <div class="task-modal">
+        <input class="task-name-input" type="text" placeholder="Task name" spellcheck="false">
+            <table>
+                <tr>
+                    <td class="property"><i class="fa-regular fa-clock"></i> Due date</td>
+                    <td class="property-value"><input type="date"></td>
+                </tr>
+                <tr>
+                    <td class="property"><i class="fa-solid fa-circle-info"></i> Status</td>
+                    <td class="property-value"><span id="task-status" class="todo-status">To do</span></td>
+                </tr>
+                <tr>
+                    <td class="property"><i class="fa-solid fa-tag"></i> Tag</td>
+                    <td class="property-value">
+                        <div class="task-tags-dropdown">
+                            <input type="text" placeholder="Tags">
+                            <ul class="dropdown-items">
+                                <li>Feature</li>
+                                <li>Documentation</li>
+                                <li>Bug</li>
+                                <li>Testing</li>
+                                <li>User story</li>
+                                <li>Enabler story</li>
+                                <li>Learning story</li>
+                                <li>Research story</li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <p><i class="fa-regular fa-comment"></i> Description</p>
+            <textarea class="task-description" placeholder="Type something here..." spellcheck="false"></textarea>
+            <button class="add-task-btn">Add</button>
+            <button class="delete-task-btn">Delete</button>
         
     </div>
 

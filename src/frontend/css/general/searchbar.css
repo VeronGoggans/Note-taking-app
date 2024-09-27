@@ -30,38 +30,6 @@
     color: var(--icon);
 }
 
-.searchbar ul {
-    position: absolute;
-    top: 50px;
-    left: -1px;
-    z-index: 1;
-    width: 100%;
-    max-height: 350px;
-    overflow-y: auto;
-    border: 1px solid var(--searchbar-border);
-    border-radius: 10px;
-    background-color: var(--searchbar-dropdown);
-    list-style: none;
-    margin: 0;
-    padding: 10px;
-    opacity: 0;
-    transition: 100ms
-}
-
-.searchbar ul li {
-    cursor: pointer;
-    font-size: 14px;
-    padding: 8px 10px;
-    color: var(--editor-text);
-    border-radius: 5px;
-    font-weight: 600;
-    transition: background-color 150ms ease
-}
-
-.searchbar ul li:hover {
-    background-color: var(--hover-searchbar-options);
-    color: var(--hover-text);
-}
 
 .searchbar ul i {
     margin-right: 5px;

@@ -42,7 +42,6 @@
     color: var(--text);
     max-width: 500px;
     margin: 0 0 20px 0;
-    background-color: var(--stats-background);
     padding: 20px;
     border-radius: 10px;
 }

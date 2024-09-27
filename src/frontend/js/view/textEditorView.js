@@ -45,10 +45,13 @@ export class TextEditorView extends BaseView {
 
   /**
    * Saves the content of the editor.
-   * @param {boolean} closeEditor - Indicates if the editor should be closed or not.
-   * @param {boolean} checkForChanges - Indicates if changes should be checked.
    */
-  async save(closeEditor = true, checkForChanges = true, notify = false, clearEditorObject = true) {
+  async save(
+    closeEditor = true, 
+    checkForChanges = true, 
+    notify = false, 
+    clearEditorObject = true
+  ) {
     const name = this.documentNameInput.value || 'untitled';
     const content = this.page.innerHTML;
     await this.controller.save(name, content, notify, clearEditorObject);
@@ -60,12 +63,7 @@ export class TextEditorView extends BaseView {
     this.editorContent = content;
   }
 
-  /**
-   * This method will check for changes before closing the editor.
-   * If changes have been found they will be saved. If no changes have been 
-   * found the method just closes the editor. 
-   * @param {Boolean} checkForChanges 
-   */
+
   closeEditor(checkForChanges = true) {
     if (checkForChanges && this.editorContent !== this.page.innerHTML) {
       this.dialog.renderForgotSaveModal(this);
@@ -105,7 +103,7 @@ export class TextEditorView extends BaseView {
   }
 
   new() {
-    this.save(false, true)
+    this.save(false, true, false)
     this.#clear();
   }
 

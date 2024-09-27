@@ -33,10 +33,11 @@ export class NoteView extends BaseView {
                 AnimationHandler.fadeInFromBottom(noteCard);
             }
             this._content.appendChild(contentFragment);
+
+            if (this._content.children.length === 0) {
+                NotificationHandler.push('empty');
+            }
         } 
-        if (this._content.children.length === 0) {
-            NotificationHandler.push('empty');
-        }
     }
 
     
@@ -64,14 +65,6 @@ export class NoteView extends BaseView {
                 editorObjectLocation: null
             }
         );
-    }
-
-    /**
-     * This method updates the stored object of a given note
-     * @param {Dict} note 
-     */
-    update(note) {
-        this.noteObjects.update(note);
     }
 
     getNoteObject(noteId) {

@@ -10,7 +10,7 @@ export class TaskModal {
         this.action = 'add';
         this.HOST = CNode.create('div', {'class': 'task-modal'});
         this.HOST.innerHTML = `
-            <input type="text" placeholder="Task name" spellcheck="false">
+            <input class="task-name-input" type="text" placeholder="Task name" spellcheck="false">
             <table>
                 <tr>
                     <td class="property"><i class="fa-regular fa-clock"></i> Due date</td>
@@ -19,6 +19,24 @@ export class TaskModal {
                 <tr>
                     <td class="property"><i class="fa-solid fa-circle-info"></i> Status</td>
                     <td class="property-value"><span id="task-status" class="todo-status">To do</span></td>
+                </tr>
+                <tr>
+                    <td class="property"><i class="fa-solid fa-tag"></i> Tag</td>
+                    <td class="property-value">
+                        <div class="task-tags-dropdown">
+                            <input type="text" placeholder="Tags">
+                            <ul class="dropdown-items">
+                                <li>Feature</li>
+                                <li>Documentation</li>
+                                <li>Bug</li>
+                                <li>Testing</li>
+                                <li>User story</li>
+                                <li>Enabler story</li>
+                                <li>Learning story</li>
+                                <li>Research story</li>
+                            </ul>
+                        </div>
+                    </td>
                 </tr>
             </table>
             <p><i class="fa-regular fa-comment"></i> Description</p>
