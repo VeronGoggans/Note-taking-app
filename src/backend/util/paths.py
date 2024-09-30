@@ -66,15 +66,7 @@ SETTINGS_PATH = f'{CWD}/storage/json/settings.json'
 # '''
 
 # sql_create_tasks_table = '''
-# CREATE TABLE IF NOT EXISTS tasks (
-#     id INTEGER PRIMARY KEY AUTOINCREMENT,
-#     name VARCHAR,
-#     description VARCHAR,
-#     due_date VARCHAR,
-#     section VARCHAR NOT NULL DEFAULT 'todo',
-#     taskboard_id INTEGER,
-#     FOREIGN KEY (taskboard_id) REFERENCES taskboards (id) ON DELETE CASCADE
-# );
+# ALTER TABLE tasks ADD COLUMN tag VARCHAR NOT NULL DEFAULT 'Task';
 # '''
 
 # sql_create_flashcard_sets_table = '''
@@ -96,6 +88,23 @@ SETTINGS_PATH = f'{CWD}/storage/json/settings.json'
 # );
 # '''
 
+
+
+
+# # Query to get all table names
+# cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
+
+# # Fetch all table names
+# tables = cursor.fetchall()
+
+# # Print the table names
+# for table in tables:
+#     print(table[0])
+
+# # Close the connection
+# connection.close()
+
+
 # # Execute the SQL commands using the cursor
 # cursor.execute(sql_create_folders_table)
 # cursor.execute(sql_create_notes_table)
@@ -103,8 +112,8 @@ SETTINGS_PATH = f'{CWD}/storage/json/settings.json'
 # cursor.execute(sql_create_templates_table)
 # cursor.execute(sql_create_taskboards_table)
 # cursor.execute(sql_create_tasks_table)
-# cursor.execute(sql_create_flashcard_sets_table)
-# cursor.execute(sql_create_flashcards_table)
+# # cursor.execute(sql_create_flashcard_sets_table)
+# # cursor.execute(sql_create_flashcards_table)
 
 # # Commit the changes
 # connection.commit()

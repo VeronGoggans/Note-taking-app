@@ -24,12 +24,13 @@ class TaskManager:
         return self.__find_task(id, db)
 
 
-    def update(self, id: int, name: str, description: str, section: str, due_date: str, db: Session) -> ( Task | NotFoundException ):
+    def update(self, id: int, name: str, description: str, section: str, due_date: str, tag: str, db: Session) -> ( Task | NotFoundException ):
         task = self.__find_task(id, db)
         task.name = name
         task.description = description
         task.section = section
         task.due_date = due_date
+        task.tag = tag
 
         db.commit()
         db.refresh(task)

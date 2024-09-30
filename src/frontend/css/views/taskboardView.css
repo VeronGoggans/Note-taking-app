@@ -13,10 +13,6 @@
     transition: opacity .7s ease, transform .2s ease;
 }
 
-.task-board-view p {
-    margin: 0;
-}
-
 .exit-taskboard-btn {
     position: absolute;
     left: calc(5% - 10px);
@@ -128,37 +124,4 @@
 
 .board .done .board-section-name p {
     background-color: #d2ffd2;
-}
-
-
-.task {
-    cursor: pointer;
-    background-color: var(--task);
-    margin: 10px 0;
-    border-radius: 10px;
-    padding: 15px 10px;
-    opacity: 0;
-    transform: translateY(30%);
-    transition: opacity .7s ease, transform .2s ease;
-}
-
-.task i {
-    margin-right: 10px;
-}
-
-.task h3 {
-    font-family: sans-serif;
-    color: var(--important);
-    margin-top: 0;
-}
-
-.task p {
-    font-family: sans-serif;
-    font-size: 14px;
-    color: var(--text);
-    margin: 10px 0;
-    width: fit-content;
-    background-color: var(--due-date);
-    padding: 5px;
-    border-radius: 5px;
 }

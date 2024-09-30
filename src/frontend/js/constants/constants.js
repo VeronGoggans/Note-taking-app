@@ -27,6 +27,18 @@ export const folderColors = {
     'rgb(255, 255, 255)': 'color-original'
 }
 
+export const tagColors = {
+    'User story': 'user-story-tag',
+    'Learning story': 'learning-story-tag',
+    'Research story': 'research-story-tag',
+    'Enabler story': 'enabler-story-tag',
+    'Task': 'task-tag',
+    'Feature': 'feature-tag',
+    'Testing': 'testing-tag',
+    'Bug': 'bug-tag',
+    'Documentation': 'documentation-tag',
+}
+
 
 export const headingsMap = {
     'H1': 'Heading 1',

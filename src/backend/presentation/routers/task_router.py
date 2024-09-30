@@ -29,6 +29,7 @@ class TaskRouter:
                 request.name, 
                 request.description, 
                 request.due_date,
+                request.tag,
                 db)}
        
 
@@ -52,6 +53,7 @@ class TaskRouter:
             request.description,
             request.due_date,
             request.section,
+            request.tag,
             db)}
     
 

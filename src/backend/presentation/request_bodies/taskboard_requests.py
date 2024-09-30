@@ -31,6 +31,7 @@ class PostTaskRequest(BaseModel):
     name: str
     description: str
     due_date: str
+    tag: str
 
 
 class PutTaskRequest(BaseModel):
@@ -46,3 +47,4 @@ class PutTaskRequest(BaseModel):
     description: str
     due_date: str
     section: str
+    tag: str

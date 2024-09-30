@@ -15,13 +15,15 @@ class TaskService:
             name: str, 
             description: str, 
             due_date: str,
+            tag: str,
             db: Session) -> ( Task | NotFoundException ):
         
         task = Task(
             name = name, 
             description = description,
             due_date = due_date,
-            taskboard_id = parent_id
+            taskboard_id = parent_id,
+            tag = tag
             )
         return self.manager.add(parent_id, task, db)
     
@@ -41,8 +43,9 @@ class TaskService:
             description: str,
             due_date: str,
             section: str, 
+            tag: str,
             db: Session) -> ( Task | NotFoundException ):
-        return self.manager.update(id, name, description, section, due_date, db)
+        return self.manager.update(id, name, description, section, due_date, tag, db)
 
 
     def delete_task(self, id: int, db: Session) -> ( Task | NotFoundException ):

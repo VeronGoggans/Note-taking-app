@@ -1,4 +1,6 @@
 import { CNode } from "../../util/CNode.js";
+import { DropdownHelper } from "../../helpers/dropdownHelper.js";
+
 
 export class TaskModal {
     constructor(controller, taskboardId, task = null) {
@@ -24,16 +26,17 @@ export class TaskModal {
                     <td class="property"><i class="fa-solid fa-tag"></i> Tag</td>
                     <td class="property-value">
                         <div class="task-tags-dropdown">
-                            <input type="text" placeholder="Tags">
+                            <input class="tags-input" type="text" placeholder="Tags" spellcheck="false">
                             <ul class="dropdown-items">
-                                <li>Feature</li>
-                                <li>Documentation</li>
-                                <li>Bug</li>
-                                <li>Testing</li>
-                                <li>User story</li>
-                                <li>Enabler story</li>
-                                <li>Learning story</li>
-                                <li>Research story</li>
+                                <li data-task-type="feature">Feature</li>
+                                <li data-task-type="task">Task</li>
+                                <li data-task-type="documentation">Documentation</li>
+                                <li data-task-type="bug">Bug</li>
+                                <li data-task-type="testing">Testing</li>
+                                <li data-task-type="user-story">User story</li>
+                                <li data-task-type="enabler-story">Enabler story</li>
+                                <li data-task-type="learning-story">Learning story</li>
+                                <li data-task-type="research-story">Research story</li>
                             </ul>
                         </div>
                     </td>
@@ -48,6 +51,10 @@ export class TaskModal {
         if (task !== null) {
             this.#setTask();
         }
+        this.tagsInput = this.HOST.querySelector('.task-tags-dropdown input');       
+        this.tagsDropdownOptions = this.HOST.querySelector('.task-tags-dropdown ul');
+        this.tagsDropdownOptions.style.left = '150px';
+        this.dropdownHelper = new DropdownHelper(this, [this.tagsInput], [this.tagsDropdownOptions]);
 
         this.#attachEventListeners();
         return this.HOST
@@ -60,6 +67,15 @@ export class TaskModal {
         this.HOST.querySelector('input[type="text"]').value = this.task.name;        
         this.HOST.querySelector('textarea').value = this.task.description;
         this.HOST.querySelector('input[type="date"]').value = this.task.due_date;
+        this.HOST.querySelector('.tags-input').value = this.task.tag;
+    }
+
+    #toggleDropdownClass() {
+        if (this.tagsDropdownOptions.classList.contains('tags-input-open')) {
+            this.tagsDropdownOptions.classList.remove('tags-input-open');
+        } else {
+            this.tagsDropdownOptions.classList.add('tags-input-open');
+        }
     }
 
 
@@ -70,7 +86,8 @@ export class TaskModal {
                     'parent_id': this.taskboardId,
                     'name': this.HOST.querySelector('input[type="text"]').value || 'Untitled',
                     'description': this.HOST.querySelector('textarea').value,
-                    'due_date': this.HOST.querySelector('input[type="date"]').value || 'No deadline set'
+                    'due_date': this.HOST.querySelector('input[type="date"]').value || 'No deadline set',
+                    'tag': this.HOST.querySelector('.tags-input').value || 'Task'
                 })
             }
             else {
@@ -79,12 +96,26 @@ export class TaskModal {
                     "name": this.HOST.querySelector('input[type="text"]').value,
                     "description": this.HOST.querySelector('textarea').value,
                     'due_date': this.HOST.querySelector('input[type="date"]').value,
-                    'section': this.HOST.querySelector('#task-status').textContent
+                    'section': this.HOST.querySelector('#task-status').textContent,
+                    'tag': this.HOST.querySelector('.tags-input').value
                 })
             } 
         })
         this.HOST.querySelector('.delete-task-btn').addEventListener('click', async () => {
             await this.controller.delete(this.task.id)
+        })
+
+        // The task tags input eventlisteners below
+        this.tagsInput.addEventListener('click', () => {
+            this.#toggleDropdownClass()
+        })
+
+        this.tagsDropdownOptions.querySelectorAll('li').forEach(tag => {
+            tag.addEventListener('click', () => {
+                this.#toggleDropdownClass();
+                this.dropdownHelper.closeDropdowns()
+                this.tagsInput.value = tag.textContent;
+            })
         })
     }
 }

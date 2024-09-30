@@ -2,6 +2,8 @@ import { TaskCard } from "../components/task.js";
 import { TaskObjectArray } from "../util/array.js";
 import { AnimationHandler } from "../handlers/animation/animationHandler.js";
 import { BaseView } from "./baseView.js";
+import { tagColors } from "../constants/constants.js";
+
 
 export class TaskView extends BaseView {
     constructor(controller, applicationController) {
@@ -78,6 +80,13 @@ export class TaskView extends BaseView {
 
                 tasks[i].querySelector('h3').textContent = task.name;
                 tasks[i].querySelector('p').innerHTML = '<i class="fa-regular fa-clock"></i>' + 'Due ' + task.due_date;
+                const tag = tasks[i].querySelectorAll('p')[1];
+                
+                const newTagColor = tagColors[task.tag];
+
+                tag.innerHTML = '<i class="fa-solid fa-tag"></i> ' + task.tag;
+                tag.classList.remove(...tag.classList);
+                tag.classList.add(newTagColor);
 
                 this.taskObjects.update(task);
                 this.closeDialog()
@@ -129,7 +138,6 @@ export class TaskView extends BaseView {
 
     #initializeDomElements() {
         this.viewElement = document.querySelector('.task-board-view');
-
         this.toDoSection = document.querySelector('.todo .tasks');
         this.inProgressSection = document.querySelector('.inprogress .tasks');
         this.doneSection= document.querySelector('.done .tasks');

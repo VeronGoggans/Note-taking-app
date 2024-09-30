@@ -1,5 +1,6 @@
 import { CNode } from "../util/CNode.js";
 import { addDraggImage } from "../util/ui.js";
+import { tagColors } from "../constants/constants.js";
 
 
 export class TaskboardCard {
@@ -47,6 +48,8 @@ export class TaskCard {
         this.name = task.name
         this.dueDate = task.due_date        
         this.section = task.section
+        this.tag = task.tag
+        this.tagColor = tagColors[this.tag]
 
         this.#initializeElements();
         this.#attachEventListeners();
@@ -58,11 +61,12 @@ export class TaskCard {
         this.HOST = CNode.create('div', { 'class': 'task', 'id': this.id, 'draggable': true});
         this.TASK_NAME = CNode.create('h3', {'textContent': this.name});
         this.DUE_DATE = CNode.create('p', { 'class': 'due-date', 'innerHTML': '<i class="fa-regular fa-clock"></i>' + 'Due ' + this.dueDate });
+        this.TAG = CNode.create('p', {'class': this.tagColor, 'innerHTML': '<i class="fa-solid fa-tag"></i> ' + this.tag})
     }
 
 
     #render() {
-        this.HOST.append(this.TASK_NAME, this.DUE_DATE);
+        this.HOST.append(this.TASK_NAME, this.DUE_DATE, this.TAG);
         return this.HOST
     }
 

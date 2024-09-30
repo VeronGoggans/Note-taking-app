@@ -84,6 +84,7 @@ class Task(Base):
     description = Column(String, nullable=True)
     due_date = Column(String, nullable=True)
     section = Column(String, nullable=False, default='To do')
+    tag = Column(String, nullable=False, default='Task')
 
     # Foreign keys for folder or subfolder
     taskboard_id = Column(Integer, ForeignKey('taskboards.id', ondelete='CASCADE'), nullable=True)
