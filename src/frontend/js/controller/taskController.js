@@ -27,9 +27,11 @@ export class TaskController {
     }
 
 
-    async update(updatedTask) {
+    async update(updatedTask, renderUpdate = true) {
         const { task }  = await this.model.update('/task', updatedTask);
-        this.view.renderUpdate(task);
+        if (renderUpdate) {
+            this.view.renderUpdate(task);
+        }
     }
 
 
@@ -40,6 +42,8 @@ export class TaskController {
 
     loadPreviousView() {
         const previousView = this.applicationController.getPreviousView();
+        console.log(previousView);
+        
         this.applicationController.initView(previousView);
     }
 }

@@ -110,4 +110,10 @@ export const stickyNoteColors = [
     '#d4e7ff',
 ]
 
+export const taskBoardSections = {
+    'todo': 'To do',
+    'inprogress': 'In progress',
+    'done': 'Done'
+} 
+
 export const sidebarButtonText = ['Home', 'Notes', 'Templates', 'Sticky wall', 'Flashcards', 'Taskboards', 'Settings']

@@ -142,7 +142,10 @@ export const stickyWallTemplate = `
 export const taskBoardHomeTemplate = `
     <div class="task-board-home-view">
         <h1 class="view-title">Task boards 📌​</h1>
-        <p>Create task boards to manage your tasks effectively </p>
+        <p class="think-it">Think it</P>
+        <p class="plan-it">Plan it</P>
+        <p class="do-it">Do it !</P>
+        <p class="context-text">Create task boards to manage your tasks effectively </p>
         <div class="task-boards">
             <div class="util-bar-type-2">
                 <button class="add-task-board-btn"><i class="fa-solid fa-plus"></i></button>
@@ -181,7 +184,7 @@ export const taskBoardTemplate = `
 
                 <section class="done">
                     <div class="board-section-name">
-                        <p>Done🍵</p> 
+                        <p>Done</p> 
                         <span class="task-count">0</span>
                     </div>
                     <div class="tasks"></div>

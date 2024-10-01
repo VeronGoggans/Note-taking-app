@@ -83,6 +83,8 @@
     border: 2px solid transparent;
     border-radius: 5px;
     min-height: 150px;
+    max-height: 600px;
+    overflow-y: scroll;
     padding-bottom: 30px;
 }
 

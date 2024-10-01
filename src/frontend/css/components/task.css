@@ -2,7 +2,7 @@
 .task {
     cursor: pointer;
     background-color: var(--task);
-    margin: 10px 0;
+    margin: 10px 5px;
     border-radius: 10px;
     padding: 15px 10px;
     opacity: 0;

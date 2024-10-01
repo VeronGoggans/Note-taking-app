@@ -67,7 +67,7 @@ export class TaskboardView extends BaseView {
         this.applicationController.initView('task', 
             {
                 taskboard: taskboard,
-                previousView: 'taskboard', 
+                previousView: 'taskboards', 
             }
         );
     }

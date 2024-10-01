@@ -17,7 +17,8 @@
 .sticky-wall-view .sticky-wall::-webkit-scrollbar,
 .task-board-cards::-webkit-scrollbar,
 .task-board-view::-webkit-scrollbar,
-.task-tags-dropdown ul::-webkit-scrollbar {
+.task-tags-dropdown ul::-webkit-scrollbar,
+.board section .tasks::-webkit-scrollbar {
     background-color: transparent;
     width: 5px;
 }
@@ -41,7 +42,8 @@
 .sticky-wall-view .sticky-wall::-webkit-scrollbar-thumb,
 .task-board-cards::-webkit-scrollbar-thumb,
 .task-board-view::-webkit-scrollbar-thumb,
-.task-tags-dropdown ul::-webkit-scrollbar-thumb {
+.task-tags-dropdown ul::-webkit-scrollbar-thumb,
+.board section .tasks::-webkit-scrollbar-thumb {
     background-color: var(--scrollbar-content-view);
     border-radius: 10px;
 }

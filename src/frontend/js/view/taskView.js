@@ -2,7 +2,8 @@ import { TaskCard } from "../components/task.js";
 import { TaskObjectArray } from "../util/array.js";
 import { AnimationHandler } from "../handlers/animation/animationHandler.js";
 import { BaseView } from "./baseView.js";
-import { tagColors } from "../constants/constants.js";
+import { tagColors, taskBoardSections } from "../constants/constants.js";
+import { incrementString, decrementString } from "../util/ui.js";
 
 
 export class TaskView extends BaseView {
@@ -25,13 +26,14 @@ export class TaskView extends BaseView {
     }
 
 
-    renderAll(tasks) {
+    renderAll(tasks) {        
         const todoTasks = document.createDocumentFragment();
         const progressTasks = document.createDocumentFragment();
         const doneTasks = document.createDocumentFragment();
         
         for (let i = 0; i < tasks.length; i++) {
-            const task = this.#task(tasks[i]);            
+            const task = this.#task(tasks[i]);        
+
             if (tasks[i].section === 'To do') {
                 todoTasks.appendChild(task)
                 this.todoCount.textContent = todoTasks.childNodes.length;
@@ -94,8 +96,52 @@ export class TaskView extends BaseView {
         }
     }
 
+
+
     getTaskObject(taskId) {
         return this.taskObjects.get(taskId);
+    }
+
+
+    /**
+     * This method will retrieve the right board section to append 
+     * the dropped task to
+     * @param {Node} target 
+     * @returns 
+     */
+    #getBoardSection(target) {
+        const nodeName = target.nodeName;        
+        // If the task dropped on another task. 
+        // return the parent node of that task, which is the board itself.
+        if (target.classList.contains("task")) {
+            return target.parentElement
+        }
+        else if (nodeName === 'P' || nodeName === 'H3') {
+            const task = target.parentElement;
+            return task.parentElement
+        }
+        else if (nodeName === 'I') {
+            const P = target.parentElement;
+            const task = P.parentElement;
+            return task.parentElement;
+        }
+        return target
+    }
+
+
+    /**
+     * 
+     * @param {Node} tasksSection 
+     */
+    updateTaskCounter(tasksSection, operation) {
+        const tasksCount = tasksSection.parentElement.querySelector('.board-section-name .task-count');
+        
+        if (operation === 'add') {
+            tasksCount.textContent = incrementString(tasksCount.textContent);
+        }
+        else if (operation === 'subtract') {
+            tasksCount.textContent = decrementString(tasksCount.textContent);
+        }
     }
 
 
@@ -124,13 +170,19 @@ export class TaskView extends BaseView {
                 this.boardSections[i].style.borderColor = 'transparent';
                 // Get the id of the element being dragged
                 const droppedCardInfo = JSON.parse(event.dataTransfer.getData('text/plain'));
-                const droppedCardId = droppedCardInfo.draggedCardId;
+                const droppedCardId = Number(droppedCardInfo.draggedCardId);
                 const draggedItemType = droppedCardInfo.draggedItem;
-    
+
                 if (draggedItemType === 'task') {
-                    const boardSection = event.target
+                    const boardSection = this.#getBoardSection(event.target);
                     const taskCard = document.getElementById(droppedCardId)
-                    boardSection.appendChild(taskCard);        
+                    boardSection.appendChild(taskCard);
+
+                    // Update the task and send it to the controller
+                    const task = this.taskObjects.get(droppedCardId);
+                    const section = this.boardSections[i].parentElement.className;
+                    task.section = taskBoardSections[section];
+                    this.controller.update(task, false); // False to not render the task update.
                 }
             });
         }
