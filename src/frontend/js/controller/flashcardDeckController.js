@@ -29,9 +29,9 @@ export class FlashcardDeckController {
 
     async getDecks() {
         try {
-            const { decks, misc } = await this.model.get('/decks');
+            const { decks } = await this.model.get('/decks');
             this.view.renderAll(decks)
-            this.view.renderStats(misc)
+            // this.view.renderStats(misc)
         } 
         catch(error) {
             NotificationHandler.push('error', null, error.message)

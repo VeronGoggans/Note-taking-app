@@ -60,8 +60,8 @@ export class TaskCard {
     #initializeElements() {
         this.HOST = CNode.create('div', { 'class': 'task', 'id': this.id, 'draggable': true});
         this.TASK_NAME = CNode.create('h3', {'textContent': this.name});
-        this.DUE_DATE = CNode.create('p', { 'class': 'due-date', 'innerHTML': '<i class="fa-regular fa-clock"></i>' + 'Due ' + this.dueDate });
-        this.TAG = CNode.create('p', {'class': this.tagColor, 'innerHTML': '<i class="fa-solid fa-tag"></i> ' + this.tag})
+        this.DUE_DATE = CNode.create('p', { 'class': 'due-date', 'innerHTML': '<i class="bi bi-clock"></i>' + 'Due ' + this.dueDate });
+        this.TAG = CNode.create('p', {'class': this.tagColor, 'innerHTML': '<i class="bi bi-tag-fill"></i> ' + this.tag})
     }
 
 

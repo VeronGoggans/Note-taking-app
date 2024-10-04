@@ -15,15 +15,15 @@ export class TaskModal {
             <input class="task-name-input" type="text" placeholder="Task name" spellcheck="false">
             <table>
                 <tr>
-                    <td class="property"><i class="fa-regular fa-clock"></i> Due date</td>
+                    <td class="property"><i class="bi bi-clock"></i> Due date</td>
                     <td class="property-value"><input type="date"></td>
                 </tr>
                 <tr>
-                    <td class="property"><i class="fa-solid fa-circle-info"></i> Status</td>
+                    <td class="property"><i class="bi bi-info-circle"></i> Status</td>
                     <td class="property-value"><span id="task-status" class="todo-status">To do</span></td>
                 </tr>
                 <tr>
-                    <td class="property"><i class="fa-solid fa-tag"></i> Tag</td>
+                    <td class="property"><i class="bi bi-tag"></i> Tag</td>
                     <td class="property-value">
                         <div class="task-tags-dropdown">
                             <input class="tags-input" type="text" placeholder="Tags" spellcheck="false">
@@ -42,7 +42,7 @@ export class TaskModal {
                     </td>
                 </tr>
             </table>
-            <p><i class="fa-regular fa-comment"></i> Description</p>
+            <p><i class="bi bi-chat-left-text"></i> Description</p>
             <textarea class="task-description" placeholder="Type something here..." spellcheck="false"></textarea>
             <button class="add-task-btn">Add</button>
             <button class="delete-task-btn">Delete</button>

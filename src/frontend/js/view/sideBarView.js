@@ -13,7 +13,7 @@ export class SidebarView {
         this._collapsed = false;
         this._size = 'standard';
         this._wrapper = document.querySelector('.wrapper');
-        this._buttonCount = 7;
+        this._buttonCount = 8;
 
         this.#attachEventListeners();
 

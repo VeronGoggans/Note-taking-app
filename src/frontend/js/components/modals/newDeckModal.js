@@ -20,17 +20,17 @@ export class NewDeckModal {
         this.CARD_TERM = CNode.create('input', {'type': 'text', 'class': 'term-input', 'placeholder': 'Card term', 'spellCheck': false});
         this.DESCRIPTION_SECTION = CNode.create('div', {'class': 'description-section'});
         this.RICH_TEXT_OPTIONS = CNode.create('div', {'class': 'rich-text-options'});
-        this.BOLD_BTN = CNode.create('button', {'innerHTML': '<i class="fa-solid fa-bold"></i>', 'onclick' : "formatText('bold')", 'id': 'boldBtn'});
-        this.ITALIC_BTN = CNode.create('button', {'innerHTML': '<i class="fa-solid fa-italic"></i>', 'onclick' : "formatText('italic')", 'id': 'italicBtn'});
-        this.UNDERLINE_BTN = CNode.create('button', {'innerHTML': '<i class="fa-solid fa-underline"></i>', 'onclick' : "formatText('underline')", 'id': 'underlineBtn'});
-        this.STRIKE_BTN = CNode.create('button', {'innerHTML': '<i class="fa-solid fa-strikethrough"></i>', 'onclick' : "formatText('strikethrough')", 'id': 'strikeBtn'});
-        this.LIST1_BTN = CNode.create('button', {'innerHTML': '<i class="fa-solid fa-list-ul"></i>', 'onclick' : "formatText('insertUnorderedList')"});
-        this.LIST2_BTN = CNode.create('button', {'innerHTML': '<i class="fa-solid fa-list-ol"></i>', 'onclick' : "formatText('insertOrderedList')"});
-        this.SELECT_BTN = CNode.create('button', {'class': 'select-text-btn', 'textContent': 'Select text'});
+        this.BOLD_BTN = CNode.create('button', {'innerHTML': '<i class="bi bi-type-bold"></i>', 'onclick' : "formatText('bold')", 'id': 'boldBtn'});
+        this.ITALIC_BTN = CNode.create('button', {'innerHTML': '<i class="bi bi-type-italic"></i>', 'onclick' : "formatText('italic')", 'id': 'italicBtn'});
+        this.UNDERLINE_BTN = CNode.create('button', {'innerHTML': '<i class="bi bi-type-underline"></i>', 'onclick' : "formatText('underline')", 'id': 'underlineBtn'});
+        this.STRIKE_BTN = CNode.create('button', {'innerHTML': '<i class="bi bi-type-strikethrough"></i>', 'onclick' : "formatText('strikethrough')", 'id': 'strikeBtn'});
+        this.LIST1_BTN = CNode.create('button', {'innerHTML': '<i class="bi bi-list-task"></i>', 'onclick' : "formatText('insertUnorderedList')"});
+        this.LIST2_BTN = CNode.create('button', {'innerHTML': '<i class="bi bi-list-ol"></i>', 'onclick' : "formatText('insertOrderedList')"});
+        this.SELECT_BTN = CNode.create('button', {'class': 'select-text-btn', 'innerHTML': '<i class="bi bi-body-text"></i>'});
         this.CARD_DECSRIPTION = CNode.create('div', {'class': 'card-description', 'contentEditable': true, 'spellCheck': false});
         this.NEXT_BTN = CNode.create('button', {'class': 'next-card-btn', 'textContent': 'Save card'});
         this.SAVE_BTN = CNode.create('button', {'class': 'save-deck-btn', 'textContent': 'Save deck'});
-        this.CARD_COUNT_SPAN = CNode.create('span', {'textContent': `${cards === null ? '0' : cards.length} cards`, 'class': 'card-count'});
+        this.CARD_COUNT_SPAN = CNode.create('span', {'innerHTML': `${cards === null ? '0' : cards.length} <i class="bi bi-files"></i>`, 'class': 'card-count'});
 
         this.#attachEventListeners();
         return this.#render();
@@ -94,7 +94,7 @@ export class NewDeckModal {
 
             // Update card count
             this.cardCount += 1
-            this.CARD_COUNT_SPAN.textContent = `${this.cardCount} cards`;
+            this.CARD_COUNT_SPAN.textContent = this.cardCount;
         });
 
         this.SELECT_BTN.addEventListener('click', () => {
@@ -118,7 +118,7 @@ export class NewDeckModal {
                 this.controller.saveCardToModel(flashcard);
             }
             // Save the deck 
-            const { flashcards, deckName } = this.controller.getStoredDeckInfo();
+            const { deckName, flashcards } = this.controller.getStoredDeckInfo();
             this.controller.addDeck(
                 deckName,
                 flashcards

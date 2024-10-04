@@ -5,7 +5,7 @@
     font-family: Roboto;
     width: 700px;
     height: 600px;
-    border-radius: 10px;
+    border-radius: 20px;
     padding: 10px 20px;
     box-shadow: 0 0 10px var(--shadow);
     display: flex;
@@ -28,19 +28,21 @@
     border: none;
     height: 50px;
     border-radius: 10px;
-    background-color: transparent;
+    background-color: #f6f6fb;
     padding: 5px 15px;
     font-size: 17px;
     color: var(--text);
     font-family: sans-serif;
     transition: 150ms;
-    border: 1px solid var(--border-card);
 }
 
-.create-deck-modal input:focus,
-.edit-flashcard-modal input:focus {
-    border-color: #5c7fdd;
+.deck-name-input {
+    padding-left: 0 !important;
+    font-size: 30px !important;
+    border: none !important;
+    background-color: transparent !important;
 }
+
 
 
 .create-deck-modal .card-description,
@@ -73,6 +75,7 @@
     color: #979bb1;
     background-color: transparent;
     cursor: pointer;
+    font-size: 18px;
     transition: 150ms;
 }
 
@@ -96,26 +99,29 @@
 
 .create-deck-modal .next-card-btn {
     position: absolute;
-    bottom: 15px;
-    right: 20px;
-    background-color: #5c7fdd;
-    color: white;
-    padding: 10px 30px;
+    top: 20px;
+    right: 130px;
+    background-color: transparent;
+    color: #5c7fdd;
+    padding: 10px 20px;
     border-radius: 7px;
     font-size: 16px;
 }
 
 .create-deck-modal .select-text-btn {
-    margin-left: 390px;
     font-size: 14px;
     width: fit-content !important;
 }
 
-.create-deck-modal .next-card-btn:hover{
-    background-color: #222428;
+.create-deck-modal .next-card-btn:hover,
+.create-deck-modal .save-deck-btn:hover {
+    background-color: var(--hover);
 }
 
 .create-deck-modal .card-count {
+    position: absolute;
+    top: 27px;
+    right: 250px;
     font-family: sans-serif;
     font-size: 20px;
     color: var(--important);

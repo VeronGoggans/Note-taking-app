@@ -18,8 +18,8 @@ export class FlashcardModel {
 
     getStoredDeckInfo() {
         return {
-            flashcards: this.flashcards,
-            deckName: this.deckName
+            deckName: this.deckName,
+            flashcards: this.flashcards
         }
     }
 }

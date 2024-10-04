@@ -3,7 +3,7 @@ export const homeTemplate = `
         <div class="top">
 
         <div class="searchbar">
-            <i id="search-icon" class="fa-solid fa-magnifying-glass"></i>
+            <i id="search-icon" class="bi bi-search"></i>
             <input type="text" placeholder="Search..." spellcheck="false">
             <ul class="dropdown-items"></ul>
         </div>
@@ -24,10 +24,10 @@ export const homeTemplate = `
 export const notesTemplate = `
     <div class="notes">
     <div class="notes-top">
-        <button class="exit-folder-btn"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="exit-folder-btn"><i class="bi bi-arrow-left"></i></button>
 
         <div class="searchbar">
-            <i id="search-icon" class="fa-solid fa-magnifying-glass"></i>
+            <i id="search-icon" class="bi bi-search"></i>
             <input type="text" placeholder="Search..." spellcheck="false">
             <ul class="dropdown-items"></ul>
         </div>
@@ -38,10 +38,10 @@ export const notesTemplate = `
         <div class="current-folder-name-container">
             <h1 class="current-folder-name view-title">Home</h1>
             <div>
-            <button title="Create folder" class="create-folder-btn"><i class="fa-solid fa-folder"></i></button>
-            <button title="Create note" class="create-note-btn"><i class="fa-solid fa-file"></i></button>
-            <button title="Return home" class="home-folder-btn"><i class="fa-solid fa-house"></i></button>
-            <button title="Show bookmarks" class="bookmarks-btn"><i class="fa-solid fa-bookmark"></i></button>
+            <button title="Create folder" class="create-folder-btn"><i class="bi bi-folder-fill"></i></button>
+            <button title="Create note" class="create-note-btn"><i class="bi bi-file-earmark-fill"></i></button>
+            <button title="Return home" class="home-folder-btn"><i class="bi bi-house-fill"></i></button>
+            <button title="Show bookmarks" class="bookmarks-btn"><i class="bi bi-bookmark-fill"></i></button>
             </div>
         </div>
         <div class="content-view">
@@ -218,17 +218,17 @@ export const editorTemplate = `
     <div class="editor-wrapper">
       <div class="toolbar">
         <div class="toolbar-top">
-          <i id="exit-editor-btn" class="fa-solid fa-arrow-left"></i>
+          <i id="exit-editor-btn" class="bi bi-arrow-left"></i>
           <p class="document-location"></p>
           <div class="save-note-btn">Save</div>
           
           <div class="editor-options-dropdown">
-            <i id="editor-options-btn" class="fa-solid fa-ellipsis-vertical"></i>
+            <i id="editor-options-btn" class="bi bi-three-dots-vertical"></i>
             <div class="options">
-              <button class="new-note-span"><i class="fa-solid fa-plus"></i>New</button>
-              <button class="save-note-span"><i class="fa-regular fa-floppy-disk"></i>Save</button>
-              <button class="delete-note-span"><i class="fa-regular fa-trash-can"></i>Delete</button>
-              <button class="note-details-span"><i class="fa-solid fa-info"></i>Details</button>
+              <button class="new-note-span"><i class="bi bi-plus-lg"></i>New</button>
+              <button class="save-note-span"><i class="bi bi-save"></i>Save</button>
+              <button class="delete-note-span"><i class="bi bi-trash3"></i>Delete</button>
+              <button class="note-details-span"><i class="bi bi-info-circle"></i>Details</button>
             </div>
           </div>
 
@@ -243,7 +243,7 @@ export const editorTemplate = `
       </div>
 
       <div class="editor-util-btns-container">
-        <i id="editor-search-btn" class="fa-solid fa-magnifying-glass"></i>
+        <i id="editor-search-btn" class="bi bi-search"></i>
 
         <div class="templates-dropdown">
             <i id="editor-template-btn" class="fa-solid fa-file-lines"></i>
@@ -254,32 +254,32 @@ export const editorTemplate = `
             </div>
         </div>
 
-        <i id="editor-flashcard-set-btn" class="fa-solid fa-circle-check"></i>
+        <i id="editor-flashcard-set-btn" class="bi bi-card-text"></i>
       </div>
 
       <div class="rich-text-option-container">
         <div class="btn-group">
-            <button id="boldBtn" onclick="formatText('bold')"><i class="fa-solid fa-bold"></i></button>
-            <button id="italicBtn" onclick="formatText('italic')"><i class="fa-solid fa-italic"></i></button>
-            <button id="underlineBtn" onclick="formatText('underline')"><i class="fa-solid fa-underline"></i></button>
-            <button id="strikeBtn" onclick="formatText('strikethrough')"><i class="fa-solid fa-strikethrough"></i></button>
-            <button onclick="formatText('createLink')"><i class="fa-solid fa-link"></i></button>
+            <button id="boldBtn" onclick="formatText('bold')"><i class="bi bi-type-bold"></i></button>
+            <button id="italicBtn" onclick="formatText('italic')"><i class="bi bi-type-italic"></i></button>
+            <button id="underlineBtn" onclick="formatText('underline')"><i class="bi bi-type-underline"></i></button>
+            <button id="strikeBtn" onclick="formatText('strikethrough')"><i class="bi bi-type-strikethrough"></i></button>
+            <button onclick="formatText('createLink')"><i class="bi bi-link-45deg"></i></button>
         </div>
         <div class="btn-group">
-            <button onclick="formatText('justifyLeft')"><i class="fa-solid fa-align-left"></i></button>
-            <button id="centerAlignBtn" onclick="formatText('justifyCenter')"><i class="fa-solid fa-align-center"></i></button>
-            <button id="rightAlignBtn" onclick="formatText('justifyRight')"><i class="fa-solid fa-align-right"></i></button>
+            <button onclick="formatText('justifyLeft')"><i class="bi bi-text-left"></i></button>
+            <button id="centerAlignBtn" onclick="formatText('justifyCenter')"><i class="bi bi-text-center"></i></button>
+            <button id="rightAlignBtn" onclick="formatText('justifyRight')"><i class="bi bi-text-right"></i></button>
         </div>
         <div class="btn-group">
-            <button onclick="formatText('insertUnorderedList')"><i class="fa-solid fa-list-ul"></i></button>
-            <button onclick="formatText('insertOrderedList')"><i class="fa-solid fa-list-ol"></i></button>
+            <button onclick="formatText('insertUnorderedList')"><i class="bi bi-list-task"></i></button>
+            <button onclick="formatText('insertOrderedList')"><i class="bi bi-list-ol"></i></button>
         </div>
         <div class="btn-group">
-            <button onclick="formatText('removeFormat')"><i class="fa-solid fa-text-slash"></i></button>
+            <button onclick="formatText('removeFormat')"><i class="fa-solid fa-text-slash" style="font-size: 15px;"></i></button>
         </div>
         <div class="btn-group">
             <div class="color-dropdown">
-                <button><i class="fa-solid fa-paintbrush"></i></button>
+                <button><i class="bi bi-eyedropper"></i></button>
                 <ul>
                     <li style="background-color: #ff0000"></li>
                     <li style="background-color: #0000ff"></li>

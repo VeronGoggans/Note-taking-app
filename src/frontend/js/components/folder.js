@@ -22,7 +22,7 @@ export class Folder {
         this.NAME_BOX = CNode.create('div', {'class': 'folder-name-box'});
         this.H4 = CNode.create('h4', {'textContent': formatName(this.name)});
         this.LOGO = CNode.create('div', {'class': 'folder-logo'});
-        this.ICON = CNode.create('i', {'class': 'fa-solid fa-folder'});
+        this.ICON = CNode.create('i', {'class': 'bi bi-folder'});
         this.UTIL_BAR = CNode.create('div', {'class': 'folder-util-bar'});
         this.COLOR_ICON = CNode.create('i', {'class': 'fa-solid fa-palette'});
         this.EDIT_ICON = CNode.create('i', {'class': 'fa-solid fa-pen'});
@@ -130,7 +130,7 @@ export class RecentFolder {
 
     #initializeElements() {
         this.HOST = CNode.create('div', {'class': 'recent-folder', 'id': this.id});
-        this.ICON = CNode.create('i', {'class': 'fa-solid fa-folder'});
+        this.ICON = CNode.create('i', {'class': 'bi bi-folder-fill'});
         this.PARAGRAPH = CNode.create('p', {'textContent': this.name});
     }
 
