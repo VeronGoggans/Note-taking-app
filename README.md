@@ -28,7 +28,7 @@ On the home screen, the user can see the following:
 There is also a search bar where the user can search for anything, including templates\,
 flashcard decks, folders, and notes
 ### Inside folder
-![folder view light](https://github.com/VeronGoggans/Note-taking-app/blob/main/docs/img/folder-view-light.png?raw=true)
+![folder view light](https://github.com/VeronGoggans/Note-taking-app/blob/sqlite-persistence/docs/img/folder-view-light.png?raw=true)
 On the Notes tab, the user has several options:
 - Use the search bar to find specific folders and notes.
 - Create new folders by clicking the folder icon.
@@ -38,7 +38,7 @@ On the Notes tab, the user has several options:
 
 Additionally, the Notes tab serves as the main area for accessing and managing notes.
 ### Inside the editor
-![editor view light](https://github.com/VeronGoggans/Note-taking-app/blob/main/docs/img/editor-view-light.png?raw=true)
+![editor view light](https://github.com/VeronGoggans/Note-taking-app/blob/sqlite-persistence/docs/img/editor-view-light.png?raw=true)
 When a user clicks on a note, they are taken to the editor, where several actions are available:
 - In the upper left corner, there is a button to exit the editor and view the note's location.
 - In the upper right corner, the save button allows the user to save their progress and close the editor. Next to it, the ellipsis button provides a dropdown menu with the following options: New, Save, Delete, and Details.
