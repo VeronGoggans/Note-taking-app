@@ -19,7 +19,7 @@ The user can create the following:
 
 # Light mode
 ### Home
-![home view light](https://github.com/VeronGoggans/Note-taking-app/blob/main/docs/img/home-view-light.png?raw=true)
+![home view light](https://github.com/VeronGoggans/Note-taking-app/blob/sqlite-persistence/docs/img/home-view-light.png?raw=true)
 On the home screen, the user can see the following:
 1. **Recently Visited Folders**: By clicking on any folder, the user is taken directly to that location.
 2. **Recently Worked-on Notes**: Clicking on a note opens the editor, allowing the user to continue working on it seamlessly.
