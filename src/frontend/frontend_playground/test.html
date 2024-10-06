@@ -5,109 +5,165 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/general/sidebar.css">
     <link rel="stylesheet" href="../css/general/main.css">
+    <link rel="stylesheet" href="../css/components/note.css">
+    <link rel="stylesheet" href="../css/components/folder.css">
+    <link rel="stylesheet" href="../css/components/task.css">
     <link rel="stylesheet" href="../css/general/dialog.css">
     <link rel="stylesheet" href="../css/general/themes.css">
     <link rel="stylesheet" href="../css/general/animation.css">
-    <link rel="stylesheet" href="../css/views/flashcardPracticeView.css">
-    <link rel="stylesheet" href="src/frontend/css/notification/notification.css">
-    <link rel="stylesheet" href="src/frontend/css/textEditor/textEditor.css">
-    <link rel="stylesheet" href="src/frontend/css/textEditor/toolbarBottom.css">
-    <link rel="stylesheet" href="src/frontend/css/textEditor/toolbarTop.css">
-    <link rel="stylesheet" href="src/frontend/css/textEditor/colorPalletes.css">
-    <link rel="stylesheet" href="src/frontend/css/textEditor/editorSpawnables.css">
-    <link rel="stylesheet" href="src/frontend/css/modals/newFolderContainer.css">
-    <link rel="stylesheet" href="src/frontend/css/modals/saveContainer.css">
+    <link rel="stylesheet" href="../css/notification/notification.css">
+    <link rel="stylesheet" href="../css/textEditor/textEditor.css">
+    <link rel="stylesheet" href="../css/textEditor/toolbarBottom.css">
+    <link rel="stylesheet" href="../css/textEditor/toolbarTop.css">
+    <link rel="stylesheet" href="../css/textEditor/editorSpawnables.css">
+    <link rel="stylesheet" href="../css/modals/newFolderContainer.css">
+    <link rel="stylesheet" href="../css/modals/saveContainer.css">
     <link rel="stylesheet" href="../css/modals/deleteContainer.css">
     <link rel="stylesheet" href="../css/modals/noteDetailsModal.css">
-    <link rel="stylesheet" href="src/frontend/css/modals/noteBackgroundModal.css">
     <link rel="stylesheet" href="../css/general/scrollbar.css">
-    <link rel="stylesheet" href="src/frontend/css/modals/searchModal.css">
+    <link rel="stylesheet" href="../css/modals/searchModal.css">
     <link rel="stylesheet" href="../css/modals/editFolderModal.css">
-    <link rel="stylesheet" href="src/frontend/css/textEditor/textBlocks.css">
-    <link rel="stylesheet" href="src/frontend/css/views/flashcardView.css">
-    <link rel="stylesheet" href="src/frontend/css/views/homeView.css">
-    <link rel="stylesheet" href="src/frontend/css/views/notesView.css">
-    <link rel="stylesheet" href="src/frontend/css/views/templatesView.css">
-    <link rel="stylesheet" href="src/frontend/css/views/settingsView.css">
-    <link rel="stylesheet" href="src/frontend/css/general/searchbar.css">
-    <link rel="stylesheet" href="src/frontend/css/">
+    <link rel="stylesheet" href="../css/modals/newDeckModal.css">
+    <link rel="stylesheet" href="../css/textEditor/textBlocks.css">
+    <link rel="stylesheet" href="../css/views/flashcardView.css">
+    <link rel="stylesheet" href="../css/views/homeView.css">
+    <link rel="stylesheet" href="../css/views/notesView.css">
+    <link rel="stylesheet" href="../css/views/notebooksView.css">
+    <link rel="stylesheet" href="../css/views/templatesView.css">
+    <link rel="stylesheet" href="../css/views/settingsView.css">
+    <link rel="stylesheet" href="../css/general/searchbar.css">
+    <link rel="stylesheet" href="../css/views/flashcardPracticeView.css">
+    <link rel="stylesheet" href="../css/views/flashcardEditView.css">
     <link rel="stylesheet" href="../css/views/stickyWallView.css">
-    <link rel="stylesheet" href="../css/views/taskboardView.css">
+    <link rel="stylesheet" href="../css/modals/stickyNoteModal.css">
     <link rel="stylesheet" href="../css/views/taskboardHomeView.css">
+    <link rel="stylesheet" href="../css/views/taskboardView.css">
     <link rel="stylesheet" href="../css/modals/newTaskboardModal.css">
     <link rel="stylesheet" href="../css/modals/taskModal.css">
-    <link rel="stylesheet" href="../css/modals/newDeckModal.css">
+    <link rel="stylesheet" href="../css/general/titleBar.css">
     <!-- CDN for the icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Neutron</title>
 </head>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
   </style>
-<body>
-    <div class="wrapper">
-        <div class="sidebar">
-            <div class="sidebar-logo">
-                <div class="logo-container">
-                    <div class="logo">
-                        <span>N</span>
-                    </div>
-                    <div class="logo-text">eutron</div>
+<body class="light">
+  <div class="wrapper">
+    <div class="sidebar">
+        <div class="sidebar-logo">
+            <div class="logo-container">
+                <div class="logo">
+                    <span>N</span>
                 </div>
-            </div>
-            <div class="sidebar-content">
-              <div class="sidebar-content-upper">
-                <a href="/home" data-view="home" class="home-btn"><i class="fa-solid fa-house"></i><span>Home</span></a>
-                <a href="/notes" data-view="notes" class="notes-btn"><i class="fa-solid fa-file"></i><span>Notes</span></a>
-                <a href="/flashcards" data-view="flashcards" class="flashcards-btn"><i class="fa-solid fa-circle-check"></i><span>Flashcards</span></a>
-                <a href="/templates" data-view="templates" class="templates-btn"><i class="fa-solid fa-layer-group"></i><span>Templates</span></a>
-                <a href="/stickyWall" data-view="stickyWall" class="sticky-wall-btn"><i class="fa-solid fa-note-sticky"></i><span>Sticky wall</span></a>
-                <a href="/taskBoards" data-view="taskBoard" id="task-board-btn"><i class="fa-solid fa-list-check"></i><span>Task boards</span></a>
-            </div>
-              <div class="sidebar-content-lower">
-                <a href="/settings" data-view="settings" class="settings-btn"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
-              </div>
+                <div class="logo-text">eutron</div>
             </div>
         </div>
-
-        <main class="content">
-            
-        </main>
-        
-    </div>    
-    <div class="dialog" style="top: 0; visibility: visible;">
-        <div class="edit-folder-modal">
-            <h2>Edit folder</h2>
-            <div class="folder-settings">
-                <span id="title">Folder name</span>
-                <p>You can change the name of this folder below</p>
-                <input type="text" placeholder="Untitled" spellcheck="false">
-
-                <span id="title">Folder theme</span>
-                <p>Select a theme for this folder</p>
-                <div class="folder-color-options">
-                    <div style="background-color: rgb(121, 144, 255);"></div>
-                    <div style="background-color: rgb(169, 215, 255);"></div>
-                    <div style="background-color: rgb(217, 237, 255)"></div>
-                    <div style="background-color: rgb(158, 213, 197);"></div>
-                    <div style="background-color: #cbffc5"></div>
-                    <div style="background-color: #adffa4"></div>
-                    <div style="background-color: #b09bd9"></div>
-                    <div style="background-color: rgb(223, 193, 255)"></div>
-                    <div style="background-color: rgb(255, 163, 163)"></div>
-                    <div style="background-color: #ffc5c5"></div>
-                    <div style="background-color: #ffb674"></div>
-                    <div style="background-color: #ffe09e"></div>
-                    <div class="original-folder-color" style="background-color: #fff"></div>
-                </div>
-                <div class="buttons-container">
-                    <button class="cancel-btn">Cancel</button>
-                    <button class="save-btn">Save changes</button>
-                </div>
-            </div>
-            
+        <div class="sidebar-content">
+          <div class="sidebar-content-upper">
+            <a href="/home" data-view="home" id="home-btn"><i class="bi bi-house"></i><span>Home</span></a>
+            <a href="/notes" data-view="notes" id="notes-btn"><i class="bi bi-file-earmark"></i><span>Notes</span></a>
+            <a href="/templates" data-view="templates" id="templates-btn"><i class="bi bi-file-earmark-text"></i><span>Templates</span></a>
+            <a href="/notebooks" data-view="notebook" id="notebook-btn"><i class="bi bi-journal"></i><span>Notebooks</span></a>
+            <a href="/stickyWall" data-view="stickyWall" id="sticky-wall-btn"><i class="bi bi-sticky"></i><span>Sticky wall</span></a>
+            <a href="/flashcardsHome" data-view="flashcardsHome" id="flashcards-btn"><i class="bi bi-card-text"></i><span>Flashcards</span></a>
+            <a href="/taskboard" data-view="taskboards" id="taskboards-btn"><i class="bi bi-pin"></i><span>Taskboards</span></a>
+          </div>
+          <div class="sidebar-content-lower">
+            <a href="/settings" data-view="settings" id="settings-btn"><i class="bi bi-gear"></i><span>Settings</span></a>
+          </div>
         </div>
     </div>
+    
+    <main class="content">
+      <div class="controls">
+        <button id="minimize"><i class="bi bi-dash-lg"></i></button>
+        <button id="maximize"><i class="bi bi-square"></i></button>
+        <button id="close"><i class="bi bi-x-lg"></i></button>
+      </div>
+      <div class="view">
+        <div class="notebook-view">
+          <div class="notebook-top">
+            <button class="exit-folder-btn"><i class="bi bi-arrow-left"></i></button>
+
+            <div class="searchbar">
+                <i id="search-icon" class="bi bi-search"></i>
+                <input type="text" placeholder="Search..." spellcheck="false">
+                <ul class="dropdown-items"></ul>
+            </div>
+          </div>
+          <div class="notebook-bottom">
+            <h1 class="view-title">Neutron</h1>
+          <div class="notebook-content">
+            <div class="item">
+              <div class="item-info">
+                <i id="notebook-note-icon" class="bi bi-file-earmark"></i>
+                <span class="item-title">Start document</span>
+              </div>
+              <div class="item-options">
+                <i class="fa-solid fa-trash"></i>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="item-info">
+                <i id="notebook-template-icon" class="bi bi-file-earmark-text"></i>
+                <span class="item-title">Software project planning</span>
+              </div>
+              <div class="item-options">
+                <i class="fa-solid fa-trash"></i>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="item-info">
+                <i id="notebook-folder-icon" class="bi bi-folder"></i>
+                <span class="item-title">Neutron</span>
+              </div>
+              <div class="item-options">
+                <i class="fa-solid fa-trash"></i>
+              </div>
+            </div>
+            
+            <div class="item">
+              <div class="item-info">
+                <i id="notebook-flashcard-icon" class="bi bi-card-text"></i>
+                <span class="item-title">Agile terms</span>
+              </div>
+              <div class="item-options">
+                <i class="fa-solid fa-trash"></i>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="item-info">
+                <i id="notebook-taskboard-icon" class="bi bi-pin"></i>
+                <span class="item-title">Frontend planboard</span>
+              </div>
+              <div class="item-options">
+                <i class="fa-solid fa-trash"></i>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="item-info">
+                <i id="notebook-taskboard-icon" class="bi bi-pin"></i>
+                <span class="item-title">Backend planboard</span>
+              </div>
+              <div class="item-options">
+                <i class="fa-solid fa-trash"></i>
+              </div>
+            </div>
+          
+          </div>  
+          </div>
+                  
+        </div>
+      </div>
+    </main>
+    
+</div> 
+    <div class="dialog"></div>
 </body>
 </html>
-

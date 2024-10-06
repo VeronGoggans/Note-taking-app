@@ -1,0 +1,110 @@
+.notebook-view {
+    outline: none;
+    height: 100dvh;
+    max-height: 100dvh;
+    font-family: Roboto;
+    display: grid;
+    grid-template-rows: 60px 1fr;
+    padding: 0 5%;
+    /* opacity: 0;
+    transform: translateY(30%); */
+    transition: opacity .7s ease, transform .2s ease;
+}
+
+.notebook-top {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notebook-bottom {
+    max-height: calc(100dvh - 97px);
+    overflow-y: scroll;
+}
+
+.notebook-content {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--item-border);
+    margin: 0 20px;
+}
+
+.item {
+    padding: 10px;
+    display: grid;
+    font-family: sans-serif;
+    color: var(--text);
+    grid-template-columns: 1fr 50px;
+    background-color: var(--card);
+    border-bottom: 1px solid var(--item-border);
+    transition: 150ms;
+}
+
+.item:hover {
+    scale: 1.03;
+    background-color: var(--item-hover);
+}
+
+.item-info {
+    display: flex;
+    column-gap: 20px;
+}
+
+.item-info  {
+    display: flex;
+    align-content: center;
+}
+
+.item-options i {
+    cursor: pointer;
+    color: var(--placeholder);
+}
+
+.item i {
+    width: 25px;
+    height: 25px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.item span {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.item span:hover {
+    color: #5c7fdd;
+}
+
+
+
+
+
+#notebook-note-icon {
+    color: #fff;
+    background-color: rgb(106, 153, 255);
+}
+
+#notebook-folder-icon {
+    color: #fff;
+    background-color: rgb(147, 135, 255);
+}
+
+#notebook-template-icon {
+    color: #fff;
+    background-color: rgb(57, 219, 138);
+}
+
+#notebook-flashcard-icon {
+    color: #fff;
+    background-color: rgb(255, 106, 106);
+}
+
+#notebook-taskboard-icon {
+    color: #fff;
+    background-color: rgb(255, 195, 106);
+}

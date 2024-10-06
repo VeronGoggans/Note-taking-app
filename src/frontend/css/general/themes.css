@@ -45,6 +45,10 @@
     --task: #0b0a14;
     --due-date: #402384;
 
+    /*notebook*/
+    --item-hover: #1a192f;
+    --item-border: #282a3d;
+
     /*Other*/
     --title-bar-button-background: #252735;
     --title-bar-button-color: #5c7fdd;
@@ -135,6 +139,10 @@
     --board-section: #fff;
     --task: #f5f6ff;
     --due-date: #d9deff;
+
+    /*notebook*/
+    --item-hover: #f7f7ff;
+    --item-border: #dee1ef;
 
     /*Other*/
     --title-bar-button-background: #dfe7ff;
