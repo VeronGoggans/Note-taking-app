@@ -52,7 +52,9 @@ export class HomeView extends BaseView {
         const contentFragment = document.createDocumentFragment();
 
         for (let i = 0; i < decks.length; i++) {
-            const deckCard = this.#FlashcardDeck(decks[i]);
+            const deck = decks[i].deck;
+            const deckStats = decks[i].stats;
+            const deckCard = this.#flashcardDeck(deck, deckStats);
 
             contentFragment.appendChild(deckCard);
             AnimationHandler.fadeInFromBottom(deckCard);
@@ -82,9 +84,14 @@ export class HomeView extends BaseView {
         });
     }
 
-    handleDeckCardClick(deckId) {
+    async handleDeckCardClick(deckId) {
         const deck = this.deckObjects.get(deckId)
-        this.applicationController.initView('flashcardsPractice', {deck: deck, previousView: 'home'})
+        const flashcards = await this.applicationController.getFlashcards(deckId) 
+        this.applicationController.initView('flashcardsPractice', {
+            deck: deck,
+            flashcards: flashcards, 
+            previousView: 'home'
+        })
     }
 
     #recentFolder(folder) {
@@ -97,9 +104,9 @@ export class HomeView extends BaseView {
         return new RecentNote(note, this);
     }
 
-    #FlashcardDeck(deck) {
+    #flashcardDeck(deck, deckStats) {
         this.deckObjects.add(deck);
-        return new FlashcardDeck(deck, this);
+        return new FlashcardDeck(deck, deckStats, this);
     }
 
     #initializeDomElements() {

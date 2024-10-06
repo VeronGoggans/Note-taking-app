@@ -13,12 +13,12 @@ export class EditFlashcardModal {
             <input type="text" placeholder="Card term goes here..." spellcheck="false">
             <div class="description-section">
                 <div class="rich-text-options">
-                    <button onclick="formatText('bold')" id="boldBtn"><i class="fa-solid fa-bold"></i></button>
-                    <button onclick="formatText('italic')" id="italicBtn"><i class="fa-solid fa-italic"></i></button>
-                    <button onclick="formatText('underline')" id="underlineBtn"><i class="fa-solid fa-underline"></i></button>
-                    <button onclick="formatText('strikethrough')" id="strikeBtn"><i class="fa-solid fa-strikethrough"></i></button>
-                    <button onclick="formatText('insertUnorderedList')"><i class="fa-solid fa-list-ul"></i></button>
-                    <button onclick="formatText('insertOrderedList')"><i class="fa-solid fa-list-ol"></i></button>
+                    <button onclick="formatText('bold')" id="boldBtn"><i class="bi bi-type-bold"></i></button>
+                    <button onclick="formatText('italic')" id="italicBtn"><i class="bi bi-type-italic"></i></button>
+                    <button onclick="formatText('underline')" id="underlineBtn"><i class="bi bi-type-underline"></i></button>
+                    <button onclick="formatText('strikethrough')" id="strikeBtn"><i class="bi bi-type-strikethrough"></i></button>
+                    <button onclick="formatText('insertUnorderedList')"><i class="bi bi-list-task"></i></button>
+                    <button onclick="formatText('insertOrderedList')"><i class="bi bi-list-ol"></i></button>
                 </div>
                 <div class="card-description" contenteditable="true" spellcheck="false"></div>
             </div>

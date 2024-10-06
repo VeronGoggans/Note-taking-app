@@ -160,6 +160,6 @@
     min-width: 700px;
     font-weight: 600;
     font-size: 25px;
-    background-color: var(--editor);
+    background-color: transparent;
     color: var(--important);
 }

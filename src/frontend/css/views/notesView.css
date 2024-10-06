@@ -51,7 +51,7 @@
     background-color: transparent;
     color: var(--important);
     padding: 10px 15px;
-    border-radius: 7px;
+    border-radius: 15px;
 }
 
 .exit-folder-btn:hover {

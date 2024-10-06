@@ -1,5 +1,6 @@
 from sqlalchemy.orm import Session
-from src.backend.data.models import Folder, Note, Taskboard
+from collections import Counter
+from src.backend.data.models import Folder, Note, Taskboard, Flashcard, FlashcardSet
 from src.backend.data.exceptions.exceptions import NotFoundException
 
 
@@ -26,6 +27,15 @@ def find_taskboard(id: int, db: Session) -> ( Taskboard | NotFoundException ):
     if taskboard is None:
         raise NotFoundException(f"Taskboard with id {id} not found.")
     return taskboard
+
+
+def find_deck(id: int, db: Session) -> ( FlashcardSet | NotFoundException ):
+    deck = db.query(FlashcardSet).filter(FlashcardSet.id == id).first()
+    
+    if deck is None:
+        raise NotFoundException(f"Deck with id {id} not found.")
+    return deck
+
 
 
 def get_folder_hierarchy(id: int, db: Session) -> list[dict]:

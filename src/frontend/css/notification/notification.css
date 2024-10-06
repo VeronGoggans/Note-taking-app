@@ -41,3 +41,11 @@
 .show-notification {
     bottom: 50px;
 }
+
+.notify-empty-text {
+    font-size: 45px;
+    color: var(--placeholder);
+    position: absolute;
+    top: 35%;
+    left: calc(50% - 200.5px);
+}

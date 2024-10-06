@@ -73,11 +73,11 @@ export const flashcardsTemplate = `
 
 export const flashcardPracticeTemplate = `
     <div class="flashcard-practice">
-    <button class="flashcard-home-btn"><i class="fa-solid fa-chevron-left"></i></button>
+    <button class="flashcard-home-btn"><i class="bi bi-arrow-left"></i></button>
         <div class="center">
             <div class="deck-section">
-                <i id="previous-card-btn" class="fa-solid fa-caret-left"></i>
-                <i id="next-card-btn" class="fa-solid fa-caret-right"></i>
+                <i id="previous-card-btn" class="bi bi-caret-left"></i>
+                <i id="next-card-btn" class="bi bi-caret-right"></i>
                 <h2 class="deck-name"></h2>
                 <span class="current-card-number">1 out of 0</span>
                 <div class="flashcard">
@@ -88,9 +88,9 @@ export const flashcardPracticeTemplate = `
                     <div class="progress__fill"></div>
                 </div>
                 <div class="button-bar">
-                    <i id="restart-btn" class="fa-solid fa-repeat"></i>
-                    <i id="wrong-btn" class="fa-solid fa-xmark"></i>
-                    <i id="correct-btn" class="fa-solid fa-check"></i>
+                    <i id="restart-btn" class="bi bi-arrow-repeat"><span style="margin-left: 7px;">Restart</span></i>
+                    <i id="wrong-btn" class="bi bi-x-lg"><span style="margin-left: 7px;">Correct</span></i>
+                    <i id="correct-btn" class="bi bi-check2"><span style="margin-left: 7px;">Correct</span></i>
                 </div>
             </div>
         </div>
@@ -100,7 +100,7 @@ export const flashcardPracticeTemplate = `
 export const flashcardEditTemplate = `
     <div class="flashcard-edit-view">
         <button class="exit-flashcard-edit-view-btn">
-            <i class="fa-solid fa-chevron-left"></i>
+            <i class="bi bi-arrow-left"></i>
         </button>
         <h1 contenteditable="true" spellCheck="false"></h1>
         <button class="add-flashcard-btn">Add flashcard</button>
@@ -157,7 +157,7 @@ export const taskBoardHomeTemplate = `
 
 export const taskBoardTemplate = `
     <div class="task-board-view">
-        <button class="exit-taskboard-btn"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="exit-taskboard-btn"><i class="bi bi-arrow-left"></i></button>
         <h1 class="task-board-name">Untitled</h1>
         <p class="task-board-description"><i>Task board goes here...</i></p>
         <div class="task-board">

@@ -11,28 +11,24 @@ import { getMinutesDifference } from "../util/date.js";
  */
 
 export class FlashcardPracticeView {
-    constructor(controller, applicationController, deck) {
+    constructor(controller, applicationController, deck, flashcards) {
         this.controller = controller;
         this.applicationController = applicationController;
         this.deck = deck;
         this.flashcards = new FlashcardObjectArray();
 
-        for (let i = 0; i< this.deck.flashcards.length; i++) {
-            this.flashcards.add(this.deck.flashcards[i])
+        for (let i = 0; i< flashcards.length; i++) {
+            this.flashcards.add(flashcards[i])
         }
 
-        // Current card number is equal to the ID of a flashcard
-        // Id's for flashcards are just Numbers
         this.currentCardNumber = 0;
         this.currentFlashcard = null;
         this.cardsHaveBeenChanged = false;
 
-        // The flashcard mode can either be
-        // Normal or Flipped
-        this.flashcardMode = 'normal';
+        this.flashcardMode = 'normal'; // Or flipped.
         this.currentlyShowing = 'term';
 
-        // The time when the user started studieng
+        // The time when the user started studying
         this.startDate = new Date();
         
         this.#initializeDomElements();
@@ -196,7 +192,6 @@ export class FlashcardPracticeView {
         this.currentCardNumberSpan.textContent = `1 out of ${this.flashcards.size()}`;
         this.currentFlashcard = null;
         this.setupNextCard();
-        console.log(this.flashcards.objects);
     }
 
 

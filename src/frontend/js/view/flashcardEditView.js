@@ -1,4 +1,3 @@
-import { FlashcardObjectArray } from "../util/array.js";
 import { Flashcard } from "../components/flashcardDeck.js";
 import { AnimationHandler } from "../handlers/animation/animationHandler.js";
 import { BaseView } from "./baseView.js";
@@ -9,16 +8,14 @@ export class FlashcardEditView extends BaseView {
         this.controller = controller;
         this.applicationController = applicationController;
 
-        this.flashcardObjects = new FlashcardObjectArray();
         this.#initializeDomElements();
         this.#attachEventListeners();
         AnimationHandler.fadeInFromSide(this._viewElement);
     }
 
-    renderAll(deck) {
+    renderAll(deck, flashcards) {
         this.deck = deck;
         this._deckName.textContent = deck.name;
-        const flashcards = deck.flashcards;
         const flashcardsFragment = document.createDocumentFragment();
 
         for (let i = 0; i < flashcards.length; i++) {
@@ -30,12 +27,6 @@ export class FlashcardEditView extends BaseView {
 
 
     renderOne(flashcard) {
-        // Adding the missing attributes 
-        // So it can still be found/updated by the Object Array
-        const lastFlashcard = this.flashcardObjects.getLast()
-        flashcard['rating'] = 'idle';
-        flashcard['id'] = lastFlashcard.id += 1
-
         const flashcardObj = this.#flashcard(flashcard);
         AnimationHandler.fadeInFromBottom(flashcardObj);
         this._flashcardsContainer.appendChild(flashcardObj);
@@ -47,17 +38,12 @@ export class FlashcardEditView extends BaseView {
 
         for (let i = 0; i < flashcards.length; i++) {
             if (flashcards[i].id == flashcard.id) {    
-
                 flashcards[i].querySelector('h3').textContent = flashcard.term;
-
-                this.flashcardObjects.update(flashcard);
             }
         }
-
     }
 
     #flashcard(flashcard, unsaved = false) {
-        this.flashcardObjects.add(flashcard);
         return new Flashcard(flashcard, this.dialog, this.controller, unsaved);
     }
 

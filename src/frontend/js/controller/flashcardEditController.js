@@ -9,11 +9,11 @@ export class FlashcardEditController {
         this.model = new HttpModel();
     }
 
-    init(deck) {
+    init(deck, flashcards) {
         this.deck = deck;
         this.editModel = new FlashcardEditModel();
         this.view = new FlashcardEditView(this, this.applicationController);
-        this.view.renderAll(deck);
+        this.view.renderAll(deck, flashcards);
     }
 
     loadPreviousView() {

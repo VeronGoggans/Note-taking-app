@@ -1,6 +1,6 @@
 .flashcard-edit-view {
     outline: none;
-    padding: 20px;
+    padding: 20px 5%;
     font-family: sans-serif;
     color: var(--important);
     overflow-y: scroll;
@@ -16,11 +16,11 @@
 }
 
 .flashcard-edit-view .exit-flashcard-edit-view-btn {
-    font-size: 16px;
+    font-size: 25px;
     background-color: transparent;
     color: var(--important);
     padding: 10px 15px;
-    border-radius: 7px;
+    border-radius: 15px;
     transition: 150ms;
 }
 
@@ -56,13 +56,19 @@
 }
 
 .flashcard-edit-view .flashcard {
+    cursor: pointer;
     position: relative;
     display: grid;
     grid-template-rows: 1fr 30px 40px;
     border-radius: 10px;
     height: 200px;
-    background-color: var(--flashcard-edit-bg); /*e7ebff*/
-    transition: opacity .7s ease, transform .25s ease;
+    box-shadow: var(--card-shadow);
+    background-color: var(--card);
+    transition: opacity .7s ease, transform .25s ease, scale .2s ease;
+}
+
+.flashcard-edit-view .flashcard:hover {
+    scale: 1.05;
 }
 
 .flashcard-edit-view .flashcard .rating {

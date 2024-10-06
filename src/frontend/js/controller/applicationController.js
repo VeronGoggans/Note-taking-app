@@ -105,12 +105,13 @@ export class ApplicationController {
                 if (viewId === 'flashcardsPractice') {
                     const {
                         deck,
+                        flashcards,
                         previousView
                     } = viewParameters
 
                     this.model.setPreviousView(previousView);                    
 
-                    controller.init(deck);
+                    controller.init(deck, flashcards);
                     this.sidebarView.setActiveTab('flashcards');
                     return;
                 }
@@ -118,12 +119,13 @@ export class ApplicationController {
                 if (viewId === 'flashcardEdit') {
                     const {
                         deck, 
+                        flashcards,
                         previousView
                     } = viewParameters
 
                     this.model.setPreviousView(previousView);
 
-                    controller.init(deck);
+                    controller.init(deck, flashcards);
                     return;
                 }
 
@@ -284,6 +286,10 @@ export class ApplicationController {
 
     async getDeckSearchItems() {
         return await this.flashcardDeckController.getSearchItems();
+    }
+
+    async getFlashcards(deckId) {
+        return await this.flashcardDeckController.getFlashcards(deckId);
     }
 
     // Settings methods 

@@ -70,6 +70,9 @@ export function timeOfDay() {
  * @param {String} date 
  */
 export function getPassedTime(dateString) {
+    if (dateString === 'Not studied yet.') {
+        return 'Not studied yet.';
+    }
     const parts = dateString.split(/[/ :]/);
     const date = new Date(parts[2], parts[1] - 1, parts[0], parts[3], parts[4]);
 
@@ -87,19 +90,20 @@ export function getPassedTime(dateString) {
         return 'now'
     }
     if (passedTime < hour) {
-        return `${Math.floor(passedTime / minute)}m ago`;
+        return `Last studied ${Math.floor(passedTime / minute)}m ago`;
     } else if (passedTime < day) {
-        return `${Math.floor(passedTime / hour)}h ago`;
+        return `Last studied ${Math.floor(passedTime / hour)}h ago`;
     } else if (passedTime < week) {
-        return `${Math.floor(passedTime / day)}d ago`;
+        return `Last studied ${Math.floor(passedTime / day)}d ago`;
     } else if (passedTime < month) {
-        return `${Math.floor(passedTime / week)}w ago`;
+        return `Last studied ${Math.floor(passedTime / week)}w ago`;
     } else if (passedTime < year) {
-        return `${Math.floor(passedTime / month)}mo ago`;
+        return `Last studied ${Math.floor(passedTime / month)}mo ago`;
     } else {
-        return `${Math.floor(passedTime / year)}y ago`;
+        return `Last studied ${Math.floor(passedTime / year)}y ago`;
     }
 }
+
 
 export function getMinutesDifference(startDate, endDate) {
     // Calculate the difference in milliseconds

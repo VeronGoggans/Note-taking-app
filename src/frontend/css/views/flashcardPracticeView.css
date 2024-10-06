@@ -12,12 +12,12 @@
     position: absolute;
     top: 10px;
     left: 5px;
-    font-size: 16px;
+    font-size: 25px;
     border: none;
     background-color: transparent;
     color: var(--important);
     padding: 10px 15px;
-    border-radius: 7px;
+    border-radius: 15px;
     transition: 150ms;
 }
 
@@ -95,7 +95,7 @@
     align-items: center;
     overflow-y: scroll;
     background-color: var(--modal);
-    box-shadow: 0 0 10px var(--shadow-practice-card);
+    box-shadow: var(--card-shadow);
  }
 
  .flashcard-practice .deck-section .flashcard .flashcard-content {
@@ -110,7 +110,7 @@
 
 .flashcard-practice .deck-section .progress {
     margin-top: 10px;
-    margin: 25px 40px 0 40px;
+    margin: 50px 40px 0 40px;
     position: relative;
     height: 5px;
     background-color: var(--progress-color2);
@@ -137,9 +137,12 @@
 
 .flashcard-practice .deck-section .button-bar i {
     cursor: pointer;
-    width: 30px;
+    padding: 0 5px;
     height: 30px;
     border-radius: 7px;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
     display: flex;
     align-items: center;
     justify-content: center;

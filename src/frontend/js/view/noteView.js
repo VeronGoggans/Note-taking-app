@@ -1,7 +1,7 @@
 import { Note } from "../components/note.js";
 import { NoteObjectArray } from "../util/array.js";
 import { AnimationHandler } from "../handlers/animation/animationHandler.js";
-import { removeContent } from "../util/ui.js";
+import { removeContent, addEmptyMessage } from "../util/ui.js";
 import { BaseView } from "./baseView.js";
 import { NotificationHandler } from "../handlers/userFeedback/notificationHandler.js";
 
@@ -33,11 +33,10 @@ export class NoteView extends BaseView {
                 AnimationHandler.fadeInFromBottom(noteCard);
             }
             this._content.appendChild(contentFragment);
-
-            if (this._content.children.length === 0) {
-                NotificationHandler.push('empty');
-            }
         } 
+        if (this._content.children.length === 0) {
+            NotificationHandler.empty(this._content)
+        }
     }
 
     
@@ -50,7 +49,10 @@ export class NoteView extends BaseView {
                 this.noteObjects.remove(note);
             }
         }
-        if (closeDialog) this.closeDialog();
+        addEmptyMessage(this._content);
+        if (closeDialog) {
+            this.closeDialog();
+        }
     }
 
     

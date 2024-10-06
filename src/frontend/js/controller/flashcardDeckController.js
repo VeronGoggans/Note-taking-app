@@ -28,14 +28,9 @@ export class FlashcardDeckController {
 
 
     async getDecks() {
-        try {
-            const { decks } = await this.model.get('/decks');
-            this.view.renderAll(decks)
-            // this.view.renderStats(misc)
-        } 
-        catch(error) {
-            NotificationHandler.push('error', null, error.message)
-        }
+        const { decks } = await this.model.get('/decks');        
+        this.view.renderAll(decks)
+        // this.view.renderStats(flashcard_count)
     }
 
 
@@ -47,6 +42,11 @@ export class FlashcardDeckController {
         catch(error) {
             NotificationHandler.push('error', null, error.message)
         }
+    }
+
+    async getFlashcards(deckId) {
+        const { flashcards } = await this.model.get(`/flashcards/${deckId}`)
+        return flashcards
     }
 
 

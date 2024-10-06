@@ -9,8 +9,8 @@ export class FlashcardPracticeController {
     }
 
 
-    async init(deck) {
-        this.view = new FlashcardPracticeView(this, this.applicationController, deck);
+    async init(deck, flashcards) {
+        this.view = new FlashcardPracticeView(this, this.applicationController, deck, flashcards);
     }
     
 

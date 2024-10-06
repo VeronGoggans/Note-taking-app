@@ -17,18 +17,17 @@ export class FlashcardDeckView extends BaseView {
 
     renderAll(decks) {
         this.deckObjects.clear();        
-        let cardCount = 0
         
         if (decks.length > 0) {
             const deckFragment = document.createDocumentFragment();
             const progressionFragment = document.createDocumentFragment();
 
             for (let i = 0; i < decks.length; i++) {
-                // Adding the cards to the card counter 
-                cardCount += decks[i].flashcards.length;
+                const deck = decks[i].deck;
+                const deckStats = decks[i].stats;
 
-                const deckCard = this.#flashcardDeck(decks[i]);
-                const progressionCard = this.#flashcardProgression(decks[i]);
+                const deckCard = this.#flashcardDeck(deck, deckStats);
+                const progressionCard = this.#flashcardProgression(deck, deckStats);
         
                 deckFragment.appendChild(deckCard);
                 progressionFragment.appendChild(progressionCard);
@@ -36,12 +35,11 @@ export class FlashcardDeckView extends BaseView {
                 AnimationHandler.fadeInFromBottom(progressionCard);
                 AnimationHandler.fadeInFromBottom(deckCard);
 
-                this.deckObjects.add(decks[i])
+                this.deckObjects.add(deck)
             }
             this._flashcardDecks.appendChild(deckFragment);
             this._flashcardProgressions.appendChild(progressionFragment);
         }
-        this._flashcardCountSpan.textContent = cardCount;
     }
 
     renderOne(deck) {
@@ -63,7 +61,7 @@ export class FlashcardDeckView extends BaseView {
         const progressions = this._flashcardProgressions.children
 
         for (let i = 0; i < decks.length; i++) {
-            if (decks[i].id === deck.id) {
+            if (decks[i].id == deck.id) {
                 AnimationHandler.fadeOutCard(decks[i]);
                 AnimationHandler.fadeOutCard(progressions[i]);
                 this.deckObjects.remove(deck);
@@ -73,30 +71,35 @@ export class FlashcardDeckView extends BaseView {
     }
 
 
-    renderStats(misc) {
-        this._streakSpan.textContent = `${misc.streak}`
-        const minutes = misc.study_time;
-        if (minutes >= 60) {
-            this._hoursStudiedSpan.textContent = Math.floor(minutes / 60);
-            this._minutesStudiedSpan.textContent = minutes % 60;
-        }
-        else {
-            this._minutesStudiedSpan.textContent = minutes;
-        }
+    renderStats(flashcardCount) {
+        this._flashcardCountSpan.textContent = flashcardCount; 
+        // this._streakSpan.textContent = `${misc.streak}`
+        // const minutes = misc.study_time;
+        // if (minutes >= 60) {
+        //     this._hoursStudiedSpan.textContent = Math.floor(minutes / 60);
+        //     this._minutesStudiedSpan.textContent = minutes % 60;
+        // }
+        // else {
+        //     this._minutesStudiedSpan.textContent = minutes;
+        // }
     } 
 
-    handleDeckCardClick(deckId) {
+    async handleDeckCardClick(deckId) {
         const deck = this.deckObjects.get(deckId);
+        const flashcards = await this.controller.getFlashcards(deckId); 
         this.applicationController.initView('flashcardsPractice', {
             deck: deck,
+            flashcards: flashcards,
             previousView: 'flashcardsHome',
         });
     }
 
-    handleEditButtonClick(deckId) {
+    async handleEditButtonClick(deckId) {
         const deck = this.deckObjects.get(deckId);
+        const flashcards = await this.controller.getFlashcards(deckId);
         this.applicationController.initView('flashcardEdit', {
             deck: deck,
+            flashcards: flashcards,
             previousView: 'flashcardsHome'
         });
     }
@@ -122,13 +125,13 @@ export class FlashcardDeckView extends BaseView {
     }
 
 
-    #flashcardDeck(deck) {
+    #flashcardDeck(deck, deckStats) {
         this.deckObjects.add(deck);
-        return new FlashcardDeck(deck, this);
+        return new FlashcardDeck(deck, deckStats, this);
     }
 
-    #flashcardProgression(deck) {
-        return new FlashcardProgression(deck, this);
+    #flashcardProgression(deck, deckStats) {
+        return new FlashcardProgression(deck, deckStats, this);
     }
 
     #attachEventListeners() {
