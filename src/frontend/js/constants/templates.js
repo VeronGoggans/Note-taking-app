@@ -208,6 +208,16 @@ export const settingsTemplate = `
                     <li theme="dark">Dark</li>
                 </ul>
             </div>
+
+            <h3>Sidebar</h3>
+            <p>Select a sidebar color</p>
+            <div class="sidebar-color-dropdown">
+                <input type="text" spellcheck="false" placeholder="Sidebar color" class="sidebar-color-input">
+                <ul class="dropdown-items">
+                    <li color="original">Original</li>
+                    <li color="soft">Soft</li>
+                </ul>
+            </div>
         </div>
     </div>
     </div>

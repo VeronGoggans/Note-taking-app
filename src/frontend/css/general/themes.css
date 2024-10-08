@@ -58,6 +58,7 @@
     --notification: #16171c;
     --subtitle: #9196aa;
     --sidebar: #0b0a14; 
+    --sidebar-soft: #0f0e1a;
     --searchbar: #121223;
     --sidebar-text: #d6d8e5;
     --sidebar-text-hover: #5c7dff; 
@@ -153,6 +154,7 @@
     --notification: #ffffff;
     --subtitle: #63656d;
     --sidebar: #ffffff; 
+    --sidebar-soft: #f9fafd;
     --searchbar: #f4f4fc;
     --sidebar-text: #444452; 
     --sidebar-text-hover: #5c7dff; 

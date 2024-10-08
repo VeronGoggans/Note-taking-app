@@ -86,3 +86,8 @@
     background-color: #5c7fdd !important;
     color: #fff !important;
 }
+
+.soft {
+    border: none;
+    background-color: var(--sidebar-soft);
+}

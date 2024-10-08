@@ -33,7 +33,8 @@
     font-family: sans-serif;
 }
 
-.theme-dropdown {
+.theme-dropdown,
+.sidebar-color-dropdown {
     position: relative;
     border-radius: 5px;
     background-color: var(--setting-dropdown);
@@ -41,7 +42,8 @@
 }
 
 
-.theme-dropdown input {
+.theme-dropdown input,
+.sidebar-color-dropdown input {
     background-color: transparent;
     border: none;
     width: 100%;

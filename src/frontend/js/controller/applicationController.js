@@ -45,7 +45,7 @@ export class ApplicationController {
             task: this.taskController
         }
         this.initView('home')
-        this.settingController.loadCurrentTheme()
+        this.settingController.loadSettings()
     }
 
     initView(viewId, viewParameters = {}) {
@@ -290,12 +290,5 @@ export class ApplicationController {
 
     async getFlashcards(deckId) {
         return await this.flashcardDeckController.getFlashcards(deckId);
-    }
-
-    // Settings methods 
-
-    async setTheme(init) {
-        const theme = await this.settingController.getTheme();
-        this.settingController.setTheme(init, theme);
     }
 }

@@ -9,32 +9,32 @@ export class SettingController {
     }
 
     async init() {
-        const currentTheme = await this.getTheme();
+        const settings = await this.getSettings();
         this.view = new SettingView(this, this.applicationController);
-        this.view.setThemeDropdownState(currentTheme);
+        this.view.setDropdownStates(settings);
     }
 
-    async loadCurrentTheme() {
-        const currentTheme = await this.getTheme();
-        if (currentTheme === 'light') {
-            document.body.classList.add('light')
-        }
-        if (currentTheme === 'dark') {
-            document.body.classList.add('dark');
+    async loadSettings() {
+        const settings = await this.getSettings();
+        document.body.classList.add(settings.theme);
+        if (settings.sidebarColor === 'soft') {
+            document.querySelector('.sidebar').classList.add(settings.sidebarColor);
         }
     }
 
-    async getTheme() {
-        const { theme } = await this.model.get('/settings/theme');
-        return theme;
+    async getSettings() {
+        const { settings } = await this.model.get('/settings');
+        return settings;
     }
 
     async updateTheme(newTheme) {
-        const { theme } = await this.model.update(`/settings/theme/${newTheme}`, null);
+        const { theme } = await this.model.update(`/settings/theme/${newTheme}`);
         return theme;
     }
 
-    setTheme(init, theme) {
-        this.view.setTheme(init, theme);
+    async updateSidebarColor(newColor) {
+        const { color } = await this.model.update(`/settings/sidebarColor/${newColor}`);
+        return color;
+
     }
 }
