@@ -14,8 +14,8 @@ export class NoteView extends BaseView {
         
         this.noteObjects = new NoteObjectArray();
 
-        this.#initializeDomElements();
-        this.#attachEventListeners();
+        this.#initElements();
+        this.#eventListeners();
 
         AnimationHandler.fadeInFromBottom(this._viewElement)
     }
@@ -86,17 +86,18 @@ export class NoteView extends BaseView {
     }
 
 
-    #initializeDomElements() {
+    #initElements() {
         this.createNoteButton = document.querySelector('.create-note-btn')
         this.bookmarkedButton = document.querySelector('.bookmarks-btn')
         this._content = document.querySelector('.content-view');
         this._viewElement = document.querySelector('.notes');
     }
 
-    #attachEventListeners() {
+    #eventListeners() {
         this.bookmarkedButton.addEventListener('click', () => {
             removeContent(this._content);
-            this.controller.get('bookmarks')});
+            const allBookmarks = -1
+            this.controller.get(allBookmarks)});
 
         this.createNoteButton.addEventListener('click', () => {
             this.applicationController.initView('editor', {

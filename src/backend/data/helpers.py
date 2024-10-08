@@ -21,6 +21,7 @@ def find_note(note_id: int, db: Session) -> ( Note | NotFoundException ):
     return note
 
 
+
 def find_taskboard(id: int, db: Session) -> ( Taskboard | NotFoundException ):
     taskboard = db.query(Taskboard).filter(Taskboard.id == id).first()
 
@@ -36,6 +37,13 @@ def find_deck(id: int, db: Session) -> ( FlashcardSet | NotFoundException ):
         raise NotFoundException(f"Deck with id {id} not found.")
     return deck
 
+
+def find_flashcard(id: int, db: Session) -> ( Flashcard | NotFoundException ):
+    flashcard = db.query(Flashcard).filter(Flashcard.id == id).first()
+    
+    if flashcard is None:
+        raise NotFoundException(f"Flashcard with id {id} not found.")
+    return flashcard
 
 
 def get_folder_hierarchy(id: int, db: Session) -> list[dict]:

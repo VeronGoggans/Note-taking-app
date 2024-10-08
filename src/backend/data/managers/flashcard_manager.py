@@ -2,8 +2,9 @@ from sqlalchemy.orm import Session
 import random
 from src.backend.data.models import FlashcardSet, Flashcard
 from src.backend.data.exceptions.exceptions import NotFoundException
-from src.backend.presentation.dtos.flashcard_dtos import PostFlashcardDTO, FlashcardDTO
-from src.backend.data.helpers import find_deck
+from src.backend.presentation.dtos.flashcard_dtos import FlashcardDTO
+from src.backend.presentation.request_bodies.flashcard_requests import PutFlashcardRequest
+from src.backend.data.helpers import find_deck, find_flashcard
 
 
 class FlashcardDeckManager:
@@ -61,6 +62,7 @@ class FlashcardDeckManager:
     def update_deck(self, id: int, name: str, db: Session) -> None:
         deck = find_deck(id, db)
         deck.name = name
+
         db.commit()
         db.refresh(deck)
         return deck
@@ -79,27 +81,38 @@ class FlashcardDeckManager:
         db.commit()
 
 
+    def add_flashcard(self, flashcard: Flashcard, db: Session) -> Flashcard:
+        db.add(flashcard)
+        db.commit()
+        db.refresh(flashcard)
+        return flashcard
+
+
     def get_flashcards(self, deck_id: int, db: Session) -> list[Flashcard]:
-        find_deck(deck_id, db)
         return db.query(Flashcard).filter(Flashcard.flascard_set_id == deck_id).all()
         
 
-    def update_flashcards(self, deck_id: int, flashcards: list[FlashcardDTO], db: Session) -> None:
-        pass
+    def update_flashcard(self, updated_flashcard: PutFlashcardRequest, db: Session) -> Flashcard:
+        flashcard = find_flashcard(updated_flashcard.id, db)
+        flashcard.term = updated_flashcard.term
+        flashcard.description = updated_flashcard.description
 
-
-    def update_ratings(self, deck_id: str, time_studied: str, flashcards: list[FlashcardDTO], db: Session) -> None:
-        pass
-
-
-    def delete_flashcards(self, deck_id: int, flashcard_ids: list[int], db: Session) -> None:
-        db.query(Flashcard).filter(
-            Flashcard.flascard_set_id == deck_id,
-            Flashcard.id.in_(flashcard_ids)
-        ).delete(synchronize_session=False)
-
-        # Commit the transaction to apply the deletion
         db.commit()
+        db.refresh(flashcard)
+        return flashcard
+
+
+    def update_rating(self, flashcard_id: int, rating: str, db: Session) -> None:
+        flashcard = find_flashcard(flashcard_id, db)
+        flashcard.rating = rating
+        db.commit()
+        
+
+    def delete_flashcard(self, flashcard_id: int, db: Session) -> Flashcard:
+        flashcard = find_flashcard(flashcard_id, db)
+        db.delete(flashcard)
+        db.commit()
+        return flashcard
 
 
     def __get_deck_progression(self, deck_id: int, db: Session):

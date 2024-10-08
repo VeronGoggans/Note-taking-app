@@ -2,8 +2,8 @@ export class Searchbar {
     constructor(controller) {
         this.controller = controller;
         this.searchItems = []
-        this.#initializeDomElements();
-        this.#attachEventListeners();
+        this.#initElements();
+        this.#eventListeners();
     }
 
     fillSearchbar(searchType, searchObjects) {        
@@ -84,14 +84,14 @@ export class Searchbar {
     }
 
 
-    #initializeDomElements() {
+    #initElements() {
         this.input = document.querySelector('.searchbar input');
         this.searchList = document.querySelector('.searchbar ul');
         this.viewContent = document.querySelector('.content');
 
     }
 
-    #attachEventListeners() {
+    #eventListeners() {
         this.input.addEventListener('input', () => {this.handleInput()});
         this.input.addEventListener('click', () => {this.handleInput()});
         this.viewContent.addEventListener('click', (event) => {

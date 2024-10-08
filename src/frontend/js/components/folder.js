@@ -10,13 +10,13 @@ export class Folder {
         this.color = folder.color;
         this.view = view;
 
-        this.#initializeElements();
+        this.#initElements();
         this.applyColor(this.color);
-        this.#attachEventListeners();
+        this.#eventListeners();
         return this.#render();
     }
 
-    #initializeElements() {
+    #initElements() {
         // creating HTML elements.
         this.HOST = CNode.create('div', {'class': 'folder', 'id': this.id, 'draggable': true});
         this.NAME_BOX = CNode.create('div', {'class': 'folder-name-box'});
@@ -59,7 +59,7 @@ export class Folder {
         else this.HOST.classList.add(folderColor);
     }
 
-    #attachEventListeners() {
+    #eventListeners() {
         this.EDIT_ICON.addEventListener('click', () => {this._toggleEditableFolderName()});
         this.DELETE_ICON.addEventListener('click', () => {this.view.renderDeleteModal(this.id, this.name)});
         this.LOGO.addEventListener('click', () => { this.view.handleFolderCardClick(this.id, this.H4.textContent)});
@@ -123,12 +123,12 @@ export class RecentFolder {
         this.name = folder.name
         this.view = view;
 
-        this.#initializeElements();
-        this.#attachEventListeners();
+        this.#initElements();
+        this.#eventListeners();
         return this.#render();
     }
 
-    #initializeElements() {
+    #initElements() {
         this.HOST = CNode.create('div', {'class': 'recent-folder', 'id': this.id});
         this.ICON = CNode.create('i', {'class': 'bi bi-folder-fill'});
         this.PARAGRAPH = CNode.create('p', {'textContent': this.name});
@@ -139,7 +139,7 @@ export class RecentFolder {
         return this.HOST;
     }
 
-    #attachEventListeners() {
+    #eventListeners() {
         this.HOST.addEventListener('click', () => {this.view.handleFolderCardClick(this.id)})
     }
 }

@@ -5,8 +5,8 @@ export class SettingView {
     constructor(controller, applicationController) {
         this.controller = controller;
         this.applicationController = applicationController;
-        this.#initializeDomElements();
-        this.#attachEventListeners();
+        this.#initElements();
+        this.#eventListeners();
         this.dropdownHelper = new DropdownHelper(this, this.dropdowns, this.dropdownOptions);
         AnimationHandler.fadeInFromSide(this.settingsView);
     }
@@ -40,7 +40,7 @@ export class SettingView {
     }
 
 
-    #initializeDomElements() {
+    #initElements() {
         this.settingsView = document.querySelector('.settings');
         this.themeInput = document.querySelector('.theme-dropdown input');
         this.themeDropdownOptions = document.querySelector('.theme-dropdown ul');
@@ -52,7 +52,7 @@ export class SettingView {
         this.dropdownOptions = [this.themeDropdownOptions]
     }
 
-    #attachEventListeners() {
+    #eventListeners() {
         this.lightThemeOption.addEventListener('click', () => {this.#lightMode()});
         this.darkThemeOption.addEventListener('click', () => {this.#darkmode()});
         this.settingsView.addEventListener('click', (event) => {

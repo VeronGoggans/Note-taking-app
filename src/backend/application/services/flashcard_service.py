@@ -1,9 +1,9 @@
 from sqlalchemy.orm import Session
 from src.backend.data.managers.flashcard_manager import FlashcardDeckManager
-from src.backend.presentation.request_bodies.flashcard_requests import PutDeckRequest, PostFlashcardRequest
+from src.backend.presentation.request_bodies.flashcard_requests import PutDeckRequest, PostFlashcardRequest, PutFlashcardRequest
 from src.backend.data.models import FlashcardSet, Flashcard
 from src.backend.data.exceptions.exceptions import *
-from src.backend.presentation.dtos.flashcard_dtos import PostFlashcardDTO, FlashcardDTO
+from src.backend.presentation.dtos.flashcard_dtos import FlashcardDTO
 
 
 class FlashcardDeckService:
@@ -38,11 +38,11 @@ class FlashcardDeckService:
         self.manager.update_deck(request.deck_id, request.name, db)
     
 
-    def delete_deck(self, deck_id: str, db: Session) -> None:
+    def delete_deck(self, deck_id: int, db: Session) -> None:
         return self.manager.delete_deck(deck_id, db)
     
 
-    def add_flashcards(self, deck_id: int, flashcards: list[PostFlashcardDTO], db: Session) -> None:
+    def add_flashcards(self, deck_id: int, flashcards: list[PostFlashcardRequest], db: Session) -> None:
         flashcard_models = [Flashcard(
                 term=flashcard.term, 
                 description=flashcard.description, 
@@ -52,17 +52,26 @@ class FlashcardDeckService:
         self.manager.add_flashcards(deck_id, flashcard_models, db)
 
 
+    def add_flashcard(self, deck_id: int, flashcard: PostFlashcardRequest, db: Session) -> Flashcard:
+        new_flahcard = Flashcard(
+                term=flashcard.term, 
+                description=flashcard.description, 
+                flascard_set_id = deck_id
+                ) 
+        return self.manager.add_flashcard(new_flahcard, db)
+
+
     def get_flashcards(self, deck_id: int, db: Session) -> list[Flashcard]:
         return self.manager.get_flashcards(deck_id, db)
         
 
-    def update_flashcards(self, deck_id: int, flashcards: list[FlashcardDTO], db: Session) -> None:
-        self.manager.update_flashcards(deck_id, flashcards, db)
+    def update_flashcard(self, flashcard: PutFlashcardRequest, db: Session) -> Flashcard:
+        return self.manager.update_flashcard(flashcard, db)
         
 
-    def update_flashcard_ratings(self, deck_id: int, time_studied: str, flashcards: list[FlashcardDTO], db: Session) -> None:
-        self.manager.update_ratings(deck_id, time_studied, flashcards, db)
+    def update_flashcard_rating(self, flashcard_id: int, rating: str, db: Session) -> None:
+        self.manager.update_rating(flashcard_id, rating, db)
 
 
-    def delete_flashcards(self, deck_id: int, flashcard_ids: list[int], db: Session) -> None:
-        self.manager.delete_flashcards(deck_id, flashcard_ids, db)
+    def delete_flashcard(self, flashcard_id: int, db: Session) -> Flashcard:
+        return self.manager.delete_flashcard(flashcard_id, db)

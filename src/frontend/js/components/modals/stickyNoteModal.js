@@ -20,7 +20,7 @@ export class StickyNoteModal {
             this.#setStickyNote();
         }
 
-        this.#attachEventListeners();
+        this.#eventListeners();
         return this.#render();
     }
 
@@ -33,7 +33,7 @@ export class StickyNoteModal {
         this.CONTENT.textContent = this.stickyNote.content;
     }
 
-    #attachEventListeners() {
+    #eventListeners() {
         this.SAVE_BTN.addEventListener('click', async () => {
             // ADDING a sticky note 
             if (this.action === 'add') {

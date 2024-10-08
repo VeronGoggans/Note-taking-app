@@ -89,13 +89,13 @@
 .flashcard-practice .deck-section .flashcard {
     cursor: pointer;
     height: 400px;
-    border-radius: 10px;
+    border-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow-y: scroll;
     background-color: var(--modal);
-    box-shadow: var(--card-shadow);
+    border: 1px solid var(--border-card);
  }
 
  .flashcard-practice .deck-section .flashcard .flashcard-content {
@@ -110,7 +110,7 @@
 
 .flashcard-practice .deck-section .progress {
     margin-top: 10px;
-    margin: 50px 40px 0 40px;
+    margin: 20px 40px 0 40px;
     position: relative;
     height: 5px;
     background-color: var(--progress-color2);

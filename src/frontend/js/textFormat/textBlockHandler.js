@@ -6,7 +6,7 @@ export class TextBlockHandler {
     parse() {        
         this.headings = this.page.querySelectorAll('h1, h2, h3, h4, h5, h6');
         this.anchorTags = this.page.querySelectorAll('a');
-        this.#attachEventListeners();
+        this.#eventListeners();
     }
 
     renderLinkPreview() {
@@ -14,7 +14,7 @@ export class TextBlockHandler {
         
     }
 
-    #attachEventListeners() {
+    #eventListeners() {
         this.headings.forEach(heading => {
             heading.addEventListener('keydown', (event) => {
               console.log('Keydown event');

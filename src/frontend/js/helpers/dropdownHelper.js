@@ -4,7 +4,7 @@ export class DropdownHelper {
         this.dropdowns = dropdowns;
         this.dropdownOptions = dropdownOptions
         this.templateList = templateList;
-        this.#attachEventListeners();
+        this.#eventListeners();
     }
 
 
@@ -46,7 +46,7 @@ export class DropdownHelper {
       }
 
 
-      #attachEventListeners() {
+      #eventListeners() {
         for (let i = 0; i < this.dropdowns.length; i++) {
             this.dropdowns[i].addEventListener('click', () => {
                 this.toggleDropdown(this.dropdownOptions[i])

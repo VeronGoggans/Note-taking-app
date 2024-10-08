@@ -13,8 +13,8 @@ export class TaskView extends BaseView {
         this.taskbaordId = null;
         this.applicationController = applicationController;
         this.taskObjects = new TaskObjectArray();
-        this.#initializeDomElements();
-        this.#attachEventListeners();
+        this.#initElements();
+        this.#eventListeners();
         AnimationHandler.fadeInFromBottom(this.viewElement);
     }
 
@@ -150,7 +150,7 @@ export class TaskView extends BaseView {
         return new TaskCard(this, task, this.controller, this.dialog);
     }
 
-    #attachEventListeners() {
+    #eventListeners() {
         this.addTaskButton.addEventListener('click', () => {this.dialog.renderTaskModal(this.controller, this.taskbaordId)});
         this.exitButton.addEventListener('click', () => {this.controller.loadPreviousView()});
 
@@ -188,7 +188,7 @@ export class TaskView extends BaseView {
         }
     }
 
-    #initializeDomElements() {
+    #initElements() {
         this.viewElement = document.querySelector('.task-board-view');
         this.toDoSection = document.querySelector('.todo .tasks');
         this.inProgressSection = document.querySelector('.inprogress .tasks');

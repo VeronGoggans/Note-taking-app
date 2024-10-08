@@ -15,14 +15,14 @@ export class Note {
         this.lastEdit = dateFormat(note.last_edit);
         this.view = view;
 
-        this.#initializeElements();
-        this.#attachEventListeners();
+        this.#initElements();
+        this.#eventListeners();
         
         if (this.bookmark) this.HOST.classList.add('bookmark');
         return this.#render();
     }
 
-    #initializeElements() {
+    #initElements() {
         this.HOST = CNode.create('div', { 'class': 'note', 'id': this.id, 'draggable': true});
         this.HOST.dataset.info = `${this.created}--${this.lastEdit}`;
         this.NAME_BOX = CNode.create('div', { 'class': 'note-name-box' });
@@ -42,7 +42,7 @@ export class Note {
         return this.HOST
     }
 
-    #attachEventListeners() {
+    #eventListeners() {
         this.DELETE_ICON.addEventListener('click', () => {this.view.renderDeleteModal(this.id, this.name)});
         this.CONTENT_BOX.addEventListener('click', () => {this.view.handleNoteCardClick(this.id)});
         this.BOOKMARK_ICON.addEventListener('click', () => {this.updateNoteBookmark()});
@@ -86,12 +86,12 @@ export class RecentNote {
         this.content = note.content;
         this.view = view;
 
-        this.#initializeElements();
-        this.#attachEventListeners();
+        this.#initElements();
+        this.#eventListeners();
         return this.#render();
     }
 
-    #initializeElements() {
+    #initElements() {
         this.HOST = CNode.create('div', { 'class': 'recent-note', 'id': this.id});
         this.NAME_BOX = CNode.create('div', { 'class': 'note-name-box' });
         this.H4 = CNode.create('h4', { 'textContent': formatName(this.name)});
@@ -106,7 +106,7 @@ export class RecentNote {
         return this.HOST
     }
 
-    #attachEventListeners() {
+    #eventListeners() {
         this.CONTENT_BOX.addEventListener('click', () => {this.view.handleNoteCardClick(this.id)});
     }
 }
@@ -118,17 +118,17 @@ export class StickyNote {
         this.controller = controller;
         this.dialog = dialog;
 
-        this.#initializeElements();
+        this.#initElements();
 
         // Give the sticky note a random color.
         this.HOST.style.backgroundColor = stickyNoteColors[Math.floor(Math.random()*stickyNoteColors.length)]
 
-        this.#attachEventListeners();
+        this.#eventListeners();
         return this.#render();
     }
 
 
-    #initializeElements() {
+    #initElements() {
         this.HOST = CNode.create('div', { 'class': 'sticky-note', 'id': this.stickyNote.id});
         this.H3 = CNode.create('h3', { 'textContent': this.stickyNote.name });
         this.CONTENT = CNode.create('p', { 'innerHTML': captureNewLines(this.stickyNote.content) });
@@ -139,7 +139,7 @@ export class StickyNote {
         return this.HOST
     }
 
-    #attachEventListeners() {
+    #eventListeners() {
         this.HOST.addEventListener('click', () => {this.dialog.renderStickyNoteModal(this.controller, this.view.getStickyNoteObject(this.stickyNote.id))});
     }
 }

@@ -17,13 +17,8 @@ export class FlashcardDeckController {
 
     
     async addDeck(deckName, flashcards) {
-        try {
-            const { deck } = await this.model.add('/deck', {'name': deckName, 'flashcards': flashcards});
-            this.view.renderOne(deck);
-        } 
-        catch(error) {
-            NotificationHandler.push('error', null, error.message)
-        }
+        const { deck } = await this.model.add('/deck', {'name': deckName, 'flashcards': flashcards});
+        this.view.renderOne(deck);
     }
 
 
@@ -35,13 +30,8 @@ export class FlashcardDeckController {
 
 
     async getDeckById(deckId) {
-        try {
-            const { deck } = await this.model.get(`/deck/${deckId}`);
-            return deck
-        } 
-        catch(error) {
-            NotificationHandler.push('error', null, error.message)
-        }
+        const { deck } = await this.model.get(`/deck/${deckId}`);
+        return deck
     }
 
     async getFlashcards(deckId) {
@@ -51,24 +41,14 @@ export class FlashcardDeckController {
 
 
     async getSearchItems() {
-        try {
-            const { items } = await this.model.get('/deckSearchItems');
-            return items
-        } 
-        catch(error) {
-            NotificationHandler.push('error', null, error.message)
-        }
+        const { items } = await this.model.get('/deckSearchItems');
+        return items
     }
 
 
     async delete(deckId) {
-        try {
-            const { deck } = await this.model.delete(`/deck/${deckId}`);       
-            this.view.renderDelete(deck);
-        } 
-        catch(error) {
-            NotificationHandler.push('error', null, error.message)
-        }
+        const { deck } = await this.model.delete(`/deck/${deckId}`);       
+        this.view.renderDelete(deck);
     }
 
     /**

@@ -15,8 +15,8 @@ export class TextEditorView extends BaseView {
     this.applicationController = applicationController;
     
     this.editorContent = '';
-    this.#initializeDOMElements();
-    this.#attachEventListeners();
+    this.#initElements();
+    this.#eventListeners();
 
     this.textFormatter = new TextFormatter();
     this.textBlockHandler = new TextBlockHandler(this.page);
@@ -140,7 +140,7 @@ export class TextEditorView extends BaseView {
     this.controller.clearStoredObject();
   }
 
-  #initializeDOMElements() {
+  #initElements() {
     // toolbar top
     this.documentLocation = document.querySelector('.document-location');
     this.documentNameInput = document.querySelector('.note-name-input');
@@ -174,7 +174,7 @@ export class TextEditorView extends BaseView {
   }
 
 
-  #attachEventListeners() {
+  #eventListeners() {
     this.noteDetailsSpan.addEventListener('click', () => {this.dialog.renderNoteDetailsModal(this.#getStoredEditorObject())});
     this.deleteNoteSpan.addEventListener('click', () => {this.renderDeleteModal(this.#getStoredEditorObject().id, this.documentNameInput.value, this)});
     this.saveNoteSpan.addEventListener('click', async () => {await this.save(false, false, true, false)});

@@ -8,8 +8,8 @@ export class FlashcardEditView extends BaseView {
         this.controller = controller;
         this.applicationController = applicationController;
 
-        this.#initializeDomElements();
-        this.#attachEventListeners();
+        this.#initElements();
+        this.#eventListeners();
         AnimationHandler.fadeInFromSide(this._viewElement);
     }
 
@@ -34,7 +34,7 @@ export class FlashcardEditView extends BaseView {
     
 
     renderUpdate(flashcard) {
-        const flashcards = this._flashcardsContainer.children 
+        const flashcards = this._flashcardsContainer.children;
 
         for (let i = 0; i < flashcards.length; i++) {
             if (flashcards[i].id == flashcard.id) {    
@@ -43,34 +43,34 @@ export class FlashcardEditView extends BaseView {
         }
     }
 
-    #flashcard(flashcard, unsaved = false) {
-        return new Flashcard(flashcard, this.dialog, this.controller, unsaved);
+    renderDelete(flashcard) {
+        const flashcards = this._flashcardsContainer.children;
+
+        for (let i = 0; i < flashcards.length; i++) {
+            if (flashcards[i].id == flashcard.id) {    
+                AnimationHandler.fadeOutCard(flashcards[i]);
+            }
+        }
     }
 
-    #initializeDomElements() {
+    #flashcard(flashcard) {
+        return new Flashcard(flashcard, this.dialog, this.controller);
+    }
+
+    #initElements() {
         this._flashcardsContainer = document.querySelector('.flashcards');
         this._viewElement = document.querySelector('.flashcard-edit-view');
         this._exitButton = document.querySelector('.exit-flashcard-edit-view-btn');
         this._deckName = this._viewElement.querySelector('h1');
-        this._saveButton = this._viewElement.querySelector('.save-btn'); 
         this._addFlashcardButton = this._viewElement.querySelector('.add-flashcard-btn');
     }
 
-    #attachEventListeners() {
+    #eventListeners() {
         this._addFlashcardButton.addEventListener('click', () => {this.dialog.renderEditFlashcardModal(this.controller)});
         this._exitButton.addEventListener('click', () => {this.controller.loadPreviousView()})
-        this._saveButton.addEventListener('click', async () => {
-
-            // Checking if the deck name has been changed.
-            let newDeckName = null;
-            if (this._deckName.textContent !== this.deck.name) {
-                newDeckName = this._deckName.textContent;
-            } else {
-                // Set the newDeck name to the old deck name 
-                newDeckName = this.deck.name
-            }
-            await this.controller.saveDeckChanges(this.deck.id, newDeckName);
-            this.controller.loadPreviousView();
-        })
+        // this._saveButton.addEventListener('click', async () => {
+        //     await this.controller.saveDeckChanges(this.deck.id, newDeckName);
+        //     this.controller.loadPreviousView();
+        // })
     }
 }

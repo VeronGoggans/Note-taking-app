@@ -21,7 +21,7 @@ export class NewTaskboardModal {
             this.#setTaskboard();
         }
 
-        this.#attachEventListeners();
+        this.#eventListeners();
         return this.#render();
     }
 
@@ -35,7 +35,7 @@ export class NewTaskboardModal {
     }
 
 
-    #attachEventListeners() {
+    #eventListeners() {
         this.SAVE_BTN.addEventListener('click', async () => {
             if (this.action == 'add') {
                 await this.controller.add({

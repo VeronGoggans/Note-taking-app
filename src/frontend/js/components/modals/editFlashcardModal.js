@@ -24,15 +24,16 @@ export class EditFlashcardModal {
             </div>
             <button class="save-flashcard-btn">Add flashcard</button>
         `
-        this.#setVariables();
+        this.#initElements();
 
-        if (flashcard !== null) this.#setFlashcardInfo();
-        
-        this.#attachEventListeners();
+        if (flashcard !== null) {
+            this.#setFlashcardInfo();
+        }
+        this.#eventListeners();
         return this.HOST
     }
 
-    #setVariables() {
+    #initElements() {
         this.SAVE_BTN = this.HOST.querySelector('.save-flashcard-btn')        
         this.CARD_TERM = this.HOST.querySelector('input')
         this.CARD_DESCRIPTION = this.HOST.querySelector('.card-description')
@@ -46,21 +47,26 @@ export class EditFlashcardModal {
         this.CARD_DESCRIPTION.innerHTML = this.flashcard.description
     }
 
-    #attachEventListeners() {
-        this.HOST.querySelector('.save-flashcard-btn').addEventListener('click', () => {
-            // Updating the flashcard object with the updated data.
+    #eventListeners() {
+        /**
+         * Logic for adding and updating flashcards
+         */
+        this.HOST.querySelector('.save-flashcard-btn').addEventListener('click', async () => {
             const cardTerm = this.CARD_TERM.value.trim() === '' ? 'Untitled' : this.CARD_TERM.value;
             const cardDescription = this.CARD_DESCRIPTION.innerHTML.trim() === '' ? 'No description' : this.CARD_DESCRIPTION.innerHTML;
 
-            // this.flashcard is null 
             if (this.action === 'add') {
-                this.controller.addFlashcard({'term': cardTerm, 'description': cardDescription})
+                await this.controller.addFlashcard({
+                    'term': cardTerm, 
+                    'description': cardDescription
+                });
             }
-            // this.flashcard is not null
-            else {
+
+            if (this.action === 'update') {               
                 this.flashcard.term = cardTerm;
                 this.flashcard.description = cardDescription;
-                this.controller.updateFlashcard(this.flashcard)
+                
+                await this.controller.updateFlashcard(this.flashcard);
             }
             this.dialog.hide();
         })

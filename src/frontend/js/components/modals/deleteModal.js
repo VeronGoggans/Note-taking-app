@@ -11,11 +11,11 @@ export class DeleteModal {
             <strong class="deleted-item-name">${name}</strong>
             <button>Confirm</button>
         `
-        this.#attachEventListeners();
+        this.#eventListeners();
         return this.HOST;
     }
 
-    #attachEventListeners() {
+    #eventListeners() {
         this.HOST.querySelector('button').addEventListener('click', () => {
 
             if (this.notify) {

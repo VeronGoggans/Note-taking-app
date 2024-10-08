@@ -9,8 +9,8 @@ export class StickyNoteView extends BaseView {
         super(controller);
         this.controller = controller;
         this.stickyNoteObjects = new StickyNoteObjectArray();
-        this.#initializeDomElements();
-        this.#attachEventListeners();
+        this.#initElements();
+        this.#eventListeners();
         AnimationHandler.fadeInFromBottom(this.viewElement);
     }
 
@@ -67,11 +67,11 @@ export class StickyNoteView extends BaseView {
         return new StickyNote(stickyNote, this, this.controller, this.dialog);
     }
 
-    #attachEventListeners() {
+    #eventListeners() {
         this.createStickyNoteButton.addEventListener('click', () => {this.dialog.renderStickyNoteModal(this.controller)});
     }
 
-    #initializeDomElements() {
+    #initElements() {
         this.createStickyNoteButton = document.querySelector('.add-sticky-btn');    
         this.viewElement = document.querySelector('.sticky-wall-view');
         this._stickyWall = document.querySelector('.sticky-wall');

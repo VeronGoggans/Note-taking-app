@@ -9,8 +9,8 @@ export class TaskboardView extends BaseView {
         this.controller = controller;
         this.applicationController = applicationController;
         this.taskboardObjects = new TaskboardObjectArray();
-        this.#initializeDomElements();
-        this.#attachEventListeners();
+        this.#initElements();
+        this.#eventListeners();
         AnimationHandler.fadeInFromBottom(this.viewElement);
     }
 
@@ -77,11 +77,11 @@ export class TaskboardView extends BaseView {
         return new TaskboardCard(this, taskboard, this.controller, this.dialog);
     }
 
-    #attachEventListeners() {
+    #eventListeners() {
             this._addNewTaskboardButton.addEventListener('click', () => {this.dialog.renderNewTaskboardModal(this.controller)});
     }
 
-    #initializeDomElements() {
+    #initElements() {
         this.viewElement = document.querySelector('.task-board-home-view');
         this._taskBoardsList = document.querySelector('.task-board-cards');
         this._addNewTaskboardButton = document.querySelector('.add-task-board-btn');  

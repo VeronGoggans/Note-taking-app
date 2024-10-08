@@ -21,10 +21,11 @@ export class RequestOptionsBuilder {
         };
     }
 
-    static buildPatchOptions() {
+    static buildPatchOptions(bodyData) {
         return {
             method: 'PATCH',
-            headers: {"Content-Type": "application/json"}
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(bodyData)
         }
     }
 

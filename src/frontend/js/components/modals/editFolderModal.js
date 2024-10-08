@@ -41,14 +41,14 @@ export class EditFolderModal {
         
         this.colorsArray = this.HOST.querySelectorAll('.folder-color-options div');
         
-        this.#attachEventListeners();
+        this.#eventListeners();
         this.#showActiveFolderColor(folder.color);
         this.HOST.querySelector('input').value = folder.name
         return this.HOST
     }
 
 
-    #attachEventListeners() {
+    #eventListeners() {
         this.colorsArray.forEach(colorElement => {
             const color = colorElement.style.backgroundColor;
             colorElement.addEventListener('click', () => {this.#showActiveFolderColor(color)});

@@ -89,7 +89,7 @@ export const flashcardPracticeTemplate = `
                 </div>
                 <div class="button-bar">
                     <i id="restart-btn" class="bi bi-arrow-repeat"><span style="margin-left: 7px;">Restart</span></i>
-                    <i id="wrong-btn" class="bi bi-x-lg"><span style="margin-left: 7px;">Correct</span></i>
+                    <i id="wrong-btn" class="bi bi-x-lg"><span style="margin-left: 7px;">Wrong</span></i>
                     <i id="correct-btn" class="bi bi-check2"><span style="margin-left: 7px;">Correct</span></i>
                 </div>
             </div>
@@ -104,7 +104,6 @@ export const flashcardEditTemplate = `
         </button>
         <h1 contenteditable="true" spellCheck="false"></h1>
         <button class="add-flashcard-btn">Add flashcard</button>
-        <button class="save-btn">Save changes</button>
 
         <div class="flashcards"></div>
     </div>

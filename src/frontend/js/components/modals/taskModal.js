@@ -56,7 +56,7 @@ export class TaskModal {
         this.tagsDropdownOptions.style.left = '150px';
         this.dropdownHelper = new DropdownHelper(this, [this.tagsInput], [this.tagsDropdownOptions]);
 
-        this.#attachEventListeners();
+        this.#eventListeners();
         return this.HOST
     }
 
@@ -79,7 +79,7 @@ export class TaskModal {
     }
 
 
-    #attachEventListeners() {
+    #eventListeners() {
         this.HOST.querySelector('.add-task-btn').addEventListener('click', async () => {
             if (this.action == 'add') {
                 await this.controller.add({

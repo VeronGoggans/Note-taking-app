@@ -12,11 +12,11 @@ export class NewFolderContainer {
             <button>Add</button>
         `
 
-        this.#attachEventListeners();
+        this.#eventListeners();
         return this.HOST;
     }
 
-    #attachEventListeners() {
+    #eventListeners() {
         this.HOST.querySelector('button').addEventListener('click', () => {this.#createNewFolder()});
         this.HOST.querySelector('input').addEventListener('keydown', (event) => {
             // if enter is pressed while the focus is on the input

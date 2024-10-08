@@ -11,8 +11,8 @@ export class FlashcardDeck {
         this.lastStudyDate = getPassedTime(deck.last_study);
         this.cardsCount = stats.flashcards;
 
-        this.#initializeDomElements();
-        this.#attachEventListeners();
+        this.#initElements();
+        this.#eventListeners();
         return this.#render();
     }
 
@@ -22,7 +22,7 @@ export class FlashcardDeck {
         return this.HOST
     }
 
-    #initializeDomElements() {
+    #initElements() {
         this.HOST = CNode.create('div', {'class': 'flashcard-deck', 'id': this.deck.id});
         this.NAME = CNode.create('p', {'class': 'deck-name', 'textContent': this.name });
         this.DIV = CNode.create('div', {});
@@ -31,7 +31,7 @@ export class FlashcardDeck {
     }
 
 
-    #attachEventListeners() {
+    #eventListeners() {
         this.HOST.addEventListener('click', () => {this.view.handleDeckCardClick(this.deck.id)})
     }
 }
@@ -44,8 +44,8 @@ export class FlashcardProgression {
         this.stats = stats;
         this.name = deck.name;
 
-        this.#initializeDomElements();
-        this.#attachEventListeners();
+        this.#initElements();
+        this.#eventListeners();
         return this.#render();
     }
 
@@ -55,7 +55,7 @@ export class FlashcardProgression {
         return this.HOST
     }
 
-    #initializeDomElements() {
+    #initElements() {
         this.HOST = CNode.create('div', {'class': 'flashcard-deck-progression', 'id': this.deck.id});
         this.NAME = CNode.create('span', {'class': 'deck-name', 'textContent': this.name});
         this.EDIT_BUTTON = CNode.create('button', {'class': 'edit-deck-btn', 'innerHTML': '<i class="fa-solid fa-pen"></i>'});
@@ -65,22 +65,21 @@ export class FlashcardProgression {
         this.PERCENTAGE_CORRECT = CNode.create('span', {'textContent': `${this.stats.progression}% Correct`});
     }
 
-    #attachEventListeners() {
+    #eventListeners() {
         this.EDIT_BUTTON.addEventListener('click', () => {this.view.handleEditButtonClick(this.deck.id)});
         this.DELETE_BUTTON.addEventListener('click', () => {this.view.renderDeleteModal(this.deck.id, this.deck.name)});
     }
 }
 
 export class Flashcard {
-    constructor(flashcard, dialog, controller, unsaved = false) {
+    constructor(flashcard, dialog, controller) {
         this.flashcard = flashcard;
         this.dialog = dialog;
         this.controller = controller;
-        this.unsaved = unsaved;
 
-        this.#initializeDomElements();
+        this.#initElements();
         this.#applyRatingStyle();
-        this.#attachEventListeners();
+        this.#eventListeners();
         return this.#render();
     }
 
@@ -100,11 +99,8 @@ export class Flashcard {
         return this.HOST
     }
 
-    #initializeDomElements() {
+    #initElements() {
         this.HOST = CNode.create('div', {'class': 'flashcard', 'id': this.flashcard.id});
-        if (this.unsaved) {
-            this.HOST.dataset = 'unsaved-flashcard'
-        }
         this.NAME = CNode.create('h3', {'textContent': this.flashcard.term});
         this.UTIL_BAR = CNode.create('div', {'class': 'util-bar'});
         this.DELETE_BUTTON = CNode.create('button', {'class': 'delete-flashcard-btn', 'innerHTML': '<i class="fa-solid fa-trash"></i>'});
@@ -112,15 +108,17 @@ export class Flashcard {
         this.RATING = CNode.create('span', {'textContent': capitalizeFirstLetter(this.flashcard.rating)});
     }
 
-    #attachEventListeners() {
-        this.HOST.addEventListener('click', () => {this.dialog.renderEditFlashcardModal(this.controller, this.flashcard)});
-        this.DELETE_BUTTON.addEventListener('click', () => {
-            AnimationHandler.fadeOutCard(this.HOST);
+    #eventListeners() {
 
-            // Check if the flashcard being deleted is saved (Known/stored by the backend)
-            if (Object.keys(this.HOST.dataset).length === 0) {
-                this.controller.deleteFlashcard(this.flashcard.id)
+        this.HOST.addEventListener('click', (event) => {
+            if (!event.target.closest('button')) {
+                this.dialog.renderEditFlashcardModal(this.controller, this.flashcard)
             }
+        });
+
+
+        this.DELETE_BUTTON.addEventListener('click', async () => {
+            await this.controller.deleteFlashcard(this.flashcard.id);
         });
     }
 }

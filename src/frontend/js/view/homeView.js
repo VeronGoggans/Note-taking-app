@@ -15,7 +15,7 @@ export class HomeView extends BaseView {
         this.folderObjects = new FolderObjectArray();
         this.noteObjects = new NoteObjectArray();
         this.deckObjects = new FlashcardDeckObjectArray();
-        this.#initializeDomElements();
+        this.#initElements();
 
         AnimationHandler.fadeInFromBottom(this._viewElement)
     }
@@ -109,7 +109,7 @@ export class HomeView extends BaseView {
         return new FlashcardDeck(deck, deckStats, this);
     }
 
-    #initializeDomElements() {
+    #initElements() {
         document.querySelector('.view-title').textContent = greetBasedOnTime();
         this.recentFolderContainer = document.querySelector('.recent-folders');
         this.recentNoteContainer = document.querySelector('.recent-notes');

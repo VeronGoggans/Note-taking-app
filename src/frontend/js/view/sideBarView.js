@@ -15,7 +15,7 @@ export class SidebarView {
         this._wrapper = document.querySelector('.wrapper');
         this._buttonCount = 8;
 
-        this.#attachEventListeners();
+        this.#eventListeners();
 
         this.sidebarButtons.forEach(link => {
             link.addEventListener('click', (event) => {
@@ -129,7 +129,7 @@ export class SidebarView {
         }
     }
 
-    #attachEventListeners() {
+    #eventListeners() {
         this._icon.addEventListener('click', () => {this.#toggleSidebar()});
         window.addEventListener('resize', () => this.#resizeSidebar());
 

@@ -32,7 +32,7 @@ export class NewDeckModal {
         this.SAVE_BTN = CNode.create('button', {'class': 'save-deck-btn', 'textContent': 'Save deck'});
         this.CARD_COUNT_SPAN = CNode.create('span', {'innerHTML': `${cards === null ? '0' : cards.length} <i class="bi bi-files"></i>`, 'class': 'card-count'});
 
-        this.#attachEventListeners();
+        this.#eventListeners();
         return this.#render();
     }
 
@@ -79,7 +79,7 @@ export class NewDeckModal {
         }
     }
 
-    #attachEventListeners() {
+    #eventListeners() {
         this.NEXT_BTN.addEventListener('click', () => {
             // Save the current card input
             const flashcard = this.#saveCardInput();

@@ -9,19 +9,19 @@ export class SearchModal {
         this.editorPaper = document.querySelector('.editor-paper');
         this.previousHighlight = null;
 
-        this.#initializeElements();
-        this.#attachEventListeners();
+        this.#initElements();
+        this.#eventListeners();
         return this.#render();
     }
 
-    #attachEventListeners() {
+    #eventListeners() {
         this.CLOSE_BUTTON.addEventListener('click', () => {this.#removeModal()});
         this.INPUT.addEventListener('input', () => {this.handleInput()});
         this.NEXT_BUTTON.addEventListener('click', () => {this.scrollToHighlight(true)})
         this.PREVIOUS_BUTTON.addEventListener('click', () => {this.scrollToHighlight(false)});
     }
 
-    #initializeElements() {
+    #initElements() {
         this.MODAL = CNode.create('div', {'class': 'search-function-modal'});
         this.INPUT = CNode.create('input', {'placeholder': 'Find', 'spellcheck': false});
         this.PARAGRAPH = CNode.create('p', {'textContent': '0/0'});

@@ -34,9 +34,7 @@
     border: 1px solid var(--border-card);
 }
 
-.sticky-note-modal input:hover,
 .sticky-note-modal input:focus,
-.sticky-note-modal textarea:hover,
 .sticky-note-modal textarea:focus {
     border-color: #5c7fdd;
 }

@@ -1,6 +1,6 @@
 .dark {
     /*Settings view*/
-    --setting-dropdown: #121316;
+    --setting-dropdown: #18182d;
     /*Editor View*/
     --editor: #0b0a14;
     --editor-background: #1f2129;
@@ -64,12 +64,12 @@
     --card: #141322;
     --text: #bbbed2;
     --icon: #bbbed2;
-    --input-bg: #131318;
+    --input-bg: #18182d;
     --icon-hover: #5c7dff;
     --important: #d6d8e5;
-    --border-card: #000000;
+    --border-card: #282a3d;
     --border-sidebar-right: #282a3d;
-    --hover-searchbar-options: #1a1b21;
+    --hover-searchbar-options: #18182d;
     --hover-text: #5c7dff;
     --hover-toolbar-btns: #383d4c;
     --hover-sidebar: #28283b;

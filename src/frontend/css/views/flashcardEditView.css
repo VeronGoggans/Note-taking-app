@@ -28,23 +28,14 @@
     background-color: var(--exit-btn);
 }
 
-.flashcard-edit-view .save-btn,
 .flashcard-edit-view .add-flashcard-btn {
     position: absolute;
+    top: 80px;
+    right: 50px;
     background-color: transparent;
     color: #5c7fdd;
     padding: 7px 10px;
     font-size: 16px;
-}
-
-.flashcard-edit-view .save-btn {
-    top: 80px;
-    right: 50px;
-}
-
-.flashcard-edit-view .add-flashcard-btn {
-    top: 80px;
-    right: 190px;
 }
 
 .flashcard-edit-view .flashcards {

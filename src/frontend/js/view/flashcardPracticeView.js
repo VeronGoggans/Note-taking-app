@@ -23,7 +23,6 @@ export class FlashcardPracticeView {
 
         this.currentCardNumber = 0;
         this.currentFlashcard = null;
-        this.cardsHaveBeenChanged = false;
 
         this.flashcardMode = 'normal'; // Or flipped.
         this.currentlyShowing = 'term';
@@ -31,8 +30,8 @@ export class FlashcardPracticeView {
         // The time when the user started studying
         this.startDate = new Date();
         
-        this.#initializeDomElements();
-        this.#attachEventListeners();
+        this.#initElements();
+        this.#eventListeners();
         this.#init();
         AnimationHandler.fadeInFromSide(this.flashcardPracticeView);
     }
@@ -71,25 +70,6 @@ export class FlashcardPracticeView {
         }
     }
 
-
-    updateCardPerformance(rating) {
-        if (!this.cardsHaveBeenChanged) {
-            // Will only execute the first time a rating 
-            // for a card has been changed.
-            this.cardsHaveBeenChanged = true;
-        }
-        // Get current flashcard object
-        const flashcard = this.flashcards.get(this.currentFlashcard.id);
-
-        // Update the rating
-        flashcard.rating = rating;       
-
-        // Update the object inside the array
-        this.flashcards.update(flashcard);
-
-        // Get the next card
-        this.setupNextCard();
-    }
     
     /**
      * 
@@ -196,26 +176,15 @@ export class FlashcardPracticeView {
 
 
     #beforeClose() {
-        if (this.cardsHaveBeenChanged) {
-            const timeStudied = getMinutesDifference(
-                this.startDate,
-                new Date()
-            )
-
-            this.controller.updateFlashcards(
-                this.deck.id,
-                timeStudied,    
-                this.flashcards.objects
-            )
-        } 
-
-        else {
-            this.controller.loadPreviousView()
-        }
+        const timeStudied = getMinutesDifference(
+            this.startDate,
+            new Date()
+        )        
+        this.controller.loadPreviousView()
     }
 
 
-    #initializeDomElements() {
+    #initElements() {
         // The view
         this.flashcardPracticeView = document.querySelector('.flashcard-practice');
         
@@ -231,7 +200,6 @@ export class FlashcardPracticeView {
         this.correctButton = document.querySelector('#correct-btn');
         this.wrongButton = document.querySelector('#wrong-btn');
         this.restartButton = document.querySelector('#restart-btn');
-        this.flipModeButton = document.querySelector('#forward-backward-btn');
         this.previousButton = document.querySelector('#previous-card-btn');
         this.nextButton = document.querySelector('#next-card-btn');
 
@@ -239,15 +207,23 @@ export class FlashcardPracticeView {
         this.progress = document.querySelector('.progress__fill');
     }
 
-    #attachEventListeners() {
+    #eventListeners() {
         this.flashcard.addEventListener('click', () => {this.flipCard()});
 
         // Button events
         this.backButton.addEventListener('click', () => {this.#beforeClose()});
         this.nextButton.addEventListener('click', () => {this.setupNextCard()});
         this.previousButton.addEventListener('click', () => {this.setupPreviousCard()});
-        this.correctButton.addEventListener('click', () => {this.updateCardPerformance('correct')});
-        this.wrongButton.addEventListener('click', () => {this.updateCardPerformance('wrong')});
         this.restartButton.addEventListener('click', () => {this.#restart()});
+
+        this.correctButton.addEventListener('click', async () => {
+            await this.controller.updateFlashcardRating(this.currentFlashcard.id, 'correct');
+            this.setupNextCard();
+        });
+
+        this.wrongButton.addEventListener('click', async () => {
+            await this.controller.updateFlashcardRating(this.currentFlashcard.id, 'wrong');
+            this.setupNextCard();
+        });
     }
 }

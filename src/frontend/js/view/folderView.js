@@ -14,8 +14,8 @@ export class FolderView extends BaseView {
         this.applicationController = applicationController;
 
         this.folderObjects = new FolderObjectArray();
-        this.#initializeDomElements();
-        this.#attachEventListeners();
+        this.#initElements();
+        this.#eventListeners();
     }
 
     renderAll(folders) {
@@ -106,7 +106,7 @@ export class FolderView extends BaseView {
         this.currentFolderName.textContent = name;
     }
 
-    #initializeDomElements() {
+    #initElements() {
         this._content = document.querySelector('.content-view');
         this.currentFolderName = document.querySelector('.current-folder-name');
         this.backButton = document.querySelector('.exit-folder-btn');
@@ -114,7 +114,7 @@ export class FolderView extends BaseView {
         this.homeButton = document.querySelector('.home-folder-btn')
     }
 
-    #attachEventListeners() {
+    #eventListeners() {
         this.backButton.addEventListener('click', async () => {await this.controller.navigateOutofFolder()})
         this.createFolderButton.addEventListener('click', () => {this.dialog.renderNewFolderModal(this)});
         this.homeButton.addEventListener('click', async () => {await this.controller.navigateIntoFolder(1, 'Home')})

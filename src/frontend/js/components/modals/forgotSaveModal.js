@@ -13,11 +13,11 @@ export class ForgotSaveContainer {
             </div>
         `
         
-        this.#attachEventListeners();
+        this.#eventListeners();
         return this.HOST
     }
 
-    #attachEventListeners() {
+    #eventListeners() {
         this.HOST.querySelector('.exit-without-save-btn').addEventListener('click', () => {this.view.exitNoSave()});
         this.HOST.querySelector('.exit-with-save-btn').addEventListener('click', () => {this.view.exitBySave()});
     }

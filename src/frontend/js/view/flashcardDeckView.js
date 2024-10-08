@@ -10,8 +10,8 @@ export class FlashcardDeckView extends BaseView {
         this.applicationController = applicationController;
         this.deckObjects = new FlashcardDeckObjectArray();
 
-        this.#initializeDomElements();
-        this.#attachEventListeners();
+        this.#initElements();
+        this.#eventListeners();
         AnimationHandler.fadeInFromBottom(this._viewElement)
     }
 
@@ -57,6 +57,8 @@ export class FlashcardDeckView extends BaseView {
 
 
     renderDelete(deck) {
+        console.log(deck);
+        
         const decks = this._flashcardDecks.children;
         const progressions = this._flashcardProgressions.children
 
@@ -134,12 +136,12 @@ export class FlashcardDeckView extends BaseView {
         return new FlashcardProgression(deck, deckStats, this);
     }
 
-    #attachEventListeners() {
+    #eventListeners() {
         this._addDeckButton.addEventListener('click', () => {this.dialog.renderNewDeckModal(this.controller)});
     }
 
 
-    #initializeDomElements() {
+    #initElements() {
         this._flashcardDecks = document.querySelector('.flashcard-deck-container');
         this._flashcardProgressions = document.querySelector('.flashcard-deck-progression-container');
         this._flashcardCountSpan = document.querySelector('.flashcard-count');

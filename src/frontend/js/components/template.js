@@ -11,12 +11,12 @@ export class Template {
         this.lastEdit = dateFormat(template.last_edit);
         this.view = view;
 
-        this.#initializeElements();
-        this.#attachEventListeners();
+        this.#initElements();
+        this.#eventListeners();
         return this.#render();
     }
 
-    #initializeElements() {
+    #initElements() {
         this.HOST = CNode.create('div', { 'class': 'note', 'id': this.id});
         this.HOST.dataset.info = `${this.created}--${this.lastEdit}`;
         this.NAME_BOX = CNode.create('div', { 'class': 'note-name-box' });
@@ -35,7 +35,7 @@ export class Template {
         return this.HOST
     }
 
-    #attachEventListeners() {
+    #eventListeners() {
         this.H4.addEventListener('keydown', (event) => {if (event.key === 'Enter') this.updateName()});
         this.DELETE_ICON.addEventListener('click', () => {this.view.renderDeleteModal(this.id, this.name)});
         this.CONTENT_BOX.addEventListener('click', () => {this.view.handleTemplateCardClick(this.id)});

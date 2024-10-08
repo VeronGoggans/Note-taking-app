@@ -10,13 +10,13 @@ export class TaskboardCard {
         this.dialog = dialog;
         this.taskboard = taskboard
 
-        this.#initializeElements();
-        this.#attachEventListeners();
+        this.#initElements();
+        this.#eventListeners();
         return this.#render();
     }
 
 
-    #initializeElements() {
+    #initElements() {
         this.HOST = CNode.create('div', { 'class': 'task-board-card', 'id': this.taskboard.id, 'draggable': true});
         this.TASK_BOARD_NAME = CNode.create('h3', {'textContent': this.taskboard.name});
         this.DIV = document.createElement('div');
@@ -30,7 +30,7 @@ export class TaskboardCard {
         return this.HOST
     }
 
-    #attachEventListeners() {
+    #eventListeners() {
         this.TASK_BOARD_NAME.addEventListener('click', () => {this.view.handleTaskboardCardClick(this.taskboard.id)})
         this.DELETE_BUTTON.addEventListener('click', () => {this.view.renderDeleteModal(this.taskboard.id, this.taskboard.name)})
         this.EDIT_BUTTON.addEventListener('click', () => {this.dialog.renderNewTaskboardModal(this.controller, this.taskboard)})
@@ -51,13 +51,13 @@ export class TaskCard {
         this.tag = task.tag
         this.tagColor = tagColors[this.tag]
 
-        this.#initializeElements();
-        this.#attachEventListeners();
+        this.#initElements();
+        this.#eventListeners();
         return this.#render();
     }
 
 
-    #initializeElements() {
+    #initElements() {
         this.HOST = CNode.create('div', { 'class': 'task', 'id': this.id, 'draggable': true});
         this.TASK_NAME = CNode.create('h3', {'textContent': this.name});
         this.DUE_DATE = CNode.create('p', { 'class': 'due-date', 'innerHTML': '<i class="bi bi-clock"></i>' + 'Due ' + this.dueDate });
@@ -70,7 +70,7 @@ export class TaskCard {
         return this.HOST
     }
 
-    #attachEventListeners() {
+    #eventListeners() {
 
         this.HOST.addEventListener('click', () => {
             this.dialog.renderTaskModal(this.controller, null, this.task)

@@ -21,11 +21,11 @@ class FlashcardDeckRouter:
         self.route.add_api_route('/deck', self.update_deck, methods=['PUT'])
         self.route.add_api_route('/deck/{id}', self.delete_deck, methods=['DELETE'])
 
-        self.route.add_api_route('/flashcards', self.add_flashcards, methods=['POST'])
+        self.route.add_api_route('/flashcard/{deck_id}', self.add_flashcard, methods=['POST'])
         self.route.add_api_route('/flashcards/{deck_id}', self.get_flashcards, methods=['GET'])
-        self.route.add_api_route('/flashcards', self.update_flashcards, methods=['PUT'])
-        self.route.add_api_route('/flashcardRatings', self.update_flashcard_ratings, methods=['PUT'])
-        self.route.add_api_route('/flashcards', self.delete_flashcards, methods=['DELETE'])
+        self.route.add_api_route('/flashcard', self.update_flashcard, methods=['PUT'])
+        self.route.add_api_route('/flashcardRating', self.update_flashcard_rating, methods=['PATCH'])
+        self.route.add_api_route('/flashcard/{flashcard_id}', self.delete_flashcard, methods=['DELETE'])
 
 
     @handle_exceptions
@@ -66,9 +66,8 @@ class FlashcardDeckRouter:
     
 
     @handle_exceptions
-    def add_flashcards(self, request: PostFlashcardsRequest, db: Session = Depends(Database.get_db)):
-        self.service.add_flashcards(request.deck_id, request.flashcards, db)
-        return {'status': HttpStatus.OK}
+    def add_flashcard(self, deck_id: int, request: PostFlashcardRequest, db: Session = Depends(Database.get_db)):
+        return {'status': HttpStatus.OK, 'flashcard': self.service.add_flashcard(deck_id, request, db)}
     
 
     @handle_exceptions
@@ -77,18 +76,16 @@ class FlashcardDeckRouter:
         
 
     @handle_exceptions
-    def update_flashcards(self, request: PutFlashcardsRequest, db: Session = Depends(Database.get_db)):
-        self.service.update_flashcards(request.deck_id, request.flashcards, db)
+    def update_flashcard(self, request: PutFlashcardRequest, db: Session = Depends(Database.get_db)):
+        return {'status': HttpStatus.OK, 'flashcard': self.service.update_flashcard(request, db)}
+        
+
+    @handle_exceptions
+    def update_flashcard_rating(self, request: FlashcardStudyRequest, db: Session = Depends(Database.get_db)):
+        self.service.update_flashcard_rating(request.id, request.rating, db)
         return {'status': HttpStatus.OK}
         
 
     @handle_exceptions
-    def update_flashcard_ratings(self, request: FlashcardStudyRequest, db: Session = Depends(Database.get_db)):
-        self.service.update_flashcard_ratings(request.deck_id, request.time_studied, request.flashcards, db)
-        return {'status': HttpStatus.OK}
-        
-
-    @handle_exceptions
-    def delete_flashcards(self, request: DeleteFlashcardsRequest, db: Session = Depends(Database.get_db)):
-        self.service.delete_flashcards(request.deck_id, request.flashcard_ids, db)
-        return {'status': HttpStatus.OK}
+    def delete_flashcard(self, flashcard_id: int, db: Session = Depends(Database.get_db)):
+        return {'status': HttpStatus.OK, 'flashcard': self.service.delete_flashcard(flashcard_id, db)}

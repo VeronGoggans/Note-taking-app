@@ -32,8 +32,8 @@ export class HttpModel {
         return fetchData(endpoint, options)
     }
 
-    async patch(endpoint) {
-        const options = RequestOptionsBuilder.buildPatchOptions()
+    async patch(endpoint, object = null) {
+        const options = RequestOptionsBuilder.buildPatchOptions(object)
         return fetchData(endpoint, options)
     }
 }

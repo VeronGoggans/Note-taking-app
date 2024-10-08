@@ -11,8 +11,8 @@ export class TemplateView extends BaseView {
         this.controller = controller;
         this.applicationController = applicationController;
         this.templateObjects = new TemplateObjectArray();
-        this.#initializeDomElements();
-        this.#attachEventListeners();
+        this.#initElements();
+        this.#eventListeners();
 
         AnimationHandler.fadeInFromBottom(this._viewElement);
     }
@@ -86,7 +86,7 @@ export class TemplateView extends BaseView {
         return new Template(template, this)
     }
 
-    #initializeDomElements() {
+    #initElements() {
         this._addTemplateButton = document.querySelector('.add-template-btn');
         this._recentTemplates = document.querySelector('.recent-templates');
         this._otherTemplates = document.querySelector('.other-templates');
@@ -96,7 +96,7 @@ export class TemplateView extends BaseView {
         this._viewElement = document.querySelector('.templates');
     }
 
-    #attachEventListeners() {
+    #eventListeners() {
         this._addTemplateButton.addEventListener('click', () => {
             this.applicationController.initView('editor', {
                 editorObjectType: 'template', 
