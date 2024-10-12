@@ -32,20 +32,44 @@ class MoveNoteRequest(BaseModel):
     note_id: int
 
 
+
+
+class PostStickyWallRequest(BaseModel):
+    """
+    - name (str): The name of the sticky wall
+    - description (str): The description of the sticky wall
+    """
+    name: str
+    desciption: str
+
+
+class PutStickyWallRequest(BaseModel):
+    """
+    - id (str): The ID of the sticky wall that will be updated.
+    - name (str): The name of the sticky wall
+    - content (str): The description of the sticky wall
+    """
+    id: int
+    name: str
+    desciption: str
+
+
 class PostStickyNoteRequest(BaseModel):
     """
-    - name (str): The name of the sticky note
-    - content (str): The content of the sticky note
+    - parent_id (int): The id of the sticky wall
+    - name (str): The name of the sticky 
+    - content (str): The content of the sticky
     """
+    parent_id: int
     name: str
     content: str
 
 
 class PutStickyNoteRequest(BaseModel):
     """
-    - id (str): The ID of the note that will be updated.
-    - name (str): The name of the sticky note
-    - content (str): The content of the sticky note
+    - id (str): The ID of the sticky that will be updated.
+    - name (str): The name of the sticky
+    - content (str): The content of the sticky
     """
     id: int
     name: str

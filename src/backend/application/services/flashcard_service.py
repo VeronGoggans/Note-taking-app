@@ -3,7 +3,6 @@ from src.backend.data.managers.flashcard_manager import FlashcardDeckManager
 from src.backend.presentation.request_bodies.flashcard_requests import PutDeckRequest, PostFlashcardRequest, PutFlashcardRequest
 from src.backend.data.models import FlashcardSet, Flashcard
 from src.backend.data.exceptions.exceptions import *
-from src.backend.presentation.dtos.flashcard_dtos import FlashcardDTO
 
 
 class FlashcardDeckService:

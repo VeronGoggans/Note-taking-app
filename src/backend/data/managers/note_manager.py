@@ -1,9 +1,9 @@
 from src.backend.data.models import Note
 from src.backend.data.helpers import find_folder, find_note, get_folder_hierarchy
 from src.backend.presentation.request_bodies.note_requests import *
-from src.backend.util.calendar import Calendar
 from src.backend.data.exceptions.exceptions import *
 from sqlalchemy.orm import Session
+from datetime import datetime
 
 
 class NoteManager:    
@@ -36,9 +36,9 @@ class NoteManager:
     def get_recent(self, db: Session) -> list[Note]:
         recent_notes = (
             db.query(Note)
-            .order_by(Note.last_edit.desc()) 
+            .order_by(Note.last_edit.desc())
             .limit(6)
-            .all() 
+            .all()
         )
         return recent_notes
 
@@ -59,7 +59,7 @@ class NoteManager:
         note.name = name
         note.content = content
         note.bookmark = bookmark
-        note.last_edit = Calendar.datetime()
+        note.last_edit = datetime.now()
 
         # Commiting the changes to the database
         db.commit()

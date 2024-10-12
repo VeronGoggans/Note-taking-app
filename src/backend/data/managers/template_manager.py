@@ -3,7 +3,7 @@ from sqlalchemy import func
 from src.backend.data.models import Template
 from src.backend.presentation.request_bodies.template_requests import *
 from src.backend.data.exceptions.exceptions import *
-from src.backend.util.calendar import Calendar
+from datetime import datetime
 
 
 class TemplateManager:
@@ -46,7 +46,7 @@ class TemplateManager:
         template = self.__find_template(id, db)
         template.name = name
         template.content = content
-        template.last_edit = Calendar.datetime()
+        template.last_edit = datetime.now()
         db.commit()
         db.refresh(template)
         return template

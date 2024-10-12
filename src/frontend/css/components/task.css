@@ -18,6 +18,7 @@
     font-family: sans-serif;
     color: var(--important);
     margin-top: 0;
+    font-weight: 500
 }
 
 .task p {

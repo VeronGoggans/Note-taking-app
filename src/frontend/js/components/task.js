@@ -17,8 +17,8 @@ export class TaskboardCard {
 
 
     #initElements() {
-        this.HOST = CNode.create('div', { 'class': 'task-board-card', 'id': this.taskboard.id, 'draggable': true});
-        this.TASK_BOARD_NAME = CNode.create('h3', {'textContent': this.taskboard.name});
+        this.HOST = CNode.create('div', { 'class': 'task-board-card', 'id': this.taskboard.id});
+        this.TASK_BOARD_NAME = CNode.create('span', {'textContent': this.taskboard.name});
         this.DIV = document.createElement('div');
         this.DELETE_BUTTON = CNode.create('button', {'innerHTML': '<i class="fa-solid fa-trash"></i>'});
         this.EDIT_BUTTON = CNode.create('button', {'innerHTML': '<i class="fa-solid fa-pen"></i>'});

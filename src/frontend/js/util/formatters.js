@@ -18,32 +18,12 @@ export function filterNotePreview(content) {
 
 export function formatDocumentLocation(folderNames, documentLocationTag) {
     let formattedDocumentLocation = ' ';
-    const filteredNames = filterFolderNames(folderNames);
-    filteredNames.forEach(name => {
-        formattedDocumentLocation += `${name} / `;
+    const chevronIcon = '<i class="bi bi-chevron-right"></i>';
+    folderNames.forEach(name => {
+        formattedDocumentLocation += `${name}${chevronIcon}`;
     });
     // Remove the last '/ ' from the location string
-    documentLocationTag.textContent = formattedDocumentLocation.slice(0, -2);
-}
-
-
-function filterFolderNames(folderNames) {
-    const specialFolders = ['Templates', 'Favorites'];
-    let lastSpecialFolder = null;
-
-    // Iterate through folderNames from the end to find the last occurrence of any special folder
-    for (let i = folderNames.length - 1; i >= 0; i--) {
-        if (specialFolders.includes(folderNames[i])) {
-            lastSpecialFolder = folderNames[i];
-            break;
-        }
-    }
-
-    if (lastSpecialFolder) {
-        return [lastSpecialFolder];
-    }
-
-    return folderNames;
+    documentLocationTag.innerHTML = formattedDocumentLocation.slice(0, -chevronIcon.length);
 }
 
 

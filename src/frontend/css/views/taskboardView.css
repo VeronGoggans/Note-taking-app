@@ -75,7 +75,7 @@
     width: 33%;
     min-height: 150px;
     max-height: fit-content;
-    box-shadow: var(--card-shadow);
+    border: 1px solid var(--border-card);
     background-color: var(--board-section);
 }
 

@@ -116,4 +116,4 @@ export const taskBoardSections = {
     'done': 'Done'
 } 
 
-export const sidebarButtonText = ['Home', 'Notes', 'Templates', 'Notebooks', 'Sticky wall', 'Flashcards', 'Taskboards', 'Settings']
+export const sidebarButtonText = ['Home', 'Notes', 'Templates', 'Notebooks', 'Taskboards', 'Stickies', 'Sessions', 'Flashcards', 'Settings']

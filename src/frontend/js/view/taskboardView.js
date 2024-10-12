@@ -51,7 +51,7 @@ export class TaskboardView extends BaseView {
         for (let i = 0; i < taskboards.length; i++) {
             if (taskboards[i].id === taskboard.id) {    
 
-                taskboards[i].querySelector('h3').textContent = taskboard.name;
+                taskboards[i].querySelector('span').textContent = taskboard.name;
                 this.taskboardObjects.update(taskboard);
                 this.closeDialog()
             }

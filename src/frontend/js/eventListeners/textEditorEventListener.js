@@ -74,8 +74,10 @@ export class TextEditorEventListener {
       this.editor.addEventListener('scroll', () => {this.removeSpawnables()});
       
       this.editorPage.addEventListener('mouseup',  () => {this.showToolbar()});
-      this.editorPage.addEventListener('keyup', () => {this.showToolbar()});
-      this.editorPage.addEventListener('keyup', (event) => {this.checkForForwardSlash(event)});
+      this.editorPage.addEventListener('keyup', (event) => {
+        this.showToolbar();
+        this.checkForForwardSlash(event);
+      });
       this.editorPage.addEventListener('click', () => {AnimationHandler.fadeOut(this.forwardSlashCommandContainer)});
     }
 }

@@ -43,10 +43,10 @@
     /*taskboard*/
     --board-section: #141322;
     --task: #0b0a14;
-    --due-date: #402384;
+    --due-date: #1a0154;
 
     /*notebook*/
-    --item-hover: #1a192f;
+    --list-item-hover: #1a192f;
     --item-border: #282a3d;
 
     /*Other*/
@@ -138,11 +138,11 @@
 
     /*taskboard*/
     --board-section: #fff;
-    --task: #f5f6ff;
+    --task: #f6f7ff;
     --due-date: #d9deff;
 
     /*notebook*/
-    --item-hover: #f7f7ff;
+    --list-item-hover: #f7f7ff;
     --item-border: #dee1ef;
 
     /*Other*/

@@ -140,16 +140,41 @@ export const stickyWallTemplate = `
 
 export const taskBoardHomeTemplate = `
     <div class="task-board-home-view">
-        <h1 class="view-title">Task boards 📌​</h1>
-        <p class="think-it">Think it</P>
-        <p class="plan-it">Plan it</P>
-        <p class="do-it">Do it !</P>
-        <p class="context-text">Create task boards to manage your tasks effectively </p>
+        <h1 class="view-title">Task boards​</h1>
+        <p class="context-text">Create task boards to organize and manage your tasks more efficiently, streamlining your workflow and tracking progress with ease.</p>
         <div class="task-boards">
             <div class="util-bar-type-2">
                 <button class="add-task-board-btn"><i class="fa-solid fa-plus"></i></button>
             </div>
             <div class="task-board-cards"></div>
+        </div>
+    </div>
+`
+
+
+export const notebookHomeTemplate = `
+    <div class="notebook-home-view">
+        <h1 class="view-title">Notebooks</h1>
+        <p class="context-text">Create notebooks to manage collections of relevant work effectively.</p>
+        <div class="notebooks">
+            <div class="util-bar-type-2">
+                <button class="add-notebook-btn"><i class="fa-solid fa-plus"></i></button>
+            </div>
+            <div class="notebook-cards"></div>
+        </div>
+    </div>
+`
+
+
+export const stickyNoteHomeTemplate = `
+    <div class="task-board-home-view">
+        <h1 class="view-title">Sticky walls</h1>
+        <p class="context-text">Create sticky walls to jot down quick thoughts, capture ideas on the fly, and keep track of your brainstorming sessions effortlessly</p>
+        <div class="sticky-walls">
+            <div class="util-bar-type-2">
+                <button class="add-sticky-wall-btn"><i class="fa-solid fa-plus"></i></button>
+            </div>
+            <div class="sticky-wall-cards"></div>
         </div>
     </div>
 `
@@ -359,5 +384,6 @@ export const templates = {
     settings: settingsTemplate,
     editor: editorTemplate,
     taskboards: taskBoardHomeTemplate,
-    task: taskBoardTemplate
+    task: taskBoardTemplate,
+    notebookHome: notebookHomeTemplate
 }

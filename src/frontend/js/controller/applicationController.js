@@ -6,13 +6,19 @@ import { ApplicationModel } from "../model/applicationModel.js";
 import { SidebarView } from "../view/sideBarView.js";
 import { TextEditorController } from "./textEditorController.js"
 import { SettingController } from "./settingController.js";
-import { StickWallController } from "./stickyWallController.js";
-import { FlashcardDeckController } from "./flashcardDeckController.js";
 import { FlashcardPracticeController } from "./flashcardPracticeController.js";
 import { FlashcardEditController } from "./flashcardEditController.js";
-import { TaskController } from "./taskController.js";
-import { TaskBoardController } from "./taskboardController.js";
 import { templates } from "../constants/templates.js";
+
+import { FlashcardHomeController } from "./flashcardHomeController.js";
+import { NotebookHomeController } from "./notebookHomeController.js";
+import { StickyWallHomeController } from "./stickyWallHomeController.js";
+import { TaskboardHomeController } from "./taskboardHomeController.js";
+import { TaskboardController } from "./taskboardController.js";
+import { StickWallController } from "./stickyWallController.js";
+
+
+
 
 export class ApplicationController {
     constructor() {
@@ -22,13 +28,14 @@ export class ApplicationController {
         this.homeController = new HomeController(this);
         this.folderController = new FolderController(this)
         this.templateController = new TemplateController(this);
-        this.flashcardDeckController = new FlashcardDeckController(this);
+        this.flashcardDeckController = new FlashcardHomeController(this);
         this.flashcardPracticeController = new FlashcardPracticeController(this);
         this.flashcardEditController = new FlashcardEditController(this);
         this.textEditorController = new TextEditorController(this);
         this.stickyWallController = new StickWallController(this);
-        this.taskboardController = new TaskBoardController(this);
-        this.taskController = new TaskController(this);
+        this.taskboardController = new TaskboardHomeController(this);
+        this.notebookHomeController = new NotebookHomeController(this);
+        this.taskController = new TaskboardController(this);
         this.settingController = new SettingController(this);
         this.viewContainer = document.querySelector('.content .view');
         this.controllers = {
@@ -42,7 +49,8 @@ export class ApplicationController {
             settings: this.settingController,
             editor: this.textEditorController,
             taskboards: this.taskboardController,
-            task: this.taskController
+            task: this.taskController,
+            notebookHome: this.notebookHomeController
         }
         this.initView('home')
         this.settingController.loadSettings()

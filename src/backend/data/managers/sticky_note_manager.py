@@ -1,40 +1,70 @@
 from sqlalchemy.orm import Session
-from src.backend.data.models import StickyNote
-from src.backend.data.exceptions.exceptions import InsertException, NotFoundException, NoContentException
+from src.backend.data.models import StickyNote, StickyWall
+from src.backend.data.exceptions.exceptions import InsertException, NotFoundException
 
 
-class StickyNoteManager:    
+class StickyNoteManager:
 
-    def add(self, sticky_note: StickyNote, db: Session) -> (StickyNote | InsertException):
+    def add_sticky(self, sticky_note: StickyNote, db: Session) -> (StickyNote | InsertException):
         db.add(sticky_note)
         db.commit()
         db.refresh(sticky_note)
         return sticky_note
 
 
-    def get(self, db: Session):
-        sticky_notes = db.query(StickyNote).all()
-
-        if not sticky_notes:
-            raise NoContentException('There are no sticky notes yet.')
-        return sticky_notes
+    def get_stickies(self, db: Session):
+        return db.query(StickyNote).all()
 
 
-    def update(self, id: int, name: str, content: str, db: Session) -> (StickyNote | NotFoundException):
+    def update_sticky(self, id: int, name: str, content: str, db: Session) -> (StickyNote | NotFoundException):
         sticky_note = self.__find_sticky_note(id, db)
         sticky_note.name = name
         sticky_note.content = content
-
         db.commit()
         db.refresh(sticky_note)
         return sticky_note
 
 
-    def delete(self, id: int, db: Session) -> (None | NotFoundException):
+    def delete_sticky(self, id: int, db: Session) -> (None | NotFoundException):
         sticky_note = self.__find_sticky_note(id, db)
-
         db.delete(sticky_note)
         db.commit()
+
+    
+    def add_sticky_wall(self, sticky_wall: StickyWall, db: Session) -> StickyWall:
+        db.add(sticky_wall)
+        db.commit()
+        db.refresh(sticky_wall)
+        return sticky_wall
+
+
+    def get_sticky_walls(self, db: Session) -> list[StickyWall]:
+        return db.query(StickyWall).all()
+    
+
+    def update_sticky_wall(self, id: int, name: str, description: str, db: Session) -> StickyWall:
+        sticky_wall = self.__find_sticky_wall(id, db)
+        sticky_wall.name = name
+        sticky_wall.desciption = description
+        db.commit()
+        db.refresh(sticky_wall)
+        return sticky_wall
+
+
+    def delete_sticky_wall(self, id: int, db: Session) -> None:
+        sticky_wall = self.__find_sticky_wall(id, db)
+        db.delete(sticky_wall)
+        db.commit()
+
+
+
+
+    def __find_sticky_wall(self, id: int, db: Session) -> ( StickyWall | NotFoundException ):
+        sticky_wall = db.query(StickyWall).filter(StickyWall.id == id).first()
+
+        if sticky_wall is None:
+            raise NotFoundException(f'Sticky wall with id {id} not found.')
+        return sticky_wall
 
 
     def __find_sticky_note(self, id: int, db: Session) -> ( StickyNote | NotFoundException ):

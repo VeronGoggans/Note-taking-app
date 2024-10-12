@@ -2,7 +2,6 @@ from sqlalchemy.orm import Session
 import random
 from src.backend.data.models import FlashcardSet, Flashcard
 from src.backend.data.exceptions.exceptions import NotFoundException
-from src.backend.presentation.dtos.flashcard_dtos import FlashcardDTO
 from src.backend.presentation.request_bodies.flashcard_requests import PutFlashcardRequest
 from src.backend.data.helpers import find_deck, find_flashcard
 

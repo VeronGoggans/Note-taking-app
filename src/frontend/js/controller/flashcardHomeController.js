@@ -3,7 +3,7 @@ import { FlashcardDeckView } from "../view/flashcardDeckView.js";
 import { FlashcardModel } from "../model/flashcardModel.js";
 import { NotificationHandler } from "../handlers/userFeedback/notificationHandler.js";
 
-export class FlashcardDeckController {
+export class FlashcardHomeController {
     constructor(applicationController) {
         this.applicationController = applicationController;
         this.model = new HttpModel();

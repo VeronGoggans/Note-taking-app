@@ -1,13 +1,11 @@
-.notebook-view {
+.notebook-home-view {
     outline: none;
-    height: 100dvh;
-    max-height: 100dvh;
+    height: calc(100dvh - 37px);
+    max-height: calc(100dvh - 37px);
     font-family: Roboto;
-    display: grid;
-    grid-template-rows: 60px 1fr;
     padding: 0 5%;
-    /* opacity: 0;
-    transform: translateY(30%); */
+    opacity: 0;
+    transform: translateY(30%);
     transition: opacity .7s ease, transform .2s ease;
 }
 
@@ -18,6 +16,14 @@
     justify-content: center;
 }
 
+.notebook-description {
+    font-family: sans-serif;
+    color: var(--text);
+    max-width: 600px;
+    margin: 0;
+    padding: 20px 0 50px 0;
+} 
+
 .notebook-bottom {
     max-height: calc(100dvh - 97px);
     overflow-y: scroll;
@@ -26,8 +32,12 @@
 .notebook-content {
     display: flex;
     flex-direction: column;
-    border-top: 1px solid var(--item-border);
     margin: 0 20px;
+    padding-bottom: 50px;
+}
+
+.notebook-items {
+    padding: 0 20px;
 }
 
 .item {
@@ -43,7 +53,7 @@
 
 .item:hover {
     scale: 1.03;
-    background-color: var(--item-hover);
+    background-color: var(--list-item-hover);
 }
 
 .item-info {
@@ -54,6 +64,15 @@
 .item-info  {
     display: flex;
     align-content: center;
+}
+
+.item-options {
+    opacity: 0;
+    transition: 150ms;
+}
+
+.item-options:hover {
+    opacity: 1;
 }
 
 .item-options i {
@@ -85,26 +104,21 @@
 
 
 #notebook-note-icon {
-    color: #fff;
-    background-color: rgb(106, 153, 255);
+    color: #87adff;
 }
 
 #notebook-folder-icon {
-    color: #fff;
-    background-color: rgb(147, 135, 255);
+    color: rgb(162, 152, 255);
 }
 
 #notebook-template-icon {
-    color: #fff;
-    background-color: rgb(57, 219, 138);
+    color: rgb(57, 219, 138);
 }
 
 #notebook-flashcard-icon {
-    color: #fff;
-    background-color: rgb(255, 106, 106);
+    color: rgb(255, 124, 124);
 }
 
 #notebook-taskboard-icon {
-    color: #fff;
-    background-color: rgb(255, 195, 106);
+    color: rgb(255, 198, 111);
 }

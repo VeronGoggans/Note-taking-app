@@ -18,7 +18,8 @@
 .task-board-cards::-webkit-scrollbar,
 .task-board-view::-webkit-scrollbar,
 .task-tags-dropdown ul::-webkit-scrollbar,
-.board section .tasks::-webkit-scrollbar {
+.board section .tasks::-webkit-scrollbar,
+.notebook-bottom::-webkit-scrollbar {
     background-color: transparent;
     width: 5px;
 }
@@ -43,7 +44,8 @@
 .task-board-cards::-webkit-scrollbar-thumb,
 .task-board-view::-webkit-scrollbar-thumb,
 .task-tags-dropdown ul::-webkit-scrollbar-thumb,
-.board section .tasks::-webkit-scrollbar-thumb {
+.board section .tasks::-webkit-scrollbar-thumb,
+.notebook-bottom::-webkit-scrollbar-thumb {
     background-color: var(--scrollbar-content-view);
     border-radius: 10px;
 }

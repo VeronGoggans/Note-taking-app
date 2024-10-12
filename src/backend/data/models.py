@@ -1,7 +1,7 @@
-from sqlalchemy import create_engine, Column, String, Integer, Boolean, ForeignKey, JSON
+from sqlalchemy import create_engine, Column, String, Integer, Boolean, ForeignKey, JSON, DateTime
 from sqlalchemy.orm import relationship, backref
 from sqlalchemy.ext.declarative import declarative_base
-from src.backend.util.calendar import Calendar
+from datetime import datetime
 
 Base = declarative_base()
 
@@ -12,7 +12,7 @@ class Folder(Base):
     id = Column(Integer, primary_key=True, autoincrement=True) 
     name = Column(String, nullable=False)
     color = Column(String, nullable=True, default='rgb(255, 255, 255)')
-    last_visit = Column(String, nullable=False, default=Calendar.datetime(precise=True))
+    last_visit = Column(String, nullable=False, default=datetime.now())
     
     # Self-referential foreign key
     parent_id = Column(Integer, ForeignKey('folders.id', ondelete='CASCADE'), nullable=True)
@@ -32,12 +32,22 @@ class Note(Base):
     name = Column(String, nullable=False)
     content = Column(String, nullable=True)
     bookmark = Column(Boolean, default=False)
-    last_edit = Column(String, nullable=False, default=Calendar.datetime())
-    creation = Column(String, nullable=False, default=Calendar.date())
+    last_edit = Column(String, nullable=False, default=datetime.now())
+    creation = Column(String, nullable=False, default=datetime.now())
     
     # Foreign keys for folder or subfolder
     folder_id = Column(Integer, ForeignKey('folders.id', ondelete='CASCADE'), nullable=True)
 
+
+
+class StickyWall(Base):
+    __tablename__ = 'sticky_walls'
+    
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    name = Column(String, nullable=True)
+    desciption = Column(String, nullable=True, default='No description')
+
+    stickies = relationship("StickyNote", backref="sticky_walls", cascade="all, delete-orphan")
 
 
 
@@ -48,6 +58,7 @@ class StickyNote(Base):
     name = Column(String, nullable=True)
     content = Column(String, nullable=True)
 
+    sticky_wall_id = Column(Integer, ForeignKey('sticky_walls.id', ondelete='CASCADE'), nullable=True)
 
 
 
@@ -57,8 +68,8 @@ class Template(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String, nullable=True)
     content = Column(String, nullable=True)
-    last_edit = Column(String, nullable=False, default=Calendar.datetime())
-    creation = Column(String, nullable=False, default=Calendar.date())
+    last_edit = Column(String, nullable=False, default=datetime.now())
+    creation = Column(String, nullable=False, default=datetime.now())
     uses = Column(Integer, default=0)
 
 
@@ -117,11 +128,35 @@ class Flashcard(Base):
 
 
 
-## Maybe sometime in the future. ##
 
-# class NoteBook(Base):
-#     __tablename__ = 'notebooks'
+class NoteBook(Base):
+    __tablename__ = 'notebooks'
     
-#     id = Column(Integer, primary_key=True, autoincrement=True)
-#     name = Column(String, nullable=True)
-#     description = Column(String, nullable=True)
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    name = Column(String, nullable=True)
+    description = Column(String, nullable=True)
+
+    items = relationship("NotebookItem", backref="notebooks", cascade="all, delete-orphan")
+
+
+
+class NotebookItem(Base):
+    __tablename__ = 'notebook_item'
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    linked_entity_id = Column(Integer, nullable=False)
+    linked_entity_type = Column(String, nullable=False)
+    linked_entity_name = Column(String, nullable=False)
+
+    notebook_id = Column(Integer, ForeignKey('notebooks.id', ondelete='CASCADE'), nullable=True)
+
+
+
+class FocusSession(Base):
+    __tablename__ = 'focus_sessions'
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    name = Column(String, nullable=False, default='Timer')
+    work_time = Column(Integer, nullable=False, default=60)
+    rest_time = Column(Integer, nullable=False, default=10)
+    iterations = Column(Integer, nullable=False, default=1)

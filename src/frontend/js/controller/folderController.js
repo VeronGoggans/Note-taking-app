@@ -106,7 +106,11 @@ export class FolderController {
 
         await this.get();
         if (!init) {
-            await this.applicationController.getNotes(folderId);
+            // This timeout is used to combat the Race condition
+            // Where the folders would take
+            setTimeout(async () => {
+                await this.applicationController.getNotes(folderId);    
+            }, 20);
         }
     }
 

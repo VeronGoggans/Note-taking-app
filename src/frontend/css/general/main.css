@@ -91,6 +91,19 @@ i {
     font-family: sans-serif;
 }
 
+.page-property {
+    font-family: sans-serif;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.context-text {
+    font-weight: 600;
+    color: var(--text);
+    margin: 0 0 50px 0px;
+    max-width: 600px;
+}
+
 .util-bar-type-2 {
     display: flex;
     justify-content: end;
@@ -98,6 +111,13 @@ i {
     align-items: center;
     padding: 0 10px;
     border-bottom: 1px solid var(--border-sidebar-right);
+}
+
+.util-bar-type-2 button {
+    font-size: 16px;
+    background-color: transparent;
+    color: var(--text);
+    padding: 5px 10px;
 }
 
 input::placeholder,

@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 from src.backend.data.managers.sticky_note_manager import StickyNoteManager
-from src.backend.presentation.request_bodies.note_requests import PostStickyNoteRequest, PutStickyNoteRequest
-from src.backend.data.models import StickyNote
+from src.backend.presentation.request_bodies.note_requests import PostStickyNoteRequest, PostStickyWallRequest, PutStickyNoteRequest, PutStickyWallRequest
+from src.backend.data.models import StickyNote, StickyWall
 from src.backend.data.exceptions.exceptions import *
 
 
@@ -15,16 +15,37 @@ class StickyNoteService:
             name = request.name, 
             content = request.content
             )
-        return self.manager.add(sticky_note, db) 
+        return self.manager.add_sticky(sticky_note, db) 
 
 
     def get_sticky_notes(self, db: Session) -> list[StickyNote]:
-        return self.manager.get(db)
+        return self.manager.get_stickies(db)
 
 
     def update_sticky_note(self, request: PutStickyNoteRequest, db: Session) -> StickyNote:
-        return self.manager.update(request.id, request.name, request.content, db)
+        return self.manager.update_sticky(request.id, request.name, request.content, db)
 
 
     def delete_sticky_note(self, id: str, db: Session) -> None:
-        self.manager.delete(id, db)
+        self.manager.delete_sticky(id, db)
+
+
+
+    def add_sticky_wall(self, request: PostStickyWallRequest, db: Session) -> StickyWall:    
+        sticky_note = StickyWall(
+            name = request.name, 
+            description = request.desciption
+            )
+        return self.manager.add_sticky_wall(sticky_note, db) 
+
+
+    def get_sticky_walls(self, db: Session) -> list[StickyWall]:
+        return self.manager.get_sticky_walls(db)
+
+
+    def update_sticky_wall(self, request: PutStickyWallRequest, db: Session) -> StickyWall:
+        return self.manager.update_sticky_wall(request.id, request.name, request.desciption, db)
+
+
+    def delete_sticky_wall(self, id: str, db: Session) -> None:
+        self.manager.delete_sticky_wall(id, db)

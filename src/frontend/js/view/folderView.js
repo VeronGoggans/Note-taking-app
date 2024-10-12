@@ -2,7 +2,6 @@ import { Folder } from "../components/folder.js";
 import { FolderObjectArray } from "../util/array.js";
 import { formatName } from "../util/formatters.js";
 import { AnimationHandler } from "../handlers/animation/animationHandler.js";
-import { NotificationHandler } from "../handlers/userFeedback/notificationHandler.js";
 import { folderColors } from '../constants/constants.js';
 import { removeContent, addEmptyMessage, removeEmptyMessage } from "../util/ui.js";
 import { BaseView } from "./baseView.js";

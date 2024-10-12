@@ -2,7 +2,7 @@ from sqlalchemy.orm import Session
 from src.backend.data.models import Folder
 from src.backend.data.helpers import find_folder, get_folder_hierarchy
 from src.backend.data.exceptions.exceptions import NotFoundException, InsertException
-from src.backend.util.calendar import Calendar
+from datetime import datetime
 
 class FolderManager:
 
@@ -64,7 +64,7 @@ class FolderManager:
 
     def update_visit_date(self, folder_id: int, db: Session) -> (None | NotFoundException):
         folder = find_folder(folder_id, db)
-        folder.last_visit = Calendar.datetime(precise=True)
+        folder.last_visit = datetime.now()
         db.commit()
         
 

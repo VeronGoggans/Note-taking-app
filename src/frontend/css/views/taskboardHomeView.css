@@ -11,12 +11,6 @@
     transition: opacity .7s ease, transform .2s ease;
 }
 
-.task-board-home-view .context-text {
-    font-weight: 600;
-    color: var(--text);
-    margin: 0 0 50px 0px;
-}
-
 .task-boards {
     display: grid;
     grid-template-rows: 40px 1fr;
@@ -37,7 +31,7 @@
 
 .task-board-card:hover {
     scale: 1.02;
-    background-color: var(--taskboard-card);
+    background-color:  var(--list-item-hover);
 }
 
 .task-board-card div {
@@ -54,7 +48,7 @@
     opacity: 1;
 }
 
-.task-board-card h3 {
+.task-board-card span {
     color: var(--important);
     font-family: sans-serif;
     width: 100%;
@@ -73,13 +67,6 @@
 .task-board-card button:hover {
     background-color: var(--hover);
     color: var(--icon-hover);  
-}
-
-.task-boards .util-bar-type-2 button {
-    font-size: 16px;
-    background-color: transparent;
-    color: var(--text);
-    padding: 5px 10px;
 }
 
 .task-board-cards {

@@ -1,8 +1,16 @@
 from sqlalchemy.orm import Session
-from collections import Counter
-from src.backend.data.models import Folder, Note, Taskboard, Flashcard, FlashcardSet
+from src.backend.data.models import Folder, Note, Taskboard, Flashcard, FlashcardSet, Task
 from src.backend.data.exceptions.exceptions import NotFoundException
+from typing import Type, TypeVar, Union
 
+T = TypeVar('T')
+
+def find_entity(entity_id: int, entity_model: Type[T], db: Session) -> Union[T, 'NotFoundException']:
+    entity = db.query(entity_model).filter(entity_model.id == entity_id)
+
+    if entity is None:
+        raise NotFoundException(f"{entity_model.__name__} with id {entity_id} not found.")
+    return entity
 
 def find_folder(folder_id: int, db: Session) -> (Folder | NotFoundException):
     folder = db.query(Folder).filter(Folder.id == folder_id).first()
@@ -12,7 +20,6 @@ def find_folder(folder_id: int, db: Session) -> (Folder | NotFoundException):
     return folder
 
 
-
 def find_note(note_id: int, db: Session) -> ( Note | NotFoundException ):
     note = db.query(Note).filter(Note.id == note_id).first()
     
@@ -20,6 +27,13 @@ def find_note(note_id: int, db: Session) -> ( Note | NotFoundException ):
         raise NotFoundException(f"Note with id {note_id} not found.")
     return note
 
+
+def find_task(id: int, db: Session) -> ( Task | NotFoundException ):
+    task = db.query(Task).filter(Task.id == id).first()
+
+    if task is None:
+        raise NotFoundException(f"Task with id {id} not found.")
+    return task
 
 
 def find_taskboard(id: int, db: Session) -> ( Taskboard | NotFoundException ):

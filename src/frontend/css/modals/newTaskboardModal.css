@@ -19,6 +19,7 @@
 }
 
 .new-taskboard-modal span {
+    position: absolute;
     color: var(--important);
     font-weight: 600;
     font-size: 18px;
