@@ -1,36 +1,28 @@
-.new-taskboard-modal {
+.new-collection-modal {
     position: relative;
     width: 650px;
-    height: 520px;
+    height: 420px;
     border-radius: 15px;
     background-color: var(--modal);
     padding: 20px;
 }
 
-.new-taskboard-modal h2 {
+.new-collection-modal h2 {
     font-family: sans-serif;
     color: var(--important);
 }
 
-.new-taskboard-modal div {
+.new-collection-modal div {
     display: flex;
     flex-direction: column;
     min-height: 350px;
 }
 
-.new-taskboard-modal span {
-    position: absolute;
-    color: var(--important);
-    font-weight: 600;
-    font-size: 18px;
-    margin: 20px 0;
-}
-
-.new-taskboard-modal input {
+.new-collection-modal input {
     height: 50px;
+    border: none;
     border-radius: 10px;
-    border: 1px solid var(--border-card);
-    background-color: transparent;
+    background-color: var(--input-bg);
     padding: 5px 15px;
     font-size: 17px;
     color: var(--text);
@@ -38,7 +30,7 @@
     font-family: sans-serif;
 }
 
-.new-taskboard-modal textarea {
+.new-collection-modal textarea {
     resize: none;
     padding: 10px;
     font-size: 16px;
@@ -49,9 +41,10 @@
     border-radius: 10px;
     height: 180px;
     max-height: 180px;
+    margin: 20px 0;
 }
 
-.new-taskboard-modal button {
+.new-collection-modal button {
     position: absolute;
     bottom: 15px;
     right: 20px;
@@ -62,11 +55,6 @@
     border-radius: 7px;
 }
 
-.new-taskboard-modal button:hover {
+.new-collection-modal button:hover {
     background-color: var(--hover);
-}
-
-.new-taskboard-modal input:focus,
-.new-taskboard-modal textarea:focus {
-    border-color: #5c7fdd;
 }

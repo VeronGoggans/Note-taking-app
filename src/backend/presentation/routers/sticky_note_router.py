@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from src.backend.data.database import Database
 from src.backend.application.services.sticky_note_service import StickyNoteService
 from src.backend.data.managers.sticky_note_manager import StickyNoteManager
-from src.backend.presentation.request_bodies.note_requests import PostStickyNoteRequest, PutStickyNoteRequest
+from src.backend.presentation.request_bodies.note_requests import PostStickyNoteRequest, PutStickyNoteRequest, PostStickyWallRequest, PutStickyWallRequest
 from src.backend.presentation.http_status import HttpStatus
 from src.backend.data.exceptions.exception_handler import handle_exceptions
 
@@ -26,6 +26,27 @@ class StickyNoteRouter:
         
 
     @handle_exceptions
+    def add_sticky_wall(self, request: PostStickyWallRequest, db: Session = Depends(Database.get_db)):
+        return {'status': HttpStatus.OK, 'Object': self.service.add_sticky_wall(request, db)}
+       
+
+    @handle_exceptions
+    def get_sticky_walls(self, db: Session = Depends(Database.get_db)):
+        return {'status': HttpStatus.OK, 'Objects': self.service.get_sticky_walls(db)}
+       
+
+    @handle_exceptions
+    def update_sticky_wall(self, request: PutStickyWallRequest, db: Session = Depends(Database.get_db)):
+        return {'status': HttpStatus.OK, 'Object': self.service.update_sticky_wall(request, db)}
+    
+
+    @handle_exceptions
+    def delete_sticky_wall(self, id: str, db: Session = Depends(Database.get_db)):
+        self.service.delete_sticky_wall(id, db)
+        return {'status': HttpStatus.OK}
+    
+
+    @handle_exceptions
     def add_sticky_note(self, request: PostStickyNoteRequest, db: Session = Depends(Database.get_db)):
         return {'status': HttpStatus.OK, 'Object': self.service.add_sticky_note(request, db)}
        
@@ -46,22 +67,4 @@ class StickyNoteRouter:
         return {'status': HttpStatus.OK}
 
 
-    @handle_exceptions
-    def add_sticky_wall(self, request: PostStickyNoteRequest, db: Session = Depends(Database.get_db)):
-        return {'status': HttpStatus.OK, 'Object': self.service.add_sticky_wall(request, db)}
-       
-
-    @handle_exceptions
-    def get_sticky_walls(self, db: Session = Depends(Database.get_db)):
-        return {'status': HttpStatus.OK, 'Object': self.service.get_sticky_walls(db)}
-       
-
-    @handle_exceptions
-    def update_sticky_wall(self, request: PutStickyNoteRequest, db: Session = Depends(Database.get_db)):
-        return {'status': HttpStatus.OK, 'Object': self.service.update_sticky_wall(request, db)}
     
-
-    @handle_exceptions
-    def delete_sticky_wall(self, id: str, db: Session = Depends(Database.get_db)):
-        self.service.delete_sticky_wall(id, db)
-        return {'status': HttpStatus.OK}

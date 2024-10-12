@@ -119,6 +119,17 @@ export class StickyNoteObjectArray extends ObjectArray {
     }
 }
 
+export class StickyWallObjectArray extends ObjectArray {
+    update(stickyWall) {
+        for (let i = 0; i < this.objects.length; i++) {
+            if (this.objects[i].id === stickyWall.id) {
+                this.objects[i].name = stickyWall.name;
+                this.objects[i].description = stickyWall.description;
+            }
+        }
+    }
+}
+
 export class TaskboardObjectArray extends ObjectArray {
     update(taskboard) {
         for (let i = 0; i < this.objects.length; i++) {
@@ -137,6 +148,7 @@ export class TaskObjectArray extends ObjectArray {
                 this.objects[i].name = task.name;
                 this.objects[i].description = task.description;
                 this.objects[i].due_date = task.due_date;
+                this.objects[i].tag = task.tag
             }
         }
     }

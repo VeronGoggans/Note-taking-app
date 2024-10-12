@@ -33,7 +33,9 @@ export class TaskboardCard {
     #eventListeners() {
         this.TASK_BOARD_NAME.addEventListener('click', () => {this.view.handleTaskboardCardClick(this.taskboard.id)})
         this.DELETE_BUTTON.addEventListener('click', () => {this.view.renderDeleteModal(this.taskboard.id, this.taskboard.name)})
-        this.EDIT_BUTTON.addEventListener('click', () => {this.dialog.renderNewTaskboardModal(this.controller, this.taskboard)})
+        this.EDIT_BUTTON.addEventListener('click', () => {
+            this.dialog.renderNewCollectionModal(this.controller, 'taskboard', this.taskboard)
+        })
     }
 }
 

@@ -26,36 +26,36 @@ class NotebookRouter:
 
     @handle_exceptions
     def add_notebook(self, request: PostNotebookRequest, db: Session = Depends(Database.get_db)):
-        return {'status': HttpStatus.OK, 'Object': self.service.add_sticky_note(request, db)}
+        return {'status': HttpStatus.OK, 'Object': self.service.add_notebook(request, db)}
        
 
     @handle_exceptions
     def get_notebooks(self, db: Session = Depends(Database.get_db)):
-        return {'status': HttpStatus.OK, 'Object': self.service.get_sticky_notes(db)}
+        return {'status': HttpStatus.OK, 'Object': self.service.get_notebooks(db)}
        
 
     @handle_exceptions
     def update_notebook(self, request: PutNotebookRequest, db: Session = Depends(Database.get_db)):
-        return {'status': HttpStatus.OK, 'Object': self.service.update_sticky_note(request, db)}
+        return {'status': HttpStatus.OK, 'Object': self.service.update_notebooks(request, db)}
     
 
     @handle_exceptions
     def delete_notebook(self, id: str, db: Session = Depends(Database.get_db)):
-        self.service.delete_sticky_note(id, db)
+        self.service.delete_notebook(id, db)
         return {'status': HttpStatus.OK}
 
 
     @handle_exceptions
     def add_notebook_item(self, request: PostNotebookItemRequest, db: Session = Depends(Database.get_db)):
-        return {'status': HttpStatus.OK, 'Object': self.service.add_sticky_wall(request, db)}
+        return {'status': HttpStatus.OK, 'Object': self.service.add_notebook(request, db)}
        
 
     @handle_exceptions
     def get_notebook_items(self, db: Session = Depends(Database.get_db)):
-        return {'status': HttpStatus.OK, 'Object': self.service.get_sticky_walls(db)}
+        return {'status': HttpStatus.OK, 'Object': self.service.get_notebook_items(db)}
        
 
     @handle_exceptions
     def delete_noteboook_item(self, id: str, db: Session = Depends(Database.get_db)):
-        self.service.delete_sticky_wall(id, db)
+        self.service.delete_notebook_item(id, db)
         return {'status': HttpStatus.OK}

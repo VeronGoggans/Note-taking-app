@@ -1,32 +1,31 @@
 import { HttpModel } from "../model/httpModel.js";
-import { TaskboardView } from "../view/taskboardView.js";
+import { StickyWallHomeView } from "../view/stickyWallHomeView.js"; 
 
 
 export class StickyWallHomeController {
-    constructor(applicationController, dialog) {
+    constructor(applicationController) {
         this.applicationController = applicationController;
-        this.dialog = dialog;
         this.model = new HttpModel();
     }
 
     async init() {
-        this.view = new TaskboardView(this, this.applicationController);
+        this.view = new StickyWallHomeView(this, this.applicationController);
         await this.get()
     }
 
     async add(stickyWallInfo) {
-        const { stickyWall }  = await this.model.add('/stickyWall', stickyWallInfo);
-        this.view.renderOne(stickyWall);
+        const { Object }  = await this.model.add('/stickyWall', stickyWallInfo);
+        this.view.renderOne(Object);
     }
 
     async get() {
-        const { stickyWalls } = await this.model.get(`/stickyWalls`);
-        this.view.renderAll(stickyWalls);
+        const { Objects } = await this.model.get(`/stickyWalls`);
+        this.view.renderAll(Objects);
     }
 
     async getById(stickyWallId) {
-        const { stickyWall } = await this.model.get(`/stickyWall/${stickyWallId}`);
-        return stickyWall
+        const { Object } = await this.model.get(`/stickyWall/${stickyWallId}`);
+        return Object
     }
 
     async update(updatedStickyWall) {

@@ -1,4 +1,4 @@
-import { StickyNote } from "../components/note.js";
+import { StickyNote } from "../components/sticky_notes/stickyNote.js";
 import { StickyNoteObjectArray } from "../util/array.js";
 import { AnimationHandler } from "../handlers/animation/animationHandler.js";
 import { captureNewLines } from "../util/formatters.js";

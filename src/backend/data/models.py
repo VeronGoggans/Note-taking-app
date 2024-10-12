@@ -45,7 +45,7 @@ class StickyWall(Base):
     
     id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String, nullable=True)
-    desciption = Column(String, nullable=True, default='No description')
+    description = Column(String, nullable=True, default='No description')
 
     stickies = relationship("StickyNote", backref="sticky_walls", cascade="all, delete-orphan")
 

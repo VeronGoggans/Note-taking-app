@@ -8,7 +8,7 @@ import { NewDeckModal } from "../components/modals/newDeckModal.js";
 import { AnimationHandler } from "../handlers/animation/animationHandler.js";
 import { EditFlashcardModal } from "../components/modals/editFlashcardModal.js";
 import { StickyNoteModal } from "../components/modals/stickyNoteModal.js";
-import { NewTaskboardModal } from "../components/modals/newTaskboardModal.js";
+import { NewCollectionModal } from "../components/modals/newCollectionModal.js";
 import { TaskModal } from "../components/modals/taskModal.js";
 
 export class Dialog {
@@ -30,7 +30,7 @@ export class Dialog {
                 '.create-deck-modal',
                 '.edit-flashcard-modal',
                 '.sticky-note-modal',
-                '.new-taskboard-modal',
+                '.new-collection-modal',
                 '.task-modal'
             ];
 
@@ -78,9 +78,9 @@ export class Dialog {
         this.dialog.querySelector('.create-deck-modal input').focus();
     }
 
-    renderNewTaskboardModal(controller, taskboardInfo = null) {
-        this.addChild(new NewTaskboardModal(controller, taskboardInfo));
-        this.dialog.querySelector('.new-taskboard-modal input').focus()
+    renderNewCollectionModal(controller, entity, entityData = null) {
+        this.addChild(new NewCollectionModal(controller, entity, entityData));
+        this.dialog.querySelector('.new-collection-modal input').focus()
     }
 
     renderTaskModal(controller, taskboardId = null, task = null) {

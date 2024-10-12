@@ -34,7 +34,7 @@ class StickyNoteService:
     def add_sticky_wall(self, request: PostStickyWallRequest, db: Session) -> StickyWall:    
         sticky_note = StickyWall(
             name = request.name, 
-            description = request.desciption
+            description = request.description
             )
         return self.manager.add_sticky_wall(sticky_note, db) 
 
@@ -44,7 +44,7 @@ class StickyNoteService:
 
 
     def update_sticky_wall(self, request: PutStickyWallRequest, db: Session) -> StickyWall:
-        return self.manager.update_sticky_wall(request.id, request.name, request.desciption, db)
+        return self.manager.update_sticky_wall(request.id, request.name, request.description, db)
 
 
     def delete_sticky_wall(self, id: str, db: Session) -> None:

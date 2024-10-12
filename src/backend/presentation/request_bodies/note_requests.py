@@ -40,7 +40,7 @@ class PostStickyWallRequest(BaseModel):
     - description (str): The description of the sticky wall
     """
     name: str
-    desciption: str
+    description: str
 
 
 class PutStickyWallRequest(BaseModel):
@@ -51,7 +51,7 @@ class PutStickyWallRequest(BaseModel):
     """
     id: int
     name: str
-    desciption: str
+    description: str
 
 
 class PostStickyNoteRequest(BaseModel):

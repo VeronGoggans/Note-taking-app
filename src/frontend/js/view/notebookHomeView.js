@@ -1,4 +1,4 @@
-import { NotebookCard } from "../components/notebook.js";
+import { NotebookCard } from "../components/notebook/notebook.js";
 import { AnimationHandler } from "../handlers/animation/animationHandler.js";
 import { BaseView } from "./baseView.js";
 
@@ -65,6 +65,9 @@ export class NotebookView extends BaseView {
     }
 
     #eventListeners() {
+        this._addNewnotebookButton.addEventListener('click', () => {
+            this.dialog.renderNewCollectionModal(this.controller, 'notebook');
+        });
     }
 
     #initElements() {

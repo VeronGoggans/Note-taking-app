@@ -25,7 +25,7 @@ class NotebookService:
         return self.manager.update_notebook(request.id, request.name, request.description, db)
     
 
-    def delete_notebooks(self, id: int, db: Session) -> None:
+    def delete_notebook(self, id: int, db: Session) -> None:
         return self.manager.delete_notebook(id, db)
     
 

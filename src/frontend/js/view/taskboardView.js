@@ -67,7 +67,7 @@ export class TaskboardView extends BaseView {
         this.applicationController.initView('task', 
             {
                 taskboard: taskboard,
-                previousView: 'taskboards', 
+                previousView: 'taskboardHome', 
             }
         );
     }
@@ -78,7 +78,9 @@ export class TaskboardView extends BaseView {
     }
 
     #eventListeners() {
-            this._addNewTaskboardButton.addEventListener('click', () => {this.dialog.renderNewTaskboardModal(this.controller)});
+            this._addNewTaskboardButton.addEventListener('click', () => {
+                this.dialog.renderNewCollectionModal(this.controller, 'taskboard')
+            });
     }
 
     #initElements() {

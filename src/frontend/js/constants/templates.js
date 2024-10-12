@@ -167,7 +167,7 @@ export const notebookHomeTemplate = `
 
 
 export const stickyNoteHomeTemplate = `
-    <div class="task-board-home-view">
+    <div class="sticky-home-view">
         <h1 class="view-title">Sticky walls</h1>
         <p class="context-text">Create sticky walls to jot down quick thoughts, capture ideas on the fly, and keep track of your brainstorming sessions effortlessly</p>
         <div class="sticky-walls">
@@ -381,9 +381,10 @@ export const templates = {
     flashcardEdit: flashcardEditTemplate,
     templates: templatesTemplate,
     stickyWall: stickyWallTemplate,
+    stickyWallHome: stickyNoteHomeTemplate,
     settings: settingsTemplate,
     editor: editorTemplate,
-    taskboards: taskBoardHomeTemplate,
+    taskboardHome: taskBoardHomeTemplate,
     task: taskBoardTemplate,
     notebookHome: notebookHomeTemplate
 }

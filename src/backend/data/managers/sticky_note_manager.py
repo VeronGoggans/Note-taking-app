@@ -45,7 +45,7 @@ class StickyNoteManager:
     def update_sticky_wall(self, id: int, name: str, description: str, db: Session) -> StickyWall:
         sticky_wall = self.__find_sticky_wall(id, db)
         sticky_wall.name = name
-        sticky_wall.desciption = description
+        sticky_wall.description = description
         db.commit()
         db.refresh(sticky_wall)
         return sticky_wall

@@ -37,6 +37,7 @@ export class ApplicationController {
         this.notebookHomeController = new NotebookHomeController(this);
         this.taskController = new TaskboardController(this);
         this.settingController = new SettingController(this);
+        this.stickyWallHomeController = new StickyWallHomeController(this);
         this.viewContainer = document.querySelector('.content .view');
         this.controllers = {
             home: this.homeController,
@@ -48,9 +49,10 @@ export class ApplicationController {
             stickyWall: this.stickyWallController,
             settings: this.settingController,
             editor: this.textEditorController,
-            taskboards: this.taskboardController,
+            taskboardHome: this.taskboardController,
             task: this.taskController,
-            notebookHome: this.notebookHomeController
+            notebookHome: this.notebookHomeController,
+            stickyWallHome: this.stickyWallHomeController
         }
         this.initView('home')
         this.settingController.loadSettings()
@@ -146,8 +148,8 @@ export class ApplicationController {
                     this.sidebarView.setActiveTab('sticky-wall')
                 }
 
-                if (viewId === 'taskboards') {
-                    this.sidebarView.setActiveTab('taskboards')
+                if (viewId === 'taskboardHome') {
+                    this.sidebarView.setActiveTab('taskboard-home')
                 }
 
                 if (viewId === 'task') {
@@ -165,6 +167,15 @@ export class ApplicationController {
                 if (viewId === 'settings') {
                     this.sidebarView.setActiveTab('settings')
                 }
+
+                if (viewId === 'stickyWallHome') {
+                    this.sidebarView.setActiveTab('sticky-wall-home')
+                }
+
+                if (viewId === 'notebookHome') {
+                    this.sidebarView.setActiveTab('notebook-home')
+                }
+
 
                 controller.init();
             }, 0); 
