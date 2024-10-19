@@ -1,4 +1,4 @@
-# Simple Note taking app
+# Neutron
 This is my implementation of a note taking app for desktop.
 
 I created this app with two things I thought this app should have. 
@@ -16,6 +16,9 @@ The user can create the following:
 - Flashcards
 - Folders
 - Subfolders
+- Notebooks
+- Taskboards
+
 
 # Light mode
 ### Home
