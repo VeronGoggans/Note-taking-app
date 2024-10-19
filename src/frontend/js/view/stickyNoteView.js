@@ -1,20 +1,23 @@
-import { StickyNote } from "../components/sticky_notes/stickyNote.js";
-import { StickyNoteObjectArray } from "../util/array.js";
 import { AnimationHandler } from "../handlers/animation/animationHandler.js";
-import { captureNewLines } from "../util/formatters.js";
 import { BaseView } from "./baseView.js";
 
+
 export class StickyNoteView extends BaseView {
-    constructor(controller) {
+    constructor(controller, stickyWall) {
         super(controller);
         this.controller = controller;
-        this.stickyNoteObjects = new StickyNoteObjectArray();
+        this.stickyWall = stickyWall;
         this.#initElements();
         this.#eventListeners();
         AnimationHandler.fadeInFromBottom(this.viewElement);
     }
 
+    
     renderAll(stickyNotes) {
+        // setting the sticky wall name & description.
+        this._stickyWallName.textContent = this.stickyWall.name;
+        this._description.textContent = this.stickyWall.description;
+        
         const contentFragment = document.createDocumentFragment();
 
         for (let i = 0; i < stickyNotes.length; i++) {
@@ -25,13 +28,13 @@ export class StickyNoteView extends BaseView {
         this._stickyWall.insertBefore(contentFragment, this._stickyWall.firstChild);
     }
 
+
     renderOne(stickyNote) {
         const stickyNoteCard = this.#stickyNote(stickyNote);
         AnimationHandler.fadeInFromBottom(stickyNoteCard);
-        this._stickyWall.insertBefore(stickyNoteCard, this._stickyWall.lastElementChild);
-        console.log(this._stickyWall.lastChild);
-        
+        this._stickyWall.insertBefore(stickyNoteCard, this._stickyWall.lastElementChild);        
     }
+
 
     renderDelete(stickyNoteId) {
         const stickyNotes = this._stickyWall.children 
@@ -39,41 +42,46 @@ export class StickyNoteView extends BaseView {
         for (let i = 0; i < stickyNotes.length; i++) {
             if (stickyNotes[i].id == stickyNoteId) {
                 AnimationHandler.fadeOutCard(stickyNotes[i])
-                this.stickyNoteObjects.remove(stickyNoteId);
             }
         }
     }
+
 
     renderUpdate(stickyNote) {
         const stickyNotes = this._stickyWall.children 
 
         for (let i = 0; i < stickyNotes.length; i++) {
             if (stickyNotes[i].id == stickyNote.id) {    
-
-                stickyNotes[i].querySelector('p').innerHTML = captureNewLines(stickyNote.content);
-                stickyNotes[i].querySelector('h3').textContent = stickyNote.name;
-
-                this.stickyNoteObjects.update(stickyNote);
+                stickyNotes[i].setAttribute('sticky', JSON.stringify(stickyNote));
             }
         }
     }
 
-    getStickyNoteObject(stickyNoteId) {
-        return this.stickyNoteObjects.get(stickyNoteId);
+
+    #stickyNote(sticky) {
+        const stickyCard = document.createElement('sticky-card');
+        stickyCard.setAttribute('sticky', JSON.stringify(sticky));
+        return stickyCard
     }
 
-    #stickyNote(stickyNote) {
-        this.stickyNoteObjects.add(stickyNote);
-        return new StickyNote(stickyNote, this, this.controller, this.dialog);
-    }
 
     #eventListeners() {
-        this.createStickyNoteButton.addEventListener('click', () => {this.dialog.renderStickyNoteModal(this.controller)});
+        this.createStickyNoteButton.addEventListener('click', () => {this.dialog.renderStickyNoteModal(this.controller, this.stickyWall.id)});
+        this.viewElement.addEventListener('PreviousViewButtonClick', () => {this.controller.loadPreviousView()});
+
+        this._stickyWall.addEventListener('StickyCardClick', (event) => {
+            console.log('click');
+            
+            const { sticky } = event.detail;
+            this.dialog.renderStickyNoteModal(this.controller, this.stickyWall.id, sticky)
+        });
     }
 
     #initElements() {
         this.createStickyNoteButton = document.querySelector('.add-sticky-btn');    
         this.viewElement = document.querySelector('.sticky-wall-view');
         this._stickyWall = document.querySelector('.sticky-wall');
+        this._description = document.querySelector('.sticky-wall-description');
+        this._stickyWallName = document.querySelector('h1');
     }
 }

@@ -15,7 +15,7 @@ class StickyNoteRouter:
         self.service = StickyNoteService(StickyNoteManager())
 
         self.route.add_api_route('/stickyNote', self.add_sticky_note, methods=['POST'])
-        self.route.add_api_route('/stickyNotes', self.get_sticky_notes, methods=['GET'])
+        self.route.add_api_route('/stickyNotes/{sticky_wall_id}', self.get_sticky_notes, methods=['GET'])
         self.route.add_api_route('/stickyNote', self.update_sticky_note, methods=['PUT'])
         self.route.add_api_route('/stickyNote/{id}', self.delete_sticky_note, methods=['DELETE'])
 
@@ -52,8 +52,8 @@ class StickyNoteRouter:
        
 
     @handle_exceptions
-    def get_sticky_notes(self, db: Session = Depends(Database.get_db)):
-        return {'status': HttpStatus.OK, 'Object': self.service.get_sticky_notes(db)}
+    def get_sticky_notes(self, sticky_wall_id: int, db: Session = Depends(Database.get_db)):
+        return {'status': HttpStatus.OK, 'Objects': self.service.get_sticky_notes(sticky_wall_id, db)}
        
 
     @handle_exceptions

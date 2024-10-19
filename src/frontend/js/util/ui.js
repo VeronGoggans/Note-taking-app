@@ -6,11 +6,13 @@ export function removeContent(contentDiv) {
         contentDiv.removeChild(contentDiv.firstChild);
 }
 
+
 export function decrementString(string) {
     let num = Number(string);
     num--
     return String(num)
 }
+
 
 export function incrementString(string) {
     let num = Number(string);
@@ -18,13 +20,15 @@ export function incrementString(string) {
     return String(num)
 }
 
+
 export function addEmptyMessage(parentElement) {
     setTimeout(() => {
         if (parentElement.childElementCount === 0) {
-            NotificationHandler.empty(parentElement)
+            NotificationHandler.empty(parentElement);
         }    
     }, 710);
 } 
+
 
 export function removeEmptyMessage(parentElement) {
     if (parentElement.firstChild.className = 'notify-empty-text') {
@@ -33,15 +37,13 @@ export function removeEmptyMessage(parentElement) {
 }
 
 
-export function addDraggImage(event, draggedElement, imageType) {
-    // Adding the dragging style to the dragged alement
-    draggedElement.classList.add('dragging')
-
+export function addDraggImage(event, imageType) {
     // Adding the drag image to the body
     const dragImage = new DragImage(imageType);
     document.body.appendChild(dragImage);
     event.dataTransfer.setDragImage(dragImage, 0, 0)
 }
+
 
 class DragImage {
     constructor(type) {

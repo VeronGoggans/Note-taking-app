@@ -118,5 +118,6 @@ export class TextEditorController {
         if (editorObjectType === 'template') {
             await this.applicationController.deleteTemplate(editorObjectId, true);
         }
+        this.textEditorView.clear();
     }
 }

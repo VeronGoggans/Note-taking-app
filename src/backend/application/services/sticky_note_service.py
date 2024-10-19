@@ -13,13 +13,14 @@ class StickyNoteService:
     def add_sticky_note(self, request: PostStickyNoteRequest, db: Session) -> StickyNote:    
         sticky_note = StickyNote(
             name = request.name, 
-            content = request.content
+            content = request.content,
+            sticky_wall_id = request.parent_id
             )
         return self.manager.add_sticky(sticky_note, db) 
 
 
-    def get_sticky_notes(self, db: Session) -> list[StickyNote]:
-        return self.manager.get_stickies(db)
+    def get_sticky_notes(self, sticky_wall_id: int, db: Session) -> list[StickyNote]:
+        return self.manager.get_stickies(sticky_wall_id, db)
 
 
     def update_sticky_note(self, request: PutStickyNoteRequest, db: Session) -> StickyNote:

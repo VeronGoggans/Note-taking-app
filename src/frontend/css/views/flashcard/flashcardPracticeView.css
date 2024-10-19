@@ -8,23 +8,6 @@
     transition: opacity .7s ease, transform .2s ease;
 }
 
-.flashcard-home-btn {
-    position: absolute;
-    top: 10px;
-    left: 5px;
-    font-size: 25px;
-    border: none;
-    background-color: transparent;
-    color: var(--important);
-    padding: 10px 15px;
-    border-radius: 15px;
-    transition: 150ms;
-}
-
-.flashcard-home-btn:hover {
-    background-color: var(--exit-btn);
-}
-
 .flashcard-practice .center {
     display: flex;
     align-items: center;

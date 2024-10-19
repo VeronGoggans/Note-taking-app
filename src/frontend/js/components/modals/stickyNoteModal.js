@@ -1,10 +1,12 @@
 import { CNode } from "../../util/CNode.js";
+import { dialogEvent } from "../../util/dialog.js";
+
 
 export class StickyNoteModal {
-    constructor(controller, dialog, stickyNote = null) {
+    constructor(controller, parentId, stickyNote = null) {
         this.controller = controller;
         this.stickyNote = stickyNote;
-        this.dialog = dialog;
+        this.parentId = parentId;
 
         this.action = 'add';
 
@@ -38,6 +40,7 @@ export class StickyNoteModal {
             // ADDING a sticky note 
             if (this.action === 'add') {
                 await this.controller.add({
+                    "parent_id": this.parentId,
                     "name": this.NAME_INPUT.value,
                     "content": this.CONTENT.value
                 });
@@ -50,7 +53,7 @@ export class StickyNoteModal {
                     "content": this.CONTENT.value
                 })
             }
-            this.dialog.hide();
+            dialogEvent(this.HOST, 'close');
         })
 
         // Only add this event listener if the user clicked on a 
@@ -58,7 +61,7 @@ export class StickyNoteModal {
         if (this.stickyNote !== null) {
             this.DELETE_BTN.addEventListener('click', async () => {
                 await this.controller.delete(this.stickyNote.id)
-                this.dialog.hide();
+                dialogEvent(this.HOST, 'close');
             })
         }
     }

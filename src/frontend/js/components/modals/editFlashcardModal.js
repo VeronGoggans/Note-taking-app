@@ -1,10 +1,11 @@
 import { CNode } from "../../util/CNode.js";
+import { dialogEvent } from "../../util/dialog.js";
+
 
 export class EditFlashcardModal {
-    constructor(controller, dialog, flashcard = null) {
+    constructor(controller, flashcard = null) {
         this.flashcard = flashcard;
         this.controller = controller;   
-        this.dialog = dialog;     
 
         this.action = 'add';
         this.HOST = CNode.create('div', {'class': 'edit-flashcard-modal'});
@@ -68,7 +69,8 @@ export class EditFlashcardModal {
                 
                 await this.controller.updateFlashcard(this.flashcard);
             }
-            this.dialog.hide();
+            
+            dialogEvent(this.HOST, 'close');
         })
     }
 }

@@ -1,7 +1,6 @@
 import { NoteDetailContainer } from "../components/modals/noteDetailModal.js";
 import { DeleteModal } from "../components/modals/deleteModal.js";
 import { ForgotSaveContainer } from "../components/modals/forgotSaveModal.js";
-import { NewFolderContainer } from "../components/modals/newFolderModal.js";
 import { SearchModal } from "../components/modals/searchModal.js";
 import { EditFolderModal } from "../components/modals/editFolderModal.js";
 import { NewDeckModal } from "../components/modals/newDeckModal.js";
@@ -11,17 +10,16 @@ import { StickyNoteModal } from "../components/modals/stickyNoteModal.js";
 import { NewCollectionModal } from "../components/modals/newCollectionModal.js";
 import { TaskModal } from "../components/modals/taskModal.js";
 
+
 export class Dialog {
     constructor() {
         this.dialog = document.querySelector('.dialog');
-        this.toolbar = document.querySelector('.toolbar');
         this.attachEventlistener();
     }
 
     attachEventlistener() {
         this.dialog.addEventListener('click', (event) => {
             const excludedContainers = [
-                '.new-folder-container',
                 '.delete-modal',
                 '.settings-container',
                 '.dont-forget-to-save-container',
@@ -38,9 +36,14 @@ export class Dialog {
             if (excludedContainers.some(selector => event.target.closest(selector))) {
                 return;
             }
+            this.close();
+        });
 
-            // If not, hide the dialog
-            this.hide();
+        this.dialog.addEventListener('DialogEvent', (event) => {
+            const { action } = event.detail;
+            if (action === 'close') {
+                this.close();
+            }
         });
     }
 
@@ -49,13 +52,11 @@ export class Dialog {
         this.dialog.style.top = '0%';
     }
 
-    hide() {
+    close() {
         this.dialog.style.visibility = 'hidden';
         this.dialog.style.top = '100%';
         if (this.dialog.firstChild) {
-            // If it has, remove the first child
-            const firstChild = this.dialog.firstChild;
-            this.dialog.removeChild(firstChild);
+            this.dialog.removeChild(this.dialog.firstChild);
         }
     }
 
@@ -69,40 +70,59 @@ export class Dialog {
         this.addChild(new NoteDetailContainer(noteInfo))
     }
     
-    renderDeleteModal(id, name, insideEditor, view) {
-        this.addChild(new DeleteModal(id, name, insideEditor, view))
+    renderDeleteModal(controller, id, name, insideEditor,) {
+        this.addChild(new DeleteModal(
+            controller,
+            id, 
+            name, 
+            insideEditor
+        ))
     }
 
     renderNewDeckModal(controller, flashcards = null, deckName = null) {
-        this.addChild(new NewDeckModal(controller, flashcards, deckName));
+        this.addChild(new NewDeckModal(
+            controller, 
+            flashcards, 
+            deckName
+        ));
         this.dialog.querySelector('.create-deck-modal input').focus();
     }
 
     renderNewCollectionModal(controller, entity, entityData = null) {
-        this.addChild(new NewCollectionModal(controller, entity, entityData));
+        this.addChild(new NewCollectionModal(
+            controller, 
+            entity, 
+            entityData
+        ));
         this.dialog.querySelector('.new-collection-modal input').focus()
     }
 
     renderTaskModal(controller, taskboardId = null, task = null) {
-        this.addChild(new TaskModal(controller, taskboardId, task));
+        this.addChild(new TaskModal(
+            controller, 
+            taskboardId, 
+            task
+        ));
         this.dialog.querySelector('.task-modal input').focus()
     }
 
-    renderStickyNoteModal(controller, stickyNote = null) {
-        this.addChild(new StickyNoteModal(controller, this, stickyNote))
+    renderStickyNoteModal(controller, parentId, stickyNote = null) {
+        this.addChild(new StickyNoteModal(
+            controller, 
+            parentId, 
+            stickyNote
+        ))
     }
 
     renderEditFlashcardModal(controller, flashcard = null) {
-        this.addChild(new EditFlashcardModal(controller, this, flashcard));
+        this.addChild(new EditFlashcardModal(
+            controller, 
+            flashcard
+        ));
     }
 
     renderForgotSaveModal(view) {
         this.addChild(new ForgotSaveContainer(view));
-    }
-
-    renderNewFolderModal(view) {
-        this.addChild(new NewFolderContainer(view));
-        this.dialog.querySelector('.new-folder-container input').focus();
     }
 
     renderSearchModal(toolbar) {
@@ -113,8 +133,16 @@ export class Dialog {
         modal.style.transform = 'translateY(0px)';
     }
 
-    renderEditFolderModal(folder, view) {
-        this.addChild(new EditFolderModal(folder, view, this));
+    renderEditFolderModal(controller, folder = null) {
+        this.addChild(new EditFolderModal( 
+            controller, 
+            folder
+        ));
         this.dialog.querySelector('.edit-folder-modal input').focus()
     }
+}
+
+
+export function dialogEvent(htmlElement, dialogAction) {
+    htmlElement.dispatchEvent(new CustomEvent('DialogEvent', { detail: { action: dialogAction }, bubbles: true}));
 }

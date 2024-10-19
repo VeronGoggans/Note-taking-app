@@ -3,42 +3,6 @@ import { addDraggImage } from "../util/ui.js";
 import { tagColors } from "../constants/constants.js";
 
 
-export class TaskboardCard {
-    constructor(view, taskboard, controller, dialog) {
-        this.view = view 
-        this.controller = controller;
-        this.dialog = dialog;
-        this.taskboard = taskboard
-
-        this.#initElements();
-        this.#eventListeners();
-        return this.#render();
-    }
-
-
-    #initElements() {
-        this.HOST = CNode.create('div', { 'class': 'task-board-card', 'id': this.taskboard.id});
-        this.TASK_BOARD_NAME = CNode.create('span', {'textContent': this.taskboard.name});
-        this.DIV = document.createElement('div');
-        this.DELETE_BUTTON = CNode.create('button', {'innerHTML': '<i class="fa-solid fa-trash"></i>'});
-        this.EDIT_BUTTON = CNode.create('button', {'innerHTML': '<i class="fa-solid fa-pen"></i>'});
-    }
-
-    #render() {
-        this.DIV.append(this.EDIT_BUTTON, this.DELETE_BUTTON)
-        this.HOST.append(this.TASK_BOARD_NAME, this.DIV);
-        return this.HOST
-    }
-
-    #eventListeners() {
-        this.TASK_BOARD_NAME.addEventListener('click', () => {this.view.handleTaskboardCardClick(this.taskboard.id)})
-        this.DELETE_BUTTON.addEventListener('click', () => {this.view.renderDeleteModal(this.taskboard.id, this.taskboard.name)})
-        this.EDIT_BUTTON.addEventListener('click', () => {
-            this.dialog.renderNewCollectionModal(this.controller, 'taskboard', this.taskboard)
-        })
-    }
-}
-
 
 export class TaskCard {
     constructor(view, task, controller, dialog) {

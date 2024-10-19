@@ -1,6 +1,4 @@
-.task-board-card,
-.notebook-card,
-.sticky-wall-card {
+list-item-card-1 {
     cursor: pointer;
     display: flex;
     justify-content: space-between;
@@ -12,16 +10,12 @@
     transition: opacity .7s ease, transform .25s ease, scale .2s ease;
 }
 
-.task-board-card:hover,
-.notebook-card:hover,
-.sticky-wall-card:hover {
+list-item-card-1:hover{
     scale: 1.02;
     background-color:  var(--list-item-hover);
 }
 
-.task-board-card div,
-.notebook-card div,
-.sticky-wall-card div {
+list-item-card-1 .list-item-card-1-buttons-container {
     width: 200px;
     display: flex;
     justify-content: end;
@@ -31,15 +25,11 @@
     transition: 150ms;
 }
 
-.task-board-card div:hover,
-.notebook-card div:hover,
-.sticky-wall-card div:hover {
+list-item-card-1 .list-item-card-1-buttons-container:hover {
     opacity: 1;
 }
 
-.task-board-card span,
-.notebook-card span,
-.sticky-wall-card span {
+list-item-card-1 span {
     color: var(--important);
     font-family: sans-serif;
     width: 100%;
@@ -47,9 +37,7 @@
     padding: 10px;
 }
 
-.task-board-card button,
-.notebook-card button,
-.sticky-wall-card button {
+list-item-card-1 button {
     background-color: transparent;
     width: 30px;
     height: 30px;
@@ -57,9 +45,7 @@
     color: var(--icon);
 }
 
-.task-board-card button:hover,
-.notebook-card button:hover,
-.sticky-wall-card button:hover {
+list-item-card-1 button:hover {
     background-color: var(--hover);
     color: var(--icon-hover);  
 }

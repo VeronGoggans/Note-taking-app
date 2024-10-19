@@ -13,7 +13,7 @@ class FolderService:
     def add_folder(self, schema: FolderRequest, db: Session) -> Folder:
         new_folder = Folder(
             name = schema.name, 
-            color = 'rgb(255, 255, 255)', 
+            color = schema.color, 
             parent_id = schema.parent_id
             )
         return self.manager.add(schema.parent_id, new_folder, db)

@@ -145,7 +145,11 @@ export class ApplicationController {
                 }
 
                 if (viewId === 'stickyWall') {  
-                    this.sidebarView.setActiveTab('sticky-wall')
+                    const { stickyWall, previousView } = viewParameters 
+                    controller.init(stickyWall)
+                    this.model.setPreviousView(previousView)
+                    this.sidebarView.setActiveTab('sticky-wall-home')
+                    return;
                 }
 
                 if (viewId === 'taskboardHome') {
@@ -159,7 +163,6 @@ export class ApplicationController {
                     } = viewParameters
 
                     this.model.setPreviousView(previousView);
-
                     controller.init(taskboard);
                     return;
                 }
@@ -175,7 +178,6 @@ export class ApplicationController {
                 if (viewId === 'notebookHome') {
                     this.sidebarView.setActiveTab('notebook-home')
                 }
-
 
                 controller.init();
             }, 0); 

@@ -1,7 +1,7 @@
 .new-collection-modal {
     position: relative;
     width: 650px;
-    height: 420px;
+    height: 450px;
     border-radius: 15px;
     background-color: var(--modal);
     padding: 20px;
@@ -39,8 +39,8 @@
     border: 1px solid var(--border-card);
     background-color: transparent;
     border-radius: 10px;
-    height: 180px;
-    max-height: 180px;
+    height: 220px;
+    max-height: 220px;
     margin: 20px 0;
 }
 

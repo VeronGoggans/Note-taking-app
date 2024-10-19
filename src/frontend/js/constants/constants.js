@@ -116,7 +116,7 @@ export const taskBoardSections = {
     'done': 'Done'
 } 
 
-export const sidebarButtonText = ['Home', 'Notes', 'Templates', 'Notebooks', 'Taskboards', 'Stickies', 'Sessions', 'Flashcards', 'Settings']
+export const sidebarButtonText = ['Home', 'Notes', 'Templates', 'Notebooks', 'Taskboards', 'Stickies', 'Flashcards', 'Settings']
 
 
 export const modalPlaceholderText = {
@@ -128,19 +128,22 @@ export const modalPlaceholderText = {
 export const modalNewTitleText = {
     taskboard: 'New taskboard',
     stickyWall: 'New sticky wall',
-    notebook: 'New notebook'
+    notebook: 'New notebook',
+    folder: 'New folder'
 }
 
 export const modalUpdateTitleText = {
-    taskboard: 'Update taskboard',
-    stickyWall: 'Update sticky wall',
-    notebook: 'Update notebook'
+    taskboard: 'Edit taskboard',
+    stickyWall: 'Edit sticky wall',
+    notebook: 'Edit notebook',
+    folder: 'Edit folder'
 }
 
 export const modalButtonText = {
     taskboard: 'Add taskboard',
     stickyWall: 'Add sticky wall',
-    notebook: 'Add notebook'
+    notebook: 'Add notebook',
+    folder: 'Add folder'
 }
 
 export const notebookItemIcons = {

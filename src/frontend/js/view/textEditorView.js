@@ -92,24 +92,22 @@ export class TextEditorView extends BaseView {
   }
 
   exitNoSave() {
-    this.closeDialog();
     this.controller.loadPreviousView();
   }
 
   exitBySave() {
     this.editorContent = this.page.innerHTML;
-    this.closeDialog();
     this.save(true, false);
   }
 
   new() {
     this.save(false, true, false)
-    this.#clear();
+    this.clear();
   }
 
   async handleDeleteButtonClick(editorObjectId) {
     await this.controller.handleDeleteButtonClick(editorObjectId);
-    this.#clear();
+    this.clear();
   }
 
   saveFlashcard(flashcard) {
@@ -133,7 +131,7 @@ export class TextEditorView extends BaseView {
   /**
    * This method removes all the content in the editor.
    */
-  #clear() {
+  clear() {
     this.editorContent = '';
     this.page.innerHTML = '';
     this.documentNameInput.value = '';

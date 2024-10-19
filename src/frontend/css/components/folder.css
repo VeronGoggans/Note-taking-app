@@ -1,4 +1,4 @@
-.folder {
+folder-card {
     user-select: none;
     cursor: pointer;
     min-height: 280px;
@@ -17,31 +17,20 @@
     box-shadow: var(--card-shadow);
 }
 
-.folder:hover {
+folder-card:hover {
     scale: 1.05;
 }
 
-.folder-name-box {
-    cursor: auto;
-    display: flex;
-    align-items: center;
-    position: relative;
-    overflow: visible;
-}
 
-.folder-logo {
-    position: relative;
+folder-card #folder-icon {
+    color: var(--icon);
+    font-size: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.folder-logo i {
-    color: var(--icon);
-    font-size: 30px;
-}
-
-.folder-util-bar {
+folder-card div {
     position: relative;
     display: flex;
     justify-content: right;
@@ -53,11 +42,12 @@
     cursor: auto;
 }
 
-.folder-util-bar:hover {
+folder-card div:hover {
     opacity: 1;
 }
 
-.folder-util-bar i {
+folder-card div #edit-btn,
+folder-card div #delete-btn {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -68,17 +58,46 @@
     color: var(--icon);
 }
 
-.folder-util-bar i:hover {
+folder-card div #edit-btn:hover,
+folder-card div #delete-btn:hover {
     background-color: var(--hover);
     color: var(--icon-hover);
 }
 
-.folder h4 {
+folder-card p {
     width: 100%;
     padding: 5px;
-    margin: 0 10px;;
+    margin: 0 10px;
+    font-family: sans-serif;
     color: var(--important);
     font-size: 15px;
+}
+
+
+recent-folder-card {
+    cursor: pointer;
+    height: 50px;
+    font-family: sans-serif;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: var(--card);
+    border-radius: 10px;
+    color: var(--icon);
+    box-shadow: var(--card-shadow);
+    opacity: 0;
+    transform: translateY(30%);
+    transition: opacity .7s ease, transform .25s ease, scale .2s ease;
+}
+
+recent-folder-card:hover {
+    scale: 1.05;
+
+}
+
+recent-folder-card i {
+    margin-right: 10px;
+    font-size: 18px;
 }
 
 .color-blue-1 {background-color: rgb(121, 144, 255)}
@@ -109,43 +128,43 @@
 .color-orange-2 h4 {color: #1b1c22}
 
 
-.color-blue-1 .folder-logo i {color: rgb(76, 102, 225)}
-.color-blue-2 .folder-logo i {color: rgb(121, 191, 255)}
-.color-blue-3 .folder-logo i {color: rgb(176, 217, 255)}
-.color-green-1 .folder-logo i {color: rgb(98, 191, 164)}
-.color-green-2 .folder-logo i {color: rgb(158, 255, 147)}
-.color-green-3 .folder-logo i {color: rgb(123, 226, 112)}
-.color-purple-1 .folder-logo i {color: rgb(125, 96, 179)}
-.color-purple-2 .folder-logo i {color: rgb(208, 164, 255)}
-.color-red-1 .folder-logo i { color: rgb(255, 127, 127)}
-.color-red-2 .folder-logo i {color: rgb(255, 162, 162)}
-.color-orange-1 .folder-logo i {color: rgb(241, 149, 67)}
-.color-orange-2 .folder-logo i {color: rgb(255, 207, 104)}
+.color-blue-1 #folder-icon {color: rgb(76, 102, 225)}
+.color-blue-2 #folder-icon {color: rgb(121, 191, 255)}
+.color-blue-3 #folder-icon {color: rgb(176, 217, 255)}
+.color-green-1 #folder-icon {color: rgb(98, 191, 164)}
+.color-green-2 #folder-icon {color: rgb(158, 255, 147)}
+.color-green-3 #folder-icon {color: rgb(123, 226, 112)}
+.color-purple-1 #folder-icon {color: rgb(125, 96, 179)}
+.color-purple-2 #folder-icon {color: rgb(208, 164, 255)}
+.color-red-1 #folder-icon { color: rgb(255, 127, 127)}
+.color-red-2 #folder-icon {color: rgb(255, 162, 162)}
+.color-orange-1 #folder-icon {color: rgb(241, 149, 67)}
+.color-orange-2 #folder-icon {color: rgb(255, 207, 104)}
 
 
-.color-blue-1 .folder-util-bar i,
-.color-blue-2 .folder-util-bar i,
-.color-blue-3 .folder-util-bar i,
-.color-green-1 .folder-util-bar i,
-.color-green-2 .folder-util-bar i,
-.color-green-3 .folder-util-bar i,
-.color-purple-1 .folder-util-bar i,
-.color-purple-2 .folder-util-bar i,
-.color-red-1 .folder-util-bar i,
-.color-red-2 .folder-util-bar i,
-.color-orange-1 .folder-util-bar i,
-.color-orange-2 .folder-util-bar i {color: #444863}
+.color-blue-1 .folder-options i,
+.color-blue-2 .folder-options i,
+.color-blue-3 .folder-options i,
+.color-green-1 .folder-options i,
+.color-green-2 .folder-options i,
+.color-green-3 .folder-options i,
+.color-purple-1 .folder-options i,
+.color-purple-2 .folder-options i,
+.color-red-1 .folder-options i,
+.color-red-2 .folder-options i,
+.color-orange-1 .folder-options i,
+.color-orange-2 .folder-options i {color: #444863}
 
 
-.color-blue-1 .folder-util-bar i:hover {background-color: rgb(76, 102, 225)}
-.color-blue-2 .folder-util-bar i:hover {background-color: rgb(121, 191, 255)}
-.color-blue-3 .folder-util-bar i:hover {background-color: rgb(176, 217, 255)}
-.color-green-1 .folder-util-bar i:hover {background-color: rgb(98, 191, 164)}
-.color-green-2 .folder-util-bar i:hover {background-color: rgb(158, 255, 147)}
-.color-green-3 .folder-util-bar i:hover {background-color: rgb(123, 226, 112)}
-.color-purple-1 .folder-util-bar i:hover {background-color: rgb(125, 96, 179)}
-.color-purple-2 .folder-util-bar i:hover {background-color: rgb(208, 164, 255)}
-.color-red-1 .folder-util-bar i:hover {background-color: rgb(255, 127, 127)}
-.color-red-2 .folder-util-bar i:hover {background-color: rgb(255, 162, 162)}
-.color-orange-1 .folder-util-bar i:hover {background-color: rgb(241, 149, 67)}
-.color-orange-2 .folder-util-bar i:hover {background-color: rgb(255, 207, 104)}
+.color-blue-1 .folder-options i:hover {background-color: rgb(76, 102, 225)}
+.color-blue-2 .folder-options i:hover {background-color: rgb(121, 191, 255)}
+.color-blue-3 .folder-options i:hover {background-color: rgb(176, 217, 255)}
+.color-green-1 .folder-options i:hover {background-color: rgb(98, 191, 164)}
+.color-green-2 .folder-options i:hover {background-color: rgb(158, 255, 147)}
+.color-green-3 .folder-options i:hover {background-color: rgb(123, 226, 112)}
+.color-purple-1 .folder-options i:hover {background-color: rgb(125, 96, 179)}
+.color-purple-2 .folder-options i:hover {background-color: rgb(208, 164, 255)}
+.color-red-1 .folder-options i:hover {background-color: rgb(255, 127, 127)}
+.color-red-2 .folder-options i:hover {background-color: rgb(255, 162, 162)}
+.color-orange-1 .folder-options i:hover {background-color: rgb(241, 149, 67)}
+.color-orange-2 .folder-options i:hover {background-color: rgb(255, 207, 104)}

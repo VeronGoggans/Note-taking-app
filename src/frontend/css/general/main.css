@@ -76,6 +76,9 @@ i {
     grid-template-rows: 37px 1fr;
     max-height: calc(100dvh);
 }
+.view {
+    max-height: calc(100dvh - 37px);
+}
 
 .view-title {
     font-size: 56px;

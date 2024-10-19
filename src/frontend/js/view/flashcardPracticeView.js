@@ -33,7 +33,7 @@ export class FlashcardPracticeView {
         this.#initElements();
         this.#eventListeners();
         this.#init();
-        AnimationHandler.fadeInFromSide(this.flashcardPracticeView);
+        AnimationHandler.fadeInFromSide(this.viewElement);
     }
 
     #init() {
@@ -186,7 +186,7 @@ export class FlashcardPracticeView {
 
     #initElements() {
         // The view
-        this.flashcardPracticeView = document.querySelector('.flashcard-practice');
+        this.viewElement = document.querySelector('.flashcard-practice');
         
         // Deck related elements
         this.deckNameHeading = document.querySelector('.deck-name');
@@ -196,7 +196,6 @@ export class FlashcardPracticeView {
         
 
         // Buttons
-        this.backButton = document.querySelector('.flashcard-home-btn');
         this.correctButton = document.querySelector('#correct-btn');
         this.wrongButton = document.querySelector('#wrong-btn');
         this.restartButton = document.querySelector('#restart-btn');
@@ -211,7 +210,7 @@ export class FlashcardPracticeView {
         this.flashcard.addEventListener('click', () => {this.flipCard()});
 
         // Button events
-        this.backButton.addEventListener('click', () => {this.#beforeClose()});
+        this.viewElement.addEventListener('PreviousViewButtonClick', () => {this.#beforeClose()});
         this.nextButton.addEventListener('click', () => {this.setupNextCard()});
         this.previousButton.addEventListener('click', () => {this.setupPreviousCard()});
         this.restartButton.addEventListener('click', () => {this.#restart()});

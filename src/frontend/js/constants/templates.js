@@ -73,7 +73,7 @@ export const flashcardsTemplate = `
 
 export const flashcardPracticeTemplate = `
     <div class="flashcard-practice">
-    <button class="flashcard-home-btn"><i class="bi bi-arrow-left"></i></button>
+    <previous-view-button></previous-view-button>
         <div class="center">
             <div class="deck-section">
                 <i id="previous-card-btn" class="bi bi-caret-left"></i>
@@ -99,9 +99,7 @@ export const flashcardPracticeTemplate = `
 
 export const flashcardEditTemplate = `
     <div class="flashcard-edit-view">
-        <button class="exit-flashcard-edit-view-btn">
-            <i class="bi bi-arrow-left"></i>
-        </button>
+        <previous-view-button></previous-view-button>
         <h1 contenteditable="true" spellCheck="false"></h1>
         <button class="add-flashcard-btn">Add flashcard</button>
 
@@ -131,7 +129,9 @@ export const templatesTemplate =  `
 
 export const stickyWallTemplate = `
     <div class="sticky-wall-view">
-        <h1 class="view-title">Sticky Wall</h1>
+        <previous-view-button></previous-view-button>
+        <h1>Sticky Wall</h1>
+        <p class="sticky-wall-description"></p>
         <div class="sticky-wall">
             <button class="add-sticky-btn"><i class="fa-solid fa-plus"></i></button>
         </div>
@@ -181,7 +181,7 @@ export const stickyNoteHomeTemplate = `
 
 export const taskBoardTemplate = `
     <div class="task-board-view">
-        <button class="exit-taskboard-btn"><i class="bi bi-arrow-left"></i></button>
+        <previous-view-button></previous-view-button>
         <h1 class="task-board-name">Untitled</h1>
         <p class="task-board-description"><i>Task board goes here...</i></p>
         <div class="task-board">

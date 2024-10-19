@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="src/frontend/css/textEditor/toolbarBottom.css">
     <link rel="stylesheet" href="src/frontend/css/textEditor/toolbarTop.css">
     <link rel="stylesheet" href="src/frontend/css/textEditor/editorSpawnables.css">
-    <link rel="stylesheet" href="src/frontend/css/modals/newFolderContainer.css">
     <link rel="stylesheet" href="src/frontend/css/modals/saveContainer.css">
     <link rel="stylesheet" href="src/frontend/css/modals/deleteContainer.css">
     <link rel="stylesheet" href="src/frontend/css/modals/noteDetailsModal.css">
@@ -37,16 +36,21 @@
     <link rel="stylesheet" href="src/frontend/css/modals/stickyNoteModal.css">
     <link rel="stylesheet" href="src/frontend/css/views/taskboard/taskboardHomeView.css">
     <link rel="stylesheet" href="src/frontend/css/views/taskboard/taskboardView.css">
-    <link rel="stylesheet" href="src/frontend/css/modals/newTaskboardModal.css">
+    <link rel="stylesheet" href="src/frontend/css/modals/newCollectionModal.css">
     <link rel="stylesheet" href="src/frontend/css/modals/taskModal.css">
     <link rel="stylesheet" href="src/frontend/css/general/titleBar.css">
     <link rel="stylesheet" href="src/frontend/css/views/notebook/notebookHomeView.css">
     <link rel="stylesheet" href="src/frontend/css/views/sticky_note/stickyWallHomeView.css">
     <link rel="stylesheet" href="src/frontend/css/components/lists.css">
+    <link rel="stylesheet" href="src/frontend/css/components/buttons.css">
     <!-- CDN for the icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Neutron</title>
+    <script src="src/frontend/js/components/lists/listItem1.js"></script>
+    <script type="module" src="src/frontend/js/components/folder.js"></script>
+    <script src="src/frontend/js/components/buttons/previousViewButton.js"></script>
+    <script type="module" src="src/frontend/js/components/sticky_notes/stickyNote.js"></script>
 </head>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
@@ -70,9 +74,7 @@
             <a href="/notebookHome" data-view="notebookHome" id="notebook-home-btn"><i class="bi bi-journal"></i><span>Notebooks</span></a>
             <a href="/taskboardHome" data-view="taskboardHome" id="taskboard-home-btn"><i class="bi bi-pin"></i><span>Taskboards</span></a>
             <a href="/stickyWallHome" data-view="stickyWallHome" id="sticky-wall-home-btn"><i class="bi bi-sticky"></i><span>Stickies</span></a>
-            <a href="/focusSessions" data-view="focusSessions" id="focus-sessions-btn"><i class="bi bi-clock"></i><span>Sessions</span></a>
             <a href="/flashcardsHome" data-view="flashcardsHome" id="flashcards-btn"><i class="bi bi-card-text"></i><span>Flashcards</span></a>
-           
           </div>
           <div class="sidebar-content-lower">
             <a href="/settings" data-view="settings" id="settings-btn"><i class="bi bi-gear"></i><span>Settings</span></a>

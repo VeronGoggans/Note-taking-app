@@ -12,8 +12,8 @@ class StickyNoteManager:
         return sticky_note
 
 
-    def get_stickies(self, db: Session):
-        return db.query(StickyNote).all()
+    def get_stickies(self, sticky_wall_id: int, db: Session):
+        return db.query(StickyNote).filter(StickyNote.sticky_wall_id == sticky_wall_id).all()
 
 
     def update_sticky(self, id: int, name: str, content: str, db: Session) -> (StickyNote | NotFoundException):

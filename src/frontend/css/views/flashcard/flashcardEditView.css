@@ -5,28 +5,18 @@
     color: var(--important);
     overflow-y: scroll;
     max-height: calc(100dvh - 37px);
+    height: calc(100dvh - 37px);
     opacity: 0;
     transform: translateX(30%);
     transition: opacity .7s ease, transform .2s ease;
 }
 
 .flashcard-edit-view h1 {
+    margin-top: 60px;
     outline: none;
     width: 300px;
 }
 
-.flashcard-edit-view .exit-flashcard-edit-view-btn {
-    font-size: 25px;
-    background-color: transparent;
-    color: var(--important);
-    padding: 10px 15px;
-    border-radius: 15px;
-    transition: 150ms;
-}
-
-.flashcard-edit-view .exit-flashcard-edit-view-btn:hover {
-    background-color: var(--exit-btn);
-}
 
 .flashcard-edit-view .add-flashcard-btn {
     position: absolute;

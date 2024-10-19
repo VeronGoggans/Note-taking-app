@@ -1,17 +1,22 @@
 .sticky-wall-view {
     outline: none;
+    display: flex;
+    flex-direction: column;
     height: calc(100dvh - 37px);
     max-height: calc(100dvh - 37px);
     font-family: Roboto;
-    padding: 15px 5%;
+    padding: 0 5%;
     opacity: 0;
     transform: translateY(30%);
     transition: opacity .7s ease, transform .2s ease;
 }
 
 .sticky-wall-view h1 {
-    margin-top: 40px;
+    font-family: sans-serif;
+    color: var(--important);
+    margin-top: 60px;
 }
+
 
 .sticky-wall-view .sticky-wall {
     margin-top: 30px;
@@ -19,19 +24,18 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     grid-template-rows: repeat(auto-fill, 220px);
-    max-height: calc(100dvh - 150px);
-    height: calc(100dvh - 100px);
+    max-height: calc(100dvh - 220px);
+    height: calc(100dvh - 220px);
     overflow-y: scroll;
     gap: 15px;
 }
 
-.sticky-wall .sticky-note {
+.sticky-wall sticky-card {
     cursor: pointer;
     padding: 10px;
     border-radius: 5px;
     height: 220px;
     min-height: 220px;
-    background-color: rgb(255, 205, 230);
     display: grid;
     grid-template-rows: 20px 1fr 30px;
     box-shadow: 0 0 10px var(--shadow);
@@ -40,17 +44,17 @@
     transition: opacity .7s ease, transform .25s ease, scale .3s ease;
 }
 
-.sticky-wall .sticky-note:hover {
+.sticky-wall sticky-card:hover {
     scale: 1.05;
 }
 
-.sticky-wall .sticky-note h3 {
+.sticky-wall sticky-card h3 {
     margin: 0;
     font-family: sans-serif;
     color: rgb(31, 32, 34);
 }
 
-.sticky-wall .sticky-note p {
+.sticky-wall sticky-card p {
     font-weight: 600;
     color: rgb(42, 42, 49);
 }
@@ -66,4 +70,10 @@
 
 .sticky-wall .add-sticky-btn:hover {
     scale: 1.05;
+}
+
+.sticky-wall-description {
+    color: var(--text);
+    font-size: 16px;
+    font-family: sans-serif;
 }

@@ -1,5 +1,6 @@
 import { CNode } from "../../util/CNode.js";
 import { DropdownHelper } from "../../helpers/dropdownHelper.js";
+import { dialogEvent } from "../../util/dialog.js";
 
 
 export class TaskModal {
@@ -100,9 +101,11 @@ export class TaskModal {
                     'tag': this.HOST.querySelector('.tags-input').value
                 })
             } 
+            dialogEvent(this.HOST, 'close');
         })
         this.HOST.querySelector('.delete-task-btn').addEventListener('click', async () => {
-            await this.controller.delete(this.task.id)
+            await this.controller.delete(this.task.id);
+            dialogEvent(this.HOST, 'close');
         })
 
         // The task tags input eventlisteners below

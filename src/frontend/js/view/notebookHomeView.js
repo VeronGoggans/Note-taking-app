@@ -27,7 +27,6 @@ export class NotebookView extends BaseView {
         const notebookCard = new NotebookCard(this, notebook, this.controller, this.dialog)
         AnimationHandler.fadeInFromBottom(notebookCard);
         this._notebooksList.appendChild(notebookCard);
-        this.closeDialog();
     }
 
 
@@ -37,7 +36,6 @@ export class NotebookView extends BaseView {
         for (let i = 0; i < notebooks.length; i++) {
             if (notebooks[i].id === notebookId) {
                 AnimationHandler.fadeOutCard(notebooks[i])
-                this.closeDialog();
             }
         }
     }
@@ -47,9 +45,7 @@ export class NotebookView extends BaseView {
 
         for (let i = 0; i < notebooks.length; i++) {
             if (notebooks[i].id === notebook.id) {    
-
                 notebooks[i].querySelector('span').textContent = notebook.name;
-                this.closeDialog()
             }
         }
     }

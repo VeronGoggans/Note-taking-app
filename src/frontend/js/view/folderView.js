@@ -1,6 +1,4 @@
-import { Folder } from "../components/folder.js";
 import { FolderObjectArray } from "../util/array.js";
-import { formatName } from "../util/formatters.js";
 import { AnimationHandler } from "../handlers/animation/animationHandler.js";
 import { folderColors } from '../constants/constants.js';
 import { removeContent, addEmptyMessage, removeEmptyMessage } from "../util/ui.js";
@@ -18,7 +16,6 @@ export class FolderView extends BaseView {
     }
 
     renderAll(folders) {
-        this.folderObjects.clear();
         for (let i = 0; i < folders.length; i++) {
             const folderCard = this.#folder(folders[i]);
             this._content.appendChild(folderCard);
@@ -27,11 +24,9 @@ export class FolderView extends BaseView {
     }
 
     renderOne(folder) {
-        removeEmptyMessage(this._content);
         const folderCard = this.#folder(folder);
         this._content.insertBefore(folderCard, this._content.firstChild);
         AnimationHandler.fadeInFromBottom(folderCard);
-        this.closeDialog();
     }
 
     renderUpdate(folder) {
@@ -39,10 +34,7 @@ export class FolderView extends BaseView {
     
         for (let i = 0; i < folderCards.length; i++) {
             if (folderCards[i].id == folder.id) {
-                folderCards[i].querySelector('h4').textContent = formatName(folder.name);
-
-                this.#applyFolderColor(folderCards[i], folder.color);
-                this.folderObjects.update(folder);
+                folderCards[i].setAttribute('folder', JSON.stringify(folder));
             }
         }
     }
@@ -51,71 +43,64 @@ export class FolderView extends BaseView {
         const folders = this._content.children;
         
         for (let i = 0; i < folders.length; i++) {
-            if (folders[i].id == folder.id) {
+            if (folders[i].id == folder.id && folders[i].tagName === 'FOLDER-CARD') {
                 AnimationHandler.fadeOutCard(folders[i]);
-                this.folderObjects.remove(folder);
             }
         }
         addEmptyMessage(this._content);
-        this.closeDialog();
-    }
-
-    renderEditFolderModal(id) {
-        const folder = this.getFolderObject(id);
-        this.dialog.renderEditFolderModal(folder, this);
     }
 
 
     #folder(folder) {
-        this.folderObjects.add(folder)
-        return new Folder(folder, this);
+        const folderCard = document.createElement('folder-card');
+        folderCard.setAttribute('folder', JSON.stringify(folder));
+        return folderCard
     }
 
-
-    #applyFolderColor(folderCard, color) {
-        const newColor = folderColors[color];
-        const folderClasses = Array.from(folderCard.classList);
-        
-        for (const cls of folderClasses) {
-            if (cls.includes('color')) {
-                folderCard.classList.remove(cls);
-            }
-        }        
-        folderCard.classList.add(newColor);
-    }
-
-    async handleNoteDrop(folderId, droppedNoteId) {
-        await this.applicationController.moveNote(folderId, droppedNoteId)
-    }
-
-    async handleFolderDrop(newParentFolderId, droppedFolderId) {
-        await this.applicationController.moveFolder(newParentFolderId, droppedFolderId);
-    }
-
-    handleFolderCardClick(id, name) {
-        this.controller.navigateIntoFolder(id, name);
-    }
-
-    getFolderObject(folderId) {
-        return this.folderObjects.get(folderId);
-    }
 
     displayFolderName(name) {
         removeContent(this._content);
         this.currentFolderName.textContent = name;
     }
 
+
     #initElements() {
         this._content = document.querySelector('.content-view');
         this.currentFolderName = document.querySelector('.current-folder-name');
         this.backButton = document.querySelector('.exit-folder-btn');
-        this.createFolderButton = document.querySelector('.create-folder-btn')
-        this.homeButton = document.querySelector('.home-folder-btn')
+        this.createFolderButton = document.querySelector('.create-folder-btn');
+        this.homeButton = document.querySelector('.home-folder-btn');
     }
 
+    
     #eventListeners() {
+        this._content.addEventListener('FolderCardClick', (event) => {
+            const { folder } = event.detail;
+            this.controller.navigateIntoFolder(folder.id, folder.name);
+        })
+
+        this._content.addEventListener('UpdateFolder', (event) => {
+            const { folder } = event.detail;
+            this.dialog.renderEditFolderModal(this.controller, folder); 
+        })
+
+        this._content.addEventListener('DeleteFolder', (event) => {
+            const { folder } = event.detail;
+            this.dialog.renderDeleteModal(this.controller, folder.id, folder.name);
+        })
+
+        this._content.addEventListener('DroppedItemOnFolder', async (event) => {
+            const { folderId, droppedItemId, droppedItemType } = event.detail;
+            if (droppedItemType === 'note') {
+                await this.applicationController.moveNote(folderId, droppedItemId);
+            }
+            if (droppedItemType === 'folder') {
+                await this.applicationController.moveFolder(folderId, droppedItemId);
+            }
+        })
+
         this.backButton.addEventListener('click', async () => {await this.controller.navigateOutofFolder()})
-        this.createFolderButton.addEventListener('click', () => {this.dialog.renderNewFolderModal(this)});
+        this.createFolderButton.addEventListener('click', () => {this.dialog.renderEditFolderModal(this.controller)});
         this.homeButton.addEventListener('click', async () => {await this.controller.navigateIntoFolder(1, 'Home')})
     }
 }

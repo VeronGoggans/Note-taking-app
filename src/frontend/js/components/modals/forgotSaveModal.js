@@ -1,4 +1,5 @@
 import { CNode } from "../../util/CNode.js";
+import { dialogEvent } from "../../util/dialog.js";
 
 export class ForgotSaveContainer {
     constructor(view) {
@@ -18,7 +19,14 @@ export class ForgotSaveContainer {
     }
 
     #eventListeners() {
-        this.HOST.querySelector('.exit-without-save-btn').addEventListener('click', () => {this.view.exitNoSave()});
-        this.HOST.querySelector('.exit-with-save-btn').addEventListener('click', () => {this.view.exitBySave()});
+        this.HOST.querySelector('.exit-without-save-btn').addEventListener('click', () => {
+            this.view.exitNoSave();
+            dialogEvent(this.HOST, 'close');
+        });
+
+        this.HOST.querySelector('.exit-with-save-btn').addEventListener('click', () => {
+            this.view.exitBySave();
+            dialogEvent(this.HOST, 'close');
+        });
     }
 }

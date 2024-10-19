@@ -40,7 +40,7 @@ export class NoteView extends BaseView {
     }
 
     
-    renderDelete(note, closeDialog = true) {
+    renderDelete(note) {
         const cards = this._content.children;
 
         for (let i = 0; i < cards.length; i++) {
@@ -50,9 +50,6 @@ export class NoteView extends BaseView {
             }
         }
         addEmptyMessage(this._content);
-        if (closeDialog) {
-            this.closeDialog();
-        }
     }
 
     

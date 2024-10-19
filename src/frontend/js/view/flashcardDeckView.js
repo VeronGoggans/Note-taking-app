@@ -52,7 +52,7 @@ export class FlashcardDeckView extends BaseView {
         AnimationHandler.fadeInFromBottom(deckCard);
         AnimationHandler.fadeInFromBottom(progressionCard);
 
-        this.dialog.hide();
+        this.dialog.close();
     }
 
 
@@ -69,7 +69,7 @@ export class FlashcardDeckView extends BaseView {
                 this.deckObjects.remove(deck);
             }
         }
-        this.dialog.hide();
+        this.dialog.close();
     }
 
 

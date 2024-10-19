@@ -10,7 +10,7 @@ export class FlashcardEditView extends BaseView {
 
         this.#initElements();
         this.#eventListeners();
-        AnimationHandler.fadeInFromSide(this._viewElement);
+        AnimationHandler.fadeInFromSide(this.viewElement);
     }
 
     renderAll(deck, flashcards) {
@@ -59,18 +59,13 @@ export class FlashcardEditView extends BaseView {
 
     #initElements() {
         this._flashcardsContainer = document.querySelector('.flashcards');
-        this._viewElement = document.querySelector('.flashcard-edit-view');
-        this._exitButton = document.querySelector('.exit-flashcard-edit-view-btn');
-        this._deckName = this._viewElement.querySelector('h1');
-        this._addFlashcardButton = this._viewElement.querySelector('.add-flashcard-btn');
+        this.viewElement = document.querySelector('.flashcard-edit-view');
+        this._deckName = this.viewElement.querySelector('h1');
+        this._addFlashcardButton = this.viewElement.querySelector('.add-flashcard-btn');
     }
 
     #eventListeners() {
         this._addFlashcardButton.addEventListener('click', () => {this.dialog.renderEditFlashcardModal(this.controller)});
-        this._exitButton.addEventListener('click', () => {this.controller.loadPreviousView()})
-        // this._saveButton.addEventListener('click', async () => {
-        //     await this.controller.saveDeckChanges(this.deck.id, newDeckName);
-        //     this.controller.loadPreviousView();
-        // })
+        this.viewElement.addEventListener('PreviousViewButtonClick', () => {this.controller.loadPreviousView()});
     }
 }

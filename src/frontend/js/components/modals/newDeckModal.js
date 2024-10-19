@@ -1,5 +1,7 @@
 import { CNode } from "../../util/CNode.js";
 import { AnimationHandler } from "../../handlers/animation/animationHandler.js";
+import { dialogEvent } from "../../util/dialog.js";
+
 
 export class NewDeckModal {
     constructor(controller, cards, deckName) {
@@ -123,6 +125,7 @@ export class NewDeckModal {
                 deckName,
                 flashcards
             )
+            dialogEvent(this.HOST, 'close');
         })
     }
 

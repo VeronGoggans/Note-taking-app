@@ -58,7 +58,6 @@ export class TaskView extends BaseView {
         const taskCard = this.#task(task);
         AnimationHandler.fadeInFromSide(taskCard);
         this.toDoSection.appendChild(taskCard)
-        this.closeDialog();
     }
 
 
@@ -69,7 +68,6 @@ export class TaskView extends BaseView {
             if (tasks[i].id == taskId) {
                 AnimationHandler.fadeOutCard(tasks[i])
                 this.taskObjects.remove(taskId);
-                this.closeDialog();
             }
         }
     }
@@ -91,7 +89,6 @@ export class TaskView extends BaseView {
                 tag.classList.add(newTagColor);
 
                 this.taskObjects.update(task);
-                this.closeDialog()
             }
         }
     }
@@ -152,7 +149,7 @@ export class TaskView extends BaseView {
 
     #eventListeners() {
         this.addTaskButton.addEventListener('click', () => {this.dialog.renderTaskModal(this.controller, this.taskbaordId)});
-        this.exitButton.addEventListener('click', () => {this.controller.loadPreviousView()});
+        this.viewElement.addEventListener('PreviousViewButtonClick', () => {this.controller.loadPreviousView()});
 
         for (let i = 0; i < this.boardSections.length; i++) {
             this.boardSections[i].addEventListener('dragover', (event) => {
@@ -193,7 +190,6 @@ export class TaskView extends BaseView {
         this.toDoSection = document.querySelector('.todo .tasks');
         this.inProgressSection = document.querySelector('.inprogress .tasks');
         this.doneSection= document.querySelector('.done .tasks');
-        this.exitButton = document.querySelector('.exit-taskboard-btn');
         this.todoCount = document.querySelector('.todo .board-section-name span')
         this.inprogressCount = document.querySelector('.inprogress .board-section-name span')
         this.doneCount = document.querySelector('.done .board-section-name span')

@@ -1,35 +1,35 @@
-import { StickyWallCard } from "../components/sticky_notes/stickyWall.js";
-import { StickyWallObjectArray } from "../util/array.js";
 import { AnimationHandler } from "../handlers/animation/animationHandler.js";
+import { createListItemType1 } from "../util/ui/components.js";
 import { BaseView } from "./baseView.js";
+
 
 export class StickyWallHomeView extends BaseView {
     constructor(controller, applicationController) {
         super(controller);
         this.controller = controller;
         this.applicationController = applicationController;
-        this.stickyWallObjects = new StickyWallObjectArray();
         this.#initElements();
         this.#eventListeners();
         AnimationHandler.fadeInFromBottom(this.viewElement);
     }
 
+
     renderAll(stickyWalls) {
         const contentFragment = document.createDocumentFragment();
 
         for (let i = 0; i < stickyWalls.length; i++) {
-            const stickyWall = this.#stickyWall(stickyWalls[i]);
-            AnimationHandler.fadeInFromBottom(stickyWall)
+            const stickyWall = createListItemType1(stickyWalls[i], 'stickyWall');
+            AnimationHandler.fadeInFromBottom(stickyWall);
             contentFragment.appendChild(stickyWall);
         }
         this._stickyWallsList.append(contentFragment);
     }
 
+
     renderOne(stickyWall) {
-        const stickyWallCard = this.#stickyWall(stickyWall);
+        const stickyWallCard = createListItemType1(stickyWall, 'stickyWall');
         AnimationHandler.fadeInFromBottom(stickyWallCard);
         this._stickyWallsList.appendChild(stickyWallCard);
-        this.closeDialog();
     }
 
 
@@ -39,11 +39,10 @@ export class StickyWallHomeView extends BaseView {
         for (let i = 0; i < stickyWalls.length; i++) {
             if (stickyWalls[i].id == stickyWallId) {
                 AnimationHandler.fadeOutCard(stickyWalls[i])
-                this.stickyWallObjects.remove(stickyWallId);
-                this.closeDialog();
             }
         }
     }
+
 
     renderUpdate(stickyWall) {
         const stickyWalls = this._stickyWallsList.children; 
@@ -51,36 +50,34 @@ export class StickyWallHomeView extends BaseView {
         for (let i = 0; i < stickyWalls.length; i++) {
             if (stickyWalls[i].id == stickyWall.id) {    
 
-                stickyWalls[i].querySelector('span').textContent = stickyWall.name;
-                this.stickyWallObjects.update(stickyWall);
-                this.closeDialog()
+                stickyWalls[i].setAttribute('list-item', JSON.stringify(stickyWall));
             }
         }
     }
 
-    getstickyWallObject(stickyWallId) {
-        return this.stickyWallObjects.get(stickyWallId);
-    }
-
-    async handleStickyWallCardClick(stickyWallId) {
-        const stickyWall = await this.controller.getById(stickyWallId)
-        this.applicationController.initView('stickyWall', 
-            {
-                stickyWall: stickyWall,
-                previousView: 'stickyWallHome', 
-            }
-        );
-    }
-
-    #stickyWall(stickyWall) {
-        this.stickyWallObjects.add(stickyWall);
-        return new StickyWallCard(this, stickyWall, this.controller, this.dialog);
-    }
 
     #eventListeners() {
-        this._addNewstickyWallButton.addEventListener('click', () => {
-            this.dialog.renderNewCollectionModal(this.controller, 'stickyWall');
-        });
+        this._addNewstickyWallButton.addEventListener('click', () => {this.dialog.renderNewCollectionModal(this.controller, 'stickyWall');});
+
+        this._stickyWallsList.addEventListener('ListItemCardClick', (event) => {
+            const { listItem } = event.detail;        
+            this.applicationController.initView('stickyWall', 
+                {
+                    stickyWall: listItem,
+                    previousView: 'stickyWallHome', 
+                }
+            )
+        })
+
+        this._stickyWallsList.addEventListener('DeleteListItem', (event) => {
+            const { listItem } = event.detail
+            this.renderDeleteModal(listItem.id, listItem.name);
+        })
+
+        this._stickyWallsList.addEventListener('UpdateListItem', (event) => {
+            const { listItem, listItemType } = event.detail
+            this.dialog.renderNewCollectionModal(this.controller, listItemType, listItem)
+        })
     }
 
     #initElements() {

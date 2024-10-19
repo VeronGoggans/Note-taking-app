@@ -1,16 +1,15 @@
 import { HttpModel } from "../model/httpModel.js";
-import { TaskboardView } from "../view/taskboardView.js";
+import { TaskboardHomeView } from "../view/taskboardHomeView.js";
 
 
 export class TaskboardHomeController {
-    constructor(applicationController, dialog) {
+    constructor(applicationController) {
         this.applicationController = applicationController;
-        this.dialog = dialog;
         this.model = new HttpModel();
     }
 
     async init() {
-        this.view = new TaskboardView(this, this.applicationController);
+        this.view = new TaskboardHomeView(this, this.applicationController);
         await this.get()
     }
 

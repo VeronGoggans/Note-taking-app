@@ -1,37 +1,49 @@
-import { CNode } from "../../util/CNode.js";
 import { stickyNoteColors } from "../../constants/constants.js";
 import { captureNewLines } from "../../util/formatters.js";
 
 
-export class StickyNote {
-    constructor(stickyNote, view, controller, dialog) {
-        this.stickyNote = stickyNote;
-        this.view = view;
-        this.controller = controller;
-        this.dialog = dialog;
+class StickyNote extends HTMLElement {
+    static get observedAttributes() {
+        return ['sticky']; 
+    }
 
-        this.#initElements();
-
-        // Give the sticky note a random color.
-        this.HOST.style.backgroundColor = stickyNoteColors[Math.floor(Math.random()*stickyNoteColors.length)]
-
-        this.#eventListeners();
-        return this.#render();
+    constructor() {
+        super();
     }
 
 
-    #initElements() {
-        this.HOST = CNode.create('div', { 'class': 'sticky-note', 'id': this.stickyNote.id});
-        this.H3 = CNode.create('h3', { 'textContent': this.stickyNote.name });
-        this.CONTENT = CNode.create('p', { 'innerHTML': captureNewLines(this.stickyNote.content) });
+    connectedCallback() {
+        this.sticky = JSON.parse(this.getAttribute('sticky'));
+        this.id = this.sticky.id;
+        this.style.backgroundColor = stickyNoteColors[Math.floor(Math.random()*stickyNoteColors.length)]
+        
+        this.render();
+        this.addEventListener('click', this.handleCardClick.bind(this));
     }
 
-    #render() {
-        this.HOST.append(this.H3, this.CONTENT);
-        return this.HOST
+    
+    disconnectedCallback() {
+        this.removeEventListener('click', this.handleCardClick.bind(this));
     }
 
-    #eventListeners() {
-        this.HOST.addEventListener('click', () => {this.dialog.renderStickyNoteModal(this.controller, this.view.getStickyNoteObject(this.stickyNote.id))});
+
+    attributeChangedCallback(name, oldValue, newValue) {
+        if (name === 'sticky') {
+            this.sticky = JSON.parse(newValue);
+            this.render();
+        }
+    }
+
+    render() {
+        this.innerHTML = `
+            <h3>${this.sticky.name}</h3>
+            <p>${captureNewLines(this.sticky.content)}</p>
+        `;
+    }
+
+    handleCardClick() {
+        this.dispatchEvent(new CustomEvent('StickyCardClick', { detail: { sticky: this.sticky }, bubbles: true}));
     }
 }
+
+customElements.define('sticky-card', StickyNote);

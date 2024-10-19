@@ -1,10 +1,11 @@
 import { CNode } from "../../util/CNode.js";
+import { dialogEvent } from "../../util/dialog.js";
 
 export class DeleteModal {
-    constructor(id, name, notify, view) {
+    constructor(controller, id, name, notify) {
         this.id = id;
         this.notify = notify;
-        this.view = view;
+        this.controller = controller;
         this.HOST = CNode.create('div', {'class': 'delete-modal'});
         this.HOST.innerHTML = `
             <p class="delete-warning">Press Confirm to delete</p>
@@ -19,10 +20,11 @@ export class DeleteModal {
         this.HOST.querySelector('button').addEventListener('click', () => {
 
             if (this.notify) {
-                this.view.handleDeleteButtonClick(this.id)
+                this.controller.handleDeleteButtonClick(this.id);
                 return
             }
-            this.view.deleteObject(this.id)
+            this.controller.delete(this.id);
+            dialogEvent(this.HOST, 'close');
         })
     }
 }

@@ -31,12 +31,15 @@
     color: var(--text);
     font-family: sans-serif;
     background-color: transparent;
-    border: 1px solid var(--border-card);
 }
 
-.sticky-note-modal input:focus,
-.sticky-note-modal textarea:focus {
-    border-color: #5c7fdd;
+.sticky-note-modal input {
+    border: none;
+    background-color: var(--input-bg);
+}
+
+.sticky-note-modal textarea {
+    border: 1px solid var(--border-card);
 }
 
 

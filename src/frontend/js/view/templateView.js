@@ -42,7 +42,7 @@ export class TemplateView extends BaseView {
     }
 
     
-    renderDelete(template, closeDialog = true) {
+    renderDelete(template) {
         const templates = this._recentTemplates.children;
 
         for (let i = 0; i < templates.length; i++) {
@@ -52,7 +52,6 @@ export class TemplateView extends BaseView {
                 this._templateCountSpan.textContent = decrementString(this._templateCountSpan.textContent); 
             }
         }
-        if (closeDialog) this.closeDialog();
     }
 
     handleTemplateCardClick(templateId) {

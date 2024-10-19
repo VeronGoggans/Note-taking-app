@@ -23,8 +23,8 @@ export class HomeController {
 
     async getRecentFolders() {
         try {
-            const { folders } = await this.model.get('/recentFolders');
-            this.view.renderRecentFolders(folders);
+            const { Objects } = await this.model.get('/recentFolders');
+            this.view.renderRecentFolders(Objects);
         } 
         catch(error) {
             NotificationHandler.push('error', null, error.message)

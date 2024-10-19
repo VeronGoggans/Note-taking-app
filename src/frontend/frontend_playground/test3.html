@@ -4,50 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../css/components/note.css">
-    <link rel="stylesheet" href="../css/general/main.css">
-    <link rel="stylesheet" href="../css/general/themes.css">
-    <link rel="stylesheet" href="../css//modals/taskModal.css">
-    <style>
-        .radio {
-            display: inline-flex;
-            overflow: hidden;
-            border-radius: 25px;
-        }
-
-        .radio__input {
-            display: none;
-        }
-
-        .radio__label {
-            padding: 15px 20px;
-            font-size: 14px;
-            font-family: sans-serif;
-            color: var(--text);
-            background-color: #617fff69;
-            cursor: pointer;
-            transition: .1s;
-        }
-
-        .radio__label:not(:last-of-type) {
-            border-right: 1px solid #4a6bff69;
-        }
-
-
-    </style>
 </head>
 <body>
-    <div class="theme-container">
-        <h1>Sidebar color</h1>
-        <p>Select a sidebar color</p>
-        <div class="radio">
-            <input class="radio__input" type="radio" name="sidebar-color" value="original" id="original-sidebar" checked>
-            <label class="radio__label" for="original-sidebar">Original</label>
-            <input class="radio__input" type="radio" name="sidebar-color" value="soft" id="soft-sidebar">
-            <label class="radio__label" for="soft-sidebar">Soft</label>
+    <div class="folder">
+        <p class="folder-name"></p>
+        <i id="folder-icon" class="bi bi-folder"></i>
+        <div class="folder-btns">
+            <i class="fa-solid fa-pen"></i>
+            <i class="fa-solid fa-trash"></i>
         </div>
     </div>
-
     
 </body>
 </html>

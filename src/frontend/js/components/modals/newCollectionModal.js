@@ -1,5 +1,7 @@
 import { CNode } from "../../util/CNode.js";
 import { modalPlaceholderText, modalNewTitleText, modalUpdateTitleText, modalButtonText } from "../../constants/constants.js";
+import { dialogEvent } from "../../util/dialog.js";
+
 
 export class NewCollectionModal {
     constructor(controller, entity, entityData = null) {
@@ -50,6 +52,7 @@ export class NewCollectionModal {
                     "description": this.DESCRIPTION.value
                 })
             } 
+            dialogEvent(this.HOST, 'close');
         })
     }
 

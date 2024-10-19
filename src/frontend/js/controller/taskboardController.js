@@ -42,8 +42,6 @@ export class TaskboardController {
 
     loadPreviousView() {
         const previousView = this.applicationController.getPreviousView();
-        console.log(previousView);
-        
         this.applicationController.initView(previousView);
     }
 }
