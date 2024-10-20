@@ -29,7 +29,7 @@ app.include_router(flashcard_deck_router.route)
 app.include_router(sticky_note_router.route)
 app.include_router(taskboard_router.route)
 app.include_router(theme_router.route)
-app.include_router(note_router.route)
+app.include_router(notebook_router.route)
 app.include_router(focus_session_router.route)
 
 # Setting up a FRONT-END page for the API

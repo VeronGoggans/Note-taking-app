@@ -1,6 +1,6 @@
-import { folderColors } from "../constants/constants.js";
-import { formatName } from "../util/formatters.js";
-import { addDraggImage } from "../util/ui.js";
+import { folderColors } from "../../constants/constants.js";
+import { formatName } from "../../util/formatters.js";
+import { addDraggImage } from "../../util/ui.js";
 
 
 class RecentFolder extends HTMLElement {

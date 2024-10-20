@@ -9,7 +9,4 @@ export class BaseView {
     renderDeleteModal(id, name, notify = false) {
         this.dialog.renderDeleteModal(this.controller, id, name, notify)
     }
-
-
-    
 }

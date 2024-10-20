@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="../css/views/flashcardView.css">
     <link rel="stylesheet" href="../css/views/homeView.css">
     <link rel="stylesheet" href="../css/views/notesView.css">
-    <link rel="stylesheet" href="../css/views/notebookHomeView.css">
+    <link rel="stylesheet" href="../css/views/notebook/notebookHomeView.css">
     <link rel="stylesheet" href="../css/views/templatesView.css">
     <link rel="stylesheet" href="../css/views/settingsView.css">
     <link rel="stylesheet" href="../css/general/searchbar.css">
@@ -45,6 +45,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Neutron</title>
+    <script src="../js/components/buttons/previousViewButton.js"></script>
 </head>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
@@ -85,7 +86,7 @@
       <div class="view">
         <div class="notebook-view">
           <div class="notebook-top">
-            <button class="exit-folder-btn"><i class="bi bi-arrow-left"></i></button>
+            <previous-view-button></previous-view-button>
 
             <div class="searchbar">
                 <i id="search-icon" class="bi bi-search"></i>
@@ -100,69 +101,7 @@
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt accusantium totam perferendis aliquam quae, qui nemo a nihil laudantium porro harum saepe excepturi voluptate est sapiente quos suscipit numquam sunt.
             </p>
           <div class="notebook-content">
-            <div class="notebook-items">
-              <div class="item">
-                <div class="item-info">
-                  <i id="notebook-note-icon" class="bi bi-file-earmark"></i>
-                  <span class="item-title">Start document</span>
-                </div>
-                <div class="item-options">
-                  <i class="fa-solid fa-trash"></i>
-                </div>
-              </div>
-  
-              <div class="item">
-                <div class="item-info">
-                  <i id="notebook-template-icon" class="bi bi-file-earmark-text"></i>
-                  <span class="item-title">Software project planning</span>
-                </div>
-                <div class="item-options">
-                  <i class="fa-solid fa-trash"></i>
-                </div>
-              </div>
-  
-              <div class="item">
-                <div class="item-info">
-                  <i id="notebook-folder-icon" class="bi bi-folder"></i>
-                  <span class="item-title">Neutron</span>
-                </div>
-                <div class="item-options">
-                  <i class="fa-solid fa-trash"></i>
-                </div>
-              </div>
-              
-              <div class="item">
-                <div class="item-info">
-                  <i id="notebook-flashcard-icon" class="bi bi-card-text"></i>
-                  <span class="item-title">Agile terms</span>
-                </div>
-                <div class="item-options">
-                  <i class="fa-solid fa-trash"></i>
-                </div>
-              </div>
-  
-              <div class="item">
-                <div class="item-info">
-                  <i id="notebook-taskboard-icon" class="bi bi-pin"></i>
-                  <span class="item-title">Frontend planboard</span>
-                </div>
-                <div class="item-options">
-                  <i class="fa-solid fa-trash"></i>
-                </div>
-              </div>
-  
-              <div class="item">
-                <div class="item-info">
-                  <i id="notebook-taskboard-icon" class="bi bi-pin"></i>
-                  <span class="item-title">Backend planboard</span>
-                </div>
-                <div class="item-options">
-                  <i class="fa-solid fa-trash"></i>
-                </div>
-              </div>
-            </div>
-            
-          
+            <div class="notebook-items"></div>
           </div>  
           </div>
                   

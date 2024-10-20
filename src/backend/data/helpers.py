@@ -1,16 +1,7 @@
 from sqlalchemy.orm import Session
-from src.backend.data.models import Folder, Note, Taskboard, Flashcard, FlashcardSet, Task
+from src.backend.data.models import Folder, Note, Taskboard, Flashcard, FlashcardSet, Task, NoteBook, NotebookItem
 from src.backend.data.exceptions.exceptions import NotFoundException
-from typing import Type, TypeVar, Union
 
-T = TypeVar('T')
-
-def find_entity(entity_id: int, entity_model: Type[T], db: Session) -> Union[T, 'NotFoundException']:
-    entity = db.query(entity_model).filter(entity_model.id == entity_id)
-
-    if entity is None:
-        raise NotFoundException(f"{entity_model.__name__} with id {entity_id} not found.")
-    return entity
 
 def find_folder(folder_id: int, db: Session) -> (Folder | NotFoundException):
     folder = db.query(Folder).filter(Folder.id == folder_id).first()
@@ -50,6 +41,22 @@ def find_deck(id: int, db: Session) -> ( FlashcardSet | NotFoundException ):
     if deck is None:
         raise NotFoundException(f"Deck with id {id} not found.")
     return deck
+
+
+def find_notebook(id: int, db: Session) -> ( NoteBook | NotFoundException ):
+    notebook = db.query(NoteBook).filter(NoteBook.id == id).first()
+    
+    if notebook is None:
+        raise NotFoundException(f"Notebook with id {id} not found.")
+    return notebook
+
+
+def find_notebook_item(id: int, db: Session) -> ( NotebookItem | NotFoundException ):
+    notebook_item = db.query(NotebookItem).filter(NotebookItem.id == id).first()
+    
+    if notebook_item is None:
+        raise NotFoundException(f"Notebook item with id {id} not found.")
+    return notebook_item
 
 
 def find_flashcard(id: int, db: Session) -> ( Flashcard | NotFoundException ):

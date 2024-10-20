@@ -1,4 +1,4 @@
-import { Note } from "../components/note.js";
+import { Note } from "../components/entities/note.js";
 import { NoteObjectArray } from "../util/array.js";
 import { AnimationHandler } from "../handlers/animation/animationHandler.js";
 import { removeContent, addEmptyMessage } from "../util/ui.js";

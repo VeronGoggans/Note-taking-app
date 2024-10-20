@@ -33,16 +33,16 @@ export class FolderController {
         const { name, color } = object
         const parentFolderId = this.model.getCurrentFolderID();
 
-        const { Object } = await this.model.add('/folder', {'parent_id': parentFolderId, 'color': color, 'name': name});
-        this.view.renderOne(Object);
+        const { folder } = await this.model.add('/folder', {'parent_id': parentFolderId, 'color': color, 'name': name});
+        this.view.renderOne(folder);
     }
 
 
     async get() {
         const parentFolderId = this.model.getCurrentFolderID();
 
-        const { Objects } = await this.model.get(`/folders/${parentFolderId}`);
-        this.view.renderAll(Objects);
+        const { folders } = await this.model.get(`/folders/${parentFolderId}`);
+        this.view.renderAll(folders);
     }
 
 
@@ -52,26 +52,26 @@ export class FolderController {
 
 
     async getSearchItems() {
-        const { Objects } = await this.model.get('/folderSearchItems');        
-        return Objects 
+        const { folders } = await this.model.get('/folderSearchItems');        
+        return folders 
     }
 
 
     async update(object) {
-        const { Object } = await this.model.update('/folder', {'folder_id': object.id, 'name': object.name, 'color': object.color});
-        this.view.renderUpdate(Object);
+        const { folder } = await this.model.update('/folder', {'folder_id': object.id, 'name': object.name, 'color': object.color});
+        this.view.renderUpdate(folder);
     }
 
 
     async move(newParentFolderId, droppedFolderId) {
-        const { Object } = await this.model.update('/moveFolder', {'parent_id': newParentFolderId, 'folder_id': droppedFolderId});
-        this.view.renderDelete(Object);
+        const { folder } = await this.model.update('/moveFolder', {'parent_id': newParentFolderId, 'folder_id': droppedFolderId});
+        this.view.renderDelete(folder);
     }
 
 
     async delete(folderId) {
-        const { Object } = await this.model.delete(`/folder/${folderId}`);
-        this.view.renderDelete(Object);
+        const { folder } = await this.model.delete(`/folder/${folderId}`);
+        this.view.renderDelete(folder);
     }
 
 

@@ -25,38 +25,38 @@ class FolderRouter:
 
     @handle_exceptions
     def add_folder(self, request: FolderRequest, db: Session = Depends(Database.get_db)):
-        return {'status': HttpStatus.OK, "Object": self.service.add_folder(request, db)}
+        return {'status': HttpStatus.OK, "folder": self.service.add_folder(request, db)}
         
 
     @handle_exceptions
     def get_folders(self, parent_id: str, db: Session = Depends(Database.get_db)):
-        return {"status": HttpStatus.OK, "Objects": self.service.get_folders(parent_id, db)}
+        return {"status": HttpStatus.OK, "folders": self.service.get_folders(parent_id, db)}
 
         
     @handle_exceptions
     def get_recent_folders(self, db: Session = Depends(Database.get_db)):
-        return {"status": HttpStatus.OK, "Objects": self.service.get_recent_folders(db)}
+        return {"status": HttpStatus.OK, "folders": self.service.get_recent_folders(db)}
         
 
     @handle_exceptions
     def get_search_items(self, db: Session = Depends(Database.get_db)):
-        return {'status': HttpStatus.OK, 'Objects': self.service.get_search_items(db)}
+        return {'status': HttpStatus.OK, 'folders': self.service.get_search_items(db)}
         
 
     @handle_exceptions
     def get_folder_by_id(self, folder_id: str, db: Session = Depends(Database.get_db)):
         folder, hierarchy = self.service.get_folder_by_id(folder_id, db)
-        return {'status': HttpStatus.OK, 'Object': folder, 'location': hierarchy}
+        return {'status': HttpStatus.OK, 'folder': folder, 'location': hierarchy}
 
 
     @handle_exceptions
     def update_folder(self, request: PutFolderRequest, db: Session = Depends(Database.get_db)):
-        return {'status': HttpStatus.OK, "Object": self.service.update_folder(request, db)}
+        return {'status': HttpStatus.OK, "folder": self.service.update_folder(request, db)}
     
 
     @handle_exceptions
     def move_folder(self, request: MoveFolderRequest, db: Session = Depends(Database.get_db)):
-        return {'status': HttpStatus.OK, "Object": self.service.move_folder(request, db)}
+        return {'status': HttpStatus.OK, "folder": self.service.move_folder(request, db)}
         
 
     @handle_exceptions
@@ -67,4 +67,4 @@ class FolderRouter:
         
     @handle_exceptions
     def delete_folder(self, folder_id: str, db: Session = Depends(Database.get_db)):
-        return {'status': HttpStatus.OK, "Object": self.service.delete_folder(folder_id, db)}
+        return {'status': HttpStatus.OK, "folder": self.service.delete_folder(folder_id, db)}

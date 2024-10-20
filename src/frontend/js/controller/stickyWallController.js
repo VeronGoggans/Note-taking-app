@@ -38,12 +38,8 @@ export class StickWallController {
         this.view.renderDelete(stickyNoteId);
     }
 
-    loadPreviousView() {
-        console.log('press');
-        
-        const previousView = this.applicationController.getPreviousView();
-        console.log(previousView);
-        
+    loadPreviousView() {        
+        const previousView = this.applicationController.getPreviousView();        
         this.applicationController.initView(previousView);
     }
 }

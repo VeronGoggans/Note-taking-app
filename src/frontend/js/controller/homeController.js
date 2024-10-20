@@ -2,7 +2,6 @@ import { HomeView } from "../view/homeView.js";
 import { HttpModel } from "../model/httpModel.js";
 import { Searchbar } from "../view/searchbar.js";
 import { viewToLoad } from "../helpers/random.js";
-import { NotificationHandler } from "../handlers/userFeedback/notificationHandler.js";
 
 
 export class HomeController {
@@ -22,35 +21,20 @@ export class HomeController {
     }
 
     async getRecentFolders() {
-        try {
-            const { Objects } = await this.model.get('/recentFolders');
-            this.view.renderRecentFolders(Objects);
-        } 
-        catch(error) {
-            NotificationHandler.push('error', null, error.message)
-        }
+        const { folders } = await this.model.get('/recentFolders');
+        this.view.renderRecentFolders(folders);
     }
 
 
     async getRecentNotes() {
-        try {
-            const { notes } = await this.model.get('/recentNotes');
-            this.view.renderRecentNotes(notes);
-        } 
-        catch(error) {
-            NotificationHandler.push('error', null, error.message)
-        }
+        const { notes } = await this.model.get('/recentNotes');
+        this.view.renderRecentNotes(notes);
     }
 
 
     async get5RandomDecks() {
-        try {
-            const { decks } = await this.model.get('/randomDecks');
-            this.view.renderRandomDecks(decks);
-        } 
-        catch(error) {
-            NotificationHandler.push('error', null, error.message)
-        }
+        const { decks } = await this.model.get('/randomDecks');
+        this.view.renderRandomDecks(decks);
     }
 
 

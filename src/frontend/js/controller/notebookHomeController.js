@@ -1,16 +1,15 @@
 import { HttpModel } from "../model/httpModel.js";
-import { NotebookView } from "../view/notebookHomeView.js";
+import { NotebookHomeView } from "../view/notebookHomeView.js";
 
 export class NotebookHomeController {
-    constructor(applicationController, dialog) {
+    constructor(applicationController) {
         this.applicationController = applicationController;
-        this.dialog = dialog;
         this.model = new HttpModel();
     }
 
     async init() {
-        this.view = new NotebookView(this, this.applicationController);
-        // await this.get()
+        this.view = new NotebookHomeView(this, this.applicationController);
+        await this.get()
     }
 
     async add(notebookInfo) {
@@ -29,8 +28,8 @@ export class NotebookHomeController {
     }
 
     async update(updatedNotebook) {
-        await this.model.update('/notebook', updatedNotebook);
-        this.view.renderUpdate(updatedTaskboard);
+        const { notebook } = await this.model.update('/notebook', updatedNotebook);
+        this.view.renderUpdate(notebook);
     }
 
     async delete(notebookId) {

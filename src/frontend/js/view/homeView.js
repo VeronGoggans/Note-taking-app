@@ -1,5 +1,5 @@
-import { RecentNote } from "../components/note.js";
-import { FlashcardDeck } from "../components/flashcardDeck.js";
+import { RecentNote } from "../components/entities/note.js";
+import { FlashcardDeck } from "../components/entities/flashcardDeck.js";
 import { NoteObjectArray, FlashcardDeckObjectArray } from "../util/array.js";
 import { AnimationHandler } from "../handlers/animation/animationHandler.js";
 import { greetBasedOnTime } from "../util/date.js";

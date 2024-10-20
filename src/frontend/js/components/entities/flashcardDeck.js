@@ -1,7 +1,7 @@
-import { AnimationHandler } from "../handlers/animation/animationHandler.js";
-import { CNode } from "../util/CNode.js";
-import { getPassedTime } from "../util/date.js";
-import { capitalizeFirstLetter } from "../util/formatters.js";
+import { AnimationHandler } from "../../handlers/animation/animationHandler.js";
+import { CNode } from "../../util/CNode.js";
+import { getPassedTime } from "../../util/date.js";
+import { capitalizeFirstLetter } from "../../util/formatters.js";
 
 export class FlashcardDeck {
     constructor(deck, stats, view) {

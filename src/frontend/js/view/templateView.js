@@ -1,4 +1,4 @@
-import { Template } from "../components/template.js"; 
+import { Template } from "../components/entities/template.js"; 
 import { AnimationHandler } from "../handlers/animation/animationHandler.js";
 import { TemplateObjectArray } from "../util/array.js";
 import { decrementString } from "../util/ui.js";

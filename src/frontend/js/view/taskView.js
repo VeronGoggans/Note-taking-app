@@ -1,8 +1,6 @@
-import { TaskCard } from "../components/task.js";
-import { TaskObjectArray } from "../util/array.js";
 import { AnimationHandler } from "../handlers/animation/animationHandler.js";
 import { BaseView } from "./baseView.js";
-import { tagColors, taskBoardSections } from "../constants/constants.js";
+import { taskBoardSections } from "../constants/constants.js";
 import { incrementString, decrementString } from "../util/ui.js";
 
 
@@ -10,9 +8,8 @@ export class TaskView extends BaseView {
     constructor(controller, applicationController) {
         super(controller);
         this.controller = controller;
-        this.taskbaordId = null;
+        this.taskboardId = null;
         this.applicationController = applicationController;
-        this.taskObjects = new TaskObjectArray();
         this.#initElements();
         this.#eventListeners();
         AnimationHandler.fadeInFromBottom(this.viewElement);
@@ -20,9 +17,11 @@ export class TaskView extends BaseView {
 
     renderTaskboard(taskboard) {
         // Setting the name and description for the taskboard
-        document.querySelector('.task-board-name').textContent = taskboard.name;
-        document.querySelector('.task-board-description').textContent = taskboard.description;
-        this.taskbaordId = taskboard.id;
+        this.name.textContent = taskboard.name;
+        if (taskboard.description !== '') {
+            this.description.textContent = taskboard.description;
+        }
+        this.taskboardId = taskboard.id;
     }
 
 
@@ -62,41 +61,24 @@ export class TaskView extends BaseView {
 
 
     renderDelete(taskId) {
-        const tasks = this.board.querySelectorAll('.task');
+        const tasks = this.board.querySelectorAll('task-card');
         
         for (let i = 0; i < tasks.length; i++) {
             if (tasks[i].id == taskId) {
                 AnimationHandler.fadeOutCard(tasks[i])
-                this.taskObjects.remove(taskId);
             }
         }
     }
+
 
     renderUpdate(task) {
-        const tasks = this.board.querySelectorAll('.task'); 
+        const tasks = this.board.querySelectorAll('task-card'); 
 
         for (let i = 0; i < tasks.length; i++) {
-            if (tasks[i].id == task.id) {    
-
-                tasks[i].querySelector('h3').textContent = task.name;
-                tasks[i].querySelector('p').innerHTML = '<i class="fa-regular fa-clock"></i>' + 'Due ' + task.due_date;
-                const tag = tasks[i].querySelectorAll('p')[1];
-                
-                const newTagColor = tagColors[task.tag];
-
-                tag.innerHTML = '<i class="fa-solid fa-tag"></i> ' + task.tag;
-                tag.classList.remove(...tag.classList);
-                tag.classList.add(newTagColor);
-
-                this.taskObjects.update(task);
+            if (tasks[i].id == task.id) {       
+                tasks[i].setAttribute('task', JSON.stringify(task));
             }
         }
-    }
-
-
-
-    getTaskObject(taskId) {
-        return this.taskObjects.get(taskId);
     }
 
 
@@ -126,10 +108,7 @@ export class TaskView extends BaseView {
     }
 
 
-    /**
-     * 
-     * @param {Node} tasksSection 
-     */
+    
     updateTaskCounter(tasksSection, operation) {
         const tasksCount = tasksSection.parentElement.querySelector('.board-section-name .task-count');
         
@@ -143,47 +122,51 @@ export class TaskView extends BaseView {
 
 
     #task(task) {
-        this.taskObjects.add(task);
-        return new TaskCard(this, task, this.controller, this.dialog);
+        const taskCard = document.createElement('task-card');
+        taskCard.setAttribute('task', JSON.stringify(task));
+        return taskCard
     }
 
     #eventListeners() {
         this.addTaskButton.addEventListener('click', () => {this.dialog.renderTaskModal(this.controller, this.taskbaordId)});
         this.viewElement.addEventListener('PreviousViewButtonClick', () => {this.controller.loadPreviousView()});
+        this.board.addEventListener('TaskCardClick', (event) => {
+            const { task } = event.detail;
+            this.dialog.renderTaskModal(this.controller, this.taskboardId, task);
+        })
 
         for (let i = 0; i < this.boardSections.length; i++) {
-            this.boardSections[i].addEventListener('dragover', (event) => {
-                event.preventDefault();
+            this.boardSections[i].addEventListener('dragover', () => {
                 this.boardSections[i].style.borderColor = '#5c7fdd';
             });
 
-            this.boardSections[i].addEventListener('dragleave', (event) => {
-                event.preventDefault();
+            this.boardSections[i].addEventListener('dragleave', () => {
                 this.boardSections[i].style.borderColor = 'transparent';
             });
 
             this.boardSections[i].addEventListener('drop', (event) => {
+                console.log('Something dropped');
+                
                 event.preventDefault();
                 this.boardSections[i].style.borderColor = 'transparent';
-                // Get the id of the element being dragged
-                const droppedCardInfo = JSON.parse(event.dataTransfer.getData('text/plain'));
-                const droppedCardId = Number(droppedCardInfo.draggedCardId);
-                const draggedItemType = droppedCardInfo.draggedItem;
-
-                if (draggedItemType === 'task') {
+                const { draggedTask, itemType } = JSON.parse(event.dataTransfer.getData('text/plain'));
+                
+                console.log(draggedTask);
+                
+                if (itemType === 'task') {
                     const boardSection = this.#getBoardSection(event.target);
-                    const taskCard = document.getElementById(droppedCardId)
+                    const taskCard = document.getElementById(draggedTask.id);
                     boardSection.appendChild(taskCard);
 
                     // Update the task and send it to the controller
-                    const task = this.taskObjects.get(droppedCardId);
                     const section = this.boardSections[i].parentElement.className;
-                    task.section = taskBoardSections[section];
-                    this.controller.update(task, false); // False to not render the task update.
+                    draggedTask.section = taskBoardSections[section];
+                    this.controller.update(task);
                 }
             });
         }
     }
+
 
     #initElements() {
         this.viewElement = document.querySelector('.task-board-view');
@@ -194,7 +177,9 @@ export class TaskView extends BaseView {
         this.inprogressCount = document.querySelector('.inprogress .board-section-name span')
         this.doneCount = document.querySelector('.done .board-section-name span')
         this.addTaskButton = document.querySelector('.add-task-btn');
-        this.board = document.querySelector('.board')
+        this.board = document.querySelector('.board');
+        this.description = document.querySelector('.description-block-content');
+        this.name = document.querySelector('h1');
         
         this.boardSections = [this.toDoSection, this.inProgressSection, this.doneSection]
     }

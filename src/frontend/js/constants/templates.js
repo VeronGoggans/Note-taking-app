@@ -1,4 +1,4 @@
-export const homeTemplate = `
+const homeTemplate = `
     <div class="home">
         <div class="top">
 
@@ -21,7 +21,7 @@ export const homeTemplate = `
     </div>
 `;
 
-export const notesTemplate = `
+const notesTemplate = `
     <div class="notes">
     <div class="notes-top">
         <button class="exit-folder-btn"><i class="bi bi-arrow-left"></i></button>
@@ -51,7 +51,7 @@ export const notesTemplate = `
     </div>
 `;
 
-export const flashcardsTemplate = `
+const flashcardsTemplate = `
     <div class="flashcards-view">
         <h1 class="view-title">Flashcards</h1>
         <div class="stats-section">
@@ -71,7 +71,7 @@ export const flashcardsTemplate = `
     </div>
 `;
 
-export const flashcardPracticeTemplate = `
+const flashcardPracticeTemplate = `
     <div class="flashcard-practice">
     <previous-view-button></previous-view-button>
         <div class="center">
@@ -97,7 +97,7 @@ export const flashcardPracticeTemplate = `
     </div>
 `
 
-export const flashcardEditTemplate = `
+const flashcardEditTemplate = `
     <div class="flashcard-edit-view">
         <previous-view-button></previous-view-button>
         <h1 contenteditable="true" spellCheck="false"></h1>
@@ -107,7 +107,7 @@ export const flashcardEditTemplate = `
     </div>
 `
 
-export const templatesTemplate =  `
+const templatesTemplate =  `
     <div class="templates">
         <h1 class="view-title">Templates</h1>
         <div class="stats-section">
@@ -127,18 +127,18 @@ export const templatesTemplate =  `
     </div>
 `;
 
-export const stickyWallTemplate = `
+const stickyWallTemplate = `
     <div class="sticky-wall-view">
         <previous-view-button></previous-view-button>
         <h1>Sticky Wall</h1>
-        <p class="sticky-wall-description"></p>
+        <description-page-block></description-page-block>
         <div class="sticky-wall">
             <button class="add-sticky-btn"><i class="fa-solid fa-plus"></i></button>
         </div>
     </div>
 `
 
-export const taskBoardHomeTemplate = `
+const taskBoardHomeTemplate = `
     <div class="task-board-home-view">
         <h1 class="view-title">Task boards​</h1>
         <p class="context-text">Create task boards to organize and manage your tasks more efficiently, streamlining your workflow and tracking progress with ease.</p>
@@ -152,7 +152,7 @@ export const taskBoardHomeTemplate = `
 `
 
 
-export const notebookHomeTemplate = `
+const notebookHomeTemplate = `
     <div class="notebook-home-view">
         <h1 class="view-title">Notebooks</h1>
         <p class="context-text">Create notebooks to manage collections of relevant work effectively.</p>
@@ -165,8 +165,30 @@ export const notebookHomeTemplate = `
     </div>
 `
 
+const notebookTemplate = `
+    <div class="notebook-view">
+    <previous-view-button></previous-view-button>
+        <div class="notebook-top">
 
-export const stickyNoteHomeTemplate = `
+            <div class="searchbar">
+                <i id="search-icon" class="bi bi-search"></i>
+                <input type="text" placeholder="Search..." spellcheck="false">
+                <ul class="dropdown-items"></ul>
+            </div>
+        </div>
+        <div class="notebook-bottom">
+            <h1></h1>
+            <description-page-block></description-page-block>
+            <div class="notebook-content">
+                <div class="notebook-items"></div>
+            </div>  
+        </div>
+                
+    </div>
+`
+
+
+const stickyNoteHomeTemplate = `
     <div class="sticky-home-view">
         <h1 class="view-title">Sticky walls</h1>
         <p class="context-text">Create sticky walls to jot down quick thoughts, capture ideas on the fly, and keep track of your brainstorming sessions effortlessly</p>
@@ -179,11 +201,11 @@ export const stickyNoteHomeTemplate = `
     </div>
 `
 
-export const taskBoardTemplate = `
+const taskBoardTemplate = `
     <div class="task-board-view">
         <previous-view-button></previous-view-button>
-        <h1 class="task-board-name">Untitled</h1>
-        <p class="task-board-description"><i>Task board goes here...</i></p>
+        <h1>Untitled</h1>
+        <description-page-block></description-page-block>
         <div class="task-board">
             <div class="util-bar-type-2">
                 <button class="add-task-btn"><i class="fa-solid fa-plus"></i></button>
@@ -195,7 +217,7 @@ export const taskBoardTemplate = `
                         <p>To Do</p> 
                         <span class="task-count">0</span>
                     </div>
-                    <div class="tasks"></div>
+                    <div class="tasks" dropzone="true"></div>
                 </section>
 
                 <section class="inprogress">
@@ -203,7 +225,7 @@ export const taskBoardTemplate = `
                         <p>In progress</p> 
                         <span class="task-count">0</span>
                     </div>
-                    <div class="tasks"></div>
+                    <div class="tasks" dropzone="true"></div>
                 </section>
 
                 <section class="done">
@@ -211,7 +233,7 @@ export const taskBoardTemplate = `
                         <p>Done</p> 
                         <span class="task-count">0</span>
                     </div>
-                    <div class="tasks"></div>
+                    <div class="tasks" dropzone="true"></div>
                 </section>
 
             </div>
@@ -219,7 +241,7 @@ export const taskBoardTemplate = `
     </div>
 `
 
-export const settingsTemplate = `
+const settingsTemplate = `
     <div class="settings">
     <div class="center">
         <h1 class="view-title">Settings</h1>
@@ -248,7 +270,7 @@ export const settingsTemplate = `
     </div>
 `;
 
-export const editorTemplate = `
+const editorTemplate = `
     <div class="editor-wrapper">
       <div class="toolbar">
         <div class="toolbar-top">
@@ -386,5 +408,6 @@ export const templates = {
     editor: editorTemplate,
     taskboardHome: taskBoardHomeTemplate,
     task: taskBoardTemplate,
-    notebookHome: notebookHomeTemplate
+    notebookHome: notebookHomeTemplate,
+    notebook: notebookTemplate
 }

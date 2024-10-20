@@ -1,5 +1,5 @@
 import { AnimationHandler } from "../handlers/animation/animationHandler.js";
-import { FlashcardDeck, FlashcardProgression } from "../components/flashcardDeck.js";
+import { FlashcardDeck, FlashcardProgression } from "../components/entities/flashcardDeck.js";
 import { FlashcardDeckObjectArray } from "../util/array.js";
 import { BaseView } from "./baseView.js";
 

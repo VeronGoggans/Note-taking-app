@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="src/frontend/css/general/sidebar.css">
     <link rel="stylesheet" href="src/frontend/css/general/main.css">
-    <link rel="stylesheet" href="src/frontend/css/components/note.css">
-    <link rel="stylesheet" href="src/frontend/css/components/folder.css">
-    <link rel="stylesheet" href="src/frontend/css/components/task.css">
+    <link rel="stylesheet" href="src/frontend/css/components/entities/note.css">
+    <link rel="stylesheet" href="src/frontend/css/components/entities/folder.css">
+    <link rel="stylesheet" href="src/frontend/css/components/entities/task.css">
     <link rel="stylesheet" href="src/frontend/css/general/dialog.css">
     <link rel="stylesheet" href="src/frontend/css/general/themes.css">
     <link rel="stylesheet" href="src/frontend/css/general/animation.css">
@@ -41,16 +41,20 @@
     <link rel="stylesheet" href="src/frontend/css/general/titleBar.css">
     <link rel="stylesheet" href="src/frontend/css/views/notebook/notebookHomeView.css">
     <link rel="stylesheet" href="src/frontend/css/views/sticky_note/stickyWallHomeView.css">
-    <link rel="stylesheet" href="src/frontend/css/components/lists.css">
-    <link rel="stylesheet" href="src/frontend/css/components/buttons.css">
+    <link rel="stylesheet" href="src/frontend/css/components/lists/lists.css">
+    <link rel="stylesheet" href="src/frontend/css/components/buttons/buttons.css">
+    <link rel="stylesheet" href="src/frontend/css/components/pageBlocks/pageBlocks.css">
     <!-- CDN for the icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Neutron</title>
     <script src="src/frontend/js/components/lists/listItem1.js"></script>
-    <script type="module" src="src/frontend/js/components/folder.js"></script>
+    <script type="module" src="src/frontend/js/components/entities/folder.js"></script>
     <script src="src/frontend/js/components/buttons/previousViewButton.js"></script>
-    <script type="module" src="src/frontend/js/components/sticky_notes/stickyNote.js"></script>
+    <script type="module" src="src/frontend/js/components/entities/stickyNote.js"></script>
+    <script type="module" src="src/frontend/js/components/entities/notebookItem.js"></script>
+    <script type="module" src="src/frontend/js/components/entities/task.js"></script>
+    <script type="module" src="src/frontend/js/components/pageBlocks/pageBlocks.js"></script>
 </head>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');

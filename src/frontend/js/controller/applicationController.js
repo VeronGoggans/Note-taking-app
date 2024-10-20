@@ -8,6 +8,7 @@ import { TextEditorController } from "./textEditorController.js"
 import { SettingController } from "./settingController.js";
 import { FlashcardPracticeController } from "./flashcardPracticeController.js";
 import { FlashcardEditController } from "./flashcardEditController.js";
+import { NotebookController } from "./notebookController.js";
 import { templates } from "../constants/templates.js";
 
 import { FlashcardHomeController } from "./flashcardHomeController.js";
@@ -33,6 +34,7 @@ export class ApplicationController {
         this.flashcardEditController = new FlashcardEditController(this);
         this.textEditorController = new TextEditorController(this);
         this.stickyWallController = new StickWallController(this);
+        this.notebookController = new NotebookController(this);
         this.taskboardController = new TaskboardHomeController(this);
         this.notebookHomeController = new NotebookHomeController(this);
         this.taskController = new TaskboardController(this);
@@ -52,6 +54,7 @@ export class ApplicationController {
             taskboardHome: this.taskboardController,
             task: this.taskController,
             notebookHome: this.notebookHomeController,
+            notebook: this.notebookController,
             stickyWallHome: this.stickyWallHomeController
         }
         this.initView('home')
@@ -177,6 +180,14 @@ export class ApplicationController {
 
                 if (viewId === 'notebookHome') {
                     this.sidebarView.setActiveTab('notebook-home')
+                }
+
+                if (viewId === 'notebook') {
+                    const { notebook, previousView } = viewParameters;
+                    controller.init(notebook);
+                    this.model.setPreviousView(previousView);
+                    this.sidebarView.setActiveTab('notebook-home')
+                    return;
                 }
 
                 controller.init();

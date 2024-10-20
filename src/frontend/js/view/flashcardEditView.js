@@ -1,4 +1,4 @@
-import { Flashcard } from "../components/flashcardDeck.js";
+import { Flashcard } from "../components/entities/flashcardDeck.js";
 import { AnimationHandler } from "../handlers/animation/animationHandler.js";
 import { BaseView } from "./baseView.js";
 

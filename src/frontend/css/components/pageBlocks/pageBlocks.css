@@ -1,0 +1,24 @@
+description-page-block {
+    display: flex;
+    flex-direction: column;
+    font-family: sans-serif;
+    color: var(--text);
+    max-width: 600px;
+    margin: 0;
+    padding: 20px 0;
+}
+
+description-page-block .page-property {
+    font-family: Roboto;
+    font-weight: 600;
+}
+
+description-page-block p {
+    padding-left: 20px;
+}
+
+description-page-block .description-block-placeholder {
+    color: var(--placeholder);
+    font-style: italic;
+}
+

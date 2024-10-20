@@ -21,6 +21,9 @@ class PutNotebookRequest(BaseModel):
 
 
 class PostNotebookItemRequest(BaseModel):
-    pass
+    parent_id: int
+    linked_entity_id: int
+    linked_entity_type: str
+    linked_entity_name: str
 
 

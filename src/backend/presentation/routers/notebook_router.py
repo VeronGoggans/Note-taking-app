@@ -20,42 +20,42 @@ class NotebookRouter:
         self.route.add_api_route('/notebook/{id}', self.delete_notebook, methods=['DELETE'])
 
         self.route.add_api_route('/notebookItem', self.add_notebook_item, methods=['POST'])
-        self.route.add_api_route('/notebookItems', self.get_notebook_items, methods=['GET'])
+        self.route.add_api_route('/notebookItems/{notebookId}', self.get_notebook_items, methods=['GET'])
         self.route.add_api_route('/notebookItem/{id}', self.delete_noteboook_item, methods=['DELETE'])
         
 
     @handle_exceptions
     def add_notebook(self, request: PostNotebookRequest, db: Session = Depends(Database.get_db)):
-        return {'status': HttpStatus.OK, 'Object': self.service.add_notebook(request, db)}
+        return {'status': HttpStatus.OK, 'notebook': self.service.add_notebook(request, db)}
        
 
     @handle_exceptions
     def get_notebooks(self, db: Session = Depends(Database.get_db)):
-        return {'status': HttpStatus.OK, 'Object': self.service.get_notebooks(db)}
+        return {'status': HttpStatus.OK, 'notebooks': self.service.get_notebooks(db)}
        
 
     @handle_exceptions
     def update_notebook(self, request: PutNotebookRequest, db: Session = Depends(Database.get_db)):
-        return {'status': HttpStatus.OK, 'Object': self.service.update_notebooks(request, db)}
+        return {'status': HttpStatus.OK, 'notebook': self.service.update_notebooks(request, db)}
     
 
     @handle_exceptions
-    def delete_notebook(self, id: str, db: Session = Depends(Database.get_db)):
+    def delete_notebook(self, id: int, db: Session = Depends(Database.get_db)):
         self.service.delete_notebook(id, db)
         return {'status': HttpStatus.OK}
 
 
     @handle_exceptions
     def add_notebook_item(self, request: PostNotebookItemRequest, db: Session = Depends(Database.get_db)):
-        return {'status': HttpStatus.OK, 'Object': self.service.add_notebook(request, db)}
+        return {'status': HttpStatus.OK, 'notebookItem': self.service.add_notebook(request, db)}
        
 
     @handle_exceptions
-    def get_notebook_items(self, db: Session = Depends(Database.get_db)):
-        return {'status': HttpStatus.OK, 'Object': self.service.get_notebook_items(db)}
+    def get_notebook_items(self, parent_id: int, db: Session = Depends(Database.get_db)):
+        return {'status': HttpStatus.OK, 'notebookItems': self.service.get_notebook_items(parent_id, db)}
        
 
     @handle_exceptions
-    def delete_noteboook_item(self, id: str, db: Session = Depends(Database.get_db)):
+    def delete_noteboook_item(self, id: int, db: Session = Depends(Database.get_db)):
         self.service.delete_notebook_item(id, db)
         return {'status': HttpStatus.OK}

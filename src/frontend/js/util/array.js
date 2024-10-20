@@ -61,16 +61,6 @@ export class TemplateObjectArray extends ObjectArray {
     }
 }
 
-export class FolderObjectArray extends ObjectArray {
-    update(folder) {
-        for (let i = 0; i < this.objects.length; i++) {
-            if (this.objects[i].id === folder.id) {
-                this.objects[i].name = folder.name;
-                this.objects[i].color = folder.color;
-            }
-        }
-    }
-}
 
 export class FlashcardDeckObjectArray extends ObjectArray {
     update(deck) {
@@ -107,39 +97,6 @@ export class FlashcardObjectArray extends ObjectArray {
     }
 }
 
-
-export class StickyNoteObjectArray extends ObjectArray {
-    update(stickyNote) {
-        for (let i = 0; i < this.objects.length; i++) {
-            if (this.objects[i].id === stickyNote.id) {
-                this.objects[i].name = stickyNote.name;
-                this.objects[i].content = stickyNote.content;
-            }
-        }
-    }
-}
-
-export class StickyWallObjectArray extends ObjectArray {
-    update(stickyWall) {
-        for (let i = 0; i < this.objects.length; i++) {
-            if (this.objects[i].id === stickyWall.id) {
-                this.objects[i].name = stickyWall.name;
-                this.objects[i].description = stickyWall.description;
-            }
-        }
-    }
-}
-
-export class TaskboardObjectArray extends ObjectArray {
-    update(taskboard) {
-        for (let i = 0; i < this.objects.length; i++) {
-            if (this.objects[i].id === taskboard.id) {
-                this.objects[i].name = taskboard.name;
-                this.objects[i].description = taskboard.description;
-            }
-        }
-    }
-}
 
 export class TaskObjectArray extends ObjectArray {
     update(task) {

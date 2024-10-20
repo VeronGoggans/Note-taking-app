@@ -4,6 +4,7 @@
     flex-direction: column;
     height: calc(100dvh - 37px);
     max-height: calc(100dvh - 37px);
+    overflow-y: scroll;
     font-family: Roboto;
     padding: 0 5%;
     opacity: 0;
@@ -24,13 +25,10 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     grid-template-rows: repeat(auto-fill, 220px);
-    max-height: calc(100dvh - 220px);
-    height: calc(100dvh - 220px);
-    overflow-y: scroll;
     gap: 15px;
 }
 
-.sticky-wall sticky-card {
+sticky-card {
     cursor: pointer;
     padding: 10px;
     border-radius: 5px;
@@ -44,17 +42,17 @@
     transition: opacity .7s ease, transform .25s ease, scale .3s ease;
 }
 
-.sticky-wall sticky-card:hover {
+sticky-card:hover {
     scale: 1.05;
 }
 
-.sticky-wall sticky-card h3 {
+sticky-card h3 {
     margin: 0;
     font-family: sans-serif;
     color: rgb(31, 32, 34);
 }
 
-.sticky-wall sticky-card p {
+sticky-card p {
     font-weight: 600;
     color: rgb(42, 42, 49);
 }
@@ -70,10 +68,4 @@
 
 .sticky-wall .add-sticky-btn:hover {
     scale: 1.05;
-}
-
-.sticky-wall-description {
-    color: var(--text);
-    font-size: 16px;
-    font-family: sans-serif;
 }

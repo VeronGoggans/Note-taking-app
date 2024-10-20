@@ -26,19 +26,23 @@ class NotebookService:
     
 
     def delete_notebook(self, id: int, db: Session) -> None:
-        return self.manager.delete_notebook(id, db)
+        self.manager.delete_notebook(id, db)
     
 
-    # def add_notebook_item(self, request: PostNotebookItemRequest, db: Session) -> NotebookItem:
-    #     parent_id = request.
-    #     notebook_item = NotebookItem(
-    #         no
-            
-    #     )
+    def add_notebook_item(self, request: PostNotebookItemRequest, db: Session) -> NotebookItem:
+        parent_id = request.parent_id
+        notebook_item = NotebookItem(
+            linked_entity_id = request.linked_entity_id,
+            linked_entity_type = request.linked_entity_type,
+            linked_entity_name = request.linked_entity_name,
+            notebook_id = parent_id
+        )
+        self.manager.add_notebook_item(parent_id, notebook_item, db)
 
-    def get_notebook_items(self, db: Session) -> list[NotebookItem]:
-        return self.manager.get_notebook_items(db)
+
+    def get_notebook_items(self, parent_id: int, db: Session) -> list[NotebookItem]:
+        return self.manager.get_notebook_items(parent_id, db)
     
 
     def delete_notebook_item(self, id: int, db: Session) -> None:
-        return self.manager.delete_notebook_item(id, db)
+        self.manager.delete_notebook_item(id, db)

@@ -81,7 +81,7 @@ export class StickyNoteView extends BaseView {
         this.createStickyNoteButton = document.querySelector('.add-sticky-btn');    
         this.viewElement = document.querySelector('.sticky-wall-view');
         this._stickyWall = document.querySelector('.sticky-wall');
-        this._description = document.querySelector('.sticky-wall-description');
+        this._description = document.querySelector('.description-block-content');
         this._stickyWallName = document.querySelector('h1');
     }
 }

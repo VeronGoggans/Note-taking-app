@@ -1,5 +1,4 @@
-
-.task {
+task-card {
     cursor: pointer;
     background-color: var(--task);
     margin: 10px 5px;
@@ -10,18 +9,18 @@
     transition: opacity .7s ease, transform .2s ease;
 }
 
-.task i {
+task-card i {
     margin-right: 10px;
 }
 
-.task h3 {
+task-card h3 {
     font-family: sans-serif;
     color: var(--important);
     margin-top: 0;
     font-weight: 500
 }
 
-.task p {
+task-card p {
     font-family: sans-serif;
     font-size: 14px;
     margin: 10px 0;
@@ -30,7 +29,7 @@
     border-radius: 5px;
 }
 
-.task .due-date {
+task-card .due-date {
     background-color: var(--due-date);
     color: var(--text);
 }

@@ -1,6 +1,6 @@
-import { CNode } from "../util/CNode.js";
-import { dateFormat } from "../util/date.js";
-import { formatName, filterNotePreview } from "../util/formatters.js";
+import { CNode } from "../../util/CNode.js";
+import { dateFormat } from "../../util/date.js";
+import { formatName, filterNotePreview } from "../../util/formatters.js";
 
 export class Template {
     constructor(template, view) {

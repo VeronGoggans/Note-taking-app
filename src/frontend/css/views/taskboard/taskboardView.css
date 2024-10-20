@@ -65,6 +65,7 @@
 }
 
 .board section .tasks {
+    display: grid;
     margin: 0 7px 7px 7px;
     border: 2px solid transparent;
     border-radius: 5px;

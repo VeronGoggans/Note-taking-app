@@ -114,18 +114,18 @@ recent-folder-card i {
 .color-orange-2 {background-color: rgb(255, 224, 158)}
 
 
-.color-blue-1 h4,
-.color-blue-2 h4,
-.color-blue-3 h4,
-.color-green-1 h4,
-.color-green-2 h4,
-.color-green-3 h4,
-.color-purple-1 h4,
-.color-purple-2 h4,
-.color-red-1 h4,
-.color-red-2 h4,
-.color-orange-1 h4,
-.color-orange-2 h4 {color: #1b1c22}
+.color-blue-1 p,
+.color-blue-2 p,
+.color-blue-3 p,
+.color-green-1 p,
+.color-green-2 p,
+.color-green-3 p,
+.color-purple-1 p,
+.color-purple-2 p,
+.color-red-1 p,
+.color-red-2 p,
+.color-orange-1 p,
+.color-orange-2 p {color: #1b1c22}
 
 
 .color-blue-1 #folder-icon {color: rgb(76, 102, 225)}

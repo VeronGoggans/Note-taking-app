@@ -1,7 +1,7 @@
-import { CNode } from "../util/CNode.js";
-import { dateFormat } from "../util/date.js";
-import { formatName, filterNotePreview } from "../util/formatters.js";
-import { addDraggImage } from "../util/ui.js";
+import { CNode } from "../../util/CNode.js";
+import { dateFormat } from "../../util/date.js";
+import { formatName, filterNotePreview } from "../../util/formatters.js";
+import { addDraggImage } from "../../util/ui.js";
 
 export class Note {
     constructor(note, view) {

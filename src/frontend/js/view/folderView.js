@@ -1,6 +1,4 @@
-import { FolderObjectArray } from "../util/array.js";
 import { AnimationHandler } from "../handlers/animation/animationHandler.js";
-import { folderColors } from '../constants/constants.js';
 import { removeContent, addEmptyMessage, removeEmptyMessage } from "../util/ui.js";
 import { BaseView } from "./baseView.js";
 
@@ -10,7 +8,6 @@ export class FolderView extends BaseView {
         this.controller = controller;
         this.applicationController = applicationController;
 
-        this.folderObjects = new FolderObjectArray();
         this.#initElements();
         this.#eventListeners();
     }

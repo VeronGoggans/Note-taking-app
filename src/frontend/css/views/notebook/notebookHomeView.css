@@ -1,3 +1,4 @@
+.notebook-view,
 .notebook-home-view {
     outline: none;
     height: calc(100dvh - 37px);
@@ -9,20 +10,18 @@
     transition: opacity .7s ease, transform .2s ease;
 }
 
+.notebook-view h1 {
+    color: var(--important);
+    font-family: sans-serif;
+    margin-top: 60px;
+}
+
 .notebook-top {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-
-.notebook-description {
-    font-family: sans-serif;
-    color: var(--text);
-    max-width: 600px;
-    margin: 0;
-    padding: 20px 0 50px 0;
-} 
 
 .notebook-bottom {
     max-height: calc(100dvh - 97px);
@@ -34,6 +33,10 @@
     flex-direction: column;
     margin: 0 20px;
     padding-bottom: 50px;
+}
+
+.notebook-cards {
+    padding: 10px 40px;
 }
 
 .notebook-items {

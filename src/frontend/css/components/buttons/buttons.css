@@ -8,6 +8,7 @@ previous-view-button {
     border-radius: 15px;
     color: var(--important);
     width: fit-content;
+    z-index: 2;
 }
 
 previous-view-button:hover {

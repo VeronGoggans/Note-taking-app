@@ -2,9 +2,8 @@ import { HttpModel } from "../model/httpModel.js";
 import { TaskView } from "../view/taskView.js";
 
 export class TaskboardController {
-    constructor(applicationController, dialog) {
+    constructor(applicationController) {
         this.applicationController = applicationController;
-        this.dialog = dialog;
         this.model = new HttpModel();
     }
 
@@ -27,11 +26,9 @@ export class TaskboardController {
     }
 
 
-    async update(updatedTask, renderUpdate = true) {
+    async update(updatedTask) {
         const { task }  = await this.model.update('/task', updatedTask);
-        if (renderUpdate) {
-            this.view.renderUpdate(task);
-        }
+        this.view.renderUpdate(task);
     }
 
 
