@@ -1,6 +1,5 @@
 import { RecentNote } from "../components/entities/note.js";
-import { FlashcardDeck } from "../components/entities/flashcardDeck.js";
-import { NoteObjectArray, FlashcardDeckObjectArray } from "../util/array.js";
+import { NoteObjectArray } from "../util/array.js";
 import { AnimationHandler } from "../handlers/animation/animationHandler.js";
 import { greetBasedOnTime } from "../util/date.js";
 import { BaseView } from "./baseView.js";
@@ -12,7 +11,6 @@ export class HomeView extends BaseView {
         this.applicationController = applicationController;
 
         this.noteObjects = new NoteObjectArray();
-        this.deckObjects = new FlashcardDeckObjectArray();
         this.#initElements();
         this.#eventListeners();
 
@@ -46,18 +44,18 @@ export class HomeView extends BaseView {
     }
 
     renderRandomDecks(decks) {
-        this.deckObjects.clear()
         const contentFragment = document.createDocumentFragment();
 
         for (let i = 0; i < decks.length; i++) {
-            const deck = decks[i].deck;
-            const deckStats = decks[i].stats;
-            const deckCard = this.#flashcardDeck(deck, deckStats);
+            const { deck, stats } = decks[i];
+            console.log(stats);
+            
+            const deckCard = this.#flashcardDeck(deck, stats);
 
             contentFragment.appendChild(deckCard);
             AnimationHandler.fadeInFromBottom(deckCard);
         }
-        this.flashcardDeckContainer.appendChild(contentFragment); 
+        this._flashcardDeckList.appendChild(contentFragment); 
 
     }
 
@@ -75,32 +73,26 @@ export class HomeView extends BaseView {
     }
 
 
-    async handleDeckCardClick(deckId) {
-        const deck = this.deckObjects.get(deckId)
-        const flashcards = await this.applicationController.getFlashcards(deckId) 
-        this.applicationController.initView('flashcardsPractice', {
-            deck: deck,
-            flashcards: flashcards, 
-            previousView: 'home'
-        })
-    }
-
     #recentFolder(folder) {
         const recentFolderCard = document.createElement('recent-folder-card');
         recentFolderCard.setAttribute('folder', JSON.stringify(folder));
-
         return recentFolderCard
     }
+
 
     #recentNote(note) {
         this.noteObjects.add(note)
         return new RecentNote(note, this);
     }
 
-    #flashcardDeck(deck, deckStats) {
-        this.deckObjects.add(deck);
-        return new FlashcardDeck(deck, deckStats, this);
+
+    #flashcardDeck(deck, stats) {
+        const flashcardDeck = document.createElement('flashcard-deck');
+        flashcardDeck.setAttribute('deck', JSON.stringify(deck));
+        flashcardDeck.setAttribute('stats', JSON.stringify(stats));
+        return flashcardDeck
     }
+
 
     #eventListeners() {
         this._recentFolderList.addEventListener('RecentFolderCardClick', async (event) => {
@@ -109,15 +101,25 @@ export class HomeView extends BaseView {
             this.applicationController.initView('notes', {
                 folder: Object,
                 location: location
-            });
-        });       
+            })
+        })  
+        
+        this._flashcardDeckList.addEventListener('PracticeDeck', async (event) => {
+            const { deck } = event.detail;
+            const flashcards = await this.applicationController.getFlashcards(deck.id) 
+            this.applicationController.initView('flashcardsPractice', {
+                deck: deck,
+                flashcards: flashcards, 
+                previousView: 'home'
+            })
+        })
     }
 
     #initElements() {
         document.querySelector('.view-title').textContent = greetBasedOnTime();
         this._recentFolderList = document.querySelector('.recent-folders');
         this.recentNoteContainer = document.querySelector('.recent-notes');
-        this.flashcardDeckContainer = document.querySelector('.flashcard-decks');
+        this._flashcardDeckList = document.querySelector('.flashcard-decks');
         this._viewElement = document.querySelector('.home');
     }
 }

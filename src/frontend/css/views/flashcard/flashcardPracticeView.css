@@ -96,16 +96,16 @@
     margin: 20px 40px 0 40px;
     position: relative;
     height: 5px;
-    background-color: var(--progress-color2);
-    border-radius: 5px;
+    background-color: var(--progress-color);
+    border-radius: 10px;
     overflow: hidden;
 }
 
 .flashcard-practice .deck-section .progress .progress__fill {
-    width: 0%;
     height: 100%;
     background-color: #5c7fdd;
     transition: 150ms;
+    border-radius: 10px;
 }
 
 .flashcard-practice .deck-section .button-bar {

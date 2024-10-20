@@ -47,8 +47,8 @@ export class FlashcardHomeController {
 
 
     async delete(deckId) {
-        const { deck } = await this.model.delete(`/deck/${deckId}`);       
-        this.view.renderDelete(deck);
+        await this.model.delete(`/deck/${deckId}`);       
+        this.view.renderDelete(deckId);
     }
 
     /**

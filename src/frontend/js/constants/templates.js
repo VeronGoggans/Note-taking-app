@@ -60,13 +60,10 @@ const flashcardsTemplate = `
             <p>Total cards: <span class="flashcard-count">0</span></p>
         </div>
         <div class="deck-section">
-            <h2 class="subtitle">Decks</h2>
+            <h2 class="subtitle">Flashcard decks</h2>
             <button class="create-deck-btn">Add a deck</button>
             <div class="flashcard-deck-container"></div>
         </div>
-        <div class="deck-progression-section">
-        <h2 class="subtitle">Progression</h2>
-        <div class="flashcard-deck-progression-container"></div>
     </div>
     </div>
 `;
@@ -88,9 +85,9 @@ const flashcardPracticeTemplate = `
                     <div class="progress__fill"></div>
                 </div>
                 <div class="button-bar">
-                    <i id="restart-btn" class="bi bi-arrow-repeat"><span style="margin-left: 7px;">Restart</span></i>
-                    <i id="wrong-btn" class="bi bi-x-lg"><span style="margin-left: 7px;">Wrong</span></i>
-                    <i id="correct-btn" class="bi bi-check2"><span style="margin-left: 7px;">Correct</span></i>
+                    <i id="restart-btn" class="bi bi-arrow-repeat"></i>
+                    <i id="wrong-btn" class="bi bi-x-lg"></i>
+                    <i id="correct-btn" class="bi bi-check2"></i>
                 </div>
             </div>
         </div>

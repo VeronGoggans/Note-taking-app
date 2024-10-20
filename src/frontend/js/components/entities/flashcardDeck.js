@@ -1,75 +1,101 @@
-import { AnimationHandler } from "../../handlers/animation/animationHandler.js";
 import { CNode } from "../../util/CNode.js";
 import { getPassedTime } from "../../util/date.js";
 import { capitalizeFirstLetter } from "../../util/formatters.js";
 
-export class FlashcardDeck {
-    constructor(deck, stats, view) {
-        this.view = view;
-        this.deck = deck;
-        this.name = deck.name;
-        this.lastStudyDate = getPassedTime(deck.last_study);
-        this.cardsCount = stats.flashcards;
 
-        this.#initElements();
-        this.#eventListeners();
-        return this.#render();
+class FlashcardDeck extends HTMLElement {
+    static get observedAttributes() {
+        return ['deck', 'stats']; 
     }
 
-    #render() {
-        this.DIV.append(this.LAST_STUDY, this.CARDS_PARAGRAPH);
-        this.HOST.append(this.NAME, this.DIV);
-        return this.HOST
+    constructor() {
+        super();
     }
 
-    #initElements() {
-        this.HOST = CNode.create('div', {'class': 'flashcard-deck', 'id': this.deck.id});
-        this.NAME = CNode.create('p', {'class': 'deck-name', 'textContent': this.name });
-        this.DIV = CNode.create('div', {});
-        this.LAST_STUDY = CNode.create('p', {'class': 'last-study-date', 'textContent': this.lastStudyDate});
-        this.CARDS_PARAGRAPH = CNode.create('p', {'class': 'card-count', 'innerHTML': `<span>${this.cardsCount}</span><i class="bi bi-files"></i>`});
+    
+    connectedCallback() {
+        this.deck = JSON.parse(this.getAttribute('deck'));
+        this.stats = JSON.parse(this.getAttribute('stats'));
+        this.id = this.deck.id;
+        this.flashcards = this.stats.flashcards;
+        this.progression = this.stats.progression;        
+
+        this.render();
+        this.addEventListeners();
+    }
+
+    disconnectedCallback() {
+        this.removeEventListeners();
+    }
+
+    
+    attributeChangedCallback(name, oldValue, newValue) {
+        if (name === 'deck') {
+            this.deck = JSON.parse(newValue);
+        } else if (name === 'stats') {
+            this.stats = JSON.parse(newValue);
+        }
+        this.render();
+    } 
+
+    render() {
+        this.innerHTML = `
+            <p class="deck-name">${this.deck.name}</p>
+            <div class="details">
+                <p class="last-study-date">${getPassedTime(this.deck.last_study)}</p>
+                <p class="card-count">
+                    <span>${this.flashcards}</span>
+                    <i class="bi bi-files"></i>
+                </p>
+                <div class="progress">
+                    <div class="progress__fill">
+                        <span class="percentage">${this.progression}%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="flashcard-options">
+                <i id="practice-btn" class="fa-solid fa-arrows-rotate"></i>
+                <i id="edit-btn" class="fa-solid fa-pen"></i>
+                <i id="delete-btn" class="fa-solid fa-trash"></i>
+            </div>
+        `;
+        this.querySelector('.progress__fill').style.width = `${this.progression}%`;
     }
 
 
-    #eventListeners() {
-        this.HOST.addEventListener('click', () => {this.view.handleDeckCardClick(this.deck.id)})
+    addEventListeners() {
+        this.querySelector('#practice-btn').addEventListener('click', this.handlePracticeClick.bind(this));
+        this.querySelector('#delete-btn').addEventListener('click', this.handleDeleteClick.bind(this));
+        this.querySelector('#edit-btn').addEventListener('click', this.handleEditClick.bind(this));
+    }
+
+
+    removeEventListeners() {
+        this.querySelector('#practice-btn').removeEventListener('click', this.handlePracticeClick.bind(this));
+        this.querySelector('#delete-btn').removeEventListener('click', this.handleDeleteClick.bind(this));
+        this.querySelector('#edit-btn').removeEventListener('click', this.handleEditClick.bind(this));
+    }
+
+
+    handlePracticeClick() {
+        this.dispatchEvent(new CustomEvent('PracticeDeck', { detail: { deck: this.deck }, bubbles: true }));
+    }
+
+
+    handleDeleteClick() {
+        this.dispatchEvent(new CustomEvent('DeleteDeck', { detail: { deckId: this.id, name: this.deck.name }, bubbles: true }));
+    }
+
+
+    handleEditClick() {
+        this.dispatchEvent(new CustomEvent('UpdateDeck', { detail: { deck: this.deck }, bubbles: true }));
     }
 }
 
+customElements.define('flashcard-deck', FlashcardDeck)
 
-export class FlashcardProgression {
-    constructor(deck, stats, view) {
-        this.view = view;
-        this.deck = deck;
-        this.stats = stats;
-        this.name = deck.name;
 
-        this.#initElements();
-        this.#eventListeners();
-        return this.#render();
-    }
 
-    #render() {
-        this.PROGRESS.append(this.PROGRESS_FILL);
-        this.HOST.append(this.NAME, this.PROGRESS, this.PERCENTAGE_CORRECT, this.EDIT_BUTTON, this.DELETE_BUTTON);
-        return this.HOST
-    }
-
-    #initElements() {
-        this.HOST = CNode.create('div', {'class': 'flashcard-deck-progression', 'id': this.deck.id});
-        this.NAME = CNode.create('span', {'class': 'deck-name', 'textContent': this.name});
-        this.EDIT_BUTTON = CNode.create('button', {'class': 'edit-deck-btn', 'innerHTML': '<i class="fa-solid fa-pen"></i>'});
-        this.DELETE_BUTTON = CNode.create('button', {'class': 'delete-deck-btn', 'innerHTML': '<i class="fa-solid fa-trash"></i>'});
-        this.PROGRESS = CNode.create('div', {'class': 'progress'});
-        this.PROGRESS_FILL = CNode.create('div', {'class': 'progress__fill', 'style': `width: ${this.stats.progression}%;`});
-        this.PERCENTAGE_CORRECT = CNode.create('span', {'textContent': `${this.stats.progression}% Correct`});
-    }
-
-    #eventListeners() {
-        this.EDIT_BUTTON.addEventListener('click', () => {this.view.handleEditButtonClick(this.deck.id)});
-        this.DELETE_BUTTON.addEventListener('click', () => {this.view.renderDeleteModal(this.deck.id, this.deck.name)});
-    }
-}
 
 export class Flashcard {
     constructor(flashcard, dialog, controller) {

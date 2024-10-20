@@ -22,8 +22,7 @@
     --file-path: #9095aa;
 
     /*Flashcard View*/
-    --progress-color1: linear-gradient(90deg, #9db7ff 0%, #6066ff 100%);
-    --progress-color2: #49517a;
+    --progress-color: #49517a;
     --shadow-practice-card: #111020;
     --flashcard-bg: #17181f;
     --flashcard-edit-bg: #595fc6bd;
@@ -93,8 +92,7 @@
     /*Settings view*/
     --setting-dropdown: #f4f5f7;
     /*Flashcard View*/
-    --progress-color1: linear-gradient(90deg, rgb(213 224 255) 0%, rgb(149 156 255) 100%);
-    --progress-color2: #e6eaff;
+    --progress-color: #e6eaff;
     --shadow-practice-card: #e6eaf3;
     --flashcard-bg: #ffffff;
     --flashcard-edit-bg: #e7ebffb5;

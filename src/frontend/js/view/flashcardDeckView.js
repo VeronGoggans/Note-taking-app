@@ -1,14 +1,12 @@
 import { AnimationHandler } from "../handlers/animation/animationHandler.js";
-import { FlashcardDeck, FlashcardProgression } from "../components/entities/flashcardDeck.js";
-import { FlashcardDeckObjectArray } from "../util/array.js";
 import { BaseView } from "./baseView.js";
+
 
 export class FlashcardDeckView extends BaseView {
     constructor(controller, applicationController) {
         super(controller);
         this.controller = controller;
         this.applicationController = applicationController;
-        this.deckObjects = new FlashcardDeckObjectArray();
 
         this.#initElements();
         this.#eventListeners();
@@ -16,60 +14,36 @@ export class FlashcardDeckView extends BaseView {
     }
 
     renderAll(decks) {
-        this.deckObjects.clear();        
-        
         if (decks.length > 0) {
             const deckFragment = document.createDocumentFragment();
-            const progressionFragment = document.createDocumentFragment();
 
             for (let i = 0; i < decks.length; i++) {
-                const deck = decks[i].deck;
-                const deckStats = decks[i].stats;
-
-                const deckCard = this.#flashcardDeck(deck, deckStats);
-                const progressionCard = this.#flashcardProgression(deck, deckStats);
+                const { deck, stats } = decks[i];
+                const deckCard = this.#flashcardDeck(deck, stats);
         
-                deckFragment.appendChild(deckCard);
-                progressionFragment.appendChild(progressionCard);
-                
-                AnimationHandler.fadeInFromBottom(progressionCard);
+                deckFragment.appendChild(deckCard);                
                 AnimationHandler.fadeInFromBottom(deckCard);
-
-                this.deckObjects.add(deck)
             }
             this._flashcardDecks.appendChild(deckFragment);
-            this._flashcardProgressions.appendChild(progressionFragment);
         }
     }
+
 
     renderOne(deck) {
         const deckCard = this.#flashcardDeck(deck);
-        const progressionCard = this.#flashcardProgression(deck);
-
         this._flashcardDecks.appendChild(deckCard);
-        this._flashcardProgressions.appendChild(progressionCard);
-
         AnimationHandler.fadeInFromBottom(deckCard);
-        AnimationHandler.fadeInFromBottom(progressionCard);
-
-        this.dialog.close();
     }
 
 
-    renderDelete(deck) {
-        console.log(deck);
-        
+    renderDelete(deckId) {        
         const decks = this._flashcardDecks.children;
-        const progressions = this._flashcardProgressions.children
 
         for (let i = 0; i < decks.length; i++) {
-            if (decks[i].id == deck.id) {
+            if (decks[i].id == deckId) {
                 AnimationHandler.fadeOutCard(decks[i]);
-                AnimationHandler.fadeOutCard(progressions[i]);
-                this.deckObjects.remove(deck);
             }
         }
-        this.dialog.close();
     }
 
 
@@ -85,26 +59,6 @@ export class FlashcardDeckView extends BaseView {
         //     this._minutesStudiedSpan.textContent = minutes;
         // }
     } 
-
-    async handleDeckCardClick(deckId) {
-        const deck = this.deckObjects.get(deckId);
-        const flashcards = await this.controller.getFlashcards(deckId); 
-        this.applicationController.initView('flashcardsPractice', {
-            deck: deck,
-            flashcards: flashcards,
-            previousView: 'flashcardsHome',
-        });
-    }
-
-    async handleEditButtonClick(deckId) {
-        const deck = this.deckObjects.get(deckId);
-        const flashcards = await this.controller.getFlashcards(deckId);
-        this.applicationController.initView('flashcardEdit', {
-            deck: deck,
-            flashcards: flashcards,
-            previousView: 'flashcardsHome'
-        });
-    }
 
 
     /**
@@ -127,17 +81,43 @@ export class FlashcardDeckView extends BaseView {
     }
 
 
-    #flashcardDeck(deck, deckStats) {
-        this.deckObjects.add(deck);
-        return new FlashcardDeck(deck, deckStats, this);
+    #flashcardDeck(deck, stats) {
+        const flashcardDeck = document.createElement('flashcard-deck');
+        flashcardDeck.setAttribute('deck', JSON.stringify(deck));
+        flashcardDeck.setAttribute('stats', JSON.stringify(stats));
+        return flashcardDeck
     }
 
-    #flashcardProgression(deck, deckStats) {
-        return new FlashcardProgression(deck, deckStats, this);
-    }
 
     #eventListeners() {
         this._addDeckButton.addEventListener('click', () => {this.dialog.renderNewDeckModal(this.controller)});
+
+        this._flashcardDecks.addEventListener('PracticeDeck', async (event) => {
+            console.log('press');
+            
+            const { deck } = event.detail;
+            const flashcards = await this.controller.getFlashcards(deck.id); 
+            this.applicationController.initView('flashcardsPractice', {
+                deck: deck,
+                flashcards: flashcards,
+                previousView: 'flashcardsHome',
+            })
+        })
+
+        this._flashcardDecks.addEventListener('UpdateDeck', async (event) => {
+            const { deck } = event.detail;
+            const flashcards = await this.controller.getFlashcards(deck.id);
+            this.applicationController.initView('flashcardEdit', {
+                deck: deck,
+                flashcards: flashcards,
+                previousView: 'flashcardsHome'
+            })
+        })
+
+        this._flashcardDecks.addEventListener('DeleteDeck', (event) => {
+            const { deckId, name } = event.detail;
+            this.dialog.renderDeleteModal(this.controller, deckId, name);
+        })
     }
 
 

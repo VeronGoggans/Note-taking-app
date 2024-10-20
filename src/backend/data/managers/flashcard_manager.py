@@ -49,13 +49,13 @@ class FlashcardDeckManager:
             sample_size = len(all_decks)
 
         decks = random.sample(all_decks, sample_size)  # Get up to 5 random decks
-        decks_with_count = []
+        decks_with_prog = []
         for deck in decks:
-            decks_with_count.append({
+            decks_with_prog.append({
                 'deck': deck,
-                'stats': self.__get_deck_card_count(deck.id, db)
+                'stats': self.__get_deck_progression(deck.id, db)
             })
-        return decks_with_count
+        return decks_with_prog
 
 
     def update_deck(self, id: int, name: str, db: Session) -> None:

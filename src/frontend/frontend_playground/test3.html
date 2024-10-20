@@ -4,17 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../css/components/task.css">
+    <link rel="stylesheet" href="../css/components/entities/flashcard.css">
     <link rel="stylesheet" href="../css/general/animation.css">
     <link rel="stylesheet" href="../css/general/themes.css">
     <script type="module" src="../js/components/task.js"></script>
 </head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+    .progress {
+        display: flex;
+        margin-top: 50px;
+        background-color: #e6eaff;
+        height: 5px;
+        border-radius: 10px;
+    }
+
+    .progress__fill {
+        position: relative;
+        background-color: #5c7fdd;
+        width: 50%;
+        border-radius: 10px;
+    }
+
+    .progress__fill span {
+        position: absolute;
+        font-size: 13px;
+        top: -20px;
+        right: -20px;
+        background-color: var(--background);
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        border: 1px solid var(--border-card);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: Roboto;
+        font-weight: 600;
+    }
+
+
+</style>
 <body>
     <div class="flashcard-deck fadeInFromBottom" id="7">
         <p class="deck-name" textcontent="User storys">User storys</p>
         <div>
             <p class="last-study-date" textcontent="Not studied yet.">Not studied yet.</p>
             <p class="card-count"><span>3</span><i class="bi bi-files"></i></p>
+            <div class="progress">
+                <div class="progress__fill">
+                    <span class="percentage">50%</span>
+                </div>
+            </div>
+        </div>
+        <div class="flashcard-options">
+            <i id="edit-btn" class="fa-solid fa-pen"></i>
+            <i id="delete-btn" class="fa-solid fa-trash"></i>
         </div>
     </div>
     
